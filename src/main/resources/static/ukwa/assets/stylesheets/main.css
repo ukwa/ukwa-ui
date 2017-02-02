@@ -1,0 +1,176 @@
+footer {
+    margin-top: 2em;
+}
+
+.unpublished-collection-link {
+    opacity: 0.8;
+    color: #999;
+}
+
+#collection-tree-list .collection-tree-toggle {
+    text-decoration: none;
+}
+#collection-tree-list .collection-tree-toggle.collapsed .glyphicon:before {
+    content: "\e079";
+}
+
+.collection-targets-thumbnails {
+    margin-top: 1em;
+}
+.collection-targets-thumbnails .thumbnail {
+    height: 150px;
+    overflow: hidden;
+    text-align: center;
+}
+.collection-targets-thumbnails .thumbnail img {
+    border: 1px solid #ddd;
+    min-height: 100px;
+}
+.collection-targets-thumbnails .thumbnail .caption {
+    padding: 4px;
+}
+
+#instances {
+    overflow:hidden;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEElEQVQIW2NMTEz8z8gABAAPKwIlXWq1kgAAAABJRU5ErkJggg==);
+    background-repeat:repeat-y;
+    background-position:50% 0;
+}
+#instances ul {
+    margin: 0px auto;
+    margin-top: 5em;
+    height: auto;
+    position: relative;
+    padding:0px;
+    list-style-type:none;
+
+}
+
+#instances .thumb {
+    text-align:center;
+    float: right;
+    clear: none;
+    width: 45%;
+    margin: 0em 2.5%;
+
+    border-radius: 5px;
+    list-style-type: none;
+    display: block;
+    padding: .4em;
+}
+
+#instances .thumb .thumbnail {
+    margin-bottom: 0;
+}
+
+#instances .thumb-first {
+    margin-top: -5em;
+}
+
+#instances .thumb-even {
+    float: left;
+}
+
+#instances .thumb-odd {
+    float: right;
+}
+
+#instances .thumb img {
+}
+
+#instances .thumb-date {
+}
+#instances .thumb-even .thumb-date {
+}
+#instances .thumb-odd .thumb-date {
+}
+
+#instances img {
+    border: 1px solid #ccc;
+}
+
+/* ----------------------Breadcrumb styles-------------------------- */
+/* See https://css-tricks.com/triangle-breadcrumbs/ */
+
+#global-breadcrumb {
+    position: absolute;
+}
+
+#global-breadcrumb .group {
+    font-size: 80%;
+    list-style: none;
+    overflow: hidden;
+    padding: 0px;
+}
+
+#global-breadcrumb .group li {
+    float: left;
+}
+
+#global-breadcrumb .group li a {
+    color: white;
+    text-decoration: none;
+    padding: 3px 0 3px 30px;
+    background: #009090;                   /* fallback color */
+    background: hsl(180, 100%, 28%);
+    position: relative;
+    display: block;
+    float: left;
+}
+
+#global-breadcrumb .group li a:after {
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 10px solid hsl(180, 100%, 28%);
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+    left: 100%;
+    z-index: 2;
+}
+
+#global-breadcrumb .group li a:before {
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 10px solid white;
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+    margin-left: 1px;
+    left: 100%;
+    z-index: 1;
+}
+
+#global-breadcrumb .group li:first-child a {
+    padding-left: 10px;
+}
+#global-breadcrumb .group li:nth-child(2) a       { background:        hsl(180, 65%, 38%); }
+#global-breadcrumb .group li:nth-child(2) a:after { border-left-color: hsl(180, 65%, 38%); }
+#global-breadcrumb .group li:nth-child(3) a       { background:        hsl(180, 65%, 48%); }
+#global-breadcrumb .group li:nth-child(3) a:after { border-left-color: hsl(180, 65%, 48%); }
+#global-breadcrumb .group li:nth-child(4) a       { background:        hsl(180, 65%, 58%); }
+#global-breadcrumb .group li:nth-child(4) a:after { border-left-color: hsl(180, 65%, 58%); }
+#global-breadcrumb .group li:nth-child(5) a       { background:        hsl(180, 65%, 68%); }
+#global-breadcrumb .group li:nth-child(5) a:after { border-left-color: hsl(180, 65%, 68%); }
+#global-breadcrumb .group li:last-child a {
+    background: transparent !important;
+    color: black;
+    pointer-events: none;
+    cursor: default;
+}
+#global-breadcrumb .group li:last-child a:after {
+    border-left-color: transparent !important;
+}
+
+#global-breadcrumb .group li a:hover { background: hsl(180, 100%, 18%); }
+#global-breadcrumb .group li a:hover:after { border-left-color: hsl(180, 100%, 18%) !important; }
+
+/* ---------------------------End of breadcrumb styles-------------------------- */
