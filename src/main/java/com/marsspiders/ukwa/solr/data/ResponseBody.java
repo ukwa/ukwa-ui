@@ -8,7 +8,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResponseBody {
+public class ResponseBody<T extends BodyDocsType> {
 
     @JsonProperty("numFound")
     private int numFound;
@@ -17,7 +17,7 @@ public class ResponseBody {
     private int start;
 
     @JsonProperty("docs")
-    private List<DocumentInformation> documents;
+    private List<T> documents;
 
     public int getNumFound() {
         return numFound;
@@ -35,11 +35,11 @@ public class ResponseBody {
         this.start = start;
     }
 
-    public List<DocumentInformation> getDocuments() {
+    public List<T> getDocuments() {
         return documents;
     }
 
-    public void setDocuments(List<DocumentInformation> documents) {
+    public void setDocuments(List<T> documents) {
         this.documents = documents;
     }
 

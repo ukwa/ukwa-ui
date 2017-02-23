@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller
-@RequestMapping(value = "archive")
+@RequestMapping(value = HomeController.PROJECT_NAME + "/wayback")
 public class ArchiveController {
 
     @Value("${archive.web.location}")
     private String archiveWebLocation;
 
-    @RequestMapping(value = "/{timestamp}/**", method = GET)
+    @RequestMapping(value = "{timestamp}/**", method = GET)
     public String fetchArchivedPageByTimestamp(@PathVariable("timestamp") String timestamp, HttpServletRequest request) {
         String siteUrl = evaluateUrlFromRequest(request);
         System.out.println("Requesting archived page '" + siteUrl + "' for the following period: " + timestamp);

@@ -6,12 +6,12 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SolrSearchResult {
+public class SolrSearchResult <T extends BodyDocsType>{
     @JsonProperty("responseHeader")
     private ResponseHeader responseHeader;
 
     @JsonProperty("response")
-    private ResponseBody responseBody;
+    private ResponseBody<T> responseBody;
 
 
     public ResponseHeader getResponseHeader() {
@@ -22,11 +22,11 @@ public class SolrSearchResult {
         this.responseHeader = responseHeader;
     }
 
-    public ResponseBody getResponseBody() {
+    public ResponseBody<T> getResponseBody() {
         return responseBody;
     }
 
-    public void setResponseBody(ResponseBody responseBody) {
+    public void setResponseBody(ResponseBody<T> responseBody) {
         this.responseBody = responseBody;
     }
 

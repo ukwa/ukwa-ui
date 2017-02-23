@@ -3,20 +3,28 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<c:set var="req" value="${pageContext.request}" />
+<c:set var="uri" value="${req.requestURI}" />
+<c:set var="url">${req.requestURL}</c:set>
+<c:set var="locale">${pageContext.response.locale}</c:set>
 
 <jsp:useBean id="collections" scope="request" type="java.util.List<com.marsspiders.ukwa.controllers.data.CollectionDTO>"/>
 
 
 <html lang="Lang(en,GB)">
 <head>
+    <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
+
     <title>Special Collections - UK Web Archive</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="stylesheet" type="text/css" media="screen" href="/ukwa/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="/ukwa/assets/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/stylesheets/main.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css">
 </head>
 <body>
@@ -27,8 +35,8 @@
             <span class="icon-bar"></span> <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/ukwa/">
-            <img src="/ukwa/assets/images/ukwa-icon-nobg-16.png" />
+        <a class="navbar-brand" href="">
+            <img src="assets/images/ukwa-icon-nobg-16.png" />
             UK Web Archive
         </a>
     </div>
@@ -50,7 +58,7 @@
 
                 </ul>
             </li>
-            <li><a href="/ukwa/collection/">Browse</a></li>
+            <li><a href="collection/">Browse</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="http://britishlibrary.typepad.co.uk/webarchive/">Our Blog</a>
@@ -60,15 +68,16 @@
 </nav>
 <div class="container">
 
+
     <header class="page-header">
-        <h1>Special Collections</h1>
+        <h1><spring:message code="collections.page.header" text="default Special Collections default" /></h1>
     </header>
 
     <article>
 
 
         <p>
-            Special Collections are groups of websites brought together on a particular theme by librarians, curators and other specialists, often working in collaboration with key organisations in the field. They can be events-based (e.g The Olympic & Paralympic Games 2012), topical (e.g. The Credit Crunch Collection) or subject-oriented (e.g. The British Countryside Collections).
+            <spring:message code="collections.page.article" text="default Article description default" />
         </p>
 
 
@@ -87,7 +96,7 @@
 
                 <c:forEach items="${collections}" var="collection">
                     <tr>
-                        <td><a href="/ukwa/collection/<c:out value="${collection.id}"/>"><c:out value="${collection.name}"/></a></td>
+                        <td><a href="collection/<c:out value="${collection.id}"/>"><c:out value="${collection.name}"/></a></td>
                         <td><c:out value="${collection.subCollectionsNum}"/></td>
                         <td><c:out value="${collection.websitesNum}"/> </td>
                     </tr>
@@ -115,7 +124,7 @@
 
             <div class="pull-right">
 
-                <a href="/ukwa/language/cy-GB">Translate to Welsh</a>
+                <a href="language/cy-GB">Translate to Welsh</a>
 
                 | Cookie warning | Notice and takedown | Terms and conditions | Privacy statement
             </div>
@@ -127,8 +136,8 @@
 </div>
 
 
-<script src="/ukwa/assets/javascripts/jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/ukwa/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/javascripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js"></script>
 

@@ -15,9 +15,10 @@ public class CollectionDTO {
     public CollectionDTO() {
     }
 
-    public CollectionDTO(String id, String name, long subCollectionsNum, long websitesNum, long websitesOpenAccessNum) {
+    public CollectionDTO(String id, String name, String description, long subCollectionsNum, long websitesNum, long websitesOpenAccessNum) {
         this.id = id;
         this.name = name;
+        this.description = description;
         this.subCollectionsNum = subCollectionsNum;
         this.websitesNum = websitesNum;
         this.websitesOpenAccessNum = websitesOpenAccessNum;
