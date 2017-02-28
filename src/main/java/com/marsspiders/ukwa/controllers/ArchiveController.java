@@ -18,12 +18,15 @@ public class ArchiveController {
     @Value("${archive.web.location}")
     private String archiveWebLocation;
 
+
     @RequestMapping(value = "{timestamp}/**", method = GET)
     public String fetchArchivedPageByTimestamp(@PathVariable("timestamp") String timestamp, HttpServletRequest request) {
         String siteUrl = evaluateUrlFromRequest(request);
-        System.out.println("Requesting archived page '" + siteUrl + "' for the following period: " + timestamp);
+        String prettySiteUrl = siteUrl.replaceAll(":/([a-zA-Z0-9])", "://$1");
 
-        String redirectUrl = archiveWebLocation + timestamp + "/" + siteUrl;
+        System.out.println("Requesting archived page '" + prettySiteUrl + "' for the following period: " + timestamp);
+
+        String redirectUrl = archiveWebLocation + timestamp + "/" + prettySiteUrl;
         return "redirect:" + redirectUrl;
     }
 

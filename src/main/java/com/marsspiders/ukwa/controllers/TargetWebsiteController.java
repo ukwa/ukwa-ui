@@ -6,6 +6,7 @@ import com.marsspiders.ukwa.solr.SolrSearchService;
 import com.marsspiders.ukwa.solr.data.CollectionInfo;
 import com.marsspiders.ukwa.solr.data.SolrSearchResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,9 @@ public class TargetWebsiteController {
 
     @Autowired
     SolrSearchService searchService;
+
+    @Value("${set.protocol.to.https}")
+    private Boolean setProtocolToHttps;
 
     @RequestMapping(value = "/{targetId}", method = GET)
     public ModelAndView targetWebsiteOverviewPage(@PathVariable("targetId") String targetId) {
@@ -37,6 +41,7 @@ public class TargetWebsiteController {
 
         ModelAndView mav = new ModelAndView("website_overview");
         mav.addObject("targetWebsite", targetWebsite);
+        mav.addObject("setProtocolToHttps", setProtocolToHttps);
 
         return mav;
     }

@@ -9,12 +9,15 @@
 <c:set var="uri" value="${req.requestURI}" />
 <c:set var="url">${req.requestURL}</c:set>
 <c:set var="locale">${pageContext.response.locale}</c:set>
+<c:if test="${setProtocolToHttps}">
+  <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
+</c:if>
 
 
 <html>
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
-<title>UKWA No results</title>
+<title>UKWA Archive statistics</title>
 <%@include file="head.jsp" %>
 </head>
 
@@ -26,9 +29,8 @@
   </header>
   <section id="noresults-header">
     <div class="row header-blue white">
-      <div class="col-md-6 offset-md-3">
+      <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12">
         <h2 class="uppercase">Archive statistics</h2>
-        <p class="text-medium"></p>
       </div>
     </div>
   </section>

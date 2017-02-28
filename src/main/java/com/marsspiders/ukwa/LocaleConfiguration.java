@@ -23,14 +23,6 @@ import java.util.stream.Collectors;
 public class LocaleConfiguration extends WebMvcConfigurerAdapter {
     public static final String[] AVAILABLE_LOCALES = new String[]{"en", "gd", "cy"};
 
-//    Override method below to make available resources
-//
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/resources/**")
-//                .addResourceLocations("/resources/");
-//    }
-
     @Bean
     public LocaleResolver localeResolver() {
         return new LocaleResolver() {

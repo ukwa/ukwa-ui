@@ -9,6 +9,9 @@
 <c:set var="uri" value="${req.requestURI}" />
 <c:set var="url">${req.requestURL}</c:set>
 <c:set var="locale">${pageContext.response.locale}</c:set>
+<c:if test="${setProtocolToHttps}">
+  <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
+</c:if>
 
 <jsp:useBean id="collections" scope="request" type="java.util.List<com.marsspiders.ukwa.controllers.data.CollectionDTO>"/>
 
@@ -22,6 +25,7 @@
 </head>
 
 <body>
+<%@include file="nav.jsp" %>
 <div class="container-fluid">
   <header>
     <div class="main-menu-button"></div>
@@ -43,9 +47,9 @@
       <c:forEach items="${collections}" var="collection">
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
         <div class="center light-blue padding-bottom-10">
-          <a href="collection/<c:out value="${collection.id}"/>"><c:out value="${collection.name}"/></a>
+          <c:out value="${collection.name}"/>
         </div>
-        <figure><img class="img-responsive border-gray" alt="Collections" src="img/collections/collection_<c:out value="${collection.id}"/>.png"/>
+        <figure><a href="collection/<c:out value="${collection.id}"/>"><img class="img-responsive border-gray" alt="Collections" src="img/collections/collection_<c:out value="${collection.id}"/>.png"/></a>
           <figcaption class="img-square-caption"> <c:out value="${collection.description}"/></figcaption>
         </figure>
       </div>

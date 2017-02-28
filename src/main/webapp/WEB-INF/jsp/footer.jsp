@@ -14,9 +14,19 @@
     <a href="info/privacy"><spring:message code="footer.privacy" text="Privacy statement" /></a><br/>
   </div>
   <div class="col-md-3 offset-md-1 col-sm-12 footer-links">
-  	<a href="#">Translate to English</a><br/>
-    <a href="#">Translate to Welsh</a><br/>
-    <a href="#">Translate to Scottish</a><br/>
+  <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
+  <c:set var="textUriWithoutLang" value="${fn:replace(fn:replace(fn:replace(textUri, '/en/', '/'), '/gd/', '/'), '/cy/', '/')}"/>
+
+  <c:if test="${!fn:startsWith(textUri, '/en/') && (fn:startsWith(textUri, '/gd/') || fn:startsWith(textUri, '/cy/'))}">
+    <a href="/en<c:out value="${textUriWithoutLang}"/>">Translate to English</a><br/>
+  </c:if>
+  <c:if test="${!fn:startsWith(textUri, '/cy/')}">
+    <a href="/cy<c:out value="${textUriWithoutLang}"/>">Translate to Welsh</a><br/>
+  </c:if>
+  <c:if test="${!fn:startsWith(textUri, '/gd/')}">
+    <a href="/gd<c:out value="${textUriWithoutLang}"/>">Translate to Scottish</a><br/>
+  </c:if>
+
     <a href="https://www.webarchive.org.uk/rss/recent.xml"><spring:message code="footer.rss" text="RSS Feed" /></a><br/>
   </div>
 </div>

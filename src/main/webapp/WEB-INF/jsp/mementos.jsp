@@ -9,6 +9,7 @@
 <c:set var="uri" value="${req.requestURI}" />
 <c:set var="url">${req.requestURL}</c:set>
 <c:set var="locale">${pageContext.response.locale}</c:set>
+</c:if>
 
 
 <html>

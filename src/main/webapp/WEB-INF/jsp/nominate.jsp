@@ -9,6 +9,9 @@
 <c:set var="uri" value="${req.requestURI}" />
 <c:set var="url">${req.requestURL}</c:set>
 <c:set var="locale">${pageContext.response.locale}</c:set>
+<c:if test="${setProtocolToHttps}">
+  <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
+</c:if>
 
 
 <html>
@@ -109,6 +112,11 @@
             <textarea name="justification" id="justification" class="form-control" placeholder=""></textarea>
           </div>
         </div>
+        
+        <div class="col-md-6 col-sm-12 form-content-col">
+          <button type="button" class="button button-blue" role="button">Submit</button>
+        </div>
+        
       </div>
     </form>
   </section>

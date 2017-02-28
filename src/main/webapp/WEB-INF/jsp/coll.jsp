@@ -12,6 +12,9 @@
 <c:set var="locale">
     ${pageContext.response.locale}
 </c:set>
+<c:if test="${setProtocolToHttps}">
+    <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
+</c:if>
 
 <jsp:useBean id="targetWebsites" scope="request" type="java.util.List<com.marsspiders.ukwa.controllers.data.TargetWebsiteDTO>"/>
 <jsp:useBean id="subCollections" scope="request" type="java.util.List<com.marsspiders.ukwa.controllers.data.CollectionDTO>"/>
@@ -64,9 +67,9 @@
   
   <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-30 padding-bottom-20">
         <div class="center light-blue padding-bottom-10">
-          <a href="collection/<c:out value="${subCollection.id}"/>"><c:out value="${subCollection.name}"/></a>
+          <c:out value="${subCollection.name}"/>
         </div>
-        <figure><img class="img-responsive border-gray" alt="Collections" src="img/collections/collection_<c:out value="${subCollection.id}"/>.png"/>
+        <figure><a href="collection/<c:out value="${subCollection.id}"/>"><img class="img-responsive border-gray" alt="Collections" src="img/collections/collection_<c:out value="${subCollection.id}"/>.png"/></a>
           <figcaption class="img-square-caption"> <c:out value="${subCollection.description}"/></figcaption>
         </figure>
   </div>

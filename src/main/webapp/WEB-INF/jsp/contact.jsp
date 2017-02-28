@@ -9,6 +9,9 @@
 <c:set var="uri" value="${req.requestURI}" />
 <c:set var="url">${req.requestURL}</c:set>
 <c:set var="locale">${pageContext.response.locale}</c:set>
+<c:if test="${setProtocolToHttps}">
+  <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
+</c:if>
 
 
 <html>
@@ -29,8 +32,8 @@
       <div class="col-md-6 offset-md-3"> <img class="h2-icon" src="img/icons/contact-white.png"/>
         <h2>Contact</h2>
         <p><span class="bold clearfix">Technical Queries</span>In the unlikely event that the web crawler is causing problems with your website, please email us and we will take urgent action to resolve any issues.</p>
-        <p>You may also find our <a href="#">Technical information</a> useful. </p>
-        <p><span class="bold clearfix">For other kinds of enquiries</span> Please first consult the quick links panel on your right or the <a href="#">FAQ section</a> of the website where you will most likely find an answer. Alternatively, you may submit your comments or queries using the form below. </p>
+        <p>You may also find our <a href="info/technical">Technical information</a> useful. </p>
+        <p><span class="bold clearfix">For other kinds of enquiries</span> Please first consult the quick links panel on your right or the <a href="info/faq">FAQ section</a> of the website where you will most likely find an answer. Alternatively, you may submit your comments or queries using the form below. </p>
       </div>
     </div>
   </section>
@@ -123,6 +126,9 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-md-6 col-sm-12 form-content-col padding-top-30">
+          <button type="button" class="button button-blue" role="button">Submit</button>
         </div>
       </div>
     </form>

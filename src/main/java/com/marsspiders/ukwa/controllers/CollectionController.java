@@ -6,6 +6,7 @@ import com.marsspiders.ukwa.solr.SolrSearchService;
 import com.marsspiders.ukwa.solr.data.CollectionInfo;
 import com.marsspiders.ukwa.solr.data.SolrSearchResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +35,7 @@ public class CollectionController {
 
     @Autowired
     SolrSearchService searchService;
+
 
     @RequestMapping(value = "/old", method = GET)
     public ModelAndView collectionsPageTemporaryOld() {
@@ -68,7 +70,6 @@ public class CollectionController {
 
         List<CollectionInfo> childItemsDocuments = childItemsSearchResult.getResponseBody().getDocuments();
 
-        List<TargetWebsiteDTO> targetWebsites = generateTargetWebsitesDTOs(childItemsDocuments, getRootPathWithLang(request));
         List<CollectionDTO> subCollections = generateCollectionsDTOs(childItemsDocuments);
         CollectionDTO currentCollection = generatePlainCollectionDTO(collectionId);
 
@@ -108,7 +109,6 @@ public class CollectionController {
                                                         HttpServletRequest request) throws MalformedURLException, URISyntaxException {
         List<CollectionInfo> childItemsDocuments = childItemsSearchResult.getResponseBody().getDocuments();
 
-        List<TargetWebsiteDTO> targetWebsites = generateTargetWebsitesDTOs(childItemsDocuments, getRootPathWithLang(request));
         List<CollectionDTO> subCollections = generateCollectionsDTOs(childItemsDocuments);
         CollectionDTO currentCollection = generatePlainCollectionDTO(collectionId);
 
@@ -147,8 +147,8 @@ public class CollectionController {
                     targetWebsite.setDescription(shortDescription);
                     targetWebsite.setArchiveUrl(wayBackUrl);
                     targetWebsite.setUrl(d.getUrl());
-                    targetWebsite.setStartDate(d.getStartDate());
-                    targetWebsite.setEndDate(d.getEndDate());
+                    targetWebsite.setStartDate(d.getStartDate() != null ? d.getStartDate().substring(0, 10) : "");
+                    targetWebsite.setEndDate(d.getEndDate() != null ? d.getEndDate().substring(0, 10) : "");
                     targetWebsite.setLanguage(d.getLanguage());
                     targetWebsite.setAdditionalUrls(d.getAdditionalUrl());
 
@@ -170,7 +170,7 @@ public class CollectionController {
         return itemsDocuments
                 .stream()
                 .filter(d -> TYPE_COLLECTION.equalsIgnoreCase(d.getType()))
-                .map(d -> toCollectionDTO(d, subCollections))
+                .map(d -> toCollectionDTO(d, subCollections, true))
                 .collect(Collectors.toList());
     }
 
@@ -178,16 +178,17 @@ public class CollectionController {
         SolrSearchResult<CollectionInfo> collectionSearchResult = searchService.fetchCollectionById(collectionId);
         CollectionInfo currentCollectionInformation = collectionSearchResult.getResponseBody().getDocuments().get(0);
 
-        return toCollectionDTO(currentCollectionInformation, Collections.emptyList());
+        return toCollectionDTO(currentCollectionInformation, Collections.emptyList(), false);
     }
 
-    private CollectionDTO toCollectionDTO(CollectionInfo currentCollection, List<CollectionInfo> subCollections) {
+    private CollectionDTO toCollectionDTO(CollectionInfo currentCollection, List<CollectionInfo> subCollections, boolean abbreviate) {
         String id = currentCollection.getId();
         String name = currentCollection.getName();
         String description = currentCollection.getDescription() != null
                 ? currentCollection.getDescription().replaceAll("<[^>]*>", "")
                 : null;
-        String shortDescription = abbreviate(description, 60);
+
+        String shortDescription = abbreviate ? abbreviate(description, 60) : description;
         long sectionsNum = countChildItems(id, TYPE_COLLECTION, subCollections);
         long websitesNum = countChildItems(id, TYPE_TARGET, subCollections);
         long websitesOpenAccessNum = 0;
@@ -198,7 +199,11 @@ public class CollectionController {
     private long countChildItems(String parentId, String itemType, List<CollectionInfo> subCollections) {
         return subCollections
                 .stream()
-                .filter(collection -> (itemType.equalsIgnoreCase(collection.getType()) && collection.getParentId().equals(parentId)))
+                .filter(collection -> {
+                    String type = collection.getType();
+                    String subCollectionParentId = collection.getParentId();
+                    return (itemType.equalsIgnoreCase(type) && parentId.equals(subCollectionParentId));
+                })
                 .count();
     }
 }

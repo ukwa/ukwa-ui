@@ -7,6 +7,8 @@
 <c:set var="req" value="${pageContext.request}" />
 <c:set var="uri" value="${req.requestURI}" />
 <c:set var="url">${req.requestURL}</c:set>
+<c:if test="${setProtocolToHttps}">
+</c:if>
 
 <jsp:useBean id="targetWebsite" scope="request" type="com.marsspiders.ukwa.controllers.data.TargetWebsiteDTO"/>
 

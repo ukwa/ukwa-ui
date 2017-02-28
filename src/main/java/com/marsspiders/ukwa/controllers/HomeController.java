@@ -1,5 +1,6 @@
 package com.marsspiders.ukwa.controllers;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +15,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class HomeController {
     static final String PROJECT_NAME = "ukwa";
 
-    @RequestMapping(value = {"", "/", PROJECT_NAME}, method = GET)
-    public String home(Map<String, Object> model) {
+
+    @RequestMapping(value = {"", "/", "/{lang}/", PROJECT_NAME}, method = GET)
+    public String home(Map<String, Object> model, @PathVariable(value = "lang", required = false) String lang) {
         model.put("time", new Date());
 
         return "index";
@@ -23,12 +25,15 @@ public class HomeController {
 
     @RequestMapping(value = "ukwa/{pageName}", method = GET)
     public ModelAndView temporaryPageMapping(@PathVariable("pageName") String pageName) {
+        ModelAndView modelAndView = new ModelAndView(pageName);
 
-        return new ModelAndView(pageName);
+        return modelAndView;
     }
 
     @RequestMapping(value = "ukwa/info/{pageName:about|mementos|nominate|faq|technical|contact}", method = GET)
     public ModelAndView staticInfoPageMapping(@PathVariable("pageName") String pageName) {
-        return new ModelAndView(pageName);
+        ModelAndView modelAndView = new ModelAndView(pageName);
+
+        return modelAndView;
     }
 }

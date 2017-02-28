@@ -7,6 +7,9 @@
 <c:set var="req" value="${pageContext.request}" />
 <c:set var="uri" value="${req.requestURI}" />
 <c:set var="url">${req.requestURL}</c:set>
+<c:if test="${setProtocolToHttps}">
+    <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
+</c:if>
 
 <jsp:useBean id="targetWebsites" scope="request" type="java.util.List<com.marsspiders.ukwa.controllers.data.TargetWebsiteDTO>"/>
 <jsp:useBean id="subCollections" scope="request" type="java.util.List<com.marsspiders.ukwa.controllers.data.CollectionDTO>"/>

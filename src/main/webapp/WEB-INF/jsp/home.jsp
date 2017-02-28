@@ -8,6 +8,8 @@
 <c:set var="req" value="${pageContext.request}" />
 <c:set var="uri" value="${req.requestURI}" />
 <c:set var="url">${req.requestURL}</c:set>
+</c:if>
+
 <html>
 <head>
     <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/ukwa/" />

@@ -10,6 +10,10 @@
 <c:set var="url">
     ${req.requestURL}
 </c:set>
+<c:if test="${setProtocolToHttps}">
+  <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
+</c:if>
+
 <c:set var="locale">
     ${pageContext.response.locale}
 </c:set>
