@@ -36,6 +36,8 @@ public class SearchController {
     @Autowired
     SolrSearchService searchService;
 
+    @Value("${set.protocol.to.https}")
+    private Boolean setProtocolToHttps;
 
     @RequestMapping(value = "", method = GET)
     public ModelAndView searchPage(@RequestParam(value = "search_location", required = false) String searchLocation,
@@ -48,11 +50,13 @@ public class SearchController {
             SolrSearchResult<ContentInfo> archivedSites = searchService.searchContentByFullText(text);
             List<ContentInfo> contentInfoList = archivedSites.getResponseBody().getDocuments();
 
+            String rootPathWithLang = getRootPathWithLang(request, setProtocolToHttps);
             searchResultDTOs = toSearchResults(contentInfoList, rootPathWithLang, searchLocation, text);
         } else if (!blankSearchParams && SEARCH_LOCATION_TITLE.equalsIgnoreCase(searchLocation)) {
             SolrSearchResult<ContentInfo> archivedSites = searchService.searchContentByTitle(text);
             List<ContentInfo> collectionInfoList = archivedSites.getResponseBody().getDocuments();
 
+            String rootPathWithLang = getRootPathWithLang(request, setProtocolToHttps);
             searchResultDTOs = toSearchResults(collectionInfoList, rootPathWithLang, searchLocation, text);
         }
 
@@ -61,6 +65,7 @@ public class SearchController {
         mav.addObject("totalSearchResultsSize", searchResultDTOs != null ? searchResultDTOs.size() : 0);
         mav.addObject("originalSearchRequest", text);
         mav.addObject("originalSearchLocation", searchLocation);
+        mav.addObject("setProtocolToHttps", setProtocolToHttps);
 
         return mav;
     }
@@ -102,10 +107,12 @@ public class SearchController {
                 .collect(Collectors.toList());
     }
 
+    static String getRootPathWithLang(HttpServletRequest request, boolean setProtocolToHttps) throws MalformedURLException, URISyntaxException {
         URL url = new URL(request.getRequestURL().toString());
         String host = url.getHost();
         String userInfo = url.getUserInfo();
         String scheme = url.getProtocol();
+        if(setProtocolToHttps && !StringUtils.isBlank(scheme)){
             scheme = scheme.replace("http", "https");
         }
 

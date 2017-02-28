@@ -18,6 +18,8 @@ public class ArchiveController {
     @Value("${archive.web.location}")
     private String archiveWebLocation;
 
+    @Value("${set.protocol.to.https}")
+    private Boolean setProtocolToHttps;
 
     @RequestMapping(value = "{timestamp}/**", method = GET)
     public String fetchArchivedPageByTimestamp(@PathVariable("timestamp") String timestamp, HttpServletRequest request) {

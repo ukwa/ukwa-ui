@@ -36,6 +36,8 @@ public class CollectionController {
     @Autowired
     SolrSearchService searchService;
 
+    @Value("${set.protocol.to.https}")
+    private Boolean setProtocolToHttps;
 
     @RequestMapping(value = "/old", method = GET)
     public ModelAndView collectionsPageTemporaryOld() {
@@ -46,6 +48,7 @@ public class CollectionController {
 
         ModelAndView mav = new ModelAndView("collections");
         mav.addObject("collections", collections);
+        mav.addObject("setProtocolToHttps", setProtocolToHttps);
 
         return mav;
     }
@@ -59,6 +62,7 @@ public class CollectionController {
 
         ModelAndView mav = new ModelAndView("speccoll");
         mav.addObject("collections", collections);
+        mav.addObject("setProtocolToHttps", setProtocolToHttps);
 
         return mav;
     }
@@ -70,6 +74,7 @@ public class CollectionController {
 
         List<CollectionInfo> childItemsDocuments = childItemsSearchResult.getResponseBody().getDocuments();
 
+        List<TargetWebsiteDTO> targetWebsites = generateTargetWebsitesDTOs(childItemsDocuments, getRootPathWithLang(request, setProtocolToHttps));
         List<CollectionDTO> subCollections = generateCollectionsDTOs(childItemsDocuments);
         CollectionDTO currentCollection = generatePlainCollectionDTO(collectionId);
 
@@ -83,6 +88,7 @@ public class CollectionController {
         mav.addObject("subCollections", subCollections);
         mav.addObject("currentCollection", currentCollection);
         mav.addObject("rootCollections", rootCollections);
+        mav.addObject("setProtocolToHttps", setProtocolToHttps);
 
         return mav;
     }
@@ -109,6 +115,7 @@ public class CollectionController {
                                                         HttpServletRequest request) throws MalformedURLException, URISyntaxException {
         List<CollectionInfo> childItemsDocuments = childItemsSearchResult.getResponseBody().getDocuments();
 
+        List<TargetWebsiteDTO> targetWebsites = generateTargetWebsitesDTOs(childItemsDocuments, getRootPathWithLang(request, setProtocolToHttps));
         List<CollectionDTO> subCollections = generateCollectionsDTOs(childItemsDocuments);
         CollectionDTO currentCollection = generatePlainCollectionDTO(collectionId);
 
@@ -122,6 +129,7 @@ public class CollectionController {
         mav.addObject("subCollections", subCollections);
         mav.addObject("currentCollection", currentCollection);
         mav.addObject("rootCollections", rootCollections);
+        mav.addObject("setProtocolToHttps", setProtocolToHttps);
 
         return mav;
     }

@@ -15,10 +15,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class HomeController {
     static final String PROJECT_NAME = "ukwa";
 
+    @Value("${set.protocol.to.https}")
+    private Boolean setProtocolToHttps;
 
     @RequestMapping(value = {"", "/", "/{lang}/", PROJECT_NAME}, method = GET)
     public String home(Map<String, Object> model, @PathVariable(value = "lang", required = false) String lang) {
         model.put("time", new Date());
+        model.put("setProtocolToHttps", setProtocolToHttps);
 
         return "index";
     }
@@ -26,6 +29,7 @@ public class HomeController {
     @RequestMapping(value = "ukwa/{pageName}", method = GET)
     public ModelAndView temporaryPageMapping(@PathVariable("pageName") String pageName) {
         ModelAndView modelAndView = new ModelAndView(pageName);
+        modelAndView.addObject("setProtocolToHttps", setProtocolToHttps);
 
         return modelAndView;
     }
@@ -33,6 +37,7 @@ public class HomeController {
     @RequestMapping(value = "ukwa/info/{pageName:about|mementos|nominate|faq|technical|contact}", method = GET)
     public ModelAndView staticInfoPageMapping(@PathVariable("pageName") String pageName) {
         ModelAndView modelAndView = new ModelAndView(pageName);
+        modelAndView.addObject("setProtocolToHttps", setProtocolToHttps);
 
         return modelAndView;
     }
