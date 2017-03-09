@@ -1,14 +1,14 @@
 <div class="main-menu-button"></div>
 <div class="row header-bar border-bottom-gray">
   <div class="col-md-2 col-sm-12 main-heading-cont">
-    <h1 class="main-heading"> UK<br/>
+    <h1 class="main-heading"><a href="/">UK<br/>
       Web<br/>
-      Archive </h1>
+      Archive</a></h1>
   </div>
   <div class="col-md-8 col-sm-12 main-search-container">
     <form action="search" method="get" enctype="multipart/form-data" name="search_form">
       <div class="main-search-input">
-        <input type="text" name="text" id="text" class="main-search-field" value="${originalSearchRequest}"/>
+        <input type="text" name="text" id="text" class="main-search-field" value="${originalSearchRequest}" required/>
         <button type="submit" class="main-search-button"></button>
       </div>
       <div class="row">

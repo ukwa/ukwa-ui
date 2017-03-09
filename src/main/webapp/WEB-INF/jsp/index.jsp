@@ -65,10 +65,9 @@
           </div>
         </div>
         <div class="main-search-input noshadow">
-        <input type="text" name="text" id="text" class="main-search-field"/>
+        <input type="text" name="text" id="text" class="main-search-field" required/>
         <button type="submit" class="main-search-button"></button>
         </div>
-        <a href="advancedsearch"><button class="button button-white button-shadow margin-top-60 margin-bottom-20" role="link" type="button"><spring:message code="home.button.advanced"/></button></a>
         </form>
       </div>
       <div class="col-lg-4 col-md-6 col-sm-12 home-menu-cont">
@@ -101,51 +100,51 @@
  
     <div class="row page-content padding-side-70 padding-top-0">
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
-        <div class="center light-blue padding-bottom-10">Blogs</div>
-        <figure><a href="collection/100698/page/1/source/collection"><img class="img-responsive border-gray" alt="Collections" src="img/subject1.png"/></a>
-          <figcaption class="img-square-caption"> The UK Blogosphere(connected community of Web logs) has burgeoned... </figcaption>
+        <div class="center light-blue padding-bottom-10"><a href="collection/329">British Stand-up Comedy Archive</a></div>
+        <figure><a href="collection/329"><img class="img-responsive border-gray" alt="British Stand-up Comedy Archive" src="img/collections/collection_329.png"/></a>
+          <figcaption class="img-square-caption">Collection owned and adminstered by Elspeth Millar, Briti...</figcaption>
         </figure>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
-        <div class="center light-blue padding-bottom-10">Credit Crunch</div>
-        <figure><a href="collection/22839323/page/1/source/collection"><img class="img-responsive border-gray" alt="Collections" src="img/credit.jpg"/></a>
-          <figcaption class="img-square-caption">The UK Blogosphere(connected community of Web logs) has burgeoned...</figcaption>
+        <div class="center light-blue padding-bottom-10"><a href="collection/309">French in London</a></div>
+        <figure><a href="collection/309"><img class="img-responsive border-gray" alt="French in London" src="img/collections/collection_309.png"/></a>
+          <figcaption class="img-square-caption">This collection of websites has been selected by Saskia H...</figcaption>
         </figure>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
-        <div class="center light-blue padding-bottom-10">Live Art</div>
-        <figure><a href="collection/26312782/page/1/source/collection"><img class="img-responsive border-gray" alt="Collections" src="img/liveart.png"/></a>
-          <figcaption class="img-square-caption">This collection of websites, covering the period July 2008 to January 2010...</figcaption>
+        <div class="center light-blue padding-bottom-10"><a href="collection/65">Scottish Independence Referendum</a></div>
+        <figure><a href="collection/65"><img class="img-responsive border-gray" alt="Scottish Independence Referendum" src="img/collections/collection_65.png"/></a>
+          <figcaption class="img-square-caption">Provisional title for collection on Scottish Devolution, ...</figcaption>
         </figure>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
-        <div class="center light-blue padding-bottom-10">London Terrorist Attack</div>
-        <figure><a href="collection/100757/page/1/source/collection"><img class="img-responsive border-gray" alt="Collections" src="img/terrorist.png"/></a>
-          <figcaption class="img-square-caption">Collection of Internet sites with content about the terrorist attacks...</figcaption>
+        <div class="center light-blue padding-bottom-10"><a href="collection/138">News Sites</a></div>
+        <figure><a href="collection/138"><img class="img-responsive border-gray" alt="News Sites" src="img/collections/collection_138.png"/></a>
+          <figcaption class="img-square-caption">558 titles are included in this collection (30/01/2014). ...</figcaption>
         </figure>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
-        <div class="center light-blue padding-bottom-10">Olympic and Paraolympic Games 2012</div>
-        <figure><a href="collection/4325386/page/1/source/collection"><img class="img-responsive border-gray" alt="Collections" src="img/olympic.jpg"/></a>
-          <figcaption class="img-square-caption">The Olympic and Paralympic Games are the largest sporting event...</figcaption>
+        <div class="center light-blue padding-bottom-10"><a href="collection/349">Rugby World Cup 2015</a></div>
+        <figure><a href="collection/349"><img class="img-responsive border-gray" alt="Rugby World Cup 2015" src="img/collections/collection_349.png"/></a>
+          <figcaption class="img-square-caption">Collection managed by Gill Ridgley</figcaption>
         </figure>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
-        <div class="center light-blue padding-bottom-10">Personal Experiences of Illnes</div>
-        <figure><a href="collection/98492/page/1/source/collection"><img class="img-responsive border-gray" alt="Collections" src="img/illnes.jpg"/></a>
-          <figcaption class="img-square-caption">A collection created to record individuals experiences of illness...</figcaption>
+        <div class="center light-blue padding-bottom-10"><a href="collection/245">SmashFest UK</a></div>
+        <figure><a href="collection/245"><img class="img-responsive border-gray" alt="SmashFest UK" src="img/collections/collection_245.png"/></a>
+          <figcaption class="img-square-caption">Collection managed by Katie Howe, Jason Webber and Sabine...</figcaption>
         </figure>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
-        <div class="center light-blue padding-bottom-10">Enegry</div>
-        <figure><a href="collection/9895940/page/1/source/collection"><img class="img-responsive border-gray" alt="Collections" src="img/energy.jpeg"/></a>
-          <figcaption class="img-square-caption">This collection of websites was selected around the theme of energy...</figcaption>
+        <div class="center light-blue padding-bottom-10"><a href="collection/283">UK response to Philippines disaster 2013</a></div>
+        <figure><a href="collection/283"><img class="img-responsive border-gray" alt="UK response to Philippines disaster 2013" src="img/collections/collection_283.png"/></a>
+          <figcaption class="img-square-caption">On the 8th November 2013 Typhoon Haiyan (also known as Yo...</figcaption>
         </figure>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
-        <div class="center light-blue padding-bottom-10">Queen's Diamond Jubilee 2012</div>
-        <figure><a href="collection/62521384/page/1"><img class="img-responsive border-gray" alt="Collections" src="img/queen.png"/></a>
-          <figcaption class="img-square-caption">This collection of websites is selected by the Library of the...</figcaption>
+        <div class="center light-blue padding-bottom-10"><a href="collection/471">VE /VJ Day 70th Anniversary 1945-2015</a></div>
+        <figure><a href="collection/471"><img class="img-responsive border-gray" alt="VE /VJ Day 70th Anniversary 1945-2015" src="img/collections/collection_471.png"/></a>
+          <figcaption class="img-square-caption">Collection established by Jerry Jenkins, BL.</figcaption>
         </figure>
       </div>                                               
     </div>

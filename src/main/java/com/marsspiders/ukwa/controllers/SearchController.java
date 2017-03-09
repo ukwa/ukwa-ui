@@ -1,11 +1,11 @@
 package com.marsspiders.ukwa.controllers;
 
-import com.marsspiders.ukwa.LocaleConfiguration;
 import com.marsspiders.ukwa.controllers.data.SearchResultDTO;
+import com.marsspiders.ukwa.solr.DocumentTypeEnum;
+import com.marsspiders.ukwa.solr.SearchByEnum;
 import com.marsspiders.ukwa.solr.SolrSearchService;
 import com.marsspiders.ukwa.solr.data.ContentInfo;
 import com.marsspiders.ukwa.solr.data.SolrSearchResult;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -15,15 +15,24 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.marsspiders.ukwa.controllers.CollectionController.ROWS_PER_PAGE;
 import static com.marsspiders.ukwa.controllers.HomeController.PROJECT_NAME;
+import static com.marsspiders.ukwa.solr.SearchByEnum.TITLE;
+import static com.marsspiders.ukwa.util.UrlUtil.getRootPathWithLang;
+import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
 import static org.apache.commons.lang3.StringUtils.abbreviate;
+import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.apache.commons.lang3.StringUtils.isNumeric;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller
@@ -32,6 +41,7 @@ public class SearchController {
 
     private static final String SEARCH_LOCATION_FULL_TEXT = "full_text";
     private static final String SEARCH_LOCATION_TITLE = "title";
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     @Autowired
     SolrSearchService searchService;
@@ -42,45 +52,83 @@ public class SearchController {
     @RequestMapping(value = "", method = GET)
     public ModelAndView searchPage(@RequestParam(value = "search_location", required = false) String searchLocation,
                                    @RequestParam(value = "text", required = false) String text,
-                                   HttpServletRequest request) throws MalformedURLException, URISyntaxException {
+                                   @RequestParam(value = "page", required = false) String pageNum,
+                                   @RequestParam(value = "from_date", required = false) String fromDateText,
+                                   @RequestParam(value = "to_date", required = false) String toDateText,
+                                   @RequestParam(value = "doc_type", required = false) String[] documentTypes,
+                                   @RequestParam(value = "public_suffix", required = false) String[] checkedPublicSuffixes,
+                                   HttpServletRequest request) throws MalformedURLException, URISyntaxException, ParseException {
         List<SearchResultDTO> searchResultDTOs = new ArrayList<>();
-        boolean blankSearchParams = StringUtils.isBlank(searchLocation) || StringUtils.isBlank(text);
+        List<String> originalPublicSuffixes = checkedPublicSuffixes != null ? asList(checkedPublicSuffixes) : emptyList();
+        long targetPageNumber = isNumeric(pageNum) ? Long.valueOf(pageNum) : 1;
+        long totalSearchResultsSize = 0;
 
-        if (!blankSearchParams && SEARCH_LOCATION_FULL_TEXT.equalsIgnoreCase(searchLocation)) {
-            SolrSearchResult<ContentInfo> archivedSites = searchService.searchContentByFullText(text);
-            List<ContentInfo> contentInfoList = archivedSites.getResponseBody().getDocuments();
+        SearchByEnum searchBy = SearchByEnum.fromString(searchLocation);
+        LinkedList<String> publicSuffixes = new LinkedList<>();
+        if (!isBlank(text) && searchBy != null) {
+            long startFromRow = (targetPageNumber - 1) * ROWS_PER_PAGE;
+            Date fromDate = isBlank(fromDateText) ? null : sdf.parse(fromDateText);
+            Date toDate = isBlank(toDateText) ? null : sdf.parse(toDateText);
+            List<DocumentTypeEnum> documentTypesList = toDocumentTypes(documentTypes);
 
-            String rootPathWithLang = getRootPathWithLang(request, setProtocolToHttps);
-            searchResultDTOs = toSearchResults(contentInfoList, rootPathWithLang, searchLocation, text);
-        } else if (!blankSearchParams && SEARCH_LOCATION_TITLE.equalsIgnoreCase(searchLocation)) {
-            SolrSearchResult<ContentInfo> archivedSites = searchService.searchContentByTitle(text);
-            List<ContentInfo> collectionInfoList = archivedSites.getResponseBody().getDocuments();
+            SolrSearchResult<ContentInfo> archivedSites = searchService.searchContentByFullText(
+                    searchBy, text, ROWS_PER_PAGE, startFromRow, fromDate, toDate, documentTypesList, originalPublicSuffixes);
 
-            String rootPathWithLang = getRootPathWithLang(request, setProtocolToHttps);
-            searchResultDTOs = toSearchResults(collectionInfoList, rootPathWithLang, searchLocation, text);
+            if (archivedSites.getFacetCounts() != null && archivedSites.getFacetCounts().getFacetFields() != null) {
+                publicSuffixes = archivedSites.getFacetCounts().getFacetFields().getPublicSuffixes();
+            }
+            totalSearchResultsSize = archivedSites.getResponseBody().getNumFound();
+            searchResultDTOs = toSearchResults(archivedSites, request, searchBy, text);
         }
 
         ModelAndView mav = new ModelAndView("search");
         mav.addObject("searchResults", searchResultDTOs);
-        mav.addObject("totalSearchResultsSize", searchResultDTOs != null ? searchResultDTOs.size() : 0);
+        mav.addObject("totalSearchResultsSize", totalSearchResultsSize);
+        mav.addObject("publicSuffixes", publicSuffixes);
         mav.addObject("originalSearchRequest", text);
         mav.addObject("originalSearchLocation", searchLocation);
+        mav.addObject("originalToDateText", toDateText);
+        mav.addObject("originalFromDateText", fromDateText);
+        mav.addObject("originalDocumentTypes", documentTypes != null ? asList(documentTypes) : emptyList());
+        mav.addObject("originalPublicSuffixes", originalPublicSuffixes);
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
+        mav.addObject("targetPageNumber", targetPageNumber);
+        mav.addObject("rowsPerPageLimit", ROWS_PER_PAGE);
+        mav.addObject("totalPages", (int) (Math.ceil(totalSearchResultsSize / (double) ROWS_PER_PAGE)));
 
         return mav;
     }
 
-    private List<SearchResultDTO> toSearchResults(List<ContentInfo> contentInfoList,
-                                                  String rootPathWithLang,
-                                                  String searchLocation,
-                                                  String textToSearch) {
+    private List<DocumentTypeEnum> toDocumentTypes(String[] docType) {
+        List<DocumentTypeEnum> documentTypes = new ArrayList<>();
+        if (docType == null) {
+            return documentTypes;
+        }
+
+        for (String type : docType) {
+            DocumentTypeEnum documentType = DocumentTypeEnum.fromString(type);
+            if (documentType != null) {
+                documentTypes.add(documentType);
+            }
+        }
+
+        return documentTypes;
+    }
+
+    private List<SearchResultDTO> toSearchResults(SolrSearchResult<ContentInfo> archivedSites,
+                                                  HttpServletRequest request,
+                                                  SearchByEnum searchLocation,
+                                                  String textToSearch) throws MalformedURLException, URISyntaxException {
+        String rootPathWithLang = getRootPathWithLang(request, setProtocolToHttps);
+        List<ContentInfo> contentInfoList = archivedSites.getResponseBody().getDocuments();
+
         return contentInfoList
                 .stream()
                 .map(d -> {
 
                     String url = d.getUrl() != null ? d.getUrl().get(0) : "";
                     String wayBackUrl = rootPathWithLang + "wayback/" + d.getWayback_date() + "/" + url;
-                    String content = SEARCH_LOCATION_TITLE.equalsIgnoreCase(searchLocation) || d.getContent() == null
+                    String content = searchLocation == TITLE || d.getContent() == null
                             ? ""
                             : d.getContent().get(0);
 
@@ -105,31 +153,6 @@ public class SearchController {
                     return searchResult;
                 })
                 .collect(Collectors.toList());
-    }
-
-    static String getRootPathWithLang(HttpServletRequest request, boolean setProtocolToHttps) throws MalformedURLException, URISyntaxException {
-        URL url = new URL(request.getRequestURL().toString());
-        String host = url.getHost();
-        String userInfo = url.getUserInfo();
-        String scheme = url.getProtocol();
-        if(setProtocolToHttps && !StringUtils.isBlank(scheme)){
-            scheme = scheme.replace("http", "https");
-        }
-
-        int port = url.getPort();
-        String path = (String) request.getAttribute("javax.servlet.forward.request_uri");
-
-        String langPart = "";
-        for (String possibleLocale : LocaleConfiguration.AVAILABLE_LOCALES) {
-            if (path != null && path.startsWith("/" + possibleLocale)) {
-                langPart = "/" + possibleLocale;
-                break;
-            }
-        }
-
-        String newPath = langPart + "/" + PROJECT_NAME + "/";
-        URI uri = new URI(scheme, userInfo, host, port, newPath, null, null);
-        return uri.toString();
     }
 
 }

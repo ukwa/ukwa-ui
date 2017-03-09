@@ -7,12 +7,23 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SolrSearchResult <T extends BodyDocsType>{
+    @JsonProperty("facet_counts")
+    private FacetCounts facetCounts;
+
     @JsonProperty("responseHeader")
     private ResponseHeader responseHeader;
 
     @JsonProperty("response")
     private ResponseBody<T> responseBody;
 
+
+    public FacetCounts getFacetCounts() {
+        return facetCounts;
+    }
+
+    public void setFacetCounts(FacetCounts facetCounts) {
+        this.facetCounts = facetCounts;
+    }
 
     public ResponseHeader getResponseHeader() {
         return responseHeader;

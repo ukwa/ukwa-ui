@@ -24,7 +24,7 @@
 <body>
 
 <div class="about-full-video-container">
-<video id="about-full-video" class="about-full-video">
+<video id="about-full-video" class="about-full-video" controls>
     <source src="img/about.mp4" type="video/mp4">
 </video>
 <div class="about-close-button" id="close-about-video"></div>

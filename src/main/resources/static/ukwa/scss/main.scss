@@ -55,6 +55,10 @@ input, button, textarea {
 	color:$white;	
 }
 
+.black {
+	color:$black;	
+}
+
 .light-blue {
 	color: $light-blue;
 }
@@ -221,6 +225,11 @@ input, button, textarea {
 
 .margin-top-60 {
 	margin-top:60px;
+}
+
+
+.margin-top-40 {
+	margin-top:40px;
 }
 
 .margin-bottom-20 {
@@ -653,6 +662,11 @@ h3 {
 	font-size:1.8em;
 	line-height:1.1em;
 	margin-bottom:0;
+	text-decoration:none !important;
+}
+
+.main-heading > a:link, .main-heading > a:visited, .main-heading > a:active .main-heading > a:hover {
+	text-decoration:none !important;
 }
 
 .header-blue {
@@ -943,15 +957,15 @@ footer {
 }
 
 .pagination-button {
-	width:35px;
-	height:35px;
-	font-size: 16px;
+	width:45px;
+	height:45px;
+	font-size: 14px;
 	color:$light-blue;
 	background-color:$gray;
 	margin: 10px 10px 10px 10px;
 	display:inline-block;
 	border-radius:30px;
-	padding-top:5px;
+	padding-top:12px;
 	cursor:pointer;
 }
 
@@ -964,6 +978,7 @@ footer {
 	&.dots {
 		color:$gray;
 		background-color:transparent;
+		cursor: default !important;
 	}
 	
 	&.dots:before {
@@ -1140,6 +1155,15 @@ footer {
 .results-title-text {
 	display:block;
 	padding: 0 0 10px 0;
+	text-overflow: ellipsis;
+}
+
+.results-link {
+	width:100%;
+	display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .results-result {
@@ -1328,6 +1352,7 @@ footer {
 	.pagination-button.inactive {
 		display:none;	
 	}
+	
 	
 	.sidebar-item {
 			

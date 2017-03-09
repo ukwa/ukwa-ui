@@ -53,7 +53,7 @@
       <div class="row margin-0 border-bottom-gray">
       <div class="col-md-9 offset-md-1 col-sm-12 padding-top-40 padding-bottom-20 light-blue">
       <h1><c:out value="${currentCollection.name}"/></h1>
-      <p><c:out value="${currentCollection.description}"/></p>
+      <p class="black"><c:out value="${currentCollection.description}"/></p>
       </div>
       </div>
       
@@ -67,7 +67,7 @@
   
   <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-30 padding-bottom-20">
         <div class="center light-blue padding-bottom-10">
-          <c:out value="${subCollection.name}"/>
+          <a href="collection/<c:out value="${subCollection.id}"/>"><c:out value="${subCollection.name}"/></a>
         </div>
         <figure><a href="collection/<c:out value="${subCollection.id}"/>"><img class="img-responsive border-gray" alt="Collections" src="img/collections/collection_<c:out value="${subCollection.id}"/>.png"/></a>
           <figcaption class="img-square-caption"> <c:out value="${subCollection.description}"/></figcaption>
@@ -111,13 +111,23 @@
 
         <div class="row padding-0 margin-0">
           <div class="col-md-12 pagination-cont">
-            <div class="pagination-button arrow left-arrow"></div>
-            <div class="pagination-button active">2</div>
-            <div class="pagination-button inactive">3</div>
-            <div class="pagination-button inactive">4</div>
-            <div class="pagination-button dots inactive"></div>
-            <div class="pagination-button inactive">8</div>
-            <div class="pagination-button arrow right-arrow"></div>
+          <c:if test="${targetPageNumber > 1}">
+
+              <a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${targetPageNumber - 1}"/>">
+                  <div class="pagination-button arrow left-arrow"></div></a>
+          </c:if>
+          <c:forEach begin="1" end="${currentCollection.websitesNum/rowsPerPageLimit + 1}" var="i">
+              <a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${i}"/>">
+                  <div class="pagination-button ${i == targetPageNumber ? "active" : "inactive"}">
+                      <c:out value="${i}"/>
+                  </div></a>
+          </c:forEach>
+          <c:if test="${targetPageNumber < currentCollection.websitesNum/rowsPerPageLimit}">
+
+              <a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${targetPageNumber + 1}"/>">
+                  <div class="pagination-button arrow right-arrow"></div>
+              </a>
+          </c:if>
           </div>
         </div>
       </div>

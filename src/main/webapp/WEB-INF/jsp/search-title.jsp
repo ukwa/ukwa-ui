@@ -109,13 +109,15 @@
       </div>
       <div class="row padding-0 margin-0">
         <div class="col-md-12 pagination-cont">
-          <div class="pagination-button arrow left-arrow"></div>
-          <div class="pagination-button active">2</div>
-          <div class="pagination-button inactive">3</div>
-          <div class="pagination-button inactive">4</div>
-          <div class="pagination-button dots inactive"></div>
-          <div class="pagination-button inactive">8</div>
-          <div class="pagination-button arrow right-arrow"></div>
+			<a href="#"><div class="pagination-button arrow left-arrow"></div></a>
+            <a href="#"><div class="pagination-button active">2</div></a>
+            <a href="#"><div class="pagination-button inactive">3</div></a>
+            <a href="#"><div class="pagination-button inactive">4</div></a>
+          
+            <div class="pagination-button dots inactive"></div>
+            
+            <a href="#"><div class="pagination-button inactive">8</div></a> 
+            <a href="#"><div class="pagination-button arrow right-arrow"></div></a>
         </div>
       </div>
     </div>

@@ -6,8 +6,10 @@
 <![endif]-->
 <link rel="stylesheet" href="includes/bootstrap/css/bootstrap.min.css">
 <link type="text/css" rel="stylesheet" href="https://fast.fonts.net/cssapi/550af8ba-9dac-4828-986a-f80eda1d8448.css"/>
+<link rel="stylesheet" href="includes/jqueryui/jquery-ui.min.css">
 <link rel="stylesheet" href="css/main.css">
 <script src="includes/jquery-3.1.1.min.js"></script>
+<script src="includes/jqueryui/jquery-ui.min.js"></script>
 <script src="includes/tether/js/tether.min.js"></script>
 <script src="includes/bootstrap/js/bootstrap.min.js"></script>
 <script src="includes/common.js"></script>

@@ -40,6 +40,7 @@ $(document).ready(function(e) {
 	
 	//about video
 	$("#play-about-video").click(function(e) {
+		$("html, body").animate({ scrollTop: "0px" });
         $(".about-full-video-container").fadeIn("slow");
 		$("#about-full-video")[0].play();
 		$("html").css("overflow","hidden");
