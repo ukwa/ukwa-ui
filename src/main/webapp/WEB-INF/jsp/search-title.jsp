@@ -65,7 +65,7 @@
     <div class="col-lg-9 col-md-8 col-sm-12 padding-0">
       <div class="results-header border-bottom-gray">
         <div class="float-left padding-top-5">20 results for <span class="bold">"Interactive Design"</span></div>
-        <div class="help-button small"></div>
+        <div class="help-button small" title="Help"></div>
         <div class="clearfix"></div>
       </div>
       <div class="row margin-0 results-title border-bottom-gray">
@@ -73,8 +73,8 @@
           <h1 class="light-blue">Arts, Design and the Built Environment</h1>
           <span class="results-title-text clearfix">10/09/2015</span> <span class="results-title-text clearfix">This site is part of the following subject(s): <span class="light-blue">Arts & letters > Art et Design</span></span> </div>
         <div class="col-md-3 col-sm-12">
-          <div class="social-button fb float-right margin-left-10"></div>
-          <div class="social-button twitter float-right margin-left-10"></div>
+          <div class="social-button fb float-right margin-left-10" title="Facebook"></div>
+          <div class="social-button twitter float-right margin-left-10" title="Twitter"></div>
         </div>
       </div>
       <div class="row margin-0 padding-left-60 results-result border-bottom-gray">
@@ -109,15 +109,15 @@
       </div>
       <div class="row padding-0 margin-0">
         <div class="col-md-12 pagination-cont">
-			<a href="#"><div class="pagination-button arrow left-arrow"></div></a>
-            <a href="#"><div class="pagination-button active">2</div></a>
-            <a href="#"><div class="pagination-button inactive">3</div></a>
-            <a href="#"><div class="pagination-button inactive">4</div></a>
+			<a href="#" title="Previous page"><div class="pagination-button arrow left-arrow"></div></a>
+            <a href="#" title="2"><div class="pagination-button active">2</div></a>
+            <a href="#" title="3"><div class="pagination-button inactive">3</div></a>
+            <a href="#" title="4"><div class="pagination-button inactive">4</div></a>
           
             <div class="pagination-button dots inactive"></div>
             
-            <a href="#"><div class="pagination-button inactive">8</div></a> 
-            <a href="#"><div class="pagination-button arrow right-arrow"></div></a>
+            <a href="#" title="8"><div class="pagination-button inactive">8</div></a> 
+            <a href="#" title="Next page"><div class="pagination-button arrow right-arrow"></div></a>
         </div>
       </div>
     </div>

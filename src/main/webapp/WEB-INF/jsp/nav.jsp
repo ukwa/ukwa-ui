@@ -1,7 +1,7 @@
 <nav>
   <div class="main-menu-block"></div>
   <div class="main-menu">
-    <div class="main-menu-close"></div>
+    <div class="main-menu-close" title="Close"></div>
     <div class="main-menu-cont">
       <a href="/" title="Home"><div tabindex="1" class="main-menu-item border-none"><img class="main-menu-img" alt="Home" src="img/icons/home-white.png"/><spring:message code="main.menu.home" text="Home" /></div></a>
       <a href="info/about" title="About"><div tabindex="1" class="main-menu-item"><img class="main-menu-img" alt="About" src="img/icons/about-white.png"/><spring:message code="main.menu.about" text="About" /></div></a>

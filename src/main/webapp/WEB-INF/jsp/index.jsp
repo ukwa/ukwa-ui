@@ -25,7 +25,7 @@
 <%@include file="nav.jsp" %>
 <div class="container-fluid">
   <header>
-    <div class="main-menu-button"></div>
+    <div class="main-menu-button" title="Main menu"></div>
     <div class="row margin-0">
       <div class="col-md-5 col-sm-12 home-title-cont">
         <div> UK<br/>
@@ -150,7 +150,7 @@
     </div>
     <div class="row margin-0">
       <div class="col-md-12 col-sm-12 center padding-bottom-80">
-        <a href="collection"><button type="button" class="button button-blue" role="link"><spring:message code="home.button.viewmore"/></button></a>
+        <a href="collection"><button type="button" class="button button-blue" role="link" title="View more collections"><spring:message code="home.button.viewmore"/></button></a>
       </div>
     </div>
   </section>

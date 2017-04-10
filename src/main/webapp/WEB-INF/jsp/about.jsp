@@ -27,7 +27,7 @@
 <video id="about-full-video" class="about-full-video" controls>
     <source src="img/about.mp4" type="video/mp4">
 </video>
-<div class="about-close-button" id="close-about-video"></div>
+<div class="about-close-button" id="close-about-video" title="close"></div>
 </div>
 
 <%@include file="nav.jsp" %>
@@ -40,7 +40,7 @@
     <video class="about-video" autoplay muted>
     	<source src="img/about.mp4" type="video/mp4">
     </video>
-    <div class="about-play-button" id="play-about-video"></div>
+    <div class="about-play-button" id="play-about-video" title="Play video"></div>
     </div>
   </section>
   <section id="content">

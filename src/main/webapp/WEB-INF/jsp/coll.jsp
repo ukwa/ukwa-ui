@@ -38,7 +38,7 @@
     <div class="row margin-0 padding-0">
       <div class="col-lg-3 col-md-4 col-sm-12 sidebar padding-0 white">
 
-      <a href="collection" class="no-decoration"><div class="sidebar-back-item border-bottom-white">Back to the list</div></a>
+      <a href="collection" class="no-decoration" title="Back to the list"><div class="sidebar-back-item border-bottom-white">Back to the list</div></a>
       <div class="sidebar-item toggle open" id="toggle-sidebar"></div>
       <div class="sidebar-collapse">
       <p class="sidebar-coll-title padding-20 padding-bottom-0">Special collections</p>
@@ -102,8 +102,8 @@
             </span>
           </div>
           <div class="col-lg-3 col-md-12 padding-20">
-            <div class="social-button fb float-right margin-left-10"></div>
-            <div class="social-button twitter float-right margin-left-10"></div>
+            <div class="social-button fb float-right margin-left-10" title="Facebook"></div>
+            <div class="social-button twitter float-right margin-left-10" title="Twitter"></div>
           </div>
         </div>
         <!--/RESULT ROW-->
@@ -113,18 +113,18 @@
           <div class="col-md-12 pagination-cont">
           <c:if test="${targetPageNumber > 1}">
 
-              <a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${targetPageNumber - 1}"/>">
+              <a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${targetPageNumber - 1}"/>" title="Previous page">
                   <div class="pagination-button arrow left-arrow"></div></a>
           </c:if>
           <c:forEach begin="1" end="${currentCollection.websitesNum/rowsPerPageLimit + 1}" var="i">
-              <a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${i}"/>">
+              <a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${i}"/>" title="<c:out value="${i}"/>">
                   <div class="pagination-button ${i == targetPageNumber ? "active" : "inactive"}">
                       <c:out value="${i}"/>
                   </div></a>
           </c:forEach>
           <c:if test="${targetPageNumber < currentCollection.websitesNum/rowsPerPageLimit}">
 
-              <a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${targetPageNumber + 1}"/>">
+              <a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${targetPageNumber + 1}"/>" title="Next page">
                   <div class="pagination-button arrow right-arrow"></div>
               </a>
           </c:if>

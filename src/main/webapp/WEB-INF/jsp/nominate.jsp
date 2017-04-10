@@ -114,7 +114,7 @@
         </div>
         
         <div class="col-md-6 col-sm-12 form-content-col">
-          <button type="button" class="button button-blue" role="button">Submit</button>
+          <button type="button" class="button button-blue" role="button" title="Submit">Submit</button>
         </div>
         
       </div>

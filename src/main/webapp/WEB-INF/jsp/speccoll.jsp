@@ -28,7 +28,7 @@
 <%@include file="nav.jsp" %>
 <div class="container-fluid">
   <header>
-    <div class="main-menu-button"></div>
+    <div class="main-menu-button" title="Home page"></div>
     <div class="row header-bar-2">
       <div class="col-lg-2  col-md-3 col-sm-12 main-heading-cont">
         <h1 class="main-heading">Explore<br/>

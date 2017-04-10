@@ -25,7 +25,7 @@
 <%@include file="nav.jsp" %>
 <div class="container-fluid">
   <header>
-  <div class="main-menu-button"></div>
+  <div class="main-menu-button" title="Main menu"></div>
   <div class="row header-bar">
     <div class="col-md-2 col-sm-12 main-heading-cont">
       <h1 class="main-heading"><a href="/">UK<br/>
@@ -100,15 +100,15 @@
       </div>
       <div class="row padding-top-20">
         <div class="col-md-4 col-sm-12 padding-vert-10">
-          <button type="button" class="button button-blue width-100 text-small form-button-down-arrow">
+          <button title="Select a subject" type="button" class="button button-blue width-100 text-small form-button-down-arrow">
           Select a subject</button>
         </div>
         <div class="col-md-4 col-sm-12 padding-vert-10">
-          <button type="button" class="button button-blue width-100 text-small form-button-down-arrow">
-          Select a speciall collection</button>
+          <button title="Select a special collection" type="button" class="button button-blue width-100 text-small form-button-down-arrow">
+          Select a special collection</button>
         </div>
         <div class="col-md-4 col-sm-12 padding-vert-10">
-          <button type="button" class="button button-blue width-100 text-small form-button-down-arrow">
+          <button title="Select an organisation" type="button" class="button button-blue width-100 text-small form-button-down-arrow">
           Select an organisation</button>
         </div>
       </div>
@@ -122,7 +122,7 @@
       </div>
       <div class="row padding-top-20">
         <div class="col-sm-12">
-          <button type="submit" class="button button-white form-button-right-arrow right-arrow float-right">
+          <button type="submit" title="Search" class="button button-white form-button-right-arrow right-arrow float-right">
           Search</button>
         </div>
       </div>

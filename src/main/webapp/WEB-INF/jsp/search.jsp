@@ -178,7 +178,7 @@
       <div class="col-lg-9 col-md-8 col-sm-12 padding-0">
         <div class="results-header border-bottom-gray">
           <div class="float-left padding-top-5"><c:out value="${totalSearchResultsSize}"/> results for <span class="bold">"<c:out value="${originalSearchRequest}"/>"</span></div>
-          <div class="help-button small"></div>
+          <div class="help-button small" title="Help"></div>
           <div class="clearfix"></div>
         </div>
 
@@ -211,8 +211,8 @@
             </span>
           </div>
           <div class="col-lg-2 col-md-12 padding-20">
-            <div class="social-button fb float-right margin-left-10"></div>
-            <div class="social-button twitter float-right margin-left-10"></div>
+            <div class="social-button fb float-right margin-left-10" title="Facebook"></div>
+            <div class="social-button twitter float-right margin-left-10" title="Twitter"></div>
           </div>
         </div>
         <!--/RESULT ROW-->
@@ -262,7 +262,7 @@
       </div>
     </div>
   </section>
-  <div class="up-button"></div>
+  <div class="up-button" title="To top of page"></div>
   <footer>
 	<%@include file="footer.jsp" %>
   </footer>
@@ -276,7 +276,7 @@ $(document).ready(function(e) {
 		changeMonth: true,
         changeYear: true,
 		//minDate: new Date('1996/01/01'),
-		//yearRange: "1996:+0"
+		yearRange: "-50:+0"
 	});
 
 	//filters toggle and count

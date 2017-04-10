@@ -47,7 +47,7 @@
     <div class="col-lg-9 col-md-8 col-sm-12 padding-0">
     <div class="subject-title border-bottom-gray">
       <h1 class="float-left">Arts & Humanities</h1>
-      <div class="help-button"></div>
+      <div class="help-button" title="Help"></div>
       <div class="clearfix"></div>
     </div>
     <div class="subject-subtitle">
