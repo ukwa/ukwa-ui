@@ -12,6 +12,12 @@ public class FacetFields {
     @JsonProperty("public_suffix")
     private LinkedList<String> publicSuffixes;
 
+    @JsonProperty("content_type_norm")
+    private LinkedList<String> contentTypes;
+
+    @JsonProperty("host")
+    private LinkedList<String> hosts;
+
     public LinkedList<String> getPublicSuffixes() {
         return publicSuffixes;
     }
@@ -20,6 +26,21 @@ public class FacetFields {
         this.publicSuffixes = publicSuffixes;
     }
 
+    public LinkedList<String> getContentTypes() {
+        return contentTypes;
+    }
+
+    public void setContentTypes(LinkedList<String> contentTypes) {
+        this.contentTypes = contentTypes;
+    }
+
+    public LinkedList<String> getHosts() {
+        return hosts;
+    }
+
+    public void setHosts(LinkedList<String> hosts) {
+        this.hosts = hosts;
+    }
 
     @Override
     public String toString() {

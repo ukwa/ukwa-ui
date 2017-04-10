@@ -29,8 +29,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RequestMapping(value = HomeController.PROJECT_NAME + "/collection")
 public class CollectionController {
 
-    private static final String TYPE_COLLECTION = "collection";
-    private static final String TYPE_TARGET = "target";
+    public static final String TYPE_COLLECTION = "collection";
+    public static final String TYPE_TARGET = "target";
     static final int ROWS_PER_PAGE = 10;
 
     @Autowired

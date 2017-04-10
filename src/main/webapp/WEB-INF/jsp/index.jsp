@@ -40,7 +40,7 @@
           <h3 class="text-medium padding-0 margin-0"><spring:message code="home.page.subtitle"/></h3>
           <hr class="header-title-hr"/>
           <p><spring:message code="home.page.description"/></p>
-          <a href="info/about"><button type="button" class="button button-white button-shadow form-button-right-arrow float-md-right margin-top-20" role="link"><spring:message code="home.button.learn"/></button></a>
+          <a href="info/about"><button type="button" title="Learn more" class="button button-white button-shadow form-button-right-arrow float-md-right margin-top-20" role="link"><spring:message code="home.button.learn"/></button></a>
         </div>
       </div>
     </div>
@@ -52,21 +52,21 @@
         <h1 class="light-blue uppercase padding-bottom-20"><spring:message code="home.page.search.title"/></h1>
         <div class="row">
           <div class="col-lg-6 col-md-12 col-sm-12 padding-bottom-20">
-            <div class="form-check-cont">
+            <div class="form-check-cont" title="Title search">
               <input type="radio" name="search_location" id="search_location_title" value="title" checked/>
               <label class="main-search-check-label" for="search_location_title"><strong class="bold"><spring:message code="header.radio.title" text="Title" /></strong> <spring:message code="header.radio.titletext" text="(for a specific archived website)" /></label>
             </div>
           </div>
           <div class="col-lg-6 col-md-12 col-sm-12  padding-bottom-20">
-            <div class="form-check-cont">
+            <div class="form-check-cont" title="Full text search">
               <input type="radio" name="search_location" id="search_location_full_text" value="full_text"/>
               <label class="main-search-check-label" for="search_location_full_text"><strong class="bold"><spring:message code="header.radio.full" text="Full text" /></strong> <spring:message code="header.radio.fulltext" text="(accross all archived websites)" /></label>
             </div>
           </div>
         </div>
         <div class="main-search-input noshadow">
-        <input type="text" name="text" id="text" class="main-search-field" required/>
-        <button type="submit" class="main-search-button"></button>
+        <input type="text" name="text" id="text" class="main-search-field" title="Enter search phrase" required/>
+        <button type="submit" class="main-search-button" title="Search" tabindex="1"></button>
         </div>
         </form>
       </div>
@@ -75,13 +75,13 @@
           <div class="home-menu-title">
             <h1 class="uppercase padding-0 margin-0"><spring:message code="home.page.browse.title"/></h1>
           </div>
-          <div class="home-menu-item"><img class="home-menu-img" alt="Arts & Humanities" src="img/icons/arts-white.png"/><spring:message code="home.page.browse.arts"/></div>
-          <div class="home-menu-item"><img class="home-menu-img" alt="Business, Economy & Industry" src="img/icons/business-white.png"/><spring:message code="home.page.browse.business"/></div>
-          <div class="home-menu-item"><img class="home-menu-img" alt="Education & Research" src="img/icons/education-white.png"/><spring:message code="home.page.browse.education"/></div>
-          <div class="home-menu-item"><img class="home-menu-img" alt="Government, Law & Politics" src="img/icons/government-white.png"/><spring:message code="home.page.browse.government"/></div>
-          <div class="home-menu-item"><img class="home-menu-img" alt="Medicine & Health" src="img/icons/medicine-white.png"/><spring:message code="home.page.browse.medicine"/></div>
-          <div class="home-menu-item"><img class="home-menu-img" alt="Science & Technology" src="img/icons/science-white.png"/><spring:message code="home.page.browse.science"/></div>
-          <div class="home-menu-item"><img class="home-menu-img" alt="Society & Culture" src="img/icons/society-white.png"/><spring:message code="home.page.browse.society"/></div>
+          <div class="home-menu-item" title="Arts & Humanities"><img class="home-menu-img" alt="Arts & Humanities" src="img/icons/arts-white.png"/><spring:message code="home.page.browse.arts"/></div>
+          <div class="home-menu-item" title="Business, Economy & Industry"><img class="home-menu-img" alt="Business, Economy & Industry" src="img/icons/business-white.png"/><spring:message code="home.page.browse.business"/></div>
+          <div class="home-menu-item" title="Education & Research"><img class="home-menu-img" alt="Education & Research" src="img/icons/education-white.png"/><spring:message code="home.page.browse.education"/></div>
+          <div class="home-menu-item" title="Government, Law & Politics"><img class="home-menu-img" alt="Government, Law & Politics" src="img/icons/government-white.png"/><spring:message code="home.page.browse.government"/></div>
+          <div class="home-menu-item" title="Medicine & Health"><img class="home-menu-img" alt="Medicine & Health" src="img/icons/medicine-white.png"/><spring:message code="home.page.browse.medicine"/></div>
+          <div class="home-menu-item" title="Science & Technology"><img class="home-menu-img" alt="Science & Technology" src="img/icons/science-white.png"/><spring:message code="home.page.browse.science"/></div>
+          <div class="home-menu-item" title="Society & Culture"><img class="home-menu-img" alt="Society & Culture" src="img/icons/society-white.png"/><spring:message code="home.page.browse.society"/></div>
         </nav>
       </div>
     </div>
@@ -101,49 +101,49 @@
     <div class="row page-content padding-side-70 padding-top-0">
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
         <div class="center light-blue padding-bottom-10"><a href="collection/329">British Stand-up Comedy Archive</a></div>
-        <figure><a href="collection/329"><img class="img-responsive border-gray" alt="British Stand-up Comedy Archive" src="img/collections/collection_329.png"/></a>
+        <figure><a href="collection/329" title="Collection owned and adminstered by Elspeth Millar, Briti..."><img class="img-responsive border-gray" alt="British Stand-up Comedy Archive" src="img/collections/collection_329.png"/></a>
           <figcaption class="img-square-caption">Collection owned and adminstered by Elspeth Millar, Briti...</figcaption>
         </figure>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
         <div class="center light-blue padding-bottom-10"><a href="collection/309">French in London</a></div>
-        <figure><a href="collection/309"><img class="img-responsive border-gray" alt="French in London" src="img/collections/collection_309.png"/></a>
+        <figure><a href="collection/309" title="This collection of websites has been selected by Saskia H..."><img class="img-responsive border-gray" alt="French in London" src="img/collections/collection_309.png"/></a>
           <figcaption class="img-square-caption">This collection of websites has been selected by Saskia H...</figcaption>
         </figure>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
         <div class="center light-blue padding-bottom-10"><a href="collection/65">Scottish Independence Referendum</a></div>
-        <figure><a href="collection/65"><img class="img-responsive border-gray" alt="Scottish Independence Referendum" src="img/collections/collection_65.png"/></a>
+        <figure><a href="collection/65" title="Provisional title for collection on Scottish Devolution, ..."><img class="img-responsive border-gray" alt="Scottish Independence Referendum" src="img/collections/collection_65.png"/></a>
           <figcaption class="img-square-caption">Provisional title for collection on Scottish Devolution, ...</figcaption>
         </figure>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
         <div class="center light-blue padding-bottom-10"><a href="collection/138">News Sites</a></div>
-        <figure><a href="collection/138"><img class="img-responsive border-gray" alt="News Sites" src="img/collections/collection_138.png"/></a>
+        <figure><a href="collection/138" title="558 titles are included in this collection (30/01/2014). ..."><img class="img-responsive border-gray" alt="News Sites" src="img/collections/collection_138.png"/></a>
           <figcaption class="img-square-caption">558 titles are included in this collection (30/01/2014). ...</figcaption>
         </figure>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
         <div class="center light-blue padding-bottom-10"><a href="collection/349">Rugby World Cup 2015</a></div>
-        <figure><a href="collection/349"><img class="img-responsive border-gray" alt="Rugby World Cup 2015" src="img/collections/collection_349.png"/></a>
+        <figure><a href="collection/349" title="Collection managed by Gill Ridgley"><img class="img-responsive border-gray" alt="Rugby World Cup 2015" src="img/collections/collection_349.png"/></a>
           <figcaption class="img-square-caption">Collection managed by Gill Ridgley</figcaption>
         </figure>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
         <div class="center light-blue padding-bottom-10"><a href="collection/245">SmashFest UK</a></div>
-        <figure><a href="collection/245"><img class="img-responsive border-gray" alt="SmashFest UK" src="img/collections/collection_245.png"/></a>
+        <figure><a href="collection/245" title="Collection managed by Katie Howe, Jason Webber and Sabine..."><img class="img-responsive border-gray" alt="SmashFest UK" src="img/collections/collection_245.png"/></a>
           <figcaption class="img-square-caption">Collection managed by Katie Howe, Jason Webber and Sabine...</figcaption>
         </figure>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
         <div class="center light-blue padding-bottom-10"><a href="collection/283">UK response to Philippines disaster 2013</a></div>
-        <figure><a href="collection/283"><img class="img-responsive border-gray" alt="UK response to Philippines disaster 2013" src="img/collections/collection_283.png"/></a>
+        <figure><a href="collection/283" title="UK response to Philippines disaster 2013"><img class="img-responsive border-gray" alt="UK response to Philippines disaster 2013" src="img/collections/collection_283.png"/></a>
           <figcaption class="img-square-caption">On the 8th November 2013 Typhoon Haiyan (also known as Yo...</figcaption>
         </figure>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
         <div class="center light-blue padding-bottom-10"><a href="collection/471">VE /VJ Day 70th Anniversary 1945-2015</a></div>
-        <figure><a href="collection/471"><img class="img-responsive border-gray" alt="VE /VJ Day 70th Anniversary 1945-2015" src="img/collections/collection_471.png"/></a>
+        <figure><a href="collection/471" title="Collection established by Jerry Jenkins, BL."><img class="img-responsive border-gray" alt="VE /VJ Day 70th Anniversary 1945-2015" src="img/collections/collection_471.png"/></a>
           <figcaption class="img-square-caption">Collection established by Jerry Jenkins, BL.</figcaption>
         </figure>
       </div>                                               

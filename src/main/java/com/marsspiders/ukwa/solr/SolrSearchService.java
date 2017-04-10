@@ -1,87 +1,93 @@
 package com.marsspiders.ukwa.solr;
 
-import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.marsspiders.ukwa.solr.data.BodyDocsType;
 import com.marsspiders.ukwa.solr.data.CollectionInfo;
 import com.marsspiders.ukwa.solr.data.ContentInfo;
-import com.marsspiders.ukwa.solr.data.ResponseBody;
 import com.marsspiders.ukwa.solr.data.SolrSearchResult;
-import com.marsspiders.ukwa.util.SolrUtil;
 import org.apache.commons.codec.EncoderException;
 import org.apache.commons.codec.net.URLCodec;
-import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpResponse;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.CredentialsProvider;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import static com.marsspiders.ukwa.controllers.CollectionController.TYPE_COLLECTION;
+import static com.marsspiders.ukwa.controllers.CollectionController.TYPE_TARGET;
+import static com.marsspiders.ukwa.util.SolrUtil.escapeQueryChars;
+import static com.marsspiders.ukwa.util.SolrUtil.toEncoded;
+import static com.marsspiders.ukwa.util.SolrUtil.toMultipleConditionsQuery;
 import static java.lang.String.format;
-import static org.apache.commons.lang3.StringUtils.isBlank;
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class SolrSearchService {
-
-    @Value("${solr.collection.search.path}")
-    private String solrCollectionPath;
-
-    @Value("${solr.full.text.search.path}")
-    private String solrFullTextPath;
-
-    @Value("${solr.auth.username}")
-    private String username;
-
-    @Value("${solr.auth.password}")
-    private String password;
-
-    @Value("${solr.read.timeout}")
-    private Integer readTimeout;
-
-    @Value("${solr.connection.timeout}")
-    private Integer connectionTimeout;
-
-    @Value("${solr.show.stub.data.when.service.not.available}")
-    private boolean showStubData;
-
-    private static final String INDENT_FLAG = "on";
-    private static final String RESULT_FORMAT = "json";
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
+    public static final String AND_JOINER = " AND ";
+    public static final String OR_JOINER = " OR ";
+
+    private static final int ROOT_COLLECTIONS_ROWS_LIMIT = 1000;
+    private static final String INDENT_FLAG = "on";
+    private static final String RESULT_FORMAT = "json";
+
+    private static final String FIELD_CONTENT_TYPE_NORM = "content_type_norm";
+    private static final String FIELD_PUBLIC_SUFFIX = "public_suffix";
+    private static final String FIELD_HOST = "host";
+    private static final String FIELD_CRAWL_DATE = "crawl_date";
+
+    private static final String EXCLUDE_FACET_TAG_NAME = "filter";
+    private static final String EXCLUDE_MARKER_TAG = "{!tag=" + EXCLUDE_FACET_TAG_NAME + "}";
+    private static final String EXCLUDE_POINT_TAG = "{!ex=" + EXCLUDE_FACET_TAG_NAME + "}";
+    private static final String DATE_PART_AFTER_YEAR = "-01-01T00:00:00Z";
+    private static final int FACET_RANGE_START_YEAR = 1980;
+    private static final int FACET_RANGE_END_YEAR = 2040;
+
+    private final Map<String, List<String>> collectionIdsToHosts = new HashMap<>();
+    private final Map<String, String> urlsToCollectionId = new HashMap<>();
+    private final Map<String, String> idsToNames = new HashMap<>();
+
+    @Autowired
+    SolrCommunicator communicator;
+
+    private SolrSearchResult<CollectionInfo> fetchAllCollections() {
+        System.out.println("Fetching all collections");
+
+        String queryString = "type:" + TYPE_COLLECTION;
+
+        return sendRequest(queryString, CollectionInfo.class, ROOT_COLLECTIONS_ROWS_LIMIT, 0);
+    }
+
     public SolrSearchResult<CollectionInfo> fetchRootCollections() {
+        System.out.println("Fetching root collections");
+
         String queryString = "-parentId:[*%20TO%20*]";
-        return populateSearchUrlAndSendRequest(solrCollectionPath, queryString, CollectionInfo.class, 1000, 0, null);
+        return sendRequest(queryString, CollectionInfo.class, ROOT_COLLECTIONS_ROWS_LIMIT, 0);
     }
 
     public SolrSearchResult<CollectionInfo> fetchCollectionById(String targetId) {
+        System.out.println("Fetching collections by id: " + targetId);
+
         String queryString = "id:" + targetId;
         //As result should be only one row, but for debug purposes we pass limit 100 to see what actual result are returned
         int rowsLimit = 100;
-        return populateSearchUrlAndSendRequest(solrCollectionPath, queryString, CollectionInfo.class, rowsLimit, 0, null);
+        return sendRequest(queryString, CollectionInfo.class, rowsLimit, 0);
     }
 
-    public SolrSearchResult<CollectionInfo> fetchChildCollections(List<String> parentCollectionIds,
+    public SolrSearchResult<CollectionInfo> fetchChildCollections(Collection<String> parentCollectionIds,
                                                                   String documentType,
                                                                   long rowsLimit,
                                                                   long startFrom) {
+        System.out.println("Fetching child collections by parent ids: " + parentCollectionIds + ", documentType: " + documentType);
+
         String typeSearchQueryString = "type:" + documentType;
         String parentIdsQueryString = parentCollectionIds.stream()
                 .map(id -> "parentId:" + id)
@@ -96,191 +102,197 @@ public class SolrSearchService {
         }
 
         String queryString = encodedParentIdQueryString + "&fq=" + typeSearchQueryString;
-        return populateSearchUrlAndSendRequest(solrCollectionPath, queryString, CollectionInfo.class, rowsLimit, startFrom, null);
+        return sendRequest(queryString, CollectionInfo.class, rowsLimit, startFrom);
     }
 
-    public SolrSearchResult<ContentInfo> searchContentByFullText(SearchByEnum searchLocation, String textToSearch,
-                                                                 long rowsLimit,
-                                                                 long startFrom,
-                                                                 Date fromDate,
-                                                                 Date toDate,
-                                                                 List<DocumentTypeEnum> documentTypes,
-                                                                 List<String> checkedPublicSuffixes) {
-        String fromDateText = fromDate != null ? sdf.format(fromDate) : "*";
-        String toDateText = toDate != null ? sdf.format(toDate) : "*";
+    public Map<String, String> getParentCollections(List<String> hostsPairs) {
+        Map<String, String> collectionIdsToName = new HashMap<>();
 
-        String dateQuery = "crawl_date:[" + fromDateText + " TO " + toDateText + "]";
-        String searchQuery = searchLocation.getSolrSearchLocation() + ":\"" + SolrUtil.escapeQueryChars(textToSearch) + "\"";
-        String contentTypeNotEmpty = "content_type:['' TO *]";
-        String andJoiner = " AND ";
-        String orJoiner = " OR ";
-
-        StringBuilder sb = new StringBuilder();
-        for (String contentType : DocumentTypeEnum.toContentTypes(documentTypes)) {
-           if(sb.length() == 0){
-               sb.append("(");
-           } else {
-               sb.append(orJoiner);
-           }
-            sb.append("content_type:").append(contentType);
+        if (hostsPairs == null || hostsPairs.size() == 0) {
+            return collectionIdsToName;
         }
 
-        if(sb.length() != 0){
-            sb.append(")");
-            sb.insert(0, andJoiner);
-        }
+        List<String> actualHosts = toActualHosts(hostsPairs);
+        determineUrlsByCollections();
 
-        String contentTypeQueryString = contentTypeNotEmpty + sb.toString();
+        System.out.println("Getting parent collections by hosts: " + actualHosts);
 
+        for (String url : urlsToCollectionId.keySet()) {
+            String domainName = toDomainName(url);
 
-        sb = new StringBuilder();
-        for (String publicSuffix : checkedPublicSuffixes) {
-            if(sb.length() == 0){
-                sb.append("(");
-            } else {
-                sb.append(orJoiner);
+            String collectionId = urlsToCollectionId.get(url);
+            if (actualHosts.contains(domainName) && collectionIdsToName.get(collectionId) == null) {
+                collectionIdsToName.put(collectionId, idsToNames.get(collectionId));
             }
-            sb.append("public_suffix:").append(publicSuffix);
         }
 
-        if(sb.length() != 0){
-            sb.append(")");
-            sb.insert(0, andJoiner);
+        System.out.println("Parent collections by hosts are: " + collectionIdsToName);
+
+
+        return collectionIdsToName;
+    }
+
+    private void determineUrlsByCollections() {
+        if (urlsToCollectionId.size() > 0) {
+            return;
         }
 
-        String publicSuffixQueryString = sb.toString();
+        System.out.println("Determining urls of all collections");
 
-        URLCodec codec = new URLCodec();
-        String encodedSearchQueryString = null;
-        String encodedDateQueryString = null;
-        String encodedAndJoiner = null;
-        String encodedContentTypeQueryString = null;
-        String encodedPublicSuffixQueryString = null;
+        SolrSearchResult<CollectionInfo> allCollections = fetchAllCollections();
+        allCollections.getResponseBody().getDocuments()
+                .stream()
+                .forEach(d -> idsToNames.put(d.getId(), d.getName()));
+
+        SolrSearchResult<CollectionInfo> childCollections = fetchChildCollections(idsToNames.keySet(), TYPE_TARGET, 100000, 0);
+        childCollections.getResponseBody().getDocuments()
+                .stream()
+                .forEach(d -> {
+                    String url = d.getUrl();
+                    String collectionId = d.getParentId();
+                    urlsToCollectionId.put(url, collectionId);
+
+                    List<String> hosts = collectionIdsToHosts.get(collectionId);
+                    if (hosts == null) {
+                        hosts = new ArrayList<>();
+                    }
+
+                    hosts.add(toDomainName(url));
+                    collectionIdsToHosts.put(collectionId, hosts);
+                });
+    }
+
+    private static String toDomainName(String url) {
         try {
-            encodedSearchQueryString = codec.encode(searchQuery);
-            encodedDateQueryString = codec.encode(dateQuery);
-            encodedAndJoiner = codec.encode(andJoiner);
-            encodedContentTypeQueryString = codec.encode(contentTypeQueryString);
-            encodedPublicSuffixQueryString = codec.encode(publicSuffixQueryString);
-        } catch (EncoderException e) {
-            e.printStackTrace();
-        }
-
-        String facetField = "public_suffix";
-        String queryString = encodedSearchQueryString + "&fq=" + encodedDateQueryString + encodedAndJoiner + encodedContentTypeQueryString + encodedPublicSuffixQueryString;
-        return populateSearchUrlAndSendRequest(solrFullTextPath, queryString, ContentInfo.class, rowsLimit, startFrom, facetField);
-    }
-
-    private <T extends BodyDocsType> SolrSearchResult<T> populateSearchUrlAndSendRequest(String solrPath,
-                                                                                         String queryString,
-                                                                                         Class<T> bodyDocsType,
-                                                                                         long rowsLimit,
-                                                                                         long startFrom, String facetField) {
-        String facetQuery = isBlank(facetField) ? "" : "&facet=on&facet.field=" + facetField;
-        String solrSearchUrl = format("%sindent=%s&q=%s&rows=%d&start=%d&wt=%s%s",
-                solrPath, INDENT_FLAG, queryString, rowsLimit, startFrom, RESULT_FORMAT, facetQuery);
-
-        return sendRequest(solrSearchUrl, username, password, bodyDocsType);
-    }
-
-
-    private <T extends BodyDocsType> SolrSearchResult<T> sendRequest(String solrSearchUrl,
-                                                                     String userName,
-                                                                     String password,
-                                                                     Class<T> bodyDocsType) {
-        try {
-            CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-            credentialsProvider.setCredentials(
-                    new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT),
-                    new UsernamePasswordCredentials(userName, password));
-
-            RequestConfig requestConfig = RequestConfig.custom()
-                    .setConnectTimeout(connectionTimeout)
-                    .setConnectionRequestTimeout(connectionTimeout)
-                    .setSocketTimeout(readTimeout)
-                    .build();
-
-            HttpClient client = HttpClientBuilder
-                    .create()
-                    .setDefaultCredentialsProvider(credentialsProvider)
-                    .setDefaultRequestConfig(requestConfig)
-                    .build();
-
-            HttpGet request = new HttpGet(solrSearchUrl);
-            System.out.println("Sending request to SOLR: " + solrSearchUrl);
-
-            HttpResponse response = client.execute(request);
-            System.out.println("SOLR ResponseBody Code: " + response.getStatusLine().getStatusCode());
-
-            String solrSearchResultString = IOUtils.toString(response.getEntity().getContent());
-            System.out.println("SOLR ResponseBody body: " + solrSearchResultString.replaceAll("\n", ""));
-
-            //Need to deserialize json according to generic type passed
-            ObjectMapper mapper = new ObjectMapper();
-            JavaType javaType = mapper.getTypeFactory().constructParametricType(SolrSearchResult.class, bodyDocsType);
-
-            return mapper.readValue(solrSearchResultString, javaType);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return toBackupSolrSearchResult(bodyDocsType);
-        }
-    }
-
-    private <T extends BodyDocsType> SolrSearchResult<T> toBackupSolrSearchResult(Class<T> bodyDocsType) {
-        SolrSearchResult<T> solrSearchResult = null;
-
-        if (showStubData) {
-            solrSearchResult = toStubSolrSearchResult(bodyDocsType);
-        }
-
-        if (solrSearchResult == null) {
-            solrSearchResult = toEmptySolrSearchResult();
-        }
-
-        return solrSearchResult;
-    }
-
-    private <T extends BodyDocsType> SolrSearchResult<T> toEmptySolrSearchResult() {
-        SolrSearchResult<T> solrSearchResult;
-        ResponseBody<T> responseBody = new ResponseBody<T>();
-        responseBody.setDocuments(Collections.emptyList());
-
-        solrSearchResult = new SolrSearchResult<>();
-        solrSearchResult.setResponseBody(responseBody);
-
-        return solrSearchResult;
-    }
-
-    private <T extends BodyDocsType> SolrSearchResult<T> toStubSolrSearchResult(Class<T> bodyDocsType) {
-        String solrSearchResultStubFileName;
-        if (bodyDocsType.isAssignableFrom(ContentInfo.class)) {
-            solrSearchResultStubFileName = "contentSearchStub.json";
-        } else if (bodyDocsType.isAssignableFrom(CollectionInfo.class)) {
-            solrSearchResultStubFileName = "collectionSearchStub.json";
-        } else {
-            return null;
-        }
-
-        String solrSearchResultStubString;
-        try {
-
-            Resource resource = new ClassPathResource(solrSearchResultStubFileName);
-            InputStream resourceInputStream = resource.getInputStream();
-            BufferedReader buffer = new BufferedReader(new InputStreamReader(resourceInputStream));
-            solrSearchResultStubString = buffer.lines().collect(Collectors.joining("\n"));
-        } catch (IOException e) {
+            URI uri = new URI(url);
+            String domain = uri.getHost();
+            return domain.startsWith("www.") ? domain.substring(4) : domain;
+        } catch (URISyntaxException e) {
             e.printStackTrace();
             return null;
         }
+    }
 
-        ObjectMapper mapper = new ObjectMapper();
-        JavaType javaType = mapper.getTypeFactory().constructParametricType(SolrSearchResult.class, bodyDocsType);
+    public SolrSearchResult<ContentInfo> searchContent(SearchByEnum searchLocation,
+                                                       String textToSearch,
+                                                       long rowsLimit,
+                                                       long startFrom,
+                                                       List<String> contentTypes,
+                                                       List<String> publicSuffixes,
+                                                       Date fromDatePicked,
+                                                       Date toDatePicked,
+                                                       List<String> rangeDates,
+                                                       List<String> collectionIds) {
+        System.out.println("Searching content for '" + textToSearch + "' by " + searchLocation);
 
-        try {
-            return mapper.readValue(solrSearchResultStubString, javaType);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
+        String searchQuery = searchLocation.getSolrSearchLocation() + ":\"" + escapeQueryChars(textToSearch) + "\"";
+        String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
+
+        String contentTypeNotEmpty = FIELD_CONTENT_TYPE_NORM + ":['' TO *]";
+        String contentTypesConditionQuery = toMultipleConditionsQuery(contentTypes, FIELD_CONTENT_TYPE_NORM);
+        String contentTypeQuery = EXCLUDE_MARKER_TAG + contentTypeNotEmpty + contentTypesConditionQuery;
+
+        String publicSuffixesNotEmpty = FIELD_PUBLIC_SUFFIX + ":['' TO *]";
+        String publicSuffixesConditionQuery = toMultipleConditionsQuery(publicSuffixes, FIELD_PUBLIC_SUFFIX);
+        String publicSuffixesQuery = EXCLUDE_MARKER_TAG + publicSuffixesNotEmpty + publicSuffixesConditionQuery;
+
+        List<String> hostsToSearch = getActualHostsFromCollections(collectionIds, searchLocation, textToSearch);
+        String originalCollectionsNotEmpty = FIELD_HOST + ":['' TO *]";
+        String originalCollectionsConditionQuery = toMultipleConditionsQuery(hostsToSearch, FIELD_HOST);
+        String originalCollectionsQuery = EXCLUDE_MARKER_TAG + originalCollectionsNotEmpty + originalCollectionsConditionQuery;
+
+        String queryString = toEncoded(searchQuery) +
+                "&fq=" + toEncoded(dateQuery) +
+                "&fq=" + toEncoded(contentTypeQuery) +
+                "&fq=" + toEncoded(publicSuffixesQuery) +
+                "&fq=" + toEncoded(originalCollectionsQuery) +
+                "&facet.range.gap=%2B1YEAR" +
+                "&facet.range=" + toEncoded(EXCLUDE_POINT_TAG) + FIELD_CRAWL_DATE +
+                "&f." + FIELD_CRAWL_DATE + ".facet.range.start=" + FACET_RANGE_START_YEAR + DATE_PART_AFTER_YEAR +
+                "&f." + FIELD_CRAWL_DATE + ".facet.range.end=" + FACET_RANGE_END_YEAR + DATE_PART_AFTER_YEAR;
+
+        return sendRequest(queryString, ContentInfo.class, rowsLimit, startFrom,
+                FIELD_PUBLIC_SUFFIX, FIELD_CONTENT_TYPE_NORM, FIELD_HOST);
+    }
+
+    private String generateDateQuery(Date fromDatePicked, Date toDatePicked, List<String> rangeDates) {
+        String fromDateText = fromDatePicked != null ? sdf.format(fromDatePicked) : "*";
+        String toDateText = toDatePicked != null ? sdf.format(toDatePicked) : "*";
+        if(fromDatePicked != null || toDatePicked != null){
+            return FIELD_CRAWL_DATE + ":[" + fromDateText + " TO " + toDateText + "]";
         }
+
+        String dateQuery = "";
+        for (String originalRangeDate : rangeDates) {
+            dateQuery += dateQuery.length() > 0 ? OR_JOINER : EXCLUDE_MARKER_TAG;
+
+            int yearWhenArchived = Integer.parseInt(originalRangeDate);
+            String fromDate = yearWhenArchived + DATE_PART_AFTER_YEAR;
+            String toDate = (yearWhenArchived + 1) + DATE_PART_AFTER_YEAR;
+
+            dateQuery += FIELD_CRAWL_DATE + ":[" + fromDate + " TO " + toDate + "]";
+        }
+
+        return dateQuery;
+    }
+
+    private List<String> getActualHostsFromCollections(List<String> collectionIds, SearchByEnum searchLocation, String textToSearch) {
+        System.out.println("Getting list of actual hosts that are contains in collections: " + collectionIds);
+
+        String searchQuery = searchLocation.getSolrSearchLocation() + ":\"" + escapeQueryChars(textToSearch) + "\"";
+        String queryString = toEncoded(searchQuery);
+
+        SolrSearchResult<ContentInfo> result = sendRequest(queryString, ContentInfo.class, 0, 0, FIELD_HOST);
+        List<String> actualHosts = toActualHosts(result.getFacetCounts().getFields().getHosts());
+
+        List<String> hostsToSearch = new ArrayList<>();
+
+        collectionIds
+                .stream()
+                .forEach(id -> {
+                    List<String> hostsFromCollection = collectionIdsToHosts.get(id);
+                    if (hostsFromCollection == null) {
+                        return;
+                    }
+
+                    List<String> actualHostsFromCollection = hostsFromCollection
+                            .stream()
+                            .filter(actualHosts::contains)
+                            .collect(toList());
+
+                    hostsToSearch.addAll(actualHostsFromCollection);
+                });
+
+        return hostsToSearch;
+    }
+
+    private List<String> toActualHosts(List<String> hostsPairs) {
+        List<String> actualHosts = new ArrayList<>();
+        for (int i = 0; i < hostsPairs.size(); i += 2) {
+            if ("0".equals(hostsPairs.get(i + 1))) {
+                continue;
+            }
+
+            actualHosts.add(hostsPairs.get(i));
+        }
+        return actualHosts;
+    }
+
+
+    private <T extends BodyDocsType> SolrSearchResult<T> sendRequest(String queryString,
+                                                                     Class<T> bodyDocsType,
+                                                                     long rowsLimit,
+                                                                     long startFrom,
+                                                                     String... facetFields) {
+        String fieldsFacetQuery = "&facet=on";
+        for (String facetField : facetFields) {
+            fieldsFacetQuery += "&facet.field=" + toEncoded(EXCLUDE_POINT_TAG) + facetField;
+        }
+
+
+        String solrSearchUrl = format("indent=%s&q=%s&rows=%d&start=%d&wt=%s%s",
+                INDENT_FLAG, queryString, rowsLimit, startFrom, RESULT_FORMAT, fieldsFacetQuery);
+
+        return communicator.sendRequest(solrSearchUrl, bodyDocsType);
     }
 }

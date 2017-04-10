@@ -6,28 +6,16 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class FacetCounts {
+public class FacetRanges {
+    @JsonProperty("crawl_date")
+    private FacetRange crawlDateRange;
 
-    @JsonProperty("facet_fields")
-    private FacetFields fields;
-
-    @JsonProperty("facet_ranges")
-    private FacetRanges ranges;
-
-    public FacetFields getFields() {
-        return fields;
+    public FacetRange getCrawlDateRange() {
+        return crawlDateRange;
     }
 
-    public void setFields(FacetFields fields) {
-        this.fields = fields;
-    }
-
-    public FacetRanges getRanges() {
-        return ranges;
-    }
-
-    public void setRanges(FacetRanges ranges) {
-        this.ranges = ranges;
+    public void setCrawlDateRange(FacetRange crawlDateRange) {
+        this.crawlDateRange = crawlDateRange;
     }
 
     @Override

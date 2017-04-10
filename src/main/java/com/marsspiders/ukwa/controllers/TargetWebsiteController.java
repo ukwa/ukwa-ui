@@ -32,7 +32,7 @@ public class TargetWebsiteController {
         TargetWebsiteDTO targetWebsite = new TargetWebsiteDTO();
         targetWebsite.setName(websiteInformation.getTitle());
         targetWebsite.setDescription(websiteInformation.getDescription());
-        targetWebsite.setArchiveUrl(toArchiveUrl(websiteInformation));
+        targetWebsite.setArchiveUrl(toArchiveUrl(websiteInformation.getUrl()));
         targetWebsite.setUrl(websiteInformation.getUrl());
         targetWebsite.setStartDate(websiteInformation.getStartDate());
         targetWebsite.setEndDate(websiteInformation.getEndDate());
@@ -46,8 +46,7 @@ public class TargetWebsiteController {
         return mav;
     }
 
-    private String toArchiveUrl(CollectionInfo websiteInformation) {
-        String originalUrl = websiteInformation.getUrl();
+    private String toArchiveUrl(String originalUrl) {
         return HomeController.PROJECT_NAME + "/wayback/*/" + originalUrl;
     }
 }

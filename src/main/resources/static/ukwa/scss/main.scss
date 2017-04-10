@@ -28,9 +28,10 @@ html, body {
 	padding:0;	
 }
 
-input, button, textarea {
-	font-family: $font-normal;	
+input, button, textarea, select {
+	font-family: $font-normal !important;	
 }
+
 
 /* GENERAL STYLES AND COLORS*/
 .center {
@@ -254,6 +255,10 @@ input, button, textarea {
 	border-top: solid 1px $gray;	
 }
 
+.border-top-white {
+	border-top: solid 1px $white;	
+}
+
 .border-bottom-gray {
 	border-bottom: solid 1px $gray;	
 }
@@ -315,7 +320,7 @@ footer {
 	border-radius:100px;
 	font-size:1.2em;	
 	border:none;
-	padding: 7px 50px 7px 50px;
+	padding: 7px 30px 7px 30px;
 	cursor:pointer;
 	position:relative;
 }
@@ -880,6 +885,39 @@ footer {
 
 .sidebar-coll-link {
 	color:$white;
+}
+
+.sidebar-filter-header {
+	
+	padding:30px 60px 30px 20px;
+	font-family: $font-bold;
+	font-size:1.4em;
+	background-position: center right 20px;
+	background-repeat:no-repeat;
+	background-size: auto 30px;
+	line-height:1em;
+	cursor:pointer;
+	
+	&.open {
+		background-image:url(../img/icons/down-arrow.png);
+	}
+	
+	&.closee {
+		background-image:url(../img/icons/up-arrow.png);
+
+	}
+
+}
+
+.sidebar-filter {
+	height:0;
+	overflow:hidden;
+	padding:0;	
+	
+	&.expanded {
+		height:auto;
+		padding: 10px 20px 20px 20px;
+	}
 }
 
 .help-button {

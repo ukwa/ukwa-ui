@@ -7,13 +7,13 @@
   </div>
   <div class="col-md-8 col-sm-12 main-search-container">
     <form action="search" method="get" enctype="multipart/form-data" name="search_form">
-      <div class="main-search-input">
-        <input type="text" name="text" id="text" class="main-search-field" value="${originalSearchRequest}" required/>
-        <button type="submit" class="main-search-button"></button>
+      <div class="main-search-input" tabindex="1"> 
+        <input type="text" name="text" id="text" title="Enter search phrase" class="main-search-field" value="${originalSearchRequest}" required/>
+        <button type="submit" class="main-search-button" tabindex="1" title="Search"></button>
       </div>
       <div class="row">
         <div class="col-md-6 col-sm-12 padding-top-20 padding-top-mobile-0">
-          <div class="form-check-cont">
+          <div class="form-check-cont" title="Title search">
              <input type="radio" name="search_location" id="search_location_title"
                     value="title" ${!"full_text".equals(originalSearchLocation) ? "checked" : ""}/>
             <label class="main-search-check-label" for="search_location_title">
@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="col-md-6 col-sm-12 padding-top-20">
-          <div class="form-check-cont">
+          <div class="form-check-cont" title="Full text search">
             <input type="radio" name="search_location" id="search_location_full_text"
                    value="full_text" ${"full_text".equals(originalSearchLocation) ? "checked" : ""}/>
             <label class="main-search-check-label" for="search_location_full_text">
