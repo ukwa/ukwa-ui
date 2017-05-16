@@ -21,6 +21,7 @@
 <jsp:useBean id="searchResults" scope="request" type="java.util.List<com.marsspiders.ukwa.controllers.data.SearchResultDTO>"/>
 <jsp:useBean id="contentTypes" scope="request" type="java.util.List<java.lang.String>"/>
 <jsp:useBean id="publicSuffixes" scope="request" type="java.util.List<java.lang.String>"/>
+<jsp:useBean id="domains" scope="request" type="java.util.List<java.lang.String>"/>
 <jsp:useBean id="collectionsNamesToId" scope="request" type="java.util.Map<java.lang.String, java.lang.String>"/>
 
 
@@ -57,10 +58,10 @@
 
             <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
               <div class="form-check-cont padding-0" title="<c:out value="${publicSuffixes.get(i)}"/>">
-                <input type="checkbox" class="white" name="public_suffix" id="public_suffix_1"
+                <input type="checkbox" class="white" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
                        value="${publicSuffixes.get(i)}"
                   ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
-                <label class="main-search-check-label white text-medium" for="public_suffix_1">
+                <label class="main-search-check-label white text-medium" for="public_suffix_<c:out value="${i}"/>">
                   <c:out value="${publicSuffixes.get(i)}"/> (<c:out value="${publicSuffixes.get(i + 1)}"/>)
                 </label>
               </div>
@@ -72,6 +73,35 @@
 
           </div>
 
+
+          <%--   Domains collapse filter   --%>
+          <div class="sidebar-filter-header border-top-white open" title="Domain" tabindex="1">
+            Domain (<span class="sidebar-filter-count"></span>)
+          </div>
+          <div class="sidebar-filter">
+
+            <c:if test="${domains.size() > 1}">
+              <c:forEach begin="0" end="${domains.size() - 1}" step="2" var="i">
+                <c:if test="${domains.get(i + 1) != 0}">
+
+                  <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
+                    <div class="form-check-cont padding-0" title="<c:out value="${domains.get(i)}"/>">
+                      <input type="checkbox" class="white" name="domain_filter" id="domain_filter_<c:out value="${i}"/>"
+                             value="${domains.get(i)}"
+                        ${originalDomains.contains(domains.get(i) )? 'checked' : ''}/>
+                      <label class="main-search-check-label white text-medium" for="domain_filter_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
+                        <c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)
+                      </label>
+                    </div>
+                  </div>
+
+                </c:if>
+              </c:forEach>
+            </c:if>
+
+          </div>
+
+
           <%--   Collection collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open"  title="Restrict to collection" tabindex="1">
               Restrict to a collection (<span class="sidebar-filter-count"></span>)
@@ -81,11 +111,11 @@
 
                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                   <div class="form-check-cont padding-0" title="<c:out value="${collection.value}"/>">
-                    <input type="checkbox" class="white" name="collection" id="collection_1"
+                    <input type="checkbox" class="white" name="collection" id="collection_<c:out value="${collection.value}"/>"
                            value="${collection.key}"
                       ${originalCollectionIds.contains(collection.key) ? 'checked' : ''}
                     />
-                    <label class="main-search-check-label white text-medium" for="public_suffix_1">
+                    <label class="main-search-check-label white text-medium" for="collection_<c:out value="${collection.value}"/>">
                       <c:out value="${collection.value}"/>
                     </label>
                   </div>
@@ -109,10 +139,10 @@
 
             <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
               <div class="form-check-cont padding-0" title="<c:out value="${contentTypes.get(i)}"/>">
-                <input type="checkbox" class="white" name="content_type" id="content_type_1"
+                <input type="checkbox" class="white" name="content_type" id="content_type_<c:out value="${i}"/>"
                        value="${contentTypes.get(i)}"
                        ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
-                <label class="main-search-check-label white text-medium" for="content_type_1">
+                <label class="main-search-check-label white text-medium" for="content_type_<c:out value="${i}"/>">
                   <c:out value="${contentTypes.get(i)}"/> (<c:out value="${contentTypes.get(i + 1)}"/>)
                 </label>
               </div>
@@ -123,6 +153,9 @@
       </c:if>
 
           </div>
+
+
+
 
 
             <%--   Archived year collapse filter   --%>
@@ -168,6 +201,9 @@
 
             </div>
 
+            
+
+
             <input type="hidden" name="search_location" id="search_location" value="${originalSearchLocation}">
             <input type="hidden" name="text" id="text" value="${originalSearchRequest}">
           </form>
@@ -178,7 +214,7 @@
       <div class="col-lg-9 col-md-8 col-sm-12 padding-0">
         <div class="results-header border-bottom-gray">
           <div class="float-left padding-top-5"><c:out value="${totalSearchResultsSize}"/> results for <span class="bold">"<c:out value="${originalSearchRequest}"/>"</span></div>
-          <div class="help-button small" title="Help"></div>
+          <!--<div class="help-button small" title="Help"></div>-->
           <div class="clearfix"></div>
         </div>
 
@@ -188,9 +224,9 @@
           <div class="col-lg-3 col-md-12 padding-20 bg-gray results-border">
             <div class="row margin-0 padding-0">
               <div class="col-lg-12 col-md-6 col-sm-6 col-xs-6 padding-bottom-20 padding-left-0">
-                <span class="light-blue bold text-bigger">5035</span><br/>
-                results found for the domain:
-                <a href="<c:out value="${searchResult.domain}"/>"><c:out value="${searchResult.domain}"/></a>
+                <!--<span class="light-blue bold text-bigger">5035</span><br/>-->
+                Results found for the domain:
+                <a href="<c:out value="${searchResult.domain}"/>"><c:out value="${searchResult.displayDomain}"/></a>
               </div>
               <div class="col-lg-12 col-md-6 col-sm-6 col-xs-6 padding-side-0">
                  Archived on:<br/>
@@ -211,8 +247,8 @@
             </span>
           </div>
           <div class="col-lg-2 col-md-12 padding-20">
-            <div class="social-button fb float-right margin-left-10" title="Facebook"></div>
-            <div class="social-button twitter float-right margin-left-10" title="Twitter"></div>
+            <!--<div class="social-button fb float-right margin-left-10" title="Facebook"></div>
+            <div class="social-button twitter float-right margin-left-10" title="Twitter"></div>-->
           </div>
         </div>
         <!--/RESULT ROW-->

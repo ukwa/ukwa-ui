@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import java.util.Map;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SolrSearchResult <T extends BodyDocsType>{
     @JsonProperty("facet_counts")
@@ -16,6 +18,8 @@ public class SolrSearchResult <T extends BodyDocsType>{
     @JsonProperty("response")
     private ResponseBody<T> responseBody;
 
+    @JsonProperty("highlighting")
+    private Map<String, HighlightingContent> highlighting;
 
     public FacetCounts getFacetCounts() {
         return facetCounts;
@@ -39,6 +43,14 @@ public class SolrSearchResult <T extends BodyDocsType>{
 
     public void setResponseBody(ResponseBody<T> responseBody) {
         this.responseBody = responseBody;
+    }
+
+    public Map<String, HighlightingContent> getHighlighting() {
+        return highlighting;
+    }
+
+    public void setHighlighting(Map<String, HighlightingContent> highlighting) {
+        this.highlighting = highlighting;
     }
 
     @Override

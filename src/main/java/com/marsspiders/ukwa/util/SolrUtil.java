@@ -3,13 +3,18 @@ package com.marsspiders.ukwa.util;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.EncoderException;
 import org.apache.commons.codec.net.URLCodec;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 import static com.marsspiders.ukwa.solr.SolrSearchService.AND_JOINER;
 import static com.marsspiders.ukwa.solr.SolrSearchService.OR_JOINER;
+import static java.lang.String.format;
 
 public class SolrUtil {
+    private static final Logger log = LoggerFactory.getLogger(SolrUtil.class);
+
     /**
      * Copy logic from {@link org.apache.solr.client.solrj.util.ClientUtils#escapeQueryChars(String) escapeQueryChars}
      * But replacing of whitespace was removed
@@ -54,7 +59,7 @@ public class SolrUtil {
         try {
             searchQuery = codec.encode(searchQuery);
         } catch (EncoderException e) {
-            e.printStackTrace();
+            log.error(format("Failed to encode search query string '%s'", searchQuery), e);
         }
 
         return searchQuery;
@@ -65,7 +70,7 @@ public class SolrUtil {
         try {
             searchQuery = codec.decode(searchQuery);
         } catch (DecoderException e) {
-            e.printStackTrace();
+            log.error(format("Failed to decode search query string '%s'", searchQuery), e);
         }
 
         return searchQuery;

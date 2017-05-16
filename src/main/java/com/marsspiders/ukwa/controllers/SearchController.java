@@ -5,7 +5,11 @@ import com.marsspiders.ukwa.solr.SearchByEnum;
 import com.marsspiders.ukwa.solr.SolrSearchService;
 import com.marsspiders.ukwa.solr.data.ContentInfo;
 import com.marsspiders.ukwa.solr.data.FacetCounts;
+import com.marsspiders.ukwa.solr.data.HighlightingContent;
 import com.marsspiders.ukwa.solr.data.SolrSearchResult;
+import com.marsspiders.ukwa.util.UrlUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -27,7 +31,7 @@ import java.util.Map;
 
 import static com.marsspiders.ukwa.controllers.CollectionController.ROWS_PER_PAGE;
 import static com.marsspiders.ukwa.controllers.HomeController.PROJECT_NAME;
-import static com.marsspiders.ukwa.solr.SearchByEnum.TITLE;
+import static com.marsspiders.ukwa.solr.SearchByEnum.FULL_TEXT;
 import static com.marsspiders.ukwa.util.UrlUtil.getRootPathWithLang;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
@@ -40,6 +44,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @Controller
 @RequestMapping(value = PROJECT_NAME + "/search")
 public class SearchController {
+    private static final Logger log = LoggerFactory.getLogger(SolrSearchService.class);
 
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -55,34 +60,38 @@ public class SearchController {
                                    @RequestParam(value = "page", required = false) String pageNum,
                                    @RequestParam(value = "content_type", required = false) String[] checkedDocumentTypes,
                                    @RequestParam(value = "public_suffix", required = false) String[] checkedPublicSuffixes,
+                                   @RequestParam(value = "domain_filter", required = false) String[] checkedDomains,
                                    @RequestParam(value = "from_date", required = false) String fromDateText,
                                    @RequestParam(value = "to_date", required = false) String toDateText,
                                    @RequestParam(value = "range_date", required = false) String[] checkedRangeDates,
                                    @RequestParam(value = "collection", required = false) String[] checkedCollectionIds,
                                    HttpServletRequest request) throws MalformedURLException, URISyntaxException, ParseException {
 
+        List<SearchResultDTO> searchResultDTOs = new ArrayList<>();
+        List<String> contentTypesPairs = new LinkedList<>();
+        List<String> publicSuffixesPairs = new LinkedList<>();
+        List<String> domainsPairs = new LinkedList<>();
+        List<String> rangeDatesPairs = new LinkedList<>();
+        Map<String, String> collectionsNamesToId = new HashMap<>();
+
         List<String> originalDocumentTypes = checkedDocumentTypes != null ? asList(checkedDocumentTypes) : emptyList();
         List<String> originalPublicSuffixes = checkedPublicSuffixes != null ? asList(checkedPublicSuffixes) : emptyList();
+        List<String> originalDomains = checkedDomains != null ? asList(checkedDomains) : emptyList();
         List<String> originalRangeDates = checkedRangeDates != null ? asList(checkedRangeDates) : emptyList();
         List<String> originalCollectionIds = checkedCollectionIds != null ? asList(checkedCollectionIds) : emptyList();
         long targetPageNumber = isNumeric(pageNum) ? Long.valueOf(pageNum) : 1;
         long totalSearchResultsSize = 0;
 
-        SearchByEnum searchBy = SearchByEnum.fromString(searchLocation);
-        List<SearchResultDTO> searchResultDTOs = new ArrayList<>();
-        List<String> contentTypesPairs = new LinkedList<>();
-        List<String> publicSuffixesPairs = new LinkedList<>();
-        List<String> rangeDatesPairs = new LinkedList<>();
-        Map<String, String> collectionsNamesToId = new HashMap<>();
 
+        SearchByEnum searchBy = SearchByEnum.fromString(searchLocation);
         if (!isBlank(text) && searchBy != null) {
             long startFromRow = (targetPageNumber - 1) * ROWS_PER_PAGE;
             Date fromDate = isBlank(fromDateText) ? null : sdf.parse(fromDateText);
             Date toDate = isBlank(toDateText) ? null : sdf.parse(toDateText);
 
-            SolrSearchResult<ContentInfo> archivedSites = searchService.searchContent(searchBy, text,
-                    ROWS_PER_PAGE, startFromRow, originalDocumentTypes, originalPublicSuffixes,
-                    fromDate, toDate, originalRangeDates, originalCollectionIds);
+            SolrSearchResult<ContentInfo> archivedSites = searchService.searchContent(searchBy, text, ROWS_PER_PAGE,
+                    startFromRow, originalDocumentTypes, originalPublicSuffixes, originalDomains, fromDate, toDate,
+                    originalRangeDates, originalCollectionIds);
 
             searchResultDTOs = toSearchResults(archivedSites, request, searchBy, text);
             totalSearchResultsSize = archivedSites.getResponseBody().getNumFound();
@@ -93,6 +102,7 @@ public class SearchController {
 
                 contentTypesPairs = facetCounts.getFields().getContentTypes();
                 publicSuffixesPairs = facetCounts.getFields().getPublicSuffixes();
+                domainsPairs = facetCounts.getFields().getDomains();
                 rangeDatesPairs = toRangeDates(datesCount);
                 collectionsNamesToId = searchService.getParentCollections(facetCounts.getFields().getHosts());
             }
@@ -103,12 +113,14 @@ public class SearchController {
         mav.addObject("totalSearchResultsSize", totalSearchResultsSize);
         mav.addObject("contentTypes", contentTypesPairs);
         mav.addObject("publicSuffixes", publicSuffixesPairs);
+        mav.addObject("domains", domainsPairs);
         mav.addObject("rangeDates", rangeDatesPairs);
         mav.addObject("collectionsNamesToId", collectionsNamesToId);
         mav.addObject("originalSearchRequest", text);
         mav.addObject("originalSearchLocation", searchLocation);
         mav.addObject("originalContentTypes", originalDocumentTypes);
         mav.addObject("originalPublicSuffixes", originalPublicSuffixes);
+        mav.addObject("originalDomains", originalDomains);
         mav.addObject("originalFromDateText", fromDateText);
         mav.addObject("originalToDateText", toDateText);
         mav.addObject("originalRangeDates", originalRangeDates);
@@ -143,39 +155,40 @@ public class SearchController {
 
                     String url = d.getUrl() != null ? d.getUrl().get(0) : "";
                     String wayBackUrl = rootPathWithLang + "wayback/" + d.getWayback_date() + "/" + url;
-                    String shortContent = toShortContent(searchLocation, textToSearch, d);
+                    String escapedContent = "";
+                    HighlightingContent highlightingContent = archivedSites.getHighlighting().get(d.getId());
+                    if(searchLocation == FULL_TEXT && highlightingContent != null && highlightingContent.getContent() != null){
+                        String shortContent = highlightingContent.getContent().get(0);
+                        escapedContent = toEscapedContent(shortContent);
+                    }
 
                     SearchResultDTO searchResult = new SearchResultDTO();
                     searchResult.setId(d.getId());
                     searchResult.setTitle(abbreviate(d.getTitle(), 70));
                     searchResult.setDate(d.getCrawl_date().substring(0, 10));
-                    searchResult.setText(shortContent);
+                    searchResult.setText(escapedContent);
                     searchResult.setDisplayUrl(url);
                     searchResult.setUrl(wayBackUrl);
-                    searchResult.setDomain(d.getDomain());
+                    searchResult.setDisplayDomain(d.getDomain());
+                    searchResult.setDomain(toOriginalDomain(url));
 
                     return searchResult;
                 })
                 .collect(toList());
     }
 
-    private String toShortContent(SearchByEnum searchLocation, String textToSearch, ContentInfo d) {
-        String escapedContent = toEscapedContent(searchLocation, d);
+    private String toOriginalDomain(String url) {
+        String domain = "";
+        try {
+            domain = UrlUtil.getOnlyDomainWithProtocol(url);
+        } catch (MalformedURLException | URISyntaxException e) {
+            log.error("Failed to calculate original domain url", e);
+        }
 
-        String textToSearchByWord[] = textToSearch.trim().replaceAll("\\s+", " ").split(" ", 2);
-        int startOfFirstWord = escapedContent.indexOf(textToSearchByWord[0]);
-        int startOfContentToShow = startOfFirstWord < 25 ? 0 : startOfFirstWord - 25;
-        return abbreviate(escapedContent, startOfContentToShow, 300);
+        return domain;
     }
 
-    private String toEscapedContent(SearchByEnum searchLocation, ContentInfo contentInfo) {
-        String content = searchLocation == TITLE || contentInfo.getContent() == null
-                ? ""
-                : contentInfo.getContent().get(0);
-
-        return content != null
-                ? content.replaceAll("<[^>]*>", "")
-                : "";
+    private String toEscapedContent(String content) {
+        return content != null ? content.replaceAll("<[^>]*>", "") : "";
     }
-
 }

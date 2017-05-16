@@ -25,7 +25,7 @@
 <%@include file="nav.jsp" %>
 <div class="container-fluid">
   <header>
-    <div class="main-menu-button" title="Main menu"></div>
+    <div class="main-menu-button" title="<spring:message code="main.menu.title" />"></div>
     <div class="row margin-0">
       <div class="col-md-5 col-sm-12 home-title-cont">
         <div> UK<br/>
@@ -40,7 +40,7 @@
           <h3 class="text-medium padding-0 margin-0"><spring:message code="home.page.subtitle"/></h3>
           <hr class="header-title-hr"/>
           <p><spring:message code="home.page.description"/></p>
-          <a href="info/about"><button type="button" title="Learn more" class="button button-white button-shadow form-button-right-arrow float-md-right margin-top-20" role="link"><spring:message code="home.button.learn"/></button></a>
+          <a href="info/about"><button type="button" title="<spring:message code="home.button.learn.title" />" class="button button-white button-shadow form-button-right-arrow float-md-right margin-top-20" role="link"><spring:message code="home.button.learn"/></button></a>
         </div>
       </div>
     </div>
@@ -52,21 +52,21 @@
         <h1 class="light-blue uppercase padding-bottom-20"><spring:message code="home.page.search.title"/></h1>
         <div class="row">
           <div class="col-lg-6 col-md-12 col-sm-12 padding-bottom-20">
-            <div class="form-check-cont" title="Title search">
+            <div class="form-check-cont" title="<spring:message code="search.label.title" />">
               <input type="radio" name="search_location" id="search_location_title" value="title" checked/>
               <label class="main-search-check-label" for="search_location_title"><strong class="bold"><spring:message code="header.radio.title" text="Title" /></strong> <spring:message code="header.radio.titletext" text="(for a specific archived website)" /></label>
             </div>
           </div>
           <div class="col-lg-6 col-md-12 col-sm-12  padding-bottom-20">
-            <div class="form-check-cont" title="Full text search">
+            <div class="form-check-cont" title="<spring:message code="search.label.full" />">
               <input type="radio" name="search_location" id="search_location_full_text" value="full_text"/>
               <label class="main-search-check-label" for="search_location_full_text"><strong class="bold"><spring:message code="header.radio.full" text="Full text" /></strong> <spring:message code="header.radio.fulltext" text="(accross all archived websites)" /></label>
             </div>
           </div>
         </div>
         <div class="main-search-input noshadow">
-        <input type="text" name="text" id="text" class="main-search-field" title="Enter search phrase" required/>
-        <button type="submit" class="main-search-button" title="Search" tabindex="1"></button>
+        <input type="text" name="text" id="text" class="main-search-field" title="<spring:message code="search.main.input.title" />" placeholder="<spring:message code="search.main.input.title" />" required/>
+        <button type="submit" class="main-search-button" title="<spring:message code="search.main.button.title" />" tabindex="1"></button>
         </div>
         </form>
       </div>
@@ -75,13 +75,13 @@
           <div class="home-menu-title">
             <h1 class="uppercase padding-0 margin-0"><spring:message code="home.page.browse.title"/></h1>
           </div>
-          <div class="home-menu-item" title="Arts & Humanities"><img class="home-menu-img" alt="Arts & Humanities" src="img/icons/arts-white.png"/><spring:message code="home.page.browse.arts"/></div>
-          <div class="home-menu-item" title="Business, Economy & Industry"><img class="home-menu-img" alt="Business, Economy & Industry" src="img/icons/business-white.png"/><spring:message code="home.page.browse.business"/></div>
-          <div class="home-menu-item" title="Education & Research"><img class="home-menu-img" alt="Education & Research" src="img/icons/education-white.png"/><spring:message code="home.page.browse.education"/></div>
-          <div class="home-menu-item" title="Government, Law & Politics"><img class="home-menu-img" alt="Government, Law & Politics" src="img/icons/government-white.png"/><spring:message code="home.page.browse.government"/></div>
-          <div class="home-menu-item" title="Medicine & Health"><img class="home-menu-img" alt="Medicine & Health" src="img/icons/medicine-white.png"/><spring:message code="home.page.browse.medicine"/></div>
-          <div class="home-menu-item" title="Science & Technology"><img class="home-menu-img" alt="Science & Technology" src="img/icons/science-white.png"/><spring:message code="home.page.browse.science"/></div>
-          <div class="home-menu-item" title="Society & Culture"><img class="home-menu-img" alt="Society & Culture" src="img/icons/society-white.png"/><spring:message code="home.page.browse.society"/></div>
+          <div class="home-menu-item" title="<spring:message code="home.page.browse.arts.title" />"><img class="home-menu-img" alt="Arts & Humanities" src="img/icons/arts-white.png"/><spring:message code="home.page.browse.arts"/></div>
+          <div class="home-menu-item" title="<spring:message code="home.page.browse.business.title"/>"><img class="home-menu-img" alt="Business, Economy & Industry" src="img/icons/business-white.png"/><spring:message code="home.page.browse.business"/></div>
+          <div class="home-menu-item" title="<spring:message code="home.page.browse.education.title"/>"><img class="home-menu-img" alt="Education & Research" src="img/icons/education-white.png"/><spring:message code="home.page.browse.education"/></div>
+          <div class="home-menu-item" title="<spring:message code="home.page.browse.government.title"/>"><img class="home-menu-img" alt="Government, Law & Politics" src="img/icons/government-white.png"/><spring:message code="home.page.browse.government"/></div>
+   <div class="home-menu-item" title="<spring:message code="home.page.browse.medicine.title"/>"><img class="home-menu-img" alt="Medicine & Health" src="img/icons/medicine-white.png"/><spring:message code="home.page.browse.medicine"/></div>
+          <div class="home-menu-item" title="<spring:message code="home.page.browse.science.title"/>"><img class="home-menu-img" alt="Science & Technology" src="img/icons/science-white.png"/><spring:message code="home.page.browse.science"/></div>
+          <div class="home-menu-item" title="<spring:message code="home.page.browse.society.title"/>"><img class="home-menu-img" alt="Society & Culture" src="img/icons/society-white.png"/><spring:message code="home.page.browse.society"/></div>
         </nav>
       </div>
     </div>
@@ -150,7 +150,7 @@
     </div>
     <div class="row margin-0">
       <div class="col-md-12 col-sm-12 center padding-bottom-80">
-        <a href="collection"><button type="button" class="button button-blue" role="link" title="View more collections"><spring:message code="home.button.viewmore"/></button></a>
+        <a href="collection"><button type="button" class="button button-blue" role="link" title="<spring:message code="home.button.viewmore.title"/>"><spring:message code="home.button.viewmore"/></button></a>
       </div>
     </div>
   </section>

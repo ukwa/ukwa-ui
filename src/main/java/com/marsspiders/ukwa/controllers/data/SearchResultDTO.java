@@ -8,6 +8,7 @@ public class SearchResultDTO {
     private String url;
     private String displayUrl;
     private String domain;
+    private String displayDomain;
     private String text;
 
     public String getId() {
@@ -56,6 +57,14 @@ public class SearchResultDTO {
 
     public void setDomain(String domain) {
         this.domain = domain;
+    }
+
+    public String getDisplayDomain() {
+        return displayDomain;
+    }
+
+    public void setDisplayDomain(String displayDomain) {
+        this.displayDomain = displayDomain;
     }
 
     public String getText() {

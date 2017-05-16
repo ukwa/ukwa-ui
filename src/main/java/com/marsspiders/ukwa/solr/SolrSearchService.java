@@ -6,6 +6,8 @@ import com.marsspiders.ukwa.solr.data.ContentInfo;
 import com.marsspiders.ukwa.solr.data.SolrSearchResult;
 import org.apache.commons.codec.EncoderException;
 import org.apache.commons.codec.net.URLCodec;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +18,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.marsspiders.ukwa.controllers.CollectionController.TYPE_COLLECTION;
@@ -30,6 +35,8 @@ import static java.util.stream.Collectors.toList;
 
 @Service
 public class SolrSearchService {
+    private static final Logger log = LoggerFactory.getLogger(SolrSearchService.class);
+
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
     public static final String AND_JOINER = " AND ";
@@ -42,6 +49,7 @@ public class SolrSearchService {
     private static final String FIELD_CONTENT_TYPE_NORM = "content_type_norm";
     private static final String FIELD_PUBLIC_SUFFIX = "public_suffix";
     private static final String FIELD_HOST = "host";
+    private static final String FIELD_DOMAIN = "domain";
     private static final String FIELD_CRAWL_DATE = "crawl_date";
 
     private static final String EXCLUDE_FACET_TAG_NAME = "filter";
@@ -59,7 +67,7 @@ public class SolrSearchService {
     SolrCommunicator communicator;
 
     private SolrSearchResult<CollectionInfo> fetchAllCollections() {
-        System.out.println("Fetching all collections");
+        log.info("Fetching all collections");
 
         String queryString = "type:" + TYPE_COLLECTION;
 
@@ -67,14 +75,14 @@ public class SolrSearchService {
     }
 
     public SolrSearchResult<CollectionInfo> fetchRootCollections() {
-        System.out.println("Fetching root collections");
+        log.info("Fetching root collections");
 
         String queryString = "-parentId:[*%20TO%20*]";
         return sendRequest(queryString, CollectionInfo.class, ROOT_COLLECTIONS_ROWS_LIMIT, 0);
     }
 
     public SolrSearchResult<CollectionInfo> fetchCollectionById(String targetId) {
-        System.out.println("Fetching collections by id: " + targetId);
+        log.info("Fetching collections by id: " + targetId);
 
         String queryString = "id:" + targetId;
         //As result should be only one row, but for debug purposes we pass limit 100 to see what actual result are returned
@@ -86,7 +94,7 @@ public class SolrSearchService {
                                                                   String documentType,
                                                                   long rowsLimit,
                                                                   long startFrom) {
-        System.out.println("Fetching child collections by parent ids: " + parentCollectionIds + ", documentType: " + documentType);
+        log.info("Fetching child collections by parent ids: " + parentCollectionIds + ", documentType: " + documentType);
 
         String typeSearchQueryString = "type:" + documentType;
         String parentIdsQueryString = parentCollectionIds.stream()
@@ -98,7 +106,7 @@ public class SolrSearchService {
         try {
             encodedParentIdQueryString = codec.encode(parentIdsQueryString);
         } catch (EncoderException e) {
-            e.printStackTrace();
+            log.error("Failed to encode parentIds query", e);
         }
 
         String queryString = encodedParentIdQueryString + "&fq=" + typeSearchQueryString;
@@ -115,9 +123,13 @@ public class SolrSearchService {
         List<String> actualHosts = toActualHosts(hostsPairs);
         determineUrlsByCollections();
 
-        System.out.println("Getting parent collections by hosts: " + actualHosts);
+        log.info("Getting parent collections by hosts: " + actualHosts);
 
         for (String url : urlsToCollectionId.keySet()) {
+            if(url == null){
+               continue;
+            }
+
             String domainName = toDomainName(url);
 
             String collectionId = urlsToCollectionId.get(url);
@@ -126,7 +138,7 @@ public class SolrSearchService {
             }
         }
 
-        System.out.println("Parent collections by hosts are: " + collectionIdsToName);
+        log.info("Parent collections by hosts are: " + collectionIdsToName);
 
 
         return collectionIdsToName;
@@ -137,7 +149,7 @@ public class SolrSearchService {
             return;
         }
 
-        System.out.println("Determining urls of all collections");
+        log.info("Determining urls of all collections");
 
         SolrSearchResult<CollectionInfo> allCollections = fetchAllCollections();
         allCollections.getResponseBody().getDocuments()
@@ -168,7 +180,7 @@ public class SolrSearchService {
             String domain = uri.getHost();
             return domain.startsWith("www.") ? domain.substring(4) : domain;
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+            log.error(format("Failed to build URI from url '%s'", url), e);
             return null;
         }
     }
@@ -179,11 +191,12 @@ public class SolrSearchService {
                                                        long startFrom,
                                                        List<String> contentTypes,
                                                        List<String> publicSuffixes,
+                                                       List<String> originalDomains,
                                                        Date fromDatePicked,
                                                        Date toDatePicked,
                                                        List<String> rangeDates,
                                                        List<String> collectionIds) {
-        System.out.println("Searching content for '" + textToSearch + "' by " + searchLocation);
+        log.info("Searching content for '" + textToSearch + "' by " + searchLocation);
 
         String searchQuery = searchLocation.getSolrSearchLocation() + ":\"" + escapeQueryChars(textToSearch) + "\"";
         String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
@@ -196,6 +209,10 @@ public class SolrSearchService {
         String publicSuffixesConditionQuery = toMultipleConditionsQuery(publicSuffixes, FIELD_PUBLIC_SUFFIX);
         String publicSuffixesQuery = EXCLUDE_MARKER_TAG + publicSuffixesNotEmpty + publicSuffixesConditionQuery;
 
+        String domainsNotEmpty = FIELD_DOMAIN + ":['' TO *]";
+        String domainsConditionQuery = toMultipleConditionsQuery(originalDomains, FIELD_DOMAIN);
+        String domainsQuery = EXCLUDE_MARKER_TAG + domainsNotEmpty + domainsConditionQuery;
+
         List<String> hostsToSearch = getActualHostsFromCollections(collectionIds, searchLocation, textToSearch);
         String originalCollectionsNotEmpty = FIELD_HOST + ":['' TO *]";
         String originalCollectionsConditionQuery = toMultipleConditionsQuery(hostsToSearch, FIELD_HOST);
@@ -205,14 +222,22 @@ public class SolrSearchService {
                 "&fq=" + toEncoded(dateQuery) +
                 "&fq=" + toEncoded(contentTypeQuery) +
                 "&fq=" + toEncoded(publicSuffixesQuery) +
+                "&fq=" + toEncoded(domainsQuery) +
                 "&fq=" + toEncoded(originalCollectionsQuery) +
                 "&facet.range.gap=%2B1YEAR" +
                 "&facet.range=" + toEncoded(EXCLUDE_POINT_TAG) + FIELD_CRAWL_DATE +
                 "&f." + FIELD_CRAWL_DATE + ".facet.range.start=" + FACET_RANGE_START_YEAR + DATE_PART_AFTER_YEAR +
-                "&f." + FIELD_CRAWL_DATE + ".facet.range.end=" + FACET_RANGE_END_YEAR + DATE_PART_AFTER_YEAR;
+                "&f." + FIELD_CRAWL_DATE + ".facet.range.end=" + FACET_RANGE_END_YEAR + DATE_PART_AFTER_YEAR +
+                "&hl=true" +
+                "&hl.fl=content" +
+                "&f.content.hl.alternateField=content" +
+                "&hl.maxAlternateFieldLength=300" +
+                "&fl=id,title,crawl_date,url,wayback_date,domain";
 
-        return sendRequest(queryString, ContentInfo.class, rowsLimit, startFrom,
-                FIELD_PUBLIC_SUFFIX, FIELD_CONTENT_TYPE_NORM, FIELD_HOST);
+        //http://stackoverflow.com/questions/3452665/how-do-i-return-only-a-truncated-portion-of-a-field-in-solr
+
+        String[] facets = {FIELD_PUBLIC_SUFFIX, FIELD_CONTENT_TYPE_NORM, FIELD_HOST, FIELD_DOMAIN};
+        return sendRequest(queryString, ContentInfo.class, rowsLimit, startFrom, facets);
     }
 
     private String generateDateQuery(Date fromDatePicked, Date toDatePicked, List<String> rangeDates) {
@@ -237,15 +262,18 @@ public class SolrSearchService {
     }
 
     private List<String> getActualHostsFromCollections(List<String> collectionIds, SearchByEnum searchLocation, String textToSearch) {
-        System.out.println("Getting list of actual hosts that are contains in collections: " + collectionIds);
+        log.info("Getting list of actual hosts that are contains in collections: " + collectionIds);
 
         String searchQuery = searchLocation.getSolrSearchLocation() + ":\"" + escapeQueryChars(textToSearch) + "\"";
         String queryString = toEncoded(searchQuery);
 
         SolrSearchResult<ContentInfo> result = sendRequest(queryString, ContentInfo.class, 0, 0, FIELD_HOST);
-        List<String> actualHosts = toActualHosts(result.getFacetCounts().getFields().getHosts());
+        LinkedList<String> hostsPairs = result == null || result.getFacetCounts() == null
+                ? new LinkedList<>()
+                : result.getFacetCounts().getFields().getHosts();
+        List<String> actualHosts = toActualHosts(hostsPairs);
 
-        List<String> hostsToSearch = new ArrayList<>();
+        Set<String> hostsToSearch = new HashSet<>();
 
         collectionIds
                 .stream()
@@ -263,7 +291,7 @@ public class SolrSearchService {
                     hostsToSearch.addAll(actualHostsFromCollection);
                 });
 
-        return hostsToSearch;
+        return new ArrayList<>(hostsToSearch);
     }
 
     private List<String> toActualHosts(List<String> hostsPairs) {

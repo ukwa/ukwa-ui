@@ -28,7 +28,7 @@
   <div class="main-menu-button" title="Main menu"></div>
   <div class="row header-bar">
     <div class="col-md-2 col-sm-12 main-heading-cont">
-      <h1 class="main-heading"><a href="/">UK<br/>
+      <h1 class="main-heading"><a href="index">UK<br/>
         Web<br/>
         Archive</a></h1>
     </div>

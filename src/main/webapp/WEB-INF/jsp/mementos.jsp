@@ -53,11 +53,11 @@
             <figcaption class="light-blue">The history of www.webarchive.org.uk</figcaption>
           </div>
           <div class="col-md-6 col-sm-12 padding-bottom-20padding-bottom-20">
-            <figure><img class="img-responsive border-gray" src="img/memento.png"/></figure>
+            <figure><img class="img-responsive border-gray" src="img/memento2.png"/></figure>
             <figcaption class="light-blue">The history of www.webarchive.org.uk</figcaption>
           </div>
           <div class="col-md-6 col-sm-12 padding-bottom-20">
-            <figure><img class="img-responsive border-gray" src="img/memento.png"/></figure>
+            <figure><img class="img-responsive border-gray" src="img/memento3.png"/></figure>
             <figcaption class="light-blue">The history of www.webarchive.org.uk</figcaption>
           </div>
         </div>

@@ -17,6 +17,8 @@ import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -33,6 +35,7 @@ import static com.marsspiders.ukwa.util.SolrUtil.toDecoded;
 
 @Service
 public class SolrCommunicator {
+    private static final Logger log = LoggerFactory.getLogger(SolrCommunicator.class);
 
     @Value("${solr.collection.search.path}")
     private String solrCollectionPath;
@@ -68,18 +71,17 @@ public class SolrCommunicator {
             }
 
             HttpGet request = new HttpGet(solrServerUrl + solrSearchUrl);
-            System.out.println("Sending request to SOLR: " + toDecoded(request.getURI().toString()));
+            log.debug("Sending request to SOLR: " + toDecoded(request.getURI().toString()));
 
             HttpResponse response = getHttpClient().execute(request);
-            System.out.println("SOLR Response Code: " + response.getStatusLine().getStatusCode());
+            log.debug("SOLR Response Code: " + response.getStatusLine().getStatusCode());
 
             String solrSearchResultString = IOUtils.toString(response.getEntity().getContent());
 
             int subStringLength = solrSearchResultString.length() >= 1000 ? 1000 : solrSearchResultString.length();
-            String cutResponseBody = toDecoded(solrSearchResultString.substring(0, subStringLength)) + ".........";
+            //String cutResponseBody = toDecoded(solrSearchResultString.substring(0, subStringLength)) + ".........";
             String fullResponseLine = solrSearchResultString.replaceAll("\n", "");
-
-            System.out.println("SOLR Response Body: " + fullResponseLine);
+            log.debug("SOLR Response length: " + solrSearchResultString.length() + ", body: " + fullResponseLine);
 
             //Need to deserialize json according to generic type passed
             ObjectMapper mapper = new ObjectMapper();
@@ -87,7 +89,7 @@ public class SolrCommunicator {
 
             return mapper.readValue(solrSearchResultString, javaType);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Failed to send request to Solr", e);
             return toBackupSolrSearchResult(bodyDocsType);
         }
     }
@@ -154,7 +156,7 @@ public class SolrCommunicator {
             BufferedReader buffer = new BufferedReader(new InputStreamReader(resourceInputStream));
             solrSearchResultStubString = buffer.lines().collect(Collectors.joining("\n"));
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Failed to read stub response from file", e);
             return null;
         }
 
@@ -164,7 +166,7 @@ public class SolrCommunicator {
         try {
             return mapper.readValue(solrSearchResultStubString, javaType);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Failed to map stub response to java class", e);
             return null;
         }
     }

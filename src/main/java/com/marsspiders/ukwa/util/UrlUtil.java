@@ -36,4 +36,17 @@ public class UrlUtil {
         URI uri = new URI(scheme, userInfo, host, port, newPath, null, null);
         return uri.toString();
     }
+
+    public static String getOnlyDomainWithProtocol(String urlPath) throws MalformedURLException, URISyntaxException {
+        URL url = new URL(urlPath);
+
+        String host = url.getHost();
+        String userInfo = url.getUserInfo();
+        String scheme = url.getProtocol();
+        int port = url.getPort();
+
+        URI uri = new URI(scheme, userInfo, host, port, null, null, null);
+
+        return uri.toString();
+    }
 }

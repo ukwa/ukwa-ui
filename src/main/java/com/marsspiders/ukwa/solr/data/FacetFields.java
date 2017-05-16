@@ -18,6 +18,9 @@ public class FacetFields {
     @JsonProperty("host")
     private LinkedList<String> hosts;
 
+    @JsonProperty("domain")
+    private LinkedList<String> domains;
+
     public LinkedList<String> getPublicSuffixes() {
         return publicSuffixes;
     }
@@ -40,6 +43,14 @@ public class FacetFields {
 
     public void setHosts(LinkedList<String> hosts) {
         this.hosts = hosts;
+    }
+
+    public LinkedList<String> getDomains() {
+        return domains;
+    }
+
+    public void setDomains(LinkedList<String> domains) {
+        this.domains = domains;
     }
 
     @Override

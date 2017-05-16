@@ -478,7 +478,12 @@ input[type=radio]:checked + label {
 }
 
 .main-search-check-label {
-	font-size:0.9em;	
+	font-size:0.85em;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;	
+	width:100%;
+	padding-right:20px;
 }
 
 .form-search-input {
@@ -897,6 +902,9 @@ footer {
 	background-size: auto 30px;
 	line-height:1em;
 	cursor:pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 	
 	&.open {
 		background-image:url(../img/icons/down-arrow.png);
@@ -995,7 +1003,10 @@ footer {
 }
 
 .pagination-button {
-	width:45px;
+	min-width:45px;
+	width:auto;
+	padding-left:5px;
+	padding-right:5px;
 	height:45px;
 	font-size: 14px;
 	color:$light-blue;
