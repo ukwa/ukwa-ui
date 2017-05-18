@@ -1,6 +1,7 @@
 package com.marsspiders.ukwa.controllers;
 
 import com.marsspiders.ukwa.controllers.data.SearchResultDTO;
+import com.marsspiders.ukwa.solr.OrderByEnum;
 import com.marsspiders.ukwa.solr.SearchByEnum;
 import com.marsspiders.ukwa.solr.SolrSearchService;
 import com.marsspiders.ukwa.solr.data.ContentInfo;
@@ -29,7 +30,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import static com.marsspiders.ukwa.controllers.CollectionController.ROWS_PER_PAGE;
+import static com.marsspiders.ukwa.controllers.CollectionController.ROWS_PER_PAGE_DEFAULT;
 import static com.marsspiders.ukwa.controllers.HomeController.PROJECT_NAME;
 import static com.marsspiders.ukwa.solr.SearchByEnum.FULL_TEXT;
 import static com.marsspiders.ukwa.util.UrlUtil.getRootPathWithLang;
@@ -65,6 +66,8 @@ public class SearchController {
                                    @RequestParam(value = "to_date", required = false) String toDateText,
                                    @RequestParam(value = "range_date", required = false) String[] checkedRangeDates,
                                    @RequestParam(value = "collection", required = false) String[] checkedCollectionIds,
+                                   @RequestParam(value = "order", required = false) String orderValue,
+                                   @RequestParam(value = "view_count", required = false) String viewCount,
                                    HttpServletRequest request) throws MalformedURLException, URISyntaxException, ParseException {
 
         List<SearchResultDTO> searchResultDTOs = new ArrayList<>();
@@ -79,17 +82,19 @@ public class SearchController {
         List<String> originalDomains = checkedDomains != null ? asList(checkedDomains) : emptyList();
         List<String> originalRangeDates = checkedRangeDates != null ? asList(checkedRangeDates) : emptyList();
         List<String> originalCollectionIds = checkedCollectionIds != null ? asList(checkedCollectionIds) : emptyList();
+        int rowsPerPage =  isNumeric(viewCount) ? Integer.valueOf(viewCount) : ROWS_PER_PAGE_DEFAULT;
         long targetPageNumber = isNumeric(pageNum) ? Long.valueOf(pageNum) : 1;
         long totalSearchResultsSize = 0;
 
 
         SearchByEnum searchBy = SearchByEnum.fromString(searchLocation);
+        OrderByEnum orderBy = OrderByEnum.fromString(orderValue);
         if (!isBlank(text) && searchBy != null) {
-            long startFromRow = (targetPageNumber - 1) * ROWS_PER_PAGE;
+            long startFromRow = (targetPageNumber - 1) * rowsPerPage;
             Date fromDate = isBlank(fromDateText) ? null : sdf.parse(fromDateText);
             Date toDate = isBlank(toDateText) ? null : sdf.parse(toDateText);
 
-            SolrSearchResult<ContentInfo> archivedSites = searchService.searchContent(searchBy, text, ROWS_PER_PAGE,
+            SolrSearchResult<ContentInfo> archivedSites = searchService.searchContent(searchBy, text, rowsPerPage, orderBy,
                     startFromRow, originalDocumentTypes, originalPublicSuffixes, originalDomains, fromDate, toDate,
                     originalRangeDates, originalCollectionIds);
 
@@ -127,8 +132,8 @@ public class SearchController {
         mav.addObject("originalCollectionIds", originalCollectionIds);
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
         mav.addObject("targetPageNumber", targetPageNumber);
-        mav.addObject("rowsPerPageLimit", ROWS_PER_PAGE);
-        mav.addObject("totalPages", (int) (Math.ceil(totalSearchResultsSize / (double) ROWS_PER_PAGE)));
+        mav.addObject("rowsPerPageLimit", rowsPerPage);
+        mav.addObject("totalPages", (int) (Math.ceil(totalSearchResultsSize / (double) rowsPerPage)));
 
         return mav;
     }

@@ -188,6 +188,7 @@ public class SolrSearchService {
     public SolrSearchResult<ContentInfo> searchContent(SearchByEnum searchLocation,
                                                        String textToSearch,
                                                        long rowsLimit,
+                                                       OrderByEnum orderBy,
                                                        long startFrom,
                                                        List<String> contentTypes,
                                                        List<String> publicSuffixes,
@@ -199,6 +200,7 @@ public class SolrSearchService {
         log.info("Searching content for '" + textToSearch + "' by " + searchLocation);
 
         String searchQuery = searchLocation.getSolrSearchLocation() + ":\"" + escapeQueryChars(textToSearch) + "\"";
+        String orderByQuery = orderBy == null ? "" : "crawl_date " + orderBy.getSolrOrderValue();
         String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
 
         String contentTypeNotEmpty = FIELD_CONTENT_TYPE_NORM + ":['' TO *]";
@@ -219,6 +221,7 @@ public class SolrSearchService {
         String originalCollectionsQuery = EXCLUDE_MARKER_TAG + originalCollectionsNotEmpty + originalCollectionsConditionQuery;
 
         String queryString = toEncoded(searchQuery) +
+                "&sort=" + toEncoded(orderByQuery) +
                 "&fq=" + toEncoded(dateQuery) +
                 "&fq=" + toEncoded(contentTypeQuery) +
                 "&fq=" + toEncoded(publicSuffixesQuery) +

@@ -28,7 +28,28 @@
 <%@include file="nav.jsp" %>
 <div class="container-fluid">
   <header>
-    <div class="main-menu-button" title="Home page"></div>
+    <div class="main-menu-button" title="<spring:message code="main.menu.title" />"></div>
+    
+    <div class="row header-menu header-menu-collections">
+<div class="header-menu-item"><a href="index" title="<spring:message code="main.menu.home.title" />"><spring:message code="main.menu.home" /></a></div>
+<div class="header-menu-item"><a href="collection" title="<spring:message code="main.menu.collections.title" />"><spring:message code="main.menu.collections" /></a></div>
+<div class="header-menu-item"><a href="blog" title="<spring:message code="main.menu.nominate.title" />"><spring:message code="main.menu.nominate" /></a></div>
+<div class="header-menu-item"><a href="contact" title="<spring:message code="main.menu.contact.title" />"><spring:message code="main.menu.contact" /></a></div>
+
+<c:if test="${!fn:startsWith(textUri, '/en/')}">
+  <div class="header-menu-item"><a href="/en<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.english.title" />"><spring:message code="main.menu.english" /></a></div>
+</c:if>
+
+<c:if test="${!fn:startsWith(textUri, '/cy/')}">
+  <div class="header-menu-item"><a href="/cy<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.welsh.title" />"><spring:message code="main.menu.welsh" /></a></div>
+</c:if>
+
+<c:if test="${!fn:startsWith(textUri, '/gd/')}">
+  <div class="header-menu-item"><a href="/gd<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.scottish.title" />"><spring:message code="main.menu.scottish" /></a></div>
+</c:if>
+
+</div>
+    
     <div class="row header-bar-2">
       <div class="col-lg-2  col-md-3 col-sm-12 main-heading-cont">
         <h1 class="main-heading">Explore<br/>

@@ -1,6 +1,9 @@
 //common on load functions
 $(document).ready(function(e) {
 	
+	//bootstrap tooltips
+	$('[data-toggle="tooltip"]').tooltip(); 
+	
 	//radio and check button keyboard
     $(".form-check-cont").each(function(index, element) {
         $(this).on("keypress", function(e) {

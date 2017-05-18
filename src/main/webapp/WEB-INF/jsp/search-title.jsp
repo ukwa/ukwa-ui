@@ -71,7 +71,7 @@
       <div class="row margin-0 results-title border-bottom-gray">
         <div class="col-lg-8 offset-lg-1 col-md-9 col-sm-12 padding-0">
           <h1 class="light-blue">Arts, Design and the Built Environment</h1>
-          <span class="results-title-text clearfix">10/09/2015</span> <span class="results-title-text clearfix">This site is part of the following subject(s): <span class="light-blue">Arts & letters > Art et Design</span></span> </div>
+          <span class="results-title-text clearfix">10/09/2015</span> <span class="results-title-text clearfix">This site is part of the following subject(s): <span class="light-blue">Arts &amp; letters > Art et Design</span></span> </div>
         <div class="col-md-3 col-sm-12">
           <div class="social-button fb float-right margin-left-10" title="Facebook"></div>
           <div class="social-button twitter float-right margin-left-10" title="Twitter"></div>

@@ -36,17 +36,17 @@
       <div class="sidebar-title">
         <h3 class="white bold margin-0 padding-0">Browse by subject</h3>
       </div>
-      <div class="sidebar-menu-item active"><img class="sidebar-menu-img" alt="Arts & Humanities" src="img/icons/arts-white.png"/>Arts & Humanities</div>
-      <div class="sidebar-menu-item"><img class="sidebar-menu-img" alt="Business, Economy & Industry" src="img/icons/business-white.png"/>Business, Economy & Industry</div>
-      <div class="sidebar-menu-item"><img class="sidebar-menu-img" alt="Education & Research" src="img/icons/education-white.png"/>Education & Research</div>
-      <div class="sidebar-menu-item"><img class="sidebar-menu-img" alt="Government, Laq & Politics" src="img/icons/government-white.png"/>Government, Laq & Politics</div>
-      <div class="sidebar-menu-item"><img class="sidebar-menu-img" alt="Medicine & Health" src="img/icons/medicine-white.png"/>Medicine & Health</div>
-      <div class="sidebar-menu-item"><img class="sidebar-menu-img" alt="Science & Technology" src="img/icons/science-white.png"/>Science & Technology</div>
-      <div class="sidebar-menu-item"><img class="sidebar-menu-img" alt="Society & Culture" src="img/icons/society-white.png"/>Society & Culture</div>
+      <div class="sidebar-menu-item active"><img class="sidebar-menu-img" alt="Arts &amp; Humanities" src="img/icons/arts-white.png"/>Arts &amp; Humanities</div>
+      <div class="sidebar-menu-item"><img class="sidebar-menu-img" alt="Business, Economy &amp; Industry" src="img/icons/business-white.png"/>Business, Economy &amp; Industry</div>
+      <div class="sidebar-menu-item"><img class="sidebar-menu-img" alt="Education &amp; Research" src="img/icons/education-white.png"/>Education &amp; Research</div>
+      <div class="sidebar-menu-item"><img class="sidebar-menu-img" alt="Government, Laq &amp; Politics" src="img/icons/government-white.png"/>Government, Laq &amp; Politics</div>
+      <div class="sidebar-menu-item"><img class="sidebar-menu-img" alt="Medicine &amp; Health" src="img/icons/medicine-white.png"/>Medicine &amp; Health</div>
+      <div class="sidebar-menu-item"><img class="sidebar-menu-img" alt="Science &amp; Technology" src="img/icons/science-white.png"/>Science &amp; Technology</div>
+      <div class="sidebar-menu-item"><img class="sidebar-menu-img" alt="Society &amp; Culture" src="img/icons/society-white.png"/>Society &amp; Culture</div>
     </div>
     <div class="col-lg-9 col-md-8 col-sm-12 padding-0">
     <div class="subject-title border-bottom-gray">
-      <h1 class="float-left">Arts & Humanities</h1>
+      <h1 class="float-left">Arts &amp; Humanities</h1>
       <div class="help-button" title="Help"></div>
       <div class="clearfix"></div>
     </div>

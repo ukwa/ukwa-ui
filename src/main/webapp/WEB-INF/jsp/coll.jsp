@@ -102,8 +102,8 @@
             </span>
           </div>
           <div class="col-lg-3 col-md-12 padding-20">
-            <div class="social-button fb float-right margin-left-10" title="Facebook"></div>
-            <div class="social-button twitter float-right margin-left-10" title="Twitter"></div>
+            <!--<div class="social-button fb float-right margin-left-10" title="Facebook"></div>
+            <div class="social-button twitter float-right margin-left-10" title="Twitter"></div>-->
           </div>
         </div>
         <!--/RESULT ROW-->

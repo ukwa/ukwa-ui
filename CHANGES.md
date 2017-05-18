@@ -1,6 +1,12 @@
 Change Log
 ----------
 
+* The New UI (2017-05-17)
+    * UI styled as per approved mockups (menu on top).
+    * Title / Full Text toggle removed. Currently defaults to Full Text.
+    * New collection images added.
+    * Logging to a file (file name set in application.properties).
+
 * Search Improvements (2017-05-15)
     * Facets "Restrict by Archiving Organisation" and "Restrict to a subject" removed.
     * Domain and Public Suffix facets added.

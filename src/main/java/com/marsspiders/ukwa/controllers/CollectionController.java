@@ -31,7 +31,7 @@ public class CollectionController {
 
     public static final String TYPE_COLLECTION = "collection";
     public static final String TYPE_TARGET = "target";
-    static final int ROWS_PER_PAGE = 10;
+    static final int ROWS_PER_PAGE_DEFAULT = 10;
 
     @Autowired
     private SolrSearchService searchService;
@@ -55,10 +55,10 @@ public class CollectionController {
                                                @RequestParam(value = "page", required = false) String pageNum,
                                                HttpServletRequest request) throws MalformedURLException, URISyntaxException {
         long targetPageNumber = isNumeric(pageNum) ? Long.valueOf(pageNum) : 1;
-        long startFromRow = (targetPageNumber - 1) * ROWS_PER_PAGE;
+        long startFromRow = (targetPageNumber - 1) * ROWS_PER_PAGE_DEFAULT;
 
         SolrSearchResult<CollectionInfo> targetWebsitesSearchResult = searchService
-                .fetchChildCollections(singletonList(collectionId), TYPE_TARGET, ROWS_PER_PAGE, startFromRow);
+                .fetchChildCollections(singletonList(collectionId), TYPE_TARGET, ROWS_PER_PAGE_DEFAULT, startFromRow);
         List<CollectionInfo> targetWebsitesDocuments = targetWebsitesSearchResult.getResponseBody().getDocuments();
 
         String rootPathWithLang = getRootPathWithLang(request, setProtocolToHttps);
@@ -76,7 +76,7 @@ public class CollectionController {
         mav.addObject("rootCollections", rootCollections);
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
         mav.addObject("targetPageNumber", targetPageNumber);
-        mav.addObject("rowsPerPageLimit", ROWS_PER_PAGE);
+        mav.addObject("rowsPerPageLimit", ROWS_PER_PAGE_DEFAULT);
 
         return mav;
     }

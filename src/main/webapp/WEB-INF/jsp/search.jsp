@@ -45,38 +45,11 @@
         <div class="sidebar-collapse">
           <form action="" method="get" enctype="multipart/form-data" name="filter_form" id="filter_form">
 
-
-          <%--   Public suffix collapse filter   --%>
-          <div class="sidebar-filter-header open" title="Public suffix" tabindex="1">
-            Public suffix (<span class="sidebar-filter-count"></span>)
-          </div>
-          <div class="sidebar-filter">
-
-      <c:if test="${publicSuffixes.size() > 1}">
-        <c:forEach begin="0" end="${publicSuffixes.size() - 1}" step="2" var="i">
-          <c:if test="${publicSuffixes.get(i + 1) != 0}">
-
-            <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
-              <div class="form-check-cont padding-0" title="<c:out value="${publicSuffixes.get(i)}"/>">
-                <input type="checkbox" class="white" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
-                       value="${publicSuffixes.get(i)}"
-                  ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
-                <label class="main-search-check-label white text-medium" for="public_suffix_<c:out value="${i}"/>">
-                  <c:out value="${publicSuffixes.get(i)}"/> (<c:out value="${publicSuffixes.get(i + 1)}"/>)
-                </label>
-              </div>
-            </div>
-
-          </c:if>
-        </c:forEach>
-      </c:if>
-
-          </div>
-
-
+		
           <%--   Domains collapse filter   --%>
-          <div class="sidebar-filter-header border-top-white open" title="Domain" tabindex="1">
-            Domain (<span class="sidebar-filter-count"></span>)
+          <div class="sidebar-filter-header open" title="Domain" tabindex="1">
+            Domain
+            <div class="help-button small white" data-toggle="tooltip" title="This is placeholder text"></div>
           </div>
           <div class="sidebar-filter">
 
@@ -102,34 +75,11 @@
           </div>
 
 
-          <%--   Collection collapse filter   --%>
-            <div class="sidebar-filter-header border-top-white open"  title="Restrict to collection" tabindex="1">
-              Restrict to a collection (<span class="sidebar-filter-count"></span>)
-            </div>
-            <div class="sidebar-filter">
-              <c:forEach items="${collectionsNamesToId}" var="collection">
 
-                <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
-                  <div class="form-check-cont padding-0" title="<c:out value="${collection.value}"/>">
-                    <input type="checkbox" class="white" name="collection" id="collection_<c:out value="${collection.value}"/>"
-                           value="${collection.key}"
-                      ${originalCollectionIds.contains(collection.key) ? 'checked' : ''}
-                    />
-                    <label class="main-search-check-label white text-medium" for="collection_<c:out value="${collection.value}"/>">
-                      <c:out value="${collection.value}"/>
-                    </label>
-                  </div>
-                </div>
-
-              </c:forEach>
-
-            </div>
-
-
-
-          <%--   Documetn type collapse filter   --%>
-          <div class="sidebar-filter-header border-top-white open"  title="Type of document" tabindex="1">
-            Type of document (<span class="sidebar-filter-count"></span>)
+          <%--   Document type collapse filter   --%>
+          <div class="sidebar-filter-header border-top-white open"  title="Document Type" tabindex="1">
+            Document Type
+            <div class="help-button small white" data-toggle="tooltip" title="This is placeholder text"></div>
           </div>
           <div class="sidebar-filter">
 
@@ -154,58 +104,93 @@
 
           </div>
 
+          <%--   Public suffix collapse filter   --%>
+          <div class="sidebar-filter-header border-top-white open" title="Public suffix" tabindex="1">
+           Public Suffix
+            <div class="help-button small white" data-toggle="tooltip" title="This is placeholder text"></div>
+          </div>
+          <div class="sidebar-filter">
 
+      <c:if test="${publicSuffixes.size() > 1}">
+        <c:forEach begin="0" end="${publicSuffixes.size() - 1}" step="2" var="i">
+          <c:if test="${publicSuffixes.get(i + 1) != 0}">
+
+            <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
+              <div class="form-check-cont padding-0" title="<c:out value="${publicSuffixes.get(i)}"/>">
+                <input type="checkbox" class="white" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
+                       value="${publicSuffixes.get(i)}"
+                  ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
+                <label class="main-search-check-label white text-medium" for="public_suffix_<c:out value="${i}"/>">
+                  <c:out value="${publicSuffixes.get(i)}"/> (<c:out value="${publicSuffixes.get(i + 1)}"/>)
+                </label>
+              </div>
+            </div>
+
+          </c:if>
+        </c:forEach>
+      </c:if>
+
+          </div>
 
 
 
             <%--   Archived year collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open" title="Date archived" tabindex="1" id="dates_header">
-              Date archived<!-- (<span class="sidebar-filter-count"></span>)-->
+              Date Archived
+               <div class="help-button small white" data-toggle="tooltip" title="This is placeholder text"></div>
             </div>
             <div class="sidebar-filter" id="dates_container">
 
-              <!--<c:if test="${rangeDates.size() > 1}">
-                <c:forEach begin="0" end="${rangeDates.size() - 1}" step="2" var="i">
-                  <c:if test="${rangeDates.get(i + 1) != 0}">
-
-                    <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
-                      <div class="form-check-cont padding-0" title="<c:out value="${rangeDates.get(i)}"/>">
-                        <input type="checkbox" class="white" name="range_date" id="range_date_1"
-                               value="${rangeDates.get(i)}"
-                          ${originalRangeDates.contains(rangeDates.get(i))? 'checked' : ''}/>
-                        <label class="main-search-check-label white text-medium" for="range_date_1">
-                          <c:out value="${rangeDates.get(i)}"/> (<c:out value="${rangeDates.get(i + 1)}"/>)
-                        </label>
-                      </div>
-                    </div>
-                  </c:if>
-                </c:forEach>
-              </c:if>-->
               <div class="row padding-bottom-20">
               <div class="col-sm-3"><label for="from_date" class="white">From</label></div>
               <div class="col-sm-7">
-                <input type="text" class="form-control" name="from_date" id="from_date" title="From"
+                <input type="text" class="form-control blue" name="from_date" id="from_date" title="From"
                        value="${originalFromDateText != null ? originalFromDateText : ''}"/></div>
               </div>
               <div class="row padding-bottom-20">
               <div class="col-sm-3"><label for="to_date" class="white">To</label></div>
               <div class="col-sm-7">
-                <input type="text" class="form-control" name="to_date" id="to_date" title="From"
+                <input type="text" class="form-control blue" name="to_date" id="to_date" title="From"
                        value="${originalToDateText != null ? originalToDateText : ''}"/>
               </div>
 			</div>
             
               <div class="row">
-              <div class="col-sm-12"><button type="submit" title="Confirm date range" class="button button-white">Confirm date range</button></div>
+              <div class="col-sm-12"><button type="submit" title="Confirm date range" class="button button-white float-sm-right">Confirm date range</button></div>
 			</div>
 
             </div>
 
-            
+                      <%--   Collection collapse filter   --%>
+            <div class="sidebar-filter-header border-top-white open"  title="Restrict to collection" tabindex="1">
+              Special Collection
+              <div class="help-button small white" data-toggle="tooltip" title="This is placeholder text"></div>
+            </div>
+            <div class="sidebar-filter">
+              <c:forEach items="${collectionsNamesToId}" var="collection">
 
+                <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
+                  <div class="form-check-cont padding-0" title="<c:out value="${collection.value}"/>">
+                    <input type="checkbox" class="white" name="collection" id="collection_<c:out value="${i}"/>"
+                           value="${collection.key}"
+                      ${originalCollectionIds.contains(collection.key) ? 'checked' : ''}
+                    />
+                    <label class="main-search-check-label white text-medium" for="collection_suffix_<c:out value="${i}"/>">
+                      <c:out value="${collection.value}"/>
+                    </label>
+                  </div>
+                </div>
+
+              </c:forEach>
+
+            </div>
 
             <input type="hidden" name="search_location" id="search_location" value="${originalSearchLocation}">
             <input type="hidden" name="text" id="text" value="${originalSearchRequest}">
+
+            <input type="hidden" name="view_sort" id="view_sort" value="nto">
+            <input type="hidden" name="view_count" id="view_count" value="100">
+
           </form>
         </div>
       </div>
@@ -214,9 +199,54 @@
       <div class="col-lg-9 col-md-8 col-sm-12 padding-0">
         <div class="results-header border-bottom-gray">
           <div class="float-left padding-top-5"><c:out value="${totalSearchResultsSize}"/> results for <span class="bold">"<c:out value="${originalSearchRequest}"/>"</span></div>
-          <!--<div class="help-button small" title="Help"></div>-->
+          <div class="help-button small" data-toggle="tooltip" title="This is placeholder text" style="margin-right:60px;"></div>
+          <div class="help-button-text">Help</div>
           <div class="clearfix"></div>
         </div>
+
+        <div class="row padding-0 margin-0 border-bottom-gray">
+          <div class="col-md-12 pagination-cont">
+          <%--preserve all current parameters in URL and change only page parameter--%>
+          <c:url var="nextUrl" value="">
+            <c:forEach items="${param}" var="entry">
+              <c:if test="${entry.key != 'page'}">
+                <c:param name="${entry.key}" value="${entry.value}" />
+              </c:if>
+            </c:forEach>
+            <%--set page value as a placeholder as it is going to be changed for each link--%>
+            <c:param name="page" value="PAGE_NUM_PLACEHOLDER" />
+          </c:url>
+
+          <c:if test="${targetPageNumber > 1}">
+            <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>">
+              <div class="pagination-button arrow left-arrow" title="Previous page"></div></a>
+          </c:if>
+
+          <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
+            <c:if test="${i <= totalPages}">
+            <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>">
+              <div class="pagination-button ${i == targetPageNumber ? "active" : "inactive"}" title="<c:out value="${i}"/>">
+                <c:out value="${i}"/>
+              </div></a>
+            </c:if>
+          </c:forEach>
+          <c:if test="${targetPageNumber + 4 < totalPages}">
+           <div class="pagination-button dots inactive"></div>
+            <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', totalPages)}"/>">
+              <div class="pagination-button inactive" title="<c:out value="${totalPages}"/>">
+                <c:out value="${totalPages}"/>
+              </div></a>
+          </c:if>
+
+          <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit}">
+            <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>">
+              <div class="pagination-button arrow right-arrow" title="Next page"></div>
+            </a>
+          </c:if>
+          </div>
+        </div>
+
+
 
         <c:forEach items="${searchResults}" var="searchResult">
         <!--RESULT ROW-->
@@ -251,6 +281,10 @@
             <div class="social-button twitter float-right margin-left-10" title="Twitter"></div>-->
           </div>
         </div>
+
+
+
+
         <!--/RESULT ROW-->
         </c:forEach>
 
@@ -354,6 +388,21 @@ $(document).ready(function(e) {
 	$("input[type='checkbox']").click(function(e) {
         $("#filter_form").submit();
     });
+
+	//submit on resort
+	$(".sort").each(function(index, element) {
+        $(this).click(function(e) {
+            $("#view_sort").val($(this).val());
+			$("#filter_form").submit();
+        });
+    });
+
+	//form count
+	$("#count").change(function(e) {
+		$("#view_count").val($(this).val());
+		$("#filter_form").submit();
+	});
+
 
 });
 
