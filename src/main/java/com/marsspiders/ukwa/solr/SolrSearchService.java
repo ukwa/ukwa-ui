@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 
 import static com.marsspiders.ukwa.controllers.CollectionController.TYPE_COLLECTION;
 import static com.marsspiders.ukwa.controllers.CollectionController.TYPE_TARGET;
+import static com.marsspiders.ukwa.solr.AccessToEnum.VIEWABLE_ANYWHERE;
 import static com.marsspiders.ukwa.util.SolrUtil.escapeQueryChars;
 import static com.marsspiders.ukwa.util.SolrUtil.toEncoded;
 import static com.marsspiders.ukwa.util.SolrUtil.toMultipleConditionsQuery;
@@ -51,6 +52,11 @@ public class SolrSearchService {
     private static final String FIELD_HOST = "host";
     private static final String FIELD_DOMAIN = "domain";
     private static final String FIELD_CRAWL_DATE = "crawl_date";
+    private static final String FIELD_ACCESS_TERMS = "access_terms";
+    private static final String FIELD_ID = "id";
+    private static final String FIELD_TITLE = "title";
+    private static final String FIELD_URL = "url";
+    private static final String FIELD_WAYBACK_DATE = "wayback_date";
 
     private static final String EXCLUDE_FACET_TAG_NAME = "filter";
     private static final String EXCLUDE_MARKER_TAG = "{!tag=" + EXCLUDE_FACET_TAG_NAME + "}";
@@ -84,7 +90,7 @@ public class SolrSearchService {
     public SolrSearchResult<CollectionInfo> fetchCollectionById(String targetId) {
         log.info("Fetching collections by id: " + targetId);
 
-        String queryString = "id:" + targetId;
+        String queryString = FIELD_ID + ":" + targetId;
         //As result should be only one row, but for debug purposes we pass limit 100 to see what actual result are returned
         int rowsLimit = 100;
         return sendRequest(queryString, CollectionInfo.class, rowsLimit, 0);
@@ -169,7 +175,10 @@ public class SolrSearchService {
                         hosts = new ArrayList<>();
                     }
 
-                    hosts.add(toDomainName(url));
+                    if(url != null){
+                        hosts.add(toDomainName(url));
+                    }
+
                     collectionIdsToHosts.put(collectionId, hosts);
                 });
     }
@@ -188,7 +197,8 @@ public class SolrSearchService {
     public SolrSearchResult<ContentInfo> searchContent(SearchByEnum searchLocation,
                                                        String textToSearch,
                                                        long rowsLimit,
-                                                       OrderByEnum orderBy,
+                                                       SortByEnum sortBy,
+                                                       AccessToEnum accessTo,
                                                        long startFrom,
                                                        List<String> contentTypes,
                                                        List<String> publicSuffixes,
@@ -199,8 +209,12 @@ public class SolrSearchService {
                                                        List<String> collectionIds) {
         log.info("Searching content for '" + textToSearch + "' by " + searchLocation);
 
+        String accessToValue = accessTo == null
+                ? VIEWABLE_ANYWHERE.getSolrRequestAccessRestriction()
+                : accessTo.getSolrRequestAccessRestriction();
+        String accessToQuery = FIELD_ACCESS_TERMS + ":" + accessToValue;
         String searchQuery = searchLocation.getSolrSearchLocation() + ":\"" + escapeQueryChars(textToSearch) + "\"";
-        String orderByQuery = orderBy == null ? "" : "crawl_date " + orderBy.getSolrOrderValue();
+        String sortByQuery = sortBy == null ? "" : FIELD_CRAWL_DATE + " " + sortBy.getSolrOrderValue();
         String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
 
         String contentTypeNotEmpty = FIELD_CONTENT_TYPE_NORM + ":['' TO *]";
@@ -221,7 +235,8 @@ public class SolrSearchService {
         String originalCollectionsQuery = EXCLUDE_MARKER_TAG + originalCollectionsNotEmpty + originalCollectionsConditionQuery;
 
         String queryString = toEncoded(searchQuery) +
-                "&sort=" + toEncoded(orderByQuery) +
+                "&sort=" + toEncoded(sortByQuery) +
+                "&fq=" + toEncoded(accessToQuery) +
                 "&fq=" + toEncoded(dateQuery) +
                 "&fq=" + toEncoded(contentTypeQuery) +
                 "&fq=" + toEncoded(publicSuffixesQuery) +
@@ -231,13 +246,12 @@ public class SolrSearchService {
                 "&facet.range=" + toEncoded(EXCLUDE_POINT_TAG) + FIELD_CRAWL_DATE +
                 "&f." + FIELD_CRAWL_DATE + ".facet.range.start=" + FACET_RANGE_START_YEAR + DATE_PART_AFTER_YEAR +
                 "&f." + FIELD_CRAWL_DATE + ".facet.range.end=" + FACET_RANGE_END_YEAR + DATE_PART_AFTER_YEAR +
-                "&hl=true" +
+                "&hl=true" + //from: http://stackoverflow.com/questions/3452665/how-do-i-return-only-a-truncated-portion-of-a-field-in-solr
                 "&hl.fl=content" +
                 "&f.content.hl.alternateField=content" +
                 "&hl.maxAlternateFieldLength=300" +
-                "&fl=id,title,crawl_date,url,wayback_date,domain";
-
-        //http://stackoverflow.com/questions/3452665/how-do-i-return-only-a-truncated-portion-of-a-field-in-solr
+                "&fl=" + FIELD_ID + "," + FIELD_TITLE + "," + FIELD_CRAWL_DATE + "," + FIELD_URL + ","
+                + FIELD_WAYBACK_DATE + "," + FIELD_DOMAIN + "," + FIELD_ACCESS_TERMS;
 
         String[] facets = {FIELD_PUBLIC_SUFFIX, FIELD_CONTENT_TYPE_NORM, FIELD_HOST, FIELD_DOMAIN};
         return sendRequest(queryString, ContentInfo.class, rowsLimit, startFrom, facets);

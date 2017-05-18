@@ -5,9 +5,9 @@
   </div>
   <div class="col-md-5 offset-md-1 col-sm-12 footer-links footer-right-border">
     <a href="index" title="Home">Home</a><br/>
-    <a href="collectons" title="Special Collections">Special Collections</a><br/>
+    <a href="collection" title="Special Collections">Special Collections</a><br/>
 	<a href="blog" title="Blog">Blog</a><br/>
-    <a href="nominate" title="Nominate a site">Nominate a site</a><br/>
+    <a href="info/nominate" title="Nominate a site">Nominate a site</a><br/>
     <a href="contact" title="Contact">Contact</a><br/>
   </div>
   <div class="col-md-5 offset-md-1 col-sm-12 footer-links"> <a href="info/about" title="<spring:message code="footer.about.title" />"><spring:message code="footer.about" text="About" /></a><br/>

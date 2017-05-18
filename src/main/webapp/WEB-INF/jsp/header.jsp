@@ -2,7 +2,7 @@
 <div class="row header-menu margin-0">
 <div class="header-menu-item"><a href="index" title="<spring:message code="main.menu.home.title" />"><spring:message code="main.menu.home" /></a></div>
 <div class="header-menu-item"><a href="collection" title="<spring:message code="main.menu.collections.title" />"><spring:message code="main.menu.collections" /></a></div>
-<div class="header-menu-item"><a href="blog" title="<spring:message code="main.menu.nominate.title" />"><spring:message code="main.menu.nominate" /></a></div>
+<div class="header-menu-item"><a href="info/nominate" title="<spring:message code="main.menu.nominate.title" />"><spring:message code="main.menu.nominate" /></a></div>
 <div class="header-menu-item"><a href="contact" title="<spring:message code="main.menu.contact.title" />"><spring:message code="main.menu.contact" /></a></div>
 
 <c:if test="${!fn:startsWith(textUri, '/en/')}">

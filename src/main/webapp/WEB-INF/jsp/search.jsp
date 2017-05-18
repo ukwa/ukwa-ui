@@ -45,10 +45,40 @@
         <div class="sidebar-collapse">
           <form action="" method="get" enctype="multipart/form-data" name="filter_form" id="filter_form">
 
+				<%--   View facet   --%>
+         <div class="sidebar-filter-header no-collapse" title="Access">
+            Access
+            <div class="help-button small white" data-toggle="tooltip" title="This is placeholder text"></div>
+          </div>
+          
+        <div class="sidebar-filter expanded">
+        <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
+
+       
+        <div class="form-check-cont padding-0" title="Viewable anywhere">
+              <input type="radio" class="white access_filter" name="view_filter" id="view_filter_1" value="oa"
+                      ${originalAccessView.contains('oa') || empty originalAccessView ? 'checked' : ''}/>
+              <label class="main-search-check-label white text-medium" for="view_filter_1" title="Viewable anywhere">
+                Viewable anywhere
+              </label>
+         </div>
+         </div>
+         <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
+ 
+        <div class="form-check-cont padding-0" title="Viewable only on Library permises">
+              <input type="radio" class="white access_filter" name="view_filter" id="view_filter_2" value="rro"
+                      ${originalAccessView.contains('rro') ? 'checked' : ''}/>
+              <label class="main-search-check-label white text-medium" for="view_filter_2" title="Viewable only on Library permises">
+                Viewable only on Library permises
+              </label>
+         </div>
+         </div>
 		
+        </div>
+        
           <%--   Domains collapse filter   --%>
-          <div class="sidebar-filter-header open" title="Domain" tabindex="1">
-            Domain
+          <div class="sidebar-filter-header border-top-white open" title="Domain" tabindex="1">
+            <div class="sidebar-filter-header-title">Domain</div>
             <div class="help-button small white" data-toggle="tooltip" title="This is placeholder text"></div>
           </div>
           <div class="sidebar-filter">
@@ -78,7 +108,7 @@
 
           <%--   Document type collapse filter   --%>
           <div class="sidebar-filter-header border-top-white open"  title="Document Type" tabindex="1">
-            Document Type
+            <div class="sidebar-filter-header-title">Document Type</div>
             <div class="help-button small white" data-toggle="tooltip" title="This is placeholder text"></div>
           </div>
           <div class="sidebar-filter">
@@ -106,7 +136,7 @@
 
           <%--   Public suffix collapse filter   --%>
           <div class="sidebar-filter-header border-top-white open" title="Public suffix" tabindex="1">
-           Public Suffix
+           <div class="sidebar-filter-header-title">Public Suffix</div>
             <div class="help-button small white" data-toggle="tooltip" title="This is placeholder text"></div>
           </div>
           <div class="sidebar-filter">
@@ -136,7 +166,7 @@
 
             <%--   Archived year collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open" title="Date archived" tabindex="1" id="dates_header">
-              Date Archived
+              <div class="sidebar-filter-header-title">Date Archived</div>
                <div class="help-button small white" data-toggle="tooltip" title="This is placeholder text"></div>
             </div>
             <div class="sidebar-filter" id="dates_container">
@@ -163,7 +193,7 @@
 
                       <%--   Collection collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open"  title="Restrict to collection" tabindex="1">
-              Special Collection
+              <div class="sidebar-filter-header-title">Special Collection</div>
               <div class="help-button small white" data-toggle="tooltip" title="This is placeholder text"></div>
             </div>
             <div class="sidebar-filter">
@@ -171,11 +201,11 @@
 
                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                   <div class="form-check-cont padding-0" title="<c:out value="${collection.value}"/>">
-                    <input type="checkbox" class="white" name="collection" id="collection_<c:out value="${i}"/>"
+                    <input type="checkbox" class="white" name="collection" id="collection_<c:out value="${collection.key}"/>"
                            value="${collection.key}"
                       ${originalCollectionIds.contains(collection.key) ? 'checked' : ''}
                     />
-                    <label class="main-search-check-label white text-medium" for="collection_suffix_<c:out value="${i}"/>">
+                    <label class="main-search-check-label white text-medium" for="collection_<c:out value="${collection.key}"/>">
                       <c:out value="${collection.value}"/>
                     </label>
                   </div>
@@ -188,8 +218,8 @@
             <input type="hidden" name="search_location" id="search_location" value="${originalSearchLocation}">
             <input type="hidden" name="text" id="text" value="${originalSearchRequest}">
 
-            <input type="hidden" name="view_sort" id="view_sort" value="nto">
-            <input type="hidden" name="view_count" id="view_count" value="100">
+            <input type="hidden" name="view_sort" id="view_sort" value="${empty originalSortValue ? 'nto' : originalSortValue}">
+            <input type="hidden" name="view_count" id="view_count" value="${empty rowsPerPageLimit ? '50' : rowsPerPageLimit}">
 
           </form>
         </div>
@@ -199,12 +229,12 @@
       <div class="col-lg-9 col-md-8 col-sm-12 padding-0">
         <div class="results-header border-bottom-gray">
           <div class="float-left padding-top-5"><c:out value="${totalSearchResultsSize}"/> results for <span class="bold">"<c:out value="${originalSearchRequest}"/>"</span></div>
-          <div class="help-button small" data-toggle="tooltip" title="This is placeholder text" style="margin-right:60px;"></div>
+          <div class="help-button small search-help-button" data-toggle="tooltip" title="This is placeholder text"></div>
           <div class="help-button-text">Help</div>
           <div class="clearfix"></div>
         </div>
 
-        <div class="row padding-0 margin-0 border-bottom-gray">
+        <div class="row padding-0 margin-0">
           <div class="col-md-12 pagination-cont">
           <%--preserve all current parameters in URL and change only page parameter--%>
           <c:url var="nextUrl" value="">
@@ -246,28 +276,49 @@
           </div>
         </div>
 
+        <div class="row border-bottom-gray margin-0">
+        <div class="col-md-12 padding-20">
 
+        <div class="search-results-top-filters" style="width:200px;">
+        <div class="form-check-cont padding-0" title="Newest to Oldest">
+              <input type="radio" name="sort" id="sort_1" value="nto" class="sort"
+              ${originalSortValue.contains('nto') || empty originalSortValue ? 'checked' : ''}/>
+              <label class="main-search-check-label" for="sort_1" title="Newest to Oldest">
+               Newest to Oldest
+              </label>
+         </div>
+
+        </div>
+
+        <div class="search-results-top-filters" style="width:200px;">
+        <div class="form-check-cont padding-0" title="Oldest to Newest">
+              <input type="radio" name="sort" id="sort_2" value="otn" class="sort"
+              ${originalSortValue.contains('otn') ? 'checked' : ''}/>
+              <label class="main-search-check-label" for="sort_2" title="Oldest to Newest">
+                Oldest to Newest
+              </label>
+         </div>
+        </div>
+
+        <div class="search-results-top-filters" style="width:280px;padding-top:5px;padding-right:50px;">
+        <label for="count" title="Items per page" style="margin-top:5px;">Items per page</label>
+        <select class="form-control search-results-display-count" name="count" id="count">
+          <option value="50" ${rowsPerPageLimit == 50 ? 'selected' : ''}>50</option>
+          <option value="100" ${rowsPerPageLimit == 100 ? 'selected' : ''}>100</option>
+          <option value="200" ${rowsPerPageLimit == 200 ? 'selected' : ''}>200</option>
+        </select>
+
+        </div>
+        </div>
+        </div>
 
         <c:forEach items="${searchResults}" var="searchResult">
         <!--RESULT ROW-->
         <div class="row margin-0 padding-0 border-bottom-gray">
-          <div class="col-lg-3 col-md-12 padding-20 bg-gray results-border">
-            <div class="row margin-0 padding-0">
-              <div class="col-lg-12 col-md-6 col-sm-6 col-xs-6 padding-bottom-20 padding-left-0">
-                <!--<span class="light-blue bold text-bigger">5035</span><br/>-->
-                Results found for the domain:
-                <a href="<c:out value="${searchResult.domain}"/>"><c:out value="${searchResult.displayDomain}"/></a>
-              </div>
-              <div class="col-lg-12 col-md-6 col-sm-6 col-xs-6 padding-side-0">
-                 Archived on:<br/>
-                 <c:out value="${searchResult.date}"/>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-7 col-md-12 results-result">
+          <div class="col-lg-10 col-md-12 results-result">
             <h2 class="margin-0"><c:out value="${searchResult.title}"/></h2>
-            <span class="results-title-text clearfix padding-0">
-              
+            <span class="results-title-text results-title-date padding-0">
+            &nbsp;&nbsp;-&nbsp;&nbsp;<c:out value="${searchResult.date}"/>
             </span>
             <span class="results-title-text clearfix padding-vert-10">
               <a class="results-link" href="<c:out value="${searchResult.url}"/>"><c:out value="${searchResult.displayUrl}"/></a>
@@ -350,7 +401,7 @@ $(document).ready(function(e) {
 	});
 
 	//filters toggle and count
-	$(".sidebar-filter-header").each(function(index, element) {
+	$(".sidebar-filter-header:not(.no-collapse)").each(function(index, element) {
 
 		//toggle
 		$(this).click(function(e) {
@@ -385,7 +436,7 @@ $(document).ready(function(e) {
 	}
 
 	//change filters
-	$("input[type='checkbox']").click(function(e) {
+	$("input[type='checkbox'], .access_filter").click(function(e) {
         $("#filter_form").submit();
     });
 

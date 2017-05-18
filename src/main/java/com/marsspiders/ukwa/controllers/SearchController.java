@@ -1,7 +1,8 @@
 package com.marsspiders.ukwa.controllers;
 
 import com.marsspiders.ukwa.controllers.data.SearchResultDTO;
-import com.marsspiders.ukwa.solr.OrderByEnum;
+import com.marsspiders.ukwa.solr.AccessToEnum;
+import com.marsspiders.ukwa.solr.SortByEnum;
 import com.marsspiders.ukwa.solr.SearchByEnum;
 import com.marsspiders.ukwa.solr.SolrSearchService;
 import com.marsspiders.ukwa.solr.data.ContentInfo;
@@ -66,8 +67,9 @@ public class SearchController {
                                    @RequestParam(value = "to_date", required = false) String toDateText,
                                    @RequestParam(value = "range_date", required = false) String[] checkedRangeDates,
                                    @RequestParam(value = "collection", required = false) String[] checkedCollectionIds,
-                                   @RequestParam(value = "order", required = false) String orderValue,
+                                   @RequestParam(value = "view_sort", required = false) String sortValue,
                                    @RequestParam(value = "view_count", required = false) String viewCount,
+                                   @RequestParam(value = "view_filter", required = false) String accessViewFilter,
                                    HttpServletRequest request) throws MalformedURLException, URISyntaxException, ParseException {
 
         List<SearchResultDTO> searchResultDTOs = new ArrayList<>();
@@ -82,23 +84,24 @@ public class SearchController {
         List<String> originalDomains = checkedDomains != null ? asList(checkedDomains) : emptyList();
         List<String> originalRangeDates = checkedRangeDates != null ? asList(checkedRangeDates) : emptyList();
         List<String> originalCollectionIds = checkedCollectionIds != null ? asList(checkedCollectionIds) : emptyList();
-        int rowsPerPage =  isNumeric(viewCount) ? Integer.valueOf(viewCount) : ROWS_PER_PAGE_DEFAULT;
+        int rowsPerPage = isNumeric(viewCount) ? Integer.valueOf(viewCount) : ROWS_PER_PAGE_DEFAULT;
         long targetPageNumber = isNumeric(pageNum) ? Long.valueOf(pageNum) : 1;
         long totalSearchResultsSize = 0;
 
 
         SearchByEnum searchBy = SearchByEnum.fromString(searchLocation);
-        OrderByEnum orderBy = OrderByEnum.fromString(orderValue);
+        SortByEnum sortBy = SortByEnum.fromString(sortValue);
+        AccessToEnum accessTo = AccessToEnum.fromString(accessViewFilter);
         if (!isBlank(text) && searchBy != null) {
             long startFromRow = (targetPageNumber - 1) * rowsPerPage;
             Date fromDate = isBlank(fromDateText) ? null : sdf.parse(fromDateText);
             Date toDate = isBlank(toDateText) ? null : sdf.parse(toDateText);
 
-            SolrSearchResult<ContentInfo> archivedSites = searchService.searchContent(searchBy, text, rowsPerPage, orderBy,
-                    startFromRow, originalDocumentTypes, originalPublicSuffixes, originalDomains, fromDate, toDate,
-                    originalRangeDates, originalCollectionIds);
+            SolrSearchResult<ContentInfo> archivedSites = searchService.searchContent(searchBy, text, rowsPerPage,
+                    sortBy, accessTo, startFromRow, originalDocumentTypes, originalPublicSuffixes, originalDomains,
+                    fromDate, toDate, originalRangeDates, originalCollectionIds);
 
-            searchResultDTOs = toSearchResults(archivedSites, request, searchBy, text);
+            searchResultDTOs = toSearchResults(archivedSites, request, searchBy);
             totalSearchResultsSize = archivedSites.getResponseBody().getNumFound();
 
             FacetCounts facetCounts = archivedSites.getFacetCounts();
@@ -112,6 +115,9 @@ public class SearchController {
                 collectionsNamesToId = searchService.getParentCollections(facetCounts.getFields().getHosts());
             }
         }
+
+        String originalAccessView = accessTo == null ? "" : accessTo.getWebRequestAccessRestriction();
+        String originalSortValue = sortBy == null ? "" : sortBy.getWebRequestOrderValue();
 
         ModelAndView mav = new ModelAndView("search");
         mav.addObject("searchResults", searchResultDTOs);
@@ -130,6 +136,8 @@ public class SearchController {
         mav.addObject("originalToDateText", toDateText);
         mav.addObject("originalRangeDates", originalRangeDates);
         mav.addObject("originalCollectionIds", originalCollectionIds);
+        mav.addObject("originalAccessView", originalAccessView);
+        mav.addObject("originalSortValue", originalSortValue);
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
         mav.addObject("targetPageNumber", targetPageNumber);
         mav.addObject("rowsPerPageLimit", rowsPerPage);
@@ -149,37 +157,57 @@ public class SearchController {
 
     private List<SearchResultDTO> toSearchResults(SolrSearchResult<ContentInfo> archivedSites,
                                                   HttpServletRequest request,
-                                                  SearchByEnum searchLocation,
-                                                  String textToSearch) throws MalformedURLException, URISyntaxException {
+                                                  SearchByEnum searchLocation) throws MalformedURLException, URISyntaxException {
         String rootPathWithLang = getRootPathWithLang(request, setProtocolToHttps);
         List<ContentInfo> contentInfoList = archivedSites.getResponseBody().getDocuments();
 
         return contentInfoList
                 .stream()
-                .map(d -> {
-
-                    String url = d.getUrl() != null ? d.getUrl().get(0) : "";
-                    String wayBackUrl = rootPathWithLang + "wayback/" + d.getWayback_date() + "/" + url;
-                    String escapedContent = "";
-                    HighlightingContent highlightingContent = archivedSites.getHighlighting().get(d.getId());
-                    if(searchLocation == FULL_TEXT && highlightingContent != null && highlightingContent.getContent() != null){
-                        String shortContent = highlightingContent.getContent().get(0);
-                        escapedContent = toEscapedContent(shortContent);
-                    }
+                .map(archivedSiteInfo -> {
+                    String url = archivedSiteInfo.getUrl() != null ? archivedSiteInfo.getUrl() : "";
+                    String wayBackUrl = toWayBackUrl(rootPathWithLang, archivedSiteInfo, url);
+                    HighlightingContent highlightingContent = archivedSites.getHighlighting().get(archivedSiteInfo.getId());
+                    String escapedContent = toEscapedContent(searchLocation, highlightingContent);
+                    String originalDomain = toOriginalDomain(url);
+                    String abbreviatedTitle = abbreviate(archivedSiteInfo.getTitle(), 70);
+                    String displayCrawlDate = archivedSiteInfo.getCrawl_date().substring(0, 10);
 
                     SearchResultDTO searchResult = new SearchResultDTO();
-                    searchResult.setId(d.getId());
-                    searchResult.setTitle(abbreviate(d.getTitle(), 70));
-                    searchResult.setDate(d.getCrawl_date().substring(0, 10));
+                    searchResult.setId(archivedSiteInfo.getId());
+                    searchResult.setTitle(abbreviatedTitle);
+                    searchResult.setDate(displayCrawlDate);
                     searchResult.setText(escapedContent);
                     searchResult.setDisplayUrl(url);
                     searchResult.setUrl(wayBackUrl);
-                    searchResult.setDisplayDomain(d.getDomain());
-                    searchResult.setDomain(toOriginalDomain(url));
+                    searchResult.setDisplayDomain(archivedSiteInfo.getDomain());
+                    searchResult.setDomain(originalDomain);
 
                     return searchResult;
                 })
                 .collect(toList());
+    }
+
+    private String toEscapedContent(SearchByEnum searchLocation, HighlightingContent highlightingContent) {
+        String escapedContent = "";
+        if (searchLocation == FULL_TEXT && highlightingContent != null && highlightingContent.getContent() != null) {
+            String shortContent = highlightingContent.getContent().get(0);
+            escapedContent = shortContent != null ? shortContent.replaceAll("<[^>]*>", "") : "";
+        }
+
+        return escapedContent;
+    }
+
+    private String toWayBackUrl(String rootPathWithLang, ContentInfo archivedSiteInfo, String url) {
+        if (archivedSiteInfo.getAccess_terms() != null
+                && archivedSiteInfo.getAccess_terms().size() == 1
+                && archivedSiteInfo.getAccess_terms().get(0).equals("RRO")) {
+            //Redirect to page with information about Reading Room Only restriction
+            return "noresults";
+        }
+
+        //Need to replace "jsp", "JSP" to avoid treating .jsp file in wayback url as its own url by Spring
+        String urlWithUppercaseJsp = url.replace("jsp", "JSP");
+        return rootPathWithLang + "wayback/" + archivedSiteInfo.getWayback_date() + "/" + urlWithUppercaseJsp;
     }
 
     private String toOriginalDomain(String url) {
@@ -193,7 +221,4 @@ public class SearchController {
         return domain;
     }
 
-    private String toEscapedContent(String content) {
-        return content != null ? content.replaceAll("<[^>]*>", "") : "";
-    }
 }

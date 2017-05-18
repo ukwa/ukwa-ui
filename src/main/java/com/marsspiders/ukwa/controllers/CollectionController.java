@@ -31,7 +31,7 @@ public class CollectionController {
 
     public static final String TYPE_COLLECTION = "collection";
     public static final String TYPE_TARGET = "target";
-    static final int ROWS_PER_PAGE_DEFAULT = 10;
+    static final int ROWS_PER_PAGE_DEFAULT = 50;
 
     @Autowired
     private SolrSearchService searchService;

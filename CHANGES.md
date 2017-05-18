@@ -1,6 +1,18 @@
 Change Log
 ----------
 
+* Open Access / Library only (2017-05-18)
+    * Faceting by access_terms added.
+    * Search results are now sorted by date archived (Newest to Oldest / Oldest to Newest).
+    * Number of search results per page can now be chosen by users.
+    * Various layout improvements.
+    * The middle column of the search results grid was removed as per the new UI mockups.
+      The column used to contain "Date Archived" and the domain.
+      "Date Archived" has been moved next to the target title.#
+    * Switched from beta to dev Solr instance. Don't forget to update Solr credentials during deployment.
+    * The website will now display an error page if Solr credentials are incorrect. 
+      Previously it showed "0 results found".
+
 * The New UI (2017-05-17)
     * UI styled as per approved mockups (menu on top).
     * Title / Full Text toggle removed. Currently defaults to Full Text.

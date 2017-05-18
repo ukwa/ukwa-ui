@@ -1,13 +1,13 @@
 package com.marsspiders.ukwa.solr;
 
-public enum OrderByEnum {
+public enum SortByEnum {
     NEWEST_TO_OLDEST("nto", "desc"),
     OLDEST_TO_NEWEST("otn", "asc");
 
     private String webRequestOrderValue;
     private String solrOrderValue;
 
-    OrderByEnum(String webRequestOrderValue, String solrOrderValue) {
+    SortByEnum(String webRequestOrderValue, String solrOrderValue) {
         this.webRequestOrderValue = webRequestOrderValue;
         this.solrOrderValue = solrOrderValue;
     }
@@ -20,10 +20,10 @@ public enum OrderByEnum {
         return solrOrderValue;
     }
 
-    public static OrderByEnum fromString(String text) {
-        for (OrderByEnum orderBy : OrderByEnum.values()) {
-            if (orderBy.webRequestOrderValue.equalsIgnoreCase(text)) {
-                return orderBy;
+    public static SortByEnum fromString(String text) {
+        for (SortByEnum sortBy : SortByEnum.values()) {
+            if (sortBy.webRequestOrderValue.equalsIgnoreCase(text)) {
+                return sortBy;
             }
         }
 

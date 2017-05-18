@@ -74,6 +74,13 @@
       </div>
       
     </div>
+    
+        <div class="row margin-0">
+      <div class="col-md-12 col-sm-12 center padding-bottom-80">
+        <a href="collection"><button type="button" class="button button-blue" role="link" title="<spring:message code="home.button.viewmore.title"/>"><spring:message code="home.button.viewmore"/></button></a>
+      </div>
+    </div>
+    
   </section>
   
   <footer>

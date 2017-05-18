@@ -74,14 +74,16 @@ public class SolrCommunicator {
             log.debug("Sending request to SOLR: " + toDecoded(request.getURI().toString()));
 
             HttpResponse response = getHttpClient().execute(request);
-            log.debug("SOLR Response Code: " + response.getStatusLine().getStatusCode());
-
             String solrSearchResultString = IOUtils.toString(response.getEntity().getContent());
 
             int subStringLength = solrSearchResultString.length() >= 1000 ? 1000 : solrSearchResultString.length();
             //String cutResponseBody = toDecoded(solrSearchResultString.substring(0, subStringLength)) + ".........";
             String fullResponseLine = solrSearchResultString.replaceAll("\n", "");
             log.debug("SOLR Response length: " + solrSearchResultString.length() + ", body: " + fullResponseLine);
+
+            if(response.getStatusLine().getStatusCode() != 200){
+                throw new IllegalStateException("Unexpected response status code: " + response.getStatusLine().getStatusCode());
+            }
 
             //Need to deserialize json according to generic type passed
             ObjectMapper mapper = new ObjectMapper();

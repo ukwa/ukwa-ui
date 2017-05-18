@@ -17,7 +17,7 @@ public class ContentInfo implements BodyDocsType {
     @JsonProperty("source_file_offset")
     private String source_file_offset;
     @JsonProperty("url")
-    private List<String> url;
+    private String url;
     @JsonProperty("url_type")
     private List<String> url_type;
     @JsonProperty("record_type")
@@ -82,6 +82,8 @@ public class ContentInfo implements BodyDocsType {
     private String ssdeep_hash_ngram_bs_192;
     @JsonProperty("_version_")
     private String _version_;
+    @JsonProperty("access_terms")
+    private List<String> access_terms;
 
     public String getId() {
         return id;
@@ -107,11 +109,11 @@ public class ContentInfo implements BodyDocsType {
         this.source_file_offset = source_file_offset;
     }
 
-    public List<String> getUrl() {
+    public String getUrl() {
         return url;
     }
 
-    public void setUrl(List<String> url) {
+    public void setUrl(String url) {
         this.url = url;
     }
 
@@ -371,7 +373,16 @@ public class ContentInfo implements BodyDocsType {
         this._version_ = _version_;
     }
 
+    public List<String> getAccess_terms() {
+        return access_terms;
+    }
+
+    public void setAccess_terms(List<String> access_terms) {
+        this.access_terms = access_terms;
+    }
+
     @Override
+
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
     }
