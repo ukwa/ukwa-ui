@@ -1,6 +1,12 @@
 Change Log
 ----------
 
+* 2017-06-11
+    * Remove copyrighted images.
+    * Use OpenSans fonts throughout the website.
+    * Use a default image for collections that haven't been assigned an image.
+    * Fix radio buttons that did not render correctly under "Are you the copyright holder or owner of the website?" on ukwa/info/nominate.
+    
 * Open Access / Library only (2017-05-18)
     * Faceting by access_terms added.
     * Search results are now sorted by date archived (Newest to Oldest / Oldest to Newest).

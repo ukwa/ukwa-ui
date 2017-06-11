@@ -1,7 +1,18 @@
 @charset "utf-8";
 
-$font-normal: 'Futura LT W01 Book', sans-serif;
-$font-bold: 'Futura LT W01 Bold', sans-serif;
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Open Sans Bold';
+    src: url('../fonts/OpenSans-ExtraBold.ttf');
+}
+
+
+$font-normal: 'Open Sans', sans-serif;
+$font-bold: 'Open Sans Bold', sans-serif;
 $font-arial: Arial, sans-serif;
 
 $blue: #0c49b0;
@@ -1465,6 +1476,7 @@ footer {
 	.main-heading-cont {
 		margin-top:0;
 	}
+	
 	
 	.main-search-container {
 		padding: 20px 0 0 0;

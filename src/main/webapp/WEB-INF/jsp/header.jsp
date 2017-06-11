@@ -19,13 +19,13 @@
 
 </div>
 <div class="row header-bar border-bottom-gray">
-  <div class="col-md-2 col-sm-12 main-heading-cont">
+  <div class="col-lg-2 col-md-3 col-sm-12 main-heading-cont">
     <h1 class="main-heading"><a href="index" title="<spring:message code="header.main.heading.title" />">UK<br/>
       Web<br/>
       Archive</a></h1>
       <span class="main-subheading">Preserving UK Websites</span>
   </div>
-  <div class="col-md-10 col-sm-12 main-search-container">
+  <div class="col-lg-10 col-md-9 col-sm-12 main-search-container">
     <form action="search" method="get" enctype="multipart/form-data" name="search_form">
       <div class="main-search-input" tabindex="1"> 
         <input type="text" name="text" id="text" title="<spring:message code="search.main.input.title" />" placeholder="<spring:message code="search.main.input.title" />" class="main-search-field" value="${originalSearchRequest}" required/><input type="radio" name="search_location" id="search_location_full_text" value="full_text"/>

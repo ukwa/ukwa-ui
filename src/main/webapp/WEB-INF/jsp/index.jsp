@@ -50,25 +50,25 @@
     <div class="row page-content padding-side-70 padding-top-0">
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
         <div class="center light-blue padding-bottom-10"><a href="collection/329">British Stand-up Comedy Archive</a></div>
-        <figure><a href="collection/329" title="Collection owned and adminstered by Elspeth Millar, Briti..."><img class="img-responsive border-gray" alt="British Stand-up Comedy Archive" src="img/collections/collection_329.png"/></a>
+        <figure><a href="collection/329" title="Collection owned and adminstered by Elspeth Millar, Briti..."><img class="img-responsive border-gray coll-img" alt="British Stand-up Comedy Archive" src="img/collections/collection_329.png"/></a>
           <figcaption class="img-square-caption">Collection owned and adminstered by Elspeth Millar, Briti...</figcaption>
         </figure>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
         <div class="center light-blue padding-bottom-10"><a href="collection/309">French in London</a></div>
-        <figure><a href="collection/309" title="This collection of websites has been selected by Saskia H..."><img class="img-responsive border-gray" alt="French in London" src="img/collections/collection_309.png"/></a>
+        <figure><a href="collection/309" title="This collection of websites has been selected by Saskia H..."><img class="img-responsive border-gray coll-img" alt="French in London" src="img/collections/collection_309.png"/></a>
           <figcaption class="img-square-caption">This collection of websites has been selected by Saskia H...</figcaption>
         </figure>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
         <div class="center light-blue padding-bottom-10"><a href="collection/65">Scottish Independence Referendum</a></div>
-        <figure><a href="collection/65" title="Provisional title for collection on Scottish Devolution, ..."><img class="img-responsive border-gray" alt="Scottish Independence Referendum" src="img/collections/collection_65.png"/></a>
+        <figure><a href="collection/65" title="Provisional title for collection on Scottish Devolution, ..."><img class="img-responsive border-gray coll-img" alt="Scottish Independence Referendum" src="img/collections/collection_65.png"/></a>
           <figcaption class="img-square-caption">Provisional title for collection on Scottish Devolution, ...</figcaption>
         </figure>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
         <div class="center light-blue padding-bottom-10"><a href="collection/138">News Sites</a></div>
-        <figure><a href="collection/138" title="558 titles are included in this collection (30/01/2014). ..."><img class="img-responsive border-gray" alt="News Sites" src="img/collections/collection_138.png"/></a>
+        <figure><a href="collection/138" title="558 titles are included in this collection (30/01/2014). ..."><img class="img-responsive border-gray coll-img" alt="News Sites" src="img/collections/collection_138.png"/></a>
           <figcaption class="img-square-caption">558 titles are included in this collection (30/01/2014). ...</figcaption>
         </figure>
       </div>

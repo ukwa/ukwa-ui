@@ -3,6 +3,7 @@ $(document).ready(function(e) {
 	
 	//bootstrap tooltips
 	$('[data-toggle="tooltip"]').tooltip(); 
+	$('[data-toggle="tooltip"]').click(function(e) { e.stopPropagation(); });
 	
 	//radio and check button keyboard
     $(".form-check-cont").each(function(index, element) {
@@ -54,5 +55,15 @@ $(document).ready(function(e) {
 		$("#about-full-video")[0].pause();
 		$("html").css("overflow","auto");
     });
+	
+	//replace broken images for collections
+	$(".coll-img").each(function(index, element) {
+        $(this).on('error', function() {
+			var old_img=$(this).attr('src');
+			$(this).unbind("error").attr("src", "img/collections/collection_default.png");
+			console.log(old_img+' replaced with default image.');
+		});
+    });
+	
 	
 });

@@ -453,7 +453,23 @@ $(document).ready(function(e) {
 		$("#view_count").val($(this).val());
 		$("#filter_form").submit();
 	});
-
+	
+	//form validation
+	$("#filter_form").submit(function(e) {
+        
+		var isValid = true;
+		
+		if ($("#from_date").val().trim()!=="" && !Date.parse($("#from_date").val())) isValid=false;
+		if ($("#to_date").val().trim()!=="" && !Date.parse($("#to_date").val())) isValid=false;
+		
+		if (isValid) {
+			return true;
+		} else {
+			alert("Please enter valid date(s) for the date range.");
+			return false;
+		}
+		
+    });
 
 });
 

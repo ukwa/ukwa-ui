@@ -31,6 +31,7 @@
       <h1 class="main-heading"><a href="index">UK<br/>
         Web<br/>
         Archive</a></h1>
+        <span class="main-subheading">Preserving UK Websites</span>
     </div>
   </div>
 </div>

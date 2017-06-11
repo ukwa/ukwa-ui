@@ -53,7 +53,7 @@
             </div>
             <div class="col-md-6 col-sm-12 padding-bottom-20 padding-top-30">
               <div class="center light-blue padding-bottom-10">Tag clouds</div>
-              <figure><img class="img-responsive border-gray" src="img/visualisation.png"/>
+              <figure><img class="img-responsive border-gray" src="img/visualisation2.png"/>
                 <figcaption class="img-square-caption"> Special Collection "UK General 
                   Election 2005" consists of web 
                   pages with electoral content 
@@ -82,7 +82,7 @@
             </div>
             <div class="col-md-6 col-sm-12 padding-bottom-20 padding-top-30">
               <div class="center light-blue padding-bottom-10">Link analisys</div>
-              <figure><img class="img-responsive border-gray" src="img/visualisation.png"/>
+              <figure><img class="img-responsive border-gray" src="img/visualisation2.png"/>
                 <figcaption class="img-square-caption"> This visualisation shows an 
                   overview of how a subset of the 
                   sites in the JISC UK Web Domain 
@@ -102,7 +102,7 @@
             </div>
             <div class="col-md-6 col-sm-12 padding-bottom-20 padding-top-30">
               <div class="center light-blue padding-bottom-10">Geoindex</div>
-              <figure><img class="img-responsive border-gray" src="img/visualisation.png"/>
+              <figure><img class="img-responsive border-gray" src="img/visualisation2.png"/>
                 <figcaption class="img-square-caption"> The ~2.5 billion 200 OK responses 
                   in the JISC UK Web Domain 
                   Dataset (1996-2010) have been 

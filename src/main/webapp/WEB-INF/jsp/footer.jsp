@@ -4,13 +4,14 @@
     <hr class="footer-title-hr"/>
   </div>
   <div class="col-md-5 offset-md-1 col-sm-12 footer-links footer-right-border">
-    <a href="index" title="Home">Home</a><br/>
-    <a href="collection" title="Special Collections">Special Collections</a><br/>
-	<a href="blog" title="Blog">Blog</a><br/>
-    <a href="info/nominate" title="Nominate a site">Nominate a site</a><br/>
-    <a href="contact" title="Contact">Contact</a><br/>
+    <a href="index" title="<spring:message code="footer.home.title" />"><spring:message code="footer.home" /></a><br/>
+    <a href="info/about" title="<spring:message code="footer.about.title" />"><spring:message code="footer.about" text="About" /></a><br/>
+    <a href="collection" title="<spring:message code="footer.collections.title" />"><spring:message code="footer.collections" /></a><br/>
+	<a href="blog" title="<spring:message code="footer.blog.title" />"><spring:message code="footer.blog" /></a><br/>
+    <a href="info/nominate" title="<spring:message code="footer.nominate.title" />"><spring:message code="footer.nominate" /></a><br/>
+    <a href="contact" title="<spring:message code="footer.contact.title" />"><spring:message code="footer.contact" /></a><br/>
   </div>
-  <div class="col-md-5 offset-md-1 col-sm-12 footer-links"> <a href="info/about" title="<spring:message code="footer.about.title" />"><spring:message code="footer.about" text="About" /></a><br/>
+  <div class="col-md-5 offset-md-1 col-sm-12 footer-links"> 
   
     <c:if test="${!fn:startsWith(textUri, '/en/') && (fn:startsWith(textUri, '/gd/') || fn:startsWith(textUri, '/cy/'))}">
     <a href="/en<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="footer.english.title" />"><spring:message code="footer.english" /></a><br/>

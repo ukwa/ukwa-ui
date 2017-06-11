@@ -52,7 +52,7 @@
         <div class="center light-blue padding-bottom-10">
           <a href="collection/<c:out value="${collection.id}"/>"><c:out value="${collection.name}"/></a>
         </div>
-        <figure><a href="collection/<c:out value="${collection.id}"/>" title="<c:out value="${collection.description}"/>"><img class="img-responsive border-gray" alt="Collections" src="img/collections/collection_<c:out value="${collection.id}"/>.png"/></a>
+        <figure><a href="collection/<c:out value="${collection.id}"/>" title="<c:out value="${collection.description}"/>"><img class="img-responsive border-gray coll-img" alt="Collections" src="img/collections/collection_<c:out value="${collection.id}"/>.png"/></a>
           <figcaption class="img-square-caption"> <c:out value="${collection.description}"/></figcaption>
         </figure>
       </div>

@@ -36,13 +36,13 @@
     </div>
     <div class="row header-blue padding-side-70 white">
       <div class="col-md-6 col-sm-12 padding-bottom-20">
-        <h2>We will be archiving sites :</h2>
+        <h2>We will be archiving sites:</h2>
         <p><span class="text-medium bold">1</span> - That are issued from a .uk or other UK geographic 
           top-level domain.</p>
         <p><span class="text-medium bold">2</span> - where part of the publishing process takes place in the UK.</p>
       </div>
       <div class="col-md-6 col-sm-12 padding-bottom-20">
-        <h2>We will not be archiving :</h2>
+        <h2>We will <em>not</em> be archiving:</h2>
         <p><span class="text-medium bold">1</span> - Sites concerning film and recorded sound where the audio-visual content predominates (but, for example, web pages containing video clips alongside text or images are within scope).</p>
         <p><span class="text-medium bold">2</span> - private intranets and emails.</p>
         <p><span class="text-medium bold">3</span> - personal data in social networking sites or that are only available to restricted groups.</p>
@@ -88,27 +88,37 @@
           </div>
           <div class="form-group">
             <label>* Are you the copyright holder or owner of the website?</label>
-            <p>
-              <label for="owner_0">
-                <input type="radio" name="owner" value="1" id="owner_0">
-                Yes</label>
-              <br>
-              <label for="owner_1">
-                <input type="radio" name="owner" value="0" id="owner_1">
-                No</label>
-              <br>
-            </p>
+            	
+              <div class="row">
+              
+              <div class="col-md-12">
+              <div class="form-check-cont">
+                <input type="radio" name="owner" value="1" id="owner_0" required>
+                <label for="owner_0">Yes</label>
+              </div>
+              </div>
+              
+              <div class="col-md-12">
+              <div class="form-check-cont">
+             <input type="radio" name="owner" value="0" id="owner_1" required>
+               <label for="owner_1">No</label>
+              </div>
+              </div>
+              
+              </div>
+              
           </div>
-        </div>
+          </div>
+        
         <div class="col-md-6 col-sm-12 form-content-col">
           <div class="form-group">
-            <label>Notes about your special request e.g. 'please archive urgently as this site will disappear next month ' or 'this site relies on a database. Is this a problem? </label>
+            <label>Notes about your special request e.g. 'please archive urgently as this site will disappear next month' or 'this site relies on a database. Is this a problem?'</label>
             <textarea name="notes" id="notes" class="form-control" placeholder=""></textarea>
           </div>
         </div>
         <div class="col-md-6 col-sm-12 form-content-col">
           <div class="form-group">
-            <label>Your justification - this will aid selection e.g. 'a typical business blog ' or a 'prize winning site ' or 'representative of Internet culture ' or even 'humorous.</label>
+            <label>Your justification - this will aid selection e.g. 'a typical business blog' or a 'prize winning site' or 'representative of Internet culture' or even 'humorous.'</label>
             <textarea name="justification" id="justification" class="form-control" placeholder=""></textarea>
           </div>
         </div>
