@@ -1,6 +1,9 @@
 Change Log
 ----------
 
+* 2017-06-29
+    * Remove copyrighted icons
+
 * 2017-06-11
     * Remove copyrighted images.
     * Use OpenSans fonts throughout the website.
