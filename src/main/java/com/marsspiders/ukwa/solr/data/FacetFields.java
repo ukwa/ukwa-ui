@@ -21,6 +21,9 @@ public class FacetFields {
     @JsonProperty("domain")
     private LinkedList<String> domains;
 
+    @JsonProperty("collection")
+    private LinkedList<String> collections;
+
     public LinkedList<String> getPublicSuffixes() {
         return publicSuffixes;
     }
@@ -51,6 +54,14 @@ public class FacetFields {
 
     public void setDomains(LinkedList<String> domains) {
         this.domains = domains;
+    }
+
+    public LinkedList<String> getCollections() {
+        return collections;
+    }
+
+    public void setCollections(LinkedList<String> collections) {
+        this.collections = collections;
     }
 
     @Override

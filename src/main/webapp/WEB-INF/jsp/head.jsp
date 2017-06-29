@@ -12,4 +12,5 @@
 <script src="includes/jquery-preload/jquery.preload.min.js"></script>
 <script src="includes/tether/js/tether.min.js"></script>
 <script src="includes/bootstrap/js/bootstrap.min.js"></script>
+<script src="includes/match-height/dist/jquery.matchHeight-min.js" type="text/javascript"></script>
 <script src="includes/common.js"></script>

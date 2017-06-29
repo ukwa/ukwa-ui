@@ -14,7 +14,7 @@
 </c:if>
 
 
-<html>
+<html lang="en">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title>UKWA Technical information</title>
@@ -36,12 +36,12 @@
   </section>
   <section id="content">
     <div class="row margin-0 padding-bottom-80">
-      <div class="col-md-4 col-sm-12 faq-grid"><a href="#">UK Web Archive Crawler Settings</a></div>
-      <div class="col-md-4 col-sm-12 faq-grid"><a href="#">Making Your Website Crawler-Friendly</a></div>
-      <div class="col-md-4 col-sm-12 faq-grid"><a href="#">What Can't Yet Be Archived</a></div>
-      <div class="col-md-4 col-sm-12 faq-grid bg-gray"><a href="#">Search Engines and the UK Web Archive</a></div>
-      <div class="col-md-4 col-sm-12 faq-grid bg-gray"><a href="#">Linking to the UK Web Archive</a></div>
-      <div class="col-md-4 col-sm-12 faq-grid bg-gray"><a href="#">Technical Background</a></div>
+      <div class="col-md-4 col-sm-12 faq-grid">UK Web Archive Crawler Settings</div>
+      <div class="col-md-4 col-sm-12 faq-grid">Making Your Website Crawler-Friendly</div>
+      <div class="col-md-4 col-sm-12 faq-grid">What Can't Yet Be Archived</div>
+      <div class="col-md-4 col-sm-12 faq-grid bg-gray">Search Engines and the UK Web Archive</div>
+      <div class="col-md-4 col-sm-12 faq-grid bg-gray">Linking to the UK Web Archive</div>
+      <div class="col-md-4 col-sm-12 faq-grid bg-gray">Technical Background</div>
       </div>          
   </section>
   <footer>

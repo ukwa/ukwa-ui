@@ -14,7 +14,7 @@
 </c:if>
 
 
-<html>
+<html lang="en">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title>UKWA Nominate</title>
@@ -37,15 +37,19 @@
     <div class="row header-blue padding-side-70 white">
       <div class="col-md-6 col-sm-12 padding-bottom-20">
         <h2>We will be archiving sites:</h2>
-        <p><span class="text-medium bold">1</span> - That are issued from a .uk or other UK geographic 
-          top-level domain.</p>
-        <p><span class="text-medium bold">2</span> - where part of the publishing process takes place in the UK.</p>
+        <ol>
+        <li>that are issued from a .uk or other UK geographic 
+          top-level domain.</li>
+        <li>where part of the publishing process takes place in the UK.</li>
+        </ol>
       </div>
       <div class="col-md-6 col-sm-12 padding-bottom-20">
         <h2>We will <em>not</em> be archiving:</h2>
-        <p><span class="text-medium bold">1</span> - Sites concerning film and recorded sound where the audio-visual content predominates (but, for example, web pages containing video clips alongside text or images are within scope).</p>
-        <p><span class="text-medium bold">2</span> - private intranets and emails.</p>
-        <p><span class="text-medium bold">3</span> - personal data in social networking sites or that are only available to restricted groups.</p>
+        <ol>
+        <li>sites concerning film and recorded sound where the audio-visual content predominates (but, for example, web pages containing video clips alongside text or images are within scope).</li>
+        <li>private intranets and emails.</li>
+        <li>personal data in social networking sites or that are only available to restricted groups.</li>
+        </ol>
       </div>
     </div>
   </section>
@@ -55,39 +59,39 @@
         <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
           <h3 class="light-blue bold">Nominate a site</h3>
           <p>Fields marked with <span class="light-blue">*</span> are mandatory</p>
-          <p>Personal details you provide on this form are protected by UK data protection law. Please view our <a href="#">Privacy Statement</a>.</p>
+          <p>Personal details you provide on this form are protected by UK data protection law. Please view our <a href="privacy">Privacy Statement</a>.</p>
         </div>
         <div class="col-md-6 col-sm-12 form-content-col">
           <div class="form-group">
-            <label>* Full name</label>
+            <label for="name">* Full name</label>
             <input type="text" name="name" id="name" class="form-control" placeholder="Please enter your full name" required/>
           </div>
           <div class="form-group">
-            <label>* Title of website</label>
+            <label for="title">* Title of website</label>
             <input type="text" name="title" id="title" class="form-control" placeholder="Please enter the title of the website" required/>
           </div>
           <div class="form-group">
-            <label>* URL of the website</label>
+            <label for="url">* URL of the website</label>
             <input type="text" name="url" id="url" class="form-control" placeholder="Please enter URL of the website" required/>
           </div>
         </div>
         <div class="col-md-6 col-sm-12 form-content-col">
           <div class="form-group">
-            <label>* Email address</label>
+            <label for="email">* Email address</label>
             <input type="email" name="email" id="email" class="form-control" placeholder="Please enter your email address" required/>
           </div>
           <div class="form-group">
-            <label>Address</label>
+            <label for="address">Address</label>
             <textarea name="address" id="address" class="form-control" placeholder=""></textarea>
           </div>
         </div>
         <div class="col-md-6 col-sm-12 form-content-col">
           <div class="form-group">
-            <label>Telephone number</label>
+            <label for="phone">Telephone number</label>
             <input type="text" name="phone" id="phone" class="form-control" placeholder="Please enter your telephone number"/>
           </div>
           <div class="form-group">
-            <label>* Are you the copyright holder or owner of the website?</label>
+            <label>* Are you the copyright holder or owner of the website?
             	
               <div class="row">
               
@@ -106,19 +110,19 @@
               </div>
               
               </div>
-              
+              </label>
           </div>
           </div>
         
         <div class="col-md-6 col-sm-12 form-content-col">
           <div class="form-group">
-            <label>Notes about your special request e.g. 'please archive urgently as this site will disappear next month' or 'this site relies on a database. Is this a problem?'</label>
+            <label for="notes">Notes about your special request e.g. 'please archive urgently as this site will disappear next month' or 'this site relies on a database. Is this a problem?'</label>
             <textarea name="notes" id="notes" class="form-control" placeholder=""></textarea>
           </div>
         </div>
         <div class="col-md-6 col-sm-12 form-content-col">
           <div class="form-group">
-            <label>Your justification - this will aid selection e.g. 'a typical business blog' or a 'prize winning site' or 'representative of Internet culture' or even 'humorous.'</label>
+            <label for="justification">Your justification - this will aid selection e.g. 'a typical business blog' or a 'prize winning site' or 'representative of Internet culture' or even 'humorous.'</label>
             <textarea name="justification" id="justification" class="form-control" placeholder=""></textarea>
           </div>
         </div>

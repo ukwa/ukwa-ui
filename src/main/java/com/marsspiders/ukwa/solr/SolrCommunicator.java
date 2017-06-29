@@ -91,8 +91,14 @@ public class SolrCommunicator {
 
             return mapper.readValue(solrSearchResultString, javaType);
         } catch (IOException e) {
-            log.error("Failed to send request to Solr", e);
-            return toBackupSolrSearchResult(bodyDocsType);
+            String errorMsg = "Failed to get data from Solr";
+            log.error(errorMsg, e);
+
+            if (showStubData) {
+                return toStubSolrSearchResult(bodyDocsType);
+            } else {
+                throw new RuntimeException(errorMsg, e);
+            }
         }
     }
 
@@ -113,20 +119,6 @@ public class SolrCommunicator {
                 .setDefaultCredentialsProvider(credentialsProvider)
                 .setDefaultRequestConfig(requestConfig)
                 .build();
-    }
-
-    private <T extends BodyDocsType> SolrSearchResult<T> toBackupSolrSearchResult(Class<T> bodyDocsType) {
-        SolrSearchResult<T> solrSearchResult = null;
-
-        if (showStubData) {
-            solrSearchResult = toStubSolrSearchResult(bodyDocsType);
-        }
-
-        if (solrSearchResult == null) {
-            solrSearchResult = toEmptySolrSearchResult();
-        }
-
-        return solrSearchResult;
     }
 
     private <T extends BodyDocsType> SolrSearchResult<T> toEmptySolrSearchResult() {

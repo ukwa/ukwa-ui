@@ -21,7 +21,7 @@
 <jsp:useBean id="rootCollections" scope="request" type="java.util.List<com.marsspiders.ukwa.controllers.data.CollectionDTO>"/>
 <jsp:useBean id="currentCollection" scope="request" type="com.marsspiders.ukwa.controllers.data.CollectionDTO"/>
 
-<html>
+<html lang="en">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title>UKWA Browse by subject</title>
@@ -66,12 +66,12 @@
   <c:forEach items="${subCollections}" var="subCollection">
   
   <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-30 padding-bottom-20">
-        <div class="center light-blue padding-bottom-10">
-          <a href="collection/<c:out value="${subCollection.id}"/>"><c:out value="${subCollection.name}"/></a>
+        <a href="collection/<c:out value="${subCollection.id}"/>"><div class="center light-blue padding-bottom-10 collection-heading">
+          <c:out value="${subCollection.name}"/>
         </div>
-        <figure><a href="collection/<c:out value="${subCollection.id}"/>" title="<c:out value="${subCollection.description}"/>"><img class="img-responsive border-gray coll-img" alt="Collections" src="img/collections/collection_<c:out value="${subCollection.id}"/>.png"/></a>
-          <figcaption class="img-square-caption"> <c:out value="${subCollection.description}"/></figcaption>
-        </figure>
+        <figure><img class="img-responsive border-gray coll-img" alt="Collections" src="img/collections/collection_<c:out value="${subCollection.id}"/>.png"/>
+          <figcaption class="img-square-caption shadow"> <c:out value="${subCollection.description}"/><div class="collection-readmore-cont" data-descript="<c:out value="${subCollection.fullDescription}"/>"><img src="img/icons/down-arrow-gray.png" class="collection-readmore-arrow collection-readmore-down" tabindex="0" title="Read more"/></div></figcaption>
+        </figure></a>
   </div>
   
 

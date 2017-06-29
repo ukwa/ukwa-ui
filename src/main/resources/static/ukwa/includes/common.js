@@ -65,5 +65,52 @@ $(document).ready(function(e) {
 		});
     });
 	
+	//match height for collection headings and descriptions
+	$('.img-square-caption').matchHeight();
+	$('.collection-heading').matchHeight();	
+	
+	//collection description readmore
+	$(".collection-readmore-down").each(function(index, element) {
+        $(this).click(function(e) {
+            e.preventDefault(); //don't activate link to collection
+
+			$(".img-square-caption").addClass("shadow"); //add shadow to all elements in case some is missing
+			parentElem=$(this).parent().parent();
+			$(".collection-description").height(parentElem.height());
+			$(".collection-description > .collection-description-content").text($(this).parent().attr("data-descript"));
+			$(".collection-description").css("width", parentElem.width()+40);
+			$(".collection-description").css("top", parentElem.offset().top);
+			$(".collection-description").css("left", parentElem.offset().left);
+			$(".collection-description").css("display", "block");
+			parentElem.removeClass("shadow");
+			if ($(".collection-description-content").height()>parentElem.height()) {
+				$(".collection-description").height($(".collection-description-content").height());
+			} else {
+				$(".collection-description").height(parentElem.height());
+			}
+			$(this).blur();
+			
+        });
+    });
+	
+	$(".collection-readmore-up").each(function(index, element) {
+        $(this).click(function(e) {
+            e.preventDefault(); //don't activate link to collection
+			$(".collection-description").css("display", "none");
+			$(".img-square-caption").addClass("shadow");	
+			$(this).blur();
+        });
+    });	
+	
+	$(window).resize(function(e) {
+        $(".collection-description").css("display", "none"); //on resize close collection descript in order for it not to fall apart
+		$(".img-square-caption").addClass("shadow");
+    });
+	
+	
+	//add default HTML document type filter
+	$("#search_form").submit(function(e) {
+		$(this).append('<input type="hidden" name="content_type" value="html" />');
+    });
 	
 });

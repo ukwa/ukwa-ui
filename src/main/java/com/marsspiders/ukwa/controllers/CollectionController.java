@@ -143,13 +143,13 @@ public class CollectionController {
     private static CollectionDTO toCollectionDTO(CollectionInfo collectionInfo, boolean abbreviate) {
         String id = collectionInfo.getId();
         String name = collectionInfo.getName();
-        String description = collectionInfo.getDescription() != null
+        String fullDescription = collectionInfo.getDescription() != null
                 ? collectionInfo.getDescription().replaceAll("<[^>]*>", "")
                 : null;
 
-        String shortDescription = abbreviate ? abbreviate(description, 60) : description;
+        String shortDescription = abbreviate ? abbreviate(fullDescription, 60) : fullDescription;
 
-        return new CollectionDTO(id, name, shortDescription, 0, 0, 0);
+        return new CollectionDTO(id, name, shortDescription, fullDescription, 0, 0, 0);
     }
 
 }

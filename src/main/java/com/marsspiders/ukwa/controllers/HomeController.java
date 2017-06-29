@@ -43,8 +43,16 @@ public class HomeController {
     }
 
     @RequestMapping(value = "ukwa/advancedsearch", method = GET)
-    public ModelAndView advancedSearchPagePageMapping() {
+    public ModelAndView advancedSearchPageMapping() {
         ModelAndView modelAndView = new ModelAndView("advanced");
+        modelAndView.addObject("setProtocolToHttps", setProtocolToHttps);
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "ukwa/version", method = GET)
+    public ModelAndView versionPageMapping() {
+        ModelAndView modelAndView = new ModelAndView("version");
         modelAndView.addObject("setProtocolToHttps", setProtocolToHttps);
 
         return modelAndView;

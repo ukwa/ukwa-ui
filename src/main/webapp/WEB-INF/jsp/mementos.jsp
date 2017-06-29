@@ -14,7 +14,7 @@
 </c:if>
 
 
-<html>
+<html lang="en">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title>UKWA Memento</title>
@@ -29,7 +29,7 @@
   </header>
   <section id="memento-header">
     <div class="row header-blue white">
-      <div class="col-md-6 offset-md-3"> <img class="h2-icon" src="img/icons/clock-white.png"/>
+      <div class="col-md-6 offset-md-3">
         <h2>Memento</h2>
         <h3>Finding historical versions of web pages (mementos) 
           captured by multiple archives across the world.</h3>

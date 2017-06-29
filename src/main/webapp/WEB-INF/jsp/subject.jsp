@@ -14,7 +14,7 @@
 </c:if>
 
 
-<html>
+<html lang="en">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title>UKWA Browse by subject</title>
@@ -36,18 +36,18 @@
       <div class="sidebar-title">
         <h3 class="white bold margin-0 padding-0">Browse by subject</h3>
       </div>
-      <div class="sidebar-menu-item active"><img class="sidebar-menu-img" alt="Arts &amp; Humanities" src="img/icons/arts-white.png"/>Arts &amp; Humanities</div>
-      <div class="sidebar-menu-item"><img class="sidebar-menu-img" alt="Business, Economy &amp; Industry" src="img/icons/business-white.png"/>Business, Economy &amp; Industry</div>
-      <div class="sidebar-menu-item"><img class="sidebar-menu-img" alt="Education &amp; Research" src="img/icons/education-white.png"/>Education &amp; Research</div>
-      <div class="sidebar-menu-item"><img class="sidebar-menu-img" alt="Government, Laq &amp; Politics" src="img/icons/government-white.png"/>Government, Laq &amp; Politics</div>
-      <div class="sidebar-menu-item"><img class="sidebar-menu-img" alt="Medicine &amp; Health" src="img/icons/medicine-white.png"/>Medicine &amp; Health</div>
-      <div class="sidebar-menu-item"><img class="sidebar-menu-img" alt="Science &amp; Technology" src="img/icons/science-white.png"/>Science &amp; Technology</div>
-      <div class="sidebar-menu-item"><img class="sidebar-menu-img" alt="Society &amp; Culture" src="img/icons/society-white.png"/>Society &amp; Culture</div>
+      <div class="sidebar-menu-item active">Arts &amp; Humanities</div>
+      <div class="sidebar-menu-item">Business, Economy &amp; Industry</div>
+      <div class="sidebar-menu-item">Education &amp; Research</div>
+      <div class="sidebar-menu-item">Government, Laq &amp; Politics</div>
+      <div class="sidebar-menu-item">Medicine &amp; Health</div>
+      <div class="sidebar-menu-item">Science &amp; Technology</div>
+      <div class="sidebar-menu-item">Society &amp; Culture</div>
     </div>
     <div class="col-lg-9 col-md-8 col-sm-12 padding-0">
     <div class="subject-title border-bottom-gray">
       <h1 class="float-left">Arts &amp; Humanities</h1>
-      <div class="help-button" title="Help"></div>
+      <div class="help-button" title="Help" tabindex="0"></div>
       <div class="clearfix"></div>
     </div>
     <div class="subject-subtitle">
@@ -90,7 +90,7 @@
       
             <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
         <div class="center light-blue padding-bottom-10">Blog</div>
-        <figure><img class="img-responsive border-gray" src="img/subject1.png"/>
+        <figure><img class="img-responsive border-gray" src="img/collections/collection_default.png"/>
           <figcaption class="img-square-caption"> The UK Blogosphere 
             (connected community 
             of Web logs) has burgeoned... </figcaption>
@@ -99,7 +99,7 @@
       
             <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
         <div class="center light-blue padding-bottom-10">Blog</div>
-        <figure><img class="img-responsive border-gray" src="img/subject1.png"/>
+        <figure><img class="img-responsive border-gray" src="img/collections/collection_default.png"/>
           <figcaption class="img-square-caption"> The UK Blogosphere 
             (connected community 
             of Web logs) has burgeoned... </figcaption>

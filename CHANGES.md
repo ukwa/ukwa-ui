@@ -2,6 +2,11 @@ Change Log
 ----------
 
 * 2017-06-29
+    * Added full descriptions to collections
+    * HTML search filter selected by default
+    * WCAG2 changes to pages (where applicable)
+
+* 2017-06-29
     * Remove copyrighted icons
 
 * 2017-06-11

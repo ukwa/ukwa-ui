@@ -16,7 +16,8 @@ $font-bold: 'Open Sans Bold', sans-serif;
 $font-arial: Arial, sans-serif;
 
 $blue: #0c49b0;
-$light-blue: #4683ec;
+$light-blue: #2e6dd9;
+/*$light-blue: #4683ec;*/
 $light-blue2: #427bdc;
 $light-gray: #fafafa;
 $light-gray2: #f6f6f6;
@@ -110,6 +111,14 @@ input, button, textarea, select {
 
 .bg-gray {
 	background-color:$light-gray;	
+}
+
+.hidden {
+	display:none;	
+}
+
+li {
+	margin-top:15px;	
 }
 
 /* PADDINGS AND MARGINS */
@@ -415,6 +424,10 @@ footer {
 	height:40px;
 	padding-bottom:0;
 	padding-top:20px;
+}
+
+.form-white-placeholder::placeholder { 
+  color: $white;
 }
 
 
@@ -724,7 +737,6 @@ h3 {
 .header-white {
 	padding:60px 20px 40px 20px;
 	background-color: $white;
-	border-top: solid 1px gray;
 	margin:0;
 }
 
@@ -736,9 +748,6 @@ h3 {
 .header-2-subtitle {
 	padding-left:20px;
 	padding-bottom:60px;
-    /*display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;*/
 }
 
 .header-title-hr {
@@ -811,15 +820,14 @@ footer {
 .footer-title {
 	font-size:2em;
 	text-transform:uppercase;	
+	margin-bottom:0;
 }
 
 .footer-title-hr {
 	width:150px;
 	height:0px;
 	border-top: solid 1px $gray;
-	margin-left:0;
-	margin-right:auto;
-	margin-bottom:30px;
+	margin:0 auto 30px 0;
 	text-align:center;
 }
 
@@ -861,11 +869,15 @@ footer {
 	margin-top:-40px;	
 	margin-bottom:20px;
 	background-color:$white;
-	padding:20px;
-	box-shadow: 1px 1px 7px $dark-gray;
+	padding:20px 20px 40px 20px;
 	display:block;
 	position:relative;
 	font-size:0.9em;
+	color:$black;
+	
+	&.shadow {
+		box-shadow: 1px 1px 7px $dark-gray;
+	}
 }
 
 .sidebar {
@@ -1360,6 +1372,40 @@ footer {
 
 /*SPECIAL COLLECTIONS*/
 
+.collection-heading {
+	display:block;
+	position:relative;
+}
+
+.collection-readmore-cont {
+	display:block;
+	position:absolute;
+	text-align:right;
+	clear:both;
+	bottom:6px;
+	right: 15px;	
+}
+
+.collection-readmore-arrow {
+	width:25px;
+	height:auto;
+	cursor: pointer;	
+}
+
+.collection-description {
+	background-color:$white;
+	padding:20px 20px 40px 20px;
+	box-shadow: 1px 1px 7px $dark-gray;
+	display:none;
+	position:absolute;
+	font-size:0.9em;
+	height:auto;
+	z-index:99999;
+}
+
+.collection-link {
+	text-decoration:none !important;	
+}
 
 /*ABOUT*/
 

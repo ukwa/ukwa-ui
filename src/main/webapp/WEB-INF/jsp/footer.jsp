@@ -9,27 +9,31 @@
     <a href="collection" title="<spring:message code="footer.collections.title" />"><spring:message code="footer.collections" /></a><br/>
 	<a href="blog" title="<spring:message code="footer.blog.title" />"><spring:message code="footer.blog" /></a><br/>
     <a href="info/nominate" title="<spring:message code="footer.nominate.title" />"><spring:message code="footer.nominate" /></a><br/>
+    <a href="info/faq" title="<spring:message code="footer.faq" />"><spring:message code="footer.faq" text="Notice and takedown" /></a><br/>
     <a href="contact" title="<spring:message code="footer.contact.title" />"><spring:message code="footer.contact" /></a><br/>
   </div>
-  <div class="col-md-5 offset-md-1 col-sm-12 footer-links"> 
-  
-    <c:if test="${!fn:startsWith(textUri, '/en/') && (fn:startsWith(textUri, '/gd/') || fn:startsWith(textUri, '/cy/'))}">
-    <a href="/en<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="footer.english.title" />"><spring:message code="footer.english" /></a><br/>
+  <div class="col-md-5 offset-md-1 col-sm-12 footer-links">
+
+    <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
+    <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy' || textUri == '/gd'
+                                        ? '/'
+                                        : fn:replace(fn:replace(fn:replace(textUri, '/en/', '/'), '/gd/', '/'), '/cy/', '/')}"/>
+
+  <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'}">
+    <span lang="en"><a href="/en<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="footer.english.title" />"><spring:message code="footer.english" /></a></span><br/>
   </c:if>
-  <c:if test="${!fn:startsWith(textUri, '/cy/')}">
-    <a href="/cy<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="footer.welsh.title" />"><spring:message code="footer.welsh" /></a><br/>
+  <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}">
+    <span lang="cy"><a href="/cy<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="footer.welsh.title" />"><spring:message code="footer.welsh" /></a></span><br/>
   </c:if>
-  <c:if test="${!fn:startsWith(textUri, '/gd/')}">
-    <a href="/gd<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="footer.scottish.title" />"><spring:message code="footer.scottish" /></a><br/>
+  <c:if test="${!fn:startsWith(textUri, '/gd/') && textUri != '/gd'}">
+    <span lang="gn"><a href="/gd<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="footer.scottish.title" />"><spring:message code="footer.scottish" /></a></span><br/>
   </c:if>
-  
-    <a href="info/faq" title="<spring:message code="footer.faq" />"><spring:message code="footer.faq" text="Notice and takedown" /></a><br/>
+
+    
     <a href="info/notice_takedown" title="<spring:message code="footer.notice.title" />"><spring:message code="footer.notice" text="Notice and takedown" /></a><br/>
     <a href="info/terms_conditions" title="<spring:message code="footer.terms.title" />"><spring:message code="footer.terms" text="Terms and conditions" /></a><br/>
     <a href="info/privacy" title="<spring:message code="footer.privacy.title" />"><spring:message code="footer.privacy" text="Privacy statement" /></a><br/>
 
-  <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
-  <c:set var="textUriWithoutLang" value="${fn:replace(fn:replace(fn:replace(textUri, '/en/', '/'), '/gd/', '/'), '/cy/', '/')}"/>
 
 
 

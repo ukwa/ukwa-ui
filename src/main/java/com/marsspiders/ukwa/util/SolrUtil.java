@@ -34,7 +34,7 @@ public class SolrUtil {
         return sb.toString();
     }
 
-    public static String toMultipleConditionsQuery(List<String> values, String fieldName) {
+    public static String toMultipleConditionsQueryWithPreCondition(List<String> values, String fieldName) {
         StringBuilder sb = new StringBuilder();
 
         for (String valueToInclude : values) {
@@ -49,6 +49,26 @@ public class SolrUtil {
         if(sb.length() != 0){
             sb.append(")");
             sb.insert(0, AND_JOINER);
+        }
+
+        return sb.toString();
+    }
+
+
+    public static String toMultipleConditionsQuery(List<String> values, String fieldName) {
+        StringBuilder sb = new StringBuilder();
+
+        for (String valueToInclude : values) {
+            if(sb.length() == 0){
+                sb.append("(");
+            } else {
+                sb.append(OR_JOINER);
+            }
+            sb.append(fieldName).append(":").append("\"").append(valueToInclude).append("\"");
+        }
+
+        if(sb.length() != 0){
+            sb.append(")");
         }
 
         return sb.toString();

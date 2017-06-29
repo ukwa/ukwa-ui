@@ -14,7 +14,7 @@
 </c:if>
 
 
-<html>
+<html lang="en">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title>UKWA Browse by subject</title>
@@ -38,14 +38,14 @@
       </div>
       <div class="border-bottom-white padding-20">
         <label class="bold white text-medium width-100">Text Search</label>
-        <label class="white width-100">Search all instances by text</label>
+        <label class="white width-100" for="search">Search all instances by text</label>
         <input type="text" name="search" id="search" class="form-search-input margin-top-20 margin-bottom-20"/>
       </div>
       <div class="padding-20">
         <label class="bold white text-medium width-100">Restrict by date</label>
         <div class="row margin-0 padding-0">
           <div class="col-md-3 padding-0 padding-vert-10">
-            <label class="white padding-top-5">From</label>
+            <label class="white padding-top-5" for="from">From</label>
           </div>
           <div class="col-md-5 padding-0 padding-vert-10">
             <input type="text" name="from" id="from" class="form-control blue"/>
@@ -53,7 +53,7 @@
         </div>
         <div class="row margin-0 padding-0">
           <div class="col-md-3 padding-0 padding-vert-10">
-            <label class="white padding-top-5">To</label>
+            <label class="white padding-top-5" for="to">To</label>
           </div>
           <div class="col-md-5 padding-0 padding-vert-10">
             <input type="text" name="from" id="from" class="form-control blue"/>
@@ -65,7 +65,7 @@
     <div class="col-lg-9 col-md-8 col-sm-12 padding-0">
       <div class="results-header border-bottom-gray">
         <div class="float-left padding-top-5">20 results for <span class="bold">"Interactive Design"</span></div>
-        <div class="help-button small" title="Help"></div>
+        <div class="help-button small" title="Help" tabindex="0"></div>
         <div class="clearfix"></div>
       </div>
       <div class="row margin-0 results-title border-bottom-gray">
@@ -80,44 +80,44 @@
       <div class="row margin-0 padding-left-60 results-result border-bottom-gray">
         <div class="col-lg-9 offset-lg-1 col-md-12 col-sm-12 padding-0 padding-left-60">
           <h2 class="margin-0">Title</h2>
-          <span class="results-title-text clearfix padding-0">10/09/2015</span> <span class="results-title-text clearfix padding-vert-10 ellipsis"><a href="#">https://www.webarchive.org.uk/ukwa/target/50659337/source/search</a></span> <span class="results-title-text clearfix">Lorem ipsum dolor sit amet, <strong class="bold">Interaction design</strong> elit. Curabitur vel enim efficitur, 
+          <span class="results-title-text clearfix padding-0">10/09/2015</span> <span class="results-title-text clearfix padding-vert-10 ellipsis"><a href="https://www.webarchive.org.uk/ukwa/target/50659337/source/search">https://www.webarchive.org.uk/ukwa/target/50659337/source/search</a></span> <span class="results-title-text clearfix">Lorem ipsum dolor sit amet, <strong class="bold">Interaction design</strong> elit. Curabitur vel enim efficitur, 
           ornare felis a, faucibus turpis. Cras varius nisi vulputate ante ultrices, quis feugiat mi convallis.</span> </div>
       </div>
       <div class="row margin-0 padding-left-60 results-result border-bottom-gray">
         <div class="col-lg-9 offset-lg-1 col-md-12 col-sm-12 padding-0 padding-left-60">
           <h2 class="margin-0">Title</h2>
-          <span class="results-title-text clearfix padding-0">10/09/2015</span> <span class="results-title-text clearfix padding-vert-10"><a href="#">https://www.webarchive.org.uk/ukwa/target/50659337/source/search</a></span> <span class="results-title-text clearfix">Lorem ipsum dolor sit amet, <strong class="bold">Interaction design</strong> elit. Curabitur vel enim efficitur, 
+          <span class="results-title-text clearfix padding-0">10/09/2015</span> <span class="results-title-text clearfix padding-vert-10"><a href="https://www.webarchive.org.uk/ukwa/target/50659337/source/search">https://www.webarchive.org.uk/ukwa/target/50659337/source/search</a></span> <span class="results-title-text clearfix">Lorem ipsum dolor sit amet, <strong class="bold">Interaction design</strong> elit. Curabitur vel enim efficitur, 
           ornare felis a, faucibus turpis. Cras varius nisi vulputate ante ultrices, quis feugiat mi convallis.</span> </div>
       </div>
       <div class="row margin-0 padding-left-60 results-result border-bottom-gray">
         <div class="col-lg-9 offset-lg-1 col-md-12 col-sm-12 padding-0 padding-left-60">
           <h2 class="margin-0">Title</h2>
-          <span class="results-title-text clearfix padding-0">10/09/2015</span> <span class="results-title-text clearfix padding-vert-10"><a href="#">https://www.webarchive.org.uk/ukwa/target/50659337/source/search</a></span> <span class="results-title-text clearfix">Lorem ipsum dolor sit amet, <strong class="bold">Interaction design</strong> elit. Curabitur vel enim efficitur, 
+          <span class="results-title-text clearfix padding-0">10/09/2015</span> <span class="results-title-text clearfix padding-vert-10"><a href="https://www.webarchive.org.uk/ukwa/target/50659337/source/search">https://www.webarchive.org.uk/ukwa/target/50659337/source/search</a></span> <span class="results-title-text clearfix">Lorem ipsum dolor sit amet, <strong class="bold">Interaction design</strong> elit. Curabitur vel enim efficitur, 
           ornare felis a, faucibus turpis. Cras varius nisi vulputate ante ultrices, quis feugiat mi convallis.</span> </div>
       </div>
       <div class="row margin-0 padding-left-60 results-result border-bottom-gray">
         <div class="col-lg-9 offset-lg-1 col-md-12 col-sm-12 padding-0 padding-left-60">
           <h2 class="margin-0">Title</h2>
-          <span class="results-title-text clearfix padding-0">10/09/2015</span> <span class="results-title-text clearfix padding-vert-10"><a href="#">https://www.webarchive.org.uk/ukwa/target/50659337/source/search</a></span> <span class="results-title-text clearfix">Lorem ipsum dolor sit amet, <strong class="bold">Interaction design</strong> elit. Curabitur vel enim efficitur, 
+          <span class="results-title-text clearfix padding-0">10/09/2015</span> <span class="results-title-text clearfix padding-vert-10"><a href="https://www.webarchive.org.uk/ukwa/target/50659337/source/search">https://www.webarchive.org.uk/ukwa/target/50659337/source/search</a></span> <span class="results-title-text clearfix">Lorem ipsum dolor sit amet, <strong class="bold">Interaction design</strong> elit. Curabitur vel enim efficitur, 
           ornare felis a, faucibus turpis. Cras varius nisi vulputate ante ultrices, quis feugiat mi convallis.</span> </div>
       </div>
       <div class="row margin-0 padding-left-60 results-result border-bottom-gray">
         <div class="col-lg-9 offset-lg-1 col-md-12 col-sm-12 padding-0 padding-left-60">
           <h2 class="margin-0">Title</h2>
-          <span class="results-title-text clearfix padding-0">10/09/2015</span> <span class="results-title-text clearfix padding-vert-10"><a href="#">https://www.webarchive.org.uk/ukwa/target/50659337/source/search</a></span> <span class="results-title-text clearfix">Lorem ipsum dolor sit amet, <strong class="bold">Interaction design</strong> elit. Curabitur vel enim efficitur, 
+          <span class="results-title-text clearfix padding-0">10/09/2015</span> <span class="results-title-text clearfix padding-vert-10"><a href="https://www.webarchive.org.uk/ukwa/target/50659337/source/search">https://www.webarchive.org.uk/ukwa/target/50659337/source/search</a></span> <span class="results-title-text clearfix">Lorem ipsum dolor sit amet, <strong class="bold">Interaction design</strong> elit. Curabitur vel enim efficitur, 
           ornare felis a, faucibus turpis. Cras varius nisi vulputate ante ultrices, quis feugiat mi convallis.</span> </div>
       </div>
       <div class="row padding-0 margin-0">
         <div class="col-md-12 pagination-cont">
-			<a href="#" title="Previous page"><div class="pagination-button arrow left-arrow"></div></a>
-            <a href="#" title="2"><div class="pagination-button active">2</div></a>
-            <a href="#" title="3"><div class="pagination-button inactive">3</div></a>
-            <a href="#" title="4"><div class="pagination-button inactive">4</div></a>
+			<a href="/" title="Previous page"><div class="pagination-button arrow left-arrow"></div></a>
+            <a href="/" title="2"><div class="pagination-button active">2</div></a>
+            <a href="/" title="3"><div class="pagination-button inactive">3</div></a>
+            <a href="/" title="4"><div class="pagination-button inactive">4</div></a>
           
             <div class="pagination-button dots inactive"></div>
             
-            <a href="#" title="8"><div class="pagination-button inactive">8</div></a> 
-            <a href="#" title="Next page"><div class="pagination-button arrow right-arrow"></div></a>
+            <a href="/" title="8"><div class="pagination-button inactive">8</div></a> 
+            <a href="/" title="Next page"><div class="pagination-button arrow right-arrow"></div></a>
         </div>
       </div>
     </div>

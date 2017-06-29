@@ -14,7 +14,7 @@
 </c:if>
 
 
-<html>
+<html lang="en">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title>UKWA Advanced Search</title>
@@ -44,37 +44,38 @@
               <form action="" method="get" enctype="multipart/form-data" name="search_form">
       <div class="row">
         <div class="col-md-4 col-sm-12 padding-bottom-20">
-          <div class="form-check-cont">
+          <div class="form-check-cont" tabindex="0">
             <input type="radio" name="how" id="how_1" value="1" checked/>
             <label class="main-search-check-label" for="how_1">Web title</label>
           </div>
         </div>
         <div class="col-md-4 col-sm-12  padding-bottom-20">
-          <div class="form-check-cont">
+          <div class="form-check-cont" tabindex="0">
             <input type="radio" name="how" id="how_2" value="2"/>
-            <label class="main-search-check-label" for="how_1">Website URL</label>
+            <label class="main-search-check-label" for="how_2">Website URL</label>
           </div>
         </div>
         <div class="col-md-4 col-sm-12  padding-bottom-20">
-          <div class="form-check-cont">
+          <div class="form-check-cont" tabindex="0">
             <input type="radio" name="how" id="how_3" value="3"/>
-            <label class="main-search-check-label" for="how_1">Website title and URL</label>
+            <label class="main-search-check-label" for="how_3">Website title and URL</label>
           </div>
         </div>
       </div>
       <input class="main-search-input noshadow" type="text" name="search" id="search"/>
+      <label class="hidden" for="search">Search</label>
       <div class="row padding-top-30">
         <div class="col-lg-4 col-md-5 col-sm-12 padding-bottom-20">
           <h3 class="light-blue bold text-bigger">Restrict by date :</h3>
           <div class="row">
             <div class="col-sm-5 float-right padding-vert-10">
-              <label>From</label>
+              <label for="from">From</label>
             </div>
             <div class="col-sm-7 padding-vert-10">
               <input type="text" class="form-control" name="from" id="from"/>
             </div>
             <div class="col-sm-5 float-right padding-vert-10">
-              <label>To</label>
+              <label for="to">To</label>
             </div>
             <div class="col-sm-7 padding-vert-10">
               <input type="text" class="form-control" name="to" id="to"/>
@@ -85,13 +86,13 @@
           <h3 class="light-blue bold text-bigger">Group by result by :</h3>
           <div class="row">
             <div class="col-md-5 col-sm-12 padding-bottom-20">
-              <div class="form-check-cont">
+              <div class="form-check-cont" tabindex="0">
                 <input type="radio" name="group" id="group_1" value="1" checked/>
                 <label class="main-search-check-label" for="group_1">Domain</label>
               </div>
             </div>
             <div class="col-md-5 col-sm-12  padding-bottom-20">
-              <div class="form-check-cont">
+              <div class="form-check-cont" tabindex="0">
                 <input type="radio" name="group" id="group_2" value="2"/>
                 <label class="main-search-check-label" for="group_2">None</label>
               </div>
@@ -115,7 +116,7 @@
       </div>
       <div class="row padding-top-20">
         <div class="col-lg-3 col-md-4 col-sm-12 padding-vert-10">
-          <label class="light-blue bold text-bigger">Filter by host :</label>
+          <label class="light-blue bold text-bigger" for="host">Filter by host :</label>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-12 padding-vert-10">
           <input type="text" class="form-control" name="host" id="host"/>

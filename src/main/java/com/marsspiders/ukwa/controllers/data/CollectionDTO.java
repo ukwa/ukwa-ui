@@ -6,6 +6,7 @@ public class CollectionDTO {
     private String id;
     private String name;
     private String description;
+    private String fullDescription;
     private long subCollectionsNum;
     private long websitesNum;
     private long websitesOpenAccessNum;
@@ -15,10 +16,11 @@ public class CollectionDTO {
     public CollectionDTO() {
     }
 
-    public CollectionDTO(String id, String name, String description, long subCollectionsNum, long websitesNum, long websitesOpenAccessNum) {
+    public CollectionDTO(String id, String name, String description, String fullDescription, long subCollectionsNum, long websitesNum, long websitesOpenAccessNum) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.fullDescription = fullDescription;
         this.subCollectionsNum = subCollectionsNum;
         this.websitesNum = websitesNum;
         this.websitesOpenAccessNum = websitesOpenAccessNum;
@@ -46,6 +48,14 @@ public class CollectionDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getFullDescription() {
+        return fullDescription;
+    }
+
+    public void setFullDescription(String fullDescription) {
+        this.fullDescription = fullDescription;
     }
 
     public long getSubCollectionsNum() {

@@ -2,9 +2,9 @@ package com.marsspiders.ukwa.controllers;
 
 import com.marsspiders.ukwa.controllers.data.SearchResultDTO;
 import com.marsspiders.ukwa.solr.AccessToEnum;
-import com.marsspiders.ukwa.solr.SortByEnum;
 import com.marsspiders.ukwa.solr.SearchByEnum;
 import com.marsspiders.ukwa.solr.SolrSearchService;
+import com.marsspiders.ukwa.solr.SortByEnum;
 import com.marsspiders.ukwa.solr.data.ContentInfo;
 import com.marsspiders.ukwa.solr.data.FacetCounts;
 import com.marsspiders.ukwa.solr.data.HighlightingContent;
@@ -26,10 +26,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import static com.marsspiders.ukwa.controllers.CollectionController.ROWS_PER_PAGE_DEFAULT;
 import static com.marsspiders.ukwa.controllers.HomeController.PROJECT_NAME;
@@ -66,7 +64,7 @@ public class SearchController {
                                    @RequestParam(value = "from_date", required = false) String fromDateText,
                                    @RequestParam(value = "to_date", required = false) String toDateText,
                                    @RequestParam(value = "range_date", required = false) String[] checkedRangeDates,
-                                   @RequestParam(value = "collection", required = false) String[] checkedCollectionIds,
+                                   @RequestParam(value = "collection", required = false) String[] checkedCollections,
                                    @RequestParam(value = "view_sort", required = false) String sortValue,
                                    @RequestParam(value = "view_count", required = false) String viewCount,
                                    @RequestParam(value = "view_filter", required = false) String accessViewFilter,
@@ -77,13 +75,13 @@ public class SearchController {
         List<String> publicSuffixesPairs = new LinkedList<>();
         List<String> domainsPairs = new LinkedList<>();
         List<String> rangeDatesPairs = new LinkedList<>();
-        Map<String, String> collectionsNamesToId = new HashMap<>();
+        List<String> collectionPairs = new LinkedList<>();
 
         List<String> originalDocumentTypes = checkedDocumentTypes != null ? asList(checkedDocumentTypes) : emptyList();
         List<String> originalPublicSuffixes = checkedPublicSuffixes != null ? asList(checkedPublicSuffixes) : emptyList();
         List<String> originalDomains = checkedDomains != null ? asList(checkedDomains) : emptyList();
         List<String> originalRangeDates = checkedRangeDates != null ? asList(checkedRangeDates) : emptyList();
-        List<String> originalCollectionIds = checkedCollectionIds != null ? asList(checkedCollectionIds) : emptyList();
+        List<String> originalCollections = checkedCollections != null ? asList(checkedCollections) : emptyList();
         int rowsPerPage = isNumeric(viewCount) ? Integer.valueOf(viewCount) : ROWS_PER_PAGE_DEFAULT;
         long targetPageNumber = isNumeric(pageNum) ? Long.valueOf(pageNum) : 1;
         long totalSearchResultsSize = 0;
@@ -99,7 +97,7 @@ public class SearchController {
 
             SolrSearchResult<ContentInfo> archivedSites = searchService.searchContent(searchBy, text, rowsPerPage,
                     sortBy, accessTo, startFromRow, originalDocumentTypes, originalPublicSuffixes, originalDomains,
-                    fromDate, toDate, originalRangeDates, originalCollectionIds);
+                    fromDate, toDate, originalRangeDates, originalCollections);
 
             searchResultDTOs = toSearchResults(archivedSites, request, searchBy);
             totalSearchResultsSize = archivedSites.getResponseBody().getNumFound();
@@ -111,8 +109,8 @@ public class SearchController {
                 contentTypesPairs = facetCounts.getFields().getContentTypes();
                 publicSuffixesPairs = facetCounts.getFields().getPublicSuffixes();
                 domainsPairs = facetCounts.getFields().getDomains();
+                collectionPairs = facetCounts.getFields().getCollections();
                 rangeDatesPairs = toRangeDates(datesCount);
-                collectionsNamesToId = searchService.getParentCollections(facetCounts.getFields().getHosts());
             }
         }
 
@@ -126,7 +124,7 @@ public class SearchController {
         mav.addObject("publicSuffixes", publicSuffixesPairs);
         mav.addObject("domains", domainsPairs);
         mav.addObject("rangeDates", rangeDatesPairs);
-        mav.addObject("collectionsNamesToId", collectionsNamesToId);
+        mav.addObject("collections", collectionPairs);
         mav.addObject("originalSearchRequest", text);
         mav.addObject("originalSearchLocation", searchLocation);
         mav.addObject("originalContentTypes", originalDocumentTypes);
@@ -135,7 +133,7 @@ public class SearchController {
         mav.addObject("originalFromDateText", fromDateText);
         mav.addObject("originalToDateText", toDateText);
         mav.addObject("originalRangeDates", originalRangeDates);
-        mav.addObject("originalCollectionIds", originalCollectionIds);
+        mav.addObject("originalCollections", originalCollections);
         mav.addObject("originalAccessView", originalAccessView);
         mav.addObject("originalSortValue", originalSortValue);
         mav.addObject("setProtocolToHttps", setProtocolToHttps);

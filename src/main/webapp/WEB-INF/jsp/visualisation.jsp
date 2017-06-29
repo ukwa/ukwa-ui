@@ -14,7 +14,7 @@
 </c:if>
 
 
-<html>
+<html lang="en">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title>UKWA Visualisation</title>
@@ -29,7 +29,7 @@
   </header>
   <section id="visualisation-header">
     <div class="row header-blue white">
-      <div class="col-md-6 offset-md-3"> <img class="h2-icon" src="img/icons/visualisation-white.png"/>
+      <div class="col-md-6 offset-md-3">
         <h2>Visualisation</h2>
         <p>Use data-based visual tools to access the archive's content as alternatives to the standard search and browse functions.</p>
       </div>

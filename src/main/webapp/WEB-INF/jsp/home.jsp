@@ -12,7 +12,7 @@
     <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
 </c:if>
 
-<html>
+<html lang="en">
 <head>
     <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/ukwa/" />
 </head>
