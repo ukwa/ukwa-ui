@@ -1,4 +1,36 @@
 //common on load functions
+
+function expandCollDescript(ev, object) {
+
+	ev.preventDefault(); //don't activate link to collection
+	
+	$(".img-square-caption").addClass("shadow"); //add shadow to all elements in case some is missing
+	parentElem=object.parent().parent();
+	$(".collection-description").height(parentElem.height());
+	$(".collection-description > .collection-description-content").text(object.parent().attr("data-descript"));
+	$(".collection-description").css("width", parentElem.width()+40);
+	$(".collection-description").css("top", parentElem.offset().top);
+	$(".collection-description").css("left", parentElem.offset().left);
+	$(".collection-description").css("display", "block");
+	parentElem.removeClass("shadow");
+	if ($(".collection-description-content").height()>parentElem.height()) {
+		$(".collection-description").height($(".collection-description-content").height());
+	} else {
+		$(".collection-description").height(parentElem.height());
+	}
+	$(".collection-readmore-up").focus();
+	
+}
+
+function collapseCollDescript(ev, object) {
+
+	ev.preventDefault(); //don't activate link to collection
+	$(".collection-description").css("display", "none");
+	$(".img-square-caption").addClass("shadow");	
+	object.focus();
+	
+}
+
 $(document).ready(function(e) {
 	
 	//bootstrap tooltips
@@ -42,6 +74,10 @@ $(document).ready(function(e) {
 		$("html, body").animate({ scrollTop: 0 }, 600);
 	});
 	
+	$(".up-button").keyup(function(e) {
+		if(e.which == 13) $("html, body").animate({ scrollTop: 0 }, 600);
+	});
+	
 	//about video
 	$("#play-about-video").click(function(e) {
 		$("html, body").animate({ scrollTop: "0px" });
@@ -58,59 +94,35 @@ $(document).ready(function(e) {
 	
 	//replace broken images for collections
 	$(".coll-img").each(function(index, element) {
-        $(this).on('error', function() {
-			var old_img=$(this).attr('src');
-			$(this).unbind("error").attr("src", "img/collections/collection_default.png");
+		var elem=$(this);
+		$.get(elem.attr('src'))
+		.fail(function() { 
+			var old_img=elem.attr('src');
+			elem.unbind("error").attr("src", "img/collections/collection_default.png");
 			console.log(old_img+' replaced with default image.');
-		});
+		})
     });
+
 	
 	//match height for collection headings and descriptions
 	$('.img-square-caption').matchHeight();
 	$('.collection-heading').matchHeight();	
 	
-	//collection description readmore
-	$(".collection-readmore-down").each(function(index, element) {
-        $(this).click(function(e) {
-            e.preventDefault(); //don't activate link to collection
-
-			$(".img-square-caption").addClass("shadow"); //add shadow to all elements in case some is missing
-			parentElem=$(this).parent().parent();
-			$(".collection-description").height(parentElem.height());
-			$(".collection-description > .collection-description-content").text($(this).parent().attr("data-descript"));
-			$(".collection-description").css("width", parentElem.width()+40);
-			$(".collection-description").css("top", parentElem.offset().top);
-			$(".collection-description").css("left", parentElem.offset().left);
-			$(".collection-description").css("display", "block");
-			parentElem.removeClass("shadow");
-			if ($(".collection-description-content").height()>parentElem.height()) {
-				$(".collection-description").height($(".collection-description-content").height());
-			} else {
-				$(".collection-description").height(parentElem.height());
-			}
-			$(this).blur();
-			
-        });
-    });
-	
-	$(".collection-readmore-up").each(function(index, element) {
-        $(this).click(function(e) {
-            e.preventDefault(); //don't activate link to collection
-			$(".collection-description").css("display", "none");
-			$(".img-square-caption").addClass("shadow");	
-			$(this).blur();
-        });
-    });	
-	
-	$(window).resize(function(e) {
-        $(".collection-description").css("display", "none"); //on resize close collection descript in order for it not to fall apart
-		$(".img-square-caption").addClass("shadow");
-    });
-	
 	
 	//add default HTML document type filter
 	$("#search_form").submit(function(e) {
 		$(this).append('<input type="hidden" name="content_type" value="html" />');
+    });
+	
+	//FAQ and technical
+	$(".q-question").each(function(index, element) {
+       	$(this).click(function(e) {
+			e.preventDefault();
+			$(".q-description").hide();
+			$(".q-question").removeClass("active");
+			$(this).addClass("active");
+			$("#"+$(this).attr("data-descriptid")).show();
+		}); 
     });
 	
 });

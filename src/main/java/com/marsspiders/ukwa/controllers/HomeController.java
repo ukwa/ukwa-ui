@@ -34,7 +34,7 @@ public class HomeController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "ukwa/info/{pageName:about|mementos|nominate|faq|technical|contact}", method = GET)
+    @RequestMapping(value = "ukwa/info/{pageName:about|nominate|faq|technical|contact|terms_conditions|privacy|notice_takedown}", method = GET)
     public ModelAndView staticInfoPageMapping(@PathVariable("pageName") String pageName) {
         ModelAndView modelAndView = new ModelAndView(pageName);
         modelAndView.addObject("setProtocolToHttps", setProtocolToHttps);
@@ -42,13 +42,13 @@ public class HomeController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "ukwa/advancedsearch", method = GET)
+    /*@RequestMapping(value = "ukwa/advancedsearch", method = GET)
     public ModelAndView advancedSearchPageMapping() {
         ModelAndView modelAndView = new ModelAndView("advanced");
         modelAndView.addObject("setProtocolToHttps", setProtocolToHttps);
 
         return modelAndView;
-    }
+    }*/
 
     @RequestMapping(value = "ukwa/version", method = GET)
     public ModelAndView versionPageMapping() {

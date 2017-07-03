@@ -1,6 +1,19 @@
 Change Log
 ----------
 
+* 2017-07-03
+    * WCAG2 fully fixed
+    * Removed mappings for pages which will be done in phase 2
+    * Added mappings for Terms and conditions, Privacy and Technical information pages
+    * Finished FAQ and Technical information pages
+    * Changed OpenSans Regular font to OpenSans Semibold
+    * Larger footer icons and added links to footer icons
+    * Removed "More information..." heading in the footer
+    * Removed live URL from collections
+    * Added blog URL to footer menu
+    * Added favicon
+    * Shortened long URLs in collections
+
 * 2017-06-29
     * Added full descriptions to collections
     * HTML search filter selected by default

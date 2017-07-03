@@ -4,6 +4,7 @@
 	<script src="js/html5shiv/html5shiv.js"></script>
 	<script src="js/respondjs/dest/respond.min.js"></script>
 <![endif]-->
+<link rel="icon" href="img/icons/favicon.png" type="image/png"/>
 <link rel="stylesheet" href="includes/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="includes/jqueryui/jquery-ui.min.css">
 <link rel="stylesheet" href="css/main.css">

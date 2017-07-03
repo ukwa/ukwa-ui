@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'Open Sans';
-    src: url('../fonts/OpenSans-Regular.ttf');
+    src: url('../fonts/OpenSans-Semibold.ttf');
 }
 
 @font-face {
@@ -17,7 +17,6 @@ $font-arial: Arial, sans-serif;
 
 $blue: #0c49b0;
 $light-blue: #2e6dd9;
-/*$light-blue: #4683ec;*/
 $light-blue2: #427bdc;
 $light-gray: #fafafa;
 $light-gray2: #f6f6f6;
@@ -45,6 +44,9 @@ input, button, textarea, select {
 	font-family: $font-normal !important;	
 }
 
+:focus {
+	outline-color: $black;	 
+}
 
 /* GENERAL STYLES AND COLORS*/
 .center {
@@ -91,6 +93,10 @@ input, button, textarea, select {
 
 .text-bigger {
 	font-size:1.2em !important;	
+}
+
+.text-big {
+	font-size:1.4em !important;	
 }
 
 .text-justify {
@@ -845,8 +851,8 @@ footer {
 }
 
 .footer-logo {
-	margin:20px;
-	height:60px;
+	margin:30px;
+	height:80px;
 	width:auto;
 }	
 
@@ -869,7 +875,7 @@ footer {
 	margin-top:-40px;	
 	margin-bottom:20px;
 	background-color:$white;
-	padding:20px 20px 40px 20px;
+	padding:20px;
 	display:block;
 	position:relative;
 	font-size:0.9em;
@@ -1139,11 +1145,12 @@ footer {
 	height:45px;
 	font-size: 14px;
 	color:$light-blue;
-	background-color:$gray;
+	background-color:$white;
+	border: solid 1px $light-blue;
 	margin: 10px 10px 10px 10px;
 	display:inline-block;
 	border-radius:30px;
-	padding-top:12px;
+	padding-top:11px;
 	cursor:pointer;
 }
 
@@ -1168,7 +1175,8 @@ footer {
 		background-position:center;
 		background-repeat:no-repeat;
 		background-size: 30px auto;
-		color:transparent;	
+		color:transparent;
+		border: none;	
 	}
 	
 	&.arrow:before {
@@ -1269,14 +1277,26 @@ footer {
 	font-size:1.4em;
 }	
 
-/*FAQ*/
+/*FAQ AND TECHNICAL*/
 
 
-.faq-grid {
+.q-grid {
 	padding: 40px 15px 40px 15px;
 	text-align:center;
 	font-size:1em;
-}	
+}
+
+.q-description {
+	padding: 40px 15px 40px 15px;
+	text-align:left;
+}
+
+.q-question {
+	
+	&.active {
+		font-family: $font-bold;	
+	}
+}
 
 /*BROWSE BY SUBJECT*/
 
@@ -1375,32 +1395,6 @@ footer {
 .collection-heading {
 	display:block;
 	position:relative;
-}
-
-.collection-readmore-cont {
-	display:block;
-	position:absolute;
-	text-align:right;
-	clear:both;
-	bottom:6px;
-	right: 15px;	
-}
-
-.collection-readmore-arrow {
-	width:25px;
-	height:auto;
-	cursor: pointer;	
-}
-
-.collection-description {
-	background-color:$white;
-	padding:20px 20px 40px 20px;
-	box-shadow: 1px 1px 7px $dark-gray;
-	display:none;
-	position:absolute;
-	font-size:0.9em;
-	height:auto;
-	z-index:99999;
 }
 
 .collection-link {
