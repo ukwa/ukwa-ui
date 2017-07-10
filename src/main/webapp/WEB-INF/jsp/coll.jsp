@@ -33,21 +33,41 @@ ${pageContext.response.locale}
 </header>
 <section id="content">
 <div class="row margin-0 padding-0">
-  <div class="col-lg-3 col-md-4 col-sm-12 sidebar padding-0 white"> <a href="collection" class="no-decoration" title="Back to the list">
+  <div class="col-lg-3 col-md-4 col-sm-12 sidebar padding-0 white"> <!--<a href="collection" class="no-decoration" title="Back to the list">
     <div class="sidebar-back-item border-bottom-white">Back to the list</div>
-    </a>
-    <div class="sidebar-item toggle open" id="toggle-sidebar"></div>
-    <div class="sidebar-collapse">
-      <p class="sidebar-coll-title padding-20 padding-bottom-0">Special collections</p>
-      <p class="sidebar-coll-link padding-20 white">
-        <c:forEach items="${rootCollections}" var="rootCollection"> <a href="collection/<c:out value="${rootCollection.id}"/>">
-          <c:out value="${rootCollection.name}"/>
-          </a><br/>
-        </c:forEach>
-      </p>
+    </a>-->
+       
+     <div class="sidebar-collapse">
+          <p class="sidebar-coll-title padding-20 padding-bottom-0">Search &quot;<c:out value="${currentCollection.name}"/>&quot; special collection</p>
+       <form action="search" method="get" enctype="multipart/form-data" name="search_coll_form" id="search_coll_form">
+       <div class="row padding-20 padding-bottom-20">
+            <div class="col-sm-12">
+                  <div class="coll-search-input" tabindex="1">
+                  <input type="text" class="coll-search-field" name="text" id="text" title="Search" aria-label="Search" placeholder="Enter a search phrase..." required/>
+                  <input type="hidden" name="search_location" value="full_text"/>
+                  <input type="hidden" name="collection" value="<c:out value="${currentCollection.name}"/>"/>
+                  <button type="submit" class="coll-search-button" tabindex="1" title="<spring:message code="search.main.button.title" />
+        ">
+        </button>
+      </div>
+
+                </div>
+              </div>
+
+        </form>
     </div>
+
   </div>
+
   <div class="col-lg-9 col-md-8 col-sm-12 padding-0" id="coll_header">
+  
+        <div class="row results-header margin-0 border-bottom-gray">
+        <div class="col-sm-12 padding-left-0">
+          <span class="bold">You are here:</span>
+          <a href="collection" title="Special Collections">Special Collections</a> &gt; <c:out value="${currentCollection.name}"/>
+          </div>
+      </div>
+  
     <div class="row margin-0 border-bottom-gray">
       <div class="col-md-12 col-sm-12 padding-top-40 padding-bottom-20 light-blue">
         <h1>
@@ -62,15 +82,13 @@ ${pageContext.response.locale}
       <div class="row margin-0 border-bottom-gray">
         <%--LOOP of Sub collections--%>
         <c:forEach items="${subCollections}" var="subCollection">
-          <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-30 padding-bottom-20"> <a href="collection/<c:out value="${subCollection.id}"/>">
+          <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-30 padding-bottom-20"> <a href="collection/<c:out value="${subCollection.id}"/>" class="collection-link">
             <div class="center light-blue padding-bottom-10 collection-heading">
               <c:out value="${subCollection.name}"/>
             </div>
-            <figure><img class="img-responsive border-gray coll-img" alt="Collections" src="img/collections/collection_<c:out value="${subCollection.id}"/>.png"/>
-              <figcaption class="img-square-caption shadow">
+              <div class="sub-coll-descript shadow">
                 <c:out value="${subCollection.description}"/>
-              </figcaption>
-            </figure>
+              </div>
             </a> </div>
         </c:forEach>
       </div>

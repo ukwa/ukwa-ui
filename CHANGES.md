@@ -1,6 +1,22 @@
 Change Log
 ----------
 
+* 2017-07-10
+    * Language links separate from main navigation
+    * Changed Special collections heading
+    * Welcome text in 2 paragraphs, added "About us" link
+    * Changed "Nominate a site" to "Save a UK website"
+    * Added underline to footer links
+    * Added cookies notice
+    * Removed "Back to the list" from SC page
+    * Added top pagination to collections
+    * Removed list of all SCs from sidebar
+    * Added list and thumbnail view to collections
+    * Removed images for subcollections
+    * Added "X" button to date selection in search
+    * Added search tips text
+    * WCAG2 fixes: WCAG-001, WCAG-006, WCAG-002, WCAG-003, WCAG-011, WCAG-013, WCAG-014, WCAG-016, WCAG-007, WCAG-008, WCAG-015, WCAG-012
+
 * 2017-07-03
     * WCAG2 fully fixed
     * Removed mappings for pages which will be done in phase 2

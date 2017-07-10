@@ -24,14 +24,16 @@
     <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy' || textUri == '/gd'
                                   ? '/'
                                   : fn:replace(fn:replace(fn:replace(textUri, '/en/', '/'), '/gd/', '/'), '/cy/', '/')}"/>
-    <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'}"> <span lang="en"><a href="/en<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.english.title" />">
-      <div class="main-menu-item border-none">English</div>
+    <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
+          && (fn:contains(textUri, '/gd/') || textUri =='/gd' || fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
+      <span lang="en"><a href="/en<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.english.title" />">
+      <div class="main-menu-item border-none"><spring:message code="main.menu.english.title" /></div>
       </a></span> </c:if>
     <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}"> <span lang="cy"><a href="/cy<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.welsh.title" />">
-      <div class="main-menu-item border-none">Cymraeg</div>
+      <div class="main-menu-item border-none"><spring:message code="main.menu.welsh.title" /></div>
       </a></span> </c:if>
     <c:if test="${!fn:startsWith(textUri, '/gd/') && textUri != '/gd'}"> <span lang="gd"><a href="/gd<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.scottish.title" />">
-      <div class="main-menu-item border-none">Alba</div>
+      <div class="main-menu-item border-none"><spring:message code="main.menu.scottish.title" /></div>
       </a></span> </c:if>
   </div>
   </div>

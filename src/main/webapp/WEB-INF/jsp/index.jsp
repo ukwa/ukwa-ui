@@ -34,8 +34,14 @@ ${pageContext.response.locale}
   <div class="row header-blue white padding-top-80 padding-bottom-60">
     <div class="col-md-6 offset-md-3">
       <p class="text-bigger">
-        <spring:message code="home.header.text" />
+        <spring:message code="home.header.text1" />
       </p>
+      <p class="text-bigger">
+        <spring:message code="home.header.text2" />
+      </p> 
+      <p class="text-bigger">
+        <a href="about" title="<spring:message code="home.header.text.link" />"><spring:message code="home.header.text.link" /></a>
+      </p>     
     </div>
   </div>
 </section>
@@ -51,6 +57,15 @@ ${pageContext.response.locale}
       <spring:message code="home.page.collections.subtitle"/>
     </div>
   </div>
+  
+    <div class="row margin-0">
+    <div class="col-md-12 col-sm-12 center padding-bottom-80"> <a href="collection">
+      <button type="button" class="button button-blue" role="link" title="<spring:message code="home.button.viewmore.title" />" tabindex="-1">
+      <spring:message code="home.button.viewmore"/>
+      </button>
+      </a> </div>
+  </div>
+  
   <div class="row page-content padding-side-70 padding-top-0">
     <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/329" class="collection-link">
       <div class="center light-blue padding-bottom-10 collection-heading">British Stand-up Comedy Archive</div>
@@ -77,14 +92,7 @@ ${pageContext.response.locale}
       </figure>
       </a> </div>
   </div>
-  <div class="row margin-0">
-    <div class="col-md-12 col-sm-12 center padding-bottom-80"> <a href="collection">
-      <button type="button" class="button button-blue" role="link" title="<spring:message code="home.button.viewmore.title"/>
-      ">
-      <spring:message code="home.button.viewmore"/>
-      </button>
-      </a> </div>
-  </div>
+
 </section>
 <footer>
   <%@include file="footer.jsp" %>

@@ -31,7 +31,7 @@ ${pageContext.response.locale}
 <section id="nominate-header">
   <div class="row header-white light-blue">
     <div class="col-md-6 offset-md-3">
-      <h2>Nominate a Site</h2>
+      <h2>Save a UK website</h2>
       <p>Since April 2013, the British Library has begun to archive the whole of the UK web domain under the terms of the Non-Print Legal Deposit Regulations 2013. This is done in an automated way, typically once a year.</p>
     </div>
   </div>
@@ -58,7 +58,7 @@ ${pageContext.response.locale}
   <form action="#" method="get" enctype="multipart/form-data" name="nominate">
     <div class="row page-content">
       <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
-        <h3 class="light-blue bold">Nominate a site</h3>
+        <h3 class="light-blue bold">Save a UK website</h3>
         <p>Fields marked with <span class="light-blue">*</span> are mandatory</p>
         <p>Personal details you provide on this form are protected by UK data protection law. Please view our <a href="privacy">Privacy Statement</a>.</p>
       </div>

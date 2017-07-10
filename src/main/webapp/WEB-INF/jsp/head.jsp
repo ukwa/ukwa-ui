@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="includes/jqueryui/jquery-ui.min.css">
 <link rel="stylesheet" href="css/main.css">
 <script src="includes/jquery-3.1.1.min.js"></script>
+<script src="includes/jquery.cookie.min.js"></script>
 <script src="includes/jqueryui/jquery-ui.min.js"></script>
 <script src="includes/jquery-preload/jquery.preload.min.js"></script>
 <script src="includes/tether/js/tether.min.js"></script>

@@ -31,6 +31,13 @@ function collapseCollDescript(ev, object) {
 	
 }
 
+function checkboxSize() {
+	$(".form-check-cont").each(function(index, element) {
+        var lbl=$(this).find("label");
+		$(this).height(lbl.height()+10);
+    });	
+}
+
 $(document).ready(function(e) {
 	
 	//bootstrap tooltips
@@ -124,5 +131,23 @@ $(document).ready(function(e) {
 			$("#"+$(this).attr("data-descriptid")).show();
 		}); 
     });
+	
+	//cookies
+	if (typeof $.cookie('cookies_accepted') === 'undefined' || $.cookie('cookies_accepted')!=="true") {
+		$(".cookies-cont").show();
+	} 
+	
+	$("#btn_cookies").click(function(e) {
+        $.cookie("cookies_accepted", "true", { expires: 365, path: '/' });
+		$(".cookies-cont").hide();
+    });
+	
+	//checkboxes and radios
+	checkboxSize();
+	$(window).resize(function(e) {
+        checkboxSize();
+    });
+	
+	
 	
 });

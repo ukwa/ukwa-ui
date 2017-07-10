@@ -8,7 +8,7 @@
     <a href="collection" title="<spring:message code="footer.collections.title" />">
     <spring:message code="footer.collections" />
     </a><br/>
-    <a href="https://www.bl.uk/blogs" target="_blank" title="<spring:message code="footer.blog.title" />">
+    <a href="http://britishlibrary.typepad.co.uk/webarchive/" target="_blank" title="<spring:message code="footer.blog.title" />">
     <spring:message code="footer.blog" />
     </a><br/>
     <a href="info/nominate" title="<spring:message code="footer.nominate.title" />">
@@ -26,7 +26,9 @@
     <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy' || textUri == '/gd'
                                         ? '/'
                                         : fn:replace(fn:replace(fn:replace(textUri, '/en/', '/'), '/gd/', '/'), '/cy/', '/')}"/>
-    <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'}"> <span lang="en"><a href="/en<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="footer.english.title" />">
+    <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
+          && (fn:contains(textUri, '/gd/') || textUri =='/gd' || fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
+      <span lang="en"><a href="/en<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="footer.english.title" />">
       <spring:message code="footer.english" />
       </a></span><br/>
     </c:if>
@@ -47,9 +49,6 @@
     <a href="info/privacy" title="<spring:message code="footer.privacy.title" />">
     <spring:message code="footer.privacy" text="Privacy statement" />
     </a><br/>
-    <a href="info/technical" title="<spring:message code="footer.technical.title" />">
-    <spring:message code="footer.technical" text="Technical information" />
-    </a><br/>
     <a href="https://www.webarchive.org.uk/rss/recent.xml" title="<spring:message code="footer.rss.title" />">
     <spring:message code="footer.rss" text="RSS Feed" />
     </a><br/>
@@ -58,4 +57,11 @@
 <div class="row">
   <div class="col-md-12 col-sm-12 footer-logos"> <a href="https://www.bl.uk/" target="_blank"><img src="img/bl_logo.png" alt="British library" class="footer-logo"/></a> <a href="https://www.llgc.org.uk/" target="_blank"><img src="img/llgc_logo.png" alt="LLGC NLW" class="footer-logo"/></a> <a href="https://www.nls.uk/" target="_blank"><img src="img/nls_logo.png" alt="National Library of Scotland" class="footer-logo"/></a><br/>
     <a href="http://www.bodleian.ox.ac.uk/" target="_blank"><img src="img/bodleian_logo.jpg" alt="Bodleian Libraries" class="footer-logo"/></a> <a href="http://www.lib.cam.ac.uk/" target="_blank"><img src="img/cambrige_logo.jpg" alt="Cambrige University Library" class="footer-logo"/></a> <a href="https://www.tcd.ie/" target="_blank"><img src="img/trinity_logo.jpg" alt="Trinity College Dublin" class="footer-logo"/></a> </div>
+</div>
+
+<div class="cookies-cont">
+<div class="row">
+<div class="col-md-8 col-sm-12">We use cookies.</div>
+<div class="col-md-4 col-sm-12 padding-top-mobile-10"><button title="I agree" class="button button-white float-sm-right" id="btn_cookies">I agree</button></div>
+</div>
 </div>

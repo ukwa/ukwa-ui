@@ -46,14 +46,14 @@ ${pageContext.response.locale}
           <div class="sidebar-filter expanded">
             <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
               <div class="form-check-cont padding-0" title="Viewable anywhere" tabindex="0">
-                <input type="radio" class="white access_filter" name="view_filter" id="view_filter_1" value="oa"
+                <input tabindex="-1" type="radio" class="white access_filter" name="view_filter" id="view_filter_1" value="oa"
                       ${originalAccessView.contains('oa') || empty originalAccessView ? 'checked' : ''}/>
                 <label class="main-search-check-label white text-medium" for="view_filter_1" title="Viewable anywhere"> Viewable anywhere </label>
               </div>
             </div>
             <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
               <div class="form-check-cont padding-0" title="Viewable only on Library permises" tabindex="0">
-                <input type="radio" class="white access_filter" name="view_filter" id="view_filter_2" value="rro"
+                <input tabindex="-1" type="radio" class="white access_filter" name="view_filter" id="view_filter_2" value="rro"
                       ${originalAccessView.contains('rro') ? 'checked' : ''}/>
                 <label class="main-search-check-label white text-medium" for="view_filter_2" title="Viewable only on Library permises"> Viewable only on Library permises </label>
               </div>
@@ -71,7 +71,7 @@ ${pageContext.response.locale}
                   <c:if test="${domains.get(i + 1) != 0}">
                     <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                       <div class="form-check-cont padding-0" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
-                        <input type="checkbox" class="white" name="domain_filter" id="domain_filter_<c:out value="${i}"/>"
+                        <input tabindex="-1" type="checkbox" class="white" name="domain_filter" id="domain_filter_<c:out value="${i}"/>"
                              value="${domains.get(i)}"
                         ${originalDomains.contains(domains.get(i) )? 'checked' : ''}/>
                         <label class="main-search-check-label white text-medium" for="domain_filter_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
@@ -96,7 +96,7 @@ ${pageContext.response.locale}
                   <c:if test="${contentTypes.get(i + 1) != 0}">
                     <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                       <div class="form-check-cont padding-0" title="<c:out value="${contentTypes.get(i)}"/>" tabindex="0">
-                        <input type="checkbox" class="white" name="content_type" id="content_type_<c:out value="${i}"/>"
+                        <input tabindex="-1" type="checkbox" class="white" name="content_type" id="content_type_<c:out value="${i}"/>"
                        value="${contentTypes.get(i)}"
                        ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
                         <label class="main-search-check-label white text-medium" for="content_type_<c:out value="${i}"/>">
@@ -121,7 +121,7 @@ ${pageContext.response.locale}
                   <c:if test="${publicSuffixes.get(i + 1) != 0}">
                     <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                       <div class="form-check-cont padding-0" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
-                        <input type="checkbox" class="white" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
+                        <input tabindex="-1" type="checkbox" class="white" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
                        value="${publicSuffixes.get(i)}"
                   ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
                         <label class="main-search-check-label white text-medium" for="public_suffix_<c:out value="${i}"/>">
@@ -141,11 +141,11 @@ ${pageContext.response.locale}
               <div class="help-button small white" data-toggle="tooltip" title="This is placeholder text" tabindex="0"></div>
             </div>
             <div class="sidebar-filter" id="dates_container" role="tabpanel">
-              <div class="row padding-bottom-20">
+              <div class="row padding-bottom-20 padding-top-20">
                 <div class="col-sm-3">
                   <label for="from_date" class="white">From</label>
                 </div>
-                <div class="col-sm-7">
+                <div class="col-sm-9">
                   <input type="text" class="form-control blue form-white-placeholder" name="from_date" id="from_date" title="From" placeholder="YYYY-MM-DD"
                        value="${originalFromDateText != null ? originalFromDateText : ''}"/>
                 </div>
@@ -154,14 +154,15 @@ ${pageContext.response.locale}
                 <div class="col-sm-3">
                   <label for="to_date" class="white">To</label>
                 </div>
-                <div class="col-sm-7">
+                <div class="col-sm-9">
                   <input type="text" class="form-control blue form-white-placeholder" name="to_date" id="to_date" title="From" placeholder="YYYY-MM-DD"
                        value="${originalToDateText != null ? originalToDateText : ''}"/>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <button type="submit" title="Confirm date range" class="button button-white float-sm-right">Confirm date range</button>
+                  <button type="submit" title="Confirm date range" class="button button-white float-sm-right margin-left-10 margin-top-10 text-small">Confirm date range</button>
+                  <button title="Reset dates" class="button button-white float-sm-right margin-top-10 text-small" id="btn_reset_dates">X</button>
                 </div>
               </div>
             </div>
@@ -176,7 +177,7 @@ ${pageContext.response.locale}
                   <c:if test="${collections.get(i + 1) != 0}">
                     <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                       <div class="form-check-cont padding-0" title="<c:out value="${collections.get(i)}"/>">
-                        <input type="checkbox" class="white" name="collection" id="collection_<c:out value="${i}"/>"
+                        <input tabindex="-1" type="checkbox" class="white" name="collection" id="collection_<c:out value="${i}"/>"
                              value="${collections.get(i)}"
                         ${originalCollections.contains(collections.get(i) )? 'checked' : ''}/>
                         <label class="main-search-check-label white text-medium" for="collection_<c:out value="${i}"/>"
@@ -275,8 +276,7 @@ ${pageContext.response.locale}
           </h2>
           <span class="results-title-text results-title-date padding-0"> &nbsp;&nbsp;-&nbsp;&nbsp;
           <c:out value="${searchResult.date}"/>
-          </span> <span class="results-title-text clearfix padding-vert-10"> <a class="results-link" href="<c:out value="${searchResult.url}"/>">
-          <c:out value="${searchResult.displayUrl}"/>
+          </span> <span class="results-title-text clearfix padding-vert-10"> <a title="<c:out value="${searchResult.displayUrl}"/>" class="results-link" href="<c:out value="${searchResult.url}"/>">          <c:out value="${searchResult.displayUrl}"/>
           </a> </span> <span class="results-title-text clearfix">
           <c:out value="${searchResult.text}"/>
           </span> </div>
@@ -345,6 +345,7 @@ $(document).ready(function(e) {
 				$(this).next(".sidebar-filter").addClass("expanded");
 				$(this).removeClass("open");
 				$(this).addClass("closee");
+				checkboxSize();
 			} else {
 				$(this).next(".sidebar-filter").removeClass("expanded");
 				$(this).removeClass("closee");
@@ -405,6 +406,11 @@ $(document).ready(function(e) {
 			return false;
 		}
 		
+    });
+	
+	//date reset
+	$("#btn_reset_dates").click(function(e) {
+        $("#from_date, #to_date").val("");
     });
 
 });

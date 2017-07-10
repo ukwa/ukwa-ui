@@ -40,7 +40,7 @@ ${pageContext.response.locale}
     </div>
   </div>
 </section>
-<section id="content">
+<!--<section id="content">
   <div class="row margin-0">
     <div class="col-md-4 col-sm-12 no-result-grid no-results-border-right"> <span class="no-result-title bold clearfix">Title</span> Tony Blair's Warfare State </div>
     <div class="col-md-4 col-sm-12 no-result-grid no-results-border-right"> <span class="no-result-title bold clearfix">Author</span> Edgerton, David </div>
@@ -55,7 +55,7 @@ ${pageContext.response.locale}
     <div class="col-md-4 col-sm-12 no-result-grid no-results-border-top"> <span class="no-result-title bold clearfix">Publication details</span> New left review
       Tony Blair's Warfare State </div>
   </div>
-</section>
+</section>-->
 <footer>
   <%@include file="footer.jsp" %>
 </footer>
