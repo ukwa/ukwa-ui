@@ -1,6 +1,10 @@
 Change Log
 ----------
 
+* 2017-07-11
+    * Changed font embeddability to "Installable" for IE browser
+    * Mobile browser fixes
+
 * 2017-07-10
     * Language links separate from main navigation
     * Changed Special collections heading

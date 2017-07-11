@@ -202,16 +202,21 @@ ${pageContext.response.locale}
     </div>
     <div class="col-lg-9 col-md-8 col-sm-12 padding-0">
       <div class="results-header border-bottom-gray">
-        <div class="float-left padding-top-5">
+      <div class="row">
+        <div class="col-md-8 col-sm-12 padding-top-5">
           <c:out value="${totalSearchResultsSize}"/>
           results for <span class="bold">"
           <c:out value="${originalSearchRequest}"/>
           "</span></div>
-        <div tabindex="0">
+          
+        <div class="col-md-4 col-sm-12 spadding-top-5">
+        <div tabindex="0" class="results-help-cont">
           <div class="help-button small search-help-button" data-toggle="tooltip" title="This is placeholder text"></div>
           <div class="help-button-text">Help</div>
+         </div>
         </div>
         <div class="clearfix"></div>
+      </div>
       </div>
       <div class="row padding-0 margin-0">
         <div class="col-md-12 pagination-cont">
@@ -257,7 +262,7 @@ ${pageContext.response.locale}
             <label class="main-search-check-label" for="sort_2" title="Oldest to Newest"> Oldest to Newest </label>
           </div>
         </div>
-        <div class="search-results-top-filters" style="width:280px;padding-top:5px;padding-right:50px;">
+        <div class="search-results-top-filters results-items-per-page">
           <label for="count" title="Items per page" style="margin-top:5px;">Items per page</label>
           <select class="form-control search-results-display-count" name="count" id="count">
             <option value="50" ${rowsPerPageLimit == 50 ? 'selected' : ''}>50</option>

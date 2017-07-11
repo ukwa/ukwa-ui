@@ -34,7 +34,7 @@ html, body {
 	position:relative;
 	overflow:auto;
 }
-
+ 
 
 .container-fluid {
 	padding:0;	
@@ -240,6 +240,10 @@ li {
 	padding-left:0 !important;	
 }
 
+.padding-left-10 {
+	padding-left:10px !important;	
+}
+
 .padding-left-20 {
 	padding-left:20px !important;	
 }
@@ -337,7 +341,8 @@ li {
 /*LINKS*/
 a:link, a:visited, a:active, a:focus {
 	text-decoration:underline;
-	color: $light-blue;	
+	color: $light-blue;
+	word-break: break-all;	
 }
 
 a:hover {
@@ -507,7 +512,7 @@ input[type=radio]:checked + label {
 .main-search-field {
 	width:calc(100% - 60px);
 	height:100%;
-	padding:10px 60px 10px 10px;	
+	padding:10px 10px 10px 10px;	
 	font-size:1.2em;
 	border:none;
 	color: $light-blue;
@@ -610,15 +615,16 @@ h3 {
 .main-menu {
 	padding-top:150px;
 	position:absolute;
-	height:auto;
-	min-height:100%;
+	height:100vh;
 	background-color:$light-blue;
 	z-index:100001;	
 	transition: width 1s;
 	width:0;
 	right:0;
 	top:0;
-	overflow:hidden;
+	overflow-y:scroll;
+	overflow-x:hidden;
+	color:$white;
 }
 
 
@@ -691,6 +697,11 @@ h3 {
 	border-top:solid 1px $white;
 	width:100%;
 	color:$white;
+}
+
+.main-menu-cont a {
+	color: $white !important;
+	text-decoration:underline;	
 }
 
 .main-menu-img {
@@ -1420,6 +1431,13 @@ footer {
 	border-right: solid 1px $gray;	
 }
 
+.results-items-per-page {
+	width:305px;
+	padding-top:5px;
+	padding-right:50px;
+	padding-left:25px;
+}
+
 .search-results-display-count {
 	width:100px;
 	float:right;
@@ -1767,6 +1785,16 @@ footer {
 	}
 	
 	/*RESULTS*/
+	
+	.results-help-cont {
+		padding-top:20px;
+		float:left;	
+	}
+	
+	.search-results-top-filters {
+		float:left;
+		margin-bottom:15px;	
+	}
 
 
 

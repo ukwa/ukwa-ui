@@ -7,7 +7,7 @@
     <div class="main-menu-item border-none">
       <spring:message code="main.menu.home" text="Home" />
     </div>
-    </a> <a href="collections" title="<spring:message code="main.menu.collections.title" />">
+    </a> <a href="collection" title="<spring:message code="main.menu.collections.title" />">
     <div class="main-menu-item border-none">
       <spring:message code="main.menu.collections" text="Special Collections" />
     </div>

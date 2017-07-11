@@ -71,7 +71,8 @@ public class SolrCommunicator {
             }
 
             HttpGet request = new HttpGet(solrServerUrl + solrSearchUrl);
-            log.debug("Sending request to SOLR: " + toDecoded(request.getURI().toString()));
+            log.debug("Sending request to SOLR: " + request.getURI().toString());
+            log.debug("(decoded URL): " + toDecoded(request.getURI().toString()));
 
             HttpResponse response = getHttpClient().execute(request);
             String solrSearchResultString = IOUtils.toString(response.getEntity().getContent());

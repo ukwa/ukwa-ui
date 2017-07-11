@@ -56,11 +56,13 @@ $(document).ready(function(e) {
 	$(".main-menu-button").click(function(e) {
         $(".main-menu").addClass("active");
 		$(".main-menu-block").addClass("active");
+		$("html").css("overflow", "hidden");
     });
 	
 	$(".main-menu-close").click(function(e) {
         $(".main-menu").removeClass("active");
 		$(".main-menu-block").removeClass("active");
+		$("html").css("overflow", "auto");
     });
 	
 	//sidebar collapse
@@ -129,6 +131,9 @@ $(document).ready(function(e) {
 			$(".q-question").removeClass("active");
 			$(this).addClass("active");
 			$("#"+$(this).attr("data-descriptid")).show();
+			$('html, body').animate({
+				scrollTop: $("#"+$(this).attr("data-descriptid")).offset().top
+			}, 500);
 		}); 
     });
 	
