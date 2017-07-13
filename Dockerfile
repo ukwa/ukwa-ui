@@ -1,5 +1,5 @@
 FROM frolvlad/alpine-oraclejdk8:slim
-VOLUME /tmp
+VOLUME /target
 ADD marsspiders-ukwa-1.4.2.RELEASE app.jar
 RUN sh -c 'touch /app.jar'
 ENV JAVA_OPTS=""
