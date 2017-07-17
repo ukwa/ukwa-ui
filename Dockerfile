@@ -1,4 +1,5 @@
 FROM frolvlad/alpine-oraclejdk8:slim
+MAINTAINER Mindaugas Vidmantas "mindaugas.vidmantas@bl.uk"
 VOLUME /tmp
 ADD marsspiders-ukwa-1.4.2.RELEASE.jar app.jar
 RUN sh -c 'touch /app.jar'
