@@ -77,7 +77,6 @@ public class SolrCommunicator {
             HttpResponse response = getHttpClient().execute(request);
             String solrSearchResultString = IOUtils.toString(response.getEntity().getContent());
 
-            int subStringLength = solrSearchResultString.length() >= 1000 ? 1000 : solrSearchResultString.length();
             //String cutResponseBody = toDecoded(solrSearchResultString.substring(0, subStringLength)) + ".........";
             String fullResponseLine = solrSearchResultString.replaceAll("\n", "");
             log.debug("SOLR Response length: " + solrSearchResultString.length() + ", body: " + fullResponseLine);
