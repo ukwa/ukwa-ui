@@ -2,7 +2,8 @@
 
 A new user interface for the UK Web Archive
 
-[https://travis-ci.org/ukwa/ukwa-ui.svg?branch=master](https://travis-ci.org/ukwa/ukwa-ui)
+[![Build Status](https://travis-ci.org/ukwa/ukwa-ui.svg?branch=master)](https://travis-ci.org/ukwa/ukwa-ui)
+
 
 ### How to Run the Code ###
 
