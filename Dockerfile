@@ -19,6 +19,7 @@ ENV CATALINA_TMPDIR /tmp
 
 ENV SOLR_USERNAME none
 ENV SOLR_PASSWORD none  
+ENV CATALINA_OPTS="-DSOLR_USERNAME=value -DSOLR_PASSWORD=value"
 
 RUN cd /tmp && \
   git clone https://github.com/min2ha/ukwa-ui.git && \
