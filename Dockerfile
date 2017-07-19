@@ -29,8 +29,9 @@ RUN \
   cd ukwa-ui && \
 mvn package -DskipTests
 
-RUN mv /tmp/ukwa-ui/target/marsspiders-ukwa-1.4.2.RELEASE.war  /tmp/ukwa-ui/target/ROOT.war
+RUN cd /tmp/ukwa-ui/target
 
+RUN mv marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war
 	
 RUN cd /tmp	
 # INSTALL TOMCAT
