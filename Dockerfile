@@ -20,11 +20,7 @@ ENV CATALINA_TMPDIR /tmp
 ENV SOLR_USERNAME=none
 ENV SOLR_PASSWORD=none  
 
-
-RUN cd /tmp
-
-
-RUN \
+RUN cd /tmp && \
   git clone https://github.com/min2ha/ukwa-ui.git && \
   cd ukwa-ui && \
   mvn package -DskipTests
@@ -32,17 +28,10 @@ RUN \
 RUN pwd
 RUN ls -la
 
-RUN cd /tmp/ukwa-ui/target/ && cp marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war
-
-RUN pwd
-
-RUN cd target/
-
-COPY marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war
+RUN cd /tmp/ukwa-ui/target/ && cp marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war && pwd
 	
-RUN cd /tmp/
 # INSTALL TOMCAT
-RUN wget -q https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION}/v${TOMCAT_MINOR_VERSION}/bin/apache-tomcat-${TOMCAT_MINOR_VERSION}.tar.gz && \
+RUN cd /tmp/ && wget -q https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION}/v${TOMCAT_MINOR_VERSION}/bin/apache-tomcat-${TOMCAT_MINOR_VERSION}.tar.gz && \
     wget -qO- https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION}/v${TOMCAT_MINOR_VERSION}/bin/apache-tomcat-${TOMCAT_MINOR_VERSION}.tar.gz.md5 | md5sum -c - && \
     tar zxf apache-tomcat-*.tar.gz && \
     rm apache-tomcat-*.tar.gz && \
