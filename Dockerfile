@@ -17,8 +17,8 @@ ENV TOMCAT_MINOR_VERSION 8.5.16
 ENV CATALINA_HOME /tomcat
 ENV CATALINA_TMPDIR /tmp
 
-ENV SOLR_USERNAME=none
-ENV SOLR_PASSWORD=none  
+ENV SOLR_USERNAME none
+ENV SOLR_PASSWORD none  
 
 RUN cd /tmp && \
   git clone https://github.com/min2ha/ukwa-ui.git && \
