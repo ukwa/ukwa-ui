@@ -1,4 +1,3 @@
-
 FROM java:openjdk-8-jdk
 # originally based on UNB Libraries Dockerfile
 MAINTAINER Mindaugas Vidmantas "mindaugas.vidmantas@bl.uk"
@@ -55,58 +54,3 @@ VOLUME /tomcat/logs
 # reset entrypoint from parent image
 ENTRYPOINT []
 CMD ["/run.sh"]	
-	
-	
-	
-	
-	
-	
-	
-# make tomcat scripts executable
-RUN chmod +x /opt/tomcat/bin/*.sh
-
-# Cleanup webapps directory
-RUN cd /opt/tomcat/webapps && rm -rf *
-
-# Tweak Tomcat configuration
-COPY server.xml /opt/apache-tomcat-7.0.70/conf/server.xml
-COPY logging.properties /opt/apache-tomcat-7.0.70/conf/logging.properties
-
-# Install ICU4J in the system JVM for broader language support
-RUN \
-  curl -O http://download.icu-project.org/files/icu4j/58.2/icu4j-58_2.jar && \
-  curl -O http://download.icu-project.org/files/icu4j/58.2/icu4j-localespi-58_2.jar && \ 
-  mv icu4j-* /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/
-
-# Build UKWA Wayback versions inside the container...
-# Need a patched OpenWayback instance:
-RUN \
-  git clone https://github.com/ukwa/openwayback.git && \
-  cd openwayback && \
-  git checkout restore-locale-switch && \
-  mvn install -DskipTests
-  
-# Now build our overlays:
-RUN \
-  git clone https://github.com/ukwa/waybacks.git && \
-  cd waybacks && \
-  git checkout master && \
-  mvn install -DskipTests
-
-# Define runtime properties
-
-EXPOSE 8080 8090
-
-ENV JAVA_OPTS -Xmx1g
-
-# Use oukwa|ldukwa|qa for Open UKWA, LD UKWA or QA UKWA versions
-ENV UKWA_OWB_VERSION=qa 
-
-VOLUME /data
-
-#Fire up tomcat, copying desired WAR into place first
-COPY start.sh /
-
-CMD /start.sh
-
-
