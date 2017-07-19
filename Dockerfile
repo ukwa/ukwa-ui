@@ -4,9 +4,6 @@ FROM java:openjdk-8-jdk
 MAINTAINER Mindaugas Vidmantas "mindaugas.vidmantas@bl.uk"
 
 
-RUN apk --update add pwgen ca-certificates libssl1.0 libuuid openssl apr libcrypto1.0 && \
-    rm -rf /tmp/* /var/cache/apk/*
-
 # update packages and install maven
 RUN \
   export DEBIAN_FRONTEND=noninteractive && \
