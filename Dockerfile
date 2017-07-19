@@ -31,14 +31,17 @@ RUN ls -la
 RUN cd /tmp/ukwa-ui/target/ && cp marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war && pwd
 	
 # INSTALL TOMCAT
-RUN wget -q https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION}/v${TOMCAT_MINOR_VERSION}/bin/apache-tomcat-${TOMCAT_MINOR_VERSION}.tar.gz && \
+RUN pwd && \
+    wget -q https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION}/v${TOMCAT_MINOR_VERSION}/bin/apache-tomcat-${TOMCAT_MINOR_VERSION}.tar.gz && \
     wget -qO- https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION}/v${TOMCAT_MINOR_VERSION}/bin/apache-tomcat-${TOMCAT_MINOR_VERSION}.tar.gz.md5 | md5sum -c - && \
     tar zxf apache-tomcat-*.tar.gz && \
     rm apache-tomcat-*.tar.gz && \
     mv apache-tomcat* tomcat && \
     rm -rf /tomcat/webapps/examples /tomcat/webapps/docs /tomcat/webapps/ROOT
-	
-ADD create_tomcat_admin_user.sh /create_tomcat_admin_user.sh && pwd
+
+RUN pwd
+
+ADD create_tomcat_admin_user.sh /create_tomcat_admin_user.sh
 ADD run.sh /run.sh
 RUN chmod +x /*.sh	
 
