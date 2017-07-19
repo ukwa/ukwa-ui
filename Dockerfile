@@ -29,7 +29,7 @@ RUN \
   cd ukwa-ui && \
 mvn package -DskipTests
 
-RUN mv target/marsspiders-ukwa-1.4.2.RELEASE.war target/ROOT.war
+COPY /tmp/ukwa-ui/target/marsspiders-ukwa-1.4.2.RELEASE.war target/ROOT.war
 	
 RUN cd /tmp	
 # INSTALL TOMCAT
@@ -44,7 +44,7 @@ ADD create_tomcat_admin_user.sh /create_tomcat_admin_user.sh
 ADD run.sh /run.sh
 RUN chmod +x /*.sh	
 
-RUN mv /tmp/ukwa-ui/target/ROOT.war /tomcat/webapps
+COPY /tmp/ukwa-ui/target/ROOT.war /tomcat/webapps
 RUN rm -rf /tmp/ukwa-ui
 	
 	
