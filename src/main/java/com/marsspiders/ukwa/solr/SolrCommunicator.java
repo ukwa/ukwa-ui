@@ -31,7 +31,7 @@ import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.stream.Collectors;
 
-import static com.marsspiders.ukwa.util.SolrUtil.toDecoded;
+import static com.marsspiders.ukwa.util.SolrStringUtil.toDecoded;
 
 @Service
 public class SolrCommunicator {
@@ -90,7 +90,7 @@ public class SolrCommunicator {
             JavaType javaType = mapper.getTypeFactory().constructParametricType(SolrSearchResult.class, bodyDocsType);
 
             return mapper.readValue(solrSearchResultString, javaType);
-        } catch (IOException e) {
+        } catch (Exception e) {
             String errorMsg = "Failed to get data from Solr";
             log.error(errorMsg, e);
 

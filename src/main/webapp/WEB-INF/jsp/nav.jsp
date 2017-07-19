@@ -2,22 +2,22 @@
   <div class="main-menu-block"></div>
   <div class="main-menu">
     <div class="main-menu-close" title="<spring:message code="main.menu.close.title" />
-    " tabindex="0"></div>
-  <div class="main-menu-cont"> <a href="index" title="<spring:message code="main.menu.home.title" />">
+    " tabindex="-1"></div>
+  <div class="main-menu-cont"> <a href="index" title="<spring:message code="main.menu.home.title" />" tabindex="-1">
     <div class="main-menu-item border-none">
       <spring:message code="main.menu.home" text="Home" />
     </div>
-    </a> <a href="collection" title="<spring:message code="main.menu.collections.title" />">
+    </a> <a href="collection" title="<spring:message code="main.menu.collections.title" />" tabindex="-1">
     <div class="main-menu-item border-none">
-      <spring:message code="main.menu.collections" text="Special Collections" />
+      <spring:message code="main.menu.collections" />
     </div>
-    </a> <a href="nominate" title="<spring:message code="main.menu.nominate.title" />">
+    </a> <a href="nominate" title="<spring:message code="main.menu.nominate.title" />" tabindex="-1">
     <div class="main-menu-item border-none">
-      <spring:message code="main.menu.nominate" text="Nominate a site" />
+      <spring:message code="main.menu.nominate" />
     </div>
-    </a> <a href="contact" title="<spring:message code="main.menu.contact.title" />">
+    </a> <a href="contact" title="<spring:message code="main.menu.contact.title" />" tabindex="-1">
     <div class="main-menu-item border-none">
-      <spring:message code="main.menu.contact" text="Contact" />
+      <spring:message code="main.menu.contact" />
     </div>
     </a>
     <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
@@ -26,13 +26,13 @@
                                   : fn:replace(fn:replace(fn:replace(textUri, '/en/', '/'), '/gd/', '/'), '/cy/', '/')}"/>
     <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
           && (fn:contains(textUri, '/gd/') || textUri =='/gd' || fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
-      <span lang="en"><a href="/en<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.english.title" />">
+      <span lang="en"><a href="/en<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.english.title" />" tabindex="-1">
       <div class="main-menu-item border-none"><spring:message code="main.menu.english.title" /></div>
       </a></span> </c:if>
-    <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}"> <span lang="cy"><a href="/cy<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.welsh.title" />">
+    <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}"> <span lang="cy"><a href="/cy<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.welsh.title" />" tabindex="-1">
       <div class="main-menu-item border-none"><spring:message code="main.menu.welsh.title" /></div>
       </a></span> </c:if>
-    <c:if test="${!fn:startsWith(textUri, '/gd/') && textUri != '/gd'}"> <span lang="gd"><a href="/gd<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.scottish.title" />">
+    <c:if test="${!fn:startsWith(textUri, '/gd/') && textUri != '/gd'}"> <span lang="gd"><a href="/gd<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.scottish.title" />" tabindex="-1">
       <div class="main-menu-item border-none"><spring:message code="main.menu.scottish.title" /></div>
       </a></span> </c:if>
   </div>

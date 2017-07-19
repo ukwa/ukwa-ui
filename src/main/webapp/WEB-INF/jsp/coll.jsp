@@ -16,12 +16,13 @@ ${pageContext.response.locale}
 </c:if>
 <jsp:useBean id="targetWebsites" scope="request" type="java.util.List<com.marsspiders.ukwa.controllers.data.TargetWebsiteDTO>"/>
 <jsp:useBean id="subCollections" scope="request" type="java.util.List<com.marsspiders.ukwa.controllers.data.CollectionDTO>"/>
-<jsp:useBean id="rootCollections" scope="request" type="java.util.List<com.marsspiders.ukwa.controllers.data.CollectionDTO>"/>
 <jsp:useBean id="currentCollection" scope="request" type="com.marsspiders.ukwa.controllers.data.CollectionDTO"/>
+<spring:message code="pagination.goto" var="goToPage"/>
+<spring:message code="pagination.current" var="currentPage"/>
 <html lang="en">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
-<title>UKWA Special collections</title>
+<title><spring:message code="coll.title" /></title>
 <%@include file="head.jsp" %>
 </head>
 
@@ -33,38 +34,14 @@ ${pageContext.response.locale}
 </header>
 <section id="content">
 <div class="row margin-0 padding-0">
-  <div class="col-lg-3 col-md-4 col-sm-12 sidebar padding-0 white"> <!--<a href="collection" class="no-decoration" title="Back to the list">
-    <div class="sidebar-back-item border-bottom-white">Back to the list</div>
-    </a>-->
-       
-     <div class="sidebar-collapse">
-          <p class="sidebar-coll-title padding-20 padding-bottom-0">Search &quot;<c:out value="${currentCollection.name}"/>&quot; special collection</p>
-       <form action="search" method="get" enctype="multipart/form-data" name="search_coll_form" id="search_coll_form">
-       <div class="row padding-20 padding-bottom-20">
-            <div class="col-sm-12">
-                  <div class="coll-search-input" tabindex="1">
-                  <input type="text" class="coll-search-field" name="text" id="text" title="Search" aria-label="Search" placeholder="Enter a search phrase..." required/>
-                  <input type="hidden" name="search_location" value="full_text"/>
-                  <input type="hidden" name="collection" value="<c:out value="${currentCollection.name}"/>"/>
-                  <button type="submit" class="coll-search-button" tabindex="1" title="<spring:message code="search.main.button.title" />
-        ">
-        </button>
-      </div>
 
-                </div>
-              </div>
 
-        </form>
-    </div>
-
-  </div>
-
-  <div class="col-lg-9 col-md-8 col-sm-12 padding-0" id="coll_header">
+  <div class="col-sm-12 padding-0" id="coll_header">
   
         <div class="row results-header margin-0 border-bottom-gray">
         <div class="col-sm-12 padding-left-0">
-          <span class="bold">You are here:</span>
-          <a href="collection" title="Special Collections">Special Collections</a> &gt; <c:out value="${currentCollection.name}"/>
+          <span class="bold"><spring:message code="coll.breadcrumb.text1" /></span>
+          <a href="collection" title="<spring:message code="coll.breadcrumb.text2" />"><spring:message code="coll.breadcrumb.text2" /></a> &gt; <c:out value="${currentCollection.name}"/>
           </div>
       </div>
   
@@ -74,15 +51,38 @@ ${pageContext.response.locale}
           <c:out value="${currentCollection.name}"/>
         </h1>
         <p class="black margin-top-20 hidden" id="coll_description" data-descript="<c:out value="${currentCollection.description}"/>"></p>
-        <p class="margin-top-20"><a href="#" class="hidden" title="Read more" id="readmore">Read more</a></p>
+        <p class="margin-top-20"><a href="#" class="hidden" title="<spring:message code="coll.readmore" />" id="readmore"><spring:message code="coll.readmore" /></a></p>
       </div>
     </div>
+    
+         <div class="row margin-0 border-bottom-gray">
+   <div class="col-md-6 col-sm-12 padding-top-40 padding-bottom-20 padding-20 light-blue">
+              <p class="sidebar-coll-title padding-bottom-20"><spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" /></p>
+       <form action="search" method="get" enctype="multipart/form-data" name="search_coll_form" id="search_coll_form">
+       <div class="row padding-bottom-20">
+            <div class="col-sm-12">
+                  <div class="coll-search-input">
+                  <input type="text" class="coll-search-field" name="text" id="text" title="<spring:message code="coll.search.placeholder" />" aria-label="<spring:message code="coll.search.placeholder" />" placeholder="<spring:message code="coll.search.placeholder" />" required/>
+                  <input type="hidden" name="search_location" value="full_text"/>
+                  <input type="hidden" name="collection" value="<c:out value="${currentCollection.name}"/>"/>
+                  <button type="submit" class="coll-search-button" title="<spring:message code="coll.search.button" />
+        ">
+        </button>
+      </div>
+
+                </div>
+              </div>
+
+        </form>
+    </div>
+    </div>
+    
     <c:if test="${!empty subCollections}">
       <%--Do something if subCollections not empty--%>
       <div class="row margin-0 border-bottom-gray">
         <%--LOOP of Sub collections--%>
         <c:forEach items="${subCollections}" var="subCollection">
-          <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-30 padding-bottom-20"> <a href="collection/<c:out value="${subCollection.id}"/>" class="collection-link">
+          <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-20 padding-bottom-20"> <a href="collection/<c:out value="${subCollection.id}"/>" class="collection-link">
             <div class="center light-blue padding-bottom-10 collection-heading">
               <c:out value="${subCollection.name}"/>
             </div>
@@ -93,13 +93,18 @@ ${pageContext.response.locale}
         </c:forEach>
       </div>
     </c:if>
+    
     <div class="row padding-0 margin-0">
-      <div class="col-md-12 pagination-cont">
-<c:if test="${targetPageNumber > 1}"><a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${targetPageNumber - 1}"/>" title="Previous page" aria-label="Previous page"><div class="pagination-button arrow left-arrow"></div></a> </c:if>
-        <c:forEach begin="1" end="${currentCollection.websitesNum/rowsPerPageLimit + 1}" var="i"><a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${i}"/>" title="${i == targetPageNumber ? "Current page - page " : "Go to page "}<c:out value="${i}"/>" aria-label="${i == targetPageNumber ? "Current page - page " : "Go to page "}<c:out value="${i}"/>"><div class="pagination-button ${i == targetPageNumber ? "active" : "inactive"}">
+      <div class="col-md-12 pagination-cont border-bottom-gray">
+      
+<c:if test="${targetPageNumber > 1}"><a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${targetPageNumber - 1}"/>" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"><div class="pagination-button arrow left-arrow"></div></a> </c:if>
+
+        <c:forEach begin="1" end="${currentCollection.websitesNum/rowsPerPageLimit + 1}" var="i">
+        <a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${i}"/>" title="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>"><div class="pagination-button ${i == targetPageNumber ? "active" : "inactive"}">
             <c:out value="${i}"/>
           </div></a> </c:forEach>
-        <c:if test="${targetPageNumber < currentCollection.websitesNum/rowsPerPageLimit}"><a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${targetPageNumber + 1}"/>" title="Next page" aria-label="Next page">
+          
+        <c:if test="${targetPageNumber < currentCollection.websitesNum/rowsPerPageLimit}"><a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${targetPageNumber + 1}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />">
           <div class="pagination-button arrow right-arrow"></div>
           </a> </c:if>
       </div>
@@ -113,35 +118,29 @@ ${pageContext.response.locale}
           </h2>
           <span class="results-title-text clearfix">
           <c:out value="${targetWebsite.description}"/>
-          </span> <span class="results-title-text clearfix"> Archived date:
+          </span> <span class="results-title-text clearfix"> <spring:message code="coll.archived.date" />
           <c:out value="${targetWebsite.startDate}"/>
-          </span> <!--<span class="results-title-text clearfix padding-0"> <a href="<c:out value="${targetWebsite.url}"/>">
-          <c:out value="${targetWebsite.url}"/>
-          </a></span> -->
+          </span>
           <span class="results-title-text clearfix padding-vert-10">
-              <a href="<c:out value="${targetWebsite.archiveUrl}"/>" class="results-link"><c:out value="${targetWebsite.archiveUrl}"/></a>
+              <a href="<c:out value="${targetWebsite.archiveUrl}"/>" class="break-all"><c:out value="${targetWebsite.archiveUrl}"/></a>
             </span>
-        </div>
-        <div class="col-lg-3 col-md-12 padding-20"> 
-          <!--<div class="social-button fb float-right margin-left-10" title="Facebook"></div>
-            <div class="social-button twitter float-right margin-left-10" title="Twitter"></div>--> 
         </div>
       </div>
       <!--/RESULT ROW--> 
     </c:forEach>
     <div class="row padding-0 margin-0">
       <div class="col-md-12 pagination-cont">
-	<c:if test="${targetPageNumber > 1}"><a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${targetPageNumber - 1}"/>" title="Previous page" aria-label="Previous page"><div class="pagination-button arrow left-arrow"></div></a> </c:if>
-        <c:forEach begin="1" end="${currentCollection.websitesNum/rowsPerPageLimit + 1}" var="i"><a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${i}"/>" title="${i == targetPageNumber ? "Current page - page " : "Go to page "}<c:out value="${i}"/>" aria-label="${i == targetPageNumber ? "Current page - page " : "Go to page "}<c:out value="${i}"/>"><div class="pagination-button ${i == targetPageNumber ? "active" : "inactive"}">
+	<c:if test="${targetPageNumber > 1}"><a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${targetPageNumber - 1}"/>" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"><div class="pagination-button arrow left-arrow"></div></a> </c:if>
+        <c:forEach begin="1" end="${currentCollection.websitesNum/rowsPerPageLimit + 1}" var="i"><a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${i}"/>" title="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>"><div class="pagination-button ${i == targetPageNumber ? "active" : "inactive"}">
             <c:out value="${i}"/>
           </div></a> </c:forEach>
-        <c:if test="${targetPageNumber < currentCollection.websitesNum/rowsPerPageLimit}"><a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${targetPageNumber + 1}"/>" title="Next page" aria-label="Next page"><div class="pagination-button arrow right-arrow"></div></a> </c:if>
+        <c:if test="${targetPageNumber < currentCollection.websitesNum/rowsPerPageLimit}"><a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${targetPageNumber + 1}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><div class="pagination-button arrow right-arrow"></div></a> </c:if>
       </div>
     </div>
   </div>
 </div>
 </ssection>
-<div class="up-button" title="To top of page" aria-label="To top of page" tabindex="0"></div>
+<div class="up-button" title="<spring:message code="top.of.page" />" aria-label="<spring:message code="top.of.page" />" tabindex="0"></div>
 <footer>
   <%@include file="footer.jsp" %>
 </footer>
@@ -166,6 +165,8 @@ ${pageContext.response.locale}
 		var descript=$("#coll_description").attr("data-descript");
 		var len=360;
 		var short=true;
+		var readmore = '<spring:message code="coll.descript.readmore" />';
+		var readless = '<spring:message code="coll.descript.readless" />';
 		
 		showDescript(descript, len);
 		
@@ -174,14 +175,12 @@ ${pageContext.response.locale}
 		$("#readmore").click(function(e) {
 			e.preventDefault();
 			if (short) {
-				$(this).attr("title", "Read less");
-				$(this).text("Read less");
+				$(this).attr("title", readless).text(readless);
 				$("#coll_description").text(descript);
 				short=false;
 				
 			} else {
-				$(this).attr("title", "Read more");
-				$(this).text("Read more");
+				$(this).attr("title", readmore).text(readmore);
 				showDescript(descript, len);
 				short=true;
 			}

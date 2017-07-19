@@ -1,8 +1,8 @@
 package com.marsspiders.ukwa.solr;
 
 public enum AccessToEnum {
-    VIEWABLE_ANYWHERE("oa", "OA"),
-    VIEWABLE_ONLY_ON_LIBRARY("rro", "RRO");
+    VIEWABLE_ANYWHERE("va", "OA"),
+    VIEWABLE_ONLY_ON_LIBRARY("vool", "OA,RRO");
 
     private String webRequestAccessRestriction;
     private String solrRequestAccessRestriction;

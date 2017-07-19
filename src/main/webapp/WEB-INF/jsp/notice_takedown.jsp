@@ -18,7 +18,7 @@ ${pageContext.response.locale}
 <html lang="en">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
-<title>UKWA Notice and Takedown Policy</title>
+<title><spring:message code="takedown.title" /></title>
 <%@include file="head.jsp" %>
 </head>
 
@@ -30,23 +30,16 @@ ${pageContext.response.locale}
 </header>
 <section id="noresults-header">
   <div class="row header-blue white">
-    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12">
-      <h2 class="uppercase">UK Web Archive Notice and Takedown Policy</h2>
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 padding-mobile-side-0">
+      <h2 class="uppercase"><spring:message code="takedown.main.heading" /></h2>
     </div>
   </div>
 </section>
 <section id="content">
-  <div class="row margin-0 padding-side-20 padding-top-80 padding-bottom-80">
+  <div class="row margin-0 padding-mobile-side-5 padding-side-20 padding-top-80 padding-bottom-80">
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 text-justify">
-      <p>We, the British Library Board, are committed to ensuring that the material displayed on the UK Web Archive Website (&quot;the Archive&quot;) is lawful and in accordance with our <a href="terms_conditions">Terms and Conditions</a>.</p>
-      <p>If you object to any material on the Archive, please notify us by contacting the Notice and Takedown Team by email <a href="mailto:web-archivisit@bl.uk">web-archivisit@bl.uk or post</a> (Notice and Takedown Team, Web Archiving Programme, The British Library, St Pancras, 96 Euston Road, London NW1 2DB).</p>
-      <p> To help us deal with your complaint as quickly as possible, please	include the following information in your correspondence and mark it as &quot;URGENT&quot;:</p>
-      <ol>
-        <li>Your contact details - including your name, email address and daytime telephone number.</li>
-        <li>Identify the material in question - please include sufficient detail to enable us to identify the material complained of, including the	full URL and where it can be found.</li>
-        <li>The reasons for your objection.</li>
-      </ol>
-      <p>We will review each objection on its merits and pending our	inquiries, may remove or disable access to the relevant material from the Archive. If the material has been supplied to us by a third party it may be appropriate for us to contact them.</p>
+    <spring:message code="takedown.text" />
+     
     </div>
   </div>
 </section>

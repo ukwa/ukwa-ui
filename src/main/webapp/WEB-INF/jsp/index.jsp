@@ -19,12 +19,13 @@ ${pageContext.response.locale}
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title>
-<spring:message code="home.header.title" text="UKWA Home" />
+<spring:message code="home.header.title" />
 </title>
 <%@include file="head.jsp" %>
 </head>
 
 <body>
+
 <%@include file="nav.jsp" %>
 <div class="container-fluid">
   <header>
@@ -32,7 +33,7 @@ ${pageContext.response.locale}
 </header>
 <section id="home-header">
   <div class="row header-blue white padding-top-80 padding-bottom-60">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-6 offset-md-3 padding-side-0">
       <p class="text-bigger">
         <spring:message code="home.header.text1" />
       </p>
@@ -59,10 +60,8 @@ ${pageContext.response.locale}
   </div>
   
     <div class="row margin-0">
-    <div class="col-md-12 col-sm-12 center padding-bottom-80"> <a href="collection">
-      <button type="button" class="button button-blue" role="link" title="<spring:message code="home.button.viewmore.title" />" tabindex="-1">
-      <spring:message code="home.button.viewmore"/>
-      </button>
+    <div class="col-md-12 col-sm-12 center padding-bottom-80"> <a href="collection" title="<spring:message code="home.button.viewmore.title" />">
+      <button class="button button-blue white no-decoration" tabindex="-1" role="link"><spring:message code="home.button.viewmore"/></button>
       </a> </div>
   </div>
   
@@ -98,5 +97,19 @@ ${pageContext.response.locale}
   <%@include file="footer.jsp" %>
 </footer>
 </div>
+<script>
+$(document).ready(function(e) {
+    //survey monkey
+	var content = '<div class="padding-20 black center width-100"><h2><spring:message code="survey.text"/></h2></div><div class="padding-20 clearfix center width-100"><a href="<spring:message code="survey.url"/>" title="<spring:message code="survey.button"/>" target="_blank"><button class="button button-blue white padding-20" role="link" tabindex="-1"><spring:message code="survey.button"/></button></a><div class="padding-20 padding-top-40 black center width-100"><img class="img-survey" alt="MonkeySurvey" src="img/surveymonkeylogo.jpg"/></div>';
+	if (typeof $.cookie('survey_viewed') === 'undefined' || $.cookie('survey_viewed')!=="true") {
+		/*$.SimpleLightbox.open({
+			content: content,
+			elementClass: 'slbContentEl'
+		});*/
+		$.cookie("survey_viewed", "true", { expires: 365, path: '/' });
+	} 
+});
+</script>
+
 </body>
 </html>

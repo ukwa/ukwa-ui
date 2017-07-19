@@ -19,19 +19,12 @@ ${pageContext.response.locale}
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title>
-<spring:message code="about.header.title" text="UKWA About" />
+<spring:message code="about.header.title" />
 </title>
 <%@include file="head.jsp" %>
 </head>
 
 <body>
-<div class="about-full-video-container">
-  <video id="about-full-video" class="about-full-video" controls>
-    <source src="img/about.mp4" type="video/mp4">
-  </video>
-  <div class="about-close-button" id="close-about-video" title="<spring:message code="about.closevideo.title" />
-  "></div>
-</div>
 <%@include file="nav.jsp" %>
 <div class="container-fluid">
   <header>
@@ -39,12 +32,9 @@ ${pageContext.response.locale}
 </header>
 <section id="about-header">
   <div class="header-white about-video-container padding-0">
-    <video class="about-video" autoplay muted>
-      <source src="img/about.mp4" type="video/mp4">
-    </video>
-    <div class="about-play-button" id="play-about-video" title="<spring:message code="about.playvideo.title" />
-    "></div>
-  </div>
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ubDHY-ynWi0" frameborder="0" allowfullscreen></iframe>
+</div>
 </section>
 <section id="content">
   <div class="row page-content">

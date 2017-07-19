@@ -19,7 +19,7 @@ ${pageContext.response.locale}
 <html lang="en">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
-<title>UKWA Special collections</title>
+<title><spring:message code="coll.title" /></title>
 <%@include file="head.jsp" %>
 </head>
 
@@ -30,18 +30,14 @@ ${pageContext.response.locale}
   <%@include file="header.jsp" %>
 <div class="row header-bar-2 padding-top-80">
   <div class="col-lg-2 col-md-3 col-sm-12 main-heading-cont">
-    <h1 class="main-heading">Highlights<br/>
-     from the<br/>
-      Special Collections </h1>
+    <h1 class="main-heading"><spring:message code="coll.main.heading" /></h1>
     <hr class="header-title-hr"/>
   </div>
-  <div class="col-lg-4 col-md-5 offset-md-1 col-sm-12 header-2-subtitle"> Special Collections are groups of websites brought together 
-    on a particular theme by librarians, curators and other specialists, 
-    often working in collaboration with key organisations in the field. </div>
+  <div class="col-lg-4 col-md-5 offset-md-1 col-sm-12 header-2-subtitle"><spring:message code="coll.subtitle" /></div>
 
-  <div class="col-lg-2 offset-lg-3 col-md-2 offset-md-1 col-sm-12 right"> 
-    <img title="Display thumbnails" alt="Display thumbnails" class="collections-display" id="btn_thumbs" src="img/icons/icn_grid.png" tabindex="0"/>
-    <img title="Display thumbnails" alt="Display list" class="collections-display" id="btn_list" src="img/icons/icn_list.png" tabindex="0"/>
+  <div class="col-lg-2 offset-lg-3 col-md-2 offset-md-1 col-sm-12 right padding-top-mobile-20"> 
+    <img title="<spring:message code="coll.thumbs" />" alt="<spring:message code="coll.thumbs" />" class="collections-display" id="btn_thumbs" src="img/icons/icn_grid.png" tabindex="0"/>
+    <img title="<spring:message code="coll.list" />" alt="<spring:message code="coll.list" />" class="collections-display" id="btn_list" src="img/icons/icn_list.png" tabindex="0"/>
   </div>
   
 </div>
@@ -68,9 +64,9 @@ ${pageContext.response.locale}
   
   <!--LIST DISPLAY-->
   
-  <div class="row page-content padding-top-0 collections" id="collections_list">
+  <div class="row page-content padding-top-30 collections" id="collections_list">
     <c:forEach items="${collections}" var="collection">
-      <div class="col-sm-12 padding-bottom-20 padding-side-30 margin-bottom-20">
+      <div class="col-sm-12 padding-bottom-20 padding-side-30 margin-bottom-20 padding-mobile-side-0">
       <div class="border-bottom-gray padding-bottom-20">
       	<a href="collection/<c:out value="${collection.id}"/>" class="collection-link"><h2 class="padding-bottom-0"><c:out value="${collection.name}"/></h2></a><br/>
          <span><c:out value="${collection.fullDescription}"/></span>
@@ -85,36 +81,47 @@ ${pageContext.response.locale}
 </div>
 <script>
 
-$(document).ready(function(e) {
-    
-	if (typeof $.cookie('collections_display') === 'undefined' || $.cookie('collections_display')!=="list") {
-		$("#collections_list").hide();
-		$("#collections_thumbs").show();
-		$("#btn_list").show();
-		$.cookie("collections_display", "thumbnails", { expires: 365, path: '/' });
-	} else {
-		$("#collections_thumbs").hide();
-		$("#collections_list").show();
-		$("#btn_thumbs").show();
-		$.cookie("collections_display", "list", { expires: 365, path: '/' });		
-	}
+function toggleView(action, fcs) {
 	
-	$("#btn_thumbs").on("click keypress", function(e) {
-		e.preventDefault();
+	if (action === "list") {
+        $("#collections_thumbs").hide();
+		$("#collections_list").show();
+		$("#btn_list").hide();		
+		$("#btn_thumbs").show();
+		if (fcs) $("#btn_thumbs").focus();
+		$.cookie("collections_display", "list", { expires: 365, path: '/' });	
+	} else { 
         $("#collections_list").hide();
 		$("#collections_thumbs").show();
 		$("#btn_thumbs").hide();
 		$("#btn_list").show();
-		$.cookie("collections_display", "thumbnails", { expires: 365, path: '/' });
+		if (fcs) $("#btn_list").focus();
+		$.cookie("collections_display", "thumbnails", { expires: 365, path: '/' });	
+	}
+	
+	return true;
+}
+
+$(document).ready(function(e) {
+    
+	if (typeof $.cookie('collections_display') === 'undefined' || $.cookie('collections_display')!=="list") {
+		toggleView("thumbs", false);
+	} else {
+		toggleView("list", false);	
+	}
+	
+	$("#btn_thumbs").on("click keypress", function(e) {
+		if (e.which == 1 || e.which == 13) {
+			e.preventDefault();
+			toggleView("thumbs", true);
+		}
     });
 	
 	$("#btn_list").on("click keypress", function(e) {
-		e.preventDefault();
-        $("#collections_thumbs").hide();
-		$("#collections_list").show();
-		$("#btn_thumbs").show();
-		$("#btn_list").hide();		
-		$.cookie("collections_display", "list", { expires: 365, path: '/' });
+		if (e.which == 1 || e.which == 13) {
+			e.preventDefault();
+			toggleView("list", true);
+		}
     });	
 	
 });

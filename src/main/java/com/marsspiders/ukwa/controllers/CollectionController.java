@@ -19,6 +19,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.marsspiders.ukwa.solr.CollectionDocumentType.TYPE_COLLECTION;
+import static com.marsspiders.ukwa.solr.CollectionDocumentType.TYPE_TARGET;
 import static com.marsspiders.ukwa.util.UrlUtil.getRootPathWithLang;
 import static java.util.Collections.singletonList;
 import static org.apache.commons.lang3.StringUtils.abbreviate;
@@ -29,8 +31,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RequestMapping(value = HomeController.PROJECT_NAME + "/collection")
 public class CollectionController {
 
-    public static final String TYPE_COLLECTION = "collection";
-    public static final String TYPE_TARGET = "target";
     static final int ROWS_PER_PAGE_DEFAULT = 50;
 
     @Autowired
@@ -65,7 +65,6 @@ public class CollectionController {
 
         List<TargetWebsiteDTO> targetWebsites = generateTargetWebsitesDTOs(targetWebsitesDocuments, rootPathWithLang);
         List<CollectionDTO> subCollections = generateSubCollectionDTOs(collectionId);
-        List<CollectionDTO> rootCollections = generateRootCollectionDTOs();
         CollectionDTO currentCollection = generatePlainCollectionDTO(collectionId);
         currentCollection.setWebsitesNum(targetWebsitesSearchResult.getResponseBody().getNumFound());
 
@@ -73,7 +72,6 @@ public class CollectionController {
         mav.addObject("targetWebsites", targetWebsites);
         mav.addObject("subCollections", subCollections);
         mav.addObject("currentCollection", currentCollection);
-        mav.addObject("rootCollections", rootCollections);
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
         mav.addObject("targetPageNumber", targetPageNumber);
         mav.addObject("rowsPerPageLimit", ROWS_PER_PAGE_DEFAULT);

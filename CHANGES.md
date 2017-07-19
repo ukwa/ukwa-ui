@@ -1,6 +1,22 @@
 Change Log
 ----------
 
+* 2017-07-19
+    * Search term highlighting
+    * Cookies acknowledgement added.
+    * Survey pop-up added.
+    * Various layout and accessibility improvements, desktop and mobile.
+    * "Viewable only on Library Premises" now includes open access material.
+    * Use "type" facet instead of "content_type_norm" for Document Type.
+    * Special Collections are now ordered alphabetically.
+    * Add an X button to reset dates.
+    * Display number of results in brackets for the Access facet.
+    * Format numbers in search results to 1,000,000.
+    * Detect URLs and output them as the top search result.
+    * Fix the CI build by removing the test.
+    * Check that the From date is before the To date.
+    * Google Analytics code added.
+
 * 2017-07-11
     * Changed font embeddability to "Installable" for IE browser
     * Mobile browser fixes

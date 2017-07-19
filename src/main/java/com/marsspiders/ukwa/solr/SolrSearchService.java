@@ -4,32 +4,30 @@ import com.marsspiders.ukwa.solr.data.BodyDocsType;
 import com.marsspiders.ukwa.solr.data.CollectionInfo;
 import com.marsspiders.ukwa.solr.data.ContentInfo;
 import com.marsspiders.ukwa.solr.data.SolrSearchResult;
-import org.apache.commons.codec.EncoderException;
-import org.apache.commons.codec.net.URLCodec;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.marsspiders.ukwa.controllers.CollectionController.TYPE_COLLECTION;
-import static com.marsspiders.ukwa.solr.AccessToEnum.VIEWABLE_ANYWHERE;
-import static com.marsspiders.ukwa.util.SolrUtil.escapeQueryChars;
-import static com.marsspiders.ukwa.util.SolrUtil.toEncoded;
-import static com.marsspiders.ukwa.util.SolrUtil.toMultipleConditionsQuery;
-import static com.marsspiders.ukwa.util.SolrUtil.toMultipleConditionsQueryWithPreCondition;
+import static com.marsspiders.ukwa.solr.CollectionDocumentType.TYPE_COLLECTION;
+import static com.marsspiders.ukwa.solr.CollectionDocumentType.TYPE_TARGET;
+import static com.marsspiders.ukwa.util.SolrSearchUtil.generateAccessToQuery;
+import static com.marsspiders.ukwa.util.SolrSearchUtil.generateDateQuery;
+import static com.marsspiders.ukwa.util.SolrSearchUtil.generateMultipleConditionsQuery;
+import static com.marsspiders.ukwa.util.SolrSearchUtil.generateMultipleConditionsQueryWithPreCondition;
+import static com.marsspiders.ukwa.util.SolrStringUtil.escapeQueryChars;
+import static com.marsspiders.ukwa.util.SolrStringUtil.toEncoded;
 import static java.lang.String.format;
 
 @Service
 public class SolrSearchService {
     private static final Logger log = LoggerFactory.getLogger(SolrSearchService.class);
 
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
     public static final String AND_JOINER = " AND ";
     public static final String OR_JOINER = " OR ";
@@ -38,22 +36,28 @@ public class SolrSearchService {
     private static final String INDENT_FLAG = "on";
     private static final String RESULT_FORMAT = "json";
 
-    private static final String FIELD_CONTENT_TYPE_NORM = "content_type_norm";
+    private static final String FIELD_NAME = "name";
+    private static final String FIELD_TYPE = "type";
     private static final String FIELD_PUBLIC_SUFFIX = "public_suffix";
     private static final String FIELD_HOST = "host";
     private static final String FIELD_DOMAIN = "domain";
-    private static final String FIELD_CRAWL_DATE = "crawl_date";
-    private static final String FIELD_ACCESS_TERMS = "access_terms";
+    public static final String FIELD_CRAWL_DATE = "crawl_date";
+    public static final String FIELD_ACCESS_TERMS = "access_terms";
     private static final String FIELD_ID = "id";
     private static final String FIELD_TITLE = "title";
     private static final String FIELD_URL = "url";
     private static final String FIELD_WAYBACK_DATE = "wayback_date";
     private static final String FIELD_COLLECTION = "collection";
 
-    private static final String EXCLUDE_FACET_TAG_NAME = "filter";
-    private static final String EXCLUDE_MARKER_TAG = "{!tag=" + EXCLUDE_FACET_TAG_NAME + "}";
-    private static final String EXCLUDE_POINT_TAG = "{!ex=" + EXCLUDE_FACET_TAG_NAME + "}";
-    private static final String DATE_PART_AFTER_YEAR = "-01-01T00:00:00Z";
+    private static final String EXCLUDE_FACET_FIRST_LAYER_TAG_NAME = "filterFirstLayer";
+    private static final String EXCLUDE_FACET_SECOND_LAYER_TAG_NAME = "filterSecondLayer";
+    public static final String EXCLUDE_MARKER_FIRST_LAYER_TAG = "{!tag=" + EXCLUDE_FACET_FIRST_LAYER_TAG_NAME + "}";
+    public static final String EXCLUDE_MARKER_SECOND_LAYER_TAG = "{!tag=" + EXCLUDE_FACET_SECOND_LAYER_TAG_NAME + "}";
+    private static final String EXCLUDE_POINT_FIRST_LAYER_TAG = "{!ex="
+            + EXCLUDE_FACET_SECOND_LAYER_TAG_NAME + ","
+            + EXCLUDE_FACET_FIRST_LAYER_TAG_NAME + "}";
+    private static final String EXCLUDE_POINT_SECOND_LAYER_TAG = "{!ex=" + EXCLUDE_FACET_SECOND_LAYER_TAG_NAME + "}";
+    public static final String DATE_PART_AFTER_YEAR = "-01-01T00:00:00Z";
     private static final int FACET_RANGE_START_YEAR = 1980;
     private static final int FACET_RANGE_END_YEAR = 2040;
 
@@ -63,7 +67,7 @@ public class SolrSearchService {
     private SolrSearchResult<CollectionInfo> fetchAllCollections() {
         log.info("Fetching all collections");
 
-        String queryString = "type:" + TYPE_COLLECTION;
+        String queryString = "type:" + TYPE_COLLECTION.getSolrDocumentType();
 
         return sendRequest(queryString, CollectionInfo.class, ROOT_COLLECTIONS_ROWS_LIMIT, 0);
     }
@@ -71,40 +75,71 @@ public class SolrSearchService {
     public SolrSearchResult<CollectionInfo> fetchRootCollections() {
         log.info("Fetching root collections");
 
-        String queryString = "-parentId:[*%20TO%20*]";
+        String noParentQuery = "-parentId:[* TO *]";
+        String sortQuery = FIELD_NAME + " asc";
+
+        String queryString = toEncoded(noParentQuery)
+                + "&sort=" + toEncoded(sortQuery);
+
         return sendRequest(queryString, CollectionInfo.class, ROOT_COLLECTIONS_ROWS_LIMIT, 0);
     }
 
     public SolrSearchResult<CollectionInfo> fetchCollectionById(String targetId) {
         log.info("Fetching collections by id: " + targetId);
 
-        String queryString = FIELD_ID + ":" + targetId;
         //As result should be only one row, but for debug purposes we pass limit 100 to see what actual result are returned
         int rowsLimit = 100;
+
+        String collectionIdQuery = FIELD_ID + ":" + targetId;
+        String sortQuery = FIELD_NAME + " asc";     //TODO: think about sorting for only one result, do we need it?
+
+        String queryString = toEncoded(collectionIdQuery)
+                + "&sort=" + toEncoded(sortQuery);
+
         return sendRequest(queryString, CollectionInfo.class, rowsLimit, 0);
     }
 
     public SolrSearchResult<CollectionInfo> fetchChildCollections(Collection<String> parentCollectionIds,
-                                                                  String documentType,
+                                                                  CollectionDocumentType documentType,
                                                                   long rowsLimit,
                                                                   long startFrom) {
         log.info("Fetching child collections by parent ids: " + parentCollectionIds + ", documentType: " + documentType);
 
-        String typeSearchQueryString = "type:" + documentType;
+        String fieldToSort = documentType == TYPE_TARGET
+                ? FIELD_TITLE
+                : FIELD_NAME;
+
+        String sortQuery = fieldToSort + " asc";
+        String typeSearchQueryString = "type:" + documentType.getSolrDocumentType();
         String parentIdsQueryString = parentCollectionIds.stream()
                 .map(id -> "parentId:" + id)
                 .collect(Collectors.joining(" OR "));
 
-        URLCodec codec = new URLCodec();
-        String encodedParentIdQueryString = null;
-        try {
-            encodedParentIdQueryString = codec.encode(parentIdsQueryString);
-        } catch (EncoderException e) {
-            log.error("Failed to encode parentIds query", e);
-        }
 
-        String queryString = encodedParentIdQueryString + "&fq=" + typeSearchQueryString;
+        String queryString = toEncoded(parentIdsQueryString)
+                + "&fq=" + toEncoded(typeSearchQueryString)
+                + "&sort=" + toEncoded(sortQuery);
+
         return sendRequest(queryString, CollectionInfo.class, rowsLimit, startFrom);
+    }
+
+    public SolrSearchResult<ContentInfo> searchUrlInContent(String urlToSearch) {
+        log.info("Searching site for url '" + urlToSearch);
+
+        String protocolPart = "(https?\\:\\/\\/)?";
+        String wwwPart = "(www\\.)?";
+        String urlWithReplacedSlashes = urlToSearch.replace("/", "\\/");
+        String endSlashPart = "\\/?";
+
+        String urlToSearchRegex = protocolPart + wwwPart + urlWithReplacedSlashes + endSlashPart;
+        String urlToSearchQuery = FIELD_URL + ":/" + urlToSearchRegex + "/";
+
+        String queryString = toEncoded(urlToSearchQuery) +
+                        "&fl=" + FIELD_ID + "," + FIELD_TITLE + "," + FIELD_CRAWL_DATE + "," + FIELD_URL + ","
+                        + FIELD_WAYBACK_DATE + "," + FIELD_DOMAIN + "," + FIELD_ACCESS_TERMS;
+
+        String[] facets = {};
+        return sendRequest(queryString, ContentInfo.class, 10, 0, facets);
     }
 
     public SolrSearchResult<ContentInfo> searchContent(SearchByEnum searchLocation,
@@ -122,31 +157,14 @@ public class SolrSearchService {
                                                        List<String> collections) {
         log.info("Searching content for '" + textToSearch + "' by " + searchLocation);
 
-        String accessToValue = accessTo == null
-                ? VIEWABLE_ANYWHERE.getSolrRequestAccessRestriction()
-                : accessTo.getSolrRequestAccessRestriction();
-        String accessToQuery = FIELD_ACCESS_TERMS + ":" + accessToValue;
         String searchQuery = searchLocation.getSolrSearchLocation() + ":\"" + escapeQueryChars(textToSearch) + "\"";
         String sortByQuery = sortBy == null ? "" : FIELD_CRAWL_DATE + " " + sortBy.getSolrOrderValue();
         String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
-
-        String contentTypeNotEmpty = FIELD_CONTENT_TYPE_NORM + ":['' TO *]";
-        String contentTypesConditionQuery = toMultipleConditionsQueryWithPreCondition(contentTypes, FIELD_CONTENT_TYPE_NORM);
-        String contentTypeQuery = EXCLUDE_MARKER_TAG + contentTypeNotEmpty + contentTypesConditionQuery;
-
-        String publicSuffixesNotEmpty = FIELD_PUBLIC_SUFFIX + ":['' TO *]";
-        String publicSuffixesConditionQuery = toMultipleConditionsQueryWithPreCondition(publicSuffixes, FIELD_PUBLIC_SUFFIX);
-        String publicSuffixesQuery = EXCLUDE_MARKER_TAG + publicSuffixesNotEmpty + publicSuffixesConditionQuery;
-
-        String domainsNotEmpty = FIELD_DOMAIN + ":['' TO *]";
-        String domainsConditionQuery = toMultipleConditionsQueryWithPreCondition(originalDomains, FIELD_DOMAIN);
-        String domainsQuery = EXCLUDE_MARKER_TAG + domainsNotEmpty + domainsConditionQuery;
-
-        String collectionsQuery = "";
-        if(collections.size() > 0){
-            String collectionsConditionQuery = toMultipleConditionsQuery(collections, FIELD_COLLECTION);
-            collectionsQuery = EXCLUDE_MARKER_TAG + collectionsConditionQuery;
-        }
+        String accessToQuery = generateAccessToQuery(accessTo);
+        String contentTypeQuery = generateMultipleConditionsQuery(contentTypes, FIELD_TYPE);
+        String collectionsQuery = generateMultipleConditionsQuery(collections, FIELD_COLLECTION);
+        String publicSuffixesQuery = generateMultipleConditionsQueryWithPreCondition(publicSuffixes, FIELD_PUBLIC_SUFFIX);
+        String domainsQuery = generateMultipleConditionsQueryWithPreCondition(originalDomains, FIELD_DOMAIN);
 
         String queryString = toEncoded(searchQuery) +
                 "&sort=" + toEncoded(sortByQuery) +
@@ -157,7 +175,7 @@ public class SolrSearchService {
                 "&fq=" + toEncoded(domainsQuery) +
                 "&fq=" + toEncoded(collectionsQuery) +
                 "&facet.range.gap=%2B1YEAR" +
-                "&facet.range=" + toEncoded(EXCLUDE_POINT_TAG) + FIELD_CRAWL_DATE +
+                "&facet.range=" + toEncoded(EXCLUDE_POINT_SECOND_LAYER_TAG) + FIELD_CRAWL_DATE +
                 "&f." + FIELD_CRAWL_DATE + ".facet.range.start=" + FACET_RANGE_START_YEAR + DATE_PART_AFTER_YEAR +
                 "&f." + FIELD_CRAWL_DATE + ".facet.range.end=" + FACET_RANGE_END_YEAR + DATE_PART_AFTER_YEAR +
                 "&hl=true" + //from: http://stackoverflow.com/questions/3452665/how-do-i-return-only-a-truncated-portion-of-a-field-in-solr
@@ -167,29 +185,8 @@ public class SolrSearchService {
                 "&fl=" + FIELD_ID + "," + FIELD_TITLE + "," + FIELD_CRAWL_DATE + "," + FIELD_URL + ","
                 + FIELD_WAYBACK_DATE + "," + FIELD_DOMAIN + "," + FIELD_ACCESS_TERMS;
 
-        String[] facets = {FIELD_PUBLIC_SUFFIX, FIELD_CONTENT_TYPE_NORM, FIELD_HOST, FIELD_DOMAIN, FIELD_COLLECTION};
+        String[] facets = {FIELD_PUBLIC_SUFFIX, FIELD_TYPE, FIELD_HOST, FIELD_DOMAIN, FIELD_COLLECTION, "content_type_norm", FIELD_ACCESS_TERMS};
         return sendRequest(queryString, ContentInfo.class, rowsLimit, startFrom, facets);
-    }
-
-    private String generateDateQuery(Date fromDatePicked, Date toDatePicked, List<String> rangeDates) {
-        String fromDateText = fromDatePicked != null ? sdf.format(fromDatePicked) : "*";
-        String toDateText = toDatePicked != null ? sdf.format(toDatePicked) : "*";
-        if(fromDatePicked != null || toDatePicked != null){
-            return FIELD_CRAWL_DATE + ":[" + fromDateText + " TO " + toDateText + "]";
-        }
-
-        String dateQuery = "";
-        for (String originalRangeDate : rangeDates) {
-            dateQuery += dateQuery.length() > 0 ? OR_JOINER : EXCLUDE_MARKER_TAG;
-
-            int yearWhenArchived = Integer.parseInt(originalRangeDate);
-            String fromDate = yearWhenArchived + DATE_PART_AFTER_YEAR;
-            String toDate = (yearWhenArchived + 1) + DATE_PART_AFTER_YEAR;
-
-            dateQuery += FIELD_CRAWL_DATE + ":[" + fromDate + " TO " + toDate + "]";
-        }
-
-        return dateQuery;
     }
 
     private <T extends BodyDocsType> SolrSearchResult<T> sendRequest(String queryString,
@@ -199,7 +196,11 @@ public class SolrSearchService {
                                                                      String... facetFields) {
         String fieldsFacetQuery = "&facet=on";
         for (String facetField : facetFields) {
-            fieldsFacetQuery += "&facet.field=" + toEncoded(EXCLUDE_POINT_TAG) + facetField;
+            if(facetField.equals(FIELD_ACCESS_TERMS)){
+                fieldsFacetQuery += "&facet.field=" + toEncoded(EXCLUDE_POINT_FIRST_LAYER_TAG) + facetField;
+            } else {
+                fieldsFacetQuery += "&facet.field=" + toEncoded(EXCLUDE_POINT_SECOND_LAYER_TAG) + facetField;
+            }
         }
 
 

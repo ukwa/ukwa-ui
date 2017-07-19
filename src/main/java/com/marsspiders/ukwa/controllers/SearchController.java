@@ -47,6 +47,9 @@ public class SearchController {
     private static final Logger log = LoggerFactory.getLogger(SolrSearchService.class);
 
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private static final String URL_PATTERN = "(?i)^(?:(?:https?|ftp)://)?(?:\\S+(?::\\S*)?@)?(?:(?!(?:10|127)(?:\\.\\d{1,3}){3})(?!(?:169\\.254|192\\.168)(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,}))\\.?)(?::\\d{2,5})?(?:[/?#]\\S*)?$";
+    //Best URL regex validator from: https://mathiasbynens.be/demo/url-regex
+    //checker: https://regex101.com
 
     @Autowired
     SolrSearchService searchService;
@@ -58,7 +61,7 @@ public class SearchController {
     public ModelAndView searchPage(@RequestParam(value = "search_location", required = false) String searchLocation,
                                    @RequestParam(value = "text", required = false) String text,
                                    @RequestParam(value = "page", required = false) String pageNum,
-                                   @RequestParam(value = "content_type", required = false) String[] checkedDocumentTypes,
+                                   @RequestParam(value = "content_type", required = false) String[] checkedContentTypes,
                                    @RequestParam(value = "public_suffix", required = false) String[] checkedPublicSuffixes,
                                    @RequestParam(value = "domain_filter", required = false) String[] checkedDomains,
                                    @RequestParam(value = "from_date", required = false) String fromDateText,
@@ -71,13 +74,14 @@ public class SearchController {
                                    HttpServletRequest request) throws MalformedURLException, URISyntaxException, ParseException {
 
         List<SearchResultDTO> searchResultDTOs = new ArrayList<>();
+        List<String> accessTermsPairs = new LinkedList<>();
         List<String> contentTypesPairs = new LinkedList<>();
         List<String> publicSuffixesPairs = new LinkedList<>();
         List<String> domainsPairs = new LinkedList<>();
         List<String> rangeDatesPairs = new LinkedList<>();
         List<String> collectionPairs = new LinkedList<>();
 
-        List<String> originalDocumentTypes = checkedDocumentTypes != null ? asList(checkedDocumentTypes) : emptyList();
+        List<String> originalContentTypes = checkedContentTypes != null ? asList(checkedContentTypes) : emptyList();
         List<String> originalPublicSuffixes = checkedPublicSuffixes != null ? asList(checkedPublicSuffixes) : emptyList();
         List<String> originalDomains = checkedDomains != null ? asList(checkedDomains) : emptyList();
         List<String> originalRangeDates = checkedRangeDates != null ? asList(checkedRangeDates) : emptyList();
@@ -95,18 +99,33 @@ public class SearchController {
             Date fromDate = isBlank(fromDateText) ? null : sdf.parse(fromDateText);
             Date toDate = isBlank(toDateText) ? null : sdf.parse(toDateText);
 
+            if (isValidUrl(text)) {
+                SolrSearchResult<ContentInfo> archivedSites = searchService.searchUrlInContent(text);
+                List<ContentInfo> urlSearchResults = archivedSites.getResponseBody().getDocuments();
+
+                if (urlSearchResults.size() > 0) {
+                    String rootPathWithLang = getRootPathWithLang(request, setProtocolToHttps);
+                    ContentInfo contentInfo = urlSearchResults.get(0);
+
+                    SearchResultDTO searchResultDTO = toSearchResultDto(archivedSites, searchBy, rootPathWithLang, contentInfo);
+                    searchResultDTOs.add(searchResultDTO);
+                }
+            }
+
             SolrSearchResult<ContentInfo> archivedSites = searchService.searchContent(searchBy, text, rowsPerPage,
-                    sortBy, accessTo, startFromRow, originalDocumentTypes, originalPublicSuffixes, originalDomains,
+                    sortBy, accessTo, startFromRow, originalContentTypes, originalPublicSuffixes, originalDomains,
                     fromDate, toDate, originalRangeDates, originalCollections);
 
-            searchResultDTOs = toSearchResults(archivedSites, request, searchBy);
+
+            searchResultDTOs.addAll(toSearchResults(archivedSites, request, searchBy));
             totalSearchResultsSize = archivedSites.getResponseBody().getNumFound();
 
             FacetCounts facetCounts = archivedSites.getFacetCounts();
             if (facetCounts != null && facetCounts.getFields() != null) {
                 LinkedList<String> datesCount = facetCounts.getRanges().getCrawlDateRange().getCount();
 
-                contentTypesPairs = facetCounts.getFields().getContentTypes();
+                accessTermsPairs = facetCounts.getFields().getAccessTerms();
+                contentTypesPairs = facetCounts.getFields().getTypes();
                 publicSuffixesPairs = facetCounts.getFields().getPublicSuffixes();
                 domainsPairs = facetCounts.getFields().getDomains();
                 collectionPairs = facetCounts.getFields().getCollections();
@@ -120,6 +139,7 @@ public class SearchController {
         ModelAndView mav = new ModelAndView("search");
         mav.addObject("searchResults", searchResultDTOs);
         mav.addObject("totalSearchResultsSize", totalSearchResultsSize);
+        mav.addObject("accessTerms", accessTermsPairs);
         mav.addObject("contentTypes", contentTypesPairs);
         mav.addObject("publicSuffixes", publicSuffixesPairs);
         mav.addObject("domains", domainsPairs);
@@ -127,7 +147,7 @@ public class SearchController {
         mav.addObject("collections", collectionPairs);
         mav.addObject("originalSearchRequest", text);
         mav.addObject("originalSearchLocation", searchLocation);
-        mav.addObject("originalContentTypes", originalDocumentTypes);
+        mav.addObject("originalContentTypes", originalContentTypes);
         mav.addObject("originalPublicSuffixes", originalPublicSuffixes);
         mav.addObject("originalDomains", originalDomains);
         mav.addObject("originalFromDateText", fromDateText);
@@ -142,6 +162,10 @@ public class SearchController {
         mav.addObject("totalPages", (int) (Math.ceil(totalSearchResultsSize / (double) rowsPerPage)));
 
         return mav;
+    }
+
+    private static boolean isValidUrl(String text) {
+        return text.matches(URL_PATTERN);
     }
 
     private List<String> toRangeDates(LinkedList<String> crawlDatesCount) {
@@ -161,31 +185,38 @@ public class SearchController {
 
         return contentInfoList
                 .stream()
-                .map(archivedSiteInfo -> {
-                    String url = archivedSiteInfo.getUrl() != null ? archivedSiteInfo.getUrl() : "";
-                    String wayBackUrl = toWayBackUrl(rootPathWithLang, archivedSiteInfo, url);
-                    HighlightingContent highlightingContent = archivedSites.getHighlighting().get(archivedSiteInfo.getId());
-                    String escapedContent = toEscapedContent(searchLocation, highlightingContent);
-                    String originalDomain = toOriginalDomain(url);
-                    String abbreviatedTitle = abbreviate(archivedSiteInfo.getTitle(), 70);
-                    String displayCrawlDate = archivedSiteInfo.getCrawl_date().substring(0, 10);
-
-                    SearchResultDTO searchResult = new SearchResultDTO();
-                    searchResult.setId(archivedSiteInfo.getId());
-                    searchResult.setTitle(abbreviatedTitle);
-                    searchResult.setDate(displayCrawlDate);
-                    searchResult.setText(escapedContent);
-                    searchResult.setDisplayUrl(url);
-                    searchResult.setUrl(wayBackUrl);
-                    searchResult.setDisplayDomain(archivedSiteInfo.getDomain());
-                    searchResult.setDomain(originalDomain);
-
-                    return searchResult;
-                })
+                .map(archivedSiteInfo -> toSearchResultDto(archivedSites, searchLocation, rootPathWithLang, archivedSiteInfo))
                 .collect(toList());
     }
 
-    private String toEscapedContent(SearchByEnum searchLocation, HighlightingContent highlightingContent) {
+    private static SearchResultDTO toSearchResultDto(SolrSearchResult<ContentInfo> archivedSites,
+                                                     SearchByEnum searchLocation,
+                                                     String rootPathWithLang,
+                                                     ContentInfo archivedSiteInfo) {
+        String url = archivedSiteInfo.getUrl() != null ? archivedSiteInfo.getUrl() : "";
+        String wayBackUrl = toWayBackUrl(rootPathWithLang, archivedSiteInfo, url);
+        HighlightingContent highlightingContent = archivedSites.getHighlighting() == null
+                ? null
+                : archivedSites.getHighlighting().get(archivedSiteInfo.getId());
+        String escapedContent = toEscapedContent(searchLocation, highlightingContent);
+        String originalDomain = toOriginalDomain(url);
+        String abbreviatedTitle = abbreviate(archivedSiteInfo.getTitle(), 70);
+        String displayCrawlDate = archivedSiteInfo.getCrawl_date().substring(0, 10);
+
+        SearchResultDTO searchResult = new SearchResultDTO();
+        searchResult.setId(archivedSiteInfo.getId());
+        searchResult.setTitle(abbreviatedTitle);
+        searchResult.setDate(displayCrawlDate);
+        searchResult.setText(escapedContent);
+        searchResult.setDisplayUrl(url);
+        searchResult.setUrl(wayBackUrl);
+        searchResult.setDisplayDomain(archivedSiteInfo.getDomain());
+        searchResult.setDomain(originalDomain);
+
+        return searchResult;
+    }
+
+    private static String toEscapedContent(SearchByEnum searchLocation, HighlightingContent highlightingContent) {
         String escapedContent = "";
         if (searchLocation == FULL_TEXT && highlightingContent != null && highlightingContent.getContent() != null) {
             String shortContent = highlightingContent.getContent().get(0);
@@ -195,7 +226,7 @@ public class SearchController {
         return escapedContent;
     }
 
-    private String toWayBackUrl(String rootPathWithLang, ContentInfo archivedSiteInfo, String url) {
+    private static String toWayBackUrl(String rootPathWithLang, ContentInfo archivedSiteInfo, String url) {
         if (archivedSiteInfo.getAccess_terms() != null
                 && archivedSiteInfo.getAccess_terms().size() == 1
                 && archivedSiteInfo.getAccess_terms().get(0).equals("RRO")) {
@@ -208,7 +239,7 @@ public class SearchController {
         return rootPathWithLang + "wayback/" + archivedSiteInfo.getWayback_date() + "/" + urlWithUppercaseJsp;
     }
 
-    private String toOriginalDomain(String url) {
+    private static String toOriginalDomain(String url) {
         String domain = "";
         try {
             domain = UrlUtil.getOnlyDomainWithProtocol(url);

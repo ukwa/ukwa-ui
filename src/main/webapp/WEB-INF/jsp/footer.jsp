@@ -15,7 +15,7 @@
     <spring:message code="footer.nominate" />
     </a><br/>
     <a href="info/faq" title="<spring:message code="footer.faq" />">
-    <spring:message code="footer.faq" text="Notice and takedown" />
+    <spring:message code="footer.faq" />
     </a><br/>
     <a href="contact" title="<spring:message code="footer.contact.title" />">
     <spring:message code="footer.contact" />
@@ -41,27 +41,32 @@
       </a></span><br/>
     </c:if>
     <a href="info/notice_takedown" title="<spring:message code="footer.notice.title" />">
-    <spring:message code="footer.notice" text="Notice and takedown" />
+    <spring:message code="footer.notice" />
     </a><br/>
     <a href="info/terms_conditions" title="<spring:message code="footer.terms.title" />">
-    <spring:message code="footer.terms" text="Terms and conditions" />
+    <spring:message code="footer.terms" />
     </a><br/>
     <a href="info/privacy" title="<spring:message code="footer.privacy.title" />">
-    <spring:message code="footer.privacy" text="Privacy statement" />
+    <spring:message code="footer.privacy" />
     </a><br/>
     <a href="https://www.webarchive.org.uk/rss/recent.xml" title="<spring:message code="footer.rss.title" />">
-    <spring:message code="footer.rss" text="RSS Feed" />
+    <spring:message code="footer.rss" />
     </a><br/>
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12 col-sm-12 footer-logos"> <a href="https://www.bl.uk/" target="_blank"><img src="img/bl_logo.png" alt="British library" class="footer-logo"/></a> <a href="https://www.llgc.org.uk/" target="_blank"><img src="img/llgc_logo.png" alt="LLGC NLW" class="footer-logo"/></a> <a href="https://www.nls.uk/" target="_blank"><img src="img/nls_logo.png" alt="National Library of Scotland" class="footer-logo"/></a><br/>
-    <a href="http://www.bodleian.ox.ac.uk/" target="_blank"><img src="img/bodleian_logo.jpg" alt="Bodleian Libraries" class="footer-logo"/></a> <a href="http://www.lib.cam.ac.uk/" target="_blank"><img src="img/cambrige_logo.jpg" alt="Cambrige University Library" class="footer-logo"/></a> <a href="https://www.tcd.ie/" target="_blank"><img src="img/trinity_logo.jpg" alt="Trinity College Dublin" class="footer-logo"/></a> </div>
+  <div class="col-md-12 col-sm-12 footer-logos"> <a href="https://www.bl.uk/" target="_blank"><img src="img/bl_logo.png" alt="<spring:message code="footer.logo.blib" />" class="footer-logo"/></a> <a href="https://www.llgc.org.uk/" target="_blank"><img src="img/llgc_logo.png" alt="<spring:message code="footer.logo.llgc" />" class="footer-logo"/></a> <a href="https://www.nls.uk/" target="_blank"><img src="img/nls_logo.png" alt="<spring:message code="footer.logo.nls" />" class="footer-logo"/></a><br/>
+    <a href="http://www.bodleian.ox.ac.uk/" target="_blank"><img src="img/bodleian_logo.jpg" alt="<spring:message code="footer.logo.bl" />" class="footer-logo"/></a> <a href="http://www.lib.cam.ac.uk/" target="_blank"><img src="img/cambrige_logo.jpg" alt="<spring:message code="footer.logo.cul" />" class="footer-logo"/></a> <a href="https://www.tcd.ie/" target="_blank"><img src="img/trinity_logo.jpg" alt="<spring:message code="footer.logo.tcd" />" class="footer-logo"/></a> </div>
+</div>
+
 </div>
 
 <div class="cookies-cont">
 <div class="row">
-<div class="col-md-8 col-sm-12">We use cookies.</div>
-<div class="col-md-4 col-sm-12 padding-top-mobile-10"><button title="I agree" class="button button-white float-sm-right" id="btn_cookies">I agree</button></div>
+<div class="col-md-8 col-sm-12"><spring:message code="footer.cookies.text" /></div>
+<div class="col-md-4 col-sm-12 padding-top-mobile-10"><button class="button button-white float-sm-right" id="btn_cookies" title="<spring:message code="footer.cookies.button.title" />"><spring:message code="footer.cookies.button" /></button></div>
 </div>
 </div>
+<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-7571526-5', 'auto'); ga('send', 'pageview');
+</script>

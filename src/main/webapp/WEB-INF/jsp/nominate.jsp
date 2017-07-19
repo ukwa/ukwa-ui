@@ -18,7 +18,7 @@ ${pageContext.response.locale}
 <html lang="en">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
-<title>UKWA Nominate</title>
+<title><spring:message code="nominate.title" /></title>
 <%@include file="head.jsp" %>
 </head>
 
@@ -30,27 +30,19 @@ ${pageContext.response.locale}
 </header>
 <section id="nominate-header">
   <div class="row header-white light-blue">
-    <div class="col-md-6 offset-md-3">
-      <h2>Save a UK website</h2>
-      <p>Since April 2013, the British Library has begun to archive the whole of the UK web domain under the terms of the Non-Print Legal Deposit Regulations 2013. This is done in an automated way, typically once a year.</p>
+    <div class="col-md-6 offset-md-3 padding-mobile-side-0">
+      <h2><spring:message code="nominate.main.heading" /></h2>
+      <p><spring:message code="nominate.text" /></p>
     </div>
   </div>
   <div class="row header-blue padding-side-70 white">
-    <div class="col-md-6 col-sm-12 padding-bottom-20">
-      <h2>We will be archiving sites:</h2>
-      <ol>
-        <li>that are issued from a .uk or other UK geographic 
-          top-level domain.</li>
-        <li>where part of the publishing process takes place in the UK.</li>
-      </ol>
+    <div class="col-md-6 col-sm-12 padding-bottom-20 padding-mobile-side-0">
+      <h2><spring:message code="nominate.subtitle1" /></h2>
+      <spring:message code="nominate.list1" />
     </div>
-    <div class="col-md-6 col-sm-12 padding-bottom-20">
-      <h2>We will <em>not</em> be archiving:</h2>
-      <ol>
-        <li>sites concerning film and recorded sound where the audio-visual content predominates (but, for example, web pages containing video clips alongside text or images are within scope).</li>
-        <li>private intranets and emails.</li>
-        <li>personal data in social networking sites or that are only available to restricted groups.</li>
-      </ol>
+    <div class="col-md-6 col-sm-12 padding-bottom-20 padding-mobile-side-0">
+      <h2><spring:message code="nominate.subtitle2" /></h2>
+     <spring:message code="nominate.list2" />
     </div>
   </div>
 </section>
@@ -58,53 +50,52 @@ ${pageContext.response.locale}
   <form action="#" method="get" enctype="multipart/form-data" name="nominate">
     <div class="row page-content">
       <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
-        <h3 class="light-blue bold">Save a UK website</h3>
-        <p>Fields marked with <span class="light-blue">*</span> are mandatory</p>
-        <p>Personal details you provide on this form are protected by UK data protection law. Please view our <a href="privacy">Privacy Statement</a>.</p>
+        <h3 class="light-blue bold"><spring:message code="nominate.form.heading" /></h3>
+        <spring:message code="nominate.form.notice" />
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
         <div class="form-group">
-          <label for="name">* Full name</label>
-          <input type="text" name="name" id="name" class="form-control" placeholder="Please enter your full name" required/>
+          <label for="name"><spring:message code="nominate.form.input.name" /></label>
+          <input type="text" name="name" id="name" class="form-control" placeholder="<spring:message code="nominate.form.input.name.placeholder" />" required/>
         </div>
         <div class="form-group">
-          <label for="title">* Title of website</label>
-          <input type="text" name="title" id="title" class="form-control" placeholder="Please enter the title of the website" required/>
+          <label for="title"><spring:message code="nominate.form.input.title" /></label>
+          <input type="text" name="title" id="title" class="form-control" placeholder="<spring:message code="nominate.form.input.title.placeholder" />" required/>
         </div>
         <div class="form-group">
-          <label for="url">* URL of the website</label>
-          <input type="text" name="url" id="url" class="form-control" placeholder="Please enter URL of the website" required/>
-        </div>
-      </div>
-      <div class="col-md-6 col-sm-12 form-content-col">
-        <div class="form-group">
-          <label for="email">* Email address</label>
-          <input type="email" name="email" id="email" class="form-control" placeholder="Please enter your email address" required/>
-        </div>
-        <div class="form-group">
-          <label for="address">Address</label>
-          <textarea name="address" id="address" class="form-control" placeholder=""></textarea>
+          <label for="url"><spring:message code="nominate.form.input.url" /></label>
+          <input type="text" name="url" id="url" class="form-control" placeholder="<spring:message code="nominate.form.input.url.placeholder" />" required/>
         </div>
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
         <div class="form-group">
-          <label for="phone">Telephone number</label>
-          <input type="text" name="phone" id="phone" class="form-control" placeholder="Please enter your telephone number"/>
+          <label for="email"><spring:message code="nominate.form.input.email" /></label>
+          <input type="email" name="email" id="email" class="form-control" placeholder="<spring:message code="nominate.form.input.email.placeholder" />" required/>
+        </div>
+        <div class="form-group">
+          <label for="address"><spring:message code="nominate.form.input.address" /></label>
+          <textarea name="address" id="address" class="form-control" placeholder="<spring:message code="nominate.form.input.address.placeholder" />"></textarea>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12 form-content-col">
+        <div class="form-group">
+          <label for="phone"><spring:message code="nominate.form.input.phone" /></label>
+          <input type="text" name="phone" id="phone" class="form-control" placeholder="<spring:message code="nominate.form.input.phone.placeholder" />"/>
         </div>
         <div class="form-group">
           <label>
-          * Are you the copyright holder or owner of the website?
-          <div class="row">
+          <spring:message code="nominate.form.input.copyright" />
+          <div class="row padding-top-10">
             <div class="col-md-12">
-              <div class="form-check-cont">
+              <div class="form-check-cont form-margin-check" tabindex="0">
                 <input type="radio" name="owner" value="1" id="owner_0" required>
-                <label for="owner_0">Yes</label>
+                <label for="owner_0"><spring:message code="nominate.form.input.copyright.yes" /></label>
               </div>
             </div>
             <div class="col-md-12">
-              <div class="form-check-cont">
+              <div class="form-check-cont form-margin-check" tabindex="0">
                 <input type="radio" name="owner" value="0" id="owner_1" required>
-                <label for="owner_1">No</label>
+                <label for="owner_1"><spring:message code="nominate.form.input.copyright.no" /></label>
               </div>
             </div>
           </div>
@@ -113,18 +104,18 @@ ${pageContext.response.locale}
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
         <div class="form-group">
-          <label for="notes">Notes about your special request e.g. 'please archive urgently as this site will disappear next month' or 'this site relies on a database. Is this a problem?'</label>
-          <textarea name="notes" id="notes" class="form-control" placeholder=""></textarea>
+          <label for="notes"><spring:message code="nominate.form.input.notes" /></label>
+          <textarea name="notes" id="notes" class="form-control" placeholder="<spring:message code="nominate.form.input.notes.placeholder" />"></textarea>
         </div>
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
         <div class="form-group">
-          <label for="justification">Your justification - this will aid selection e.g. 'a typical business blog' or a 'prize winning site' or 'representative of Internet culture' or even 'humorous.'</label>
-          <textarea name="justification" id="justification" class="form-control" placeholder=""></textarea>
+          <label for="justification"><spring:message code="nominate.form.input.justification" /></label>
+          <textarea name="justification" id="justification" class="form-control" placeholder="<spring:message code="nominate.form.input.justification.placeholder" />"></textarea>
         </div>
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
-        <button type="button" class="button button-blue" role="button" title="Submit">Submit</button>
+        <button type="button" class="button button-blue" role="button" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button>
       </div>
     </div>
   </form>
