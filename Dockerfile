@@ -27,13 +27,20 @@ RUN cd /tmp
 RUN \
   git clone https://github.com/min2ha/ukwa-ui.git && \
   cd ukwa-ui && \
-mvn package -DskipTests
+  mvn package -DskipTests
 
-RUN cd target
+RUN pwd
+RUN ls -la
+
+RUN cd /tmp/ukwa-ui/target/ && cp marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war
+
+RUN pwd
+
+RUN cd target/
 
 COPY marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war
 	
-RUN cd /tmp	
+RUN cd /tmp/
 # INSTALL TOMCAT
 RUN wget -q https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION}/v${TOMCAT_MINOR_VERSION}/bin/apache-tomcat-${TOMCAT_MINOR_VERSION}.tar.gz && \
     wget -qO- https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION}/v${TOMCAT_MINOR_VERSION}/bin/apache-tomcat-${TOMCAT_MINOR_VERSION}.tar.gz.md5 | md5sum -c - && \
