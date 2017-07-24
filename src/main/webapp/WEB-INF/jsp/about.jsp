@@ -55,10 +55,10 @@ ${pageContext.response.locale}
       </article>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
-      <figure><img class="img-responsive" src="img/about1.png"/> </figure>
+      <figure><img class="img-responsive" src="img/about1.png" alt="About UKWA"/> </figure>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
-      <figure><img class="img-responsive" src="img/about2.png"/> </figure>
+      <figure><img class="img-responsive" src="img/about2.png" alt="About UKWA"/> </figure>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col text-right">
       <article>
@@ -87,7 +87,7 @@ ${pageContext.response.locale}
       </article>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
-      <figure><img class="img-responsive" src="img/about-logos.png"/> </figure>
+      <figure><img class="img-responsive" src="img/about-logos.png" alt="About UKWA"/> </figure>
     </div>
   </div>
 </section>

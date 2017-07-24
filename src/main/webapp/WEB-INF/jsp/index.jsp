@@ -47,25 +47,21 @@ ${pageContext.response.locale}
   </div>
 </section>
 <section id="collections">
-  <div class="row header-bar-2 padding-top-80">
+  <div class="row padding-top-80 margin-0 padding-side-20">
     <div class="col-lg-2  col-md-3 col-sm-12 main-heading-cont">
       <h1 class="main-heading-2">
         <spring:message code="home.page.collections.title"/>
       </h1>
       <hr class="header-title-hr"/>
     </div>
-    <div class="col-lg-4 col-md-5 offset-md-1 col-sm-12 header-2-subtitle">
-      <spring:message code="home.page.collections.subtitle"/>
+    <div class="col-lg-5 col-md-6 offset-md-1 col-sm-12 header-2-subtitle">
+      <span class="clearfix"><spring:message code="home.page.collections.subtitle"/></span>
+      <a href="collection" title="<spring:message code="home.button.viewmore.title"/>"><button class="button button-blue white no-decoration margin-top-30 clearfix" tabindex="-1" role="link"><spring:message code="home.button.viewmore"/></button></a>
     </div>
   </div>
   
-    <div class="row margin-0">
-    <div class="col-md-12 col-sm-12 center padding-bottom-80"> <a href="collection" title="<spring:message code="home.button.viewmore.title" />">
-      <button class="button button-blue white no-decoration" tabindex="-1" role="link"><spring:message code="home.button.viewmore"/></button>
-      </a> </div>
-  </div>
-  
-  <div class="row page-content padding-side-70 padding-top-0">
+
+  <div class="row padding-top-0 padding-side-5  margin-0 padding-mobile-side-20">
     <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/329" class="collection-link">
       <div class="center light-blue padding-bottom-10 collection-heading">British Stand-up Comedy Archive</div>
       <figure><img class="img-responsive border-gray coll-img" alt="British Stand-up Comedy Archive" src="img/collections/collection_329.png"/>
@@ -97,19 +93,20 @@ ${pageContext.response.locale}
   <%@include file="footer.jsp" %>
 </footer>
 </div>
+<!--[if (gt IE 9)|!(IE)]><!-->
 <script>
 $(document).ready(function(e) {
     //survey monkey
 	var content = '<div class="padding-20 black center width-100"><h2><spring:message code="survey.text"/></h2></div><div class="padding-20 clearfix center width-100"><a href="<spring:message code="survey.url"/>" title="<spring:message code="survey.button"/>" target="_blank"><button class="button button-blue white padding-20" role="link" tabindex="-1"><spring:message code="survey.button"/></button></a><div class="padding-20 padding-top-40 black center width-100"><img class="img-survey" alt="MonkeySurvey" src="img/surveymonkeylogo.jpg"/></div>';
 	if (typeof $.cookie('survey_viewed') === 'undefined' || $.cookie('survey_viewed')!=="true") {
-		/*$.SimpleLightbox.open({
+		$.SimpleLightbox.open({
 			content: content,
 			elementClass: 'slbContentEl'
-		});*/
+		});
 		$.cookie("survey_viewed", "true", { expires: 365, path: '/' });
 	} 
 });
 </script>
-
+<!--<![endif]-->
 </body>
 </html>

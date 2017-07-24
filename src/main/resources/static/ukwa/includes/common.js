@@ -152,6 +152,13 @@ $(document).ready(function(e) {
 		
 	}
 	
+	//No collection descript
+	$(".collection-description").each(function(index, element) {
+		if ($(this).text().trim()=="") {
+				$(this).html('<span class="gray">'+$("#no-coll-description").val()+'</span>');
+		}
+	});
+	
 	//match height for collection headings and descriptions
 	$('.collection-heading').matchHeight();	
 	$('.img-square-caption').matchHeight();

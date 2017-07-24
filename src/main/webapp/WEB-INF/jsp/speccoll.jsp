@@ -28,7 +28,7 @@ ${pageContext.response.locale}
 <div class="container-fluid">
   <header>
   <%@include file="header.jsp" %>
-<div class="row header-bar-2 padding-top-80">
+<div class="row margin-0 padding-side-20 padding-top-80">
   <div class="col-lg-2 col-md-3 col-sm-12 main-heading-cont">
     <h1 class="main-heading"><spring:message code="coll.main.heading" /></h1>
     <hr class="header-title-hr"/>
@@ -47,16 +47,14 @@ ${pageContext.response.locale}
 
 
   <!--THUMBNAIL DISPLAY-->
-  <div class="row page-content padding-side-70 padding-top-0 collections" id="collections_thumbs">
+  <div class="row margin-0 padding-side-5 padding-mobile-side-20 padding-top-0 collections" id="collections_thumbs">
     <c:forEach items="${collections}" var="collection">
       <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/<c:out value="${collection.id}"/>" class="collection-link">
-        <div class="center light-blue padding-bottom-10 collection-heading">
+        <div class="center light-blue padding-bottom-10 collection-heading collection-title">
           <c:out value="${collection.name}"/>
         </div>
-        <figure><img class="img-responsive border-gray coll-img" alt="Collections" src="img/collections/collection_<c:out value="${collection.id}"/>.png"/>
-          <figcaption class="img-square-caption shadow">
-            <c:out value="${collection.description}"/>
-          </figcaption>
+        <figure><img class="img-responsive border-gray coll-img" alt="<c:out value="${collection.name}"/>" src="img/collections/collection_<c:out value="${collection.id}"/>.png"/>
+          <figcaption class="img-square-caption shadow collection-description"><c:out value="${collection.description}"/></figcaption>
         </figure>
         </a> </div>
     </c:forEach>
@@ -64,12 +62,12 @@ ${pageContext.response.locale}
   
   <!--LIST DISPLAY-->
   
-  <div class="row page-content padding-top-30 collections" id="collections_list">
+  <div class="row margin-0 padding-side-5 padding-top-30 padding-mobile-side-20 collections" id="collections_list">
     <c:forEach items="${collections}" var="collection">
       <div class="col-sm-12 padding-bottom-20 padding-side-30 margin-bottom-20 padding-mobile-side-0">
       <div class="border-bottom-gray padding-bottom-20">
-      	<a href="collection/<c:out value="${collection.id}"/>" class="collection-link"><h2 class="padding-bottom-0"><c:out value="${collection.name}"/></h2></a><br/>
-         <span><c:out value="${collection.fullDescription}"/></span>
+      	<a href="collection/<c:out value="${collection.id}"/>" class="collection-link"><h2 class="padding-bottom-0 collection-title"><c:out value="${collection.name}"/></h2></a><br/>
+         <span class="collection-description"><c:out value="${collection.fullDescription}"/></span>
         </a> </div></div>
     </c:forEach>
   </div>  
@@ -79,6 +77,7 @@ ${pageContext.response.locale}
   <%@include file="footer.jsp" %>
 </footer>
 </div>
+<input type="hidden" id="no-coll-description" name="no-coll-description" value="<spring:message code="coll.nodescript" />" />
 <script>
 
 function toggleView(action, fcs) {

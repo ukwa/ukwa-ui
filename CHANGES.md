@@ -1,6 +1,18 @@
 Change Log
 ----------
 
+* 2017-07-24
+    * Added supplied SC images
+    * Added "No resuts" notification if no sites in collection
+    * Added "no description" text if no SC description
+    * Footer separated to 3 columns
+    * Added white border to cookie message
+    * Alignment fixes
+    * Changed colors in main logo
+    * Moved "Viw all Special Collections" button
+    * Changed SC titles
+    * Added cookie policy page
+
 * 2017-07-19
     * Search term highlighting
     * Cookies acknowledgement added.

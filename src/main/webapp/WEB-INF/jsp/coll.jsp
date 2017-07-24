@@ -45,24 +45,23 @@ ${pageContext.response.locale}
           </div>
       </div>
   
-    <div class="row margin-0 border-bottom-gray">
+    <div class="row margin-0 padding-side-5">
       <div class="col-md-12 col-sm-12 padding-top-40 padding-bottom-20 light-blue">
         <h1>
           <c:out value="${currentCollection.name}"/>
         </h1>
-        <p class="black margin-top-20 hidden" id="coll_description" data-descript="<c:out value="${currentCollection.description}"/>"></p>
-        <p class="margin-top-20"><a href="#" class="hidden" title="<spring:message code="coll.readmore" />" id="readmore"><spring:message code="coll.readmore" /></a></p>
+        <p class="black margin-top-20 margin-bottom-0 hidden" id="coll_description" data-descript="<c:out value="${currentCollection.description}"/>"></p>
+        <p class="margin-bottom-0"><a href="#" class="hidden" title="<spring:message code="coll.readmore" />" id="readmore"><spring:message code="coll.readmore" /></a></p>
       </div>
     </div>
     
          <div class="row margin-0 border-bottom-gray">
-   <div class="col-md-6 col-sm-12 padding-top-40 padding-bottom-20 padding-20 light-blue">
-              <p class="sidebar-coll-title padding-bottom-20"><spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" /></p>
+   <div class="col-md-6 col-sm-12 padding-bottom-20 padding-20 light-blue">
        <form action="search" method="get" enctype="multipart/form-data" name="search_coll_form" id="search_coll_form">
        <div class="row padding-bottom-20">
             <div class="col-sm-12">
                   <div class="coll-search-input">
-                  <input type="text" class="coll-search-field" name="text" id="text" title="<spring:message code="coll.search.placeholder" />" aria-label="<spring:message code="coll.search.placeholder" />" placeholder="<spring:message code="coll.search.placeholder" />" required/>
+                  <input type="text" class="coll-search-field" name="text" id="text" title="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" aria-label="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" placeholder="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" required/>
                   <input type="hidden" name="search_location" value="full_text"/>
                   <input type="hidden" name="collection" value="<c:out value="${currentCollection.name}"/>"/>
                   <button type="submit" class="coll-search-button" title="<spring:message code="coll.search.button" />
@@ -86,7 +85,7 @@ ${pageContext.response.locale}
             <div class="center light-blue padding-bottom-10 collection-heading">
               <c:out value="${subCollection.name}"/>
             </div>
-              <div class="sub-coll-descript shadow">
+              <div class="sub-coll-descript shadow collection-description">
                 <c:out value="${subCollection.description}"/>
               </div>
             </a> </div>
@@ -109,6 +108,7 @@ ${pageContext.response.locale}
           </a> </c:if>
       </div>
     </div>
+
     <c:forEach items="${targetWebsites}" var="targetWebsite"> 
       <!--RESULT ROW-->
       <div class="row margin-0 padding-0 border-bottom-gray">
@@ -128,6 +128,19 @@ ${pageContext.response.locale}
       </div>
       <!--/RESULT ROW--> 
     </c:forEach>
+	
+    <!--NO RESULTS-->
+    <c:if test="${currentCollection.websitesNum == 0}">
+    <div class="row margin-0 padding-0 border-bottom-gray">
+        <div class="col-md-12 col-sm-12 results-result">
+          <h2 class="margin-0 padding-top-20 gray">
+            <spring:message code="coll.noresults" />
+          </h2>
+        </div>
+      </div>
+    </c:if>
+    <!--/NO RESULTS-->
+    
     <div class="row padding-0 margin-0">
       <div class="col-md-12 pagination-cont">
 	<c:if test="${targetPageNumber > 1}"><a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${targetPageNumber - 1}"/>" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"><div class="pagination-button arrow left-arrow"></div></a> </c:if>
@@ -145,6 +158,7 @@ ${pageContext.response.locale}
   <%@include file="footer.jsp" %>
 </footer>
 </div>
+<input type="hidden" id="no-coll-description" name="no-coll-description" value="<spring:message code="coll.nodescript" />" />
 <script>
 
 	function showDescript(descript, len) {
@@ -185,6 +199,7 @@ ${pageContext.response.locale}
 				short=true;
 			}
 		});
+			
 		
 	});
 	</script>

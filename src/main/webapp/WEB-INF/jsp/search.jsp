@@ -289,9 +289,12 @@ ${pageContext.response.locale}
           <h2 class="margin-0">
             <c:out value="${searchResult.title}"/>
           </h2><br/>
+          <!--<span class="results-title-text results-lib-premises text-smaller"><spring:message code="search.results.library.premises" /></span>-->
           <span class="results-title-text results-title-date padding-0 padding-top-20">
-          Date archived: <c:out value="${searchResult.date}"/>
-          </span> <span class="results-title-text clearfix padding-vert-10"> <a title="<c:out value="${searchResult.displayUrl}"/>" class="break-all" href="<c:out value="${searchResult.url}"/>">           <span class="results-for-highlight"><c:out value="${searchResult.displayUrl}"/></span>
+          <spring:message code="search.results.archived.date" /> <c:out value="${searchResult.date}"/>
+          </span> 
+          
+          <span class="results-title-text clearfix padding-vert-10"> <a title="<c:out value="${searchResult.displayUrl}"/>" class="break-all" href="<c:out value="${searchResult.url}"/>">           <span class="results-for-highlight"><c:out value="${searchResult.displayUrl}"/></span>
           </a> </span> <span class="results-title-text clearfix break-all">
            <span class="results-for-highlight"><c:out value="${searchResult.text}"/></span>
           </span> </div>

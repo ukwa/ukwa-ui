@@ -26,6 +26,7 @@ $gray: #ccc;
 $white: #fff;
 $black: #000;
 $yellow: #ff0;
+$red: #f00;
 
 /* GENERAL DEFINITIONS */
 html, body {
@@ -77,6 +78,10 @@ input, button, textarea, select {
 
 .white {
 	color:$white !important;	
+}
+
+.gray {
+	color:$gray !important;	
 }
 
 .black {
@@ -183,6 +188,11 @@ li {
 .padding-side-10 {
 	padding-left:10px !important;
 	padding-right:10px !important;	
+}
+
+.padding-side-5 {
+	padding-left:5px !important;
+	padding-right:5px !important;	
 }
 
 
@@ -304,6 +314,10 @@ li {
 	margin-top:20px;
 }
 
+.margin-top-30 {
+	margin-top:30px;
+}
+
 .margin-top-60 {
 	margin-top:60px;
 }
@@ -321,6 +335,10 @@ li {
 	margin-bottom: 10px;	
 }
 
+.margin-bottom-0 {
+	margin-bottom: 0;	
+}
+
 
 /*OTHER GENERAL STYLES */
 
@@ -330,6 +348,7 @@ li {
 	width:100%;
 	height:auto;
 }
+
 
 .border-gray {
 	border: solid 1px $gray;	
@@ -768,7 +787,6 @@ h3 {
 	color: $blue;
 	text-transform:uppercase;
 	padding:0;
-	/*margin-top:-15px;*/
 }
 
 .main-header-heading {
@@ -802,6 +820,7 @@ h3 {
 	font-size:0.9em;
 	font-family: $font-normal;
 	text-transform: none;
+	color:$light-blue2;
 }	
 
 .header-blue {
@@ -896,6 +915,7 @@ h3 {
 	padding: 10px;
 	font-size: 0.9em;
 	border-radius: 10px;
+	border: solid 3px $white;
 }
 
 footer {
@@ -1453,6 +1473,10 @@ footer {
 	padding: 20px 20px 20px 20px;
 }
 
+.results-lib-premises {
+	color: $red;
+}
+
 .results-border {
 	border-right: solid 1px $gray;	
 }
@@ -1699,6 +1723,11 @@ footer {
 		padding-left:5px !important;
 		padding-right:5px !important;	
 	}	
+	
+	.padding-mobile-side-20 {
+		padding-left:20px !important;
+		padding-right:20px !important;	
+	}		
 	
 	/*all text aligned left on mobile*/
 	.text-right {
