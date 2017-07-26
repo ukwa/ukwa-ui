@@ -1,4 +1,4 @@
-FROM java:openjdk-8-jdk AS ukwaUIWebApp
+FROM java:openjdk-8-jdk 
 # originally based on UNB Libraries Dockerfile
 MAINTAINER Mindaugas Vidmantas "mindaugas.vidmantas@bl.uk"
 
