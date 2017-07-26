@@ -54,9 +54,10 @@ EXPOSE 8080
 # ENTRYPOINT []
 # CMD ["/run.sh"]	
 
-
-
+RUN pwd
 VOLUME /tmp
-ADD /tmp/ukwa-ui/target/marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war
+WORKDIR /tmp
+RUN pwd
+ADD /ukwa-ui/target/marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war
 ENV JAVA_OPTS=""
 ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /ROOT.war" ]
