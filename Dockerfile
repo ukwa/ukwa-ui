@@ -56,8 +56,8 @@ EXPOSE 8080
 
 RUN pwd
 VOLUME /tmp
-WORKDIR /tmp
+WORKDIR /tmp/ukwa-ui/target/
 RUN pwd
-ADD /ukwa-ui/target/marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war
+ADD marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war
 ENV JAVA_OPTS=""
 ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /ROOT.war" ]
