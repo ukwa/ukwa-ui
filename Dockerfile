@@ -31,7 +31,7 @@ RUN cd /tmp && \
   cd ukwa-ui && \
   mvn package -DskipTests
 
-RUN cd /tmp/ukwa-ui/target/ && cp marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war 
+# RUN cd /tmp/ukwa-ui/target/ && cp marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war 
 	
 # INSTALL TOMCAT
 # RUN wget -q https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION}/v${TOMCAT_MINOR_VERSION}/bin/apache-tomcat-${TOMCAT_MINOR_VERSION}.tar.gz && \
@@ -57,6 +57,6 @@ EXPOSE 8080
 
 
 VOLUME /tmp
-ADD ukwa-ui/target/ROOT.war
+ADD ukwa-ui/target/marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war
 ENV JAVA_OPTS=""
 ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /ROOT.war" ]
