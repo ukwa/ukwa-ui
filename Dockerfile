@@ -57,6 +57,6 @@ EXPOSE 8080
 
 
 VOLUME /tmp
-ADD ukwa-ui/target/marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war
+ADD /tmp/ukwa-ui/target/marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war
 ENV JAVA_OPTS=""
 ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /ROOT.war" ]
