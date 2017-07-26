@@ -37,7 +37,7 @@ ${pageContext.response.locale}
 </section>
 <section id="content">
   <div class="row margin-0 padding-mobile-side-5 padding-top-80 padding-bottom-80">
-    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 text-justify">
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 text-content">
 <spring:message code="terms.text" />
     </div>
   </div>

@@ -55,10 +55,6 @@ ${pageContext.response.locale}
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
         <div class="form-group">
-          <label for="name"><spring:message code="nominate.form.input.name" /></label>
-          <input type="text" name="name" id="name" class="form-control" placeholder="<spring:message code="nominate.form.input.name.placeholder" />" required/>
-        </div>
-        <div class="form-group">
           <label for="title"><spring:message code="nominate.form.input.title" /></label>
           <input type="text" name="title" id="title" class="form-control" placeholder="<spring:message code="nominate.form.input.title.placeholder" />" required/>
         </div>
@@ -68,54 +64,25 @@ ${pageContext.response.locale}
         </div>
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
+	        <div class="form-group">
+          <label for="name"><spring:message code="nominate.form.input.name" /></label>
+          <input type="text" name="name" id="name" class="form-control" placeholder="<spring:message code="nominate.form.input.name.placeholder" />" required/>
+        </div>      
         <div class="form-group">
           <label for="email"><spring:message code="nominate.form.input.email" /></label>
           <input type="email" name="email" id="email" class="form-control" placeholder="<spring:message code="nominate.form.input.email.placeholder" />" required/>
-        </div>
-        <div class="form-group">
-          <label for="address"><spring:message code="nominate.form.input.address" /></label>
-          <textarea name="address" id="address" class="form-control" placeholder="<spring:message code="nominate.form.input.address.placeholder" />"></textarea>
-        </div>
-      </div>
-      <div class="col-md-6 col-sm-12 form-content-col">
-        <div class="form-group">
-          <label for="phone"><spring:message code="nominate.form.input.phone" /></label>
-          <input type="text" name="phone" id="phone" class="form-control" placeholder="<spring:message code="nominate.form.input.phone.placeholder" />"/>
-        </div>
-        <div class="form-group">
-          <label>
-          <spring:message code="nominate.form.input.copyright" />
-          <div class="row padding-top-10">
-            <div class="col-md-12">
-              <div class="form-check-cont form-margin-check" tabindex="0">
-                <input type="radio" name="owner" value="1" id="owner_0" required>
-                <label for="owner_0"><spring:message code="nominate.form.input.copyright.yes" /></label>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-check-cont form-margin-check" tabindex="0">
-                <input type="radio" name="owner" value="0" id="owner_1" required>
-                <label for="owner_1"><spring:message code="nominate.form.input.copyright.no" /></label>
-              </div>
-            </div>
-          </div>
-          </label>
         </div>
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
         <div class="form-group">
           <label for="notes"><spring:message code="nominate.form.input.notes" /></label>
-          <textarea name="notes" id="notes" class="form-control" placeholder="<spring:message code="nominate.form.input.notes.placeholder" />"></textarea>
+          <textarea name="notes" id="notes" class="form-control height-145" placeholder="<spring:message code="nominate.form.input.notes.placeholder" />"></textarea>
         </div>
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
-        <div class="form-group">
-          <label for="justification"><spring:message code="nominate.form.input.justification" /></label>
-          <textarea name="justification" id="justification" class="form-control" placeholder="<spring:message code="nominate.form.input.justification.placeholder" />"></textarea>
-        </div>
-      </div>
-      <div class="col-md-6 col-sm-12 form-content-col">
-        <button type="button" class="button button-blue" role="button" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button>
+      <span><spring:message code="nominate.form.email.notice" /></span>
+        <div class=" margin-top-30 clearfix"><button type="button" class="button button-blue" role="button" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button></div>
+        
       </div>
     </div>
   </form>

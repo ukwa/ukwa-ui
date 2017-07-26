@@ -10,6 +10,7 @@ public class SearchResultDTO {
     private String domain;
     private String displayDomain;
     private String text;
+    private String access;
 
     public String getId() {
         return id;
@@ -73,5 +74,13 @@ public class SearchResultDTO {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public void setAccess(String access) {
+        this.access = access;
+    }
+
+    public String getAccess() {
+        return access;
     }
 }

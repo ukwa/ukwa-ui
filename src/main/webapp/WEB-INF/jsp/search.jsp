@@ -147,7 +147,7 @@ ${pageContext.response.locale}
               </c:if>
             </div>
             <%--   Archived year collapse filter   --%>
-            <div class="sidebar-filter-header border-top-white open" title="<spring:message code="search.side.date.title" />" tabindex="0" id="dates_header" role="tab">
+            <div class="sidebar-filter-header border-top-white open archived-date" title="<spring:message code="search.side.date.title" />" tabindex="0" id="dates_header" role="tab">
               <div class="sidebar-filter-header-title"><spring:message code="search.side.date.title" /></div>
               <div class="help-button small white" data-toggle="tooltip" title="<spring:message code="search.side.date.tip" />" tabindex="0"></div>
             </div>
@@ -289,7 +289,11 @@ ${pageContext.response.locale}
           <h2 class="margin-0">
             <c:out value="${searchResult.title}"/>
           </h2><br/>
-          <!--<span class="results-title-text results-lib-premises text-smaller"><spring:message code="search.results.library.premises" /></span>-->
+          <c:if test="${searchResult.access == 'RRO'}">
+            <span class="results-title-text results-lib-premises text-smaller">
+              <spring:message code="search.results.library.premises" />
+            </span>
+          </c:if>
           <span class="results-title-text results-title-date padding-0 padding-top-20">
           <spring:message code="search.results.archived.date" /> <c:out value="${searchResult.date}"/>
           </span> 
@@ -302,6 +306,19 @@ ${pageContext.response.locale}
       
       <!--/RESULT ROW--> 
     </c:forEach>
+    
+    <!--NO RESULTS-->
+    <c:if test="${totalPages == 0}">
+          <div class="row margin-0 padding-0 border-bottom-gray">
+        <div class="col-md-12 results-result">
+          <h2 class="margin-0 padding-top-20 gray">
+            <spring:message code="search.noresults" />
+          </h2>
+        </div>
+      </div>
+      </c:if>
+    <!--/NO RESULTS-->
+    
     </div>
     
     <div class="row padding-0 margin-0">
@@ -345,10 +362,12 @@ ${pageContext.response.locale}
 <script>
 
 function showDateReset() {
-	if ($("#from_date").val().trim()!=="" || $("#to_date").val().trim()!=="") {
-		$("#btn_reset_dates").show();
-	} else {
-		$("#btn_reset_dates").hide();
+	if ($(".archived-date").length>0) {
+		if ($("#from_date").val().trim()!=="" || $("#to_date").val().trim()!=="") {
+			$("#btn_reset_dates").show();
+		} else {
+			$("#btn_reset_dates").hide();
+		}
 	}
 }
 
@@ -395,6 +414,12 @@ $(document).ready(function(e) {
 		
 		
     });
+	
+	//hide facets where there is no result
+	var sidebar_noresults = '<spring:message code="search.side.noresults" />';
+	$(".sidebar-filter-header:not(.archived-date)").each(function(index, element) {
+		if ($(this).next(".sidebar-filter").children(".sidebar-filter-checkbox").children(".form-check-cont").children("input").length==0) $(this).next('.sidebar-filter').html('<span class="sidebar-noresults">'+sidebar_noresults+'</span>');		
+    });	
 	
 	//expand if dates inputed
 	if ($("#from_date").val()!=="" || $("#to_date").val()!=="") {
@@ -451,11 +476,6 @@ $(document).ready(function(e) {
 	$("#from_date, #to_date").on("change keyup", function(e) {
 		showDateReset();
 	});
-	
-	//format results count
-	$(".results-count").each(function(index, element) {
-        $(this).text($.number($(this).text(),0,".",","));
-    });
 	
 	showDateReset(); 
 	checkboxSize(); //expand checkbox size to fit label content

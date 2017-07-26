@@ -56,19 +56,29 @@ ${pageContext.response.locale}
         <figure><img class="img-responsive border-gray coll-img" alt="<c:out value="${collection.name}"/>" src="img/collections/collection_<c:out value="${collection.id}"/>.png"/>
           <figcaption class="img-square-caption shadow collection-description"><c:out value="${collection.description}"/></figcaption>
         </figure>
-        </a> </div>
+        </div></a> 
     </c:forEach>
   </div>
   
   <!--LIST DISPLAY-->
   
-  <div class="row margin-0 padding-side-5 padding-top-30 padding-mobile-side-20 collections" id="collections_list">
+  <div class="row margin-0 padding-top-30 padding-mobile-side-20 collections" id="collections_list">
     <c:forEach items="${collections}" var="collection">
-      <div class="col-sm-12 padding-bottom-20 padding-side-30 margin-bottom-20 padding-mobile-side-0">
+      <div class="col-sm-12 padding-bottom-20 padding-side-20 margin-bottom-20 padding-mobile-side-0">
       <div class="border-bottom-gray padding-bottom-20">
       	<a href="collection/<c:out value="${collection.id}"/>" class="collection-link"><h2 class="padding-bottom-0 collection-title"><c:out value="${collection.name}"/></h2></a><br/>
          <span class="collection-description"><c:out value="${collection.fullDescription}"/></span>
-        </a> </div></div>
+        </a> 
+        <c:if test="${!empty collection.subCollections}">
+       <!--Subcollections of current collection-->
+       <div class="collections-subcollections">
+      <c:forEach items="${collection.subCollections}" var="subCollection">
+        <a href="collection/<c:out value="${subCollection.id}"/>"><c:out value="${subCollection.name}"/></a><br>
+      </c:forEach>
+      </div>
+      <div class="collections-view-subcollections"><a href="#" class="collections-subcollections-link"><spring:message code="coll.subcollections.show" /></a></div>
+      </c:if>
+        </div></div>
     </c:forEach>
   </div>  
   
@@ -122,6 +132,22 @@ $(document).ready(function(e) {
 			toggleView("list", true);
 		}
     });	
+	
+	//view subcollections
+	var text_show = '<spring:message code="coll.subcollections.show" />';
+	var text_hide = '<spring:message code="coll.subcollections.hide" />';
+	$(".collections-subcollections-link").each(function(index, element) {
+        $(this).click(function(e) {
+			e.preventDefault();
+            if ($(this).parent().prev(".collections-subcollections").css("display")=="none") {
+				$(this).parent().prev(".collections-subcollections").show(200);
+				$(this).text(text_hide);
+			} else {
+				$(this).parent().prev(".collections-subcollections").hide(200);
+				$(this).text(text_show);
+			}
+        });
+    });
 	
 });
 

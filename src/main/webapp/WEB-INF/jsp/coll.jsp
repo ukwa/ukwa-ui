@@ -17,6 +17,7 @@ ${pageContext.response.locale}
 <jsp:useBean id="targetWebsites" scope="request" type="java.util.List<com.marsspiders.ukwa.controllers.data.TargetWebsiteDTO>"/>
 <jsp:useBean id="subCollections" scope="request" type="java.util.List<com.marsspiders.ukwa.controllers.data.CollectionDTO>"/>
 <jsp:useBean id="currentCollection" scope="request" type="com.marsspiders.ukwa.controllers.data.CollectionDTO"/>
+<jsp:useBean id="breadcrumbPath" scope="request" type="java.util.Map<java.lang.String, java.lang.String>"/>
 <spring:message code="pagination.goto" var="goToPage"/>
 <spring:message code="pagination.current" var="currentPage"/>
 <html lang="en">
@@ -41,7 +42,19 @@ ${pageContext.response.locale}
         <div class="row results-header margin-0 border-bottom-gray">
         <div class="col-sm-12 padding-left-0">
           <span class="bold"><spring:message code="coll.breadcrumb.text1" /></span>
-          <a href="collection" title="<spring:message code="coll.breadcrumb.text2" />"><spring:message code="coll.breadcrumb.text2" /></a> &gt; <c:out value="${currentCollection.name}"/>
+          <a href="collection" title="<spring:message code="coll.breadcrumb.text2" />"><spring:message code="coll.breadcrumb.text2" /></a>
+          <c:forEach var="pathItem" items="${breadcrumbPath}">
+            <c:set var="pathCount" value="${pathCount + 1}"/>
+            &gt;
+            <c:choose>
+              <c:when test="${pathCount < fn:length(breadcrumbPath)}">
+                <a href="collection/<c:out value="${pathItem.key}"/>" title="<c:out value="${pathItem.value}"/>"><c:out value="${pathItem.value}"/></a>
+              </c:when>
+              <c:otherwise>
+                <c:out value="${pathItem.value}"/>
+              </c:otherwise>
+            </c:choose>
+          </c:forEach>
           </div>
       </div>
   
@@ -92,7 +105,18 @@ ${pageContext.response.locale}
         </c:forEach>
       </div>
     </c:if>
-    
+
+      
+      <div class="row border-bottom-gray margin-0 padding-20">
+        <div class="col-sm-12 padding-0">
+          <span class="results-count">
+          <c:out value="${currentCollection.websitesNum}"/></span> <spring:message code="coll.results.num" />
+      
+      </div>
+      </div>
+      
+
+
     <div class="row padding-0 margin-0">
       <div class="col-md-12 pagination-cont border-bottom-gray">
       

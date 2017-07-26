@@ -125,7 +125,6 @@ input, button, textarea, select {
 }
 
 .height-145 {
-	
 	height: 145px;	
 }
 
@@ -969,6 +968,32 @@ footer {
 	margin:0;
 }
 
+.text-content {
+	text-align:justify;	
+}
+
+.text-content h1, .text-content > h2 {
+	margin-top:20px;	
+}
+
+.text-content h2 {
+	font-size:20px;
+}
+
+.text-content table {
+	border-collapse: collapse;
+}
+
+.text-content td {
+	border: 1px solid $gray;
+	padding:10px;
+}
+
+.text-content tr:first-child {
+	background-color: $light-gray2;
+
+}
+
 .page-content-col {
 	padding: 0 30px 30px 30px;
 		
@@ -1147,6 +1172,10 @@ footer {
 		height:auto;
 		padding: 0 20px 20px 20px;
 	}
+}
+
+.sidebar-noresults {
+	padding-left: 10px;	
 }
 
 .help-button {
@@ -1588,6 +1617,16 @@ footer {
 	cursor:pointer;	
 }
 
+.collections-subcollections {
+	display: none;
+	padding: 10px 0 0 0;	
+}
+
+.collections-view-subcollections {
+	padding-top: 10px;
+	font-size:0.9em;	
+}
+
 /*ABOUT*/
 
 .about-video-container {
@@ -1696,6 +1735,10 @@ footer {
 	h3 {
 		font-size:1.3em;	
 	}
+	
+	a {
+		word-break: break-all !important;
+	}	
 	
 	.padding-side-70 {
 		padding-left:20px !important;

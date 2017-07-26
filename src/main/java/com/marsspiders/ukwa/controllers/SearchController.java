@@ -212,6 +212,7 @@ public class SearchController {
         searchResult.setUrl(wayBackUrl);
         searchResult.setDisplayDomain(archivedSiteInfo.getDomain());
         searchResult.setDomain(originalDomain);
+        searchResult.setAccess(readRoomOnlyAccess(archivedSiteInfo) ? "RRO" : "OA");
 
         return searchResult;
     }
@@ -227,9 +228,7 @@ public class SearchController {
     }
 
     private static String toWayBackUrl(String rootPathWithLang, ContentInfo archivedSiteInfo, String url) {
-        if (archivedSiteInfo.getAccess_terms() != null
-                && archivedSiteInfo.getAccess_terms().size() == 1
-                && archivedSiteInfo.getAccess_terms().get(0).equals("RRO")) {
+        if (readRoomOnlyAccess(archivedSiteInfo)) {
             //Redirect to page with information about Reading Room Only restriction
             return "noresults";
         }
@@ -237,6 +236,12 @@ public class SearchController {
         //Need to replace "jsp", "JSP" to avoid treating .jsp file in wayback url as its own url by Spring
         String urlWithUppercaseJsp = url.replace("jsp", "JSP");
         return rootPathWithLang + "wayback/" + archivedSiteInfo.getWayback_date() + "/" + urlWithUppercaseJsp;
+    }
+
+    private static boolean readRoomOnlyAccess(ContentInfo archivedSiteInfo) {
+        return archivedSiteInfo.getAccess_terms() != null
+                && archivedSiteInfo.getAccess_terms().size() == 1
+                && archivedSiteInfo.getAccess_terms().get(0).equals("RRO");
     }
 
     private static String toOriginalDomain(String url) {

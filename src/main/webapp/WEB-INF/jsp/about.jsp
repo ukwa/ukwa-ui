@@ -43,15 +43,8 @@ ${pageContext.response.locale}
         <h3 class="light-blue bold">
           <spring:message code="about.page.title1" />
         </h3>
-        <p class="strong">
           <spring:message code="about.page.p1" />
-        </p>
-        <p>
-          <spring:message code="about.page.p2" />
-        </p>
-        <p>
-          <spring:message code="about.page.p3" />
-        </p>
+
       </article>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
@@ -60,20 +53,13 @@ ${pageContext.response.locale}
     <div class="col-md-6 col-sm-12 page-content-col">
       <figure><img class="img-responsive" src="img/about2.png" alt="About UKWA"/> </figure>
     </div>
-    <div class="col-md-6 col-sm-12 page-content-col text-right">
+    <div class="col-md-6 col-sm-12 page-content-col">
       <article>
         <h3 class="light-blue bold">
           <spring:message code="about.page.title2" />
         </h3>
-        <p class="strong">
-          <spring:message code="about.page.p4" />
-        </p>
-        <p>
-          <spring:message code="about.page.p5" />
-        </p>
-        <p>
-          <spring:message code="about.page.p6" />
-        </p>
+          <spring:message code="about.page.p2" />
+
       </article>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
@@ -81,9 +67,7 @@ ${pageContext.response.locale}
         <h3 class="light-blue bold">
           <spring:message code="about.page.title3" />
         </h3>
-        <p>
-          <spring:message code="about.page.p7" />
-        </p>
+          <spring:message code="about.page.p3" />
       </article>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">

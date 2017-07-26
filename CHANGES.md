@@ -1,6 +1,15 @@
 Change Log
 ----------
 
+* 2017-07-26
+    * Inserted texts from BL
+    * Fixed breadcrumbs for subcollections on SC page
+    * Added nesting of subcollections to SC list (only in list view)
+    * Added total number of sites in collection to SC page
+    * Added "no results" notice to main search filters
+    * Added "no results" notice to main search
+
+
 * 2017-07-24
     * Added supplied SC images
     * Added "No resuts" notification if no sites in collection

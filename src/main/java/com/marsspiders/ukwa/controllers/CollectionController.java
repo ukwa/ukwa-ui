@@ -16,7 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.marsspiders.ukwa.solr.CollectionDocumentType.TYPE_COLLECTION;
@@ -65,10 +70,11 @@ public class CollectionController {
 
         List<TargetWebsiteDTO> targetWebsites = generateTargetWebsitesDTOs(targetWebsitesDocuments, rootPathWithLang);
         List<CollectionDTO> subCollections = generateSubCollectionDTOs(collectionId);
-        CollectionDTO currentCollection = generatePlainCollectionDTO(collectionId);
-        currentCollection.setWebsitesNum(targetWebsitesSearchResult.getResponseBody().getNumFound());
+        CollectionDTO currentCollection = generatePlainCollectionDTO(collectionId, targetWebsitesSearchResult);
+        Map<String, String> breadcrumbPath = buildCollectionBreadcrumbPath(currentCollection);
 
         ModelAndView mav = new ModelAndView("coll");
+        mav.addObject("breadcrumbPath", breadcrumbPath);
         mav.addObject("targetWebsites", targetWebsites);
         mav.addObject("subCollections", subCollections);
         mav.addObject("currentCollection", currentCollection);
@@ -77,6 +83,29 @@ public class CollectionController {
         mav.addObject("rowsPerPageLimit", ROWS_PER_PAGE_DEFAULT);
 
         return mav;
+    }
+
+    private Map<String, String> buildCollectionBreadcrumbPath(CollectionDTO currentCollectionDto) {
+        Map<String, String> path = new LinkedHashMap<>();
+        path.put(currentCollectionDto.getId(), currentCollectionDto.getName());
+
+        String parentCollectionId = currentCollectionDto.getParentId();
+        while (parentCollectionId != null) {
+            CollectionInfo parentCollection = searchService
+                    .fetchCollectionById(parentCollectionId)
+                    .getResponseBody().getDocuments()
+                    .get(0);
+
+            //Create a new map to get reversed map in result
+            Map<String, String> oldPath = new LinkedHashMap<>(path);
+            path.clear();
+            path.put(parentCollection.getId(), parentCollection.getName());
+            path.putAll(oldPath);
+
+            parentCollectionId = parentCollection.getParentId();
+        }
+
+        return path;
     }
 
     private List<CollectionDTO> generateSubCollectionDTOs(String collectionId) {
@@ -89,21 +118,48 @@ public class CollectionController {
     }
 
     private List<CollectionDTO> generateRootCollectionDTOs() {
-        return searchService
+        Map<String, CollectionDTO> rootCollections = searchService
                 .fetchRootCollections()
                 .getResponseBody().getDocuments()
                 .stream()
-                .map(d -> toCollectionDTO(d, true))
-                .collect(Collectors.toList());
+                .collect(Collectors
+                        .toMap(CollectionInfo::getId, collection -> toCollectionDTO(collection, true)));
+
+        Set<String> parentCollectionIds = rootCollections.keySet();
+
+        searchService
+                .fetchChildCollections(parentCollectionIds, TYPE_COLLECTION, 1000, 0)
+                .getResponseBody().getDocuments()
+                .stream()
+                .forEach(subCollection -> {
+                    String parentId = subCollection.getParentId();
+
+                    CollectionDTO parentCollectionDto = rootCollections.get(parentId);
+                    if (parentCollectionDto.getSubCollections() == null) {
+                        parentCollectionDto.setSubCollections(new ArrayList<>());
+                    }
+
+                    CollectionDTO subCollectionDTO = toCollectionDTO(subCollection, true);
+                    parentCollectionDto.getSubCollections().add(subCollectionDTO);
+
+                });
+
+        ArrayList<CollectionDTO> sortedCollectionDTOs = new ArrayList<>(rootCollections.values());
+        Collections.sort(sortedCollectionDTOs, (c1, c2) -> c1.getName().compareTo(c2.getName()));
+
+        return sortedCollectionDTOs;
     }
 
-    private CollectionDTO generatePlainCollectionDTO(String collectionId) {
+    private CollectionDTO generatePlainCollectionDTO(String collectionId, SolrSearchResult<CollectionInfo> targetWebsitesSearchResult) {
         CollectionInfo currentCollectionInformation = searchService
                 .fetchCollectionById(collectionId)
                 .getResponseBody().getDocuments()
                 .get(0);
 
-        return toCollectionDTO(currentCollectionInformation, false);
+        CollectionDTO collectionDTO = toCollectionDTO(currentCollectionInformation, false);
+        collectionDTO.setWebsitesNum(targetWebsitesSearchResult.getResponseBody().getNumFound());
+
+        return collectionDTO;
     }
 
     private List<TargetWebsiteDTO> generateTargetWebsitesDTOs(List<CollectionInfo> websites, String rootPathWithLang) {
@@ -140,6 +196,7 @@ public class CollectionController {
 
     private static CollectionDTO toCollectionDTO(CollectionInfo collectionInfo, boolean abbreviate) {
         String id = collectionInfo.getId();
+        String parentId = collectionInfo.getParentId();
         String name = collectionInfo.getName();
         String fullDescription = collectionInfo.getDescription() != null
                 ? collectionInfo.getDescription().replaceAll("<[^>]*>", "")
@@ -147,7 +204,7 @@ public class CollectionController {
 
         String shortDescription = abbreviate ? abbreviate(fullDescription, 60) : fullDescription;
 
-        return new CollectionDTO(id, name, shortDescription, fullDescription, 0, 0, 0);
+        return new CollectionDTO(id, parentId, name, shortDescription, fullDescription, 0, 0, 0);
     }
 
 }

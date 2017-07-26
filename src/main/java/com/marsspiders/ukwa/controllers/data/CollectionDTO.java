@@ -4,6 +4,7 @@ import java.util.List;
 
 public class CollectionDTO {
     private String id;
+    private String parentId;
     private String name;
     private String description;
     private String fullDescription;
@@ -16,8 +17,9 @@ public class CollectionDTO {
     public CollectionDTO() {
     }
 
-    public CollectionDTO(String id, String name, String description, String fullDescription, long subCollectionsNum, long websitesNum, long websitesOpenAccessNum) {
+    public CollectionDTO(String id, String parentId, String name, String description, String fullDescription, long subCollectionsNum, long websitesNum, long websitesOpenAccessNum) {
         this.id = id;
+        this.parentId = parentId;
         this.name = name;
         this.description = description;
         this.fullDescription = fullDescription;
@@ -32,6 +34,14 @@ public class CollectionDTO {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
     }
 
     public String getName() {

@@ -26,7 +26,9 @@ function rearangeQuestions() {
 $(document).ready(function(e) {
 	
 	//bootstrap tooltips
-	$('[data-toggle="tooltip"]').tooltip(); 
+	$('[data-toggle="tooltip"]').tooltip({
+		placement: 'bottom'
+	}); 
 	$('[data-toggle="tooltip"]').click(function(e) { e.stopPropagation(); }) //stopps click on the "?" button from expanding/collapsing the filters;
 	
 	//remove tabindex from radio/check boxes
@@ -158,6 +160,11 @@ $(document).ready(function(e) {
 				$(this).html('<span class="gray">'+$("#no-coll-description").val()+'</span>');
 		}
 	});
+	
+	//format results count
+	$(".results-count").each(function(index, element) {
+        $(this).text($.number($(this).text(),0,".",","));
+    });	
 	
 	//match height for collection headings and descriptions
 	$('.collection-heading').matchHeight();	
