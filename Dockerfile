@@ -59,6 +59,6 @@ VOLUME /tmp
 WORKDIR /tmp/ukwa-ui/target/
 RUN pwd
 RUN ls -la
-ADD marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war
+# ADD marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war
 ENV JAVA_OPTS=""
-ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /ROOT.war" ]
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /marsspiders-ukwa-1.4.2.RELEASE.war" ]
