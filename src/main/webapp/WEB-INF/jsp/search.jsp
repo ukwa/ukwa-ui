@@ -77,6 +77,15 @@ ${pageContext.response.locale}
                 <label class="main-search-check-label white" for="view_filter_2" title="<spring:message code="search.side.view.2" />"> <spring:message code="search.side.view.2" /> <span class="label-counts">(<span class="results-count"><c:out value="${voolCount}"/></span>)</span></label>
               </div>
             </div>
+
+
+            <%--Delete following after testing--%>
+            <br>
+            xForwardedForIps: <c:out value="${xForwardedForIps}"/> <br>
+            remoteAddrIp: <c:out value="${remoteAddrIp}"/>    <br>
+            <%----%>
+
+
           </div>
           <div role="tablist">
             <%--   Domains collapse filter   --%>

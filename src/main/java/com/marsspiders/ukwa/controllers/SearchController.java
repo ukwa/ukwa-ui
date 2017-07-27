@@ -27,6 +27,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -94,6 +95,22 @@ public class SearchController {
         int rowsPerPage = isNumeric(viewCount) ? Integer.valueOf(viewCount) : ROWS_PER_PAGE_DEFAULT;
         long targetPageNumber = isNumeric(pageNum) ? Long.valueOf(pageNum) : 1;
         long totalSearchResultsSize = 0;
+
+        //Delete this part of code after ip sniffing testing
+        /////////
+        List<String> xForwardedForIps = new ArrayList<>();
+        String remoteAddrIp = null;
+
+        Enumeration<String> remoteIp = request.getHeaders("X-FORWARDED-FOR");
+        while(remoteIp.hasMoreElements()){
+            xForwardedForIps.add(remoteIp.nextElement());
+        }
+
+        if (xForwardedForIps.size() == 0) {
+            remoteAddrIp = request.getRemoteAddr();
+        }
+        /////////
+
         boolean userIpFromBl = isUserIpFromBl(request);
 
         SearchByEnum searchBy = SearchByEnum.fromString(searchLocation);
@@ -171,18 +188,29 @@ public class SearchController {
         mav.addObject("rowsPerPageLimit", rowsPerPage);
         mav.addObject("totalPages", (int) (Math.ceil(totalSearchResultsSize / (double) rowsPerPage)));
 
+
+
+        //Delete this part of code after ip sniffing testing
+        //////////
+        mav.addObject("xForwardedForIps", xForwardedForIps);
+        mav.addObject("remoteAddrIp", remoteAddrIp);
+        //////////
+
         return mav;
     }
 
     private boolean isUserIpFromBl(HttpServletRequest request) {
-        String clientIp = fetchClientIp(request);
-        log.debug("User's client ip: " + clientIp);
+        List<String> clientIps = fetchClientIps(request);
+        log.debug("User's client ips: " + clientIps);
 
         String[] blIpAddressRanges = blIpAddressList.split(",");
         for (String blIpAddressRange : blIpAddressRanges) {
-            if (ipWithinRange(clientIp, blIpAddressRange)){
-                return true;
+            for (String clientIp : clientIps) {
+                if (ipWithinRange(clientIp, blIpAddressRange)){
+                    return true;
+                }
             }
+
         }
 
         return false;
@@ -202,14 +230,19 @@ public class SearchController {
         }
     }
 
-    private static String fetchClientIp(HttpServletRequest request) {
-        String remoteIp = request.getHeader("X-FORWARDED-FOR");
+    private static List<String> fetchClientIps(HttpServletRequest request) {
+        List<String> ips = new ArrayList<>();
 
-        if (isBlank(remoteIp)) {
-            remoteIp = request.getRemoteAddr();
+        Enumeration<String> remoteIp = request.getHeaders("X-FORWARDED-FOR");
+        while(remoteIp.hasMoreElements()){
+            ips.add(remoteIp.nextElement());
         }
 
-        return remoteIp;
+        if (ips.size() == 0) {
+            ips.add(request.getRemoteAddr());
+        }
+
+        return ips;
     }
 
     private static boolean isValidUrl(String text) {
