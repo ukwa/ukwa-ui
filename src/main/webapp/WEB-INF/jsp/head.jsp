@@ -2,6 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="img/icons/favicon.png" type="image/png"/>
 
+<!--INCLUDES-->
 <link rel="stylesheet" href="includes/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="includes/jqueryui/jquery-ui.min.css">
 <link rel="stylesheet" href="includes/jquery-lightbox/dist/simpleLightbox.min.css">
