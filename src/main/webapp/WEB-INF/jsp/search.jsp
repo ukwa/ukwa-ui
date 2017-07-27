@@ -83,7 +83,7 @@ ${pageContext.response.locale}
             <br>
             Remote address:  <% out.print(request.getRemoteAddr() ); %>  <br>
             Remote host: <% out.print(request.getRemoteHost() ); %> <br>
-            <%--jsp ip: <c:set var="userIp" value="${requestScope.header('x-forwarded-for')}" scope="session" />    <br>--%>
+            xRealIps: <c:out value="${xRealIps}"/> <br>
             xForwardedForIps: <c:out value="${xForwardedForIps}"/> <br>
             remoteAddrIp: <c:out value="${remoteAddrIp}"/>    <br>
             allHeaders: <c:out value="${allHeaders}"/>    <br>

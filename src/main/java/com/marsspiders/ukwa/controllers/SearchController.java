@@ -100,6 +100,7 @@ public class SearchController {
         /////////
         List<String> allHeaders = new ArrayList<>();
         List<String> xForwardedForIps = new ArrayList<>();
+        List<String> xRealIps = new ArrayList<>();
         String remoteAddrIp = null;
 
         Enumeration<String> headerNames = request.getHeaderNames();
@@ -107,9 +108,14 @@ public class SearchController {
             allHeaders.add(headerNames.nextElement());
         }
 
-        Enumeration<String> remoteIp = request.getHeaders("X-FORWARDED-FOR");
-        while(remoteIp.hasMoreElements()){
-            xForwardedForIps.add(remoteIp.nextElement());
+        Enumeration<String> realIps = request.getHeaders("X-Real-IP");
+        while(realIps.hasMoreElements()){
+            xRealIps.add(realIps.nextElement());
+        }
+
+        Enumeration<String> remoteIps = request.getHeaders("X-FORWARDED-FOR");
+        while(remoteIps.hasMoreElements()){
+            xForwardedForIps.add(remoteIps.nextElement());
         }
 
         if (xForwardedForIps.size() == 0) {
@@ -198,6 +204,7 @@ public class SearchController {
 
         //Delete this part of code after ip sniffing testing
         //////////
+        mav.addObject("xRealIps", xRealIps);
         mav.addObject("xForwardedForIps", xForwardedForIps);
         mav.addObject("remoteAddrIp", remoteAddrIp);
         mav.addObject("allHeaders", allHeaders);
