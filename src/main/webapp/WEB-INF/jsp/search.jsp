@@ -405,6 +405,7 @@ $(document).ready(function(e) {
 				case 1:
 				case 32: {
 					//expand on enter, click or space
+					e.preventDefault();
 					toggle($(this));
 					break;
 				}
