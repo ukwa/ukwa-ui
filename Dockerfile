@@ -47,18 +47,22 @@ RUN cd /tmp && \
 
 # RUN cd /tmp/ukwa-ui/target && mv ROOT.war /tomcat/webapps
 # RUN rm -rf /tmp/ukwa-ui
-	
-EXPOSE 8080
+
 # VOLUME /tomcat/logs
 # reset entrypoint from parent image
 # ENTRYPOINT []
 # CMD ["/run.sh"]	
 
-RUN pwd
-VOLUME /tmp
-WORKDIR /tmp/ukwa-ui/target/
-RUN pwd
-RUN ls -la
+#RUN pwd
+#VOLUME /tmp
+#WORKDIR /tmp/ukwa-ui/target/
+#RUN pwd
+#RUN ls -la
 # ADD marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war
-ENV JAVA_OPTS=""
-ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /marsspiders-ukwa-1.4.2.RELEASE.war" ]
+#ENV JAVA_OPTS=""
+#ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /marsspiders-ukwa-1.4.2.RELEASE.war" ]
+
+ENTRYPOINT ["/usr/bin/java"]
+CMD ["-jar", "/tmp/ukwa-ui/target/marsspiders-ukwa-1.4.2.RELEASE.war"]
+VOLUME /tmp/ukwa-ui
+EXPOSE 8888
