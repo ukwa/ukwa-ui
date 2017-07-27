@@ -128,6 +128,11 @@ input, button, textarea, select {
 	height: 145px;	
 }
 
+.width-auto-inline {
+	width:auto;
+	display:inline-block;
+}	
+
 .relative {
 	position:relative;	
 }
@@ -1625,6 +1630,10 @@ footer {
 .collections-view-subcollections {
 	padding-top: 10px;
 	font-size:0.9em;	
+}
+
+.collection-main-heading {
+	font-size: 2.4em;	
 }
 
 /*ABOUT*/

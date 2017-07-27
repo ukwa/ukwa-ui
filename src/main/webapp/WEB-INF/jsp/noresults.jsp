@@ -28,7 +28,7 @@ ${pageContext.response.locale}
   <header>
   <%@include file="header.jsp" %>
 </header>
-<section id="noresults-header">
+<section id="content">
   <div class="row header-blue white">
     <div class="col-md-12 col-sm-12 margin-top-minus-20"><a href="javascript:window.history.back();" title="<spring:message code="noresults.back.button" />" class="no-decoration"><img class="h3-icon" src="img/icons/left-arrow-white.png" alt="<spring:message code="noresults.back.button" />"/><span class="text-big bold"><spring:message code="noresults.back.button" /></span></a>
     </div>
@@ -36,8 +36,6 @@ ${pageContext.response.locale}
       <h2 class="uppercase"><spring:message code="noresults.main.heading" /></h2>
     </div>
   </div>
-</section>
-<section id="content">
   <div class="row margin-0 padding-mobile-side-5 padding-top-80 padding-bottom-80">
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 text-justify">
 <spring:message code="noresults.text" />

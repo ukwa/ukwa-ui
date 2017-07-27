@@ -2,6 +2,9 @@ Change Log
 ----------
 
 * 2017-07-26
+    * Added missing help texts
+
+* 2017-07-26
     * Inserted texts from BL
     * Fixed breadcrumbs for subcollections on SC page
     * Added nesting of subcollections to SC list (only in list view)

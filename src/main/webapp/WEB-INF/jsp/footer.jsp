@@ -69,8 +69,6 @@
     <a href="http://www.bodleian.ox.ac.uk/" target="_blank"><img src="img/bodleian_logo.jpg" alt="<spring:message code="footer.logo.bl" />" class="footer-logo"/></a> <a href="http://www.lib.cam.ac.uk/" target="_blank"><img src="img/cambrige_logo.jpg" alt="<spring:message code="footer.logo.cul" />" class="footer-logo"/></a> <a href="https://www.tcd.ie/" target="_blank"><img src="img/trinity_logo.jpg" alt="<spring:message code="footer.logo.tcd" />" class="footer-logo"/></a> </div>
 </div>
 
-</div>
-
 <div class="cookies-cont">
 <div class="row">
 <div class="col-md-8 col-sm-12"><spring:message code="footer.cookies.text" /></div>

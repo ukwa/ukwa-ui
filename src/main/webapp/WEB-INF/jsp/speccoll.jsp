@@ -55,8 +55,8 @@ ${pageContext.response.locale}
         </div>
         <figure><img class="img-responsive border-gray coll-img" alt="<c:out value="${collection.name}"/>" src="img/collections/collection_<c:out value="${collection.id}"/>.png"/>
           <figcaption class="img-square-caption shadow collection-description"><c:out value="${collection.description}"/></figcaption>
-        </figure>
-        </div></a> 
+        </figure></a> 
+        </div>
     </c:forEach>
   </div>
   
@@ -68,7 +68,6 @@ ${pageContext.response.locale}
       <div class="border-bottom-gray padding-bottom-20">
       	<a href="collection/<c:out value="${collection.id}"/>" class="collection-link"><h2 class="padding-bottom-0 collection-title"><c:out value="${collection.name}"/></h2></a><br/>
          <span class="collection-description"><c:out value="${collection.fullDescription}"/></span>
-        </a> 
         <c:if test="${!empty collection.subCollections}">
        <!--Subcollections of current collection-->
        <div class="collections-subcollections">

@@ -49,14 +49,14 @@ ${pageContext.response.locale}
 <section id="collections">
   <div class="row padding-top-80 margin-0 padding-side-20">
     <div class="col-lg-2  col-md-3 col-sm-12 main-heading-cont">
-      <h1 class="main-heading-2">
+      <h2 class="main-heading-2 padding-0">
         <spring:message code="home.page.collections.title"/>
-      </h1>
+      </h2>
       <hr class="header-title-hr"/>
     </div>
     <div class="col-lg-5 col-md-6 offset-md-1 col-sm-12 header-2-subtitle">
       <span class="clearfix"><spring:message code="home.page.collections.subtitle"/></span>
-      <a href="collection" title="<spring:message code="home.button.viewmore.title"/>"><button class="button button-blue white no-decoration margin-top-30 clearfix" tabindex="-1" role="link"><spring:message code="home.button.viewmore"/></button></a>
+      <a href="collection" class="no-decoration" title="<spring:message code="home.button.viewmore.title"/>"><div class="button button-blue white margin-top-30 width-auto-inline clearfix"><spring:message code="home.button.viewmore"/></div></a>
     </div>
   </div>
   

@@ -30,12 +30,13 @@ ${pageContext.response.locale}
   <header>
   <%@include file="header.jsp" %>
 </header>
-<section id="about-header">
+<figure>
   <div class="header-white about-video-container padding-0">
 <div class="embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ubDHY-ynWi0" frameborder="0" allowfullscreen></iframe>
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ubDHY-ynWi0" allowfullscreen></iframe>
 </div>
-</section>
+</div>
+</figure>
 <section id="content">
   <div class="row page-content">
     <div class="col-md-6 col-sm-12 page-content-col">

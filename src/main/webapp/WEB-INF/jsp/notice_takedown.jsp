@@ -28,14 +28,12 @@ ${pageContext.response.locale}
   <header>
   <%@include file="header.jsp" %>
 </header>
-<section id="noresults-header">
+<section id="content">
   <div class="row header-blue white">
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 padding-mobile-side-0">
       <h2 class="uppercase"><spring:message code="takedown.main.heading" /></h2>
     </div>
   </div>
-</section>
-<section id="content">
   <div class="row margin-0 padding-mobile-side-5 padding-side-20 padding-top-80 padding-bottom-80">
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 text-content">
     <spring:message code="takedown.text" />

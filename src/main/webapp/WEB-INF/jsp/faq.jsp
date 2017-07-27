@@ -28,15 +28,13 @@ ${pageContext.response.locale}
   <header>
   <%@include file="header.jsp" %>
 </header>
-<section id="noresults-header">
+<section id="content">
   <div class="row header-blue white">
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 padding-mobile-side-0">
       <h2 class="uppercase"><spring:message code="faq.main.heading" /></h2>
       <p class="text-medium"><spring:message code="faq.subtitle" /></p>
     </div>
   </div>
-</section>
-<section id="content">
   <div class="row margin-0">
     <div class="col-md-4 col-sm-12 q-grid"><a href="#" class="q-question" data-descriptid="1"><spring:message code="faq.q1" /></a></div>
     <div class="col-md-4 col-sm-12 q-grid"><a href="#" class="q-question" data-descriptid="2"><spring:message code="faq.q2" /></a></div>

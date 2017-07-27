@@ -32,7 +32,7 @@ ${pageContext.response.locale}
   <div class="row header-white light-blue">
     <div class="col-md-6 offset-md-3 padding-mobile-side-0">
       <h2><spring:message code="nominate.main.heading" /></h2>
-      <p><spring:message code="nominate.text" /></p>
+      <spring:message code="nominate.text" />
     </div>
   </div>
   <div class="row header-blue padding-side-70 white">
@@ -81,7 +81,7 @@ ${pageContext.response.locale}
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
       <span><spring:message code="nominate.form.email.notice" /></span>
-        <div class=" margin-top-30 clearfix"><button type="button" class="button button-blue" role="button" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button></div>
+        <div class=" margin-top-30 clearfix"><button type="button" class="button button-blue" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button></div>
         
       </div>
     </div>

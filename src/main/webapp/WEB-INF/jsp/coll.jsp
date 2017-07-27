@@ -60,9 +60,9 @@ ${pageContext.response.locale}
   
     <div class="row margin-0 padding-side-5">
       <div class="col-md-12 col-sm-12 padding-top-40 padding-bottom-20 light-blue">
-        <h1>
+        <h2 class="padding-0 margin-0 collection-main-heading">
           <c:out value="${currentCollection.name}"/>
-        </h1>
+        </h2>
         <p class="black margin-top-20 margin-bottom-0 hidden" id="coll_description" data-descript="<c:out value="${currentCollection.description}"/>"></p>
         <p class="margin-bottom-0"><a href="#" class="hidden" title="<spring:message code="coll.readmore" />" id="readmore"><spring:message code="coll.readmore" /></a></p>
       </div>
@@ -74,7 +74,7 @@ ${pageContext.response.locale}
        <div class="row padding-bottom-20">
             <div class="col-sm-12">
                   <div class="coll-search-input">
-                  <input type="text" class="coll-search-field" name="text" id="text" title="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" aria-label="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" placeholder="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" required/>
+                  <input type="text" class="coll-search-field" name="text" id="text_collections" title="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" aria-label="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" placeholder="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" required/>
                   <input type="hidden" name="search_location" value="full_text"/>
                   <input type="hidden" name="collection" value="<c:out value="${currentCollection.name}"/>"/>
                   <button type="submit" class="coll-search-button" title="<spring:message code="coll.search.button" />
@@ -176,7 +176,7 @@ ${pageContext.response.locale}
     </div>
   </div>
 </div>
-</ssection>
+</section>
 <div class="up-button" title="<spring:message code="top.of.page" />" aria-label="<spring:message code="top.of.page" />" tabindex="0"></div>
 <footer>
   <%@include file="footer.jsp" %>

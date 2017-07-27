@@ -10,6 +10,7 @@ import com.marsspiders.ukwa.solr.data.FacetCounts;
 import com.marsspiders.ukwa.solr.data.HighlightingContent;
 import com.marsspiders.ukwa.solr.data.SolrSearchResult;
 import com.marsspiders.ukwa.util.UrlUtil;
+import org.apache.commons.net.util.SubnetUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,9 @@ public class SearchController {
     @Value("${set.protocol.to.https}")
     private Boolean setProtocolToHttps;
 
+    @Value("${bl.ip.address.list}")
+    private String blIpAddressList;
+
     @RequestMapping(value = "", method = GET)
     public ModelAndView searchPage(@RequestParam(value = "search_location", required = false) String searchLocation,
                                    @RequestParam(value = "text", required = false) String text,
@@ -86,29 +90,35 @@ public class SearchController {
         List<String> originalDomains = checkedDomains != null ? asList(checkedDomains) : emptyList();
         List<String> originalRangeDates = checkedRangeDates != null ? asList(checkedRangeDates) : emptyList();
         List<String> originalCollections = checkedCollections != null ? asList(checkedCollections) : emptyList();
+
         int rowsPerPage = isNumeric(viewCount) ? Integer.valueOf(viewCount) : ROWS_PER_PAGE_DEFAULT;
         long targetPageNumber = isNumeric(pageNum) ? Long.valueOf(pageNum) : 1;
         long totalSearchResultsSize = 0;
-
+        boolean userIpFromBl = isUserIpFromBl(request);
 
         SearchByEnum searchBy = SearchByEnum.fromString(searchLocation);
         SortByEnum sortBy = SortByEnum.fromString(sortValue);
         AccessToEnum accessTo = AccessToEnum.fromString(accessViewFilter);
+        if(accessTo == null && userIpFromBl){
+            accessTo = AccessToEnum.VIEWABLE_ONLY_ON_LIBRARY;
+        }
+
         if (!isBlank(text) && searchBy != null) {
             long startFromRow = (targetPageNumber - 1) * rowsPerPage;
             Date fromDate = isBlank(fromDateText) ? null : sdf.parse(fromDateText);
             Date toDate = isBlank(toDateText) ? null : sdf.parse(toDateText);
 
             if (isValidUrl(text)) {
-                SolrSearchResult<ContentInfo> archivedSites = searchService.searchUrlInContent(text);
-                List<ContentInfo> urlSearchResults = archivedSites.getResponseBody().getDocuments();
+                SolrSearchResult<ContentInfo> archivedSitesByOriginalUrl = searchService.searchUrlInContent(text);
+                List<ContentInfo> urlSearchResults = archivedSitesByOriginalUrl.getResponseBody().getDocuments();
 
                 if (urlSearchResults.size() > 0) {
                     String rootPathWithLang = getRootPathWithLang(request, setProtocolToHttps);
                     ContentInfo contentInfo = urlSearchResults.get(0);
 
-                    SearchResultDTO searchResultDTO = toSearchResultDto(archivedSites, searchBy, rootPathWithLang, contentInfo);
-                    searchResultDTOs.add(searchResultDTO);
+                    SearchResultDTO originalUrlSearchResultDTO = toSearchResultDto(archivedSitesByOriginalUrl, searchBy,
+                            rootPathWithLang, contentInfo, userIpFromBl);
+                    searchResultDTOs.add(originalUrlSearchResultDTO);
                 }
             }
 
@@ -117,7 +127,7 @@ public class SearchController {
                     fromDate, toDate, originalRangeDates, originalCollections);
 
 
-            searchResultDTOs.addAll(toSearchResults(archivedSites, request, searchBy));
+            searchResultDTOs.addAll(toSearchResults(archivedSites, request, searchBy, userIpFromBl));
             totalSearchResultsSize = archivedSites.getResponseBody().getNumFound();
 
             FacetCounts facetCounts = archivedSites.getFacetCounts();
@@ -164,6 +174,44 @@ public class SearchController {
         return mav;
     }
 
+    private boolean isUserIpFromBl(HttpServletRequest request) {
+        String clientIp = fetchClientIp(request);
+        log.debug("User's client ip: " + clientIp);
+
+        String[] blIpAddressRanges = blIpAddressList.split(",");
+        for (String blIpAddressRange : blIpAddressRanges) {
+            if (ipWithinRange(clientIp, blIpAddressRange)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean ipWithinRange(String clientIp, String blIpAddressRange) {
+        try {
+            if(blIpAddressRange.equals(clientIp)){
+              return true;
+            }
+
+            SubnetUtils utils = new SubnetUtils(blIpAddressRange);
+
+            return utils.getInfo().isInRange(clientIp);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private static String fetchClientIp(HttpServletRequest request) {
+        String remoteIp = request.getHeader("X-FORWARDED-FOR");
+
+        if (isBlank(remoteIp)) {
+            remoteIp = request.getRemoteAddr();
+        }
+
+        return remoteIp;
+    }
+
     private static boolean isValidUrl(String text) {
         return text.matches(URL_PATTERN);
     }
@@ -179,22 +227,25 @@ public class SearchController {
 
     private List<SearchResultDTO> toSearchResults(SolrSearchResult<ContentInfo> archivedSites,
                                                   HttpServletRequest request,
-                                                  SearchByEnum searchLocation) throws MalformedURLException, URISyntaxException {
+                                                  SearchByEnum searchLocation,
+                                                  boolean userIpFromBl)
+            throws MalformedURLException, URISyntaxException {
         String rootPathWithLang = getRootPathWithLang(request, setProtocolToHttps);
         List<ContentInfo> contentInfoList = archivedSites.getResponseBody().getDocuments();
 
         return contentInfoList
                 .stream()
-                .map(archivedSiteInfo -> toSearchResultDto(archivedSites, searchLocation, rootPathWithLang, archivedSiteInfo))
+                .map(archivedSiteInfo -> toSearchResultDto(archivedSites, searchLocation, rootPathWithLang, archivedSiteInfo, userIpFromBl))
                 .collect(toList());
     }
 
     private static SearchResultDTO toSearchResultDto(SolrSearchResult<ContentInfo> archivedSites,
                                                      SearchByEnum searchLocation,
                                                      String rootPathWithLang,
-                                                     ContentInfo archivedSiteInfo) {
+                                                     ContentInfo archivedSiteInfo,
+                                                     boolean userIpFromBl) {
         String url = archivedSiteInfo.getUrl() != null ? archivedSiteInfo.getUrl() : "";
-        String wayBackUrl = toWayBackUrl(rootPathWithLang, archivedSiteInfo, url);
+        String wayBackUrl = toWayBackUrl(userIpFromBl, rootPathWithLang, archivedSiteInfo, url);
         HighlightingContent highlightingContent = archivedSites.getHighlighting() == null
                 ? null
                 : archivedSites.getHighlighting().get(archivedSiteInfo.getId());
@@ -227,8 +278,8 @@ public class SearchController {
         return escapedContent;
     }
 
-    private static String toWayBackUrl(String rootPathWithLang, ContentInfo archivedSiteInfo, String url) {
-        if (readRoomOnlyAccess(archivedSiteInfo)) {
+    private static String toWayBackUrl(boolean userIpFromBl, String rootPathWithLang, ContentInfo archivedSiteInfo, String url) {
+        if (!userIpFromBl && readRoomOnlyAccess(archivedSiteInfo)) {
             //Redirect to page with information about Reading Room Only restriction
             return "noresults";
         }

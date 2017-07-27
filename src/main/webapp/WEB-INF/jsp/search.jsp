@@ -38,16 +38,18 @@ ${pageContext.response.locale}
 </header>
 <section id="content">
   <div class="row margin-0 padding-0">
+    
     <div class="col-lg-3 col-md-4 col-sm-12 sidebar padding-0">
+    <aside id="sidebar">
     <span class="hidden"><spring:message code="search.filter.notice" /></span>
-      <form action="" method="get" enctype="multipart/form-data" name="filter_form" id="filter_form">
-        <div class="sidebar-item toggle open" id="toggle-sidebar" role="tab"></div>
-        <div class="sidebar-collapse">
+      <form action="#" method="get" enctype="multipart/form-data" name="filter_form" id="filter_form">
+        <div class="sidebar-item toggle open" id="toggle-sidebar"></div>
+        <div class="sidebar-collapse" role="region">
           <%--   View facet   --%>
-          <div class="sidebar-filter-header no-collapse" title="<spring:message code="search.side.view.title" />"> <spring:message code="search.side.view.title" />
+          <div class="sidebar-filter-header no-collapse" id="t_access" title="<spring:message code="search.side.view.title" />"> <spring:message code="search.side.view.title" />
             <div class="help-button small white" data-toggle="tooltip" title="<spring:message code="search.side.view.tip" />" tabindex="0"></div>
           </div>
-          <div class="sidebar-filter expanded no-collapse">
+          <div class="sidebar-filter expanded no-collapse" aria-labelledby="t_access">
             <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
 
               <c:if test="${accessTerms.size() > 1}">
@@ -76,13 +78,13 @@ ${pageContext.response.locale}
               </div>
             </div>
           </div>
-          <section role="tablist">
+          <div role="tablist">
             <%--   Domains collapse filter   --%>
-            <div class="sidebar-filter-header border-top-white open" title="<spring:message code="search.side.domain.title" />" tabindex="0" role="tab">
-              <div class="sidebar-filter-header-title"><spring:message code="search.side.domain.title" /></div>
+            <div class="sidebar-filter-header border-top-white open" aria-expanded="false" title="<spring:message code="search.side.domain.title" />" tabindex="0" role="tab">
+              <div class="sidebar-filter-header-title" id="t_domain"><spring:message code="search.side.domain.title" /></div>
               <div class="help-button small white" data-toggle="tooltip" title="<spring:message code="search.side.domain.tip" />" tabindex="0"></div>
             </div>
-            <div class="sidebar-filter" role="tabpanel">
+            <div class="sidebar-filter" role="tabpanel" aria-hidden="true" aria-labelledby="t_domain">
               <c:if test="${domains.size() > 1}">
                 <c:forEach begin="0" end="${domains.size() - 1}" step="2" var="i">
                   <c:if test="${domains.get(i + 1) != 0}">
@@ -101,11 +103,11 @@ ${pageContext.response.locale}
               </c:if>
             </div>
             <%--   Document type collapse filter   --%>
-            <div class="sidebar-filter-header border-top-white open" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
-              <div class="sidebar-filter-header-title"><spring:message code="search.side.doctype.title" /></div>
+            <div class="sidebar-filter-header border-top-white open" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
+              <div class="sidebar-filter-header-title" id="t_doctype"><spring:message code="search.side.doctype.title" /></div>
               <div class="help-button small white" data-toggle="tooltip" title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
             </div>
-            <div class="sidebar-filter" role="tabpanel">
+            <div class="sidebar-filter" role="tabpanel" aria-hidden="true" aria-labelledby="t_doctype">
               <c:if test="${contentTypes.size() > 1}">
                 <c:forEach begin="0" end="${contentTypes.size() - 1}" step="2" var="i">
                   <c:if test="${contentTypes.get(i + 1) != 0}">
@@ -124,11 +126,11 @@ ${pageContext.response.locale}
               </c:if>
             </div>
             <%--   Public suffix collapse filter   --%>
-            <div class="sidebar-filter-header border-top-white open" title="<spring:message code="search.side.suffix.title" />" tabindex="0" role="tab">
-              <div class="sidebar-filter-header-title"><spring:message code="search.side.suffix.title" /></div>
+            <div class="sidebar-filter-header border-top-white open" aria-expanded="false" title="<spring:message code="search.side.suffix.title" />" tabindex="0" role="tab">
+              <div class="sidebar-filter-header-title" id="t_suffix"><spring:message code="search.side.suffix.title" /></div>
               <div class="help-button small white" data-toggle="tooltip" title="<spring:message code="search.side.suffix.tip" />" tabindex="0"></div>
             </div>
-            <div class="sidebar-filter" role="tabpanel">
+            <div class="sidebar-filter" role="tabpanel" aria-hidden="true" aria-labelledby="t_suffix">
               <c:if test="${publicSuffixes.size() > 1}">
                 <c:forEach begin="0" end="${publicSuffixes.size() - 1}" step="2" var="i">
                   <c:if test="${publicSuffixes.get(i + 1) != 0}">
@@ -147,11 +149,11 @@ ${pageContext.response.locale}
               </c:if>
             </div>
             <%--   Archived year collapse filter   --%>
-            <div class="sidebar-filter-header border-top-white open archived-date" title="<spring:message code="search.side.date.title" />" tabindex="0" id="dates_header" role="tab">
-              <div class="sidebar-filter-header-title"><spring:message code="search.side.date.title" /></div>
+            <div class="sidebar-filter-header border-top-white open archived-date" aria-expanded="false" title="<spring:message code="search.side.date.title" />" tabindex="0" id="dates_header" role="tab">
+              <div class="sidebar-filter-header-title" id="t_date"><spring:message code="search.side.date.title" /></div>
               <div class="help-button small white" data-toggle="tooltip" title="<spring:message code="search.side.date.tip" />" tabindex="0"></div>
             </div>
-            <div class="sidebar-filter" id="dates_container" role="tabpanel">
+            <div class="sidebar-filter" id="dates_container" role="tabpanel" aria-hidden="true" aria-labelledby="t_date">
               <div class="row padding-bottom-20 padding-top-20">
                 <div class="col-sm-3">
                   <label for="from_date" class="white"><spring:message code="search.side.date.from" /></label>
@@ -178,11 +180,11 @@ ${pageContext.response.locale}
               </div>
             </div>
             <%--   Collection collapse filter   --%>
-            <div class="sidebar-filter-header border-top-white open" title="<spring:message code="search.side.coll.title" />" tabindex="0" role="tab">
-              <div class="sidebar-filter-header-title"><spring:message code="search.side.coll.title" /></div>
+            <div class="sidebar-filter-header border-top-white open" aria-expanded="false" title="<spring:message code="search.side.coll.title" />" tabindex="0" role="tab">
+              <div class="sidebar-filter-header-title" id="t_coll"><spring:message code="search.side.coll.title" /></div>
               <div class="help-button small white" data-toggle="tooltip" title="<spring:message code="search.side.coll.tip" />" tabindex="0"></div>
             </div>
-            <div class="sidebar-filter" role="tabpanel">
+            <div class="sidebar-filter" role="tabpanel" aria-hidden="true" aria-labelledby="t_coll">
               <c:if test="${collections.size() > 1}">
                 <c:forEach begin="0" end="${collections.size() - 1}" step="2" var="i">
                   <c:if test="${collections.get(i + 1) != 0}">
@@ -202,28 +204,22 @@ ${pageContext.response.locale}
               </c:if>
             </div>
             <input type="hidden" name="search_location" id="search_location" value="${originalSearchLocation}">
-            <input type="hidden" name="text" id="text" value="${originalSearchRequest}">
+            <input type="hidden" name="text" id="text_hidden" value="${originalSearchRequest}">
             <input type="hidden" name="view_sort" id="view_sort" value="${empty originalSortValue ? 'nto' : originalSortValue}">
             <input type="hidden" name="view_count" id="view_count" value="${empty rowsPerPageLimit ? '50' : rowsPerPageLimit}">
-          </section>
+          </div>
         </div>
       </form>
+      </aside>
     </div>
+    
     <div class="col-lg-9 col-md-8 col-sm-12 padding-0">
       <div class="results-header border-bottom-gray">
       <div class="row">
-        <div class="col-md-8 col-sm-12 padding-top-5">
+        <div class="col-sm-12 padding-top-5">
           <span class="results-count"><c:out value="${totalSearchResultsSize}"/></span>
           <spring:message code="search.results.num" /> <span class="bold">&quot;<c:out value="${originalSearchRequest}"/>&quot;</span></div>
           
-        <div class="col-md-4 col-sm-12 spadding-top-5">
-        <div tabindex="0" class="results-help-cont">
-          <div class="help-button small search-help-button" data-toggle="tooltip" title="<spring:message code="search.results.tip" />"></div>
-          <div class="help-button-text"><spring:message code="search.results.help" /></div>
-          <div class="clearfix"></div>
-         </div>
-        </div>
-        <div class="clearfix"></div>
       </div>
       </div>
       <div class="row padding-0 margin-0">
@@ -375,16 +371,15 @@ function toggle(el) {
 	
 	if (el.hasClass("open")) {
 		el.next(".sidebar-filter:not(.no-collapse)").children().show();
-		el.next(".sidebar-filter").addClass("expanded");
-		el.removeClass("open").addClass("closee");
+		el.next(".sidebar-filter").addClass("expanded").attr("aria-hidden","false");
+		el.removeClass("open").addClass("closee").attr("aria-expanded","true");
 		checkboxSize();
 	} else {
 		el.next(".sidebar-filter:not(.no-collapse)").children().hide();
-		el.next(".sidebar-filter").removeClass("expanded");
-		el.removeClass("closee").addClass("open");
+		el.next(".sidebar-filter").removeClass("expanded").attr("aria-hidden","false");
+		el.removeClass("closee").addClass("open").attr("aria-expanded","false");
 	}
-	
-	el.blur();
+
 }
 
 $(document).ready(function(e) {
@@ -400,14 +395,64 @@ $(document).ready(function(e) {
 	//filters toggle and count
 	$(".sidebar-filter-header:not(.no-collapse)").each(function(index, element) {
 		
-		//toggle
-		$(this).on("click keyup", function(e) {
-			if(e.which == 13 || e.which == 1) toggle($(this));
+		//keyboard nav and toggle
+		$(this).on("click keydown", function(e) {
+			
+			
+			switch (e.which) {
+				
+				case 13:
+				case 1:
+				case 32: {
+					//expand on enter, click or space
+					toggle($(this));
+					break;
+				}
+			
+				//down arrow
+				case 40: {
+					e.preventDefault();
+					if ($(this).nextAll(".sidebar-filter-header:not(.no-collapse)").first().attr("class")!==undefined) {
+						$(this).nextAll(".sidebar-filter-header:not(.no-collapse)").first().focus();
+					} else {
+						$(".sidebar-filter-header:not(.no-collapse)").first().focus();
+					}
+					break;
+				}
+			
+				//up arrow
+				case 38: {
+					e.preventDefault();
+					if ($(this).prevAll(".sidebar-filter-header:not(.no-collapse)").first().attr("class")!==undefined) {
+						$(this).prevAll(".sidebar-filter-header:not(.no-collapse)").first().focus();
+					} else {
+						$(".sidebar-filter-header:not(.no-collapse)").last().focus();
+					}
+					break;
+				}
+				
+				//end
+				case 35: {
+					e.preventDefault();
+					$(".sidebar-filter-header:not(.no-collapse)").last().focus();
+					break;
+				}
+			
+				//home
+				case 36: {
+					e.preventDefault();
+					$(".sidebar-filter-header:not(.no-collapse)").first().focus();
+					break;
+				}
+			
+			}
+			
 		});		
 
 		//expand selected
 		if ($(this).next(".sidebar-filter").children(".sidebar-filter-checkbox").children(".form-check-cont").children("input:checked").length!=0) {
-			$(this).removeClass("open").addClass("closee").next(".sidebar-filter").addClass("expanded");
+			//$(this).removeClass("open").addClass("closee").next(".sidebar-filter").addClass("expanded");
+			toggle($(this));
 		} else {
 			$(this).next(".sidebar-filter:not(.no-collapse)").children().hide();	
 		}

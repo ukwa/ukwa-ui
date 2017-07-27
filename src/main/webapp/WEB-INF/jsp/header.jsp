@@ -33,22 +33,22 @@
                                         : fn:replace(fn:replace(fn:replace(textUri, '/en/', '/'), '/gd/', '/'), '/cy/', '/')}"/>
                                         
   <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}">
-    <div class="header-menu-item language"><span lang="cy"><a href="/cy<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.welsh.title" />">
-      <spring:message code="main.menu.welsh" />
-      </a></span></div>
+    <div class="header-menu-item language"><a href="/cy<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.welsh.title" />">
+     <span lang="cy"><spring:message code="main.menu.welsh" /></span>
+      </a></div>
   </c:if>                                        
                                         
   <c:if test="${!fn:startsWith(textUri, '/gd/') && textUri != '/gd'}">
-    <div class="header-menu-item language"><span lang="gd"><a href="/gd<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.scottish.title" />">
-      <spring:message code="main.menu.scottish" />
-      </a></span></div>
+    <div class="header-menu-item language"><a href="/gd<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.scottish.title" />">
+      <span lang="gd"><spring:message code="main.menu.scottish" /></span>
+      </a></div>
   </c:if>                                        
                                         
   <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
       && (fn:contains(textUri, '/gd/') || textUri =='/gd' || fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
-    <div class="header-menu-item language"><span lang="en"><a href="/en<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.english.title" />">
-      <spring:message code="main.menu.english" />
-      </a></span></div>
+    <div class="header-menu-item language"><a href="/en<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.english.title" />">
+      <span lang="en"><spring:message code="main.menu.english" /></span>
+      </a></div>
   </c:if>
 </div>
 </div>

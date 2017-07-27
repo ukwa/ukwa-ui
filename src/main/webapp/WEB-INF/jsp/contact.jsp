@@ -63,7 +63,7 @@ ${pageContext.response.locale}
       </div>
       
       <div class="col-md-6 col-sm-12 form-content-col padding-top-30">
-        <button type="button" class="button button-blue" role="button" title="<spring:message code="contact.form.button.submit" />"><spring:message code="contact.form.button.submit" /></button>
+        <button type="button" class="button button-blue" title="<spring:message code="contact.form.button.submit" />"><spring:message code="contact.form.button.submit" /></button>
       </div>
     </div>
   </form>
