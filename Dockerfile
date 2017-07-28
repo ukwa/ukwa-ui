@@ -2,17 +2,11 @@ FROM openjdk:8-jre-alpine
 # originally based on UNB Libraries Dockerfile
 MAINTAINER Mindaugas Vidmantas "mindaugas.vidmantas@bl.uk"
 
-RUN apt-get update -qq
 # update packages and install maven
 RUN DEBIAN_FRONTEND=noninteractive && \
-  apt-get update && \
+  apt-get update -qq && \
   apt-get -y upgrade && \
   apt-get install -y git maven
-  
-ENV TOMCAT_MAJOR_VERSION 8
-ENV TOMCAT_MINOR_VERSION 8.5.16
-ENV CATALINA_HOME /tomcat
-ENV CATALINA_TMPDIR /tmp
 
 ENV ARCHIVE_WEB_LOCATION="https://www.webarchive.org.uk/wayback/archive/"
 ENV SOLR_COLLECTION_SEARCH_PATH="http://192.168.45.241:8983/solr/collections/select?"
