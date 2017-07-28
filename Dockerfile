@@ -3,10 +3,14 @@ FROM openjdk:8-jre-alpine
 MAINTAINER Mindaugas Vidmantas "mindaugas.vidmantas@bl.uk"
 
 # update packages and install maven
-RUN export DEBIAN_FRONTEND=noninteractive && \
-  apt-get update -qq && \
+# update packages and install maven
+RUN \
+  export DEBIAN_FRONTEND=noninteractive && \
+  sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
+  apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -y git maven
+  apt-get install -y tar wget curl git maven
+
 
 ENV ARCHIVE_WEB_LOCATION="https://www.webarchive.org.uk/wayback/archive/"
 ENV SOLR_COLLECTION_SEARCH_PATH="http://192.168.45.241:8983/solr/collections/select?"
