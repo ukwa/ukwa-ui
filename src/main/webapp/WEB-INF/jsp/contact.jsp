@@ -44,11 +44,9 @@ ${pageContext.response.locale}
         <spring:message code="contact.form.notice" />
       </div>
             <div class="col-md-6 col-sm-12 form-content-col">
-        <div class="form-group">
-          <label for="comments"><spring:message code="contact.form.input.comments" /></label>
-          <textarea name="comments" id="comments" class="form-control height-145" placeholder="<spring:message code="contact.form.input.comments.placeholder" />" required></textarea>
-        </div>
+      &nbsp;
       </div>
+
       <div class="col-md-6 col-sm-12 form-content-col">
         <div class="form-group">
           <label for="name"><spring:message code="contact.form.input.name" /></label>
@@ -59,8 +57,13 @@ ${pageContext.response.locale}
           <input type="email" name="email" id="email" class="form-control" placeholder="<spring:message code="contact.form.input.email.placeholder" />" required/>
         </div>
       </div>
-      <div class="col-md-6 col-sm-12 form-content-col">&nbsp;
+                  <div class="col-md-6 col-sm-12 form-content-col">
+        <div class="form-group">
+          <label for="comments"><spring:message code="contact.form.input.comments" /></label>
+          <textarea name="comments" id="comments" class="form-control height-145" placeholder="<spring:message code="contact.form.input.comments.placeholder" />" required></textarea>
+        </div>
       </div>
+
       
       <div class="col-md-6 col-sm-12 form-content-col padding-top-30">
         <button type="submit" class="button button-blue" title="<spring:message code="contact.form.button.submit" />"><spring:message code="contact.form.button.submit" /></button>

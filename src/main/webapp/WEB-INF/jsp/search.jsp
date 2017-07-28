@@ -193,7 +193,7 @@ ${pageContext.response.locale}
               </div>
             </div>
             <%--   Collection collapse filter   --%>
-            <div class="sidebar-filter-header border-top-white open" aria-expanded="false" title="<spring:message code="search.side.coll.title" />" tabindex="0" role="tab">
+            <div class="sidebar-filter-header border-top-white border-bottom-white open" aria-expanded="false" title="<spring:message code="search.side.coll.title" />" tabindex="0" role="tab">
               <div class="sidebar-filter-header-title" id="t_coll"><spring:message code="search.side.coll.title" /></div>
               <div class="help-button small white" data-toggle="tooltip" title="<spring:message code="search.side.coll.tip" />" tabindex="0"></div>
             </div>
@@ -423,7 +423,7 @@ $(document).ready(function(e) {
 					break;
 				}
 			
-				//down arrow
+				//down arrow, pgdown
 				case 40: {
 					e.preventDefault();
 					if ($(this).nextAll(".sidebar-filter-header:not(.no-collapse)").first().attr("class")!==undefined) {
@@ -434,7 +434,7 @@ $(document).ready(function(e) {
 					break;
 				}
 			
-				//up arrow
+				//up arrow, pgup
 				case 38: {
 					e.preventDefault();
 					if ($(this).prevAll(".sidebar-filter-header:not(.no-collapse)").first().attr("class")!==undefined) {

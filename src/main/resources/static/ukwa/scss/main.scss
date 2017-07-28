@@ -53,6 +53,10 @@ input, button, textarea, select {
 	outline-style: solid !important;	 
 }
 
+img { 
+	-ms-interpolation-mode: bicubic; 
+}
+
 /* GENERAL STYLES AND COLORS*/
 .center {
 	text-align:center;	
