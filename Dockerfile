@@ -3,7 +3,7 @@ FROM openjdk:8-jre-alpine
 MAINTAINER Mindaugas Vidmantas "mindaugas.vidmantas@bl.uk"
 
 # update packages and install maven
-RUN DEBIAN_FRONTEND=noninteractive && \
+RUN export DEBIAN_FRONTEND=noninteractive && \
   apt-get update -qq && \
   apt-get -y upgrade && \
   apt-get install -y git maven
