@@ -28,8 +28,7 @@ $(document).ready(function(e) {
 	//bootstrap tooltips
 	$('[data-toggle="tooltip"]').tooltip({
 		placement: 'bottom'
-	}); 
-	$('[data-toggle="tooltip"]').click(function(e) { e.stopPropagation(); }) //stopps click on the "?" button from expanding/collapsing the filters;
+	}).click(function(e) { e.stopPropagation(); }) //stopps click on the "?" button from expanding/collapsing the filters;
 	
 	//remove tabindex from radio/check boxes
 	$(this).find("input[type=radio], input[type=checkbox]").attr("tabindex", "-1");

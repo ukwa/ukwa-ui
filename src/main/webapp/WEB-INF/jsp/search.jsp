@@ -42,7 +42,7 @@ ${pageContext.response.locale}
     <div class="col-lg-3 col-md-4 col-sm-12 sidebar padding-0">
     <aside id="sidebar">
     <span class="hidden"><spring:message code="search.filter.notice" /></span>
-      <form action="#" method="get" enctype="multipart/form-data" name="filter_form" id="filter_form">
+      <form action="search" method="get" enctype="multipart/form-data" name="filter_form" id="filter_form">
         <div class="sidebar-item toggle open" id="toggle-sidebar"></div>
         <div class="sidebar-collapse" role="region">
           <%--   View facet   --%>
@@ -452,7 +452,6 @@ $(document).ready(function(e) {
 
 		//expand selected
 		if ($(this).next(".sidebar-filter").children(".sidebar-filter-checkbox").children(".form-check-cont").children("input:checked").length!=0) {
-			//$(this).removeClass("open").addClass("closee").next(".sidebar-filter").addClass("expanded");
 			toggle($(this));
 		} else {
 			$(this).next(".sidebar-filter:not(.no-collapse)").children().hide();	

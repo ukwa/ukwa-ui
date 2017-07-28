@@ -1,6 +1,10 @@
 Change Log
 ----------
 
+* 2017-07-28
+    * Added IP sniffing for Access facet
+    * Resized logos for better quality
+
 * 2017-07-26
     * Added missing help texts
 
