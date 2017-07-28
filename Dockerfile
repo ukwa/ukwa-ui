@@ -1,4 +1,4 @@
-FROM java:openjdk-8-jdk 
+FROM openjdk:8-jre-alpine
 # originally based on UNB Libraries Dockerfile
 MAINTAINER Mindaugas Vidmantas "mindaugas.vidmantas@bl.uk"
 
@@ -62,7 +62,7 @@ RUN cd /tmp && \
 #ENV JAVA_OPTS=""
 #ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /marsspiders-ukwa-1.4.2.RELEASE.war" ]
 
+COPY ./marsspiders-ukwa-1.4.2.RELEASE.war /ROOT.war
 ENTRYPOINT ["/usr/bin/java"]
-CMD ["-jar", "/tmp/ukwa-ui/target/marsspiders-ukwa-1.4.2.RELEASE.war"]
-VOLUME /tmp/ukwa-ui
+CMD ["-jar", "/ROOT.war"]
 EXPOSE 8888
