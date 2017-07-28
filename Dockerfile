@@ -2,14 +2,12 @@ FROM openjdk:8-jre-alpine
 # originally based on UNB Libraries Dockerfile
 MAINTAINER Mindaugas Vidmantas "mindaugas.vidmantas@bl.uk"
 
-
+RUN apt-get update -qq
 # update packages and install maven
-RUN \
-  export DEBIAN_FRONTEND=noninteractive && \
-  sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
+RUN DEBIAN_FRONTEND=noninteractive && \
   apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -y tar wget curl git maven
+  apt-get install -y git maven
   
 ENV TOMCAT_MAJOR_VERSION 8
 ENV TOMCAT_MINOR_VERSION 8.5.16
