@@ -60,9 +60,9 @@ RUN pwd && ls -la
 #ENV JAVA_OPTS=""
 #ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /marsspiders-ukwa-1.4.2.RELEASE.war" ]
 
-COPY /tmp/ukwa-ui/target/marsspiders-ukwa-1.4.2.RELEASE.war /tmp/ROOT.war
+COPY /tmp/ukwa-ui/target/marsspiders-ukwa-1.4.2.RELEASE.war .
 WORKDIR /tmp
 RUN pwd && ls -la
 ENTRYPOINT ["/usr/bin/java"]
-CMD ["-jar", "ROOT.war"]
+CMD ["-jar", "marsspiders-ukwa-1.4.2.RELEASE.war"]
 EXPOSE 8888
