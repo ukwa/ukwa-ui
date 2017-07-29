@@ -1,4 +1,5 @@
-FROM openjdk:8-jre-alpine
+FROM openjdk:8
+
 # originally based on UNB Libraries Dockerfile
 MAINTAINER Mindaugas Vidmantas "mindaugas.vidmantas@bl.uk"
 
