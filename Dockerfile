@@ -2,7 +2,9 @@ FROM openjdk:8-jre-alpine
 # originally based on UNB Libraries Dockerfile
 MAINTAINER Mindaugas Vidmantas "mindaugas.vidmantas@bl.uk"
 
-# update packages and install maven
+# Add cerificates that ensure download of dependencies works:
+RUN         apt-get install -y ca-certificates-java && \
+            update-ca-certificates
 # update packages and install maven
 RUN \
   export DEBIAN_FRONTEND=noninteractive && \
