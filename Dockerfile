@@ -67,4 +67,4 @@ RUN pwd && ls -la
 # CMD ["-jar", "marsspiders-ukwa-1.4.2.RELEASE.war"]
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","marsspiders-ukwa-1.4.2.RELEASE.war"]
 # CMD java -jar marsspiders-ukwa-1.4.2.RELEASE.war
-EXPOSE 8888
+EXPOSE 8080
