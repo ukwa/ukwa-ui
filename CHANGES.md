@@ -4,6 +4,7 @@ Change Log
 * 2017-07-31
     * Fixed text mistakes
     * Added aria-* attributes to accordion elements
+    * Added reading room IP ranges
 
 * 2017-07-28
     * Added IP sniffing for Access facet
