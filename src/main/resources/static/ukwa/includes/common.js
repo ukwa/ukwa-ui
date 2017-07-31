@@ -11,13 +11,10 @@ function rearangeQuestions() {
 	$(".q-description").each(function(index, element) {
 		//if mobile
 		if ($(window).width()<768) {
-			var elem=$(this).detach();
-			elem.insertAfter($(".q-question[data-descriptid='"+$(this).attr("id")+"']"));		
+			$(this).detach().insertAfter($(".q-question[data-descriptid='"+$(this).attr("id")+"']"));		
 		} else {	
-			var id=parseInt($(this).attr("id"));
-			var target=Math.ceil(id / 3)*3;
-			var elem=$(this).detach();
-			elem.insertAfter($(".q-question[data-descriptid='"+target+"']").parent());	
+			var target=Math.ceil(parseInt($(this).attr("id")) / 3)*3;
+			var elem=$(this).detach().insertAfter($(".q-question[data-descriptid='"+target+"']").parent());	
 		}
     });
 	
@@ -100,10 +97,8 @@ $(document).ready(function(e) {
     });
 	
 	//cookies notice
-	if (typeof $.cookie('cookies_accepted') === 'undefined' || $.cookie('cookies_accepted')!=="true") {
-		$(".cookies-cont").show();
-	} 
-	
+	if (typeof $.cookie('cookies_accepted') === 'undefined' || $.cookie('cookies_accepted')!=="true") $(".cookies-cont").show();
+ 
 	//close cookie notice
 	$("#btn_cookies").click(function(e) {
         $.cookie("cookies_accepted", "true", { expires: 365, path: '/' });
@@ -140,7 +135,6 @@ $(document).ready(function(e) {
 				if($.inArray(el, uniqueMatches) === -1) uniqueMatches.push(el);
 			});
 			
-			
 			//replace with highlight style
 			$.each(uniqueMatches, function(i, el){
 				var rexp = new RegExp(el, 'g');
@@ -155,9 +149,7 @@ $(document).ready(function(e) {
 	
 	//No collection descript
 	$(".collection-description").each(function(index, element) {
-		if ($(this).text().trim()=="") {
-				$(this).html('<span class="gray">'+$("#no-coll-description").val()+'</span>');
-		}
+		if ($(this).text().trim()=="") $(this).html('<span class="gray">'+$("#no-coll-description").val()+'</span>');
 	});
 	
 	//format results count

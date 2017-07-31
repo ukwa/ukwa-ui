@@ -80,7 +80,7 @@ ${pageContext.response.locale}
           </div>
           <div role="tablist">
             <%--   Domains collapse filter   --%>
-            <div class="sidebar-filter-header border-top-white open" aria-expanded="false" title="<spring:message code="search.side.domain.title" />" tabindex="0" role="tab">
+            <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.domain.title" />" tabindex="0" role="tab">
               <div class="sidebar-filter-header-title" id="t_domain"><spring:message code="search.side.domain.title" /></div>
               <div class="help-button small white" data-toggle="tooltip" title="<spring:message code="search.side.domain.tip" />" tabindex="0"></div>
             </div>
@@ -103,7 +103,7 @@ ${pageContext.response.locale}
               </c:if>
             </div>
             <%--   Document type collapse filter   --%>
-            <div class="sidebar-filter-header border-top-white open" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
+            <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
               <div class="sidebar-filter-header-title" id="t_doctype"><spring:message code="search.side.doctype.title" /></div>
               <div class="help-button small white" data-toggle="tooltip" title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
             </div>
@@ -126,7 +126,7 @@ ${pageContext.response.locale}
               </c:if>
             </div>
             <%--   Public suffix collapse filter   --%>
-            <div class="sidebar-filter-header border-top-white open" aria-expanded="false" title="<spring:message code="search.side.suffix.title" />" tabindex="0" role="tab">
+            <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.suffix.title" />" tabindex="0" role="tab">
               <div class="sidebar-filter-header-title" id="t_suffix"><spring:message code="search.side.suffix.title" /></div>
               <div class="help-button small white" data-toggle="tooltip" title="<spring:message code="search.side.suffix.tip" />" tabindex="0"></div>
             </div>
@@ -149,7 +149,7 @@ ${pageContext.response.locale}
               </c:if>
             </div>
             <%--   Archived year collapse filter   --%>
-            <div class="sidebar-filter-header border-top-white open archived-date" aria-expanded="false" title="<spring:message code="search.side.date.title" />" tabindex="0" id="dates_header" role="tab">
+            <div class="sidebar-filter-header border-top-white open archived-date" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.date.title" />" tabindex="0" id="dates_header" role="tab">
               <div class="sidebar-filter-header-title" id="t_date"><spring:message code="search.side.date.title" /></div>
               <div class="help-button small white" data-toggle="tooltip" title="<spring:message code="search.side.date.tip" />" tabindex="0"></div>
             </div>
@@ -180,7 +180,7 @@ ${pageContext.response.locale}
               </div>
             </div>
             <%--   Collection collapse filter   --%>
-            <div class="sidebar-filter-header border-top-white border-bottom-white open" aria-expanded="false" title="<spring:message code="search.side.coll.title" />" tabindex="0" role="tab">
+            <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.coll.title" />" tabindex="0" role="tab">
               <div class="sidebar-filter-header-title" id="t_coll"><spring:message code="search.side.coll.title" /></div>
               <div class="help-button small white" data-toggle="tooltip" title="<spring:message code="search.side.coll.tip" />" tabindex="0"></div>
             </div>
@@ -208,6 +208,9 @@ ${pageContext.response.locale}
             <input type="hidden" name="view_sort" id="view_sort" value="${empty originalSortValue ? 'nto' : originalSortValue}">
             <input type="hidden" name="view_count" id="view_count" value="${empty rowsPerPageLimit ? '50' : rowsPerPageLimit}">
           </div>
+          
+          <div class="border-top-white">&nbsp;</div>
+          
         </div>
       </form>
       </aside>
@@ -388,7 +391,6 @@ $(document).ready(function(e) {
 		dateFormat: "yy-mm-dd",
 		changeMonth: true,
         changeYear: true,
-		//minDate: new Date('1996/01/01'),
 		yearRange: "-50:+0"
 	});
 
@@ -397,7 +399,6 @@ $(document).ready(function(e) {
 		
 		//keyboard nav and toggle
 		$(this).on("click keydown", function(e) {
-			
 			
 			switch (e.which) {
 				
@@ -448,7 +449,13 @@ $(document).ready(function(e) {
 			
 			}
 			
-		});		
+		});	
+		
+		$(this).focus(function(e) {
+            $(this).attr("aria-selected", "true");
+        }).blur(function(e) {
+            $(this).attr("aria-selected", "false");
+        });;	
 
 		//expand selected
 		if ($(this).next(".sidebar-filter").children(".sidebar-filter-checkbox").children(".form-check-cont").children("input:checked").length!=0) {
@@ -473,9 +480,7 @@ $(document).ready(function(e) {
 	}
 
 	//change filters
-	$("input[type='checkbox'], .access_filter").click(function(e) {
-        $("#filter_form").submit();
-    });
+	$("input[type='checkbox'], .access_filter").click(function(e) { $("#filter_form").submit(); });
 
 	//submit on resort
 	$(".sort").each(function(index, element) {
