@@ -69,12 +69,14 @@ public class CollectionController {
     public ModelAndView collectionOverviewPage(@PathVariable("collectionId") String collectionId,
                                                @RequestParam(value = "page", required = false) String pageNum,
                                                HttpServletRequest request) throws MalformedURLException, URISyntaxException {
+        long totalSearchResultsSize = 0;
         long targetPageNumber = isNumeric(pageNum) ? Long.valueOf(pageNum) : 1;
         long startFromRow = (targetPageNumber - 1) * ROWS_PER_PAGE_DEFAULT;
 
         SolrSearchResult<CollectionInfo> targetWebsitesSearchResult = searchService
                 .fetchChildCollections(singletonList(collectionId), TYPE_TARGET, ROWS_PER_PAGE_DEFAULT, startFromRow);
         List<CollectionInfo> targetWebsitesDocuments = targetWebsitesSearchResult.getResponseBody().getDocuments();
+        totalSearchResultsSize = targetWebsitesSearchResult.getResponseBody().getNumFound();
 
         String rootPathWithLang = getRootPathWithLang(request, setProtocolToHttps);
         Locale locale = getLocale(request);
@@ -84,6 +86,7 @@ public class CollectionController {
         CollectionDTO currentCollection = generatePlainCollectionDTO(collectionId, locale, targetWebsitesSearchResult);
         Map<String, String> breadcrumbPath = buildCollectionBreadcrumbPath(currentCollection);
 
+
         ModelAndView mav = new ModelAndView("coll");
         mav.addObject("breadcrumbPath", breadcrumbPath);
         mav.addObject("targetWebsites", targetWebsites);
@@ -92,6 +95,8 @@ public class CollectionController {
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
         mav.addObject("targetPageNumber", targetPageNumber);
         mav.addObject("rowsPerPageLimit", ROWS_PER_PAGE_DEFAULT);
+        mav.addObject("totalSearchResultsSize", totalSearchResultsSize);
+        mav.addObject("totalPages", (int) (Math.ceil(totalSearchResultsSize / (double) ROWS_PER_PAGE_DEFAULT)));
 
         return mav;
     }

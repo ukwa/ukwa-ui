@@ -6,6 +6,7 @@ Change Log
     * Added mail send support to Contact and Save a UK site forms
     * Removed not needed dependencies
     * Added correct survey URL
+	* Fixed pagination in SC
 
 * 2017-07-31
     * Fixed text mistakes
