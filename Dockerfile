@@ -1,4 +1,5 @@
-FROM openjdk:8
+# FROM openjdk:8
+FROM openjdk:8-jdk-alpine
 
 # originally based on UNB Libraries Dockerfile
 MAINTAINER Mindaugas Vidmantas "mindaugas.vidmantas@bl.uk"
@@ -12,7 +13,7 @@ RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -y tar wget curl git maven
+  apt-get install -y tar wget git maven
 
 
 ENV ARCHIVE_WEB_LOCATION="https://www.webarchive.org.uk/wayback/archive/"
