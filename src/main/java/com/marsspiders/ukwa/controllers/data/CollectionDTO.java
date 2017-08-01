@@ -7,6 +7,7 @@ public class CollectionDTO {
     private String parentId;
     private String name;
     private String description;
+    private String imageAltMessage;
     private String fullDescription;
     private long subCollectionsNum;
     private long websitesNum;
@@ -17,7 +18,8 @@ public class CollectionDTO {
     public CollectionDTO() {
     }
 
-    public CollectionDTO(String id, String parentId, String name, String description, String fullDescription, long subCollectionsNum, long websitesNum, long websitesOpenAccessNum) {
+    public CollectionDTO(String id, String parentId, String name, String description, String fullDescription,
+                         String imageAltMessage, long subCollectionsNum, long websitesNum, long websitesOpenAccessNum) {
         this.id = id;
         this.parentId = parentId;
         this.name = name;
@@ -26,6 +28,7 @@ public class CollectionDTO {
         this.subCollectionsNum = subCollectionsNum;
         this.websitesNum = websitesNum;
         this.websitesOpenAccessNum = websitesOpenAccessNum;
+        this.imageAltMessage = imageAltMessage;
     }
 
     public String getId() {
@@ -106,5 +109,13 @@ public class CollectionDTO {
 
     public void setWebsites(List<TargetWebsiteDTO> websites) {
         this.websites = websites;
+    }
+
+    public String getImageAltMessage() {
+        return imageAltMessage;
+    }
+
+    public void setImageAltMessage(String imageAltMessage) {
+        this.imageAltMessage = imageAltMessage;
     }
 }

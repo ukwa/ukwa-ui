@@ -17,3 +17,7 @@
 <script src="includes/match-height/dist/jquery.matchHeight-min.js" type="text/javascript"></script>
 <script src="includes/jquery-lightbox/dist/simpleLightbox.min.js"></script>
 <script src="includes/common.js"></script>
+<!--[if lt IE 10]>
+	<script src="includes/html5shiv/html5shiv.js"></script>
+	<script src="includes/respondjs/respond.min.js"></script>
+<!--<![endif]-->

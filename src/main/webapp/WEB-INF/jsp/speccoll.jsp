@@ -35,11 +35,11 @@ ${pageContext.response.locale}
   </div>
   <div class="col-lg-4 col-md-5 offset-md-1 col-sm-12 header-2-subtitle"><spring:message code="coll.subtitle" /></div>
 
-  <div class="col-lg-2 offset-lg-3 col-md-2 offset-md-1 col-sm-12 right padding-top-mobile-20"> 
+  <div class="col-lg-2 offset-lg-3 col-md-2 offset-md-1 col-sm-12 right padding-top-mobile-20">
     <img title="<spring:message code="coll.thumbs" />" alt="<spring:message code="coll.thumbs" />" class="collections-display" id="btn_thumbs" src="img/icons/icn_grid.png" tabindex="0"/>
     <img title="<spring:message code="coll.list" />" alt="<spring:message code="coll.list" />" class="collections-display" id="btn_list" src="img/icons/icn_list.png" tabindex="0"/>
   </div>
-  
+
 </div>
 
 </header>
@@ -53,15 +53,18 @@ ${pageContext.response.locale}
         <div class="center light-blue padding-bottom-10 collection-heading collection-title">
           <c:out value="${collection.name}"/>
         </div>
-        <figure><img class="img-responsive border-gray coll-img" alt="<c:out value="${collection.name}"/>" src="img/collections/collection_<c:out value="${collection.id}"/>.png"/>
+        <figure>
+          <img class="img-responsive border-gray coll-img"
+                     alt="<c:out value="${collection.imageAltMessage}"/>"
+                     src="img/collections/collection_<c:out value="${collection.id}"/>.png"/>
           <figcaption class="img-square-caption shadow collection-description"><c:out value="${collection.description}"/></figcaption>
-        </figure></a> 
+        </figure></a>
         </div>
     </c:forEach>
   </div>
-  
+
   <!--LIST DISPLAY-->
-  
+
   <div class="row margin-0 padding-top-30 padding-mobile-side-20 collections" id="collections_list">
     <c:forEach items="${collections}" var="collection">
       <div class="col-sm-12 padding-bottom-20 padding-side-20 margin-bottom-20 padding-mobile-side-0">
@@ -79,8 +82,8 @@ ${pageContext.response.locale}
       </c:if>
         </div></div>
     </c:forEach>
-  </div>  
-  
+  </div>
+
 </section>
 <footer>
   <%@include file="footer.jsp" %>
@@ -90,48 +93,48 @@ ${pageContext.response.locale}
 <script>
 
 function toggleView(action, fcs) {
-	
+
 	if (action === "list") {
         $("#collections_thumbs").hide();
 		$("#collections_list").show();
-		$("#btn_list").hide();		
+		$("#btn_list").hide();
 		$("#btn_thumbs").show();
 		if (fcs) $("#btn_thumbs").focus();
-		$.cookie("collections_display", "list", { expires: 365, path: '/' });	
-	} else { 
+		$.cookie("collections_display", "list", { expires: 365, path: '/' });
+	} else {
         $("#collections_list").hide();
 		$("#collections_thumbs").show();
 		$("#btn_thumbs").hide();
 		$("#btn_list").show();
 		if (fcs) $("#btn_list").focus();
-		$.cookie("collections_display", "thumbnails", { expires: 365, path: '/' });	
+		$.cookie("collections_display", "thumbnails", { expires: 365, path: '/' });
 	}
-	
+
 	return true;
 }
 
 $(document).ready(function(e) {
-    
+
 	if (typeof $.cookie('collections_display') === 'undefined' || $.cookie('collections_display')!=="list") {
 		toggleView("thumbs", false);
 	} else {
-		toggleView("list", false);	
+		toggleView("list", false);
 	}
-	
+
 	$("#btn_thumbs").on("click keypress", function(e) {
 		if (e.which == 1 || e.which == 13) {
 			e.preventDefault();
 			toggleView("thumbs", true);
 		}
     });
-	
+
 	$("#btn_list").on("click keypress", function(e) {
 		if (e.which == 1 || e.which == 13) {
 			e.preventDefault();
 			toggleView("list", true);
 		}
-    });	
-	
+    });
+
 	//view subcollections
 	var text_show = '<spring:message code="coll.subcollections.show" />';
 	var text_hide = '<spring:message code="coll.subcollections.hide" />';
@@ -147,7 +150,7 @@ $(document).ready(function(e) {
 			}
         });
     });
-	
+
 });
 
 </script>

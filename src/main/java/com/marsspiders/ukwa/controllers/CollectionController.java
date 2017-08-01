@@ -7,6 +7,7 @@ import com.marsspiders.ukwa.solr.data.CollectionInfo;
 import com.marsspiders.ukwa.solr.data.SolrSearchResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,12 +21,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.marsspiders.ukwa.solr.CollectionDocumentType.TYPE_COLLECTION;
 import static com.marsspiders.ukwa.solr.CollectionDocumentType.TYPE_TARGET;
+import static com.marsspiders.ukwa.util.UrlUtil.getLocale;
 import static com.marsspiders.ukwa.util.UrlUtil.getRootPathWithLang;
 import static java.util.Collections.singletonList;
 import static org.apache.commons.lang3.StringUtils.abbreviate;
@@ -37,16 +40,23 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class CollectionController {
 
     static final int ROWS_PER_PAGE_DEFAULT = 50;
+    private static final String COLLECTION_ALT_MESSAGE_DEFAULT = "coll.alt.default";
+    private static final String COLLECTION_ALT_MESSAGE_ID = "coll.alt.";
 
     @Autowired
     private SolrSearchService searchService;
+
+    @Autowired
+    private MessageSource messageSource;
 
     @Value("${set.protocol.to.https}")
     private Boolean setProtocolToHttps;
 
     @RequestMapping(value = "", method = GET)
-    public ModelAndView rootCollectionsPage() {
-        List<CollectionDTO> collections = generateRootCollectionDTOs();
+    public ModelAndView rootCollectionsPage(HttpServletRequest request) {
+        Locale locale = getLocale(request);
+
+        List<CollectionDTO> collections = generateRootCollectionDTOs(locale);
 
         ModelAndView mav = new ModelAndView("speccoll");
         mav.addObject("collections", collections);
@@ -67,10 +77,11 @@ public class CollectionController {
         List<CollectionInfo> targetWebsitesDocuments = targetWebsitesSearchResult.getResponseBody().getDocuments();
 
         String rootPathWithLang = getRootPathWithLang(request, setProtocolToHttps);
+        Locale locale = getLocale(request);
 
         List<TargetWebsiteDTO> targetWebsites = generateTargetWebsitesDTOs(targetWebsitesDocuments, rootPathWithLang);
-        List<CollectionDTO> subCollections = generateSubCollectionDTOs(collectionId);
-        CollectionDTO currentCollection = generatePlainCollectionDTO(collectionId, targetWebsitesSearchResult);
+        List<CollectionDTO> subCollections = generateSubCollectionDTOs(collectionId, locale);
+        CollectionDTO currentCollection = generatePlainCollectionDTO(collectionId, locale, targetWebsitesSearchResult);
         Map<String, String> breadcrumbPath = buildCollectionBreadcrumbPath(currentCollection);
 
         ModelAndView mav = new ModelAndView("coll");
@@ -108,22 +119,22 @@ public class CollectionController {
         return path;
     }
 
-    private List<CollectionDTO> generateSubCollectionDTOs(String collectionId) {
+    private List<CollectionDTO> generateSubCollectionDTOs(String collectionId, Locale locale) {
         return searchService
                 .fetchChildCollections(singletonList(collectionId), TYPE_COLLECTION, 1000, 0)
                 .getResponseBody().getDocuments()
                 .stream()
-                .map(d -> toCollectionDTO(d, true))
+                .map(d -> toCollectionDTO(d, true, locale))
                 .collect(Collectors.toList());
     }
 
-    private List<CollectionDTO> generateRootCollectionDTOs() {
+    private List<CollectionDTO> generateRootCollectionDTOs(Locale locale) {
         Map<String, CollectionDTO> rootCollections = searchService
                 .fetchRootCollections()
                 .getResponseBody().getDocuments()
                 .stream()
                 .collect(Collectors
-                        .toMap(CollectionInfo::getId, collection -> toCollectionDTO(collection, true)));
+                        .toMap(CollectionInfo::getId, collection -> toCollectionDTO(collection, true, locale)));
 
         Set<String> parentCollectionIds = rootCollections.keySet();
 
@@ -139,7 +150,7 @@ public class CollectionController {
                         parentCollectionDto.setSubCollections(new ArrayList<>());
                     }
 
-                    CollectionDTO subCollectionDTO = toCollectionDTO(subCollection, true);
+                    CollectionDTO subCollectionDTO = toCollectionDTO(subCollection, true, locale);
                     parentCollectionDto.getSubCollections().add(subCollectionDTO);
 
                 });
@@ -150,13 +161,15 @@ public class CollectionController {
         return sortedCollectionDTOs;
     }
 
-    private CollectionDTO generatePlainCollectionDTO(String collectionId, SolrSearchResult<CollectionInfo> targetWebsitesSearchResult) {
+    private CollectionDTO generatePlainCollectionDTO(String collectionId,
+                                                     Locale locale,
+                                                     SolrSearchResult<CollectionInfo> targetWebsitesSearchResult) {
         CollectionInfo currentCollectionInformation = searchService
                 .fetchCollectionById(collectionId)
                 .getResponseBody().getDocuments()
                 .get(0);
 
-        CollectionDTO collectionDTO = toCollectionDTO(currentCollectionInformation, false);
+        CollectionDTO collectionDTO = toCollectionDTO(currentCollectionInformation, false, locale);
         collectionDTO.setWebsitesNum(targetWebsitesSearchResult.getResponseBody().getNumFound());
 
         return collectionDTO;
@@ -194,7 +207,7 @@ public class CollectionController {
         return targetWebsite;
     }
 
-    private static CollectionDTO toCollectionDTO(CollectionInfo collectionInfo, boolean abbreviate) {
+    private CollectionDTO toCollectionDTO(CollectionInfo collectionInfo, boolean abbreviate, Locale locale) {
         String id = collectionInfo.getId();
         String parentId = collectionInfo.getParentId();
         String name = collectionInfo.getName();
@@ -202,9 +215,14 @@ public class CollectionController {
                 ? collectionInfo.getDescription().replaceAll("<[^>]*>", "")
                 : null;
 
-        String shortDescription = abbreviate ? abbreviate(fullDescription, 60) : fullDescription;
+        String shortDescription = abbreviate
+                ? abbreviate(fullDescription, 60)
+                : fullDescription;
 
-        return new CollectionDTO(id, parentId, name, shortDescription, fullDescription, 0, 0, 0);
+        String defaultImageAltMessage = messageSource.getMessage(COLLECTION_ALT_MESSAGE_DEFAULT, null, locale);
+        String imageAltMessage = messageSource.getMessage(COLLECTION_ALT_MESSAGE_ID + id, null, defaultImageAltMessage, locale);
+
+        return new CollectionDTO(id, parentId, name, shortDescription, fullDescription, imageAltMessage, 0, 0, 0);
     }
 
 }

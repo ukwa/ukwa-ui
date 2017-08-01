@@ -21,7 +21,12 @@ import java.util.stream.Collectors;
 
 @Configuration
 public class LocaleConfiguration extends WebMvcConfigurerAdapter {
-    public static final String[] AVAILABLE_LOCALES = new String[]{"en", "gd", "cy"};
+
+    public static final String LOCALE_EN = "en";
+    public static final String LOCALE_GD = "gd";
+    public static final String LOCALE_CY = "cy";
+
+    public static final String[] AVAILABLE_LOCALES = new String[]{LOCALE_EN, LOCALE_GD, LOCALE_CY};
 
     @Bean
     public LocaleResolver localeResolver() {

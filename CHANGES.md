@@ -1,6 +1,11 @@
 Change Log
 ----------
 
+* 2017-08-01
+    * Added ALT text to special collections images
+    * Added mail send support to Contact and Save a UK site forms
+    * Removed not needed dependencies
+
 * 2017-07-31
     * Fixed text mistakes
     * Added aria-* attributes to accordion elements
