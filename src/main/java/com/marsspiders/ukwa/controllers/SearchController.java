@@ -26,6 +26,7 @@ import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.LinkedList;
@@ -104,22 +105,68 @@ public class SearchController {
         String remoteAddrIp = null;
 
         Enumeration<String> headerNames = request.getHeaderNames();
-        while(headerNames.hasMoreElements()){
+        while (headerNames.hasMoreElements()) {
             allHeaders.add(headerNames.nextElement());
         }
 
         Enumeration<String> realIps = request.getHeaders("X-Real-IP");
-        while(realIps.hasMoreElements()){
+        while (realIps.hasMoreElements()) {
             xRealIps.add(realIps.nextElement());
         }
 
         Enumeration<String> remoteIps = request.getHeaders("X-FORWARDED-FOR");
-        while(remoteIps.hasMoreElements()){
+        while (remoteIps.hasMoreElements()) {
             xForwardedForIps.add(remoteIps.nextElement());
         }
 
         if (xForwardedForIps.size() == 0) {
             remoteAddrIp = request.getRemoteAddr();
+        }
+
+
+        List<String> info = new ArrayList<>();
+        List<String> ipsToBeUsedForCheck = new ArrayList<>();
+        Enumeration<String> realIpsToBeUsed = request.getHeaders("X-Real-IP");
+        while (realIpsToBeUsed.hasMoreElements()) {
+            ipsToBeUsedForCheck.add(realIpsToBeUsed.nextElement());
+        }
+        Enumeration<String> xForwarded = request.getHeaders("X-FORWARDED-FOR");
+        while (xForwarded.hasMoreElements()) {
+            ipsToBeUsedForCheck.add(xForwarded.nextElement());
+        }
+        if (ipsToBeUsedForCheck.size() == 0) {
+            ipsToBeUsedForCheck.add(request.getRemoteAddr());
+        }
+
+        String[] blIpAddressRanges = blIpAddressList.split(",");
+        for (String blIpAddressRange : blIpAddressRanges) {
+            for (String clientIp : ipsToBeUsedForCheck) {
+                String trimmedIpRange = blIpAddressRange.trim();
+                String infoItem = "trimmedIpRange: " + trimmedIpRange + "; clientIp: " + clientIp;
+                if (trimmedIpRange.equals(clientIp)) {
+                    infoItem += " - equals!!!!";
+                    info.add(infoItem);
+                    continue;
+                } else {
+                    infoItem += " - not equals";
+                }
+
+                try {
+                    SubnetUtils utils = new SubnetUtils(blIpAddressRange);
+
+                    boolean inRange = utils.getInfo().isInRange(clientIp);
+                    if(inRange){
+                        infoItem += " - in range: " + blIpAddressRange + "!!!!";
+                    } else {
+                        infoItem += " - NOT in range: " + blIpAddressRange;
+                    }
+                } catch (Exception e) {
+                    infoItem += " - failed to create Subnet: " + e.getMessage();
+                }
+
+                info.add(infoItem);
+            }
+
         }
         /////////
 
@@ -129,7 +176,7 @@ public class SearchController {
         SearchByEnum searchBy = SearchByEnum.fromString(searchLocation);
         SortByEnum sortBy = SortByEnum.fromString(sortValue);
         AccessToEnum accessTo = AccessToEnum.fromString(accessViewFilter);
-        if(accessTo == null && userIpFromBl){
+        if (accessTo == null && userIpFromBl) {
             accessTo = AccessToEnum.VIEWABLE_ONLY_ON_LIBRARY;
         }
 
@@ -207,6 +254,12 @@ public class SearchController {
         mav.addObject("xForwardedForIps", xForwardedForIps);
         mav.addObject("remoteAddrIp", remoteAddrIp);
         mav.addObject("allHeaders", allHeaders);
+
+
+        mav.addObject("ipsToBeUsedForCheck", ipsToBeUsedForCheck);
+        mav.addObject("blIpAddressRangesSize", blIpAddressRanges.length);
+        mav.addObject("blIpAddressRanges", Arrays.asList(blIpAddressRanges));
+        mav.addObject("info", info);
         //////////
 
         return mav;
@@ -219,7 +272,7 @@ public class SearchController {
         String[] blIpAddressRanges = blIpAddressList.split(",");
         for (String blIpAddressRange : blIpAddressRanges) {
             for (String clientIp : clientIps) {
-                if (ipWithinRange(clientIp, blIpAddressRange)){
+                if (ipWithinRange(clientIp, blIpAddressRange.trim())) {
                     return true;
                 }
             }
@@ -231,8 +284,8 @@ public class SearchController {
 
     private boolean ipWithinRange(String clientIp, String blIpAddressRange) {
         try {
-            if(blIpAddressRange.equals(clientIp)){
-              return true;
+            if (blIpAddressRange.equals(clientIp)) {
+                return true;
             }
 
             SubnetUtils utils = new SubnetUtils(blIpAddressRange);
@@ -247,12 +300,12 @@ public class SearchController {
         List<String> ips = new ArrayList<>();
 
         Enumeration<String> realIps = request.getHeaders("X-Real-IP");
-        while(realIps.hasMoreElements()){
+        while (realIps.hasMoreElements()) {
             ips.add(realIps.nextElement());
         }
 
         Enumeration<String> remoteIp = request.getHeaders("X-FORWARDED-FOR");
-        while(remoteIp.hasMoreElements()){
+        while (remoteIp.hasMoreElements()) {
             ips.add(remoteIp.nextElement());
         }
 

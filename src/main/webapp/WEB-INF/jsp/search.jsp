@@ -86,7 +86,12 @@ ${pageContext.response.locale}
             xRealIps: <c:out value="${xRealIps}"/> <br>
             xForwardedForIps: <c:out value="${xForwardedForIps}"/> <br>
             remoteAddrIp: <c:out value="${remoteAddrIp}"/>    <br>
-            allHeaders: <c:out value="${allHeaders}"/>    <br>
+            allHeaders: <c:out value="${allHeaders}"/>    <br>   <br>
+
+            ipsToBeUsedForCheck: <c:out value="${ipsToBeUsedForCheck}"/>    <br>
+            blIpAddressRangesSize: <c:out value="${blIpAddressRangesSize}"/>    <br>
+            blIpAddressRanges: <c:out value="${blIpAddressRanges}"/>    <br>
+            info: <c:out value="${info}"/>    <br>
             <%----%>
 
           </div>
@@ -403,7 +408,8 @@ $(document).ready(function(e) {
 		dateFormat: "yy-mm-dd",
 		changeMonth: true,
         changeYear: true,
-		yearRange: "-50:+0"
+		yearRange: "-50:+0",
+		maxDate : 'now'
 	});
 
 	//filters toggle and count
