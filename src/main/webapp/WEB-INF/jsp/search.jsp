@@ -78,6 +78,17 @@ ${pageContext.response.locale}
               </div>
             </div>
           </div>
+          
+                      <%--Delete following after testing--%>
+            <br>
+            Remote address:  <% out.print(request.getRemoteAddr() ); %>  <br>
+            Remote host: <% out.print(request.getRemoteHost() ); %> <br>
+            xRealIps: <c:out value="${xRealIps}"/> <br>
+            xForwardedForIps: <c:out value="${xForwardedForIps}"/> <br>
+            remoteAddrIp: <c:out value="${remoteAddrIp}"/>    <br>
+            allHeaders: <c:out value="${allHeaders}"/>    <br>
+            <%----%>
+          
           <div role="tablist">
             <%--   Domains collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.domain.title" />" tabindex="0" role="tab">
