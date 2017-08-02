@@ -95,6 +95,35 @@ public class SearchController {
         int rowsPerPage = isNumeric(viewCount) ? Integer.valueOf(viewCount) : ROWS_PER_PAGE_DEFAULT;
         long targetPageNumber = isNumeric(pageNum) ? Long.valueOf(pageNum) : 1;
         long totalSearchResultsSize = 0;
+
+        //Delete this part of code after ip sniffing testing
+        /////////
+        List<String> allHeaders = new ArrayList<>();
+        List<String> xForwardedForIps = new ArrayList<>();
+        List<String> xRealIps = new ArrayList<>();
+        String remoteAddrIp = null;
+
+        Enumeration<String> headerNames = request.getHeaderNames();
+        while(headerNames.hasMoreElements()){
+            allHeaders.add(headerNames.nextElement());
+        }
+
+        Enumeration<String> realIps = request.getHeaders("X-Real-IP");
+        while(realIps.hasMoreElements()){
+            xRealIps.add(realIps.nextElement());
+        }
+
+        Enumeration<String> remoteIps = request.getHeaders("X-FORWARDED-FOR");
+        while(remoteIps.hasMoreElements()){
+            xForwardedForIps.add(remoteIps.nextElement());
+        }
+
+        if (xForwardedForIps.size() == 0) {
+            remoteAddrIp = request.getRemoteAddr();
+        }
+        /////////
+
+
         boolean userIpFromBl = isUserIpFromBl(request);
 
         SearchByEnum searchBy = SearchByEnum.fromString(searchLocation);
@@ -171,6 +200,14 @@ public class SearchController {
         mav.addObject("targetPageNumber", targetPageNumber);
         mav.addObject("rowsPerPageLimit", rowsPerPage);
         mav.addObject("totalPages", (int) (Math.ceil(totalSearchResultsSize / (double) rowsPerPage)));
+
+        //Delete this part of code after ip sniffing testing
+        //////////
+        mav.addObject("xRealIps", xRealIps);
+        mav.addObject("xForwardedForIps", xForwardedForIps);
+        mav.addObject("remoteAddrIp", remoteAddrIp);
+        mav.addObject("allHeaders", allHeaders);
+        //////////
 
         return mav;
     }

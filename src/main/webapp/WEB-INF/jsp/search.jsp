@@ -77,9 +77,9 @@ ${pageContext.response.locale}
                 <label class="main-search-check-label white" for="view_filter_2" title="<spring:message code="search.side.view.2" />"> <spring:message code="search.side.view.2" /> <span class="label-counts">(<span class="results-count"><c:out value="${voolCount}"/></span>)</span></label>
               </div>
             </div>
-          </div>
-          
-                      <%--Delete following after testing--%>
+
+
+            <%--Delete following after testing--%>
             <br>
             Remote address:  <% out.print(request.getRemoteAddr() ); %>  <br>
             Remote host: <% out.print(request.getRemoteHost() ); %> <br>
@@ -88,7 +88,8 @@ ${pageContext.response.locale}
             remoteAddrIp: <c:out value="${remoteAddrIp}"/>    <br>
             allHeaders: <c:out value="${allHeaders}"/>    <br>
             <%----%>
-          
+
+          </div>
           <div role="tablist">
             <%--   Domains collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.domain.title" />" tabindex="0" role="tab">
