@@ -1,6 +1,9 @@
 Change Log
 ----------
 
+* 2017-08-03
+    * Added IE9 support
+
 * 2017-08-01
     * Added ALT text to special collections images
     * Added mail send support to Contact and Save a UK site forms

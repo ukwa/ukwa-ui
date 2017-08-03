@@ -30,7 +30,7 @@ ${pageContext.response.locale}
 </header>
 <section id="contact-header">
   <div class="row header-blue white">
-    <div class="col-md-6 offset-md-3 padding-mobile-side-0">
+    <div class="col-md-6 offset-md-3 col-md-offset-3 padding-mobile-side-0">
       <h2><spring:message code="contact.main.heading" /></h2>
       <spring:message code="contact.text" />
     </div>

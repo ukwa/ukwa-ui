@@ -33,9 +33,9 @@ ${pageContext.response.locale}
     <h1 class="main-heading"><spring:message code="coll.main.heading" /></h1>
     <hr class="header-title-hr"/>
   </div>
-  <div class="col-lg-4 col-md-5 offset-md-1 col-sm-12 header-2-subtitle"><spring:message code="coll.subtitle" /></div>
+  <div class="col-lg-4 col-md-5 offset-md-1 col-md-offset-1 col-sm-12 header-2-subtitle"><spring:message code="coll.subtitle" /></div>
 
-  <div class="col-lg-2 offset-lg-3 col-md-2 offset-md-1 col-sm-12 right padding-top-mobile-20">
+  <div class="col-lg-2 offset-lg-3 col-lg-offset-3 col-md-2 offset-md-1 col-md-offset-1 col-sm-12 right padding-top-mobile-20">
     <img title="<spring:message code="coll.thumbs" />" alt="<spring:message code="coll.thumbs" />" class="collections-display" id="btn_thumbs" src="img/icons/icn_grid.png" tabindex="0"/>
     <img title="<spring:message code="coll.list" />" alt="<spring:message code="coll.list" />" class="collections-display" id="btn_list" src="img/icons/icn_list.png" tabindex="0"/>
   </div>

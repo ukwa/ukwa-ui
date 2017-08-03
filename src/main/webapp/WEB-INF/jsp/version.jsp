@@ -31,7 +31,7 @@ ${pageContext.response.locale}
 </header>
 <section id="nominate-header">
   <div class="row header-white light-blue">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-6 offset-md-3 col-md-offset-3">
       <h2>Version of a Site</h2>
       <p>
         <c:out value="${applicationVersion}"/>

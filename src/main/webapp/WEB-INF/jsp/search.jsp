@@ -518,11 +518,13 @@ $(document).ready(function(e) {
 	$("#filter_form").submit(function(e) {
         
 		var isValid = true;
-		var from = Date.parse($("#from_date").val())
-		var to = Date.parse($("#to_date").val())
+		var from = Date.parse($("#from_date").val());
+		var to = Date.parse($("#to_date").val());
+		var now = new Date();
 		
 		if ($("#from_date").val().trim()!=="" && !from) isValid=false;
 		if ($("#to_date").val().trim()!=="" && !to) isValid=false;
+		if (isValid && (from>now || to>now)) isValid=false;
 		if (isValid && to<from) isValid=false;
 		
 		if (isValid) {
