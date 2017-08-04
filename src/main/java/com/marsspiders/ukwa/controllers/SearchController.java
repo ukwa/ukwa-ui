@@ -1,5 +1,6 @@
 package com.marsspiders.ukwa.controllers;
 
+import com.marsspiders.ukwa.IpConfiguration;
 import com.marsspiders.ukwa.controllers.data.SearchResultDTO;
 import com.marsspiders.ukwa.solr.AccessToEnum;
 import com.marsspiders.ukwa.solr.SearchByEnum;
@@ -10,7 +11,6 @@ import com.marsspiders.ukwa.solr.data.FacetCounts;
 import com.marsspiders.ukwa.solr.data.HighlightingContent;
 import com.marsspiders.ukwa.solr.data.SolrSearchResult;
 import com.marsspiders.ukwa.util.UrlUtil;
-import org.apache.commons.net.util.SubnetUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +28,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.marsspiders.ukwa.controllers.CollectionController.ROWS_PER_PAGE_DEFAULT;
 import static com.marsspiders.ukwa.controllers.HomeController.PROJECT_NAME;
 import static com.marsspiders.ukwa.solr.SearchByEnum.FULL_TEXT;
+import static com.marsspiders.ukwa.util.IpUtil.fetchClientIps;
+import static com.marsspiders.ukwa.util.IpUtil.ipWithinRange;
 import static com.marsspiders.ukwa.util.UrlUtil.getRootPathWithLang;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
@@ -60,8 +62,8 @@ public class SearchController {
     @Value("${set.protocol.to.https}")
     private Boolean setProtocolToHttps;
 
-    @Value("${bl.ip.address.list}")
-    private String blIpAddressList;
+    @Autowired
+    IpConfiguration ipConfiguration;
 
     @RequestMapping(value = "", method = GET)
     public ModelAndView searchPage(@RequestParam(value = "search_location", required = false) String searchLocation,
@@ -96,81 +98,6 @@ public class SearchController {
         int rowsPerPage = isNumeric(viewCount) ? Integer.valueOf(viewCount) : ROWS_PER_PAGE_DEFAULT;
         long targetPageNumber = isNumeric(pageNum) ? Long.valueOf(pageNum) : 1;
         long totalSearchResultsSize = 0;
-
-        //Delete this part of code after ip sniffing testing
-        /////////
-        List<String> allHeaders = new ArrayList<>();
-        List<String> xForwardedForIps = new ArrayList<>();
-        List<String> xRealIps = new ArrayList<>();
-        String remoteAddrIp = null;
-
-        Enumeration<String> headerNames = request.getHeaderNames();
-        while (headerNames.hasMoreElements()) {
-            allHeaders.add(headerNames.nextElement());
-        }
-
-        Enumeration<String> realIps = request.getHeaders("X-Real-IP");
-        while (realIps.hasMoreElements()) {
-            xRealIps.add(realIps.nextElement());
-        }
-
-        Enumeration<String> remoteIps = request.getHeaders("X-FORWARDED-FOR");
-        while (remoteIps.hasMoreElements()) {
-            xForwardedForIps.add(remoteIps.nextElement());
-        }
-
-        if (xForwardedForIps.size() == 0) {
-            remoteAddrIp = request.getRemoteAddr();
-        }
-
-
-        List<String> info = new ArrayList<>();
-        List<String> ipsToBeUsedForCheck = new ArrayList<>();
-        Enumeration<String> realIpsToBeUsed = request.getHeaders("X-Real-IP");
-        while (realIpsToBeUsed.hasMoreElements()) {
-            ipsToBeUsedForCheck.add(realIpsToBeUsed.nextElement());
-        }
-        Enumeration<String> xForwarded = request.getHeaders("X-FORWARDED-FOR");
-        while (xForwarded.hasMoreElements()) {
-            ipsToBeUsedForCheck.add(xForwarded.nextElement());
-        }
-        if (ipsToBeUsedForCheck.size() == 0) {
-            ipsToBeUsedForCheck.add(request.getRemoteAddr());
-        }
-
-        String[] blIpAddressRanges = blIpAddressList.split(",");
-        for (String blIpAddressRange : blIpAddressRanges) {
-            for (String clientIp : ipsToBeUsedForCheck) {
-                String trimmedIpRange = blIpAddressRange.trim();
-                String infoItem = "trimmedIpRange: " + trimmedIpRange + "; clientIp: " + clientIp;
-                if (trimmedIpRange.equals(clientIp)) {
-                    infoItem += " - equals!!!!";
-                    info.add(infoItem);
-                    continue;
-                } else {
-                    infoItem += " - not equals";
-                }
-
-                try {
-                    SubnetUtils utils = new SubnetUtils(blIpAddressRange);
-
-                    boolean inRange = utils.getInfo().isInRange(clientIp);
-                    if(inRange){
-                        infoItem += " - in range: " + blIpAddressRange + "!!!!";
-                    } else {
-                        infoItem += " - NOT in range: " + blIpAddressRange;
-                    }
-                } catch (Exception e) {
-                    infoItem += " - failed to create Subnet: " + e.getMessage();
-                }
-
-                info.add(infoItem);
-            }
-
-        }
-        /////////
-
-
         boolean userIpFromBl = isUserIpFromBl(request);
 
         SearchByEnum searchBy = SearchByEnum.fromString(searchLocation);
@@ -248,20 +175,6 @@ public class SearchController {
         mav.addObject("rowsPerPageLimit", rowsPerPage);
         mav.addObject("totalPages", (int) (Math.ceil(totalSearchResultsSize / (double) rowsPerPage)));
 
-        //Delete this part of code after ip sniffing testing
-        //////////
-        mav.addObject("xRealIps", xRealIps);
-        mav.addObject("xForwardedForIps", xForwardedForIps);
-        mav.addObject("remoteAddrIp", remoteAddrIp);
-        mav.addObject("allHeaders", allHeaders);
-
-
-        mav.addObject("ipsToBeUsedForCheck", ipsToBeUsedForCheck);
-        mav.addObject("blIpAddressRangesSize", blIpAddressRanges.length);
-        mav.addObject("blIpAddressRanges", Arrays.asList(blIpAddressRanges));
-        mav.addObject("info", info);
-        //////////
-
         return mav;
     }
 
@@ -269,8 +182,21 @@ public class SearchController {
         List<String> clientIps = fetchClientIps(request);
         log.debug("User's client ips: " + clientIps);
 
-        String[] blIpAddressRanges = blIpAddressList.split(",");
-        for (String blIpAddressRange : blIpAddressRanges) {
+        List<String> locationsIpRanges = ipConfiguration.getIpAddressListAtLocation();
+        List<String> allBlIpAddressRanges = new ArrayList<>();
+        for (String locationIpRanges : locationsIpRanges) {
+            String[] locationIpRangesArray = locationIpRanges.split(",");
+            List<String> locationIpRangeList = Arrays.asList(locationIpRangesArray);
+
+            List<String> notEmptyRanges = locationIpRangeList
+                    .stream()
+                    .filter(range -> !isBlank(range))
+                    .collect(Collectors.toList());
+
+            allBlIpAddressRanges.addAll(notEmptyRanges);
+        }
+
+        for (String blIpAddressRange : allBlIpAddressRanges) {
             for (String clientIp : clientIps) {
                 if (ipWithinRange(clientIp, blIpAddressRange.trim())) {
                     return true;
@@ -280,40 +206,6 @@ public class SearchController {
         }
 
         return false;
-    }
-
-    private boolean ipWithinRange(String clientIp, String blIpAddressRange) {
-        try {
-            if (blIpAddressRange.equals(clientIp)) {
-                return true;
-            }
-
-            SubnetUtils utils = new SubnetUtils(blIpAddressRange);
-
-            return utils.getInfo().isInRange(clientIp);
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    private static List<String> fetchClientIps(HttpServletRequest request) {
-        List<String> ips = new ArrayList<>();
-
-        Enumeration<String> realIps = request.getHeaders("X-Real-IP");
-        while (realIps.hasMoreElements()) {
-            ips.add(realIps.nextElement());
-        }
-
-        Enumeration<String> remoteIp = request.getHeaders("X-FORWARDED-FOR");
-        while (remoteIp.hasMoreElements()) {
-            ips.add(remoteIp.nextElement());
-        }
-
-        if (ips.size() == 0) {
-            ips.add(request.getRemoteAddr());
-        }
-
-        return ips;
     }
 
     private static boolean isValidUrl(String text) {

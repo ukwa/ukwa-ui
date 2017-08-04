@@ -1,6 +1,9 @@
 Change Log
 ----------
 
+* 2017-08-04
+    * Added mapping for different URL prefixes in different reading room locations
+
 * 2017-08-03
     * Added IE9 support
 
