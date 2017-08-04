@@ -1,6 +1,6 @@
 package com.marsspiders.ukwa.controllers;
 
-import com.marsspiders.ukwa.IpConfiguration;
+import com.marsspiders.ukwa.WaybackIpConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class ArchiveController {
     private Boolean setProtocolToHttps;
 
     @Autowired
-    IpConfiguration ipConfiguration;
+    WaybackIpConfiguration waybackIpConfiguration;
 
     @RequestMapping(value = "{timestamp}/**", method = GET)
     public String fetchArchivedPageByTimestamp(@PathVariable("timestamp") String timestamp, HttpServletRequest request) {
@@ -55,7 +55,7 @@ public class ArchiveController {
     private String fetchWaybackUrlByIp(List<String> clientIps) {
         log.debug("User's client ips: " + clientIps);
 
-        List<String> locationsIpRanges = ipConfiguration.getIpAddressListAtLocation();
+        List<String> locationsIpRanges = waybackIpConfiguration.getIpAddressListAtLocation();
 
         for (String currentLocationIpRanges : locationsIpRanges) {
             String[] currentLocationIpRangesArray = currentLocationIpRanges.split(",");
@@ -67,16 +67,16 @@ public class ArchiveController {
             }
         }
 
-        throw new IllegalStateException("Could not fetch wayback url by ip, but user has been redirected to this page");
+        return waybackIpConfiguration.getOffSiteUrl();
     }
 
     private String tryFetchWaybackUrlForCurrentLocation(List<String> clientIps, String locationIpRanges, List<String> locationIpRangeList) {
         for (String locationIpRange : locationIpRangeList) {
             for (String clientIp : clientIps) {
                 if (ipWithinRange(clientIp, locationIpRange.trim())) {
-                    List<String> locationsIpRanges = ipConfiguration.getIpAddressListAtLocation();
-                    List<String> waybackLocations = ipConfiguration.getIndexToLocation();
-                    List<String> waybackUrls = ipConfiguration.getUrl();
+                    List<String> locationsIpRanges = waybackIpConfiguration.getIpAddressListAtLocation();
+                    List<String> waybackLocations = waybackIpConfiguration.getIndexToLocation();
+                    List<String> waybackUrls = waybackIpConfiguration.getUrl();
 
                     int locationId = locationsIpRanges.indexOf(locationIpRanges);
                     log.debug("Ip belongs to: " + waybackLocations.get(locationId) + " location");

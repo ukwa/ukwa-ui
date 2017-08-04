@@ -1,6 +1,6 @@
 package com.marsspiders.ukwa.controllers;
 
-import com.marsspiders.ukwa.IpConfiguration;
+import com.marsspiders.ukwa.WaybackIpConfiguration;
 import com.marsspiders.ukwa.controllers.data.SearchResultDTO;
 import com.marsspiders.ukwa.solr.AccessToEnum;
 import com.marsspiders.ukwa.solr.SearchByEnum;
@@ -63,7 +63,7 @@ public class SearchController {
     private Boolean setProtocolToHttps;
 
     @Autowired
-    IpConfiguration ipConfiguration;
+    WaybackIpConfiguration waybackIpConfiguration;
 
     @RequestMapping(value = "", method = GET)
     public ModelAndView searchPage(@RequestParam(value = "search_location", required = false) String searchLocation,
@@ -182,7 +182,7 @@ public class SearchController {
         List<String> clientIps = fetchClientIps(request);
         log.debug("User's client ips: " + clientIps);
 
-        List<String> locationsIpRanges = ipConfiguration.getIpAddressListAtLocation();
+        List<String> locationsIpRanges = waybackIpConfiguration.getIpAddressListAtLocation();
         List<String> allBlIpAddressRanges = new ArrayList<>();
         for (String locationIpRanges : locationsIpRanges) {
             String[] locationIpRangesArray = locationIpRanges.split(",");

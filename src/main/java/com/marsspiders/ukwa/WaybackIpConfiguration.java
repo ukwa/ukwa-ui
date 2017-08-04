@@ -7,10 +7,19 @@ import java.util.List;
 
 @Component
 @ConfigurationProperties("bl.wayback")
-public class IpConfiguration {
+public class WaybackIpConfiguration {
+    private String offSiteUrl;
     private List<String> url;
     private List<String> ipAddressListAtLocation;
     private List<String> indexToLocation;
+
+    public String getOffSiteUrl() {
+        return offSiteUrl;
+    }
+
+    public void setOffSiteUrl(String offSiteUrl) {
+        this.offSiteUrl = offSiteUrl;
+    }
 
     public List<String> getUrl() {
         return url;
