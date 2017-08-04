@@ -29,6 +29,7 @@ ${pageContext.response.locale}
 <title><spring:message code="search.title" /></title>
 <%@include file="head.jsp" %>
 </head>
+
 <body>
 <%@include file="nav.jsp" %>
 <div class="container-fluid">

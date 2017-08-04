@@ -34,6 +34,7 @@ import java.util.stream.Collectors;
 
 import static com.marsspiders.ukwa.controllers.CollectionController.ROWS_PER_PAGE_DEFAULT;
 import static com.marsspiders.ukwa.controllers.HomeController.PROJECT_NAME;
+import static com.marsspiders.ukwa.solr.AccessToEnum.VIEWABLE_ANYWHERE;
 import static com.marsspiders.ukwa.solr.SearchByEnum.FULL_TEXT;
 import static com.marsspiders.ukwa.util.IpUtil.fetchClientIps;
 import static com.marsspiders.ukwa.util.IpUtil.ipWithinRange;
@@ -280,9 +281,11 @@ public class SearchController {
             return "noresults";
         }
 
+        //If site available for Open Access, we should set accessFlag to 'OA' to use default off-site wayback url in ArchiveController
+        String accessFlag = readRoomOnlyAccess(archivedSiteInfo) ? "RRO" : VIEWABLE_ANYWHERE.getSolrRequestAccessRestriction();
         //Need to replace "jsp", "JSP" to avoid treating .jsp file in wayback url as its own url by Spring
         String urlWithUppercaseJsp = url.replace("jsp", "JSP");
-        return rootPathWithLang + "wayback/" + archivedSiteInfo.getWayback_date() + "/" + urlWithUppercaseJsp;
+        return rootPathWithLang + "wayback/" + accessFlag + "/" + archivedSiteInfo.getWayback_date() + "/" + urlWithUppercaseJsp;
     }
 
     private static boolean readRoomOnlyAccess(ContentInfo archivedSiteInfo) {

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.marsspiders.ukwa.solr.AccessToEnum.VIEWABLE_ANYWHERE;
 import static com.marsspiders.ukwa.util.IpUtil.fetchClientIps;
 import static com.marsspiders.ukwa.util.IpUtil.ipWithinRange;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -30,10 +31,11 @@ public class ArchiveController {
     @Autowired
     WaybackIpConfiguration waybackIpConfiguration;
 
-    @RequestMapping(value = "{timestamp}/**", method = GET)
-    public String fetchArchivedPageByTimestamp(@PathVariable("timestamp") String timestamp, HttpServletRequest request) {
-        List<String> clientIps = fetchClientIps(request);
-        String waybackUrl = fetchWaybackUrlByIp(clientIps);
+    @RequestMapping(value = "{accessFlag}/{timestamp}/**", method = GET)
+    public String fetchArchivedPageByTimestamp(@PathVariable("accessFlag") String accessFlag,
+                                               @PathVariable("timestamp") String timestamp,
+                                               HttpServletRequest request) {
+        String waybackUrl = fetchWaybackUrlByIp(request, accessFlag);
 
         String siteUrl = evaluateUrlFromRequest(request);
         String prettySiteUrl = siteUrl.replaceAll(":/([a-zA-Z0-9])", "://$1");
@@ -52,7 +54,13 @@ public class ArchiveController {
         return apm.extractPathWithinPattern(bestMatchPattern, wholePath);
     }
 
-    private String fetchWaybackUrlByIp(List<String> clientIps) {
+    private String fetchWaybackUrlByIp(HttpServletRequest request, String accessFlag) {
+        //If site available for Open Access, we should use default off-site wayback url
+        if(VIEWABLE_ANYWHERE.getSolrRequestAccessRestriction().equals(accessFlag)){
+            return waybackIpConfiguration.getOffSiteUrl();
+        }
+
+        List<String> clientIps = fetchClientIps(request);
         log.debug("User's client ips: " + clientIps);
 
         List<String> locationsIpRanges = waybackIpConfiguration.getIpAddressListAtLocation();
