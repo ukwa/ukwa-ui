@@ -174,6 +174,7 @@ public class SearchController {
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
         mav.addObject("targetPageNumber", targetPageNumber);
         mav.addObject("rowsPerPageLimit", rowsPerPage);
+        mav.addObject("userIpFromBl", userIpFromBl);
         mav.addObject("totalPages", (int) (Math.ceil(totalSearchResultsSize / (double) rowsPerPage)));
 
         return mav;

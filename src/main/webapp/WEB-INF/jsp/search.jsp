@@ -288,11 +288,18 @@ ${pageContext.response.locale}
           <h2 class="margin-0">
             <c:out value="${searchResult.title}"/>
           </h2><br/>
-          <c:if test="${searchResult.access == 'RRO'}">
-            <span class="results-title-text results-lib-premises text-smaller">
-              <spring:message code="search.results.library.premises" />
-            </span>
-          </c:if>
+          <c:choose>
+            <c:when test="${searchResult.access == 'RRO' && userIpFromBl}">
+              <span class="results-title-text results-lib-premises text-smaller black">
+                <spring:message code="search.results.library.premises" />
+              </span>
+            </c:when>
+            <c:when test="${searchResult.access == 'RRO' && !userIpFromBl}">
+              <span class="results-title-text results-lib-premises text-smaller">
+                <spring:message code="search.results.library.premises" />
+              </span>
+            </c:when>
+          </c:choose>
           <span class="results-title-text results-title-date padding-0 padding-top-20">
           <spring:message code="search.results.archived.date" /> <c:out value="${searchResult.date}"/>
           </span> 

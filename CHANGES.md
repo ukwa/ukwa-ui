@@ -1,6 +1,10 @@
 Change Log
 ----------
 
+* 2017-08-09
+	* Changed warning text from red to black for reading room sites when user is on premises
+	* Commented application.properties file
+
 * 2017-08-04
     * Added mapping for different URL prefixes in different reading room locations
 
