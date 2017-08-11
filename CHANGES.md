@@ -1,6 +1,11 @@
 Change Log
 ----------
 
+* 2017-08-11
+    * Form sending fixes
+	* Footer link fixes
+	* Custom error page added
+
 * 2017-08-09
 	* Changed warning text from red to black for reading room sites when user is on premises
 	* Commented application.properties file

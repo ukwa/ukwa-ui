@@ -31,18 +31,19 @@ public class ContactController {
 
     @RequestMapping(value = "feedback", method = RequestMethod.POST)
     public ModelAndView sendFeedback(@RequestParam(value = "name", required = false) String name,
-                                     @RequestParam(value = "mail", required = false) String mail,
-                                     @RequestParam(value = "text", required = false) String text) {
+                                     @RequestParam(value = "email", required = false) String email,
+                                     @RequestParam(value = "comments", required = false) String comments) {
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(sendMailTo);
         message.setSubject("Contact form request [" + name + "]");
         message.setText("Request from: " + name + "\n"
-                + "Contact e-mail: " + mail + "\n"
+                + "Contact e-mail: " + email + "\n"
                 + "\n"
                 + "Text:\n"
-                + text);
+                + comments);
 
+        log.debug("Sending e-mail message: " + message);
         emailSender.send(message);
 
         ModelAndView mav = new ModelAndView("contact");
@@ -67,6 +68,7 @@ public class ContactController {
                 + "Additional information: \n"
                 + text);
 
+        log.debug("Sending e-mail message: " + message);
         emailSender.send(message);
 
         ModelAndView mav = new ModelAndView("nominate");

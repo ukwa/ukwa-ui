@@ -1,45 +1,34 @@
 <div class="row">
   <div class="col-md-3 offset-md-1 col-md-offset-1 col-sm-12 footer-links footer-right-border"> <a href="index" title="<spring:message code="footer.home.title" />">
-    <spring:message code="footer.home" />
-    </a><br/>
+    <spring:message code="footer.home" /></a><br/>
     <a href="info/about" title="<spring:message code="footer.about.title" />">
-    <spring:message code="footer.about" text="About" />
-    </a><br/>
+    <spring:message code="footer.about" text="About" /></a><br/>
     <a href="collection" title="<spring:message code="footer.collections.title" />">
-    <spring:message code="footer.collections" />
-    </a><br/>
+    <spring:message code="footer.collections" /></a><br/>
     <a href="http://britishlibrary.typepad.co.uk/webarchive/" target="_blank" title="<spring:message code="footer.blog.title" />">
-    <spring:message code="footer.blog" />
-    </a><br/>
+    <spring:message code="footer.blog" /></a><br/>
     <a href="info/nominate" title="<spring:message code="footer.nominate.title" />">
-    <spring:message code="footer.nominate" />
-    </a><br/>
+    <spring:message code="footer.nominate" /></a><br/>
 
   </div>
   
   <div class="col-md-3 offset-md-1 col-md-offset-1 col-sm-12 footer-links footer-right-border">
 
     <a href="info/notice_takedown" title="<spring:message code="footer.notice.title" />">
-    <spring:message code="footer.notice" />
-    </a><br/>
+    <spring:message code="footer.notice" /></a><br/>
     <a href="info/terms_conditions" title="<spring:message code="footer.terms.title" />">
-    <spring:message code="footer.terms" />
-    </a><br/>
+    <spring:message code="footer.terms" /></a><br/>
     <a href="info/privacy" title="<spring:message code="footer.privacy.title" />">
-    <spring:message code="footer.privacy" />
-    </a><br/>
+    <spring:message code="footer.privacy" /></a><br/>
         <a href="info/cookies" title="<spring:message code="footer.cookies.title" />">
-    <spring:message code="footer.cookies" />
-    </a><br/>
+    <spring:message code="footer.cookies" /></a><br/>
   </div>
   
   <div class="col-md-3 offset-md-1 col-md-offset-1 col-sm-12 footer-links">
         <a href="info/faq" title="<spring:message code="footer.faq" />">
-    <spring:message code="footer.faq" />
-    </a><br/>
+    <spring:message code="footer.faq" /></a><br/>
     <a href="contact" title="<spring:message code="footer.contact.title" />">
-    <spring:message code="footer.contact" />
-    </a><br/>
+    <spring:message code="footer.contact" /></a><br/>
     <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
     <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy' || textUri == '/gd'
                                         ? '/'
@@ -47,21 +36,17 @@
     <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
           && (fn:contains(textUri, '/gd/') || textUri =='/gd' || fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
       <span lang="en"><a href="/en<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="footer.english.title" />">
-      <spring:message code="footer.english" />
-      </a></span><br/>
+      <spring:message code="footer.english" /></a></span><br/>
     </c:if>
     <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}"> <span lang="cy"><a href="/cy<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="footer.welsh.title" />">
-      <spring:message code="footer.welsh" />
-      </a></span><br/>
+      <spring:message code="footer.welsh" /></a></span><br/>
     </c:if>
     <c:if test="${!fn:startsWith(textUri, '/gd/') && textUri != '/gd'}"> <span lang="gn"><a href="/gd<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="footer.scottish.title" />">
-      <spring:message code="footer.scottish" />
-      </a></span><br/>
+      <spring:message code="footer.scottish" /></a></span><br/>
     </c:if>
     
     <a href="https://www.webarchive.org.uk/rss/recent.xml" title="<spring:message code="footer.rss.title" />">
-    <spring:message code="footer.rss" />
-    </a><br/>
+    <spring:message code="footer.rss" /></a><br/>
   </div>
 </div>
 <div class="row">
