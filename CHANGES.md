@@ -1,6 +1,9 @@
 Change Log
 ----------
 
+* 2017-08-47
+    * Added custom error page
+
 * 2017-08-11
     * Form sending fixes
 	* Footer link fixes

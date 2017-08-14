@@ -157,7 +157,7 @@ public class SolrSearchService {
                                                        List<String> collections) {
         log.info("Searching content for '" + textToSearch + "' by " + searchLocation);
 
-        String searchQuery = searchLocation.getSolrSearchLocation() + ":\"" + escapeQueryChars(textToSearch) + "\"";
+        String searchQuery = escapeQueryChars(textToSearch);
         String sortByQuery = sortBy == null ? "" : FIELD_CRAWL_DATE + " " + sortBy.getSolrOrderValue();
         String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
         String accessToQuery = generateAccessToQuery(accessTo);
@@ -166,7 +166,7 @@ public class SolrSearchService {
         String publicSuffixesQuery = generateMultipleConditionsQueryWithPreCondition(publicSuffixes, FIELD_PUBLIC_SUFFIX);
         String domainsQuery = generateMultipleConditionsQueryWithPreCondition(originalDomains, FIELD_DOMAIN);
 
-        String queryString = toEncoded(searchQuery) +
+        String queryString = "q=" + toEncoded(searchQuery) +
                 "&sort=" + toEncoded(sortByQuery) +
                 "&fq=" + toEncoded(accessToQuery) +
                 "&fq=" + toEncoded(dateQuery) +
@@ -174,6 +174,7 @@ public class SolrSearchService {
                 "&fq=" + toEncoded(publicSuffixesQuery) +
                 "&fq=" + toEncoded(domainsQuery) +
                 "&fq=" + toEncoded(collectionsQuery) +
+                "&df=text" +
                 "&facet.range.gap=%2B1YEAR" +
                 "&facet.range=" + toEncoded(EXCLUDE_POINT_SECOND_LAYER_TAG) + FIELD_CRAWL_DATE +
                 "&f." + FIELD_CRAWL_DATE + ".facet.range.start=" + FACET_RANGE_START_YEAR + DATE_PART_AFTER_YEAR +
