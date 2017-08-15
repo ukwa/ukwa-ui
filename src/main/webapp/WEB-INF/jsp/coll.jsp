@@ -154,14 +154,26 @@ ${pageContext.response.locale}
         <div class="col-md-12 col-sm-12 results-result">
           <h2 class="margin-0">
             <c:out value="${targetWebsite.name}"/>
-          </h2>
+          </h2><br/>
+          <c:choose>
+            <c:when test="${targetWebsite.access == 'RRO' && userIpFromBl}">
+              <span class="results-title-text results-lib-premises text-smaller black">
+                <spring:message code="search.results.library.premises" />
+              </span>
+            </c:when>
+            <c:when test="${targetWebsite.access == 'RRO' && !userIpFromBl}">
+              <span class="results-title-text results-lib-premises text-smaller">
+                <spring:message code="search.results.library.premises" />
+              </span>
+            </c:when>
+          </c:choose>
           <span class="results-title-text clearfix">
           <c:out value="${targetWebsite.description}"/>
           </span> <span class="results-title-text clearfix"> <spring:message code="coll.archived.date" />
           <c:out value="${targetWebsite.startDate}"/>
           </span>
           <span class="results-title-text clearfix padding-vert-10">
-              <a href="<c:out value="${targetWebsite.archiveUrl}"/>" class="break-all"><c:out value="${targetWebsite.archiveUrl}"/></a>
+              <a href="<c:out value="${targetWebsite.archiveUrl}"/>" class="break-all"><c:out value="${targetWebsite.url}"/></a>
             </span>
         </div>
       </div>

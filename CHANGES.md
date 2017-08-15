@@ -1,7 +1,10 @@
 Change Log
 ----------
 
-* 2017-08-47
+* 2017-08-15
+    * Added reading room only notification to SC with IP sniffing
+
+* 2017-08-14
     * Added custom error page
 
 * 2017-08-11

@@ -1,7 +1,7 @@
 package com.marsspiders.ukwa.controllers;
 
-import com.marsspiders.ukwa.WaybackIpConfiguration;
 import com.marsspiders.ukwa.controllers.data.SearchResultDTO;
+import com.marsspiders.ukwa.ip.WaybackIpResolver;
 import com.marsspiders.ukwa.solr.AccessToEnum;
 import com.marsspiders.ukwa.solr.SearchByEnum;
 import com.marsspiders.ukwa.solr.SolrSearchService;
@@ -26,18 +26,14 @@ import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.marsspiders.ukwa.controllers.CollectionController.ROWS_PER_PAGE_DEFAULT;
 import static com.marsspiders.ukwa.controllers.HomeController.PROJECT_NAME;
 import static com.marsspiders.ukwa.solr.AccessToEnum.VIEWABLE_ANYWHERE;
 import static com.marsspiders.ukwa.solr.SearchByEnum.FULL_TEXT;
-import static com.marsspiders.ukwa.util.IpUtil.fetchClientIps;
-import static com.marsspiders.ukwa.util.IpUtil.ipWithinRange;
 import static com.marsspiders.ukwa.util.UrlUtil.getRootPathWithLang;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
@@ -64,7 +60,7 @@ public class SearchController {
     private Boolean setProtocolToHttps;
 
     @Autowired
-    WaybackIpConfiguration waybackIpConfiguration;
+    WaybackIpResolver waybackIpResolver;
 
     @RequestMapping(value = "", method = GET)
     public ModelAndView searchPage(@RequestParam(value = "search_location", required = false) String searchLocation,
@@ -99,7 +95,7 @@ public class SearchController {
         int rowsPerPage = isNumeric(viewCount) ? Integer.valueOf(viewCount) : ROWS_PER_PAGE_DEFAULT;
         long targetPageNumber = isNumeric(pageNum) ? Long.valueOf(pageNum) : 1;
         long totalSearchResultsSize = 0;
-        boolean userIpFromBl = isUserIpFromBl(request);
+        boolean userIpFromBl = waybackIpResolver.isUserIpFromBl(request);
 
         SearchByEnum searchBy = SearchByEnum.fromString(searchLocation);
         SortByEnum sortBy = SortByEnum.fromString(sortValue);
@@ -180,35 +176,6 @@ public class SearchController {
         return mav;
     }
 
-    private boolean isUserIpFromBl(HttpServletRequest request) {
-        List<String> clientIps = fetchClientIps(request);
-        log.debug("User's client ips: " + clientIps);
-
-        List<String> locationsIpRanges = waybackIpConfiguration.getIpAddressListAtLocation();
-        List<String> allBlIpAddressRanges = new ArrayList<>();
-        for (String locationIpRanges : locationsIpRanges) {
-            String[] locationIpRangesArray = locationIpRanges.split(",");
-            List<String> locationIpRangeList = Arrays.asList(locationIpRangesArray);
-
-            List<String> notEmptyRanges = locationIpRangeList
-                    .stream()
-                    .filter(range -> !isBlank(range))
-                    .collect(Collectors.toList());
-
-            allBlIpAddressRanges.addAll(notEmptyRanges);
-        }
-
-        for (String blIpAddressRange : allBlIpAddressRanges) {
-            for (String clientIp : clientIps) {
-                if (ipWithinRange(clientIp, blIpAddressRange.trim())) {
-                    return true;
-                }
-            }
-
-        }
-
-        return false;
-    }
 
     private static boolean isValidUrl(String text) {
         return text.matches(URL_PATTERN);

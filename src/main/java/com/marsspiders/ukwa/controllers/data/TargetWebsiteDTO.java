@@ -13,6 +13,7 @@ public class TargetWebsiteDTO {
     private String endDate;
     private String language;
     private List<String> additionalUrls;
+    private String access;
 
     public String getId() {
         return id;
@@ -92,5 +93,13 @@ public class TargetWebsiteDTO {
 
     public void setAdditionalUrls(List<String> additionalUrls) {
         this.additionalUrls = additionalUrls;
+    }
+
+    public String getAccess() {
+        return access;
+    }
+
+    public void setAccess(String access) {
+        this.access = access;
     }
 }

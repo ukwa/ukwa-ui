@@ -2,6 +2,7 @@ package com.marsspiders.ukwa.controllers;
 
 import com.marsspiders.ukwa.controllers.data.CollectionDTO;
 import com.marsspiders.ukwa.controllers.data.TargetWebsiteDTO;
+import com.marsspiders.ukwa.ip.WaybackIpResolver;
 import com.marsspiders.ukwa.solr.SolrSearchService;
 import com.marsspiders.ukwa.solr.data.CollectionInfo;
 import com.marsspiders.ukwa.solr.data.SolrSearchResult;
@@ -52,6 +53,9 @@ public class CollectionController {
     @Value("${set.protocol.to.https}")
     private Boolean setProtocolToHttps;
 
+    @Autowired
+    WaybackIpResolver waybackIpResolver;
+
     @RequestMapping(value = "", method = GET)
     public ModelAndView rootCollectionsPage(HttpServletRequest request) {
         Locale locale = getLocale(request);
@@ -69,6 +73,7 @@ public class CollectionController {
     public ModelAndView collectionOverviewPage(@PathVariable("collectionId") String collectionId,
                                                @RequestParam(value = "page", required = false) String pageNum,
                                                HttpServletRequest request) throws MalformedURLException, URISyntaxException {
+        boolean userIpFromBl = waybackIpResolver.isUserIpFromBl(request);
         long totalSearchResultsSize = 0;
         long targetPageNumber = isNumeric(pageNum) ? Long.valueOf(pageNum) : 1;
         long startFromRow = (targetPageNumber - 1) * ROWS_PER_PAGE_DEFAULT;
@@ -81,13 +86,14 @@ public class CollectionController {
         String rootPathWithLang = getRootPathWithLang(request, setProtocolToHttps);
         Locale locale = getLocale(request);
 
-        List<TargetWebsiteDTO> targetWebsites = generateTargetWebsitesDTOs(targetWebsitesDocuments, rootPathWithLang);
+        List<TargetWebsiteDTO> targetWebsites = generateTargetWebsitesDTOs(targetWebsitesDocuments, rootPathWithLang, userIpFromBl);
         List<CollectionDTO> subCollections = generateSubCollectionDTOs(collectionId, locale);
         CollectionDTO currentCollection = generatePlainCollectionDTO(collectionId, locale, targetWebsitesSearchResult);
         Map<String, String> breadcrumbPath = buildCollectionBreadcrumbPath(currentCollection);
 
 
         ModelAndView mav = new ModelAndView("coll");
+        mav.addObject("userIpFromBl", userIpFromBl);
         mav.addObject("breadcrumbPath", breadcrumbPath);
         mav.addObject("targetWebsites", targetWebsites);
         mav.addObject("subCollections", subCollections);
@@ -180,14 +186,20 @@ public class CollectionController {
         return collectionDTO;
     }
 
-    private List<TargetWebsiteDTO> generateTargetWebsitesDTOs(List<CollectionInfo> websites, String rootPathWithLang) {
+    private List<TargetWebsiteDTO> generateTargetWebsitesDTOs(List<CollectionInfo> websites,
+                                                              String rootPathWithLang,
+                                                              boolean userIpFromBl) {
         return websites
                 .stream()
-                .map(d -> toTargetWebsiteDTO(rootPathWithLang, d))
+                .map(websiteInfo -> toTargetWebsiteDTO(rootPathWithLang, websiteInfo, userIpFromBl))
                 .collect(Collectors.toList());
     }
 
-    private static TargetWebsiteDTO toTargetWebsiteDTO(String rootPathWithLang, CollectionInfo websiteInfo) {
+    private static TargetWebsiteDTO toTargetWebsiteDTO(String rootPathWithLang,
+                                                       CollectionInfo websiteInfo,
+                                                       boolean userIpFromBl) {
+        boolean readRoomOnlyAccess = readRoomOnlyAccess(websiteInfo);
+
         String id = websiteInfo.getId();
         String name = websiteInfo.getTitle();
         String screenshotName = "thumbnail-default-" + ((int) (16 * Math.random()) + 1) + ".png";
@@ -195,7 +207,13 @@ public class CollectionController {
                 ? websiteInfo.getDescription().replaceAll("<[^>]*>", "")
                 : null;
         String shortDescription = abbreviate(description, 60);
-        String wayBackUrl = rootPathWithLang + "wayback/*/" + websiteInfo.getUrl();
+        String wayBackUrl;
+        if (!userIpFromBl && readRoomOnlyAccess) {
+            //Redirect to page with information about Reading Room Only restriction
+            wayBackUrl = "noresults";
+        } else {
+            wayBackUrl = rootPathWithLang + "wayback/*/" + websiteInfo.getUrl();
+        }
 
         TargetWebsiteDTO targetWebsite = new TargetWebsiteDTO();
         targetWebsite.setId(id);
@@ -208,6 +226,7 @@ public class CollectionController {
         targetWebsite.setEndDate(websiteInfo.getEndDate() != null ? websiteInfo.getEndDate().substring(0, 10) : "");
         targetWebsite.setLanguage(websiteInfo.getLanguage());
         targetWebsite.setAdditionalUrls(websiteInfo.getAdditionalUrl());
+        targetWebsite.setAccess(readRoomOnlyAccess ? "RRO" : "OA");
 
         return targetWebsite;
     }
@@ -228,6 +247,10 @@ public class CollectionController {
         String imageAltMessage = messageSource.getMessage(COLLECTION_ALT_MESSAGE_ID + id, null, defaultImageAltMessage, locale);
 
         return new CollectionDTO(id, parentId, name, shortDescription, fullDescription, imageAltMessage, 0, 0, 0);
+    }
+
+    private static boolean readRoomOnlyAccess(CollectionInfo websiteInfo) {
+        return websiteInfo.getLicenses() == null || websiteInfo.getLicenses().size() == 0;
     }
 
 }
