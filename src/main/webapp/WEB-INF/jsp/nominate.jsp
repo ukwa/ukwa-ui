@@ -47,6 +47,14 @@ ${pageContext.response.locale}
   </div>
 </section>
 <section id="content">
+<c:if test="${sent}">
+<div class="row page-content padding-bottom-20">
+<div class="col-sm-12 form-content-col bold red">
+<spring:message code="nominate.sent.message"/>
+</div>
+</div>
+</c:if>
+
   <form action="/ukwa/info/nominate" method="post" enctype="multipart/form-data" name="nominate">
     <div class="row page-content">
       <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
@@ -91,13 +99,8 @@ ${pageContext.response.locale}
   <%@include file="footer.jsp" %>
 </footer>
 </div>
-<script>
-$(document).ready(function(e) {
-    
-	var message='<spring:message code="nominate.sent.message"/>';
-	if ($.urlParam('sent')=='true') alert(message);
-	
-});
-</script>
+
+
+
 </body>
 </html>
