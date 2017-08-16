@@ -14,7 +14,7 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.slf4j.Logger;
@@ -70,7 +70,9 @@ public class SolrCommunicator {
                 throw new IllegalStateException("Unknown bodyDocsType: " + bodyDocsType);
             }
 
-            HttpGet request = new HttpGet(solrServerUrl + solrSearchUrl);
+            HttpPost request = new HttpPost(solrServerUrl + solrSearchUrl);
+            request.setHeader("Accept", "application/json");
+            request.setHeader("Content-type", "application/json");
             log.debug("Sending request to SOLR: " + request.getURI().toString());
             log.debug("(decoded URL): " + toDecoded(request.getURI().toString()));
 

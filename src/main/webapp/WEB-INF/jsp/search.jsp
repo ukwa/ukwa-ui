@@ -247,9 +247,7 @@ ${pageContext.response.locale}
         </c:forEach>
         <c:if test="${targetPageNumber + 4 < totalPages}">
           <div class="pagination-button dots inactive"></div>
-          <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', totalPages)}"/>"><div class="pagination-button inactive" title="<spring:message code="pagination.goto" /> <c:out value="${totalPages}"/>" aria-label="<spring:message code="pagination.goto" /> <c:out value="${totalPages}"/>">
-            <c:out value="${totalPages}"/>
-          </div></a> </c:if>
+        </c:if>
         <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit}"> <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>"><div class="pagination-button arrow right-arrow" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"></div></a> </c:if>
       </div>
     </div>
@@ -348,12 +346,10 @@ ${pageContext.response.locale}
       </div></a>
       </c:if>
       </c:forEach>
-      
+
       <c:if test="${targetPageNumber + 4 < totalPages}">
         <div class="pagination-button dots inactive"></div>
-<a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', totalPages)}"/>"><div class="pagination-button inactive" title="<spring:message code="pagination.goto" /> <c:out value="${totalPages}"/>" aria-label="<spring:message code="pagination.goto" /> <c:out value="${totalPages}"/>">
-          <c:out value="${totalPages}"/>
-        </div></a> </c:if>
+      </c:if>
       <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit}"> <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>"><div class="pagination-button arrow right-arrow" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"></div></a> </c:if>
     </div>
   </div>

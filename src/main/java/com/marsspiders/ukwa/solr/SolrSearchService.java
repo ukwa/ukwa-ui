@@ -4,6 +4,8 @@ import com.marsspiders.ukwa.solr.data.BodyDocsType;
 import com.marsspiders.ukwa.solr.data.CollectionInfo;
 import com.marsspiders.ukwa.solr.data.ContentInfo;
 import com.marsspiders.ukwa.solr.data.SolrSearchResult;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.solr.client.solrj.util.ClientUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,6 @@ import static com.marsspiders.ukwa.util.SolrSearchUtil.generateAccessToQuery;
 import static com.marsspiders.ukwa.util.SolrSearchUtil.generateDateQuery;
 import static com.marsspiders.ukwa.util.SolrSearchUtil.generateMultipleConditionsQuery;
 import static com.marsspiders.ukwa.util.SolrSearchUtil.generateMultipleConditionsQueryWithPreCondition;
-import static com.marsspiders.ukwa.util.SolrStringUtil.escapeQueryChars;
 import static com.marsspiders.ukwa.util.SolrStringUtil.toEncoded;
 import static java.lang.String.format;
 
@@ -157,7 +158,13 @@ public class SolrSearchService {
                                                        List<String> collections) {
         log.info("Searching content for '" + textToSearch + "' by " + searchLocation);
 
-        String searchQuery = escapeQueryChars(textToSearch);
+        int quotesCount = StringUtils.countMatches(textToSearch, "\"");
+        if(quotesCount % 2 != 0){
+            //Since Solr can't recognize request with only one quote, we should add another one to close it
+            textToSearch += "\"";
+        }
+
+        String searchQuery = ClientUtils.escapeQueryChars(textToSearch);
         String sortByQuery = sortBy == null ? "" : FIELD_CRAWL_DATE + " " + sortBy.getSolrOrderValue();
         String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
         String accessToQuery = generateAccessToQuery(accessTo);
@@ -166,7 +173,10 @@ public class SolrSearchService {
         String publicSuffixesQuery = generateMultipleConditionsQueryWithPreCondition(publicSuffixes, FIELD_PUBLIC_SUFFIX);
         String domainsQuery = generateMultipleConditionsQueryWithPreCondition(originalDomains, FIELD_DOMAIN);
 
-        String queryString = "q=" + toEncoded(searchQuery) +
+        //After escaping and encoding quotes with double slash SOLR doesn't recognize request to find exact match,
+        //so we should remove %5C (encoded double slash)and leave just quote
+        String encodedSearchQueryWithQuotes = toEncoded(searchQuery).replaceAll("%5C", "");
+        String queryString = "q=" + encodedSearchQueryWithQuotes +
                 "&sort=" + toEncoded(sortByQuery) +
                 "&fq=" + toEncoded(accessToQuery) +
                 "&fq=" + toEncoded(dateQuery) +
@@ -205,7 +215,7 @@ public class SolrSearchService {
         }
 
 
-        String solrSearchUrl = format("indent=%s&q=%s&rows=%d&start=%d&wt=%s%s",
+        String solrSearchUrl = format("indent=%s&%s&rows=%d&start=%d&wt=%s%s",
                 INDENT_FLAG, queryString, rowsLimit, startFrom, RESULT_FORMAT, fieldsFacetQuery);
 
         return communicator.sendRequest(solrSearchUrl, bodyDocsType);

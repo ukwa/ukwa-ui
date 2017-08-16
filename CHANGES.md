@@ -1,6 +1,10 @@
 Change Log
 ----------
 
+* 2017-08-16
+    * Fixed search with logical operators
+	* Removed deep paging
+
 * 2017-08-15
     * Added reading room only notification to SC with IP sniffing
 
