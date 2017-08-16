@@ -26,6 +26,9 @@ public class FeedbackController {
     @Value("${bl.send.mail.to}")
     private String sendMailTo;
 
+    @Value("${set.protocol.to.https}")
+    private Boolean setProtocolToHttps;
+
     @Autowired
     public JavaMailSender emailSender;
 
@@ -46,7 +49,10 @@ public class FeedbackController {
         log.debug("Sending e-mail message: " + message);
         emailSender.send(message);
 
-        return new ModelAndView("contact");
+        ModelAndView mav = new ModelAndView("contact");
+        mav.addObject("setProtocolToHttps", setProtocolToHttps);
+
+        return mav;
     }
 
     @RequestMapping(value = "info/nominate", method = RequestMethod.POST)
@@ -70,6 +76,9 @@ public class FeedbackController {
         log.debug("Sending e-mail message: " + message);
         emailSender.send(message);
 
-        return new ModelAndView("nominate");
+        ModelAndView mav = new ModelAndView("nominate");
+        mav.addObject("setProtocolToHttps", setProtocolToHttps);
+
+        return mav;
     }
 }
