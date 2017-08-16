@@ -174,8 +174,8 @@ public class SolrSearchService {
         String domainsQuery = generateMultipleConditionsQueryWithPreCondition(originalDomains, FIELD_DOMAIN);
 
         //After escaping and encoding quotes with double slash SOLR doesn't recognize request to find exact match,
-        //so we should remove %5C (encoded double slash)and leave just quote
-        String encodedSearchQueryWithQuotes = toEncoded(searchQuery).replaceAll("%5C", "");
+        //so we should remove \\" (encoded double slash) and leave just quote "
+        String encodedSearchQueryWithQuotes = toEncoded(searchQuery.replaceAll("\\\\\"", "\""));
         String queryString = "q=" + encodedSearchQueryWithQuotes +
                 "&sort=" + toEncoded(sortByQuery) +
                 "&fq=" + toEncoded(accessToQuery) +

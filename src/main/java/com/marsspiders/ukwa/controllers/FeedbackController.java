@@ -19,9 +19,9 @@ import java.text.ParseException;
 import static com.marsspiders.ukwa.controllers.HomeController.PROJECT_NAME;
 
 @Controller
-@RequestMapping(value = PROJECT_NAME + "/contact")
-public class ContactController {
-    private static final Log log = LogFactory.getLog(ContactController.class);
+@RequestMapping(value = PROJECT_NAME)
+public class FeedbackController {
+    private static final Log log = LogFactory.getLog(FeedbackController.class);
 
     @Value("${bl.send.mail.to}")
     private String sendMailTo;
@@ -29,7 +29,7 @@ public class ContactController {
     @Autowired
     public JavaMailSender emailSender;
 
-    @RequestMapping(value = "feedback", method = RequestMethod.POST)
+    @RequestMapping(value = "contact", method = RequestMethod.POST)
     public ModelAndView sendFeedback(@RequestParam(value = "name", required = false) String name,
                                      @RequestParam(value = "email", required = false) String email,
                                      @RequestParam(value = "comments", required = false) String comments) {
@@ -46,11 +46,10 @@ public class ContactController {
         log.debug("Sending e-mail message: " + message);
         emailSender.send(message);
 
-        ModelAndView mav = new ModelAndView("contact");
-        return mav;
+        return new ModelAndView("contact");
     }
 
-    @RequestMapping(value = "nominate", method = RequestMethod.POST)
+    @RequestMapping(value = "info/nominate", method = RequestMethod.POST)
     public ModelAndView sendNominateRequest(@RequestParam(value = "name", required = false) String name,
                                             @RequestParam(value = "mail", required = false) String mail,
                                             @RequestParam(value = "title", required = false) String title,
@@ -71,7 +70,6 @@ public class ContactController {
         log.debug("Sending e-mail message: " + message);
         emailSender.send(message);
 
-        ModelAndView mav = new ModelAndView("nominate");
-        return mav;
+        return new ModelAndView("nominate");
     }
 }

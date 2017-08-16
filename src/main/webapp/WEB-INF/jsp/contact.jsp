@@ -37,7 +37,7 @@ ${pageContext.response.locale}
   </div>
 </section>
 <section id="content">
-  <form action="/ukwa/contact/feedback" method="post" enctype="multipart/form-data" name="contact">
+  <form action="/ukwa/contact" method="post" enctype="multipart/form-data" name="contact">
     <div class="row page-content">
       <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
         <h3 class="light-blue bold"><spring:message code="contact.form.heading" /></h3>

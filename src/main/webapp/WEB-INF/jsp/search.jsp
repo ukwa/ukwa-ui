@@ -221,7 +221,7 @@ ${pageContext.response.locale}
       <div class="row">
         <div class="col-sm-12 padding-top-5">
           <span class="results-count"><c:out value="${totalSearchResultsSize}"/></span>
-          <spring:message code="search.results.num" /> <span class="bold">&quot;<c:out value="${originalSearchRequest}"/>&quot;</span></div>
+          <spring:message code="search.results.num" /> <span class="bold">&quot;<c:out value="${originalSearchRequest}" escapeXml="false"/>&quot;</span></div>
           
       </div>
       </div>
