@@ -81,7 +81,7 @@ ${pageContext.response.locale}
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
       <span><spring:message code="nominate.form.email.notice" /></span>
-        <div class=" margin-top-30 clearfix"><button type="button" class="button button-blue" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button></div>
+        <div class=" margin-top-30 clearfix"><button type="submit" class="button button-blue" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button></div>
         
       </div>
     </div>
