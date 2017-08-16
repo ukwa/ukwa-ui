@@ -47,7 +47,7 @@ ${pageContext.response.locale}
   </div>
 </section>
 <section id="content">
-  <form action="#" method="get" enctype="multipart/form-data" name="nominate">
+  <form action="/ukwa/info/nominate" method="get" enctype="multipart/form-data" name="nominate">
     <div class="row page-content">
       <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
         <h3 class="light-blue bold"><spring:message code="nominate.form.heading" /></h3>
