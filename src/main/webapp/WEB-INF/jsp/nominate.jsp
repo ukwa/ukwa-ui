@@ -91,5 +91,13 @@ ${pageContext.response.locale}
   <%@include file="footer.jsp" %>
 </footer>
 </div>
+<script>
+$(document).ready(function(e) {
+    
+	var message='<spring:message code="nominate.sent.message"/>';
+	if ($.urlParam('sent')=='true') alert(message);
+	
+});
+</script>
 </body>
 </html>

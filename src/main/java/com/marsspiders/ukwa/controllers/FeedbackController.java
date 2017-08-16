@@ -51,6 +51,7 @@ public class FeedbackController {
 
         ModelAndView mav = new ModelAndView("contact");
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
+        mav.addObject("sent", true);
 
         return mav;
     }
@@ -78,6 +79,7 @@ public class FeedbackController {
 
         ModelAndView mav = new ModelAndView("nominate");
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
+        mav.addObject("sent", true);
 
         return mav;
     }
