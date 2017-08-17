@@ -108,7 +108,7 @@ public class SearchController {
             accessTo = AccessToEnum.VIEWABLE_ONLY_ON_LIBRARY;
         }
 
-        if (!isBlank(text) && searchBy != null && startFromRow <= solrSearchResultsLimit) {
+        if (!isBlank(text) && searchBy != null) {
             Date fromDate = isBlank(fromDateText) ? null : sdf.parse(fromDateText);
             Date toDate = isBlank(toDateText) ? null : sdf.parse(toDateText);
 
@@ -126,8 +126,9 @@ public class SearchController {
                 }
             }
 
+            long startRowToSend = startFromRow <= solrSearchResultsLimit ? startFromRow : 1;
             SolrSearchResult<ContentInfo> archivedSites = searchService.searchContent(searchBy, text, rowsPerPage,
-                    sortBy, accessTo, startFromRow, originalContentTypes, originalPublicSuffixes, originalDomains,
+                    sortBy, accessTo, startRowToSend, originalContentTypes, originalPublicSuffixes, originalDomains,
                     fromDate, toDate, originalRangeDates, originalCollections);
 
 
@@ -151,7 +152,6 @@ public class SearchController {
         String originalSortValue = sortBy == null ? "" : sortBy.getWebRequestOrderValue();
 
         ModelAndView mav = new ModelAndView("search");
-        mav.addObject("searchResults", searchResultDTOs);
         mav.addObject("totalSearchResultsSize", totalSearchResultsSize);
         mav.addObject("accessTerms", accessTermsPairs);
         mav.addObject("contentTypes", contentTypesPairs);
@@ -174,8 +174,14 @@ public class SearchController {
         mav.addObject("targetPageNumber", targetPageNumber);
         mav.addObject("rowsPerPageLimit", rowsPerPage);
         mav.addObject("userIpFromBl", userIpFromBl);
-        mav.addObject("deepPaging", (startFromRow > solrSearchResultsLimit));
         mav.addObject("totalPages", (int) (Math.ceil(totalSearchResultsSize / (double) rowsPerPage)));
+
+        if (startFromRow <= solrSearchResultsLimit) {
+            mav.addObject("searchResults", searchResultDTOs);
+        } else {
+            mav.addObject("deepPaging", true);
+            mav.addObject("searchResults", new ArrayList<>());
+        }
 
         return mav;
     }
