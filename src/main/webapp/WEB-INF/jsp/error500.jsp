@@ -18,7 +18,7 @@ ${pageContext.response.locale}
 <html lang="en">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
-<title><spring:message code="error.title" /></title>
+<title><spring:message code="error.500.title" /></title>
 <%@include file="head.jsp" %>
 </head>
 
@@ -30,29 +30,23 @@ ${pageContext.response.locale}
 </header>
 <section id="content">
   <div class="row header-blue white">
-    <div class="col-md-12 col-sm-12 margin-top-minus-20"><a href="javascript:window.history.back();" title="<spring:message code="noresults.back.button" />" class="no-decoration"><img class="h3-icon" src="img/icons/left-arrow-white.png" alt="<spring:message code="error.back.button" />"/><span class="text-big bold"><spring:message code="error.back.button" /></span></a>
+    <div class="col-md-12 col-sm-12 margin-top-minus-20"><a href="javascript:window.history.back();" title="<spring:message code="error.500.back.button" />" class="no-decoration"><img class="h3-icon" src="img/icons/left-arrow-white.png" alt="<spring:message code="error.500.back.button" />"/><span class="text-big bold"><spring:message code="error.500.back.button" /></span></a>
     </div>
     <div class="col-md-6 offset-md-3 col-md-offset-3">
       <h2 class="uppercase">
-        <c:choose>
-          <c:when test="${pageNotFound}">
-            <spring:message code="error.page.not.found" />
-          </c:when>
-          <c:otherwise>
-            <spring:message code="error.main.heading" />
-          </c:otherwise>
-        </c:choose>
+
+            <spring:message code="error.500.heading" />
+
       </h2>
     </div>
   </div>
   <div class="row margin-0 padding-mobile-side-5 padding-top-80 padding-bottom-80">
-    <div class="col-lg-8 offset-lg-2 col-lg-offset-2 col-md-10 offset-md-1 col-md-offset-1 col-sm-12 text-justify">
-
-      <c:out value="${attributeError}" escapeXml="false"/>    <br/>
-      <c:out value="${attributeTimeStamp}"/><br/> <br/>
-      <c:out value="${attributeMessage}" escapeXml="false"/>  <br/><br/>
-      <c:out value="${attributeTrace}" escapeXml="false"/>    <br/>
+    <div class="col-lg-8 offset-lg-2 col-lg-offset-2 col-md-10 offset-md-1 col-md-offset-1 col-sm-12 text-bigger bold">
+		<spring:message code="error.500.text" />
     </div>
+    <div class="col-lg-8 offset-lg-2 col-lg-offset-2 col-md-10 offset-md-1 col-md-offset-1 col-sm-12 margin-top-60">
+		<spring:message code="error.500.note" />
+    </div>    
   </div>
 </section>
 <footer>

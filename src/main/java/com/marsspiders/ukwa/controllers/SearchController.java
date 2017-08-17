@@ -59,6 +59,9 @@ public class SearchController {
     @Value("${set.protocol.to.https}")
     private Boolean setProtocolToHttps;
 
+    @Value("${solr.search.results.limit}")
+    private int solrSearchResultsLimit;
+
     @Autowired
     WaybackIpResolver waybackIpResolver;
 
@@ -94,6 +97,7 @@ public class SearchController {
 
         int rowsPerPage = isNumeric(viewCount) ? Integer.valueOf(viewCount) : ROWS_PER_PAGE_DEFAULT;
         long targetPageNumber = isNumeric(pageNum) ? Long.valueOf(pageNum) : 1;
+        long startFromRow = (targetPageNumber - 1) * rowsPerPage;
         long totalSearchResultsSize = 0;
         boolean userIpFromBl = waybackIpResolver.isUserIpFromBl(request);
 
@@ -104,8 +108,7 @@ public class SearchController {
             accessTo = AccessToEnum.VIEWABLE_ONLY_ON_LIBRARY;
         }
 
-        if (!isBlank(text) && searchBy != null) {
-            long startFromRow = (targetPageNumber - 1) * rowsPerPage;
+        if (!isBlank(text) && searchBy != null && startFromRow <= solrSearchResultsLimit) {
             Date fromDate = isBlank(fromDateText) ? null : sdf.parse(fromDateText);
             Date toDate = isBlank(toDateText) ? null : sdf.parse(toDateText);
 
@@ -171,6 +174,7 @@ public class SearchController {
         mav.addObject("targetPageNumber", targetPageNumber);
         mav.addObject("rowsPerPageLimit", rowsPerPage);
         mav.addObject("userIpFromBl", userIpFromBl);
+        mav.addObject("deepPaging", (startFromRow > solrSearchResultsLimit));
         mav.addObject("totalPages", (int) (Math.ceil(totalSearchResultsSize / (double) rowsPerPage)));
 
         return mav;

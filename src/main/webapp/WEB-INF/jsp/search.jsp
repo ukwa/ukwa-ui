@@ -316,7 +316,14 @@ ${pageContext.response.locale}
           <div class="row margin-0 padding-0 border-bottom-gray">
         <div class="col-md-12 results-result">
           <h2 class="margin-0 padding-top-20 gray">
-            <spring:message code="search.noresults" />
+            <c:choose>
+              <c:when test="${deepPaging}">
+                <spring:message code="search.deep.paging" />
+              </c:when>
+              <c:otherwise>
+                <spring:message code="search.noresults" />
+              </c:otherwise>
+            </c:choose>
           </h2>
         </div>
       </div>
