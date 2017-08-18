@@ -1,6 +1,10 @@
 Change Log
 ----------
 
+* 2017-08-18
+    * Deep paging notice visual fixes
+	* Added translation placeholders
+
 * 2017-08-17
     * Fixed search with logical operators
 	* Removed deep paging

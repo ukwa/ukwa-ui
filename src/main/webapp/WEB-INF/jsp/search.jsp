@@ -224,6 +224,20 @@ ${pageContext.response.locale}
           <spring:message code="search.results.num" /> <span class="bold">&quot;<c:out value="${originalSearchRequest}" escapeXml="false"/>&quot;</span></div>
           
       </div>
+      
+       <c:choose>
+        <c:when test="${deepPaging}">
+      <div class="row margin-top-30">
+        <div class="col-sm-12 padding-top-5">
+          <span class="bold gray"><spring:message code="search.deep.paging" /></span>
+        </div>  
+      </div>
+                
+
+        </c:when>
+      </c:choose>
+      
+      
       </div>
       <div class="row padding-0 margin-0">
         <div class="col-md-12 pagination-cont">
@@ -318,15 +332,6 @@ ${pageContext.response.locale}
 
     <!--NO RESULTS-->
       <c:choose>
-        <c:when test="${deepPaging}">
-          <div class="row margin-0 padding-0 border-bottom-gray">
-            <div class="col-md-12 results-result">
-              <h2 class="margin-0 padding-top-20 gray">
-                <spring:message code="search.deep.paging" />
-              </h2>
-            </div>
-          </div>
-        </c:when>
         <c:when test="${totalPages == 0}">
           <div class="row margin-0 padding-0 border-bottom-gray">
             <div class="col-md-12 results-result">
