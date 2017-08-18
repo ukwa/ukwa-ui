@@ -159,7 +159,7 @@ public class SearchController {
         mav.addObject("domains", domainsPairs);
         mav.addObject("rangeDates", rangeDatesPairs);
         mav.addObject("collections", collectionPairs);
-        mav.addObject("originalSearchRequest", text.replaceAll("\"", "&quot;"));
+        mav.addObject("originalSearchRequest", text == null ? "" : text.replaceAll("\"", "&quot;"));
         mav.addObject("originalSearchLocation", searchLocation);
         mav.addObject("originalContentTypes", originalContentTypes);
         mav.addObject("originalPublicSuffixes", originalPublicSuffixes);
