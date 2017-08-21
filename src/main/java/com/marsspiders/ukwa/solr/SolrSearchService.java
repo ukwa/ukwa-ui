@@ -68,7 +68,7 @@ public class SolrSearchService {
     private SolrSearchResult<CollectionInfo> fetchAllCollections() {
         log.info("Fetching all collections");
 
-        String queryString = "type:" + TYPE_COLLECTION.getSolrDocumentType();
+        String queryString = "q=type:" + TYPE_COLLECTION.getSolrDocumentType();
 
         return sendRequest(queryString, CollectionInfo.class, ROOT_COLLECTIONS_ROWS_LIMIT, 0);
     }
@@ -79,7 +79,7 @@ public class SolrSearchService {
         String noParentQuery = "-parentId:[* TO *]";
         String sortQuery = FIELD_NAME + " asc";
 
-        String queryString = toEncoded(noParentQuery)
+        String queryString = "q=" + toEncoded(noParentQuery)
                 + "&sort=" + toEncoded(sortQuery);
 
         return sendRequest(queryString, CollectionInfo.class, ROOT_COLLECTIONS_ROWS_LIMIT, 0);
@@ -94,7 +94,7 @@ public class SolrSearchService {
         String collectionIdQuery = FIELD_ID + ":" + targetId;
         String sortQuery = FIELD_NAME + " asc";     //TODO: think about sorting for only one result, do we need it?
 
-        String queryString = toEncoded(collectionIdQuery)
+        String queryString = "q=" + toEncoded(collectionIdQuery)
                 + "&sort=" + toEncoded(sortQuery);
 
         return sendRequest(queryString, CollectionInfo.class, rowsLimit, 0);
@@ -117,7 +117,7 @@ public class SolrSearchService {
                 .collect(Collectors.joining(" OR "));
 
 
-        String queryString = toEncoded(parentIdsQueryString)
+        String queryString = "q=" + toEncoded(parentIdsQueryString)
                 + "&fq=" + toEncoded(typeSearchQueryString)
                 + "&sort=" + toEncoded(sortQuery);
 
@@ -135,9 +135,9 @@ public class SolrSearchService {
         String urlToSearchRegex = protocolPart + wwwPart + urlWithReplacedSlashes + endSlashPart;
         String urlToSearchQuery = FIELD_URL + ":/" + urlToSearchRegex + "/";
 
-        String queryString = toEncoded(urlToSearchQuery) +
-                        "&fl=" + FIELD_ID + "," + FIELD_TITLE + "," + FIELD_CRAWL_DATE + "," + FIELD_URL + ","
-                        + FIELD_WAYBACK_DATE + "," + FIELD_DOMAIN + "," + FIELD_ACCESS_TERMS;
+        String queryString = "q=" + toEncoded(urlToSearchQuery) +
+                "&fl=" + FIELD_ID + "," + FIELD_TITLE + "," + FIELD_CRAWL_DATE + "," + FIELD_URL + ","
+                + FIELD_WAYBACK_DATE + "," + FIELD_DOMAIN + "," + FIELD_ACCESS_TERMS;
 
         String[] facets = {};
         return sendRequest(queryString, ContentInfo.class, 10, 0, facets);
@@ -159,7 +159,7 @@ public class SolrSearchService {
         log.info("Searching content for '" + textToSearch + "' by " + searchLocation);
 
         int quotesCount = StringUtils.countMatches(textToSearch, "\"");
-        if(quotesCount % 2 != 0){
+        if (quotesCount % 2 != 0) {
             //Since Solr can't recognize request with only one quote, we should add another one to close it
             textToSearch += "\"";
         }
@@ -207,7 +207,7 @@ public class SolrSearchService {
                                                                      String... facetFields) {
         String fieldsFacetQuery = "&facet=on";
         for (String facetField : facetFields) {
-            if(facetField.equals(FIELD_ACCESS_TERMS)){
+            if (facetField.equals(FIELD_ACCESS_TERMS)) {
                 fieldsFacetQuery += "&facet.field=" + toEncoded(EXCLUDE_POINT_FIRST_LAYER_TAG) + facetField;
             } else {
                 fieldsFacetQuery += "&facet.field=" + toEncoded(EXCLUDE_POINT_SECOND_LAYER_TAG) + facetField;
