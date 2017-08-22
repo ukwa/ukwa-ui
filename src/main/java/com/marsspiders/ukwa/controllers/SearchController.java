@@ -176,7 +176,7 @@ public class SearchController {
         mav.addObject("userIpFromBl", userIpFromBl);
         mav.addObject("totalPages", (int) (Math.ceil(totalSearchResultsSize / (double) rowsPerPage)));
 
-        if (startFromRow <= solrSearchResultsLimit) {
+        if (startFromRow < solrSearchResultsLimit) {
             mav.addObject("searchResults", searchResultDTOs);
         } else {
             mav.addObject("deepPaging", true);
