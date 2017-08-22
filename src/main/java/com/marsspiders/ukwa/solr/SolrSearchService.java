@@ -5,7 +5,6 @@ import com.marsspiders.ukwa.solr.data.CollectionInfo;
 import com.marsspiders.ukwa.solr.data.ContentInfo;
 import com.marsspiders.ukwa.solr.data.SolrSearchResult;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.solr.client.solrj.util.ClientUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +21,7 @@ import static com.marsspiders.ukwa.util.SolrSearchUtil.generateAccessToQuery;
 import static com.marsspiders.ukwa.util.SolrSearchUtil.generateDateQuery;
 import static com.marsspiders.ukwa.util.SolrSearchUtil.generateMultipleConditionsQuery;
 import static com.marsspiders.ukwa.util.SolrSearchUtil.generateMultipleConditionsQueryWithPreCondition;
+import static com.marsspiders.ukwa.util.SolrStringUtil.escapeQueryChars;
 import static com.marsspiders.ukwa.util.SolrStringUtil.toEncoded;
 import static java.lang.String.format;
 
@@ -164,7 +164,7 @@ public class SolrSearchService {
             textToSearch += "\"";
         }
 
-        String searchQuery = ClientUtils.escapeQueryChars(textToSearch);
+        String searchQuery = escapeQueryChars(textToSearch);
         String sortByQuery = sortBy == null ? "" : FIELD_CRAWL_DATE + " " + sortBy.getSolrOrderValue();
         String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
         String accessToQuery = generateAccessToQuery(accessTo);

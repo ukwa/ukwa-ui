@@ -22,8 +22,7 @@ public class SolrStringUtil {
             // These characters are part of the query syntax and must be escaped
             if (c == '\\' || c == '+' || c == '-' || c == '!'  || c == '(' || c == ')' || c == ':'
                     || c == '^' || c == '[' || c == ']' || c == '\"' || c == '{' || c == '}' || c == '~'
-                    || c == '*' || c == '?' || c == '|' || c == '&'  || c == ';' || c == '/'
-                    || Character.isWhitespace(c)) {
+                    || c == '*' || c == '?' || c == '|' || c == '&'  || c == ';' || c == '/') {
                 sb.append('\\');
             }
             sb.append(c);
