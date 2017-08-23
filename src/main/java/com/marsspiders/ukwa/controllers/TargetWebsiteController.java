@@ -47,6 +47,6 @@ public class TargetWebsiteController {
     }
 
     private String toArchiveUrl(String originalUrl) {
-        return HomeController.PROJECT_NAME + "/wayback/*/" + originalUrl;
+        return HomeController.PROJECT_NAME + "/wayback/" + originalUrl;
     }
 }

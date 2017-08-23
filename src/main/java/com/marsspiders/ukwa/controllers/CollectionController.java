@@ -212,7 +212,7 @@ public class CollectionController {
             //Redirect to page with information about Reading Room Only restriction
             wayBackUrl = "noresults";
         } else {
-            wayBackUrl = rootPathWithLang + "wayback/*/" + websiteInfo.getUrl();
+            wayBackUrl = rootPathWithLang + "wayback/" + websiteInfo.getUrl();
         }
 
         TargetWebsiteDTO targetWebsite = new TargetWebsiteDTO();
