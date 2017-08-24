@@ -262,7 +262,7 @@ public class SearchController {
         //If site available for Open Access, we should set accessFlag to 'OA' to use default off-site wayback url in ArchiveController
         String accessFlag = readRoomOnlyAccess(archivedSiteInfo) ? "RRO" : VIEWABLE_ANYWHERE.getSolrRequestAccessRestriction();
         //Need to replace "jsp", "JSP" to avoid treating .jsp file in wayback url as its own url by Spring
-        String urlWithUppercaseJsp = url.replace("jsp", "JSP");
+        String urlWithUppercaseJsp = url.replace(".jsp", ".JSP");
         return rootPathWithLang + "wayback/" + accessFlag + "/" + archivedSiteInfo.getWayback_date() + "/" + urlWithUppercaseJsp;
     }
 

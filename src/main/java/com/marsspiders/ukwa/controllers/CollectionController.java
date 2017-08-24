@@ -53,6 +53,9 @@ public class CollectionController {
     @Value("${set.protocol.to.https}")
     private Boolean setProtocolToHttps;
 
+    @Value("${bl.wayback.future.snapshot}")
+    private String waybackFutureSnapshot;
+
     @Autowired
     WaybackIpResolver waybackIpResolver;
 
@@ -195,7 +198,7 @@ public class CollectionController {
                 .collect(Collectors.toList());
     }
 
-    private static TargetWebsiteDTO toTargetWebsiteDTO(String rootPathWithLang,
+    private TargetWebsiteDTO toTargetWebsiteDTO(String rootPathWithLang,
                                                        CollectionInfo websiteInfo,
                                                        boolean userIpFromBl) {
         boolean readRoomOnlyAccess = readRoomOnlyAccess(websiteInfo);
@@ -207,12 +210,16 @@ public class CollectionController {
                 ? websiteInfo.getDescription().replaceAll("<[^>]*>", "")
                 : null;
         String shortDescription = abbreviate(description, 60);
+        String accessFlag = readRoomOnlyAccess ? "RRO" : "OA";
         String wayBackUrl;
         if (!userIpFromBl && readRoomOnlyAccess) {
             //Redirect to page with information about Reading Room Only restriction
             wayBackUrl = "noresults";
         } else {
-            wayBackUrl = rootPathWithLang + "wayback/" + websiteInfo.getUrl();
+            //Need to replace "jsp", "JSP" to avoid treating .jsp file in wayback url as its own url by Spring
+            String urlWithUppercaseJsp = websiteInfo.getUrl().replace(".jsp", ".JSP");
+            //If site available for Open Access, we should set accessFlag to 'OA' to use default off-site wayback url in ArchiveController
+            wayBackUrl = rootPathWithLang + "wayback/" + accessFlag + "/" + waybackFutureSnapshot +"/" + urlWithUppercaseJsp;
         }
 
         TargetWebsiteDTO targetWebsite = new TargetWebsiteDTO();
@@ -226,7 +233,7 @@ public class CollectionController {
         targetWebsite.setEndDate(websiteInfo.getEndDate() != null ? websiteInfo.getEndDate().substring(0, 10) : "");
         targetWebsite.setLanguage(websiteInfo.getLanguage());
         targetWebsite.setAdditionalUrls(websiteInfo.getAdditionalUrl());
-        targetWebsite.setAccess(readRoomOnlyAccess ? "RRO" : "OA");
+        targetWebsite.setAccess(accessFlag);
 
         return targetWebsite;
     }

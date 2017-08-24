@@ -36,7 +36,6 @@ public class ArchiveController {
                                                @PathVariable("timestamp") String timestamp,
                                                HttpServletRequest request) {
         String waybackUrl = fetchWaybackUrlByIp(request, accessFlag);
-
         String siteUrl = evaluateUrlFromRequest(request);
         String prettySiteUrl = siteUrl.replaceAll(":/([a-zA-Z0-9])", "://$1");
 
