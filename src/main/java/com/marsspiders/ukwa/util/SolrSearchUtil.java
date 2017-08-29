@@ -18,6 +18,8 @@ import static com.marsspiders.ukwa.solr.SolrSearchService.OR_JOINER;
 public class SolrSearchUtil {
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
+    public static final String DATE_PART_AFTER_YEAR = "-01-01T00:00:00Z";
+
     public static String generateDateQuery(Date fromDatePicked, Date toDatePicked, List<String> rangeDates) {
         String fromDateText = fromDatePicked != null ? sdf.format(fromDatePicked) : "*";
         String toDateText = toDatePicked != null ? sdf.format(toDatePicked) : "*";
@@ -30,8 +32,8 @@ public class SolrSearchUtil {
             dateQuery += dateQuery.length() > 0 ? OR_JOINER : EXCLUDE_MARKER_SECOND_LAYER_TAG;
 
             int yearWhenArchived = Integer.parseInt(originalRangeDate);
-            String fromDate = yearWhenArchived + SolrSearchService.DATE_PART_AFTER_YEAR;
-            String toDate = (yearWhenArchived + 1) + SolrSearchService.DATE_PART_AFTER_YEAR;
+            String fromDate = yearWhenArchived + DATE_PART_AFTER_YEAR;
+            String toDate = (yearWhenArchived + 1) + DATE_PART_AFTER_YEAR;
 
             dateQuery += SolrSearchService.FIELD_CRAWL_DATE + ":[" + fromDate + " TO " + toDate + "]";
         }

@@ -118,10 +118,14 @@ $(document).ready(function(e) {
 		$(".results-for-highlight").each(function(index, element) {
 		
 			var restext=$(this).html();
-			var terms=$(".main-search-field").val().split(" ");
-			var operators=["AND", "OR", "NOT", "and", "or", "not", "And", "Or", "Not"];
+			var query=$(".main-search-field").val();
 			var matches=[];
 			var uniqueMatches=[];
+			var invalid = /[°"§%()\[\]{}=\\?´`'#<>|,;.:~*\\+_-]+/g;
+			var operators = ["AND", "NOT", "OR"]
+			
+			query = query.replace(invalid, " ");
+			var terms=query.split(" ");
 			
 			//match all search terms
 			$.each(terms, function(i, term) {
@@ -132,13 +136,13 @@ $(document).ready(function(e) {
 			
 			//remove duplicates
 			$.each(matches, function(i, el){
-				if($.inArray(el, uniqueMatches) === -1) uniqueMatches.push(el);
+				if($.inArray(el, uniqueMatches) === -1 && el!==' ' && el!=='') uniqueMatches.push(el);
 			});
 			
 			//replace with highlight style
 			$.each(uniqueMatches, function(i, el){
 				var rexp = new RegExp(el, 'g');
-				if($.inArray(el, operators) === -1) restext=restext.replace(rexp, '<span class="results-highlight">'+el+'</span>');
+				restext=restext.replace(rexp, '<span class="results-highlight">'+el+'</span>');
 			});
 			
 			$(this).html(restext);

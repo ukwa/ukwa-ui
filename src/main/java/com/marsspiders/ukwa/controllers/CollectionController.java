@@ -77,9 +77,9 @@ public class CollectionController {
                                                @RequestParam(value = "page", required = false) String pageNum,
                                                HttpServletRequest request) throws MalformedURLException, URISyntaxException {
         boolean userIpFromBl = waybackIpResolver.isUserIpFromBl(request);
-        long totalSearchResultsSize = 0;
-        long targetPageNumber = isNumeric(pageNum) ? Long.valueOf(pageNum) : 1;
-        long startFromRow = (targetPageNumber - 1) * ROWS_PER_PAGE_DEFAULT;
+        int totalSearchResultsSize = 0;
+        int targetPageNumber = isNumeric(pageNum) ? Integer.valueOf(pageNum) : 1;
+        int startFromRow = (targetPageNumber - 1) * ROWS_PER_PAGE_DEFAULT;
 
         SolrSearchResult<CollectionInfo> targetWebsitesSearchResult = searchService
                 .fetchChildCollections(singletonList(collectionId), TYPE_TARGET, ROWS_PER_PAGE_DEFAULT, startFromRow);

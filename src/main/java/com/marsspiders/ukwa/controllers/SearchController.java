@@ -86,7 +86,6 @@ public class SearchController {
         List<String> contentTypesPairs = new LinkedList<>();
         List<String> publicSuffixesPairs = new LinkedList<>();
         List<String> domainsPairs = new LinkedList<>();
-        List<String> rangeDatesPairs = new LinkedList<>();
         List<String> collectionPairs = new LinkedList<>();
 
         List<String> originalContentTypes = checkedContentTypes != null ? asList(checkedContentTypes) : emptyList();
@@ -96,8 +95,8 @@ public class SearchController {
         List<String> originalCollections = checkedCollections != null ? asList(checkedCollections) : emptyList();
 
         int rowsPerPage = isNumeric(viewCount) ? Integer.valueOf(viewCount) : ROWS_PER_PAGE_DEFAULT;
-        long targetPageNumber = isNumeric(pageNum) ? Long.valueOf(pageNum) : 1;
-        long startFromRow = (targetPageNumber - 1) * rowsPerPage;
+        int targetPageNumber = isNumeric(pageNum) ? Integer.valueOf(pageNum) : 1;
+        int startFromRow = (targetPageNumber - 1) * rowsPerPage;
         long totalSearchResultsSize = 0;
         boolean userIpFromBl = waybackIpResolver.isUserIpFromBl(request);
 
@@ -126,7 +125,7 @@ public class SearchController {
                 }
             }
 
-            long startRowToSend = startFromRow <= solrSearchResultsLimit ? startFromRow : 1;
+            int startRowToSend = startFromRow <= solrSearchResultsLimit ? startFromRow : 1;
             SolrSearchResult<ContentInfo> archivedSites = searchService.searchContent(searchBy, text, rowsPerPage,
                     sortBy, accessTo, startRowToSend, originalContentTypes, originalPublicSuffixes, originalDomains,
                     fromDate, toDate, originalRangeDates, originalCollections);
@@ -137,14 +136,11 @@ public class SearchController {
 
             FacetCounts facetCounts = archivedSites.getFacetCounts();
             if (facetCounts != null && facetCounts.getFields() != null) {
-                LinkedList<String> datesCount = facetCounts.getRanges().getCrawlDateRange().getCount();
-
                 accessTermsPairs = facetCounts.getFields().getAccessTerms();
                 contentTypesPairs = facetCounts.getFields().getTypes();
                 publicSuffixesPairs = facetCounts.getFields().getPublicSuffixes();
                 domainsPairs = facetCounts.getFields().getDomains();
                 collectionPairs = facetCounts.getFields().getCollections();
-                rangeDatesPairs = toRangeDates(datesCount);
             }
         }
 
@@ -157,7 +153,6 @@ public class SearchController {
         mav.addObject("contentTypes", contentTypesPairs);
         mav.addObject("publicSuffixes", publicSuffixesPairs);
         mav.addObject("domains", domainsPairs);
-        mav.addObject("rangeDates", rangeDatesPairs);
         mav.addObject("collections", collectionPairs);
         mav.addObject("originalSearchRequest", text == null ? "" : text.replaceAll("\"", "&quot;"));
         mav.addObject("originalSearchLocation", searchLocation);

@@ -1,6 +1,10 @@
 Change Log
 ----------
 
+* 2017-08-29
+    * Issue #5 Reimplemented search using SolrJ to work for all search types 
+    * Adapted keyword highlighting to work with the new search implementation
+
 * 2017-08-18
     * Deep paging notice visual fixes
 	* Added translation placeholders

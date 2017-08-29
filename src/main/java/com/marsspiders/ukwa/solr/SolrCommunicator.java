@@ -5,18 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.marsspiders.ukwa.solr.data.BodyDocsType;
 import com.marsspiders.ukwa.solr.data.CollectionInfo;
 import com.marsspiders.ukwa.solr.data.ContentInfo;
-import com.marsspiders.ukwa.solr.data.ResponseBody;
 import com.marsspiders.ukwa.solr.data.SolrSearchResult;
-import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpResponse;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.CredentialsProvider;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.impl.HttpSolrClient;
+import org.apache.solr.client.solrj.impl.NoOpResponseParser;
+import org.apache.solr.client.solrj.request.QueryRequest;
+import org.apache.solr.common.util.NamedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,10 +22,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Collections;
 import java.util.stream.Collectors;
-
-import static com.marsspiders.ukwa.util.SolrStringUtil.toDecoded;
 
 @Service
 public class SolrCommunicator {
@@ -40,8 +31,14 @@ public class SolrCommunicator {
     @Value("${solr.collection.search.path}")
     private String solrCollectionPath;
 
+    @Value("${solr.collection.search.request.handler}")
+    private String solrCollectionRequestHandler;
+
     @Value("${solr.full.text.search.path}")
     private String solrFullTextPath;
+
+    @Value("${solr.full.text.search.request.handler}")
+    private String solrFullTextRequestHandler;
 
     @Value("${solr.auth.username}")
     private String username;
@@ -58,34 +55,32 @@ public class SolrCommunicator {
     @Value("${solr.show.stub.data.when.service.not.available}")
     private boolean showStubData;
 
-    <T extends BodyDocsType> SolrSearchResult<T> sendRequest(String solrSearchUrl, Class<T> bodyDocsType) {
+    <T extends BodyDocsType> SolrSearchResult<T> sendRequest(Class<T> bodyDocsType, SolrQuery query) {
         try {
 
             String solrServerUrl;
+            String solrRequestHandler;
             if (bodyDocsType.isAssignableFrom(ContentInfo.class)) {
                 solrServerUrl = solrFullTextPath;
+                solrRequestHandler = solrFullTextRequestHandler;
             } else if (bodyDocsType.isAssignableFrom(CollectionInfo.class)) {
                 solrServerUrl = solrCollectionPath;
+                solrRequestHandler = solrCollectionRequestHandler;
             } else {
                 throw new IllegalStateException("Unknown bodyDocsType: " + bodyDocsType);
             }
 
-            HttpPost request = new HttpPost(solrServerUrl + solrSearchUrl);
-            request.setHeader("Accept", "application/json");
-            request.setHeader("Content-type", "application/json");
-            log.debug("Sending request to SOLR: " + request.getURI().toString());
-            log.debug("(decoded URL): " + toDecoded(request.getURI().toString()));
+            QueryRequest req = new QueryRequest(query);
+            req.setResponseParser(new NoOpResponseParser("json"));
+            req.setBasicAuthCredentials(username, password);
+            req.setPath(solrRequestHandler);
 
-            HttpResponse response = getHttpClient().execute(request);
-            String solrSearchResultString = IOUtils.toString(response.getEntity().getContent());
+            HttpSolrClient solrClient = new HttpSolrClient.Builder(solrServerUrl).build();
+            solrClient.setConnectionTimeout(connectionTimeout);
+            solrClient.setSoTimeout(readTimeout);
 
-            //String cutResponseBody = toDecoded(solrSearchResultString.substring(0, subStringLength)) + ".........";
-            String fullResponseLine = solrSearchResultString.replaceAll("\n", "");
-            log.debug("SOLR Response length: " + solrSearchResultString.length() + ", body: " + fullResponseLine);
-
-            if(response.getStatusLine().getStatusCode() != 200){
-                throw new IllegalStateException("Unexpected response status code: " + response.getStatusLine().getStatusCode());
-            }
+            NamedList<Object> response = solrClient.request(req);
+            String solrSearchResultString = (String)response.get("response");
 
             //Need to deserialize json according to generic type passed
             ObjectMapper mapper = new ObjectMapper();
@@ -102,36 +97,6 @@ public class SolrCommunicator {
                 throw new RuntimeException(errorMsg, e);
             }
         }
-    }
-
-    private HttpClient getHttpClient() {
-        CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-        credentialsProvider.setCredentials(
-                new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT),
-                new UsernamePasswordCredentials(username, password));
-
-        RequestConfig requestConfig = RequestConfig.custom()
-                .setConnectTimeout(connectionTimeout)
-                .setConnectionRequestTimeout(connectionTimeout)
-                .setSocketTimeout(readTimeout)
-                .build();
-
-        return HttpClientBuilder
-                .create()
-                .setDefaultCredentialsProvider(credentialsProvider)
-                .setDefaultRequestConfig(requestConfig)
-                .build();
-    }
-
-    private <T extends BodyDocsType> SolrSearchResult<T> toEmptySolrSearchResult() {
-        SolrSearchResult<T> solrSearchResult;
-        ResponseBody<T> responseBody = new ResponseBody<T>();
-        responseBody.setDocuments(Collections.emptyList());
-
-        solrSearchResult = new SolrSearchResult<>();
-        solrSearchResult.setResponseBody(responseBody);
-
-        return solrSearchResult;
     }
 
     private <T extends BodyDocsType> SolrSearchResult<T> toStubSolrSearchResult(Class<T> bodyDocsType) {
