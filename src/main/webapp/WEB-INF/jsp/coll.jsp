@@ -129,11 +129,11 @@ ${pageContext.response.locale}
             <%--set page value as a placeholder as it is going to be changed for each link--%>
             <c:param name="page" value="PAGE_NUM_PLACEHOLDER" />
           </c:url>
-          <c:if test="${targetPageNumber > 1}"> <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>"><div class="pagination-button arrow left-arrow" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"></div></a> </c:if>
+          <c:if test="${targetPageNumber > 1}"> <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"><div class="pagination-button arrow left-arrow"></div></a> </c:if>
 
           <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
             <c:if test="${i <= totalPages}">
-              <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>"> <div class="pagination-button ${i == targetPageNumber ? "active" : "inactive hide-mobile"}" title="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>">
+        <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>" title="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>"> <div class="pagination-button ${i == targetPageNumber ? "active" : "inactive hide-mobile"}">
                 <c:out value="${i}"/>
               </div></a>
             </c:if>
@@ -142,7 +142,7 @@ ${pageContext.response.locale}
           <c:if test="${targetPageNumber + 4 < totalPages}">
             <div class="pagination-button dots inactive"></div>
           </c:if>
-          <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit}"> <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>"><div class="pagination-button arrow right-arrow" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"></div></a> </c:if>
+          <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit}"> <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><div class="pagination-button arrow right-arrow"></div></a> </c:if>
         </div>
     </div>
 
@@ -202,11 +202,11 @@ ${pageContext.response.locale}
           <%--set page value as a placeholder as it is going to be changed for each link--%>
           <c:param name="page" value="PAGE_NUM_PLACEHOLDER" />
         </c:url>
-        <c:if test="${targetPageNumber > 1}"> <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>"><div class="pagination-button arrow left-arrow" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"></div></a> </c:if>
+        <c:if test="${targetPageNumber > 1}"> <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"><div class="pagination-button arrow left-arrow"></div></a> </c:if>
 
         <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
           <c:if test="${i <= totalPages}">
-            <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>"> <div class="pagination-button ${i == targetPageNumber ? "active" : "inactive hide-mobile"}" title="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>">
+         <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>" title="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>"> <div class="pagination-button ${i == targetPageNumber ? "active" : "inactive hide-mobile"}">
               <c:out value="${i}"/>
             </div></a>
           </c:if>
@@ -215,7 +215,7 @@ ${pageContext.response.locale}
         <c:if test="${targetPageNumber + 4 < totalPages}">
           <div class="pagination-button dots inactive"></div>
         </c:if>
-        <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit}"> <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>"><div class="pagination-button arrow right-arrow" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"></div></a> </c:if>
+        <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit}"> <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><div class="pagination-button arrow right-arrow"></div></a> </c:if>
       </div>
     </div>
   </div>

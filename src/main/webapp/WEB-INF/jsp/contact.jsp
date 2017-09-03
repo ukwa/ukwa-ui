@@ -20,6 +20,7 @@ ${pageContext.response.locale}
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title><spring:message code="contact.title" /></title>
 <%@include file="head.jsp" %>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>
@@ -45,7 +46,7 @@ ${pageContext.response.locale}
 </div>
 </c:if>
 
-  <form action="/ukwa/contact" method="post" enctype="multipart/form-data" name="contact">
+  <form action="/ukwa/contact" method="post" enctype="multipart/form-data" name="contact" id="contact-form">
     <div class="row page-content">
       <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
         <h3 class="light-blue bold"><spring:message code="contact.form.heading" /></h3>
@@ -73,8 +74,10 @@ ${pageContext.response.locale}
       </div>
 
       
-      <div class="col-md-6 col-sm-12 form-content-col padding-top-30">
-        <button type="submit" class="button button-blue" title="<spring:message code="contact.form.button.submit" />"><spring:message code="contact.form.button.submit" /></button>
+      <div class="col-md-6 col-sm-12 form-content-col padding-top-0">
+      <div class="g-recaptcha" data-sitekey="6Lcn5C4UAAAAAFzANA394u7Jqfk2QmvxyUjM8UiM"></div>
+      <div class="captcha-message"><spring:message code="captcha.message" /></div>
+        <button type="submit" class="button button-blue margin-top-30" title="<spring:message code="contact.form.button.submit" />"><spring:message code="contact.form.button.submit" /></button>
       </div>
     </div>
   </form>
@@ -83,6 +86,24 @@ ${pageContext.response.locale}
   <%@include file="footer.jsp" %>
 </footer>
 </div>
+<script>
 
+$(document).ready(function(e) {
+   	
+	$("#contact-form").submit(function(e) {
+    	var response = grecaptcha.getResponse();
+		if (response.length == 0) {
+			$(".captcha-message").show();
+			var result=false;	
+		} else {
+			$(".captcha-message").hide();
+			var result=true;
+		}
+		return result;
+	});
+    
+});
+
+</script>
 </body>
 </html>

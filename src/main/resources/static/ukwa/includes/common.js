@@ -24,8 +24,15 @@ $(document).ready(function(e) {
 	
 	//bootstrap tooltips
 	$('[data-toggle="tooltip"]').tooltip({
-		placement: 'bottom'
+		placement: 'bottom',
+		trigger: 'click'
 	}).click(function(e) { e.stopPropagation(); }) //stopps click on the "?" button from expanding/collapsing the filters;
+	$('[data-toggle="tooltip"]').each(function(index, element) {
+        $(this).mouseleave(function(e) {
+        	$('[data-toggle="tooltip"]').tooltip('hide')
+    	}); 
+    });
+	
 	
 	//remove tabindex from radio/check boxes
 	$(this).find("input[type=radio], input[type=checkbox]").attr("tabindex", "-1");
@@ -164,5 +171,8 @@ $(document).ready(function(e) {
 	//match height for collection headings and descriptions
 	$('.collection-heading').matchHeight();	
 	$('.img-square-caption').matchHeight();
+	
+	//hide back button if not needed
+	if (history.length<3) $(".back-button").hide();
 	
 });

@@ -20,6 +20,7 @@ ${pageContext.response.locale}
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title><spring:message code="nominate.title" /></title>
 <%@include file="head.jsp" %>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>
@@ -55,7 +56,7 @@ ${pageContext.response.locale}
 </div>
 </c:if>
 
-  <form action="/ukwa/info/nominate" method="post" enctype="multipart/form-data" name="nominate">
+  <form action="/ukwa/info/nominate" method="post" enctype="multipart/form-data" name="nominate" id="nominate-form">
     <div class="row page-content">
       <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
         <h3 class="light-blue bold"><spring:message code="nominate.form.heading" /></h3>
@@ -89,7 +90,10 @@ ${pageContext.response.locale}
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
       <span><spring:message code="nominate.form.email.notice" /></span>
-        <div class=" margin-top-30 clearfix"><button type="submit" class="button button-blue" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button></div>
+        <div class=" margin-top-30 clearfix">
+         <div class="g-recaptcha" data-sitekey="6Lcn5C4UAAAAAFzANA394u7Jqfk2QmvxyUjM8UiM"></div>
+      <div class="captcha-message"><spring:message code="captcha.message" /></div>
+        <button type="submit" class="button button-blue margin-top-30" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button></div>
         
       </div>
     </div>
@@ -99,8 +103,24 @@ ${pageContext.response.locale}
   <%@include file="footer.jsp" %>
 </footer>
 </div>
+<script>
 
+$(document).ready(function(e) {
+   	
+	$("#nominate-form").submit(function(e) {
+    	var response = grecaptcha.getResponse();
+		if (response.length == 0) {
+			$(".captcha-message").show();
+			var result=false;	
+		} else {
+			$(".captcha-message").hide();
+			var result=true;
+		}
+		return result;
+	});
+    
+});
 
-
+</script>
 </body>
 </html>

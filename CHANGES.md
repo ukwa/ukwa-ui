@@ -1,6 +1,12 @@
 Change Log
 ----------
 
+* 2017-09-03
+    * Added capcha to nominate and contact forms
+	* Removed back buttons if pages opened in new window
+	* Additional WCAG2 fixes
+	* Links in search tips are now functional
+
 * 2017-08-29
     * Issue #5 Reimplemented search using SolrJ to work for all search types 
     * Adapted keyword highlighting to work with the new search implementation

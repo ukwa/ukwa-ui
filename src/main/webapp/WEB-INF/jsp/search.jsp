@@ -41,13 +41,13 @@ ${pageContext.response.locale}
     
     <div class="col-lg-3 col-md-4 col-sm-12 sidebar padding-0">
     <aside id="sidebar">
-    <span class="hidden"><spring:message code="search.filter.notice" /></span>
+    <div class="height-0"><spring:message code="search.filter.notice" /></div>
       <form action="search" method="get" enctype="multipart/form-data" name="filter_form" id="filter_form">
         <div class="sidebar-item toggle open" id="toggle-sidebar"></div>
         <div class="sidebar-collapse" role="region">
           <%--   View facet   --%>
           <div class="sidebar-filter-header no-collapse" id="t_access" title="<spring:message code="search.side.view.title" />"> <spring:message code="search.side.view.title" />
-            <div class="help-button small white" data-toggle="tooltip" title="<spring:message code="search.side.view.tip" />" tabindex="0"></div>
+            <div class="help-button small white" title="<spring:message code="search.side.view.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.view.tip" />" tabindex="0"></div>
           </div>
           <div class="sidebar-filter expanded no-collapse" aria-labelledby="t_access">
             <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
@@ -82,7 +82,7 @@ ${pageContext.response.locale}
             <%--   Domains collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.domain.title" />" tabindex="0" role="tab">
               <div class="sidebar-filter-header-title" id="t_domain"><spring:message code="search.side.domain.title" /></div>
-              <div class="help-button small white" data-toggle="tooltip" title="<spring:message code="search.side.domain.tip" />" tabindex="0"></div>
+              <div class="help-button small white" title="<spring:message code="search.side.domain.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.domain.tip" />" tabindex="0"></div>
             </div>
             <div class="sidebar-filter" role="tabpanel" aria-hidden="true" aria-labelledby="t_domain">
               <c:if test="${domains.size() > 1}">
@@ -105,7 +105,7 @@ ${pageContext.response.locale}
             <%--   Document type collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
               <div class="sidebar-filter-header-title" id="t_doctype"><spring:message code="search.side.doctype.title" /></div>
-              <div class="help-button small white" data-toggle="tooltip" title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
+              <div class="help-button small white" title="<spring:message code="search.side.doctype.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
             </div>
             <div class="sidebar-filter" role="tabpanel" aria-hidden="true" aria-labelledby="t_doctype">
               <c:if test="${contentTypes.size() > 1}">
@@ -128,7 +128,7 @@ ${pageContext.response.locale}
             <%--   Public suffix collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.suffix.title" />" tabindex="0" role="tab">
               <div class="sidebar-filter-header-title" id="t_suffix"><spring:message code="search.side.suffix.title" /></div>
-              <div class="help-button small white" data-toggle="tooltip" title="<spring:message code="search.side.suffix.tip" />" tabindex="0"></div>
+              <div class="help-button small white" title="<spring:message code="search.side.suffix.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.suffix.tip" />" tabindex="0"></div>
             </div>
             <div class="sidebar-filter" role="tabpanel" aria-hidden="true" aria-labelledby="t_suffix">
               <c:if test="${publicSuffixes.size() > 1}">
@@ -151,23 +151,23 @@ ${pageContext.response.locale}
             <%--   Archived year collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open archived-date" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.date.title" />" tabindex="0" id="dates_header" role="tab">
               <div class="sidebar-filter-header-title" id="t_date"><spring:message code="search.side.date.title" /></div>
-              <div class="help-button small white" data-toggle="tooltip" title="<spring:message code="search.side.date.tip" />" tabindex="0"></div>
+              <div class="help-button small white" title="<spring:message code="search.side.date.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.date.tip" />" tabindex="0"></div>
             </div>
             <div class="sidebar-filter" id="dates_container" role="tabpanel" aria-hidden="true" aria-labelledby="t_date">
               <div class="row padding-bottom-20 padding-top-20">
-                <div class="col-sm-3">
-                  <label for="from_date" class="white"><spring:message code="search.side.date.from" /></label>
+                <div class="col-sm-6">
+                  <label for="from_date" class="white date-range-label"><spring:message code="search.side.date.from" /></label>
                 </div>
-                <div class="col-sm-9">
+                <div class="col-sm-6">
                   <input type="text" class="form-control blue form-white-placeholder" name="from_date" id="from_date" title="<spring:message code="search.side.date.from" />" placeholder="YYYY-MM-DD"
                        value="${originalFromDateText != null ? originalFromDateText : ''}"/>
                 </div>
               </div>
               <div class="row padding-bottom-20">
-                <div class="col-sm-3">
-                  <label for="to_date" class="white"><spring:message code="search.side.date.to" /></label>
+                <div class="col-sm-6">
+                  <label for="to_date" class="white date-range-label"><spring:message code="search.side.date.to" /></label>
                 </div>
-                <div class="col-sm-9">
+                <div class="col-sm-6">
                   <input type="text" class="form-control blue form-white-placeholder" name="to_date" id="to_date" title="<spring:message code="search.side.date.to" />" placeholder="YYYY-MM-DD"
                        value="${originalToDateText != null ? originalToDateText : ''}"/>
                 </div>
@@ -182,7 +182,7 @@ ${pageContext.response.locale}
             <%--   Collection collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.coll.title" />" tabindex="0" role="tab">
               <div class="sidebar-filter-header-title" id="t_coll"><spring:message code="search.side.coll.title" /></div>
-              <div class="help-button small white" data-toggle="tooltip" title="<spring:message code="search.side.coll.tip" />" tabindex="0"></div>
+              <div class="help-button small white" title="<spring:message code="search.side.coll.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.coll.tip" />" tabindex="0"></div>
             </div>
             <div class="sidebar-filter" role="tabpanel" aria-hidden="true" aria-labelledby="t_coll">
               <c:if test="${collections.size() > 1}">
@@ -257,8 +257,8 @@ ${pageContext.response.locale}
           </c:if>
           <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
           <c:if test="${i <= totalPages && !deepPaging}">
-            <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>">
-            <div class="pagination-button ${i == targetPageNumber ? "active" : "inactive hide-mobile"}" title="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>">
+            <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>" title="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>">
+            <div class="pagination-button ${i == targetPageNumber ? "active" : "inactive hide-mobile"}">
               <c:out value="${i}"/>
             </div></a>
         </c:if>
@@ -266,7 +266,7 @@ ${pageContext.response.locale}
         <c:if test="${targetPageNumber + 4 < totalPages && !deepPaging}">
           <div class="pagination-button dots inactive"></div>
         </c:if>
-        <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit && !deepPaging}"> <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>"><div class="pagination-button arrow right-arrow" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"></div></a> </c:if>
+        <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit && !deepPaging}"> <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><div class="pagination-button arrow right-arrow"></div></a> </c:if>
       </div>
     </div>
     <div class="row border-bottom-gray margin-0">
@@ -364,8 +364,8 @@ ${pageContext.response.locale}
         </c:if>
         <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
           <c:if test="${i <= totalPages && !deepPaging}">
-            <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>">
-              <div class="pagination-button ${i == targetPageNumber ? "active" : "inactive hide-mobile"}" title="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>">
+            <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>" title="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>">
+              <div class="pagination-button ${i == targetPageNumber ? "active" : "inactive hide-mobile"}">
                 <c:out value="${i}"/>
               </div></a>
           </c:if>
@@ -373,7 +373,7 @@ ${pageContext.response.locale}
         <c:if test="${targetPageNumber + 4 < totalPages && !deepPaging}">
           <div class="pagination-button dots inactive"></div>
         </c:if>
-        <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit && !deepPaging}"> <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>"><div class="pagination-button arrow right-arrow" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"></div></a> </c:if>
+        <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit && !deepPaging}"> <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><div class="pagination-button arrow right-arrow"></div></a> </c:if>
       </div>
   </div>
   </div>

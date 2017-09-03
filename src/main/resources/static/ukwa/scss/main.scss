@@ -136,6 +136,11 @@ img {
 	height: 145px;	
 }
 
+.height-0 {
+	height:0 !important;
+	overflow:hidden;	
+}
+
 .width-auto-inline {
 	width:auto;
 	display:inline-block;
@@ -655,8 +660,10 @@ h2 {
 }
 
 h3 {
+	font-family: $font-bold;
 	font-size:1.4em;	
 	padding-bottom:20px;
+	padding-top:20px;
 	display:inline-block;
 	text-align:left;
 }
@@ -1192,6 +1199,11 @@ footer {
 	font-size: 20px;
 }
 
+.date-range-label {
+	line-height:1.2em;
+	margin-top:0;	
+}
+
 .help-button {
 	display:inline-block;
 	height:45px;
@@ -1703,6 +1715,16 @@ footer {
 	background-repeat:no-repeat;
 	background-image:url(../img/icons/play-button.png);
 	cursor: pointer;
+}
+
+/*CONTACT AND NOMINATE*/
+
+.captcha-message {
+	position:relative;
+	display:none;
+	color: $red;
+	clear:both;
+	padding-top:10px;	
 }
 
 /*MOBILE STYLES */
