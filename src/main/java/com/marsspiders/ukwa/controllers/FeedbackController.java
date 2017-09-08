@@ -58,21 +58,21 @@ public class FeedbackController {
 
     @RequestMapping(value = "info/nominate", method = RequestMethod.POST)
     public ModelAndView sendNominateRequest(@RequestParam(value = "name", required = false) String name,
-                                            @RequestParam(value = "mail", required = false) String mail,
+                                            @RequestParam(value = "email", required = false) String email,
                                             @RequestParam(value = "title", required = false) String title,
                                             @RequestParam(value = "url", required = false) String url,
-                                            @RequestParam(value = "text", required = false) String text) throws MalformedURLException, URISyntaxException, ParseException {
+                                            @RequestParam(value = "notes", required = false) String notes) throws MalformedURLException, URISyntaxException, ParseException {
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(sendMailTo);
         message.setSubject("Nominate request [" + name + "]");
         message.setText("Request from: " + name +
-                "\nContact e-mail: " + mail + "\n"
+                "\nContact e-mail: " + email + "\n"
                 + "\n"
                 + "Site title: " + title + "\n"
                 + "Site Url: " + url + "\n"
                 + "Additional information: \n"
-                + text);
+                + notes);
 
         log.debug("Sending e-mail message: " + message);
         emailSender.send(message);

@@ -1,6 +1,9 @@
 Change Log
 ----------
 
+* 2017-09-08
+    * Fixed contact and nominate form language issues
+
 * 2017-09-03
     * Added capcha to nominate and contact forms
 	* Removed back buttons if pages opened in new window

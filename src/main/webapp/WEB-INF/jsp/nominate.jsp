@@ -9,12 +9,12 @@
 <c:set var="url">
 ${req.requestURL}
 </c:set>
-<c:set var="locale">
-${pageContext.response.locale}
-</c:set>
 <c:if test="${setProtocolToHttps}">
   <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
 </c:if>
+<c:set var="locale">
+  ${pageContext.response.locale}
+</c:set>
 <html lang="en">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
@@ -56,7 +56,7 @@ ${pageContext.response.locale}
 </div>
 </c:if>
 
-  <form action="/ukwa/info/nominate" method="post" enctype="multipart/form-data" name="nominate" id="nominate-form">
+  <form action="info/nominate" method="post" enctype="multipart/form-data" name="nominate" id="nominate-form">
     <div class="row page-content">
       <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
         <h3 class="light-blue bold"><spring:message code="nominate.form.heading" /></h3>
