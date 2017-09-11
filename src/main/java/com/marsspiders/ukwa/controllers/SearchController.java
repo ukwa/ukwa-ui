@@ -102,6 +102,10 @@ public class SearchController {
 
         SearchByEnum searchBy = SearchByEnum.fromString(searchLocation);
         SortByEnum sortBy = SortByEnum.fromString(sortValue);
+        if (sortBy == null) {
+            sortBy = SortByEnum.NEWEST_TO_OLDEST;
+        }
+
         AccessToEnum accessTo = AccessToEnum.fromString(accessViewFilter);
         if (accessTo == null && userIpFromBl) {
             accessTo = AccessToEnum.VIEWABLE_ONLY_ON_LIBRARY;

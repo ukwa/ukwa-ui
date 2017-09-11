@@ -1,6 +1,9 @@
 Change Log
 ----------
 
+* 2017-09-11
+    * Fixed inconsistent search results
+
 * 2017-09-08
     * Fixed contact and nominate form language issues
 
