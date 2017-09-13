@@ -31,17 +31,17 @@ ${req.requestURL}
 </header>
 <section id="nominate-header">
   <div class="row header-white light-blue">
-    <div class="col-md-6 offset-md-3 col-md-offset-3 padding-mobile-side-0">
+    <div class="col-md-6 offset-md-3 col-md-offset-3 padding-side-10 padding-mobile-side-0">
       <h2><spring:message code="nominate.main.heading" /></h2>
       <spring:message code="nominate.text" />
     </div>
   </div>
   <div class="row header-blue padding-side-70 white">
-    <div class="col-md-6 col-sm-12 padding-bottom-20 padding-mobile-side-0">
+    <div class="col-md-6 col-sm-12 padding-bottom-20 padding-side-10 padding-mobile-side-0">
       <h2><spring:message code="nominate.subtitle1" /></h2>
       <spring:message code="nominate.list1" />
     </div>
-    <div class="col-md-6 col-sm-12 padding-bottom-20 padding-mobile-side-0">
+    <div class="col-md-6 col-sm-12 padding-bottom-20 padding-side-10 padding-mobile-side-0">
       <h2><spring:message code="nominate.subtitle2" /></h2>
      <spring:message code="nominate.list2" />
     </div>

@@ -1,6 +1,10 @@
 Change Log
 ----------
 
+* 2017-09-13
+    * Fixed search results numbers don't tally issues
+	* Fixed layout alignment issues
+
 * 2017-09-11
     * Fixed inconsistent search results
 

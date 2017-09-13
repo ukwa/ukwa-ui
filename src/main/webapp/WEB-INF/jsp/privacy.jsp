@@ -35,7 +35,7 @@ ${pageContext.response.locale}
     </div>
   </div>
   <div class="row margin-0 padding-side-20 padding-top-80 padding-bottom-80">
-    <div class="col-lg-8 offset-lg-2 col-lg-offset-2 col-md-10 offset-md-1 col-md-offset-1 col-sm-12 text-content">
+    <div class="col-lg-8 offset-lg-2 col-lg-offset-2 col-md-10 offset-md-1 col-md-offset-1 col-sm-12 text-content padding-mobile-side-5">
      <spring:message code="privacy.text" />
     </div>
   </div>

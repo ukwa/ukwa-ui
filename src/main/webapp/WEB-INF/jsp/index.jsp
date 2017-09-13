@@ -33,7 +33,7 @@ ${pageContext.response.locale}
 </header>
 <section id="home-header">
   <div class="row header-blue white padding-top-80 padding-bottom-60">
-    <div class="col-md-6 offset-md-3 col-md-offset-3 padding-side-0">
+    <div class="col-md-6 offset-md-3 col-md-offset-3 padding-side-10">
       <p class="text-bigger">
         <spring:message code="home.header.text1" />
       </p>
@@ -54,7 +54,7 @@ ${pageContext.response.locale}
       </h2>
       <hr class="header-title-hr"/>
     </div>
-    <div class="col-lg-5 col-md-6 offset-md-1 col-md-offset-1 col-sm-12 header-2-subtitle">
+    <div class="col-lg-5 col-md-6 offset-md-1 col-md-offset-1 col-sm-12 header-2-subtitle padding-side-10">
       <span class="clearfix"><spring:message code="home.page.collections.subtitle"/></span>
       <a href="collection" class="no-decoration" title="<spring:message code="home.button.viewmore.title"/>"><div class="button button-blue white margin-top-30 width-auto-inline clearfix"><spring:message code="home.button.viewmore"/></div></a>
     </div>

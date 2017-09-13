@@ -22,7 +22,6 @@ import static com.marsspiders.ukwa.solr.CollectionDocumentType.TYPE_TARGET;
 import static com.marsspiders.ukwa.util.SolrSearchUtil.generateAccessToQuery;
 import static com.marsspiders.ukwa.util.SolrSearchUtil.generateDateQuery;
 import static com.marsspiders.ukwa.util.SolrSearchUtil.generateMultipleConditionsQuery;
-import static com.marsspiders.ukwa.util.SolrSearchUtil.generateMultipleConditionsQueryWithPreCondition;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.apache.solr.client.solrj.SolrQuery.ORDER.asc;
 
@@ -150,8 +149,8 @@ public class SolrSearchService {
         String accessToQuery = generateAccessToQuery(accessTo);
         String contentTypeQuery = generateMultipleConditionsQuery(contentTypes, FIELD_TYPE);
         String collectionsQuery = generateMultipleConditionsQuery(collections, FIELD_COLLECTION);
-        String publicSuffixesQuery = generateMultipleConditionsQueryWithPreCondition(publicSuffixes, FIELD_PUBLIC_SUFFIX);
-        String domainsQuery = generateMultipleConditionsQueryWithPreCondition(originalDomains, FIELD_DOMAIN);
+        String publicSuffixesQuery = generateMultipleConditionsQuery(publicSuffixes, FIELD_PUBLIC_SUFFIX);
+        String domainsQuery = generateMultipleConditionsQuery(originalDomains, FIELD_DOMAIN);
 
         List<String> filters = new ArrayList<>();
         filters.add(dateQuery);

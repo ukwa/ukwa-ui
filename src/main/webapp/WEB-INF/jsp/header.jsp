@@ -55,7 +55,7 @@
 
 <div class="row padding-top-20">
   
-  <div class="col-sm-12 padding-mobile-side-5">
+  <div class="col-sm-12 padding-mobile-side-15">
     <form action="search" method="get" enctype="multipart/form-data" name="search_form" id="search_form">
       <div class="main-search-input">
         <input type="text" name="text" id="text" title="<spring:message code="search.main.input.title" />" placeholder="<spring:message code="search.main.input.title" />" class="main-search-field" value="${originalSearchRequest}" required/>
