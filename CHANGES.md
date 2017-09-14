@@ -1,6 +1,9 @@
 Change Log
 ----------
 
+* 2017-09-14
+    * Fixed main search input field Android issue
+
 * 2017-09-13
     * Fixed search results numbers don't tally issues
 	* Fixed layout alignment issues
