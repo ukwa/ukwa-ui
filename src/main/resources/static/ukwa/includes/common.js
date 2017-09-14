@@ -23,14 +23,27 @@ function rearangeQuestions() {
 $(document).ready(function(e) {
 	
 	//bootstrap tooltips
+	var isVisible=false;	
 	$('[data-toggle="tooltip"]').tooltip({
 		placement: 'bottom',
-		trigger: 'click'
-	}).click(function(e) { e.stopPropagation(); }) //stopps click on the "?" button from expanding/collapsing the filters;
+		trigger: 'manual'
+	}).click(function(e) { e.stopPropagation(); }).keydown(function(e) { e.preventDefault(); e.stopPropagation(); }) //stopps click/keypress on the "?" button from expanding/collapsing the filters;
 	$('[data-toggle="tooltip"]').each(function(index, element) {
         $(this).mouseleave(function(e) {
-        	$('[data-toggle="tooltip"]').tooltip('hide')
+        	$('[data-toggle="tooltip"]').tooltip('hide');
+			isVisible=false;
     	}); 
+		$(this).on('click keydown', function (e) {
+			if (e.which==1 || e.which==32 || e.which==13) {
+				if (isVisible) {
+					$('[data-toggle="tooltip"]').tooltip('hide');
+					isVisible=false;
+				} else {
+					$(this).tooltip('show');
+					isVisible=true;
+				}
+			}
+    	});		
     });
 	
 	

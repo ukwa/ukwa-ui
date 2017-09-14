@@ -2,6 +2,7 @@ Change Log
 ----------
 
 * 2017-09-14
+    * Help tips triggering when using keyboard issue fix
     * Fixed main search input field Android issue
 
 * 2017-09-13
