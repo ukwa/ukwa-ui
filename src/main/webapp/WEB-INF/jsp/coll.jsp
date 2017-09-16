@@ -91,7 +91,7 @@ ${pageContext.response.locale}
     
     <c:if test="${!empty subCollections}">
       <%--Do something if subCollections not empty--%>
-      <div class="row margin-0 border-bottom-gray">
+      <div class="row margin-0">
         <%--LOOP of Sub collections--%>
         <c:forEach items="${subCollections}" var="subCollection">
           <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-20 padding-bottom-20"> <a href="collection/<c:out value="${subCollection.id}"/>" class="collection-link">
@@ -106,15 +106,20 @@ ${pageContext.response.locale}
       </div>
     </c:if>
 
-      
-      <div class="row border-bottom-gray margin-0 padding-20">
+<c:if test="${currentCollection.websitesNum != 0}"> <%--START if no results does not show results rows and pagination at all--%>
+      <div class="row border-bottom-gray margin-0 padding-20 border-top-gray">
         <div class="col-sm-12 padding-0">
-          <span class="results-count">
-          <c:out value="${currentCollection.websitesNum}"/></span> <spring:message code="coll.results.num" />
-      
+            <c:choose>
+              <c:when test="${currentCollection.websitesNum == 1}">
+                <span class="results-count">1</span> <spring:message code="coll.results.num.single" />
+              </c:when>
+              <c:when test="${currentCollection.websitesNum > 1}">
+                <span class="results-count">
+                  <c:out value="${currentCollection.websitesNum}"/></span> <spring:message code="coll.results.num.plural" />
+              </c:when>
+            </c:choose>
+        </div>
       </div>
-      </div>
-      
 
 
     <div class="row padding-0 margin-0">
@@ -146,6 +151,7 @@ ${pageContext.response.locale}
         </div>
     </div>
 
+
     <c:forEach items="${targetWebsites}" var="targetWebsite"> 
       <!--RESULT ROW-->
       <div class="row margin-0 padding-0 border-bottom-gray">
@@ -165,10 +171,12 @@ ${pageContext.response.locale}
               </span>
             </c:when>
           </c:choose>
-          <span class="results-title-text clearfix">
+         
           <c:out value="${targetWebsite.description}"/>
-          </span> <span class="results-title-text clearfix"> <spring:message code="coll.archived.date" />
-          <c:out value="${targetWebsite.startDate}"/>
+          <c:if test="${not empty targetWebsite.startDate}">
+            <span class="results-title-text margin-top-10 clearfix"> <spring:message code="coll.archived.date"/>
+            <c:out value="${targetWebsite.startDate}"/>
+          </c:if>
           </span>
           <span class="results-title-text clearfix padding-vert-10">
               <a href="<c:out value="${targetWebsite.archiveUrl}"/>" class="break-all"><c:out value="${targetWebsite.url}"/></a>
@@ -179,7 +187,7 @@ ${pageContext.response.locale}
     </c:forEach>
 	
     <!--NO RESULTS-->
-    <c:if test="${currentCollection.websitesNum == 0}">
+    <c:if test="${currentCollection.websitesNum == 0 && empty subCollections}">
     <div class="row margin-0 padding-0 border-bottom-gray">
         <div class="col-md-12 col-sm-12 results-result">
           <h2 class="margin-0 padding-top-20 gray">
@@ -218,7 +226,13 @@ ${pageContext.response.locale}
         <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit}"> <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><div class="pagination-button arrow right-arrow"></div></a> </c:if>
       </div>
     </div>
+  
+   </c:if> <%--END if no results does not show results rows and pagination at all--%>
+ 
+  
   </div>
+
+  
 </div>
 </section>
 <div class="up-button" title="<spring:message code="top.of.page" />" aria-label="<spring:message code="top.of.page" />" tabindex="0"></div>

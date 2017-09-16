@@ -1,6 +1,11 @@
 Change Log
 ----------
 
+* 2017-09-16
+    * Removed archived date for collection sites where Solr does not return it
+	* Removed number of sites if no sites in collection
+	* Remved the word "total" from number of sites and added singular/prular destinction
+
 * 2017-09-14
     * Help tips triggering when using keyboard issue fix
     * Fixed main search input field Android issue
