@@ -78,6 +78,20 @@
         <div class="col-md-12 col-sm-12">
         
           <c:set var = "hasFilters" value = "false"/>
+          <c:if test="${searchPage == 'true'}">
+          <p class="margin-0"><spring:message code="search.filters.access" />&nbsp;
+            
+            <c:if test="${originalAccessView.contains('va') || empty originalAccessView}">
+            	<spring:message code="search.filters.access.open" />
+            </c:if>  
+            
+            <c:if test="${originalAccessView.contains('vool')}">
+           	 <spring:message code="search.filters.access.all" />
+            </c:if>              
+               
+         </p> 
+         <c:set var = "hasFilters" value = "true"/>  
+         </c:if>       
           
           <c:if test="${fn:length(originalDomains) > 0}">
           <p class="margin-0"><spring:message code="search.filters.domain" />&nbsp;

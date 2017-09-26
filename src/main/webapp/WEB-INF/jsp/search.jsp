@@ -31,6 +31,9 @@ ${pageContext.response.locale}
 </head>
 
 <body>
+
+<c:set var = "searchPage" value = "true"/>
+
 <%@include file="nav.jsp" %>
 <div class="container-fluid">
   <header>
