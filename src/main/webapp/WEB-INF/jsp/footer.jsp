@@ -1,5 +1,6 @@
 <div class="row">
-  <div class="col-md-3 offset-md-1 col-md-offset-1 col-sm-12 footer-links footer-right-border"> <a href="index" title="<spring:message code="footer.home.title" />">
+  <div class="col-md-1">&nbsp;</div>
+  <div class="col-md-3 col-md-offset-1 col-sm-12 footer-links footer-right-border"> <a href="index" title="<spring:message code="footer.home.title" />">
     <spring:message code="footer.home" /></a><br/>
     <a href="info/about" title="<spring:message code="footer.about.title" />">
     <spring:message code="footer.about" text="About" /></a><br/>
@@ -11,8 +12,8 @@
     <spring:message code="footer.nominate" /></a><br/>
 
   </div>
-  
-  <div class="col-md-3 offset-md-1 col-md-offset-1 col-sm-12 footer-links footer-right-border">
+  <div class="col-md-1">&nbsp;</div>
+  <div class="col-md-3 col-md-offset-1 col-sm-12 footer-links footer-right-border">
 
     <a href="info/notice_takedown" title="<spring:message code="footer.notice.title" />">
     <spring:message code="footer.notice" /></a><br/>
@@ -23,8 +24,8 @@
         <a href="info/cookies" title="<spring:message code="footer.cookies.title" />">
     <spring:message code="footer.cookies" /></a><br/>
   </div>
-  
-  <div class="col-md-3 offset-md-1 col-md-offset-1 col-sm-12 footer-links">
+  <div class="col-md-1">&nbsp;</div>
+  <div class="col-md-3 col-md-offset-1 col-sm-12 footer-links">
         <a href="info/faq" title="<spring:message code="footer.faq" />">
     <spring:message code="footer.faq" /></a><br/>
     <a href="contact" title="<spring:message code="footer.contact.title" />">

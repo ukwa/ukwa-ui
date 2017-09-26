@@ -33,7 +33,7 @@ ${pageContext.response.locale}
 </header>
 <section id="home-header">
   <div class="row header-blue white padding-top-80 padding-bottom-60">
-    <div class="col-md-6 offset-md-3 col-md-offset-3 padding-side-10">
+    <div class="col-md-6 ml-auto mr-auto col-md-offset-3 padding-side-10">
       <p class="text-bigger">
         <spring:message code="home.header.text1" />
       </p>

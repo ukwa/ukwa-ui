@@ -32,7 +32,7 @@ ${pageContext.response.locale}
   <div class="row header-blue white">
     <div class="col-md-12 col-sm-12 padding-side-0 margin-top-minus-20 back-button"><a href="javascript:window.history.back();" title="<spring:message code="error.404.back.button" />" class="no-decoration"><img class="h3-icon" src="img/icons/left-arrow-white.png" alt="<spring:message code="error.404.back.button" />"/><span class="text-big bold"><spring:message code="error.404.back.button" /></span></a>
     </div>
-    <div class="col-md-6 offset-md-3 col-md-offset-3 padding-side-10 margin-top-20">
+    <div class="col-md-6 ml-auto mr-auto col-md-offset-3 padding-side-10 margin-top-20">
       <h2 class="uppercase">
 
             <spring:message code="error.404.heading" />
@@ -41,10 +41,11 @@ ${pageContext.response.locale}
     </div>
   </div>
   <div class="row margin-0 padding-side-10 padding-mobile-side-5 padding-top-80 padding-bottom-80">
-    <div class="col-lg-8 offset-lg-3 col-lg-offset-3 col-md-10 offset-md-1 col-md-offset-1 col-sm-12 text-bigger bold">
+    <div class="col-lg-6 ml-auto mr-auto col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 text-bigger bold">
 		<spring:message code="error.404.text" />
     </div>
-    <div class="col-lg-8 offset-lg-3 col-lg-offset-3 col-md-10 offset-md-1 col-md-offset-1 col-sm-12 margin-top-60">
+    <div class="coll-sm-12">&nbsp;</div>
+    <div class="col-lg-6 ml-auto mr-auto col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 margin-top-60">
 		<spring:message code="error.404.note" />
     </div>    
   </div>

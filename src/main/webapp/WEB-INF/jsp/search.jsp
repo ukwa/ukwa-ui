@@ -40,7 +40,7 @@ ${pageContext.response.locale}
   <div class="row margin-0 padding-0">
     
     <div class="col-lg-3 col-md-4 col-sm-12 sidebar padding-0">
-    <aside id="sidebar">
+    <aside id="sidebar">  
     <div class="height-0"><spring:message code="search.filter.notice" /></div>
       <form action="search" method="get" enctype="multipart/form-data" name="filter_form" id="filter_form">
         <div class="sidebar-item toggle open" id="toggle-sidebar"></div>
@@ -543,6 +543,24 @@ $(document).ready(function(e) {
 			return false;
 		}
 		
+    });
+	
+	//checks should filters be retained and submits
+	$("#search_form").submit(function(e) {
+        if ($("#reset_filters").val() === "true") {
+			return true;
+		} else {
+			$("#text_hidden").val($("#text").val());
+			$("#filter_form").submit();
+			return false;
+		}
+    });
+	
+	//resets filters
+	$("#btn_reset_filters").click(function(e) {
+        $("#reset_filters").val("true");
+		$('checkbox[value="Web page"]').val("");
+		$("#search_form").submit();
     });
 	
 	//date reset

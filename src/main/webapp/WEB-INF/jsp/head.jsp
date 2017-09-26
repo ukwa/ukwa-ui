@@ -18,7 +18,7 @@
     <script src="includes/bootstrap3/js/bootstrap.min.js"></script>
 <!--<![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<script src="includes/jquery-3.1.1.min.js"></script>
+<script src="includes/jquery-3.2.1.min.js"></script>
 <!--<![endif]-->
 <script src="includes/jquery.cookie.min.js"></script>
 <script src="includes/jqueryui/jquery-ui.min.js"></script>
@@ -26,6 +26,7 @@
 <script src="includes/jquery-number/jquery.number.min.js"></script>
 
 <!--[if (gt IE 9)|!(IE)]><!-->
+<script src="includes/popperjs/umd/popper.min.js"></script>
 <script src="includes/tether/js/tether.min.js"></script>
 <script src="includes/bootstrap/js/bootstrap.min.js"></script>
 <!--<![endif]-->

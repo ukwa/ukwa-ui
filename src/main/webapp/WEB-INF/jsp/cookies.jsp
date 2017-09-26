@@ -30,12 +30,12 @@ ${pageContext.response.locale}
 </header>
 <section id="content">
   <div class="row header-blue white">
-    <div class="col-lg-8 offset-lg-2  col-lg-offset-2 col-md-10 offset-md-1 col-md-offset-1 col-sm-12 padding-mobile-side-0">
+    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 padding-mobile-side-0">
       <h2 class="uppercase"><spring:message code="cookies.main.heading" /></h2>
     </div>
   </div>
   <div class="row margin-0 padding-side-20 padding-top-80 padding-bottom-80 padding-mobile-side-5">
-    <div class="col-lg-8 offset-lg-2 col-lg-offset-2 col-md-10 offset-md-1 col-md-offset-1 col-sm-12 text-content">
+    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 text-content">
 <spring:message code="cookies.text" />
     </div>
   </div>

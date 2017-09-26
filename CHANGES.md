@@ -1,6 +1,12 @@
 Change Log
 ----------
 
+* 2017-09-26
+    * Filters not reset after search term change
+	* Added selected filters under the main search field 
+	* Added reset filters button
+	* Updated dependencies
+
 * 2017-09-16
     * Removed archived date for collection sites where Solr does not return it
 	* Removed number of sites if no sites in collection

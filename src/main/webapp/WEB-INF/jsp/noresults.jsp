@@ -32,12 +32,12 @@ ${pageContext.response.locale}
   <div class="row header-blue white">
     <div class="col-md-12 col-sm-12 padding-side-0 margin-top-minus-20 back-button"><a href="javascript:window.history.back();" title="<spring:message code="noresults.back.button" />" class="no-decoration"><img class="h3-icon" src="img/icons/left-arrow-white.png" alt="<spring:message code="noresults.back.button" />"/><span class="text-big bold"><spring:message code="noresults.back.button" /></span></a>
     </div>
-    <div class="col-md-6 offset-md-3 col-md-offset-3 padding-side-10 margin-top-20">
+    <div class="col-md-6 ml-auto mr-auto col-md-offset-3 padding-side-10 margin-top-20">
       <h2 class="uppercase"><spring:message code="noresults.main.heading" /></h2>
     </div>
   </div>
   <div class="row margin-0 padding-side-10 padding-mobile-side-5 padding-top-80 padding-bottom-80">
-    <div class="col-lg-8 offset-lg-3 col-lg-offset-3 col-md-10 offset-md-1 col-md-offset-1 col-sm-12 text-justify">
+    <div class="col-lg-6 ml-auto mr-auto col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 text-justify">
 <spring:message code="noresults.text" />
     </div>
   </div>

@@ -31,7 +31,7 @@ ${req.requestURL}
 </header>
 <section id="nominate-header">
   <div class="row header-white light-blue">
-    <div class="col-md-6 offset-md-3 col-md-offset-3 padding-side-10 padding-mobile-side-0">
+    <div class="col-md-6 mr-auto ml-auto col-md-offset-3 padding-side-10 padding-mobile-side-0">
       <h2><spring:message code="nominate.main.heading" /></h2>
       <spring:message code="nominate.text" />
     </div>

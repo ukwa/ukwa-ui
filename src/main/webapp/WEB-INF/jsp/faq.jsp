@@ -30,7 +30,7 @@ ${pageContext.response.locale}
 </header>
 <section id="content">
   <div class="row header-blue white">
-    <div class="col-lg-8 offset-lg-2 col-lg-offset-2 col-md-10 offset-md-1 col-md-offset-1 col-sm-12 padding-mobile-side-0">
+    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 padding-mobile-side-0">
       <h2 class="uppercase"><spring:message code="faq.main.heading" /></h2>
       <p class="text-medium"><spring:message code="faq.subtitle" /></p>
     </div>
