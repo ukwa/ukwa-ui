@@ -128,7 +128,6 @@ $(document).ready(function(e) {
 	//on load and resize
 	$(window).on ("load resize", function(e) {
 		checkboxSize(); //expand checkbox size to fit label content
-		rearangeQuestions(); //rearange questions for mobile and desktop
     });
 	
 	//search highlighting
