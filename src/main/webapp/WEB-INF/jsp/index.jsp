@@ -54,7 +54,8 @@ ${pageContext.response.locale}
       </h2>
       <hr class="header-title-hr"/>
     </div>
-    <div class="col-lg-5 col-md-6 offset-md-1 col-md-offset-1 col-sm-12 header-2-subtitle padding-side-10">
+     <div class="col-md-1"></div>
+    <div class="col-lg-5 col-md-6 col-sm-12 header-2-subtitle padding-side-10">
       <span class="clearfix"><spring:message code="home.page.collections.subtitle"/></span>
       <a href="collection" class="no-decoration" title="<spring:message code="home.button.viewmore.title"/>"><div class="button button-blue white margin-top-30 width-auto-inline clearfix"><spring:message code="home.button.viewmore"/></div></a>
     </div>
