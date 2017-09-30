@@ -1,5 +1,10 @@
 Change Log
 ----------
+* 2017-09-30
+    * Inserted translations
+
+* 2017-09-29
+	* Changes to FAQ page
 
 * 2017-09-26
     * Filters not reset after search term change
