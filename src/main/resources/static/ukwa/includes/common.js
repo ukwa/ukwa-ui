@@ -6,20 +6,6 @@ function checkboxSize() {
     });	
 }
 
-function rearangeQuestions() {
-	
-	$(".q-description").each(function(index, element) {
-		//if mobile
-		if ($(window).width()<768) {
-			$(this).detach().insertAfter($(".q-question[data-descriptid='"+$(this).attr("id")+"']"));		
-		} else {	
-			var target=Math.ceil(parseInt($(this).attr("id")) / 3)*3;
-			var elem=$(this).detach().insertAfter($(".q-question[data-descriptid='"+target+"']").parent());	
-		}
-    });
-	
-}
-
 $(document).ready(function(e) {
 	
 	//bootstrap tooltips
@@ -100,20 +86,6 @@ $(document).ready(function(e) {
 	//add default HTML document type filter
 	$("#search_form").submit(function(e) {
 		if ($('checkbox[value="Web page"]').length===0 && $("#reset_filters").val()!=="true") $(this).append('<input type="hidden" name="content_type" value="Web Page" />');
-    });
-	
-	//FAQ 
-	$(".q-question").each(function(index, element) {
-       	$(this).click(function(e) {
-			e.preventDefault();
-			$(".q-description").hide();
-			$(".q-question").removeClass("active");
-			$(this).addClass("active");
-			$("#"+$(this).attr("data-descriptid")).show();
-			$('html, body').animate({
-				scrollTop: $(this).offset().top
-			}, 500);
-		}); 
     });
 	
 	//cookies notice

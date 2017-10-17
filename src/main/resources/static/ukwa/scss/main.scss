@@ -1449,18 +1449,14 @@ footer {
 	font-size:1em;
 	width:100%;
 	clear:both;
+	font-family: $font-bold;
+	color: $light-blue;	
 }
 
 .q-description {
 	padding: 20px 15px 40px 15px;
 	text-align:left;
-}
-
-.q-question {
-	
-	&.active {
-		font-family: $font-bold;	
-	}
+	text-align:justify;
 }
 
 /*BROWSE BY SUBJECT*/
