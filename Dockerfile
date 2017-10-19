@@ -14,7 +14,6 @@ RUN \
   apt-get -y upgrade && \
   apt-get install -y tar wget git maven
 
-
 ENV ARCHIVE_WEB_LOCATION="https://www.webarchive.org.uk/wayback/archive/"
 ENV SOLR_COLLECTION_SEARCH_PATH="http://192.168.45.241:8983/solr/collections/select?"
 ENV SOLR_FULL_TEXT_SEARCH_PATH="http://devsolr-proxy:8983/solr/all/select?"
@@ -26,11 +25,10 @@ ENV SOLR_PASSWORD="none"
 ENV SOLR_SHOW_STUB_DATA_SERVICE_NOT_AVAILABLE="false"
 
 RUN cd /tmp && \
-  git clone https://github.com/min2ha/ukwa-ui.git && \
+  git clone https://github.com/ukwa/ukwa-ui.git && \
   cd ukwa-ui && \
   mvn package -DskipTests
 
-RUN pwd && ls -la
 VOLUME /tmp
 WORKDIR /tmp/ukwa-ui/target/
 
