@@ -1,6 +1,4 @@
 FROM openjdk:8
-# FROM openjdk:8-jdk-alpine
-# FROM openjdk:8-jre-alpine
 
 # originally based on UNB Libraries Dockerfile
 MAINTAINER Mindaugas Vidmantas "mindaugas.vidmantas@bl.uk"
@@ -32,41 +30,9 @@ RUN cd /tmp && \
   cd ukwa-ui && \
   mvn package -DskipTests
 
-# RUN cd /tmp/ukwa-ui/target/ && cp marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war 
-	
-# INSTALL TOMCAT
-# RUN wget -q https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION}/v${TOMCAT_MINOR_VERSION}/bin/apache-tomcat-${TOMCAT_MINOR_VERSION}.tar.gz && \
-#    wget -qO- https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION}/v${TOMCAT_MINOR_VERSION}/bin/apache-tomcat-${TOMCAT_MINOR_VERSION}.tar.gz.md5 | md5sum -c - && \
-#    tar zxf apache-tomcat-*.tar.gz && \
-#    rm apache-tomcat-*.tar.gz && \
-#    mv apache-tomcat* tomcat && \
-#    rm -rf /tomcat/webapps/examples /tomcat/webapps/docs /tomcat/webapps/ROOT
-
-# ADD create_tomcat_admin_user.sh /create_tomcat_admin_user.sh
-# ADD run.sh /run.sh
-# RUN chmod +x /*.sh	
-
-# RUN cd /tmp/ukwa-ui/target && mv ROOT.war /tomcat/webapps
-# RUN rm -rf /tmp/ukwa-ui
-
-# VOLUME /tomcat/logs
-# reset entrypoint from parent image
-# ENTRYPOINT []
-# CMD ["/run.sh"]	
-
 RUN pwd && ls -la
 VOLUME /tmp
 WORKDIR /tmp/ukwa-ui/target/
-RUN pwd && ls -la
-# ADD marsspiders-ukwa-1.4.2.RELEASE.war ROOT.war
-#ENV JAVA_OPTS=""
-#ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /marsspiders-ukwa-1.4.2.RELEASE.war" ]
 
-#COPY /marsspiders-ukwa-1.4.2.RELEASE.war /tmp/
-#WORKDIR /tmp
-# RUN pwd && ls -la
-# ENTRYPOINT ["/usr/bin/java"]
-# CMD ["-jar", "marsspiders-ukwa-1.4.2.RELEASE.war"]
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","marsspiders-ukwa-1.4.2.RELEASE.war"]
-# CMD java -jar marsspiders-ukwa-1.4.2.RELEASE.war
 EXPOSE 8080
