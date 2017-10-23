@@ -16,7 +16,7 @@ ${pageContext.response.locale}
   <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
 </c:if>
 <jsp:useBean id="collections" scope="request" type="java.util.List<com.marsspiders.ukwa.controllers.data.CollectionDTO>"/>
-<html lang="en">
+<html lang="${locale}">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title><spring:message code="coll.title" /></title>

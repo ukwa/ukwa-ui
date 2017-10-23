@@ -23,7 +23,7 @@ ${pageContext.response.locale}
 <jsp:useBean id="collections" scope="request" type="java.util.List<java.lang.String>"/>
 <spring:message code="pagination.goto" var="goToPage"/>
 <spring:message code="pagination.current" var="currentPage"/>
-<html lang="en">
+<html lang="${locale}">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title><spring:message code="search.title" /></title>
