@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.MalformedURLException;
@@ -219,7 +220,7 @@ public class SearchController {
                                                      ContentInfo archivedSiteInfo,
                                                      boolean userIpFromBl) {
         String url = archivedSiteInfo.getUrl() != null ? archivedSiteInfo.getUrl() : "";
-        String wayBackUrl = toWayBackUrl(userIpFromBl, rootPathWithLang, archivedSiteInfo, url);
+        String wayBackUrl = resultUrl(userIpFromBl, rootPathWithLang, archivedSiteInfo, url);
         HighlightingContent highlightingContent = archivedSites.getHighlighting() == null
                 ? null
                 : archivedSites.getHighlighting().get(archivedSiteInfo.getId());
@@ -252,17 +253,23 @@ public class SearchController {
         return escapedContent;
     }
 
-    private static String toWayBackUrl(boolean userIpFromBl, String rootPathWithLang, ContentInfo archivedSiteInfo, String url) {
-        if (!userIpFromBl && readRoomOnlyAccess(archivedSiteInfo)) {
-            //Redirect to page with information about Reading Room Only restriction
-            return "noresults";
+    private static String resultUrl(boolean userIpFromBl, String rootPathWithLang, ContentInfo archivedSiteInfo, String url) {
+        String resultUrl;
+
+        if(!userIpFromBl && readRoomOnlyAccess(archivedSiteInfo)) {
+            // Show Momentos
+            UriComponentsBuilder builder = UriComponentsBuilder.fromPath("mementos/search").queryParam("url", url);
+            resultUrl = builder.build().encode().toString();
+        }
+        else {
+            //If site available for Open Access, we should set accessFlag to 'OA' to use default off-site wayback url in ArchiveController
+            String accessFlag = readRoomOnlyAccess(archivedSiteInfo) ? "RRO" : VIEWABLE_ANYWHERE.getSolrRequestAccessRestriction();
+            //Need to replace "jsp", "JSP" to avoid treating .jsp file in wayback url as its own url by Spring
+            String urlWithUppercaseJsp = url.replace(".jsp", ".JSP");
+            resultUrl = rootPathWithLang + "wayback/" + accessFlag + "/" + archivedSiteInfo.getWayback_date() + "/" + urlWithUppercaseJsp;
         }
 
-        //If site available for Open Access, we should set accessFlag to 'OA' to use default off-site wayback url in ArchiveController
-        String accessFlag = readRoomOnlyAccess(archivedSiteInfo) ? "RRO" : VIEWABLE_ANYWHERE.getSolrRequestAccessRestriction();
-        //Need to replace "jsp", "JSP" to avoid treating .jsp file in wayback url as its own url by Spring
-        String urlWithUppercaseJsp = url.replace(".jsp", ".JSP");
-        return rootPathWithLang + "wayback/" + accessFlag + "/" + archivedSiteInfo.getWayback_date() + "/" + urlWithUppercaseJsp;
+        return resultUrl;
     }
 
     private static boolean readRoomOnlyAccess(ContentInfo archivedSiteInfo) {
