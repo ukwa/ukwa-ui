@@ -8,16 +8,10 @@
         </a></div>
 </div>
 
-
 <div class="main-menu-button" title="<spring:message code="main.menu.title" /> "> </div>
-
 <div class="row header-bar border-bottom-gray">
-
-    <div class="col-lg-9 col-md-8 col-sm-12 main-search-container padding-side-10">
-
     <div class="col-lg-3 col-md-4 col-sm-12 main-heading-cont">
-  
-  
+ 
     <h1 class="main-header-heading"><a href="index" title="<spring:message code="header.main.heading.title" />"><spring:message code="header.main.heading" /></a></h1>
     <span class="main-subheading"><spring:message code="header.subtitle" /></span> </div>
     
@@ -183,5 +177,4 @@
     </div>
     </div>
   </div>
-    </div>
 </div>
