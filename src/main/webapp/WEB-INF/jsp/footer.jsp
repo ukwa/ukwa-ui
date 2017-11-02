@@ -61,6 +61,40 @@
 <div class="col-md-4 col-sm-12 padding-top-mobile-10"><button class="button button-white float-sm-right" id="btn_cookies" title="<spring:message code="footer.cookies.button.title" />"><spring:message code="footer.cookies.button" /></button></div>
 </div>
 </div>
+
+<!--[if (gt IE 9)|!(IE)]><!-->
+<script>
+    $(document).ready(function(e) {
+        //survey monkey
+        var content = '<div class="padding-20 black center width-100"><h2><spring:message code="survey.text"/></h2></div><div id="surveymonkeydiv" class="padding-20 clearfix center width-100"><a href="<spring:message code="survey.url"/>" title="<spring:message code="survey.button"/>" target="_blank"><button id="surveybutton" class="button button-blue white padding-20" role="link" tabindex="-1"><spring:message code="survey.button"/></button></a><div class="padding-20 padding-top-40 black center width-100"><img class="img-survey" alt="MonkeySurvey" src="img/surveymonkeylogo.jpg"/></div>';
+        if (typeof $.cookie('survey_viewed') === 'undefined' || $.cookie('survey_viewed')!=="true") {
+            $('#betadivlink').show();
+            $.SimpleLightbox.open({
+                content: content,
+                elementClass: 'slbContentEl'
+            });
+            $.cookie("survey_viewed", "true", { expires: 365, path: '/',  });
+        }
+
+        if (typeof $.cookie('survey_link_pressed_in_banner') === 'undefined' || $.cookie('survey_link_pressed_in_banner')!=="true") {
+            $('#betadivlink').show();
+        }
+
+        $('#betadivlink a').click(function(evt) {
+            $.cookie("survey_link_pressed_in_banner", "true", { expires: 365, path: '/',  });
+            $.cookie("survey_viewed", "true", { expires: 365, path: '/',  });
+        });
+
+        $("#surveybutton").button().click(function(){
+            $.cookie("survey_link_pressed_in_banner", "true", { expires: 365, path: '/',  });
+            $.cookie("survey_viewed", "true", { expires: 365, path: '/',  });
+        });
+
+    });
+
+</script>
+<!--<![endif]-->
+
 <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 ga('create', 'UA-7571526-5', 'auto'); ga('send', 'pageview');
 </script>
