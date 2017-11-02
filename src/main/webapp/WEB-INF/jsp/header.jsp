@@ -3,7 +3,7 @@
         <span class="main-header-heading text-white">Beta version</span>
     </div>
     <div id="betadivlink" name="betadivlink" style="display:none;"  class="col small white text-right">
-        <a target="_blank" href="https://www.surveymonkey.co.uk/r/UKWA01" title="survey">
+        <a target="_blank" href="<spring:message code="survey.url"/>" title="survey">
             <h2><u>Help us improve, complete our survey</u></h2>
         </a></div>
 </div>
