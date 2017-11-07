@@ -1,10 +1,17 @@
+<div id="betadiv" class="row bg-dark padding-side-10 ">
+    <div class="col text-left">
+        <span class="main-header-heading text-white">Beta version</span>
+    </div>
+    <div id="betadivlink" name="betadivlink" style="display:none;"  class="col small white text-right">
+        <a target="_blank" href="<spring:message code="survey.url"/>" title="survey">
+            <h2><u>Help us improve, complete our survey</u></h2>
+        </a></div>
+</div>
+
 <div class="main-menu-button" title="<spring:message code="main.menu.title" /> "> </div>
-
 <div class="row header-bar border-bottom-gray">
-
-  <div class="col-lg-3 col-md-4 col-sm-12 main-heading-cont">
-  
-  
+    <div class="col-lg-3 col-md-4 col-sm-12 main-heading-cont">
+ 
     <h1 class="main-header-heading"><a href="index" title="<spring:message code="header.main.heading.title" />"><spring:message code="header.main.heading" /></a></h1>
     <span class="main-subheading"><spring:message code="header.subtitle" /></span> </div>
     
