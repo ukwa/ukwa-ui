@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,7 +42,16 @@ public class ArchiveController {
 
         log.info("Requesting archived page '" + prettySiteUrl + "' for the following period: " + timestamp);
 
+        String localeStr = LocaleContextHolder.getLocale().toString();
+        log.info("Locale = " + localeStr);
+        //TODO: wayback had to be available in all languages UKWA-UI has offered. English and Welsh only at the moment!
+        //(!locale.toString().equals("en_GB")){ // for all except default en_GB
+        if (localeStr.equals("cy")){
+            String insert_locale = "-"+ localeStr;
+            waybackUrl = new StringBuffer(waybackUrl).insert(waybackUrl.length()-1, insert_locale).toString(); //StringBuffer - used because of synchronization
+        }
         String redirectUrl = waybackUrl + timestamp + "/" + prettySiteUrl;
+
         return "redirect:" + redirectUrl;
     }
 
