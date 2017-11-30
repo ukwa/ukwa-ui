@@ -6,6 +6,8 @@ import com.marsspiders.ukwa.ip.WaybackIpResolver;
 import com.marsspiders.ukwa.solr.SolrSearchService;
 import com.marsspiders.ukwa.solr.data.CollectionInfo;
 import com.marsspiders.ukwa.solr.data.SolrSearchResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
@@ -39,6 +41,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @Controller
 @RequestMapping(value = HomeController.PROJECT_NAME + "/collection")
 public class CollectionController {
+    private static final Logger log = LoggerFactory.getLogger(CollectionController.class);
 
     static final int ROWS_PER_PAGE_DEFAULT = 50;
     private static final String COLLECTION_ALT_MESSAGE_DEFAULT = "coll.alt.default";
@@ -89,6 +92,7 @@ public class CollectionController {
     public ModelAndView collectionOverviewPage(@PathVariable("collectionId") String collectionId,
                                                @RequestParam(value = "page", required = false) String pageNum,
                                                HttpServletRequest request) throws MalformedURLException, URISyntaxException {
+        log.debug("collectionOverviewPage");
         boolean userIpFromBl = waybackIpResolver.isUserIpFromBl(request);
         int totalSearchResultsSize = 0;
         int targetPageNumber = isNumeric(pageNum) ? Integer.valueOf(pageNum) : 1;
@@ -151,6 +155,7 @@ public class CollectionController {
                 .fetchChildCollections(singletonList(collectionId), TYPE_COLLECTION, 1000, 0)
                 .getResponseBody().getDocuments()
                 .stream()
+                .filter(x -> (searchService.fetchChildCollections(singletonList(x.getId()), TYPE_TARGET, ROWS_PER_PAGE_DEFAULT, 1).getResponseBody().getNumFound() > 0))
                 .map(d -> toCollectionDTO(d, true, locale))
                 .collect(Collectors.toList());
     }
