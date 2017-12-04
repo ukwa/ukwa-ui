@@ -1,11 +1,12 @@
-<div id="betadiv" class="row bg-dark padding-side-10 ">
-    <div class="col text-left">
-        <span class="main-header-heading text-white">Beta version</span>
+<div id="betadiv" class="d-flex justify-content-between flex-wrap bg-dark padding-side-10 ">
+    <div class="p-2 main-header-heading">
+        <span class="text-white">Beta version</span>
     </div>
-    <div id="betadivlink" name="betadivlink" style="display:none;"  class="col small white text-right">
+    <div id="betadivlink" name="betadivlink" style="display:none;"  class="p-2  white align-content-center">
         <a target="_blank" href="<spring:message code="survey.url"/>" title="survey">
-            <h2><u>Help us improve, complete our survey</u></h2>
-        </a></div>
+            <h4><u>Help us improve, complete our survey</u></h4>
+        </a>
+    </div>
 </div>
 
 <div class="main-menu-button" title="<spring:message code="main.menu.title" /> "> </div>
