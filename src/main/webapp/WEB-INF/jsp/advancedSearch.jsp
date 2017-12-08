@@ -91,30 +91,7 @@
                             <div role="tablist">
 
 
-                                <%--   Document filter by phrase  --%>
-                                <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
-                                    <div class="sidebar-filter-header-title" id="t_phrase_doctype">Phrase</div>
-                                    <div class="help-button small white" title="<spring:message code="search.side.doctype.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
-                                </div>
 
-                                <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_phrase_doctype">
-                                    <c:if test="${phrasePairs.size() > 1}">
-                                        <c:forEach begin="0" end="${phrasePairs.size() - 1}" step="2" var="i">
-                                            <c:if test="${phrasePairs.get(i + 1) != 0}">
-                                                <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
-                                                    <div class="form-check-cont padding-0" title="<c:out value="${phrasePairs.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="white" name="content_type" id="content_type_<c:out value="${i}"/>"
-                                                               value="${phrasePairs.get(i)}"
-                                                            ${originalPhrasePairs.contains(phrasePairs.get(i))? 'checked' : ''}/>
-                                                        <label class="main-search-check-label white" for="content_type_<c:out value="${i}"/>">
-                                                            <c:out value="${phrasePairs.get(i)}"/>
-                                                            <span class="label-counts">(<span class="results-count"><c:out value="${phrasePairs.get(i + 1)}"/></span>)</span></label>
-                                                    </div>
-                                                </div>
-                                            </c:if>
-                                        </c:forEach>
-                                    </c:if>
-                                </div>
 
                                     <%--   Document filter by language  --%>
                                     <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">

@@ -41,11 +41,6 @@ import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.StringUtils.*;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
-//import com.marsspiders.ukwa.controllers.data.SearchResultDTO;
-//----------------
-//---------------
-
-//import com.marsspiders.ukwa.controllers.data.SearchResultDTO;
 
 /**
  * Created by mvidmantas on 13/10/2017.
@@ -218,7 +213,7 @@ public class AdvancedSearchController {
                     proximityPhrase1,
                     proximityPhrase2,
                     proximityDistance,
-                    excludedWords,
+                    excludedWords, //
                     //originalAuthors,
                     originalPostcodeDistricts,
                     originalContentLanguages,

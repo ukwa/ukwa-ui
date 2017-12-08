@@ -11,10 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.marsspiders.ukwa.solr.CollectionDocumentType.TYPE_COLLECTION;
@@ -276,14 +273,26 @@ public class SolrSearchService {
         String linksDomainsQuery = generateMultipleConditionsQuery(linksDomains, FIELD_LINKS_DOMAINS);
         log.debug("linksDomains = " + linksDomainsQuery);
 
+
+        //filter list
+        List<String> filters = new ArrayList<>();
+
+        if (!excludedWords.isEmpty()){
+            //excludedWords =  excludedWords;
+            List<String> excludedWordsList = Arrays.asList(excludedWords.split("[,\\s]+"));
+
+            String excludeQuery = generateMultipleConditionsQuery(excludedWordsList, "-"+FIELD_TEXT);
+            log.debug("exclude = " + excludeQuery);
+
+            filters.add(excludeQuery);
+        }
         //String authorsQuery = generateMultipleConditionsQuery(authors, FIELD_AUTHOR);
         //log.debug("authors = " + authorsQuery);
 
         log.info("------------------------------------------------------------");
 
 
-        //filter list
-        List<String> filters = new ArrayList<>();
+
         filters.add(dateQuery);
         filters.add(accessToQuery);
         filters.add(contentTypeQuery);
@@ -344,8 +353,8 @@ public class SolrSearchService {
                     "(\"" + searchText + "\")" +
                     "(\"" + proximityPhrase1 + "\")" +
                     "(\"" + proximityPhrase2 + "\")" +
-                    "\"~" + proximityDistance + " "  +
-                    "-(\"" + excludedWords + "\")";
+                    "\"~" + proximityDistance + " " ;// +
+                    //"-(\"" + excludedWords + "\")";
             //);
 
         }
@@ -354,6 +363,7 @@ public class SolrSearchService {
 
             advancedQueryString = "{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "}" + QueryParser.escape(searchText);
         }
+
 
         log.debug("QueryParser.escape(searchText) = " + QueryParser.escape(searchText));
         log.debug("searchText) = " + searchText);
