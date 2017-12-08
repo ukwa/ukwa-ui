@@ -51,6 +51,13 @@ public class SolrSearchService {
     private static final String FIELD_CONTENT = "content";
     private static final String FIELD_TEXT = "text";
 
+    //-------------------- advanced SEARCH -----------------------------------
+    private static final String FIELD_AUTHOR = "author";
+    private static final String FIELD_POSTCODE_DISTRICT = "postcode_district";
+    private static final String FIELD_CONTENT_LANGUAGE = "content_language";
+    private static final String FIELD_LINKS_DOMAINS = "links_domains";
+    //------------------------------------------------------------------------
+
     private static final String EXCLUDE_FACET_FIRST_LAYER_TAG_NAME = "filterFirstLayer";
     private static final String EXCLUDE_FACET_SECOND_LAYER_TAG_NAME = "filterSecondLayer";
     public static final String EXCLUDE_MARKER_FIRST_LAYER_TAG = "{!tag=" + EXCLUDE_FACET_FIRST_LAYER_TAG_NAME + "}";
@@ -167,6 +174,198 @@ public class SolrSearchService {
 
         String queryString = "{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "}" + QueryParser.escape(searchText);
         return sendRequest(queryString, sort, filters, FIELD_CONTENT, ContentInfo.class, start, rows, facets);
+    }
+
+    /**
+     * Content advanced search
+     *
+     * @param searchLocation
+     * @param searchText
+     * @param rows
+     * @param sortBy
+     * @param accessTo
+     * @param start
+     * @param contentTypes
+     * @param publicSuffixes
+     * @param originalDomains
+     * @param fromDatePicked
+     * @param toDatePicked
+     * @param rangeDates
+     * @param collections
+     * @return
+     */
+    public SolrSearchResult<ContentInfo> advancedSearchContent(SearchByEnum searchLocation,
+                                                               String searchText,
+                                                               //--------------------------------
+                                                               String proximityPhrase1,
+                                                               String proximityPhrase2,
+                                                               String proximityDistance,
+                                                               String excludedWords,
+
+                                                               //host
+                                                               //file format
+                                                               //websire title
+                                                               //page title
+                                                               //author
+                                                               //FIELD_AUTHOR
+
+                                                               //List<String> authors,
+
+                                                               List<String> postcodeDistricts,
+                                                               List<String> contentLanguages,
+                                                               List<String> linksDomains,
+                                                               List<String> crawlDates,
+                                                               //--------------------------------
+                                                               int rows,
+                                                               SortByEnum sortBy,
+                                                               AccessToEnum accessTo,
+                                                               int start,
+                                                               List<String> contentTypes,
+                                                               List<String> publicSuffixes,
+                                                               List<String> originalDomains,
+                                                               Date fromDatePicked,
+                                                               Date toDatePicked,
+                                                               List<String> rangeDates,
+                                                               List<String> collections) {
+        log.info("------------------------------------------------------------");
+        log.info("Advanced Searching content for '" + searchText + "' by " + searchLocation);
+
+        SortClause sort = sortBy == null
+                ? null
+                : new SortClause(FIELD_CRAWL_DATE, sortBy.getSolrOrderValue());
+
+
+        String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
+        log.debug("dateQuery = " + dateQuery);
+
+        String accessToQuery = generateAccessToQuery(accessTo);
+        log.debug("accessToQuery = " + accessToQuery);
+
+        String contentTypeQuery = generateMultipleConditionsQuery(contentTypes, FIELD_TYPE);
+        log.debug("contentTypeQuery = " + contentTypeQuery);
+
+        String collectionsQuery = generateMultipleConditionsQuery(collections, FIELD_COLLECTION);
+        log.debug("collectionsQuery = " + collectionsQuery);
+
+        String publicSuffixesQuery = generateMultipleConditionsQuery(publicSuffixes, FIELD_PUBLIC_SUFFIX);
+        log.debug("publicSuffixesQuery = " + publicSuffixesQuery);
+
+        String domainsQuery = generateMultipleConditionsQuery(originalDomains, FIELD_DOMAIN);
+        log.debug("domainsQuery = " + domainsQuery);
+
+        String crawlDatesQuery = generateMultipleConditionsQuery(crawlDates, FIELD_CRAWL_DATE);
+        log.debug("crawlDatesQuery = " + crawlDatesQuery);
+
+
+        //------------------------------------------------------------------------------
+
+        //---------- GAP test --------------------------------------------
+        //String dateQueryWithGap = generateDateQueryGap(fromDatePicked, toDatePicked, rangeDates);
+        //log.debug("dateQueryWithGap = " + dateQueryWithGap);
+        //----------------------------------------------------------------
+
+        //---------- PHRASE - FACET ???!!! ------------------------------
+        String phraseQuery = generateMultipleConditionsQuery(contentTypes, FIELD_TYPE);
+        log.debug("dateQuery = " + phraseQuery);
+        //----------------------------------------------------------------
+
+        String postcodedistrictQuery = generateMultipleConditionsQuery(postcodeDistricts, FIELD_POSTCODE_DISTRICT);
+        log.debug("postcodedistrictQuery = " + postcodedistrictQuery);
+        String contentLanguagesQuery = generateMultipleConditionsQuery(contentLanguages, FIELD_CONTENT_LANGUAGE);
+        log.debug("contentLanguagesQuery = " + contentLanguagesQuery);
+        String linksDomainsQuery = generateMultipleConditionsQuery(linksDomains, FIELD_LINKS_DOMAINS);
+        log.debug("linksDomains = " + linksDomainsQuery);
+
+        //String authorsQuery = generateMultipleConditionsQuery(authors, FIELD_AUTHOR);
+        //log.debug("authors = " + authorsQuery);
+
+        log.info("------------------------------------------------------------");
+
+
+        //filter list
+        List<String> filters = new ArrayList<>();
+        filters.add(dateQuery);
+        filters.add(accessToQuery);
+        filters.add(contentTypeQuery);
+        filters.add(publicSuffixesQuery);
+        filters.add(domainsQuery);
+        filters.add(collectionsQuery);
+        //-------------- NEW -----------------------
+        //filters.add(dateQueryWithGap);
+        filters.add(phraseQuery);
+        filters.add(postcodedistrictQuery);
+        filters.add(contentLanguagesQuery);
+        filters.add(linksDomainsQuery);
+
+        //filters.add(authorsQuery);
+
+
+        filters.add(crawlDatesQuery);
+        //-------------------------------------------
+
+        String[] facets = {
+                FIELD_PUBLIC_SUFFIX,
+                FIELD_TYPE,
+                FIELD_HOST,
+                FIELD_DOMAIN,
+                FIELD_COLLECTION,
+                FIELD_CONTENT_TYPE_NORM,
+                FIELD_ACCESS_TERMS,
+                //TODO: needded:
+                //postcode district
+                //crawl years - GAP 1 YEAR
+                //Language
+                //Links domains
+                //ADVANCED SEARCH
+                FIELD_POSTCODE_DISTRICT,
+                FIELD_CONTENT_LANGUAGE,
+                FIELD_LINKS_DOMAINS,
+                FIELD_CRAWL_DATE
+        };
+
+        //the following query string specifies a lucene/solr query
+        // with a default operator of "AND" and a default field of "text":
+        // q={!lucene q.op=AND df=text}myfield:foo +bar -baz
+
+        String advancedQueryString;
+
+        if (!excludedWords.equals("") && excludedWords!=null &&                 // CHECK IF EXCLUDE WORDS EXIST
+                !proximityPhrase1.equals("") && proximityPhrase1 != null &&     // CHECK IF PROXIMITY PHRASE 1 EXISTS
+                !proximityPhrase2.equals("") && proximityPhrase2 != null &&     // CHECK IF PROXIMITY PHRASE 2 EXISTS
+                !proximityDistance.equals("") && proximityDistance != null ) {  // CHECK IF PROXIMITY DISTANCE EXISTS
+
+
+
+
+
+            advancedQueryString = "{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "} \"" +
+
+                    //QueryParser.escape(
+                    "(\"" + searchText + "\")" +
+                    "(\"" + proximityPhrase1 + "\")" +
+                    "(\"" + proximityPhrase2 + "\")" +
+                    "\"~" + proximityDistance + " "  +
+                    "-(\"" + excludedWords + "\")";
+            //);
+
+        }
+
+        else {
+
+            advancedQueryString = "{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "}" + QueryParser.escape(searchText);
+        }
+
+        log.debug("QueryParser.escape(searchText) = " + QueryParser.escape(searchText));
+        log.debug("searchText) = " + searchText);
+        log.debug("advancedQueryString = " + advancedQueryString);
+
+        return sendRequest(advancedQueryString,
+                sort,
+                filters,
+                FIELD_CONTENT,
+                ContentInfo.class,
+                start, rows,
+                facets);
     }
 
     private <T extends BodyDocsType> SolrSearchResult<T> sendRequest(String queryString,

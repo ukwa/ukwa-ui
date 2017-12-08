@@ -90,6 +90,39 @@
             $.cookie("survey_viewed", "true", { expires: 365, path: '/',  });
         });
 
+        $("#advancedSearchLink").click(function() {
+
+            if($("#advanced-search-div").is(":visible")){ //hide then
+                //alert("action changed to search");
+                $("#search_form").attr("action", "search");
+                $("#advanced-search-div").hide(500);
+                $('#advancedSearchLink').html('Advanced search');
+
+
+            }
+            else{
+                //alert("action changed to advancedSearch");
+                $("#advanced-search-div").show(500);
+                $("#search_form").attr("action", "advancedsearch");
+                $('#advancedSearchLink').html('Basic search');
+
+            }
+
+
+        });
+
+        $("#from_date_advanced, #to_date_advanced").datepicker({
+            dateFormat: "yy-mm-dd",
+            changeMonth: true,
+            changeYear: true,
+            //minDate: new Date('1996/01/01'),
+            yearRange: "-50:+0"
+        });
+
+        $('.reset').on('click', function() {
+            $(this).closest('form').find('input[type=text], textarea').val('');
+        });
+
     });
 
 </script>

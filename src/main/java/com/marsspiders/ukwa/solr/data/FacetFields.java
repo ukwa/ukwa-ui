@@ -30,6 +30,25 @@ public class FacetFields {
     @JsonProperty("access_terms")
     private LinkedList<String> accessTerms;
 
+    //-------------NEW for advanced search--------------------
+    @JsonProperty("postcode_district")
+    private LinkedList<String> postcodeDistricts;
+
+    @JsonProperty("content_language")
+    private LinkedList<String> contentLanguages;
+
+    @JsonProperty("links_domains")
+    private LinkedList<String> linksDomains;
+
+    @JsonProperty("crawl_date")
+    private LinkedList<String> crawlDates;
+
+    @JsonProperty("author")
+    private LinkedList<String> authors;
+
+    //-------------------------------------------------------------------
+
+
     public LinkedList<String> getPublicSuffixes() {
         return publicSuffixes;
     }
@@ -84,6 +103,46 @@ public class FacetFields {
 
     public void setAccessTerms(LinkedList<String> accessTerms) {
         this.accessTerms = accessTerms;
+    }
+
+    public LinkedList<String> getPostcodeDistricts() {
+        return postcodeDistricts;
+    }
+
+    public void setPostcodeDistricts(LinkedList<String> postcodeDistricts) {
+        this.postcodeDistricts = postcodeDistricts;
+    }
+
+    public LinkedList<String> getContentLanguages() {
+        return contentLanguages;
+    }
+
+    public void setContentLanguages(LinkedList<String> contentLanguages) {
+        this.contentLanguages = contentLanguages;
+    }
+
+    public LinkedList<String> getLinksDomains() {
+        return linksDomains;
+    }
+
+    public void setLinksDomains(LinkedList<String> linksDomains) {
+        this.linksDomains = linksDomains;
+    }
+
+    public LinkedList<String> getCrawlDates() {
+        return crawlDates;
+    }
+
+    public void setCrawlDates(LinkedList<String> crawlDates) {
+        this.crawlDates = crawlDates;
+    }
+
+    public LinkedList<String> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(LinkedList<String> authors) {
+        this.authors = authors;
     }
 
     @Override

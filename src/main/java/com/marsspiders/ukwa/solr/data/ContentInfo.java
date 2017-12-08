@@ -12,6 +12,8 @@ import java.util.List;
 public class ContentInfo implements BodyDocsType {
     @JsonProperty("id")
     private String id;
+    @JsonProperty("author")
+    private String author;
     @JsonProperty("source_file")
     private String source_file;
     @JsonProperty("source_file_offset")
@@ -379,6 +381,14 @@ public class ContentInfo implements BodyDocsType {
 
     public void setAccess_terms(List<String> access_terms) {
         this.access_terms = access_terms;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     @Override
