@@ -65,6 +65,17 @@ public class SolrSearchUtil {
         return multipleConditionQueryWithExclude;
     }
 
+    public static String generateMultipleAndConditionsQuery(List<String> conditions, String fieldName) {
+        String multipleConditionQueryWithExclude = "";
+
+        if(conditions.size() > 0){
+            String multipleConditionsQuery = toMultipleAndConditionsQuery(conditions, fieldName);
+            multipleConditionQueryWithExclude = EXCLUDE_MARKER_SECOND_LAYER_TAG + multipleConditionsQuery;
+        }
+
+        return multipleConditionQueryWithExclude;
+    }
+
     public static String generateMultipleConditionsQueryWithPreCondition(List<String> publicSuffixes, String fieldName) {
         String notEmptyFacetQuery = fieldName + ":['' TO *]";
         String multipleConditionQuery = toMultipleConditionsQueryWithPreCondition(publicSuffixes, fieldName);
@@ -80,6 +91,25 @@ public class SolrSearchUtil {
                 sb.append("(");
             } else {
                 sb.append(OR_JOINER);
+            }
+            sb.append(fieldName).append(":").append("\"").append(valueToInclude).append("\"");
+        }
+
+        if(sb.length() != 0){
+            sb.append(")");
+        }
+
+        return sb.toString();
+    }
+
+    private static String toMultipleAndConditionsQuery(List<String> values, String fieldName) {
+        StringBuilder sb = new StringBuilder();
+
+        for (String valueToInclude : values) {
+            if(sb.length() == 0){
+                sb.append("(");
+            } else {
+                sb.append(AND_JOINER);
             }
             sb.append(fieldName).append(":").append("\"").append(valueToInclude).append("\"");
         }

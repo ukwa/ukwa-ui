@@ -214,6 +214,13 @@ public class AdvancedSearchController {
                     proximityPhrase2,
                     proximityDistance,
                     excludedWords, //
+
+                    hostDomainPublicText,
+                    fileFormatText,
+                    websiteTitleText,
+                    pageTitleText,
+                    authorText,
+
                     //originalAuthors,
                     originalPostcodeDistricts,
                     originalContentLanguages,

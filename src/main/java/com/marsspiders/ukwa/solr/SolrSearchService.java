@@ -16,9 +16,7 @@ import java.util.stream.Collectors;
 
 import static com.marsspiders.ukwa.solr.CollectionDocumentType.TYPE_COLLECTION;
 import static com.marsspiders.ukwa.solr.CollectionDocumentType.TYPE_TARGET;
-import static com.marsspiders.ukwa.util.SolrSearchUtil.generateAccessToQuery;
-import static com.marsspiders.ukwa.util.SolrSearchUtil.generateDateQuery;
-import static com.marsspiders.ukwa.util.SolrSearchUtil.generateMultipleConditionsQuery;
+import static com.marsspiders.ukwa.util.SolrSearchUtil.*;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.apache.solr.client.solrj.SolrQuery.ORDER.asc;
 
@@ -199,14 +197,11 @@ public class SolrSearchService {
                                                                String proximityDistance,
                                                                String excludedWords,
 
-                                                               //host
-                                                               //file format
-                                                               //websire title
-                                                               //page title
-                                                               //author
-                                                               //FIELD_AUTHOR
-
-                                                               //List<String> authors,
+                                                               String hostDomainPublicSuffixes,
+                                                               String fileFormats,
+                                                               String websiteTitles,
+                                                               String pageTitles,
+                                                               String authorNames,
 
                                                                List<String> postcodeDistricts,
                                                                List<String> contentLanguages,
@@ -277,17 +272,72 @@ public class SolrSearchService {
         //filter list
         List<String> filters = new ArrayList<>();
 
+
+
+        //--------------------------------------------------------------
+        //
+        //  ALL SEARCH FIELDS HAVE AND JOIN
+        //  all search fields could be list, separated by space or comma
+        //  uses generateMultipleAndConditionsQuery method
+        //
+        //--------------------------------------------------------------
+
+
+        //---------------- EXCLUDE WORDS --------------------
         if (!excludedWords.isEmpty()){
-            //excludedWords =  excludedWords;
             List<String> excludedWordsList = Arrays.asList(excludedWords.split("[,\\s]+"));
-
-            String excludeQuery = generateMultipleConditionsQuery(excludedWordsList, "-"+FIELD_TEXT);
+            String excludeQuery = generateMultipleAndConditionsQuery(excludedWordsList, "-"+FIELD_TEXT);
             log.debug("exclude = " + excludeQuery);
-
             filters.add(excludeQuery);
         }
-        //String authorsQuery = generateMultipleConditionsQuery(authors, FIELD_AUTHOR);
-        //log.debug("authors = " + authorsQuery);
+
+        //---------- hostDomainPublicSuffix -------------
+        if (!hostDomainPublicSuffixes.isEmpty()){
+            List<String> hostDomainPublicSuffixList = Arrays.asList(hostDomainPublicSuffixes.split("[,\\s]+"));
+            String hostDomainPublicSuffixQuery = generateMultipleAndConditionsQuery(hostDomainPublicSuffixList, FIELD_HOST);
+            log.debug("hostDomainPublicSuffix List = " + hostDomainPublicSuffixQuery);
+            filters.add(hostDomainPublicSuffixQuery);
+        }
+
+        //---------- hostDomainPublicSuffix -------------
+        if (!fileFormats.isEmpty() || !websiteTitles.isEmpty()){
+            //join if they are searching for the same field
+            String joinedString = fileFormats + " " + websiteTitles;
+
+            List<String> fileFormatList = Arrays.asList(joinedString.split("[,\\s]+"));
+            String fileFormatQuery = generateMultipleConditionsQuery(fileFormatList, FIELD_TYPE);
+            log.debug("fileFormat List = " + fileFormatQuery);
+            filters.add(fileFormatQuery);
+        }
+
+        //---------- websiteTitle -------------
+        //if (!websiteTitle.isEmpty()){
+        //    List<String> websiteTitleList = Arrays.asList(hostDomainPublicSuffix.split("[,\\s]+"));
+        //    String websiteTitleQuery = generateMultipleAndConditionsQuery(websiteTitleList, FIELD_TITLE);
+        //    log.debug("websiteTitle List = " + websiteTitleQuery);
+        //    filters.add(websiteTitleQuery);
+        //}
+
+
+
+        //---------- pageTitle -------------
+        if (!pageTitles.isEmpty()){
+            List<String> pageTitleList = Arrays.asList(pageTitles.split("[,\\s]+"));
+            String pageTitleQuery = generateMultipleAndConditionsQuery(pageTitleList, FIELD_TITLE);
+            log.debug("websiteTitle List = " + pageTitleQuery);
+            filters.add(pageTitleQuery);
+        }
+
+
+
+        //---------- AUTHORs LIST -------------
+        if (!authorNames.isEmpty()){
+            List<String> authorsList = Arrays.asList(authorNames.split("[,\\s]+"));
+            String authorsQuery = generateMultipleAndConditionsQuery(authorsList, FIELD_AUTHOR);
+            log.debug("authors names = " + authorsQuery);
+            filters.add(authorsQuery);
+        }
+
 
         log.info("------------------------------------------------------------");
 
@@ -355,6 +405,11 @@ public class SolrSearchService {
                     "(\"" + proximityPhrase2 + "\")" +
                     "\"~" + proximityDistance + " " ;// +
                     //"-(\"" + excludedWords + "\")";
+
+//QueryParser.escape(
+                    //"(\"" + searchText + " " + proximityPhrase1 + " " + proximityPhrase2 + "\")" +
+                    //"\"~" + proximityDistance ;// +
+            //"-(\"" + excludedWords + "\")";
             //);
 
         }

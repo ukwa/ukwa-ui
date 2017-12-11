@@ -73,7 +73,7 @@
         </button>
       </div>
 
-        <div class="row">
+        <div class="row padding-10 padding-bottom-10 margin-0">
             <div class="col-md-12 col-sm-12 padding-top-20 search-notice">
                 <spring:message code="search.main.tip" />&nbsp;&nbsp;
                 <a href="javascript:void(0);" id="advancedSearchLink" title="<spring:message code="search.main.advanced.title" />">
@@ -383,6 +383,69 @@
                 </p>
                 <c:set var = "hasFilters" value = "true"/>
             </c:if>
+
+            <c:choose>
+
+                <c:when test="${fn:length(originalhostDomainPublicText) > 0}">
+                    <p class="margin-0">
+                        'host', 'domain' or 'public_suffix' fields :&quot;&nbsp;<b><i><c:out value="${originalhostDomainPublicText}"/></i></b>
+                    </p>
+                </c:when>
+                <c:otherwise>
+
+                </c:otherwise>
+            </c:choose>
+
+            <c:choose>
+
+                <c:when test="${fn:length(originalfileFormatText) > 0}">
+                    <p class="margin-0">
+                        File Formats :&quot;&nbsp;<b><i><c:out value="${originalfileFormatText}"/></i></b>
+                    </p>
+                </c:when>
+                <c:otherwise>
+
+                </c:otherwise>
+            </c:choose>
+
+
+            <c:choose>
+
+                <c:when test="${fn:length(originalwebsiteTitleText) > 0}">
+                    <p class="margin-0">
+                        Website Titles :&quot;&nbsp;<b><i><c:out value="${originalwebsiteTitleText}"/></i></b>
+                    </p>
+                </c:when>
+                <c:otherwise>
+
+                </c:otherwise>
+            </c:choose>
+
+
+            <c:choose>
+
+                <c:when test="${fn:length(originalpageTitleText) > 0}">
+                    <p class="margin-0">
+                        Page Titles :&quot;&nbsp;<b><i><c:out value="${originalpageTitleText}"/></i></b>
+                    </p>
+                </c:when>
+                <c:otherwise>
+
+                </c:otherwise>
+            </c:choose>
+
+
+            <c:choose>
+
+                <c:when test="${fn:length(originalauthorText) > 0}">
+                    <p class="margin-0">
+                        Authors :&quot;&nbsp;<b><i><c:out value="${originalauthorText}"/></i></b>
+                    </p>
+                </c:when>
+                <c:otherwise>
+
+                </c:otherwise>
+            </c:choose>
 
 
 
