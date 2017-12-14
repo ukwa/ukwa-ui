@@ -471,6 +471,202 @@
         <%@include file="footer.jsp" %>
     </footer>
 </div>
+<script>
 
+    function showDateReset() {
+        if ($(".archived-date").length>0) {
+            if ($("#from_date").val().trim()!=="" || $("#to_date").val().trim()!=="") {
+                $("#btn_reset_dates").show();
+            } else {
+                $("#btn_reset_dates").hide();
+            }
+        }
+    }
+
+    function toggle(el) {
+
+        if (el.hasClass("open")) {
+            el.next(".sidebar-filter:not(.no-collapse)").children().show();
+            el.next(".sidebar-filter").addClass("expanded").attr("aria-hidden","false");
+            el.removeClass("open").addClass("closee").attr("aria-expanded","true");
+            checkboxSize();
+        } else {
+            el.next(".sidebar-filter:not(.no-collapse)").children().hide();
+            el.next(".sidebar-filter").removeClass("expanded").attr("aria-hidden","false");
+            el.removeClass("closee").addClass("open").attr("aria-expanded","false");
+        }
+
+    }
+
+    $(document).ready(function(e) {
+
+        $("#from_date, #to_date").datepicker({
+            dateFormat: "yy-mm-dd",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-50:+0",
+            maxDate : 'now'
+        });
+
+        //filters toggle and count
+        $(".sidebar-filter-header:not(.no-collapse)").each(function(index, element) {
+
+            //keyboard nav and toggle
+            $(this).on("click keydown", function(e) {
+
+                switch (e.which) {
+
+                    case 13:
+                    case 1:
+                    case 32: {
+                        //expand on enter, click or space
+                        e.preventDefault();
+                        toggle($(this));
+                        break;
+                    }
+
+                    //down arrow, pgdown
+                    case 40: {
+                        e.preventDefault();
+                        if ($(this).nextAll(".sidebar-filter-header:not(.no-collapse)").first().attr("class")!==undefined) {
+                            $(this).nextAll(".sidebar-filter-header:not(.no-collapse)").first().focus();
+                        } else {
+                            $(".sidebar-filter-header:not(.no-collapse)").first().focus();
+                        }
+                        break;
+                    }
+
+                    //up arrow, pgup
+                    case 38: {
+                        e.preventDefault();
+                        if ($(this).prevAll(".sidebar-filter-header:not(.no-collapse)").first().attr("class")!==undefined) {
+                            $(this).prevAll(".sidebar-filter-header:not(.no-collapse)").first().focus();
+                        } else {
+                            $(".sidebar-filter-header:not(.no-collapse)").last().focus();
+                        }
+                        break;
+                    }
+
+                    //end
+                    case 35: {
+                        e.preventDefault();
+                        $(".sidebar-filter-header:not(.no-collapse)").last().focus();
+                        break;
+                    }
+
+                    //home
+                    case 36: {
+                        e.preventDefault();
+                        $(".sidebar-filter-header:not(.no-collapse)").first().focus();
+                        break;
+                    }
+
+                }
+
+            });
+
+            $(this).focus(function(e) {
+                $(this).attr("aria-selected", "true");
+            }).blur(function(e) {
+                $(this).attr("aria-selected", "false");
+            });;
+
+            //expand selected
+            if ($(this).next(".sidebar-filter").children(".sidebar-filter-checkbox").children(".form-check-cont").children("input:checked").length!=0) {
+                toggle($(this));
+            } else {
+                $(this).next(".sidebar-filter:not(.no-collapse)").children().hide();
+            }
+
+
+        });
+
+        //hide facets where there is no result
+        var sidebar_noresults = '<spring:message code="search.side.noresults" />';
+        $(".sidebar-filter-header:not(.archived-date)").each(function(index, element) {
+            if ($(this).next(".sidebar-filter").children(".sidebar-filter-checkbox").children(".form-check-cont").children("input").length==0) $(this).next('.sidebar-filter').html('<span class="sidebar-noresults">'+sidebar_noresults+'</span>');
+        });
+
+        //expand if dates inputed
+        if ($("#from_date").val()!=="" || $("#to_date").val()!=="") {
+            $("#dates_header").removeClass("open").addClass("closee");
+            $("#dates_container").addClass("expanded").children().show();
+        }
+
+        //change filters
+        $("input[type='checkbox'], .access_filter").click(function(e) { $("#advanced_filter_form").submit(); });
+
+        //submit on resort
+        $(".sort").each(function(index, element) {
+            $(this).click(function(e) {
+                $("#view_sort").val($(this).val());
+                $("#advanced_filter_form").submit();
+            });
+        });
+
+        //form count
+        $("#count").change(function(e) {
+            $("#view_count").val($(this).val());
+            $("#advanced_filter_form").submit();
+        });
+
+        //form validation
+        $("#advanced_filter_form").submit(function(e) {
+
+            var isValid = true;
+            var from = Date.parse($("#from_date").val());
+            var to = Date.parse($("#to_date").val());
+            var now = new Date();
+
+            if ($("#from_date").val().trim()!=="" && !from) isValid=false;
+            if ($("#to_date").val().trim()!=="" && !to) isValid=false;
+            if (isValid && (from>now || to>now)) isValid=false;
+            if (isValid && to<from) isValid=false;
+
+            if (isValid) {
+                return true;
+            } else {
+                alert('<spring:message code="notice.date.range" />');
+                return false;
+            }
+
+        });
+
+        //checks should filters be retained and submits
+        $("#search_form").submit(function(e) {
+            if ($("#reset_filters").val() === "true") {
+                return true;
+            } else {
+                $("#text_hidden").val($("#text").val());
+                $("#advanced_filter_form").submit();
+                return false;
+            }
+        });
+
+        //resets filters
+        $("#btn_reset_filters").click(function(e) {
+            $("#reset_filters").val("true");
+            $('checkbox[value="Web page"]').val("");
+            $("#search_form").submit();
+        });
+
+        //date reset
+        $("#btn_reset_dates").click(function(e) {
+            $("#from_date, #to_date").val("");
+            showDateReset();
+        });
+
+        //show/hide date reset button
+        $("#from_date, #to_date").on("change keyup", function(e) {
+            showDateReset();
+        });
+
+        showDateReset();
+        checkboxSize(); //expand checkbox size to fit label content
+
+
+    });
+
+</script>
 </body>
 </html>

@@ -284,7 +284,7 @@ public class SolrSearchService {
 
 
         //---------------- EXCLUDE WORDS --------------------
-        if (!excludedWords.isEmpty()){
+        if (excludedWords!=null && !excludedWords.isEmpty()){
             List<String> excludedWordsList = Arrays.asList(excludedWords.split("[,\\s]+"));
             String excludeQuery = generateMultipleAndConditionsQuery(excludedWordsList, "-"+FIELD_TEXT);
             log.debug("exclude = " + excludeQuery);
@@ -292,7 +292,7 @@ public class SolrSearchService {
         }
 
         //---------- hostDomainPublicSuffix -------------
-        if (!hostDomainPublicSuffixes.isEmpty()){
+        if (hostDomainPublicSuffixes!=null && !hostDomainPublicSuffixes.isEmpty()){
             List<String> hostDomainPublicSuffixList = Arrays.asList(hostDomainPublicSuffixes.split("[,\\s]+"));
             String hostDomainPublicSuffixQuery = generateMultipleAndConditionsQuery(hostDomainPublicSuffixList, FIELD_HOST);
             log.debug("hostDomainPublicSuffix List = " + hostDomainPublicSuffixQuery);
@@ -300,7 +300,7 @@ public class SolrSearchService {
         }
 
         //---------- hostDomainPublicSuffix -------------
-        if (!fileFormats.isEmpty() || !websiteTitles.isEmpty()){
+        if (fileFormats!=null && websiteTitles!=null && (!fileFormats.isEmpty() || !websiteTitles.isEmpty())){
             //join if they are searching for the same field
             String joinedString = fileFormats + " " + websiteTitles;
 
@@ -321,7 +321,7 @@ public class SolrSearchService {
 
 
         //---------- pageTitle -------------
-        if (!pageTitles.isEmpty()){
+        if (pageTitles!=null && !pageTitles.isEmpty()){
             List<String> pageTitleList = Arrays.asList(pageTitles.split("[,\\s]+"));
             String pageTitleQuery = generateMultipleAndConditionsQuery(pageTitleList, FIELD_TITLE);
             log.debug("websiteTitle List = " + pageTitleQuery);
@@ -331,7 +331,7 @@ public class SolrSearchService {
 
 
         //---------- AUTHORs LIST -------------
-        if (!authorNames.isEmpty()){
+        if (authorNames!=null && !authorNames.isEmpty()){
             List<String> authorsList = Arrays.asList(authorNames.split("[,\\s]+"));
             String authorsQuery = generateMultipleAndConditionsQuery(authorsList, FIELD_AUTHOR);
             log.debug("authors names = " + authorsQuery);
@@ -388,10 +388,10 @@ public class SolrSearchService {
 
         String advancedQueryString;
 
-        if (!excludedWords.equals("") && excludedWords!=null &&                 // CHECK IF EXCLUDE WORDS EXIST
-                !proximityPhrase1.equals("") && proximityPhrase1 != null &&     // CHECK IF PROXIMITY PHRASE 1 EXISTS
-                !proximityPhrase2.equals("") && proximityPhrase2 != null &&     // CHECK IF PROXIMITY PHRASE 2 EXISTS
-                !proximityDistance.equals("") && proximityDistance != null ) {  // CHECK IF PROXIMITY DISTANCE EXISTS
+        if (excludedWords!=null && !excludedWords.equals("") &&                  // CHECK IF EXCLUDE WORDS EXIST
+                proximityPhrase1 != null && !proximityPhrase1.equals("") &&      // CHECK IF PROXIMITY PHRASE 1 EXISTS
+                proximityPhrase2 != null && !proximityPhrase2.equals("") &&     // CHECK IF PROXIMITY PHRASE 2 EXISTS
+                proximityDistance != null && !proximityDistance.equals("") ) {  // CHECK IF PROXIMITY DISTANCE EXISTS
 
 
 
