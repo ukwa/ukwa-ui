@@ -294,6 +294,20 @@
                                 <input type="hidden" name="text" id="text_hidden" value="${originalSearchRequest}">
                                 <input type="hidden" name="view_sort" id="view_sort" value="${empty originalSortValue ? 'nto' : originalSortValue}">
                                 <input type="hidden" name="view_count" id="view_count" value="${empty rowsPerPageLimit ? '50' : rowsPerPageLimit}">
+
+                                        <input type="hidden" name="proximityPhrase1" id="proximityPhrase1_hidden" value="${originalproximityPhrase1}">
+                                        <input type="hidden" name="proximityPhrase2" id="proximityPhrase2_hidden" value="${originalproximityPhrase2}">
+                                        <input type="hidden" name="proximityDistance" id="proximityDistance_hidden" value="${originalproximityDistance}">
+                                        <input type="hidden" name="excludedWords" id="excludedWords_hidden" value="${originalExcludedWords}">
+
+                                        <input type="hidden" name="dateStart" id="dateStart_hidden" value="${originaldateStart}">
+                                        <input type="hidden" name="dateStop" id="dateStop_hidden" value="${originaldateStop}">
+                                        <input type="hidden" name="hostDomainPublicText" id="hostDomainPublicText_hidden" value="${originalhostDomainPublicText}">
+                                        <input type="hidden" name="fileFormatText" id="fileFormatText_hidden" value="${originalfileFormatText}">
+                                        <input type="hidden" name="websiteTitleText" id="websiteTitleText_hidden" value="${originalwebsiteTitleText}">
+                                        <input type="hidden" name="pageTitleText" id="pageTitleText_hidden" value="${originalpageTitleText}">
+                                        <input type="hidden" name="authorText" id="authorText_hidden" value="${originalauthorText}">
+
                             </div>
 
                             <div class="border-top-white">&nbsp;</div>
@@ -638,7 +652,26 @@
                 return true;
             } else {
                 $("#text_hidden").val($("#text").val());
-                $("#advanced_filter_form").submit();
+
+                $("#proximityPhrase1_hidden").val($("#proximityPhrase1").val());
+                $("#proximityPhrase2_hidden").val($("#proximityPhrase2").val());
+                $("#proximityDistance_hidden").val($("#proximityDistance").val());
+                $("#excludedWords_hidden").val($("#excludedWords").val());
+
+                $("#dateStart_hidden").val($("#dateStart").val());
+                $("#dateStop_hidden").val($("#dateStop").val());
+
+                $("#hostDomainPublicText_hidden").val($("#hostDomainPublicText").val());
+                $("#fileFormatText_hidden").val($("#fileFormatText").val());
+                $("#websiteTitleText_hidden").val($("#websiteTitleText").val());
+                $("#pageTitleText_hidden").val($("#pageTitleText").val());
+                $("#authorText_hidden").val($("#authorText").val());
+
+
+
+
+
+                    $("#advanced_filter_form").submit();
                 return false;
             }
         });

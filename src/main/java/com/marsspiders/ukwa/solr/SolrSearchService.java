@@ -388,19 +388,27 @@ public class SolrSearchService {
 
         String advancedQueryString;
 
-        if (excludedWords!=null && !excludedWords.equals("") &&                  // CHECK IF EXCLUDE WORDS EXIST
-                proximityPhrase1 != null && !proximityPhrase1.equals("") &&      // CHECK IF PROXIMITY PHRASE 1 EXISTS
-                proximityPhrase2 != null && !proximityPhrase2.equals("") &&     // CHECK IF PROXIMITY PHRASE 2 EXISTS
-                proximityDistance != null && !proximityDistance.equals("") ) {  // CHECK IF PROXIMITY DISTANCE EXISTS
+        log.debug("searchText = " + searchText);
+        log.debug("proximityPhrase1 = " + proximityPhrase1);
+        log.debug("proximityPhrase2 = " + proximityPhrase2);
+        log.debug("proximityDistance = " + proximityDistance);
+
+
+        if (searchText != null && !searchText.isEmpty() &&                  // CHECK IF EXCLUDE WORDS EXIST
+                proximityPhrase1 != null && !proximityPhrase1.isEmpty() &&      // CHECK IF PROXIMITY PHRASE 1 EXISTS
+                proximityPhrase2 != null && !proximityPhrase2.isEmpty() &&     // CHECK IF PROXIMITY PHRASE 2 EXISTS
+                proximityDistance != null && !proximityDistance.isEmpty() ) {  // CHECK IF PROXIMITY DISTANCE EXISTS
 
 
 
 
 
-            advancedQueryString = "{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "} \"" +
+            advancedQueryString = "{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "} " +
+                    searchText +
 
                     //QueryParser.escape(
-                    "(\"" + searchText + "\")" +
+                    //"(\""  "\")" +
+                    "\"" +
                     "(\"" + proximityPhrase1 + "\")" +
                     "(\"" + proximityPhrase2 + "\")" +
                     "\"~" + proximityDistance + " " ;// +
