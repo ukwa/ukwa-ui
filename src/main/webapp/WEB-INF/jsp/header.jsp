@@ -119,7 +119,7 @@
                     </div>
 
                     <div class="col">
-                        <input type="text" id="excludedWords" name="excludedWords" value="${originalExcludedWords}" class="coll-search-field button-shadow " placeholder="rodent, Jack Russel">
+                        <input type="text" id="excludedWords" name="excludedWords" value="${originalExcludedWords}" class="coll-search-field button-shadow " placeholder="rodent, Jack Russell">
                     </div>
                 </div>
 
