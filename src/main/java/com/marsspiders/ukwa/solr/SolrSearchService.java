@@ -302,31 +302,14 @@ public class SolrSearchService {
         //---------- hostDomainPublicSuffix -------------
         if (hostDomainPublicSuffixes!=null && !hostDomainPublicSuffixes.isEmpty()){
             //List<String> hostDomainPublicSuffixList = Arrays.asList(hostDomainPublicSuffixes.split("[,\\s]+"));
-
-
-
-            //parameters.add("host", hostDomainPublicSuffix);
-            //parameters.add("domain", hostDomainPublicSuffix);
-            //parameters.add("public_suffix", hostDomainPublicSuffix);
-
-
-
-            //String hostDomainPublicSuffixQuery = generateMultipleAndConditionsQuery(hostDomainPublicSuffixList, FIELD_HOST);
             //log.debug("hostDomainPublicSuffix List = " + hostDomainPublicSuffixQuery);
-            //filters.add(hostDomainPublicSuffixQuery);
             filters.add("{!tag=host}host:"+ hostDomainPublicSuffixes + " OR " +"{!tag=domain}domain:"+ hostDomainPublicSuffixes + " OR " +"{!tag=public_suffix}public_suffix:"+ hostDomainPublicSuffixes );
-            //filters.add("host:"+ hostDomainPublicSuffixes + " OR " +"domain:"+ hostDomainPublicSuffixes + " OR " +"public_suffix:"+ hostDomainPublicSuffixes );
         }
 
         //BASICS DONE!!!
         //TODO: pass list of titles?
         //---------- hostDomainPublicSuffix -------------
         if (fileFormats!=null && !fileFormats.isEmpty() ){
-            //join if they are searching for the same field
-            //String joinedString = fileFormats + " " + websiteTitles;
-            //List<String> fileFormatList = Arrays.asList(joinedString.split("[,\\s]+"));
-            //String fileFormatQuery = generateMultipleConditionsQuery(fileFormatList, FIELD_TYPE);
-
             log.debug("fileFormat List = " + fileFormats);
             filters.add("content_type_norm:" + fileFormats);
         }
@@ -347,15 +330,8 @@ public class SolrSearchService {
         //TODO: pass list of titles?
         //---------- pageTitle -------------
         if (pageTitles!=null && !pageTitles.isEmpty()){
-            //List<String> pageTitleList = Arrays.asList(pageTitles.split("[,\\s]+"));
-            //String pageTitleQuery = generateMultipleAndConditionsQuery(pageTitleList, FIELD_TITLE);
-            //log.debug("websiteTitle List = " + pageTitleQuery);
-            //filters.add(pageTitleQuery);
-
             filters.add("title:" + pageTitles);
         }
-
-
 
         //---------- AUTHORs LIST -------------
         if (authorNames!=null && !authorNames.isEmpty()){
@@ -365,10 +341,7 @@ public class SolrSearchService {
             filters.add(authorsQuery);
         }
 
-
         log.info("------------------------------------------------------------");
-
-
 
         filters.add(dateQuery);
         filters.add(accessToQuery);
@@ -422,23 +395,29 @@ public class SolrSearchService {
 
 
 
+
+        advancedQueryString = "{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "}" +
+                searchText ;
+
+        /*
+        // basic search only - no proximity
         if ( searchText != null && !searchText.isEmpty() &&
-                proximityPhrase1 != null && !proximityPhrase1.isEmpty() &&      // CHECK IF PROXIMITY PHRASE 1 EXISTS
-                proximityPhrase2 != null && !proximityPhrase2.isEmpty() &&     // CHECK IF PROXIMITY PHRASE 2 EXISTS
-                proximityDistance != null && !proximityDistance.isEmpty() ) {  // CHECK IF PROXIMITY DISTANCE EXISTS)
+                ((proximityPhrase1 == null || proximityPhrase1.isEmpty()) &&      // CHECK IF PROXIMITY PHRASE 1 EXISTS
+                        (proximityPhrase2 == null || proximityPhrase2.isEmpty()) &&     // CHECK IF PROXIMITY PHRASE 2 EXISTS
+                        (proximityDistance == null || proximityDistance.isEmpty())) ) {  // CHECK IF PROXIMITY DISTANCE EXISTS)
 
 
             advancedQueryString = "{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "}" +
-                    searchText + " AND " + "\"" +
-                     proximityPhrase1 + "\" AND \"" +
-                     proximityPhrase2 +
-                    "\"~" + proximityDistance ;
+                    searchText ;
 
             log.debug("proximity Query with main search = " + advancedQueryString);
+
         }
-        else if (    proximityPhrase1 != null && !proximityPhrase1.isEmpty() &&      // CHECK IF PROXIMITY PHRASE 1 EXISTS
+        */
+        if (    proximityPhrase1 != null && !proximityPhrase1.isEmpty() &&      // CHECK IF PROXIMITY PHRASE 1 EXISTS
                 proximityPhrase2 != null && !proximityPhrase2.isEmpty() &&     // CHECK IF PROXIMITY PHRASE 2 EXISTS
                 proximityDistance != null && !proximityDistance.isEmpty() ) {  // CHECK IF PROXIMITY DISTANCE EXISTS
+
 
             /*
             String proximityQuery =  "("+ FIELD_TEXT + ":"+  "\"" +
@@ -449,13 +428,18 @@ public class SolrSearchService {
             filters.add(proximityQuery);
             */
 
-            advancedQueryString = "{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "}" + "(\"" +
-                    "(\"" + proximityPhrase1 + "\") AND " +
-                    "(\"" + proximityPhrase2 + "\")" +
-                    "\"~" + proximityDistance + ")";
+            String proximityQuery = "text:" + "\"" +
+                     proximityPhrase1 + " " +
+                     proximityPhrase2 +
+                    "\"~" + proximityDistance;
 
-            log.debug("proximity Query without main search = " + advancedQueryString);
+                    log.debug("proximity Query = " + proximityQuery);
+
+            filters.add( proximityQuery );
+
+            //log.debug("proximity Query without main search = " + advancedQueryString);
         }
+        /*
         //no proximity
         else if (    proximityPhrase1 != null && !proximityPhrase1.isEmpty() &&      // CHECK IF PROXIMITY PHRASE 1 EXISTS
                 proximityPhrase2 != null && !proximityPhrase2.isEmpty()  )    // CHECK IF PROXIMITY PHRASE 2 EXISTS
@@ -476,6 +460,7 @@ public class SolrSearchService {
 
             advancedQueryString = "{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "}" + QueryParser.escape(searchText);
         }
+        */
 
 
         log.debug("QueryParser.escape(searchText) = " + QueryParser.escape(searchText));
