@@ -264,7 +264,7 @@
           <c:if test="${fn:length(originalContentTypes) > 0}">
           <p class="margin-0"><spring:message code="search.filters.doctype" />&nbsp;
            <c:forEach items="${originalContentTypes}" var="doctype">
-              &quot;<c:out value="${doctype}"/>&quot;&nbsp;
+               &quot;<b><i><c:out value="${doctype}"/></i></b>&nbsp;&quot;
             </c:forEach>
           </p>
           <c:set var = "hasFilters" value = "true"/>
@@ -322,7 +322,7 @@
             <c:choose>
                 <c:when test="${fn:length(originalproximityPhrase1) > 0 || fn:length(originalproximityPhrase2) > 0}">
                     <p class="margin-0">
-                        Proximity search phrases:&quot;&nbsp;<b><i><c:out value="${originalproximityPhrase1}"/>, <c:out value="${originalproximityPhrase2}"/></i></b>
+                        Proximity search phrases:&nbsp;&quot;<b><i><c:out value="${originalproximityPhrase1}"/></i></b>&nbsp;&quot;,&nbsp;&quot;<b><i><c:out value="${originalproximityPhrase2}"/></i></b>&nbsp;&quot;
                     </p>
                 </c:when>
                 <c:otherwise>
@@ -333,7 +333,7 @@
 
                 <c:when test="${fn:length(originalproximityDistance) > 0}">
                     <p class="margin-0">
-                        Proximity search distance:&quot;&nbsp;<b><i><c:out value="${originalproximityDistance}"/></i></b>
+                        Proximity search distance:&nbsp;&quot;<b><i><c:out value="${originalproximityDistance}"/></i></b>&nbsp;&quot;
                     </p>
                 </c:when>
                 <c:otherwise>
@@ -346,7 +346,7 @@
 
                 <c:when test="${fn:length(originalExcludedWords) > 0}">
                     <p class="margin-0">
-                        Excluded Words:&quot;&nbsp;<b><i><c:out value="${originalExcludedWords}"/></i></b>
+                        Excluded Words:&nbsp;&quot;<b><i><c:out value="${originalExcludedWords}"/></i></b>&quot;&nbsp;
                     </p>
                 </c:when>
                 <c:otherwise>
@@ -388,7 +388,7 @@
 
                 <c:when test="${fn:length(originalhostDomainPublicText) > 0}">
                     <p class="margin-0">
-                        'host', 'domain' or 'public_suffix' fields :&quot;&nbsp;<b><i><c:out value="${originalhostDomainPublicText}"/></i></b>
+                        'host', 'domain' or 'public_suffix' fields:&nbsp;&quot;<b><i><c:out value="${originalhostDomainPublicText}"/></i></b>&nbsp;&quot;
                     </p>
                 </c:when>
                 <c:otherwise>
@@ -400,7 +400,7 @@
 
                 <c:when test="${fn:length(originalfileFormatText) > 0}">
                     <p class="margin-0">
-                        File Formats :&quot;&nbsp;<b><i><c:out value="${originalfileFormatText}"/></i></b>
+                        File Formats :&nbsp;&quot;<b><i><c:out value="${originalfileFormatText}"/></i></b>&nbsp;&quot;
                     </p>
                 </c:when>
                 <c:otherwise>
@@ -413,7 +413,7 @@
 
                 <c:when test="${fn:length(originalwebsiteTitleText) > 0}">
                     <p class="margin-0">
-                        Website Titles :&quot;&nbsp;<b><i><c:out value="${originalwebsiteTitleText}"/></i></b>
+                        Website Titles:&nbsp;&quot;<b><i><c:out value="${originalwebsiteTitleText}"/></i></b>&nbsp;&quot;
                     </p>
                 </c:when>
                 <c:otherwise>
@@ -426,7 +426,7 @@
 
                 <c:when test="${fn:length(originalpageTitleText) > 0}">
                     <p class="margin-0">
-                        Page Titles :&quot;&nbsp;<b><i><c:out value="${originalpageTitleText}"/></i></b>
+                        Page Titles:&nbsp;&quot;<b><i><c:out value="${originalpageTitleText}"/></i></b>&nbsp;&quot;
                     </p>
                 </c:when>
                 <c:otherwise>
@@ -439,7 +439,7 @@
 
                 <c:when test="${fn:length(originalauthorText) > 0}">
                     <p class="margin-0">
-                        Authors :&quot;&nbsp;<b><i><c:out value="${originalauthorText}"/></i></b>
+                        Authors:&nbsp;&quot;<b><i><c:out value="${originalauthorText}"/></i></b>&nbsp;&quot;
                     </p>
                 </c:when>
                 <c:otherwise>
