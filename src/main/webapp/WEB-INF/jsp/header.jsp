@@ -92,45 +92,50 @@
             <div class="col-md-12 padding-0">
                 <!-- filters -->
                 <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+
+
+
                 <div class="row padding-10 padding-bottom-20 margin-0" >
                     <div class="col-md-2 col-sm-2 text-right">
                         <label>Proximity:</label>
                     </div>
 
-                    <div class="col" >
-                        <input type="text" id="proximityPhrase1" name="proximityPhrase1" value="${originalproximityPhrase1}" class="coll-search-field button-shadow " placeholder="phrase">
+                    <div class="col" style="height: 45px;">
+                        <input type="text" id="proximityPhrase1" name="proximityPhrase1" value="${originalproximityPhrase1}" class="coll-search-field button-shadow" placeholder="phrase" >
                     </div>
-                    <div class="col mh-50" >
-                        <input type="text" id="proximityPhrase2" name="proximityPhrase2" value="${originalproximityPhrase2}" class="coll-search-field button-shadow " placeholder="phrase">
+                    <div class="col" style="height: 45px;">
+                        <input type="text" id="proximityPhrase2" name="proximityPhrase2" value="${originalproximityPhrase2}" class="coll-search-field button-shadow" placeholder="phrase" >
                     </div>
-                    <div class="col w-50" >
-                        <input type="text" id="proximityDistance" name="proximityDistance" value="${originalproximityDistance}" class="coll-search-field button-shadow " placeholder="25">
+                    <div class="col" style="height: 45px;">
+                        <input type="number" id="proximityDistance" name="proximityDistance" value="${originalproximityDistance}" class="coll-search-field button-shadow" min="1" max="100000" step="1" placeholder="25">
                     </div>
-
-                    <div class="col-md-2 col-sm-2 text-smaller text-left text-muted">
+                    <div class="col-md-2 col-sm-2 text-smaller text-left text-muted align-content-center" >
                         <label>Proximity search.</label>
                     </div>
-
                 </div>
 
-                <div class="row padding-10 padding-bottom-20 margin-0" >
-                    <div class="col-md-2 col-sm-2 text-right">
+
+                <div class="row padding-10 padding-bottom-20 margin-0 border-bottom-gray" >
+                    <div class="col-md-2 col-sm-2 text-right" style="height: 45px;">
                         <label>None of these words:</label>
                     </div>
 
                     <div class="col">
-                        <input type="text" id="excludedWords" name="excludedWords" value="${originalExcludedWords}" class="coll-search-field button-shadow " placeholder="rodent, Jack Russell">
+                        <input type="text" id="excludedWords" name="excludedWords" value="${originalExcludedWords}" class="coll-search-field button-shadow" placeholder="rodent, Jack Russell">
+                    </div>
+                    <div class="col-md-2 col-sm-2 text-smaller text-left text-muted">
+                        <label>Exclude words</label>
                     </div>
                 </div>
 
 
-                <div class="row">
-                    <div class="col-md-4 col-sm-4 search-help-button text-center" style="width: 120px; background-color: rgba(0,0,255,.1)">
-                        <label>Within Resources:</label>
-                    </div>
-                    <div class="col-md-8 col-sm-8">
+
+                <div class="row padding-20 padding-bottom-10 margin-0" >
+                    <div class="col-md-2 col-sm-2 text-right border-bottom-gray">
+                        <label><b>Within Resources</b></label>
                     </div>
                 </div>
+
 
                 <div class="row padding-10 padding-bottom-10 margin-0 ">
                     <div class="col-md-2 col-sm-2 text-right">
@@ -138,15 +143,15 @@
                     </div>
 
                     <div class="col-md-4 col-sm-4">
-                        <input type="text" class="form-control button-shadow" id="from_date_advanced" name="dateStart" title="From" placeholder="YYYY-MM-DD"
+                        <input type="date" class="coll-search-field button-shadow" id="from_date_advanced" name="dateStart" title="From"
                                value="${originaldateStart != null ? originaldateStart : ''}"/>
                     </div>
                     <div class="col-md-4 col-sm-4">
-                        <input type="text" class="form-control button-shadow" id="to_date_advanced" name="dateStop" title="To" placeholder="YYYY-MM-DD"
+                        <input type="date" class="coll-search-field button-shadow" id="to_date_advanced" name="dateStop" title="To"
                                value="${originaldateStop != null ? originaldateStop : ''}"/>
                     </div>
                     <div class="col-md-2 col-sm-2 text-smaller text-left text-muted">
-                        <label>Restrict by date (Format: YYYY-MM-DD)</label>
+                        <label>Restrict by date</label>
                     </div>
 
                 </div>
@@ -154,7 +159,7 @@
                     <div class="col-md-2 col-sm-2 text-right">
                         <label>Host, Domain or Public Suffix:</label>
                     </div>
-                    <div class="col-md-8 col-sm-8" >
+                    <div class="col-md-8 col-sm-8" style="height: 45px;">
                         <input type="text" id="hostDomainPublicText" name="hostDomainPublicText" value="${originalhostDomainPublicText}" class="coll-search-field button-shadow"  placeholder="Host, Domain or Public Suffix">
                     </div>
                     <div class="col-md-2 col-sm-2 text-small text-left text-muted">
@@ -167,11 +172,11 @@
                     <div class="col-md-2 col-sm-2 text-right">
                         <label>File Format:</label>
                     </div>
-                    <div class="col-md-8 col-sm-8" >
+                    <div class="col-md-8 col-sm-8" style="height: 45px;">
                         <input type="text" id="fileFormatText" name="fileFormatText" value="${originalfileFormatText}" class="coll-search-field button-shadow"  placeholder="File Format">
                     </div>
                     <div class="col-md-2 col-sm-2 text-smaller text-left text-muted">
-                        <label>File Format</label>
+                        <label>File format</label>
                     </div>
 
                 </div>
@@ -179,11 +184,11 @@
                     <div class="col-md-2 col-sm-2 text-right">
                         <label>Website Title:</label>
                     </div>
-                    <div class="col-md-8 col-sm-8" >
+                    <div class="col-md-8 col-sm-8" style="height: 45px;">
                         <input type="text" id="websiteTitleText" name="websiteTitleText" value="${originalwebsiteTitleText}" class="coll-search-field button-shadow"  placeholder="Website Title">
                     </div>
                     <div class="col-md-2 col-sm-2 text-smaller text-left text-muted">
-                        <label>Website Title</label>
+                        <label>Website title</label>
                     </div>
 
                 </div>
@@ -191,11 +196,11 @@
                     <div class="col-md-2 col-sm-2 text-right">
                         <label>Page Title:</label>
                     </div>
-                    <div class="col-md-8 col-sm-8" >
+                    <div class="col-md-8 col-sm-8" style="height: 45px;">
                         <input type="text" id="pageTitleText" name="pageTitleText" value="${originalpageTitleText}" class="coll-search-field button-shadow"  placeholder="Page Title">
                     </div>
                     <div class="col-md-2 col-sm-2 text-smaller text-left text-muted">
-                        <label>Page Title</label>
+                        <label>Page title</label>
                     </div>
 
                 </div>
@@ -203,7 +208,7 @@
                     <div class="col-md-2 col-sm-2 text-right">
                         <label>Author:</label>
                     </div>
-                    <div class="col-md-8 col-sm-8" >
+                    <div class="col-md-8 col-sm-8" style="height: 45px;">
                         <input type="text" id="authorText" name="authorText" value="${originalauthorText}" class="coll-search-field button-shadow"  placeholder="Author">
                     </div>
                     <div class="col-md-2 col-sm-2 text-smaller text-left text-muted">
