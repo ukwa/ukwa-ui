@@ -90,6 +90,20 @@
             $.cookie("survey_viewed", "true", { expires: 365, path: '/',  });
         });
 
+        // Proximity search validation. On any change in any of 3 fields automatically sets the rest (2 fields) to become required.
+        $("#proximityPhrase1").on("input propertychange", function(){
+            $("#proximityPhrase2").prop('required', $(this).val().length)
+            $("#proximityDistance").prop('required', $(this).val().length)
+        });
+        $("#proximityPhrase2").on("input propertychange", function(){
+            $("#proximityPhrase1").prop('required', $(this).val().length)
+            $("#proximityDistance").prop('required', $(this).val().length)
+        });
+        $("#proximityDistance").on("input propertychange", function(){
+            $("#proximityPhrase1").prop('required', $(this).val().length)
+            $("#proximityPhrase2").prop('required', $(this).val().length)
+        });
+
         $("#advancedSearchLink").click(function() {
 
             if($("#advanced-search-div").is(":visible")){ //hide then
@@ -97,18 +111,13 @@
                 $("#search_form").attr("action", "search");
                 $("#advanced-search-div").hide(500);
                 $('#advancedSearchLink').html('Advanced search');
-
-
             }
             else{
                 //alert("action changed to advancedSearch");
                 $("#advanced-search-div").show(500);
                 $("#search_form").attr("action", "advancedsearch");
                 $('#advancedSearchLink').html('Basic search');
-
             }
-
-
         });
 
         $("#from_date_advanced, #to_date_advanced").datepicker({
