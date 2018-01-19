@@ -1,8 +1,8 @@
-<div id="betadiv" class="d-flex justify-content-between flex-wrap bg-dark padding-side-10 ">
-    <div class="p-2 main-header-heading">
+<div id="betadiv" class="d-flex justify-content-between flex-wrap bg-dark my-auto">
+    <div class="p-2 main-header-heading my-auto">
         <span class="text-white">Beta version</span>
     </div>
-    <div id="betadivlink" name="betadivlink" style="display:none;"  class="p-2  white align-content-center">
+    <div id="betadivlink" name="betadivlink" style="display:none;"  class="p-2 white my-auto">
         <a target="_blank" href="<spring:message code="survey.url"/>" title="survey">
             <h4><u>Help us improve, complete our survey</u></h4>
         </a>
@@ -13,8 +13,8 @@
 <div class="row header-bar border-bottom-gray">
     <div class="col-lg-3 col-md-4 col-sm-12 main-heading-cont">
  
-    <h1 class="main-header-heading"><a href="index" title="<spring:message code="header.main.heading.title" />"><spring:message code="header.main.heading" /></a></h1>
-    <span class="main-subheading"><spring:message code="header.subtitle" /></span> </div>
+    <h1 class="main-header-heading"><a href="index" title="<spring:message code="header.main.heading.title" />"><spring:message code="header.main.heading"/></a></h1>
+    <span class="main-subheading"><spring:message code="header.subtitle"/></span> </div>
     
   <div class="col-lg-9 col-md-8 col-sm-12 main-search-container padding-side-10">
   
@@ -92,112 +92,115 @@
             <div class="col-md-12 padding-0">
                 <!-- filters -->
                 <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
-
-
-
-                <div class="row padding-10 padding-bottom-20 margin-0 " >
+                <div class="row padding-10 padding-bottom-20 margin-0" >
                     <div class="col-md-2 col-sm-2 text-right my-auto">
                         <label>Proximity:</label>
                     </div>
+                    <div class="col">
+                        <div class="advanced-search-input">
+                            <input type="text" id="proximityPhrase1" name="proximityPhrase1" value="${originalproximityPhrase1}" class="advanced-search-field" placeholder="phrase" >
+                        </div>
+                    </div>
 
-                    <div class="col my-auto" style="height: 45px;">
-                        <input type="text" id="proximityPhrase1" name="proximityPhrase1" value="${originalproximityPhrase1}" class="coll-search-field button-shadow" placeholder="phrase" >
+                    <div class="col">
+                        <div class="advanced-search-input">
+                            <input type="text" id="proximityPhrase2" name="proximityPhrase2" value="${originalproximityPhrase2}" class="advanced-search-field" placeholder="phrase" >
+                        </div>
                     </div>
-                    <div class="col my-auto" style="height: 45px;">
-                        <input type="text" id="proximityPhrase2" name="proximityPhrase2" value="${originalproximityPhrase2}" class="coll-search-field button-shadow" placeholder="phrase" >
+                    <div class="col">
+                        <div class="advanced-search-input">
+                            <input type="number" id="proximityDistance" name="proximityDistance" value="${originalproximityDistance}" class="advanced-search-field"  min="1" max="10000" step="1" placeholder="25">
+                        </div>
                     </div>
-                    <div class="col my-auto" style="height: 45px;">
-                        <input type="number" id="proximityDistance" name="proximityDistance" value="${originalproximityDistance}" class="coll-search-field button-shadow" min="1" max="100000" step="1" placeholder="25">
-                    </div>
-                    <div class="col-md-2 col-sm-2 text-smaller text-left text-muted my-auto" >
+                    <div class="col-md-2 col-sm-2 text-smaller text-left text-muted my-auto">
                         <label>Proximity search</label>
                     </div>
                 </div>
-
-
                 <div class="row padding-10 padding-bottom-20 margin-0 border-bottom-gray" >
                     <div class="col-md-2 col-sm-2 text-right my-auto" style="height: 45px;">
                         <label>None of these words:</label>
                     </div>
-
-                    <div class="col my-auto">
-                        <input type="text" id="excludedWords" name="excludedWords" value="${originalExcludedWords}" class="coll-search-field button-shadow" placeholder="rodent, Jack Russell">
+                    <div class="col">
+                        <div class="advanced-search-input">
+                            <input type="text" id="excludedWords" name="excludedWords" value="${originalExcludedWords}" class="advanced-search-field" placeholder="rodent, Jack Russell">
+                        </div>
                     </div>
                     <div class="col-md-2 col-sm-2 text-smaller text-left text-muted my-auto">
                         <label>Exclude words</label>
                     </div>
                 </div>
-
-
-
                 <div class="row padding-20 padding-bottom-10 margin-0" >
-                    <div class="col-md-2 col-sm-2 text-right border-bottom-gray">
+                    <div class="col-md-2 col-sm-2 text-right border-bottom-gray text-smaller">
                         <label><b>Within Resources</b></label>
                     </div>
                 </div>
-
-
                 <div class="row padding-10 padding-bottom-10 margin-0 ">
                     <div class="col-md-2 col-sm-2 text-right my-auto">
                         <label>Date Range:</label>
                     </div>
-
-                    <div class="col-md-4 col-sm-4 my-auto">
-                        <input type="date" class="coll-search-field button-shadow" id="from_date_advanced" name="dateStart" title="From"
+                    <div class="col">
+                        <div class="advanced-search-input">
+                            <input type="date" class="advanced-search-field" id="from_date_advanced" name="dateStart" title="From"
                                value="${originaldateStart != null ? originaldateStart : ''}"/>
+                        </div>
                     </div>
-                    <div class="col-md-4 col-sm-4 my-auto">
-                        <input type="date" class="coll-search-field button-shadow" id="to_date_advanced" name="dateStop" title="To"
+                    <div class="col">
+                        <div class="advanced-search-input">
+                        <input type="date" class="advanced-search-field" id="to_date_advanced" name="dateStop" title="To"
                                value="${originaldateStop != null ? originaldateStop : ''}"/>
+                        </div>
                     </div>
                     <div class="col-md-2 col-sm-2 text-smaller text-left text-muted my-auto">
                         <label>Restrict by date</label>
                     </div>
-
                 </div>
                 <div class="row padding-10 padding-bottom-10 margin-0 align-baseline">
                     <div class="col-md-2 col-sm-2 text-right my-auto">
                         <label>Host, Domain or Public Suffix:</label>
                     </div>
-                    <div class="col-md-8 col-sm-8 my-auto" style="height: 45px;">
-                        <input type="text" id="hostDomainPublicText" name="hostDomainPublicText" value="${originalhostDomainPublicText}" class="coll-search-field button-shadow"  placeholder="Host, Domain or Public Suffix">
+                    <div class="col">
+                        <div class="advanced-search-input">
+                            <input type="text" id="hostDomainPublicText" name="hostDomainPublicText" value="${originalhostDomainPublicText}" class="advanced-search-field"  placeholder="Host, Domain or Public Suffix">
+                        </div>
                     </div>
                     <div class="col-md-2 col-sm-2 text-small text-left text-muted my-auto">
                         <label>'host', 'domain' or 'public_suffix' fields</label>
                     </div>
-
                 </div>
-
                 <div class="row padding-10 padding-bottom-10 margin-0 ">
                     <div class="col-md-2 col-sm-2 text-right my-auto">
                         <label>File Format:</label>
                     </div>
-                    <div class="col-md-8 col-sm-8 my-auto" style="height: 45px;">
-                        <input type="text" id="fileFormatText" name="fileFormatText" value="${originalfileFormatText}" class="coll-search-field button-shadow"  placeholder="File Format">
+                    <div class="col">
+                        <div class="advanced-search-input">
+                            <input type="text" id="fileFormatText" name="fileFormatText" value="${originalfileFormatText}" class="advanced-search-field"  placeholder="File Format">
+                        </div>
                     </div>
                     <div class="col-md-2 col-sm-2 text-smaller text-left text-muted my-auto">
                         <label>File format</label>
                     </div>
-
                 </div>
                 <div class="row padding-10 padding-bottom-10 margin-0 ">
                     <div class="col-md-2 col-sm-2 text-right my-auto">
                         <label>Website Title:</label>
                     </div>
-                    <div class="col-md-8 col-sm-8 my-auto" style="height: 45px;">
-                        <input type="text" id="websiteTitleText" name="websiteTitleText" value="${originalwebsiteTitleText}" class="coll-search-field button-shadow"  placeholder="Website Title">
+                    <div class="col">
+                        <div class="advanced-search-input">
+                            <input type="text" id="websiteTitleText" name="websiteTitleText" value="${originalwebsiteTitleText}" class="advanced-search-field"  placeholder="Website Title">
+                        </div>
                     </div>
                     <div class="col-md-2 col-sm-2 text-smaller text-left text-muted my-auto">
                         <label>Website title</label>
                     </div>
-
                 </div>
                 <div class="row padding-10 padding-bottom-10 margin-0 ">
                     <div class="col-md-2 col-sm-2 text-right my-auto">
                         <label>Page Title:</label>
                     </div>
-                    <div class="col-md-8 col-sm-8 my-auto" style="height: 45px;">
-                        <input type="text" id="pageTitleText" name="pageTitleText" value="${originalpageTitleText}" class="coll-search-field button-shadow"  placeholder="Page Title">
+                    <div class="col">
+                        <div class="advanced-search-input">
+                            <input type="text" id="pageTitleText" name="pageTitleText" value="${originalpageTitleText}" class="advanced-search-field"  placeholder="Page Title">
+                        </div>
                     </div>
                     <div class="col-md-2 col-sm-2 text-smaller text-left text-muted my-auto">
                         <label>Page title</label>
@@ -208,18 +211,16 @@
                     <div class="col-md-2 col-sm-2 text-right my-auto">
                         <label>Author:</label>
                     </div>
-                    <div class="col-md-8 col-sm-8 my-auto" style="height: 45px;">
-                        <input type="text" id="authorText" name="authorText" value="${originalauthorText}" class="coll-search-field button-shadow"  placeholder="Author">
+                    <div class="col">
+                        <div class="advanced-search-input">
+                            <input type="text" id="authorText" name="authorText" value="${originalauthorText}" class="advanced-search-field"  placeholder="Author">
+                        </div>
                     </div>
                     <div class="col-md-2 col-sm-2 text-smaller text-left text-muted my-auto">
                         <label>Author</label>
                     </div>
-
                 </div>
-
-
                 <div class="row adding-10 padding-bottom-10 margin-0 ">
-
                     <div class="col-md-1 col-sm-1">
                     </div>
                     <div class="col-md-4 col-sm-4 text-right">
@@ -228,11 +229,7 @@
                     <div class="col-md-7 col-sm-7">
                         <button type="reset" class="btn btn-primary button-shadow" name="resetadvancedsearchform" value="reset" id="resetadvancedsearchform">Reset</button>
                     </div>
-
-
                 </div>
-
-
             </div>
         </div>
 
