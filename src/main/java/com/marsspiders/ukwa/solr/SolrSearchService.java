@@ -369,7 +369,7 @@ public class SolrSearchService {
         StringBuilder sb_advancedQueryString = new StringBuilder();
 
         //Search Text
-        if (excludedWords!=null && !excludedWords.isEmpty())
+        if (searchText!=null && !searchText.isEmpty())
         {
             sb_advancedQueryString.append("{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "}").append(QueryParser.escape(searchText));
         }
