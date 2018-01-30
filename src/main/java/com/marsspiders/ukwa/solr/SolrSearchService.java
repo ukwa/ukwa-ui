@@ -149,6 +149,7 @@ public class SolrSearchService {
         SortClause sort = sortBy == null
                 ? null
                 : new SortClause(FIELD_CRAWL_DATE, sortBy.getSolrOrderValue());
+
         String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
         String accessToQuery = generateAccessToQuery(accessTo);
         String contentTypeQuery = generateMultipleConditionsQuery(contentTypes, FIELD_TYPE);
@@ -249,29 +250,25 @@ public class SolrSearchService {
         log.debug("crawlDatesQuery = " + crawlDatesQuery);
 
 
-        //------------------------------------------------------------------------------
-
         //---------- GAP test --------------------------------------------
         //String dateQueryWithGap = generateDateQueryGap(fromDatePicked, toDatePicked, rangeDates);
         //log.debug("dateQueryWithGap = " + dateQueryWithGap);
         //----------------------------------------------------------------
-
-        //---------- PHRASE - FACET ???!!! ------------------------------
         String phraseQuery = generateMultipleConditionsQuery(contentTypes, FIELD_TYPE);
         log.debug("dateQuery = " + phraseQuery);
-        //----------------------------------------------------------------
 
         String postcodedistrictQuery = generateMultipleConditionsQuery(postcodeDistricts, FIELD_POSTCODE_DISTRICT);
         log.debug("postcodedistrictQuery = " + postcodedistrictQuery);
+
         String contentLanguagesQuery = generateMultipleConditionsQuery(contentLanguages, FIELD_CONTENT_LANGUAGE);
         log.debug("contentLanguagesQuery = " + contentLanguagesQuery);
+
         String linksDomainsQuery = generateMultipleConditionsQuery(linksDomains, FIELD_LINKS_DOMAINS);
         log.debug("linksDomains = " + linksDomainsQuery);
 
 
         //filter list
         List<String> filters = new ArrayList<>();
-
 
 
         //--------------------------------------------------------------
@@ -282,28 +279,13 @@ public class SolrSearchService {
         //
         //--------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-        //---------------- EXCLUDE WORDS --------------------
-        if (excludedWords!=null && !excludedWords.isEmpty()){
-            List<String> excludedWordsList = Arrays.asList(excludedWords.split("[,\\s]+"));
-            String excludeQuery = generateMultipleAndConditionsQuery(excludedWordsList, "-"+FIELD_TEXT);
-            log.debug("exclude = " + excludeQuery);
-            filters.add(excludeQuery);
-        }
-
         //---------- hostDomainPublicSuffix -------------
         if (hostDomainPublicSuffixes!=null && !hostDomainPublicSuffixes.isEmpty()){
             //List<String> hostDomainPublicSuffixList = Arrays.asList(hostDomainPublicSuffixes.split("[,\\s]+"));
             //log.debug("hostDomainPublicSuffix List = " + hostDomainPublicSuffixQuery);
-            filters.add("{!tag=host}host:"+ hostDomainPublicSuffixes + " OR " +"{!tag=domain}domain:"+ hostDomainPublicSuffixes + " OR " +"{!tag=public_suffix}public_suffix:"+ hostDomainPublicSuffixes );
+            filters.add("{!tag=host}host:"+ hostDomainPublicSuffixes +
+                    " OR " +"{!tag=domain}domain:"+ hostDomainPublicSuffixes +
+                    " OR " +"{!tag=public_suffix}public_suffix:"+ hostDomainPublicSuffixes );
         }
 
         //BASICS DONE!!!
@@ -336,6 +318,7 @@ public class SolrSearchService {
         //---------- AUTHORs LIST -------------
         if (authorNames!=null && !authorNames.isEmpty()){
             List<String> authorsList = Arrays.asList(authorNames.split("[,\\s]+"));
+            //TODO: change to RAW SOLR query
             String authorsQuery = generateMultipleAndConditionsQuery(authorsList, FIELD_AUTHOR);
             log.debug("authors names = " + authorsQuery);
             filters.add(authorsQuery);
@@ -370,7 +353,7 @@ public class SolrSearchService {
                 FIELD_COLLECTION,
                 FIELD_CONTENT_TYPE_NORM,
                 FIELD_ACCESS_TERMS,
-                //TODO: needded:
+                //TODO:
                 //postcode district
                 //crawl years - GAP 1 YEAR
                 //Language
@@ -382,92 +365,33 @@ public class SolrSearchService {
                 FIELD_CRAWL_DATE
         };
 
-        //the following query string specifies a lucene/solr query
-        // with a default operator of "AND" and a default field of "text":
-        // q={!lucene q.op=AND df=text}myfield:foo +bar -baz
 
-        String advancedQueryString = "";
+        StringBuilder sb_advancedQueryString = new StringBuilder();
 
-        log.debug("searchText = " + searchText);
-        log.debug("proximityPhrase1 = " + proximityPhrase1);
-        log.debug("proximityPhrase2 = " + proximityPhrase2);
-        log.debug("proximityDistance = " + proximityDistance);
-
-
-
-
-        advancedQueryString = "{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "}" +
-                searchText ;
-
-        /*
-        // basic search only - no proximity
-        if ( searchText != null && !searchText.isEmpty() &&
-                ((proximityPhrase1 == null || proximityPhrase1.isEmpty()) &&      // CHECK IF PROXIMITY PHRASE 1 EXISTS
-                        (proximityPhrase2 == null || proximityPhrase2.isEmpty()) &&     // CHECK IF PROXIMITY PHRASE 2 EXISTS
-                        (proximityDistance == null || proximityDistance.isEmpty())) ) {  // CHECK IF PROXIMITY DISTANCE EXISTS)
-
-
-            advancedQueryString = "{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "}" +
-                    searchText ;
-
-            log.debug("proximity Query with main search = " + advancedQueryString);
-
+        //Search Text
+        if (excludedWords!=null && !excludedWords.isEmpty())
+        {
+            sb_advancedQueryString.append("{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "}").append(QueryParser.escape(searchText));
         }
-        */
+        //Add Proximity
         if (    proximityPhrase1 != null && !proximityPhrase1.isEmpty() &&      // CHECK IF PROXIMITY PHRASE 1 EXISTS
                 proximityPhrase2 != null && !proximityPhrase2.isEmpty() &&     // CHECK IF PROXIMITY PHRASE 2 EXISTS
-                proximityDistance != null && !proximityDistance.isEmpty() ) {  // CHECK IF PROXIMITY DISTANCE EXISTS
-
-
-            /*
-            String proximityQuery =  "("+ FIELD_TEXT + ":"+  "\"" +
-                    "(\"" + proximityPhrase1 + )" +
-                    "(\"" + proximityPhrase2 + "\")" +
-                    "\"~" + proximityDistance + ")" ;// +
-            log.debug("proximity Query = " + proximityQuery);
-            filters.add(proximityQuery);
-            */
-
-            String proximityQuery = "text:" + "\"" +
-                     proximityPhrase1 + " " +
-                     proximityPhrase2 +
-                    "\"~" + proximityDistance;
-
-                    log.debug("proximity Query = " + proximityQuery);
-
-            filters.add( proximityQuery );
-
-            //log.debug("proximity Query without main search = " + advancedQueryString);
-        }
-        /*
-        //no proximity
-        else if (    proximityPhrase1 != null && !proximityPhrase1.isEmpty() &&      // CHECK IF PROXIMITY PHRASE 1 EXISTS
-                proximityPhrase2 != null && !proximityPhrase2.isEmpty()  )    // CHECK IF PROXIMITY PHRASE 2 EXISTS
-
-            {
-
-
-
-            advancedQueryString = "{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "}" + "(\"" +
-                    "(\"" + proximityPhrase1 + "\") AND " +
-                    "(\"" + proximityPhrase2 + "\")" +
-                    "\")";
-
-            log.debug("proximity Query without main search = " + advancedQueryString);
-        }
-        else if ( searchText != null && !searchText.isEmpty() )
+                proximityDistance != null && !proximityDistance.isEmpty() )   // CHECK IF PROXIMITY DISTANCE EXISTS
         {
-
-            advancedQueryString = "{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "}" + QueryParser.escape(searchText);
+            sb_advancedQueryString.append("\"" + proximityPhrase1 + " " + proximityPhrase2 + "\"" + "~" + proximityDistance);
         }
-        */
+        //Add Words to Exclude
+        if (excludedWords!=null && !excludedWords.isEmpty())
+        {
+            List<String> excludedWordsList = Arrays.asList(excludedWords.split("[,\\s]+"));
+            for (String valueToInclude : excludedWordsList) {
+                sb_advancedQueryString.append(" ").append("-").append(valueToInclude);
+            }
+        }
 
+        log.debug("sb advancedQueryString.toString() = " + sb_advancedQueryString.toString());
 
-        log.debug("QueryParser.escape(searchText) = " + QueryParser.escape(searchText));
-        log.debug("searchText) = " + searchText);
-        log.debug("advancedQueryString = " + advancedQueryString);
-
-        return sendRequest(advancedQueryString,
+        return sendRequest(sb_advancedQueryString.toString(),
                 sort,
                 filters,
                 FIELD_CONTENT,
