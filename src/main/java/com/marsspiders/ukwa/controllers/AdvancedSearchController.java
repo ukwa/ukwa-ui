@@ -42,13 +42,11 @@ import static org.apache.commons.lang3.StringUtils.*;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 
-/**
- * Created by mvidmantas on 13/10/2017.
- */
+
 @Controller
 @RequestMapping(value = PROJECT_NAME + "/advancedsearch")
 public class AdvancedSearchController {
-    private static final Logger log = LoggerFactory.getLogger(SolrSearchService.class);
+    private static final Logger log = LoggerFactory.getLogger(AdvancedSearchController.class);
 
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private static final String URL_PATTERN = "(?i)^(?:(?:https?|ftp)://)?(?:\\S+(?::\\S*)?@)?(?:(?!(?:10|127)(?:\\.\\d{1,3}){3})(?!(?:169\\.254|192\\.168)(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,}))\\.?)(?::\\d{2,5})?(?:[/?#]\\S*)?$";
@@ -69,20 +67,20 @@ public class AdvancedSearchController {
 
     @RequestMapping(value = "", method = GET)
     public ModelAndView advancedSearchPage(@RequestParam(value = "search_location", required = false) String searchLocation,
-                                   @RequestParam(value = "text", required = false) String text,
-                                   @RequestParam(value = "page", required = false) String pageNum,
-                                   @RequestParam(value = "content_type", required = false) String[] checkedContentTypes,
-                                   @RequestParam(value = "public_suffix", required = false) String[] checkedPublicSuffixes,
-                                   @RequestParam(value = "domain_filter", required = false) String[] checkedDomains,
-                                   @RequestParam(value = "from_date", required = false) String fromDateText,
-                                   @RequestParam(value = "to_date", required = false) String toDateText,
-                                   @RequestParam(value = "range_date", required = false) String[] checkedRangeDates,
-                                   @RequestParam(value = "collection", required = false) String[] checkedCollections,
-                                   @RequestParam(value = "view_sort", required = false) String sortValue,
-                                   @RequestParam(value = "view_count", required = false) String viewCount,
-                                   @RequestParam(value = "view_filter", required = false) String accessViewFilter,
+                                           @RequestParam(value = "text", required = false) String text,
+                                           @RequestParam(value = "page", required = false) String pageNum,
+                                           @RequestParam(value = "content_type", required = false) String[] checkedContentTypes,
+                                           @RequestParam(value = "public_suffix", required = false) String[] checkedPublicSuffixes,
+                                           @RequestParam(value = "domain_filter", required = false) String[] checkedDomains,
+                                           @RequestParam(value = "from_date", required = false) String fromDateText,
+                                           @RequestParam(value = "to_date", required = false) String toDateText,
+                                           @RequestParam(value = "range_date", required = false) String[] checkedRangeDates,
+                                           @RequestParam(value = "collection", required = false) String[] checkedCollections,
+                                           @RequestParam(value = "view_sort", required = false) String sortValue,
+                                           @RequestParam(value = "view_count", required = false) String viewCount,
+                                           @RequestParam(value = "view_filter", required = false) String accessViewFilter,
 
-                                   //---------------- NEW
+                                           //---------------- NEW
                                            @RequestParam(value = "checkedPhrases", required = false) String[] checkedPhrases,
                                            @RequestParam(value = "postcode_district", required = false) String[] checkedPostcodeDistricts,
                                            @RequestParam(value = "content_language", required = false) String[] checkedContentLanguages,
@@ -91,20 +89,20 @@ public class AdvancedSearchController {
 
 
                                            // advanced search form fields
-                                   @RequestParam(value = "proximityPhrase1", required = false) String proximityPhrase1,
-                                   @RequestParam(value = "proximityPhrase2", required = false) String proximityPhrase2,
+                                           @RequestParam(value = "proximityPhrase1", required = false) String proximityPhrase1,
+                                           @RequestParam(value = "proximityPhrase2", required = false) String proximityPhrase2,
                                            @RequestParam(value = "proximityDistance", required = false) String proximityDistance,
                                            @RequestParam(value = "excludedWords", required = false) String excludedWords,
-                                   @RequestParam(value = "dateStart", required = false) String dateStartText,
-                                   @RequestParam(value = "dateStop", required = false) String dateStopText,
-                                   @RequestParam(value = "hostDomainPublicText", required = false) String hostDomainPublicText,
-                                   @RequestParam(value = "fileFormatText", required = false) String fileFormatText,
-                                   @RequestParam(value = "websiteTitleText", required = false) String websiteTitleText,
-                                   @RequestParam(value = "pageTitleText", required = false) String pageTitleText,
-                                   @RequestParam(value = "authorText", required = false) String authorText,
+                                           @RequestParam(value = "dateStart", required = false) String dateStartText,
+                                           @RequestParam(value = "dateStop", required = false) String dateStopText,
+                                           @RequestParam(value = "hostDomainPublicText", required = false) String hostDomainPublicText,
+                                           @RequestParam(value = "fileFormatText", required = false) String fileFormatText,
+                                           @RequestParam(value = "websiteTitleText", required = false) String websiteTitleText,
+                                           @RequestParam(value = "pageTitleText", required = false) String pageTitleText,
+                                           @RequestParam(value = "authorText", required = false) String authorText,
 
 
-                                   HttpServletRequest request) throws MalformedURLException, URISyntaxException, ParseException {
+                                           HttpServletRequest request) throws MalformedURLException, URISyntaxException, ParseException {
 
         log.debug("====================================================================================");
         log.debug("ADVANCED CONTROLLER - searchPage " + request.getParameter("searchButtons"));
@@ -305,7 +303,7 @@ public class AdvancedSearchController {
 
         //------------------- if phrase1
         //if (text != null && proximityPhrase1!=null && proximityPhrase2!=null && proximityDistance!=null){
-            //mav.addObject("originalSearchRequest", ("\"" + text + "\", \"" + proximityPhrase1 + "\", \"" + proximityPhrase2 + "\", <i>proximity Distance</i>  " + proximityDistance).replaceAll("\"", "&quot;"));
+        //mav.addObject("originalSearchRequest", ("\"" + text + "\", \"" + proximityPhrase1 + "\", \"" + proximityPhrase2 + "\", <i>proximity Distance</i>  " + proximityDistance).replaceAll("\"", "&quot;"));
         //}
         //else
 

@@ -365,33 +365,7 @@ public class SolrSearchService {
                 FIELD_CRAWL_DATE
         };
 
-
-        StringBuilder sb_advancedQueryString = new StringBuilder();
-
-        //Search Text
-        if (searchText!=null && !searchText.isEmpty())
-        {
-            sb_advancedQueryString.append("{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "}").append(QueryParser.escape(searchText));
-        }
-        //Add Proximity
-        if (    proximityPhrase1 != null && !proximityPhrase1.isEmpty() &&      // CHECK IF PROXIMITY PHRASE 1 EXISTS
-                proximityPhrase2 != null && !proximityPhrase2.isEmpty() &&     // CHECK IF PROXIMITY PHRASE 2 EXISTS
-                proximityDistance != null && !proximityDistance.isEmpty() )   // CHECK IF PROXIMITY DISTANCE EXISTS
-        {
-            sb_advancedQueryString.append("\"" + proximityPhrase1 + " " + proximityPhrase2 + "\"" + "~" + proximityDistance);
-        }
-        //Add Words to Exclude
-        if (excludedWords!=null && !excludedWords.isEmpty())
-        {
-            List<String> excludedWordsList = Arrays.asList(excludedWords.split("[,\\s]+"));
-            for (String valueToInclude : excludedWordsList) {
-                sb_advancedQueryString.append(" ").append("-").append(valueToInclude);
-            }
-        }
-
-        log.debug("sb advancedQueryString.toString() = " + sb_advancedQueryString.toString());
-
-        return sendRequest(sb_advancedQueryString.toString(),
+        return sendRequest(toPrimaryAdvancedSearchQuery(FIELD_TEXT, searchText, proximityPhrase1, proximityPhrase2, proximityDistance, excludedWords),
                 sort,
                 filters,
                 FIELD_CONTENT,
