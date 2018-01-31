@@ -42,6 +42,9 @@
 <c:set var = "advancedSearchPage" value = "true"/>
 
 <%@include file="nav.jsp" %>
+
+
+
 <div class="container-fluid">
     <header>
         <%@include file="header.jsp" %>
@@ -455,13 +458,7 @@
 <script>
 
     function showDateReset() {
-        if ($(".archived-date").length>0) {
-            if ($("#from_date").val().trim()!=="" || $("#to_date").val().trim()!=="") {
-                $("#btn_reset_dates").show();
-            } else {
-                $("#btn_reset_dates").hide();
-            }
-        }
+        //
     }
 
     function toggle(el) {
@@ -481,13 +478,9 @@
 
     $(document).ready(function(e) {
 
-        $("#from_date, #to_date").datepicker({
-            dateFormat: "yy-mm-dd",
-            changeMonth: true,
-            changeYear: true,
-            yearRange: "-50:+0",
-            maxDate : 'now'
-        });
+
+
+
 
         //filters toggle and count
         $(".sidebar-filter-header:not(.no-collapse)").each(function(index, element) {
@@ -568,11 +561,7 @@
             if ($(this).next(".sidebar-filter").children(".sidebar-filter-checkbox").children(".form-check-cont").children("input").length==0) $(this).next('.sidebar-filter').html('<span class="sidebar-noresults">'+sidebar_noresults+'</span>');
         });
 
-        //expand if dates inputed
-        if ($("#from_date").val()!=="" || $("#to_date").val()!=="") {
-            $("#dates_header").removeClass("open").addClass("closee");
-            $("#dates_container").addClass("expanded").children().show();
-        }
+
 
         //change filters
         $("input[type='checkbox'], .access_filter").click(function(e) { $("#advanced_filter_form").submit(); });
@@ -594,27 +583,55 @@
         //form validation
         $("#advanced_filter_form").submit(function(e) {
 
-            var isValid = true;
-            var from = Date.parse($("#from_date").val());
-            var to = Date.parse($("#to_date").val());
-            var now = new Date();
+            showPleaseWait();
 
-            if ($("#from_date").val().trim()!=="" && !from) isValid=false;
-            if ($("#to_date").val().trim()!=="" && !to) isValid=false;
-            if (isValid && (from>now || to>now)) isValid=false;
-            if (isValid && to<from) isValid=false;
+            //----------------------
+            // date validation
+            //----------------------
+
+            var isValid = true;
+            //var from = Date.parse($("#from_date").val());
+            //var to = Date.parse($("#to_date").val());
+            //var now = new Date();
+
+            //if ($("#from_date").val().trim()!=="" && !from) isValid=false;
+            //if ($("#to_date").val().trim()!=="" && !to) isValid=false;
+            //if (isValid && (from>now || to>now)) isValid=false;
+            //if (isValid && to<from) isValid=false;
 
             if (isValid) {
                 return true;
-            } else {
-                alert('<spring:message code="notice.date.range" />');
-                return false;
-            }
+            } //else {
+              //  alert('<spring:message code="notice.date.range" />');
+              //  return false;
+            //}
+
+
 
         });
 
+
         //checks should filters be retained and submits
         $("#search_form").submit(function(e) {
+
+
+            showPleaseWait();
+
+
+            //add 3 required attributes if any of 3 proximity fields are not empty
+            //proximityPhrase1 proximityPhrase2 proximityDistance
+            // ^proximity on change
+
+            //set form action dynamically
+            if($("#advanced-search-div").is(":visible")){ //hide then
+                $("#search_form").attr('action', 'search');
+            }
+            else{
+                $("#search_form").attr('action', 'advancedsearch');
+            }
+
+
+
             if ($("#reset_filters").val() === "true") {
                 return true;
             } else {
@@ -634,11 +651,8 @@
                 $("#pageTitleText_hidden").val($("#pageTitleText").val());
                 $("#authorText_hidden").val($("#authorText").val());
 
+                $("#advanced_filter_form").submit();
 
-
-
-
-                    $("#advanced_filter_form").submit();
                 return false;
             }
         });
@@ -663,7 +677,6 @@
 
         showDateReset();
         checkboxSize(); //expand checkbox size to fit label content
-
 
     });
 

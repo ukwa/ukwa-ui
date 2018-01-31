@@ -26,7 +26,7 @@ ${pageContext.response.locale}
 <html lang="${locale}">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
-<title><spring:message code="search.title" /></title>
+<title><spring:message code="advancedsearch.title" /></title>
 <%@include file="head.jsp" %>
 </head>
 
@@ -416,6 +416,9 @@ function toggle(el) {
 
 $(document).ready(function(e) {
 
+
+
+
 	$("#from_date, #to_date").datepicker({
 		dateFormat: "yy-mm-dd",
 		changeMonth: true,
@@ -528,6 +531,8 @@ $(document).ready(function(e) {
 	
 	//form validation
 	$("#filter_form").submit(function(e) {
+
+        showPleaseWait();
         
 		var isValid = true;
 		var from = Date.parse($("#from_date").val());
@@ -550,6 +555,17 @@ $(document).ready(function(e) {
 	
 	//checks should filters be retained and submits
 	$("#search_form").submit(function(e) {
+
+        showPleaseWait();
+
+	    //set form action dynamically
+        if($("#advanced-search-div").is(":visible")){ //hide then
+            $("#search_form").attr('action', 'search');
+        }
+        else{
+            $("#search_form").attr('action', 'advancedsearch');
+        }
+
         if ($("#reset_filters").val() === "true") {
 			return true;
 		} else {
@@ -579,8 +595,8 @@ $(document).ready(function(e) {
 	
 	showDateReset(); 
 	checkboxSize(); //expand checkbox size to fit label content
-	
-	
+
+
 });
 
 </script>

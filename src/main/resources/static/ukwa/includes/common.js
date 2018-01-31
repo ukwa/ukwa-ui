@@ -7,7 +7,7 @@ function checkboxSize() {
 }
 
 $(document).ready(function(e) {
-	
+
 	//bootstrap tooltips
 	var isVisible=false;	
 	$('[data-toggle="tooltip"]').tooltip({
@@ -85,6 +85,7 @@ $(document).ready(function(e) {
 	
 	//add default HTML document type filter
 	$("#search_form").submit(function(e) {
+        showPleaseWait();
 		if ($('checkbox[value="Web page"]').length===0 && $("#reset_filters").val()!=="true") $(this).append('<input type="hidden" name="content_type" value="Web Page" />');
     });
 	

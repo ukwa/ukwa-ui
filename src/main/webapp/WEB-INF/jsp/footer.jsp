@@ -89,6 +89,7 @@
             $.cookie("survey_link_pressed_in_banner", "true", { expires: 365, path: '/',  });
             $.cookie("survey_viewed", "true", { expires: 365, path: '/',  });
         });
+        //end of Survey Monkey
 
         // Proximity search validation. On any change in any of 3 fields automatically sets the rest (2 fields) to become required.
         $("#proximityPhrase1").on("input propertychange", function(){
@@ -105,17 +106,16 @@
         });
 
         $("#advancedSearchLink").click(function() {
-
             if($("#advanced-search-div").is(":visible")){ //hide then
                 //alert("action changed to search");
-                $("#search_form").attr("action", "search");
-                $("#advanced-search-div").hide(500);
+                $("#search_form").attr('action', 'search');
+                $("#advanced-search-div").hide(300);
                 $('#advancedSearchLink').html('Advanced search');
             }
             else{
                 //alert("action changed to advancedSearch");
-                $("#advanced-search-div").show(500);
-                $("#search_form").attr("action", "advancedsearch");
+                $("#advanced-search-div").show(300);
+                $("#search_form").attr('action', 'advancedsearch');
                 $('#advancedSearchLink').html('Basic search');
             }
         });
@@ -133,6 +133,16 @@
         });
 
     });
+
+    //progress bar
+    var pleaseWait = $('#pleaseWaitDialog');
+    showPleaseWait = function () {
+        pleaseWait.modal('show');
+    };
+    hidePleaseWait = function () {
+        pleaseWait.modal('hide');
+    };
+    //hidePleaseWait();
 
 </script>
 <!--<![endif]-->
