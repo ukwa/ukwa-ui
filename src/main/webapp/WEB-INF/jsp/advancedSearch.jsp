@@ -154,7 +154,37 @@
                                     </div>
 
 
-
+                                        <%--   Archived year collapse filter   --%>
+                                        <div class="sidebar-filter-header border-top-white open archived-date" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.date.title" />" tabindex="0" id="dates_header" role="tab">
+                                            <div class="sidebar-filter-header-title" id="t_date"><spring:message code="search.side.date.title" /></div>
+                                            <div class="help-button small white" title="<spring:message code="search.side.date.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.date.tip" />" tabindex="0"></div>
+                                        </div>
+                                        <div class="sidebar-filter" id="dates_container" role="tabpanel" aria-hidden="true" aria-labelledby="t_date">
+                                            <div class="row padding-bottom-20 padding-top-20">
+                                                <div class="col-sm-6">
+                                                    <label for="from_date" class="white date-range-label"><spring:message code="search.side.date.from" /></label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control blue form-white-placeholder" name="from_date" id="from_date" title="<spring:message code="search.side.date.from" />" placeholder="YYYY-MM-DD"
+                                                           value="${originalFromDateText != null ? originalFromDateText : ''}"/>
+                                                </div>
+                                            </div>
+                                            <div class="row padding-bottom-20">
+                                                <div class="col-sm-6">
+                                                    <label for="to_date" class="white date-range-label"><spring:message code="search.side.date.to" /></label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control blue form-white-placeholder" name="to_date" id="to_date" title="<spring:message code="search.side.date.to" />" placeholder="YYYY-MM-DD"
+                                                           value="${originalToDateText != null ? originalToDateText : ''}"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <button type="submit" title="<spring:message code="search.side.date.submit" />" class="button button-white float-sm-right margin-left-10 margin-top-10 text-small"><spring:message code="search.side.date.submit" /></button>
+                                                    <button type="button" title="<spring:message code="search.side.date.reset" />" class="button button-white float-sm-right margin-top-10 text-small" id="btn_reset_dates">X</button>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                 <%--   Document filter by links domains  --%>
                                     <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
@@ -270,8 +300,6 @@
                                         <input type="hidden" name="proximityDistance" id="proximityDistance_hidden" value="${originalproximityDistance}">
                                         <input type="hidden" name="excludedWords" id="excludedWords_hidden" value="${originalExcludedWords}">
 
-                                        <input type="hidden" name="dateStart" id="dateStart_hidden" value="${originaldateStart}">
-                                        <input type="hidden" name="dateStop" id="dateStop_hidden" value="${originaldateStop}">
                                         <input type="hidden" name="hostDomainPublicText" id="hostDomainPublicText_hidden" value="${originalhostDomainPublicText}">
                                         <input type="hidden" name="fileFormatText" id="fileFormatText_hidden" value="${originalfileFormatText}">
                                         <input type="hidden" name="websiteTitleText" id="websiteTitleText_hidden" value="${originalwebsiteTitleText}">
@@ -458,7 +486,13 @@
 <script>
 
     function showDateReset() {
-        //
+        if ($(".archived-date").length>0) {
+            if ($("#from_date").val().trim()!=="" || $("#to_date").val().trim()!=="") {
+                $("#btn_reset_dates").show();
+            } else {
+                $("#btn_reset_dates").hide();
+            }
+        }
     }
 
     function toggle(el) {
@@ -479,7 +513,13 @@
     $(document).ready(function(e) {
 
 
-
+        $("#from_date, #to_date").datepicker({
+            dateFormat: "yy-mm-dd",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-50:+0",
+            maxDate : 'now'
+        });
 
 
         //filters toggle and count
@@ -562,6 +602,11 @@
         });
 
 
+        //expand if dates inputed
+        if ($("#from_date").val()!=="" || $("#to_date").val()!=="") {
+            $("#dates_header").removeClass("open").addClass("closee");
+            $("#dates_container").addClass("expanded").children().show();
+        }
 
         //change filters
         $("input[type='checkbox'], .access_filter").click(function(e) { $("#advanced_filter_form").submit(); });
@@ -583,30 +628,24 @@
         //form validation
         $("#advanced_filter_form").submit(function(e) {
 
-            showPleaseWait();
-
-            //----------------------
-            // date validation
-            //----------------------
 
             var isValid = true;
-            //var from = Date.parse($("#from_date").val());
-            //var to = Date.parse($("#to_date").val());
-            //var now = new Date();
+            var from = Date.parse($("#from_date").val());
+            var to = Date.parse($("#to_date").val());
+            var now = new Date();
 
-            //if ($("#from_date").val().trim()!=="" && !from) isValid=false;
-            //if ($("#to_date").val().trim()!=="" && !to) isValid=false;
-            //if (isValid && (from>now || to>now)) isValid=false;
-            //if (isValid && to<from) isValid=false;
+            if ($("#from_date").val().trim()!=="" && !from) isValid=false;
+            if ($("#to_date").val().trim()!=="" && !to) isValid=false;
+            if (isValid && (from>now || to>now)) isValid=false;
+            if (isValid && to<from) isValid=false;
 
             if (isValid) {
+                showPleaseWait();
                 return true;
-            } //else {
-              //  alert('<spring:message code="notice.date.range" />');
-              //  return false;
-            //}
-
-
+            } else {
+                alert('<spring:message code="notice.date.range" />');
+                return false;
+            }
 
         });
 
@@ -614,20 +653,14 @@
         //checks should filters be retained and submits
         $("#search_form").submit(function(e) {
 
-
             showPleaseWait();
 
-
-            //add 3 required attributes if any of 3 proximity fields are not empty
-            //proximityPhrase1 proximityPhrase2 proximityDistance
-            // ^proximity on change
-
             //set form action dynamically
-            if($("#advanced-search-div").is(":visible")){ //hide then
-                $("#search_form").attr('action', 'search');
+            if($("#advanced-search-div").is(":visible")){
+                $("#search_form").attr('action', 'advancedsearch');
             }
             else{
-                $("#search_form").attr('action', 'advancedsearch');
+                $("#search_form").attr('action', 'search');
             }
 
 
@@ -641,9 +674,6 @@
                 $("#proximityPhrase2_hidden").val($("#proximityPhrase2").val());
                 $("#proximityDistance_hidden").val($("#proximityDistance").val());
                 $("#excludedWords_hidden").val($("#excludedWords").val());
-
-                $("#dateStart_hidden").val($("#dateStart").val());
-                $("#dateStop_hidden").val($("#dateStop").val());
 
                 $("#hostDomainPublicText_hidden").val($("#hostDomainPublicText").val());
                 $("#fileFormatText_hidden").val($("#fileFormatText").val());

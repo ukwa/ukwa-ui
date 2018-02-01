@@ -102,7 +102,6 @@
                 </a> </div>
         </div>
 
-
         <!-- Advanced search form -->
         <!-- Functionality Migration from Shine  -->
         <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
@@ -152,26 +151,7 @@
                         <label><b>Within Resources</b></label>
                     </div>
                 </div>
-                <div class="row padding-10 padding-bottom-10 margin-0 ">
-                    <div class="col-md-2 col-sm-2 text-right my-auto">
-                        <label>Date Range:</label>
-                    </div>
-                    <div class="col">
-                        <div class="advanced-search-input">
-                            <input type="date" class="advanced-search-field" id="from_date_advanced" name="dateStart" title="From"
-                               value="${originaldateStart != null ? originaldateStart : ''}"/>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="advanced-search-input">
-                        <input type="date" class="advanced-search-field" id="to_date_advanced" name="dateStop" title="To"
-                               value="${originaldateStop != null ? originaldateStop : ''}"/>
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-sm-2 text-smaller text-left text-muted my-auto">
-                        <label>Restrict by date</label>
-                    </div>
-                </div>
+
                 <div class="row padding-10 padding-bottom-10 margin-0 align-baseline">
                     <div class="col-md-2 col-sm-2 text-right my-auto">
                         <label>Host, Domain or Public Suffix:</label>
@@ -374,35 +354,6 @@
                 </c:otherwise>
             </c:choose>
 
-
-
-            <c:if test="${fn:length(originaldateStart) > 0 || fn:length(originaldateStop) > 0}">
-                <p class="margin-0"><spring:message code="search.filters.date" />&nbsp;
-
-                    <c:choose>
-                    <c:when test="${fn:length(originaldateStart) > 0}">
-                    <b><i><c:out value="${originaldateStart}"/>
-                        </c:when>
-                        <c:otherwise>
-                            <spring:message code="search.filters.date.any" />
-                        </c:otherwise>
-                        </c:choose>
-
-                        &nbsp;-&nbsp;
-
-                        <c:choose>
-                        <c:when test="${fn:length(originaldateStop) > 0}">
-                        <c:out value="${originaldateStop}"/>
-                    </b></i>
-                    </c:when>
-                    <c:otherwise>
-                        <spring:message code="search.filters.date.any" />
-                    </c:otherwise>
-                    </c:choose>
-
-                </p>
-                <c:set var = "hasFilters" value = "true"/>
-            </c:if>
 
             <c:choose>
 

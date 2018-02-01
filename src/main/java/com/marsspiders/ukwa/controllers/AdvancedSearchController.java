@@ -93,8 +93,6 @@ public class AdvancedSearchController {
                                            @RequestParam(value = "proximityPhrase2", required = false) String proximityPhrase2,
                                            @RequestParam(value = "proximityDistance", required = false) String proximityDistance,
                                            @RequestParam(value = "excludedWords", required = false) String excludedWords,
-                                           @RequestParam(value = "dateStart", required = false) String dateStartText,
-                                           @RequestParam(value = "dateStop", required = false) String dateStopText,
                                            @RequestParam(value = "hostDomainPublicText", required = false) String hostDomainPublicText,
                                            @RequestParam(value = "fileFormatText", required = false) String fileFormatText,
                                            @RequestParam(value = "websiteTitleText", required = false) String websiteTitleText,
@@ -107,6 +105,7 @@ public class AdvancedSearchController {
         log.debug("====================================================================================");
         log.debug("ADVANCED CONTROLLER - searchPage " + request.getParameter("searchButtons"));
         log.debug("====================================================================================");
+
         if (request.getParameter("searchButtons") != null){
             String searchButtonAction = request.getParameter("searchButtons");
             if(searchButtonAction.equals("basicsearch") )
@@ -127,7 +126,6 @@ public class AdvancedSearchController {
                 + ", proximityPhrase1 = " + proximityPhrase1
                 + ", proximityPhrase2 = " + proximityPhrase2
                 + ", proximityDistance = " + proximityDistance);
-        log.info("dateStartText = " + dateStartText + ", dateStopText = " + dateStopText);
 
         List<AdvancedSearchResultDTO> searchResultDTOs = new ArrayList<>();
         List<String> accessTermsPairs = new LinkedList<>();
@@ -179,11 +177,11 @@ public class AdvancedSearchController {
         }
 
         if (!isBlank(text) && searchBy != null) {
-            //Date fromDate = isBlank(fromDateText) ? null : sdf.parse(fromDateText);
-            //Date toDate = isBlank(toDateText) ? null : sdf.parse(toDateText);
+            Date fromDate = isBlank(fromDateText) ? null : sdf.parse(fromDateText);
+            Date toDate = isBlank(toDateText) ? null : sdf.parse(toDateText);
 
-            Date fromDate = isBlank(dateStartText) ? null : sdf.parse(dateStartText);
-            Date toDate = isBlank(dateStopText) ? null : sdf.parse(dateStopText);
+            //Date fromDate = isBlank(dateStartText) ? null : sdf.parse(dateStartText);
+            //Date toDate = isBlank(dateStopText) ? null : sdf.parse(dateStopText);
 
             if (isValidUrl(text)) {
                 SolrSearchResult<ContentInfo> archivedSitesByOriginalUrl = searchService.searchUrlInContent(text);
@@ -329,8 +327,6 @@ public class AdvancedSearchController {
         mav.addObject("originalproximityDistance", proximityDistance);
         mav.addObject("originalExcludedWords", excludedWords);
 
-        mav.addObject("originaldateStart", dateStartText);
-        mav.addObject("originaldateStop", dateStopText);
 
         mav.addObject("originalhostDomainPublicText", hostDomainPublicText);
         mav.addObject("originalfileFormatText", fileFormatText);

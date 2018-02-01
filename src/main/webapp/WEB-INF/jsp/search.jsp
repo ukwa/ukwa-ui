@@ -531,8 +531,6 @@ $(document).ready(function(e) {
 	
 	//form validation
 	$("#filter_form").submit(function(e) {
-
-        showPleaseWait();
         
 		var isValid = true;
 		var from = Date.parse($("#from_date").val());
@@ -545,6 +543,7 @@ $(document).ready(function(e) {
 		if (isValid && to<from) isValid=false;
 		
 		if (isValid) {
+            showPleaseWait();
 			return true;
 		} else {
 			alert('<spring:message code="notice.date.range" />');
@@ -556,17 +555,16 @@ $(document).ready(function(e) {
 	//checks should filters be retained and submits
 	$("#search_form").submit(function(e) {
 
-        showPleaseWait();
-
 	    //set form action dynamically
         if($("#advanced-search-div").is(":visible")){ //hide then
-            $("#search_form").attr('action', 'search');
+            $("#search_form").attr('action', 'advancedsearch');
         }
         else{
-            $("#search_form").attr('action', 'advancedsearch');
+            $("#search_form").attr('action', 'search');
         }
 
         if ($("#reset_filters").val() === "true") {
+            showPleaseWait();
 			return true;
 		} else {
 			$("#text_hidden").val($("#text").val());

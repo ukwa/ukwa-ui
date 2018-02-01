@@ -288,16 +288,12 @@ public class SolrSearchService {
                     " OR " +"{!tag=public_suffix}public_suffix:"+ hostDomainPublicSuffixes );
         }
 
-        //BASICS DONE!!!
-        //TODO: pass list of titles?
         //---------- hostDomainPublicSuffix -------------
         if (fileFormats!=null && !fileFormats.isEmpty() ){
             log.debug("fileFormat List = " + fileFormats);
             filters.add("content_type_norm:" + fileFormats);
         }
 
-        //BASICS DONE!!!
-        //TODO: pass list of titles?
         //---------- websiteTitle -------------
         if (websiteTitles!=null && !websiteTitles.isEmpty()){
         //    List<String> websiteTitleList = Arrays.asList(hostDomainPublicSuffix.split("[,\\s]+"));
@@ -308,8 +304,6 @@ public class SolrSearchService {
             filters.add("url_type:SLASHPAGE");
         }
 
-        //BASICS DONE!!!
-        //TODO: pass list of titles?
         //---------- pageTitle -------------
         if (pageTitles!=null && !pageTitles.isEmpty()){
             filters.add("title:" + pageTitles);
@@ -338,8 +332,6 @@ public class SolrSearchService {
         filters.add(postcodedistrictQuery);
         filters.add(contentLanguagesQuery);
         filters.add(linksDomainsQuery);
-
-        //filters.add(authorsQuery);
 
 
         filters.add(crawlDatesQuery);
