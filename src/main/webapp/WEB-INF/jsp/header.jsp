@@ -131,7 +131,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-2 text-smaller text-left text-muted my-auto">
-                        <label>Proximity search</label>
+                        <label>Proximity search</label><div class="help-button small gray" title="<spring:message code="advancedsearch.proximity.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="advancedsearch.proximity.tip" />" tabindex="0"></div>
                     </div>
                 </div>
                 <div class="row padding-10 padding-bottom-20 margin-0 border-bottom-gray" >
