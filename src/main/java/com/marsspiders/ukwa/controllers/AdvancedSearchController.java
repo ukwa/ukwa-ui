@@ -11,6 +11,7 @@ import com.marsspiders.ukwa.solr.data.FacetCounts;
 import com.marsspiders.ukwa.solr.data.HighlightingContent;
 import com.marsspiders.ukwa.solr.data.SolrSearchResult;
 import com.marsspiders.ukwa.util.UrlUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static com.marsspiders.ukwa.controllers.CollectionController.ROWS_PER_PAGE_DEFAULT;
 import static com.marsspiders.ukwa.controllers.HomeController.PROJECT_NAME;
@@ -134,7 +136,6 @@ public class AdvancedSearchController {
         List<String> domainsPairs = new LinkedList<>();
         List<String> collectionPairs = new LinkedList<>();
         //----------------new FACETS----------------------------------------------
-        List<String> phrasePairs = new LinkedList<>();
         List<String> dateWithGapPairs = new LinkedList<>();
 
         List<String> linksDomainsPairs = new LinkedList<>();
@@ -151,8 +152,6 @@ public class AdvancedSearchController {
         List<String> originalCollections = checkedCollections != null ? asList(checkedCollections) : emptyList();
 
         // ------------- NEW -------------------
-        List<String> originalPhrasePairs = checkedPhrases != null ? asList(checkedPhrases) : emptyList();
-
         List<String> originalLinksDomains = checkedLinksDomains != null ? asList(checkedLinksDomains) : emptyList();
         List<String> originalPostcodeDistricts = checkedPostcodeDistricts != null ? asList(checkedPostcodeDistricts) : emptyList();
         List<String> originalContentLanguages = checkedContentLanguages != null ? asList(checkedContentLanguages) : emptyList();
@@ -251,7 +250,6 @@ public class AdvancedSearchController {
                 domainsPairs = facetCounts.getFields().getDomains();
                 collectionPairs = facetCounts.getFields().getCollections();
                 //------------- NEW ---------------------
-                phrasePairs = facetCounts.getFields().getTypes();
                 linksDomainsPairs = facetCounts.getFields().getLinksDomains();
                 contentLanguagesPairs = facetCounts.getFields().getContentLanguages();
                 postcodeDistrictsPairs = facetCounts.getFields().getPostcodeDistricts();
@@ -277,7 +275,6 @@ public class AdvancedSearchController {
         mav.addObject("contentTypes", contentTypesPairs);
 
         //-------- NEW -------------
-        mav.addObject("phrasePairs", phrasePairs);
         mav.addObject("linksDomains", linksDomainsPairs);
         mav.addObject("contentLanguages", contentLanguagesPairs);
         mav.addObject("postcodeDistricts", postcodeDistrictsPairs);
@@ -293,7 +290,6 @@ public class AdvancedSearchController {
         mav.addObject("originalContentTypes", originalContentTypes);
 
         //-------- NEW -------------
-        mav.addObject("originalPhrasePairs", originalPhrasePairs);
         mav.addObject("originalLinksDomains", originalLinksDomains);
         mav.addObject("originalContentLanguages", originalContentLanguages);
         mav.addObject("originalPostcodeDistricts", originalPostcodeDistricts);
@@ -333,6 +329,19 @@ public class AdvancedSearchController {
         mav.addObject("originalwebsiteTitleText", websiteTitleText);
         mav.addObject("originalpageTitleText", pageTitleText);
         mav.addObject("originalauthorText", authorText);
+
+        if ( Stream.of(proximityPhrase1, proximityPhrase2, proximityDistance, excludedWords,
+                hostDomainPublicText, fileFormatText, websiteTitleText, pageTitleText, authorText).allMatch(StringUtils::isBlank))
+        {
+            mav.addObject("hasAdvancedSearchInput", "false");
+            log.debug("------------ hasAdvancedSearchInput BLANK SET to false");
+        }
+        else
+        {
+            mav.addObject("hasAdvancedSearchInput", "true");
+            log.debug("------------ hasAdvancedSearchInput  SET to TRUE");
+        }
+
         //------------advanced
 
         mav.addObject("totalPages", (int) (Math.ceil(totalSearchResultsSize / (double) rowsPerPage)));

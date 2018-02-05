@@ -91,6 +91,25 @@
         });
         //end of Survey Monkey
 
+        $("#resetadvancedsearchform").button().click(function(){
+            $('#search_form')[0].reset();
+            //$("#search_form").submit();
+            //$("#search_form").submit();
+            $('#search_form').find("input[type=text] , input[type=number]").val("");
+
+            return false; // prevent submitting
+        });
+
+        $("#btn_reset_form_fields").button().click(function(){
+            //$('#search_form')[0].reset();
+            //$("#search_form").submit();
+            //$("#search_form").submit();
+            $('#search_form').find("input[type=text] , input[type=number]").not('#text').val("");
+
+            $('#search_form').submit();
+            //return false; // prevent submitting
+        });
+
         // Proximity search validation. On any change in any of 3 fields automatically sets the rest (2 fields) to become required.
         $("#proximityPhrase1").on("input propertychange", function(){
             $("#proximityPhrase2").prop('required', $(this).val().length)
@@ -108,25 +127,18 @@
         $("#advancedSearchLink").click(function() {
             if($("#advanced-search-div").is(":visible")){ //hide then
                 //alert("action changed to search");
-                $("#search_form").attr('action', 'search');
+                //$("#search_form").attr('action', 'search');
                 $("#advanced-search-div").hide(300);
                 $('#advancedSearchLink').html('Advanced search');
             }
             else{
                 //alert("action changed to advancedSearch");
                 $("#advanced-search-div").show(300);
-                $("#search_form").attr('action', 'advancedsearch');
+                //$("#search_form").attr('action', 'advancedsearch');
                 $('#advancedSearchLink').html('Basic search');
             }
         });
 
-        $("#from_date_advanced, #to_date_advanced").datepicker({
-            dateFormat: "yy-mm-dd",
-            changeMonth: true,
-            changeYear: true,
-            //minDate: new Date('1996/01/01'),
-            yearRange: "-50:+0"
-        });
 
         $('.reset').on('click', function() {
             $(this).closest('form').find('input[type=text], textarea').val('');

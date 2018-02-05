@@ -82,7 +82,7 @@
 <div class="row padding-top-20">
   
   <div class="col-sm-12 padding-mobile-side-15">
-    <form action="search" method="get" enctype="multipart/form-data" name="search_form" id="search_form">
+    <form action="advancedsearch" method="get" enctype="multipart/form-data" name="search_form" id="search_form">
       <div class="main-search-input">
         <input type="text" name="text" id="text" title="<spring:message code="search.main.input.title" />" placeholder="<spring:message code="search.main.input.title" />" class="main-search-field" value="${originalSearchRequest}" required/>
         <input type="hidden" name="search_location" id="search_location_full_text" value="full_text"/>
@@ -235,8 +235,9 @@
       
      <div class="row padding-top-10 dark-gray">
         <div class="col-md-12 col-sm-12">
-        
-          <c:set var = "hasFilters" value = "false"/>
+
+            <c:set var = "hasFilters" value = "false"/>
+
           <c:if test="${searchPage == 'true'}">
           <p class="margin-0"><spring:message code="search.filters.access" />&nbsp;
             
@@ -281,39 +282,39 @@
 
           
           <c:if test="${fn:length(originalFromDateText) > 0 || fn:length(originalToDateText) > 0}">
-          <p class="margin-0"><spring:message code="search.filters.date" />&nbsp;
-            
-            <c:choose>
-                <c:when test="${fn:length(originalFromDateText) > 0}">
-                    <c:out value="${originalFromDateText}"/>
-                </c:when>    
-                <c:otherwise>
-                    <spring:message code="search.filters.date.any" />
-                </c:otherwise>
-       		</c:choose>
-            
-            &nbsp;-&nbsp;
-            
-            <c:choose>
-                <c:when test="${fn:length(originalToDateText) > 0}">
-                    <c:out value="${originalToDateText}"/>
-                </c:when>    
-                <c:otherwise>
-                    <spring:message code="search.filters.date.any" />
-                </c:otherwise>
-       		</c:choose>            
-           
-          </p>
-          <c:set var = "hasFilters" value = "true"/>
+              <p class="margin-0"><spring:message code="search.filters.date" />&nbsp;
+
+                  <c:choose>
+                      <c:when test="${fn:length(originalFromDateText) > 0}">
+                          <c:out value="${originalFromDateText}"/>
+                      </c:when>
+                      <c:otherwise>
+                          <spring:message code="search.filters.date.any" />
+                      </c:otherwise>
+                  </c:choose>
+
+                  &nbsp;-&nbsp;
+
+                  <c:choose>
+                      <c:when test="${fn:length(originalToDateText) > 0}">
+                          <c:out value="${originalToDateText}"/>
+                      </c:when>
+                      <c:otherwise>
+                          <spring:message code="search.filters.date.any" />
+                      </c:otherwise>
+                  </c:choose>
+
+              </p>
+              <c:set var = "hasFilters" value = "true"/>
           </c:if>
           
           <c:if test="${fn:length(originalCollections) > 0}">
-          <p class="margin-0"><spring:message code="search.filters.collection" />&nbsp;
-           <c:forEach items="${originalCollections}" var="collection">
-              &quot;<c:out value="${collection}"/>&quot;&nbsp;
-            </c:forEach>
-          </p>
-          <c:set var = "hasFilters" value = "true"/>
+              <p class="margin-0"><spring:message code="search.filters.collection" />&nbsp;
+                  <c:forEach items="${originalCollections}" var="collection">
+                      &quot;<c:out value="${collection}"/>&quot;&nbsp;
+                  </c:forEach>
+              </p>
+              <c:set var = "hasFilters" value = "true"/>
           </c:if>
 
 
@@ -419,15 +420,30 @@
             </c:choose>
 
 
+            <c:if test="${hasFilters == 'true' || hasAdvancedSearchInput == 'true'}">
+                <p class="margin-0">
+                    <c:choose>
+                        <c:when test="${hasFilters == 'true'}">
+                            <button type="button" id="btn_reset_filters" title="<spring:message code="search.filters.reset" />" class="button margin-top-10 text-small"><spring:message code="search.filters.reset" /></button>
+                        </c:when>
+                    </c:choose>
+
+                    <c:choose>
+                        <c:when test="${hasAdvancedSearchInput == 'true'}">
+                            <button type="button" id="btn_reset_form_fields" title="<spring:message code="search.filters.reset" />" class="button margin-top-10 text-small">Reset advanced search</button>
+                        </c:when>
+                    </c:choose>
+                </p>
+            </c:if>
 
 
-            <c:if test="${hasFilters == 'true'}">
-          <p class="margin-0">
-          		<button type="button" id="btn_reset_filters" title="<spring:message code="search.filters.reset" />" class="button margin-top-10 text-small"><spring:message code="search.filters.reset" /></button>
-          </p>
-          </c:if> 
-          
-         </div>
+
+
+
+
+
+
+        </div>
       </div> 
       
     </form>
