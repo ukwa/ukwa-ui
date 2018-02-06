@@ -223,117 +223,123 @@
                                     </div>
 
 
+                                        <c:if test="${hasAdvancedSearchInput == 'true'}">
 
-                                    <%--   Document filter by language  --%>
-                                    <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
-                                        <div class="sidebar-filter-header-title" id="t_language_doctype">Language</div>
-                                        <div class="help-button small white" title="<spring:message code="search.side.doctype.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
-                                    </div>
-                                    <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_phrase_doctype">
+                                            <%--   Document filter by language  --%>
+                                            <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
+                                                <div class="sidebar-filter-header-title" id="t_language_doctype">Language</div>
+                                                <div class="help-button small white" title="<spring:message code="search.side.doctype.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
+                                            </div>
+                                            <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_phrase_doctype">
 
-                                        <c:if test="${contentLanguages.size() > 1}">
+                                                <c:if test="${contentLanguages.size() > 1}">
 
-                                            <c:forEach begin="0" end="${contentLanguages.size() - 1}" step="2" var="i">
+                                                    <c:forEach begin="0" end="${contentLanguages.size() - 1}" step="2" var="i">
 
-                                                <c:if test="${contentLanguages.get(i + 1) != 0}">
+                                                        <c:if test="${contentLanguages.get(i + 1) != 0}">
 
-                                                    <c:if test="${i < 9}">
-                                                        <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
-                                                            <div class="form-check-cont padding-0" title="<c:out value="${contentLanguages.get(i)}"/>" tabindex="0">
+                                                            <c:if test="${i < 9}">
+                                                                <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
+                                                                    <div class="form-check-cont padding-0" title="<c:out value="${contentLanguages.get(i)}"/>" tabindex="0">
 
-                                                                <input type="checkbox" class="white" name="language" id="language_<c:out value="${i}"/>"
-                                                                       value="${contentLanguages.get(i)}"
-                                                                    ${originalContentLanguages.contains(contentLanguages.get(i))? 'checked' : ''}/>
-                                                                <label class="main-search-check-label white" for="language_<c:out value="${i}"/>">
-                                                                    <c:out value="${contentLanguages.get(i)}"/>
-                                                                    <span class="label-counts">(<span class="results-count"><c:out value="${contentLanguages.get(i + 1)}"/></span>)</span>
+                                                                        <input type="checkbox" class="white" name="language" id="language_<c:out value="${i}"/>"
+                                                                               value="${contentLanguages.get(i)}"
+                                                                            ${originalContentLanguages.contains(contentLanguages.get(i))? 'checked' : ''}/>
+                                                                        <label class="main-search-check-label white" for="language_<c:out value="${i}"/>">
+                                                                            <c:out value="${contentLanguages.get(i)}"/>
+                                                                            <span class="label-counts">(<span class="results-count"><c:out value="${contentLanguages.get(i + 1)}"/></span>)</span>
 
-                                                                </label>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </c:if>
+
+                                                            <c:if test="${i > 8}">
+
+                                                                <div class="sidebar-filter-checkbox col-md-12 col-sm-12" style="display:none;">
+                                                                    <div class="form-check-cont padding-0" title="<c:out value="${contentLanguages.get(i)}"/>" tabindex="0">
+
+                                                                        <input type="checkbox" class="white" name="language" id="language_<c:out value="${i}"/>"
+                                                                               value="${contentLanguages.get(i)}"
+                                                                            ${originalContentLanguages.contains(contentLanguages.get(i))? 'checked' : ''}/>
+                                                                        <label class="main-search-check-label white" for="language_<c:out value="${i}"/>">
+                                                                            <c:out value="${contentLanguages.get(i)}"/>
+                                                                            <span class="label-counts">(<span class="results-count"><c:out value="${contentLanguages.get(i + 1)}"/></span>)</span>
+
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+
+                                                            </c:if>
+
+
+
+
+
+
+                                                        </c:if>
+                                                    </c:forEach>
+                                                </c:if>
+                                            </div>
+
+
+
+                                            <%--   Document filter by links domains  --%>
+                                            <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
+                                                <div class="sidebar-filter-header-title" id="t_links_domains_doctype">Links Domains</div>
+                                                <div class="help-button small white" title="<spring:message code="search.side.doctype.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
+                                            </div>
+                                            <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_phrase_doctype">
+                                                <c:if test="${linksDomains.size() > 1}">
+                                                    <c:forEach begin="0" end="${linksDomains.size() - 1}" step="2" var="i">
+                                                        <c:if test="${linksDomains.get(i + 1) != 0}">
+
+
+                                                            <c:if test="${i < 9}">
+                                                                <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
+                                                                    <div class="form-check-cont padding-0" title="<c:out value="${linksDomains.get(i)}"/>" tabindex="0">
+                                                                        <input type="checkbox" class="white" name="links_domains" id="links_domains_<c:out value="${i}"/>"
+                                                                               value="${linksDomains.get(i)}"
+                                                                            ${originalLinksDomains.contains(linksDomains.get(i))? 'checked' : ''}/>
+                                                                        <label class="main-search-check-label white" for="links_domains_<c:out value="${i}"/>">
+                                                                            <c:out value="${linksDomains.get(i)}"/>
+                                                                            <span class="label-counts">(<span class="results-count"><c:out value="${linksDomains.get(i + 1)}"/></span>)</span></label>
+                                                                    </div>
+                                                                </div>
+                                                            </c:if>
+                                                        </c:if>
+                                                    </c:forEach>
+                                                </c:if>
+                                            </div>
+
+                                            <%--   Document filter by postcode district  --%>
+                                            <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
+                                                <div class="sidebar-filter-header-title" id="t_postcode_district_doctype">Postcode District</div>
+                                                <div class="help-button small white" title="<spring:message code="search.side.doctype.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
+                                            </div>
+                                            <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_phrase_doctype">
+                                                <c:if test="${postcodeDistricts.size() > 1}">
+                                                    <c:forEach begin="0" end="${postcodeDistricts.size() - 1}" step="2" var="i">
+                                                        <c:if test="${postcodeDistricts.get(i + 1) != 0}">
+                                                            <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
+                                                                <div class="form-check-cont padding-0" title="<c:out value="${postcodeDistricts.get(i)}"/>" tabindex="0">
+                                                                    <input type="checkbox" class="white" name="postcode_district" id="postcode_district_<c:out value="${i}"/>"
+                                                                           value="${postcodeDistricts.get(i)}"
+                                                                        ${originalPostcodeDistricts.contains(postcodeDistricts.get(i))? 'checked' : ''}/>
+                                                                    <label class="main-search-check-label white" for="postcode_district_<c:out value="${i}"/>">
+                                                                        <c:out value="${postcodeDistricts.get(i)}"/>
+                                                                        <span class="label-counts">(<span class="results-count"><c:out value="${postcodeDistricts.get(i + 1)}"/></span>)</span></label>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </c:if>
-
-                                                    <c:if test="${i > 8}">
-
-                                                        <div class="sidebar-filter-checkbox col-md-12 col-sm-12" style="display:none;">
-                                                            <div class="form-check-cont padding-0" title="<c:out value="${contentLanguages.get(i)}"/>" tabindex="0">
-
-                                                                <input type="checkbox" class="white" name="language" id="language_<c:out value="${i}"/>"
-                                                                       value="${contentLanguages.get(i)}"
-                                                                    ${originalContentLanguages.contains(contentLanguages.get(i))? 'checked' : ''}/>
-                                                                <label class="main-search-check-label white" for="language_<c:out value="${i}"/>">
-                                                                    <c:out value="${contentLanguages.get(i)}"/>
-                                                                    <span class="label-counts">(<span class="results-count"><c:out value="${contentLanguages.get(i + 1)}"/></span>)</span>
-
-                                                                </label>
-                                                            </div>
-                                                        </div>
-
-                                                    </c:if>
-
-
-
-
-
-
+                                                        </c:if>
+                                                    </c:forEach>
                                                 </c:if>
-                                            </c:forEach>
+                                            </div>
+
+
                                         </c:if>
-                                    </div>
 
 
-
-                                <%--   Document filter by links domains  --%>
-                                    <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
-                                        <div class="sidebar-filter-header-title" id="t_links_domains_doctype">Links Domains</div>
-                                        <div class="help-button small white" title="<spring:message code="search.side.doctype.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
-                                    </div>
-                                    <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_phrase_doctype">
-                                        <c:if test="${linksDomains.size() > 1}">
-                                            <c:forEach begin="0" end="${linksDomains.size() - 1}" step="2" var="i">
-                                                <c:if test="${linksDomains.get(i + 1) != 0}">
-
-
-                                                    <c:if test="${i < 9}">
-                                                        <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
-                                                            <div class="form-check-cont padding-0" title="<c:out value="${linksDomains.get(i)}"/>" tabindex="0">
-                                                                <input type="checkbox" class="white" name="links_domains" id="links_domains_<c:out value="${i}"/>"
-                                                                       value="${linksDomains.get(i)}"
-                                                                    ${originalLinksDomains.contains(linksDomains.get(i))? 'checked' : ''}/>
-                                                                <label class="main-search-check-label white" for="links_domains_<c:out value="${i}"/>">
-                                                                    <c:out value="${linksDomains.get(i)}"/>
-                                                                    <span class="label-counts">(<span class="results-count"><c:out value="${linksDomains.get(i + 1)}"/></span>)</span></label>
-                                                            </div>
-                                                        </div>
-                                                </c:if>
-                                                </c:if>
-                                            </c:forEach>
-                                        </c:if>
-                                    </div>
-
-                                    <%--   Document filter by postcode district  --%>
-                                    <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
-                                        <div class="sidebar-filter-header-title" id="t_postcode_district_doctype">Postcode District</div>
-                                        <div class="help-button small white" title="<spring:message code="search.side.doctype.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
-                                    </div>
-                                    <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_phrase_doctype">
-                                        <c:if test="${postcodeDistricts.size() > 1}">
-                                            <c:forEach begin="0" end="${postcodeDistricts.size() - 1}" step="2" var="i">
-                                                <c:if test="${postcodeDistricts.get(i + 1) != 0}">
-                                                    <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
-                                                        <div class="form-check-cont padding-0" title="<c:out value="${postcodeDistricts.get(i)}"/>" tabindex="0">
-                                                            <input type="checkbox" class="white" name="postcode_district" id="postcode_district_<c:out value="${i}"/>"
-                                                                   value="${postcodeDistricts.get(i)}"
-                                                                ${originalPostcodeDistricts.contains(postcodeDistricts.get(i))? 'checked' : ''}/>
-                                                            <label class="main-search-check-label white" for="postcode_district_<c:out value="${i}"/>">
-                                                                <c:out value="${postcodeDistricts.get(i)}"/>
-                                                                <span class="label-counts">(<span class="results-count"><c:out value="${postcodeDistricts.get(i + 1)}"/></span>)</span></label>
-                                                        </div>
-                                                    </div>
-                                                </c:if>
-                                            </c:forEach>
-                                        </c:if>
-                                    </div>
 
 
 

@@ -256,8 +256,6 @@ public class AdvancedSearchController {
                 crawlDatesPairs = facetCounts.getFields().getCrawlDates();
 
 
-
-
             }
         }
 
