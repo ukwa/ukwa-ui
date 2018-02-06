@@ -139,7 +139,7 @@
                     </div>
                     <div class="col">
                         <div class="advanced-search-input">
-                            <input type="text" id="excludedWords" name="excludedWords" value="${originalExcludedWords}" class="advanced-search-field" placeholder="rodent, Jack Russell">
+                            <input type="text" id="excludedWords" name="excludedWords" value="${originalExcludedWords}" class="advanced-search-field" placeholder="Coffee, Java">
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-2 text-smaller text-left text-muted my-auto">
