@@ -115,13 +115,13 @@
                     </div>
                     <div class="col">
                         <div class="advanced-search-input">
-                            <input type="text" id="proximityPhrase1" name="proximityPhrase1" value="${originalproximityPhrase1}" class="advanced-search-field" placeholder="phrase" >
+                            <input type="text" id="proximityPhrase1" name="proximityPhrase1" value="${originalproximityPhrase1}" class="advanced-search-field" placeholder="Coffee" >
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="advanced-search-input">
-                            <input type="text" id="proximityPhrase2" name="proximityPhrase2" value="${originalproximityPhrase2}" class="advanced-search-field" placeholder="phrase" >
+                            <input type="text" id="proximityPhrase2" name="proximityPhrase2" value="${originalproximityPhrase2}" class="advanced-search-field" placeholder="Java" >
                         </div>
                     </div>
                     <div class="col">
@@ -139,7 +139,7 @@
                     </div>
                     <div class="col">
                         <div class="advanced-search-input">
-                            <input type="text" id="excludedWords" name="excludedWords" value="${originalExcludedWords}" class="advanced-search-field" placeholder="Coffee, Java">
+                            <input type="text" id="excludedWords" name="excludedWords" value="${originalExcludedWords}" class="advanced-search-field" placeholder="rodent, Jack Russell">
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-2 text-smaller text-left text-muted my-auto">
