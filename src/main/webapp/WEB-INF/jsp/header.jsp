@@ -105,7 +105,7 @@
         <!-- Advanced search form -->
         <!-- Functionality Migration from Shine  -->
         <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
-        <div id="advanced-search-div" class="row padding-10 margin-0 clearfix card button-shadow" style="display:none;position:absolute;z-index:1001;background: rgba(255, 255, 255, 1.0)!important;">
+        <div id="advanced-search-div" class="row padding-10 margin-0 clearfix card button-shadow" style="display:none;position:absolute;z-index:1001;background: rgba(255,255,255, 1.0)!important;">
             <div class="col-md-12 padding-0">
                 <!-- filters -->
                 <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
@@ -219,12 +219,11 @@
                     </div>
                 </div>
                 <div class="row adding-10 padding-bottom-10 margin-0 ">
-                    <div class="col-md-1 col-sm-1">
-                    </div>
-                    <div class="col-md-4 col-sm-4 text-right">
+
+                    <div class="col-md-6 col-sm-6 text-right">
                         <button type="submit" class="btn btn-primary button-shadow" name="searchButtons" value="advancedsearch" id="advancedsearchbutton">Search</button>
                     </div>
-                    <div class="col-md-7 col-sm-7">
+                    <div class="col-md-6 col-sm-6 text-left">
                         <button type="reset" class="btn btn-primary button-shadow" name="resetadvancedsearchform" value="reset" id="resetadvancedsearchform">Reset</button>
                     </div>
                 </div>
