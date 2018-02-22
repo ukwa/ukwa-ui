@@ -105,7 +105,7 @@
         <!-- Advanced search form -->
         <!-- Functionality Migration from Shine  -->
         <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
-        <div id="advanced-search-div" class="row padding-10 margin-0 clearfix card button-shadow" style="display:none;position:absolute;z-index:1001;background: rgba(255,255,255, 1.0)!important;">
+        <div id="advanced-search-div" class="row padding-top-10 margin-0 clearfix card button-shadow" style="display:none;position:absolute;z-index:1001;background: rgba(255,255,255, 1.0)!important;">
             <div class="col-md-12 padding-0">
                 <!-- filters -->
                 <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
