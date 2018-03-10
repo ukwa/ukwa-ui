@@ -18,7 +18,7 @@
             </div>
             <div class="modal-body">
                 <div class="center-block" >
-                    <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 100%;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%;">
                         <span class="sr-only">Please wait...</span>
                     </div>
                 </div>
