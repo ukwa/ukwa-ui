@@ -22,9 +22,9 @@ ENV ARCHIVE_WEB_LOCATION="https://www.webarchive.org.uk/wayback/archive/" \
  SOLR_USERNAME="none" \
  SOLR_PASSWORD="none" \
  SOLR_SHOW_STUB_DATA_SERVICE_NOT_AVAILABLE="false" \
- BL_SMTP_SERVER_HOST="" \
- BL_SMTP_USERNAME="" \
- BL_SMTP_PASSWORD=""
+ BL_SMTP_SERVER_HOST="mailhost" \
+ BL_SMTP_USERNAME="mailuser" \
+ BL_SMTP_PASSWORD="mailpassword"
 
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/ukwa-ui.war"]
 EXPOSE 8080
