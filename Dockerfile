@@ -7,7 +7,7 @@ COPY pom.xml /ukwa-ui/pom.xml
 COPY src /ukwa-ui/src
 
 RUN cd /ukwa-ui/ && \
-  mvn package -DskipTests
+  mvn package -q -DskipTests
 
 FROM openjdk:8-jre
 
