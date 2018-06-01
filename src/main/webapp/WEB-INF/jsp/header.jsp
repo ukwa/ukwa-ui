@@ -9,6 +9,24 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="pleaseWaitDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="padding-top:15%" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title text-center">Your search is in progress. Please wait..</h2>
+            </div>
+            <div class="modal-body">
+                <div class="center-block" >
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%;">
+                        <span class="sr-only">Please wait...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="main-menu-button" title="<spring:message code="main.menu.title" /> "> </div>
 <div class="row header-bar border-bottom-gray">
     <div class="col-lg-3 col-md-4 col-sm-12 main-heading-cont">

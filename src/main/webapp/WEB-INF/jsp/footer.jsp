@@ -92,6 +92,15 @@
 
     });
 
+    //progress bar
+    var pleaseWait = $('#pleaseWaitDialog');
+    showPleaseWait = function () {
+        pleaseWait.modal('show');
+    };
+    hidePleaseWait = function () {
+        pleaseWait.modal('hide');
+    };
+    //hidePleaseWait();
 </script>
 <!--<![endif]-->
 

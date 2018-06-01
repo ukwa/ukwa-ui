@@ -528,7 +528,9 @@ $(document).ready(function(e) {
 	
 	//form validation
 	$("#filter_form").submit(function(e) {
-        
+
+        showPleaseWait();
+
 		var isValid = true;
 		var from = Date.parse($("#from_date").val());
 		var to = Date.parse($("#to_date").val());
@@ -550,7 +552,10 @@ $(document).ready(function(e) {
 	
 	//checks should filters be retained and submits
 	$("#search_form").submit(function(e) {
-        if ($("#reset_filters").val() === "true") {
+
+	    showPleaseWait();
+
+	    if ($("#reset_filters").val() === "true") {
 			return true;
 		} else {
 			$("#text_hidden").val($("#text").val());
