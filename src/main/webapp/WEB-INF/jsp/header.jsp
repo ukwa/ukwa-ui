@@ -47,6 +47,9 @@
   <div class="header-menu-item"><a href="info/nominate" title="<spring:message code="main.menu.nominate.title" />">
     <spring:message code="main.menu.nominate" />
     </a></div>
+  <div class="header-menu-item"><a href="about" title="<spring:message code="main.menu.about.title" />">
+    <spring:message code="main.menu.about" />
+    </a></div>
   <div class="header-menu-item"><a href="contact" title="<spring:message code="main.menu.contact.title" />">
     <spring:message code="main.menu.contact" />
     </a></div>
