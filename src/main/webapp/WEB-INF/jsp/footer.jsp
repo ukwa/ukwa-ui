@@ -1,9 +1,10 @@
+<div><a href="index" ><img src="img/ukwa-logo-4.jpg" class="footer-logo"></a></div>
 <div class="row">
   <div class="col-md-1">&nbsp;</div>
-  <div class="col-md-3 col-md-offset-1 col-sm-12 footer-links footer-right-border"> <a href="index" title="<spring:message code="footer.home.title" />">
+  <div class="col-md-3 col-md-offset-1 col-sm-12 footer-links"> <a href="index" title="<spring:message code="footer.home.title" />">
     <spring:message code="footer.home" /></a><br/>
     <a href="info/about" title="<spring:message code="footer.about.title" />">
-    <spring:message code="footer.about" text="About" /></a><br/>
+    <spring:message code="footer.about" text="About Us" /></a><br/>
     <a href="collection" title="<spring:message code="footer.collections.title" />">
     <spring:message code="footer.collections" /></a><br/>
     <a href="http://britishlibrary.typepad.co.uk/webarchive/" target="_blank" title="<spring:message code="footer.blog.title" />">
@@ -13,7 +14,7 @@
 
   </div>
   <div class="col-md-1">&nbsp;</div>
-  <div class="col-md-3 col-md-offset-1 col-sm-12 footer-links footer-right-border">
+  <div class="col-md-3 col-md-offset-1 col-sm-12 footer-links light-blue collection-heading">
 
     <a href="info/notice_takedown" title="<spring:message code="footer.notice.title" />">
     <spring:message code="footer.notice" /></a><br/>
@@ -51,8 +52,13 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12 col-sm-12 footer-logos"> <a href="https://www.bl.uk/" target="_blank"><img src="img/bl_logo.png" alt="<spring:message code="footer.logo.blib" />" class="footer-logo"/></a> <a href="https://www.llgc.org.uk/" target="_blank"><img src="img/llgc_logo.png" alt="<spring:message code="footer.logo.llgc" />" class="footer-logo"/></a> <a href="https://www.nls.uk/" target="_blank"><img src="img/NLS_logo_2.jpg" alt="<spring:message code="footer.logo.nls" />" class="footer-logo"/></a><br/>
-    <a href="http://www.bodleian.ox.ac.uk/" target="_blank"><img src="img/bodleian_logo.jpg" alt="<spring:message code="footer.logo.bl" />" class="footer-logo"/></a> <a href="http://www.lib.cam.ac.uk/" target="_blank"><img src="img/cambrige_logo600.png" alt="<spring:message code="footer.logo.cul" />" class="footer-logo"/></a> <a href="https://www.tcd.ie/" target="_blank"><img src="img/trinity_logo.jpg" alt="<spring:message code="footer.logo.tcd" />" class="footer-logo"/></a> </div>
+    <div class="col-md-12 col-sm-12 footer-logos"> <a href="https://www.bl.uk/" target="_blank"><img src="img/bl_logo_BW.png" alt="<spring:message code="footer.logo.blib" />" class="footer-logo_BW"/></a> <a href="https://www.llgc.org.uk/" target="_blank"><img src="img/llgc_logo_BW.png" alt="<spring:message code="footer.logo.llgc" />" class="footer-logo_BW"/></a> <a href="https://www.nls.uk/" target="_blank"><img src="img/NLS_logo_2_BW.jpg" alt="<spring:message code="footer.logo.nls" />" class="footer-logo_BW"/></a>
+        <a href="http://www.bodleian.ox.ac.uk/" target="_blank"><img src="img/bodleian_logo_BW.jpg" alt="<spring:message code="footer.logo.bl" />" class="footer-logo_BW"/></a> <a href="http://www.lib.cam.ac.uk/" target="_blank"><img src="img/cambrige_logo600_BW.png" alt="<spring:message code="footer.logo.cul" />" class="footer-logo_BW"/></a> <a href="https://www.tcd.ie/" target="_blank"><img src="img/trinity_logo_BW.jpg" alt="<spring:message code="footer.logo.tcd" />" class="footer-logo_BW"/></a>
+    </div>
+</div>
+
+<div>
+  <hr style="width: 100%; color: darkblue; height: 5px; background-color:royalblue; margin-bottom:1px !important;margin-top:1px !important;" />
 </div>
 
 <div class="cookies-cont">

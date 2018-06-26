@@ -442,6 +442,17 @@ footer {
 	position:relative;
 }
 
+.button-radius-30 {
+  height:auto;
+  text-align:center;
+  border-radius:5px;
+  font-size:1.2em;
+  border:none;
+  padding: 7px 30px 7px 30px;
+  cursor:pointer;
+  position:relative;
+}
+
 .button-blue {
 	background-color: $light-blue;
 	color: $white;
@@ -573,15 +584,32 @@ input[type=radio]:checked + label {
 }
 
 .main-search-input {
-	width:100%;
-	height:50px;
-	box-shadow: 1px 1px 7px $dark-gray;
-	clear:both;
-	background-color: $white;
+  width:100%;
+  height:50px;
+  clear:both;
+  background-color: $white;
+}
+
+.main-search-input-new {
+  width:100%;
+  height:50px;
+  clear:both;
+  background-color:transparent;
+  background:transparent;
+  background-repeat:no-repeat;
+  background-image:url(../img/icons/search-form-bg.png);
+  background-size: cover;
+}
+
+.main-search-input.noshadow {
+  width:100%;
+  height:50px;
+  clear:both;
+  background-color: $white;
 }
 
 .main-search-field {
-	width:calc(100% - 60px);
+	width:calc(100% - 260px);
 	height:50px;
 	padding:10px 10px 10px 10px;	
 	font-size:1.2em;
@@ -590,25 +618,25 @@ input[type=radio]:checked + label {
 	display:block;
 	float:left;
 	position:relative;
+  box-shadow:1px 1px 7px #464747;
 }
 
 .main-search-button {
-	width:60px;
-	height:100%;
+	width:160px;
+  height:50px;
+  font-size:1.2em;
 	border:none;
 	background-color: $white;
-	background-position: center;
+	background-position: right;
 	background-repeat:no-repeat;
 	background-image:url(../img/icons/main-search.png);
 	cursor:pointer;
 	display:block;
 	float:right;
+  position:relative;
+  box-shadow:1px 1px 7px #464747;
 }
 
-.main-search-input.noshadow {
-	box-shadow:none;
-	border: solid 1px $light-blue;
-}
 
 .main-search-check-label {
 	display:block;
@@ -876,6 +904,17 @@ h3 {
 	margin-top:30px;
 }
 
+.topics-themes-hr {
+  width:100%;
+  height:0px;
+  border-top: solid 1px $light-blue;
+  margin-left:0;
+  margin-right:auto;
+  margin-bottom:30px;
+  text-align:center;
+  margin-top:30px;
+}
+
 .translate-cont {
 	padding-top:80px;	
 }
@@ -918,6 +957,11 @@ h3 {
 	font-size:0.85em;
 }
 
+.header-logo {
+  margin:5px;
+  height:85px;
+  width:auto;
+}
 /*FOOTER*/
 
 .cookies-cont {
@@ -980,8 +1024,13 @@ footer {
 	margin:30px;
 	height:90px;
 	width:auto;
-}	
+}
 
+.footer-logo_BW {
+  margin:10px;
+  height:70px;
+  width:auto;
+}
 
 /* GENERAL PAGE CONTENT */
 .page-content {
@@ -1021,8 +1070,8 @@ footer {
 }
 
 .img-square-caption {
-	width:80%;
-	margin-left:10%;
+	width:40%;
+	margin-left:-10px;
 	margin-right:10%;
 	margin-top:-40px;	
 	margin-bottom:20px;
@@ -1030,10 +1079,21 @@ footer {
 	padding:20px;
 	display:block;
 	position:relative;
-	font-size:0.9em;
-	color:$black;
-	
-	&.shadow {
+	font-size:1.2em;
+    font-weight:900;
+	color:$white;
+
+  letter-spacing: 0.1em;
+  text-align: center;
+  top: 0;
+  left:0;
+  z-index: 2;
+  height:100%;
+  background-color:rgba(0,0,0,.4);
+  transition:background-color 0.4s ease;
+
+
+  &.shadow {
 		box-shadow: 1px 1px 7px $dark-gray;
 	}
 }
