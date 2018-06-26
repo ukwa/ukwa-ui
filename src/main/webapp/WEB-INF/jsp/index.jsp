@@ -123,9 +123,6 @@ ${pageContext.response.locale}
         <a href="collection" class="no-decoration" title="<spring:message code="home.button.viewmore.title"/>">
             <div class="button-radius-30 button-blue width-auto-inline "><spring:message code="home.button.viewmore"/></div></a>
     </div>
-
-
-
 </section>
 <footer>
   <%@include file="footer.jsp" %>
