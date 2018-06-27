@@ -1,26 +1,4 @@
-
-<!-- Modal -->
-<div class="modal fade" id="pleaseWaitDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="padding-top:15%" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title text-center">Your search is in progress. Please wait..</h2>
-            </div>
-            <div class="modal-body">
-                <div class="center-block" >
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%;">
-                        <span class="sr-only">Please wait...</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Top Line
-dotted version:
-border-top: 1px dotted #000000 !important;
--->
+<!-- Top Line -->
 <div>
     <hr style="width: 100%; color: darkblue; height: 2px; background-color:royalblue; margin-bottom:5px !important;margin-top:5px !important;" />
 </div>
