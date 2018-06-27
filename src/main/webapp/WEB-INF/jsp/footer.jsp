@@ -1,6 +1,7 @@
 
-<div><a href="index" ><img src="img/ukwa-logo-4.jpg" class="footer-logo"></a></div>
-<hr class="topics-themes-hr"/>
+<div class="row margin-0 padding-30">
+    <div class="col-lg-auto col-md-auto col-sm-auto padding-0">
+<div><a href="index" ><img src="img/ukwa-logo-60px.jpg" class="header-logo"></a></div>
 <div class="row">
   <div class="col-md-1">&nbsp;</div>
   <div class="col-md-3 col-md-offset-1 col-sm-12 footer-links"> <a href="index" title="<spring:message code="footer.home.title" />">
@@ -54,8 +55,8 @@
   </div>
 </div>
 <div class="row padding-bottom-20">
-    <div class="col-md-12 col-sm-12 footer-logos"> <a href="https://www.bl.uk/" target="_blank"><img src="img/bl_logo_BW.png" alt="<spring:message code="footer.logo.blib" />" class="footer-logo_BW"/></a> <a href="https://www.llgc.org.uk/" target="_blank"><img src="img/llgc_logo_BW.png" alt="<spring:message code="footer.logo.llgc" />" class="footer-logo_BW"/></a> <a href="https://www.nls.uk/" target="_blank"><img src="img/NLS_logo_2_BW.jpg" alt="<spring:message code="footer.logo.nls" />" class="footer-logo_BW"/></a>
-        <a href="http://www.bodleian.ox.ac.uk/" target="_blank"><img src="img/bodleian_logo_BW.jpg" alt="<spring:message code="footer.logo.bl" />" class="footer-logo_BW"/></a> <a href="http://www.lib.cam.ac.uk/" target="_blank"><img src="img/cambrige_logo600_BW.png" alt="<spring:message code="footer.logo.cul" />" class="footer-logo_BW"/></a> <a href="https://www.tcd.ie/" target="_blank"><img src="img/trinity_logo_BW.jpg" alt="<spring:message code="footer.logo.tcd" />" class="footer-logo_BW"/></a>
+    <div class="col-md-auto col-sm-auto footer-logos well"> <a href="https://www.bl.uk/" target="_blank"><img src="img/bl_logo_BW.png" alt="<spring:message code="footer.logo.blib" />" class="footer-logo-BW"/></a> <a href="https://www.llgc.org.uk/" target="_blank"><img src="img/llgc_logo_BW.png" alt="<spring:message code="footer.logo.llgc" />" class="footer-logo-BW"/></a> <a href="https://www.nls.uk/" target="_blank"><img src="img/NLS_logo_2_BW.jpg" alt="<spring:message code="footer.logo.nls" />" class="footer-logo-BW"/></a>
+        <a href="http://www.bodleian.ox.ac.uk/" target="_blank"><img src="img/bodleian_logo_BW.jpg" alt="<spring:message code="footer.logo.bl" />" class="footer-logo-BW"/></a> <a href="http://www.lib.cam.ac.uk/" target="_blank"><img src="img/cambrige_logo600_BW.png" alt="<spring:message code="footer.logo.cul" />" class="footer-logo-BW"/></a> <a href="https://www.tcd.ie/" target="_blank"><img src="img/trinity_logo_BW.jpg" alt="<spring:message code="footer.logo.tcd" />" class="footer-logo-BW"/></a>
     </div>
 </div>
 <div><hr style="width: 100%; color: darkblue; height: 5px; background-color:royalblue; margin-bottom:1px !important;margin-top:1px !important;" /></div>
@@ -65,6 +66,8 @@
 <div class="col-md-8 col-sm-12"><spring:message code="footer.cookies.text" /></div>
 <div class="col-md-4 col-sm-12 padding-top-mobile-10"><button class="button button-white float-sm-right" id="btn_cookies" title="<spring:message code="footer.cookies.button.title" />"><spring:message code="footer.cookies.button" /></button></div>
 </div>
+</div>
+    </div>
 </div>
 
 <!--[if (gt IE 9)|!(IE)]><!-->

@@ -21,7 +21,7 @@ ${pageContext.response.locale}
 <title>
 <spring:message code="home.header.title" />
 </title>
-<%@include file="head.jsp" %>
+    <%@include file="head.jsp" %>
 </head>
 
 <body>
@@ -29,8 +29,9 @@ ${pageContext.response.locale}
 <%@include file="nav.jsp" %>
 <div class="container-fluid">
   <header>
-  <%@include file="header.jsp" %>
-</header>
+      <%@include file="header.jsp" %>
+      <%@include file="homepage_searchForm.jsp" %>
+  </header>
 
   <section id="home-pre-header">
     <div class="padding-top-30 padding-bottom-10 padding-side-10">
