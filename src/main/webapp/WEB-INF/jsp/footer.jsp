@@ -116,6 +116,21 @@
             $.cookie("survey_viewed", "true", { expires: 365, path: '/',  });
         });
 
+        $("#showMoreDomainLink").click(function() {
+            if($("#domains_filter_div").is(":visible")){ //hide then
+                //alert("action changed to search");
+                //$("#search_form").attr('action', 'search');
+                $("#domains_filter_div").hide(300);
+                $('#showMoreDomainLink').html('Show more');
+            }
+            else{
+                //alert("action changed to advancedSearch");
+                $("#domains_filter_div").show(300);
+                //$("#search_form").attr('action', 'advancedsearch');
+                $('#showMoreDomainLink').html('Show less');
+            }
+        });
+
     });
 
     //progress bar
