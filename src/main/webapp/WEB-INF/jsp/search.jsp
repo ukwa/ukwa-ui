@@ -43,6 +43,7 @@ ${pageContext.response.locale}
     <div><hr class="search-header-hr" /></div>
 
 <section id="content">
+
   <div class="row margin-0 padding-0">
     <div class="col-lg-3 col-md-4 col-sm-12 sidebar-white-blue padding-0">
     <aside id="sidebar">
@@ -75,6 +76,11 @@ ${pageContext.response.locale}
                 <label class="main-search-check-label blue" for="view_filter_1" title="<spring:message code="search.side.view.1" />"><spring:message code="search.side.view.1" /> <span class="label-counts">(<span class="results-count"><c:out value="${vaCount}"/></span>)</span></label>
               </div>
             </div>
+
+              <div class="showmore-button small blue" title="<spring:message code="search.side.view.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.view.tip" />" tabindex="0"></div>
+
+
+
 
             <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
               <div class="form-check-cont padding-0" title="<spring:message code="search.side.view.2" />" tabindex="0">
@@ -231,11 +237,13 @@ ${pageContext.response.locale}
 
     <div class="col-lg-9 col-md-8 col-sm-12 padding-0 border-sidebar">
       <div class="results-header border-bottom-gray">
+          <div class="row margin-0 padding-0">
+              <%@include file="searchpage_searchForm.jsp" %>
+          </div>
       <div class="row">
         <div class="col-sm-12 padding-top-5">
           <span class="results-count"><c:out value="${totalSearchResultsSize}"/></span>
           <spring:message code="search.results.num" /> <span class="bold">&quot;<c:out value="${originalSearchRequest}" escapeXml="false"/>&quot;</span></div>
-          
       </div>
       
        <c:choose>
@@ -245,12 +253,9 @@ ${pageContext.response.locale}
           <span class="bold gray"><spring:message code="search.deep.paging" /></span>
         </div>  
       </div>
-                
-
         </c:when>
       </c:choose>
-      
-      
+
       </div>
       <div class="row padding-0 margin-0">
         <div class="col-md-12 pagination-cont">
@@ -264,7 +269,7 @@ ${pageContext.response.locale}
             <%--set page value as a placeholder as it is going to be changed for each link--%>
             <c:param name="page" value="PAGE_NUM_PLACEHOLDER" />
           </c:url>
-          <c:if test="${targetPageNumber > 1}"> <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>"><div class="pagination-button arrow left-arrow" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"></div></a> </c:if>
+          <c:if test="${targetPageNumber > 1}"> <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>"><div class="pagination-button arrow left-arrow" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"></div>Previous</a></c:if>
           <c:if test="${targetPageNumber > 4 && !deepPaging}">
             <div class="pagination-button dots inactive"></div>
           </c:if>
@@ -279,7 +284,7 @@ ${pageContext.response.locale}
         <c:if test="${targetPageNumber + 4 < totalPages && !deepPaging}">
           <div class="pagination-button dots inactive"></div>
         </c:if>
-        <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit && !deepPaging}"> <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><div class="pagination-button arrow right-arrow"></div></a> </c:if>
+        <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit && !deepPaging}"> <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />">Next<div class="pagination-button arrow right-arrow"></div></a> </c:if>
       </div>
     </div>
     <div class="row border-bottom-gray margin-0">

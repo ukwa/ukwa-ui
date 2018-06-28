@@ -33,18 +33,22 @@ ${pageContext.response.locale}
       <%@include file="homepage_searchForm.jsp" %>
   </header>
 
+    <div class="padding-top-80 padding-bottom-10 padding-side-70">
   <section id="home-pre-header">
-    <div class="padding-top-30 padding-bottom-10 padding-side-10">
-      <div class="main-heading-2">
-        What We do
+
+
+      <div>
+          <p class="main-heading-2-redesign">
+              What we do
+          </p>
       </div>
 
         <div class="row padding-top-20">
             <div class="col-md-9">
-            <p class="text-bigger">
+            <p class="main-subheading-bold-2-redesign">
                 <spring:message code="home.header.text1" />
-            </p>
-            <p class="text-bigger">
+            </p><br/>
+            <p class="main-subheading-2-redesign">
                 <spring:message code="home.header.text2" />
             </p>
             <p class="text-bigger">
@@ -52,37 +56,33 @@ ${pageContext.response.locale}
             </p>
             </div>
             <div class="col-md-3">
-                    <a href="index" ><img src="img/about2.png" class="footer-logo"></a>
+                    <a href="index" ><figure><img class="img-responsive" src="img/about2.png" alt="About UKWA"/> </figure></a>
             </div>
         </div>
 
-    </div>
+
   </section>
 
 <section id="collections">
-  <div class="row padding-top-80 margin-0 padding-side-20">
-    <div class="col-lg-12  col-md-12 col-sm-12 main-heading-cont">
+  <div class="row padding-top-80 margin-0">
+    <div class="col-lg-12  col-md-12 col-sm-12">
 
-        <h2 class="main-heading-2 padding-0">
-        <spring:message code="home.page.collections.title"/>
-      </h2>
-
-      <hr class="header-title-hr"/>
+        <p class="main-heading-2-redesign padding-0">
+            <spring:message code="home.page.collections.title"/>
+        </p>
     </div>
-
   </div>
 
-    <div class="col-lg-12  col-md-12 col-sm-12 main-heading-cont">
+    <div class="row padding-top-20 margin-0 padding-side-20">
+    <div class="col-lg-12  col-md-12 col-sm-12 main-subheading-2-redesign">
 
-     <div class="col-md-1"></div>
-    <div class="col-lg-5 col-md-6 col-sm-12 header-2-subtitle padding-side-10">
-      <span class="clearfix"><spring:message code="home.page.collections.subtitle"/></span>
-    </div>
+      <spring:message code="home.page.collections.subtitle"/>
 
     </div>
+    </div>
 
 
-  <div class="row padding-top-0 padding-side-5  margin-0 padding-mobile-side-20">
+  <div class="row">
     <div class="col-lg-4 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/329" class="collection-link">
       <figure><img class="img-responsive border-gray coll-img" alt="British Stand-up Comedy Archive" src="img/collections/collection_329.png"/>
         <figcaption class="img-square-caption shadow">FEATURED</figcaption>
@@ -108,7 +108,7 @@ ${pageContext.response.locale}
       </a></div>
   </div>
 
-    <div class="row padding-top-0 padding-side-5  margin-0">
+    <div class="row ">
         <div class="col-lg-4 col-md-6 col-sm-12 image-grid-col">
             <hr class="topics-themes-hr"/>
         </div>
@@ -125,10 +125,14 @@ ${pageContext.response.locale}
             <div class="button-radius-30 button-blue width-auto-inline "><spring:message code="home.button.viewmore"/></div></a>
     </div>
 </section>
-<footer>
-  <%@include file="footer.jsp" %>
-</footer>
-</div>
 
+        </div>
+    </div>
+
+</div>
+</div>
+<footer>
+    <%@include file="footer.jsp" %>
+</footer>
 </body>
 </html>

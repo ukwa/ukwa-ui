@@ -5,7 +5,6 @@
 <div class="row">
   <div class="col-md-1">&nbsp;</div>
   <div class="col-md-3 col-md-offset-1 col-sm-12">
-
       <a href="index" title="<spring:message code="footer.home.title" />" class="collection-link">
           <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.home" /></div>
       </a><br/>
@@ -21,9 +20,6 @@
       <a href="info/nominate" title="<spring:message code="footer.nominate.title" />" class="collection-link">
           <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.nominate" /></div>
       </a><br/>
-
-
-
   </div>
   <div class="col-md-1">&nbsp;</div>
   <div class="col-md-3 col-md-offset-1 col-sm-12">
@@ -39,8 +35,6 @@
       <a href="info/cookies" class="collection-link" title="<spring:message code="footer.cookies.title" />">
           <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.cookies" /></div>
       </a><br/>
-
-
   </div>
   <div class="col-md-1">&nbsp;</div>
   <div class="col-md-3 col-md-offset-1 col-sm-12">
@@ -74,12 +68,14 @@
       </a><br/>
   </div>
 </div>
-<div class="row padding-bottom-20">
-    <div class="col-md-auto col-sm-auto footer-logos well"> <a href="https://www.bl.uk/" target="_blank"><img src="img/bl_logo_BW.png" alt="<spring:message code="footer.logo.blib" />" class="footer-logo-BW"/></a> <a href="https://www.llgc.org.uk/" target="_blank"><img src="img/llgc_logo_BW.png" alt="<spring:message code="footer.logo.llgc" />" class="footer-logo-BW"/></a> <a href="https://www.nls.uk/" target="_blank"><img src="img/NLS_logo_2_BW.jpg" alt="<spring:message code="footer.logo.nls" />" class="footer-logo-BW"/></a>
-        <a href="http://www.bodleian.ox.ac.uk/" target="_blank"><img src="img/bodleian_logo_BW.jpg" alt="<spring:message code="footer.logo.bl" />" class="footer-logo-BW"/></a> <a href="http://www.lib.cam.ac.uk/" target="_blank"><img src="img/cambrige_logo600_BW.png" alt="<spring:message code="footer.logo.cul" />" class="footer-logo-BW"/></a> <a href="https://www.tcd.ie/" target="_blank"><img src="img/trinity_logo_BW.jpg" alt="<spring:message code="footer.logo.tcd" />" class="footer-logo-BW"/></a>
-    </div>
+<div class="row padding-bottom-10 justify-content-between">
+    <div class="col-lg-2 col-md-2 col-sm-auto"><a href="https://www.bl.uk/" target="_blank"><img src="img/bl_logo_BW.png" alt="<spring:message code="footer.logo.blib" />" class="footer-logo-BW"/></a></div>
+    <div class="col-lg-2 col-md-2 col-sm-auto"><a href="https://www.llgc.org.uk/" target="_blank"><img src="img/llgc_logo_BW.png" alt="<spring:message code="footer.logo.llgc" />" class="footer-logo-BW"/></a></div>
+    <div class="col-lg-2 col-md-2 col-sm-auto"><a href="https://www.nls.uk/" target="_blank"><img src="img/NLS_logo_2_BW.jpg" alt="<spring:message code="footer.logo.nls" />" class="footer-logo-BW"/></a></div>
+    <div class="col-lg-2 col-md-2 col-sm-auto"><a href="http://www.bodleian.ox.ac.uk/" target="_blank"><img src="img/bodleian_logo_BW.jpg" alt="<spring:message code="footer.logo.bl" />" class="footer-logo-BW"/></a></div>
+    <div class="col-lg-2 col-md-2 col-sm-auto"><a href="http://www.lib.cam.ac.uk/" target="_blank"><img src="img/cambrige_logo600_BW.png" alt="<spring:message code="footer.logo.cul" />" class="footer-logo-BW"/></a></div>
+    <div class="col-lg-2 col-md-2 col-sm-auto"><a href="https://www.tcd.ie/" target="_blank"><img src="img/trinity_logo_BW.jpg" alt="<spring:message code="footer.logo.tcd" />" class="footer-logo-BW"/></a></div>
 </div>
-<div><hr style="width: 100%; color: darkblue; height: 5px; background-color:royalblue; margin-bottom:1px !important;margin-top:1px !important;" /></div>
 
 <div class="cookies-cont">
 <div class="row">
@@ -89,6 +85,8 @@
 </div>
     </div>
 </div>
+
+<hr style="width: 100%; color: darkblue; height: 7px; background-color:royalblue; margin-bottom:1px !important;margin-top:1px !important;" />
 
 <!--[if (gt IE 9)|!(IE)]><!-->
 <script>

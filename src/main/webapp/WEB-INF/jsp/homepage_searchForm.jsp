@@ -1,4 +1,4 @@
-<div class="col-sm-12 padding-mobile-side-15  white main-search-input-new left" style="padding-bottom:140px;padding-top:30px;padding-left:15%;padding-right:15%">
+<div class="col-sm-12 padding-mobile-side-15  white main-search-input-new left" style="padding-bottom:170px;padding-top:40px;padding-left:15%;padding-right:15%">
     <form action="search" method="get" enctype="multipart/form-data" name="search_form" id="search_form">
 
         <div class="main-heading padding-bottom-20">Search the UK Web Archive</div>
