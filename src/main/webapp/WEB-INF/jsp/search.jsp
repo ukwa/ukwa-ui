@@ -43,102 +43,104 @@ ${pageContext.response.locale}
     <div><hr class="search-header-hr" /></div>
 
 <section id="content">
-    <div class="row padding-top-10 dark-gray">
-        <div class="col-md-12 col-sm-12">
-
-            <c:set var = "hasFilters" value = "false"/>
-            <c:if test="${searchPage == 'true'}">
-                <p class="margin-0"><spring:message code="search.filters.access" />&nbsp;
-
-                    <c:if test="${originalAccessView.contains('va') || empty originalAccessView}">
-                        <spring:message code="search.filters.access.open" />
-                    </c:if>
-
-                    <c:if test="${originalAccessView.contains('vool')}">
-                        <spring:message code="search.filters.access.all" />
-                    </c:if>
-
-                </p>
-                <c:set var = "hasFilters" value = "true"/>
-            </c:if>
-
-            <c:if test="${fn:length(originalDomains) > 0}">
-                <p class="margin-0"><spring:message code="search.filters.domain" />&nbsp;
-                    <c:forEach items="${originalDomains}" var="domain">
-                        &quot;<c:out value="${domain}"/>&quot;&nbsp;
-                    </c:forEach>
-                </p>
-                <c:set var = "hasFilters" value = "true"/>
-            </c:if>
-
-            <c:if test="${fn:length(originalContentTypes) > 0}">
-                <p class="margin-0"><spring:message code="search.filters.doctype" />&nbsp;
-                    <c:forEach items="${originalContentTypes}" var="doctype">
-                        &quot;<c:out value="${doctype}"/>&quot;&nbsp;
-                    </c:forEach>
-                </p>
-                <c:set var = "hasFilters" value = "true"/>
-            </c:if>
-
-            <c:if test="${fn:length(originalPublicSuffixes) > 0}">
-                <p class="margin-0"><spring:message code="search.filters.suffix" />&nbsp;
-                    <c:forEach items="${originalPublicSuffixes}" var="suffix">
-                        &quot;<c:out value="${suffix}"/>&quot;&nbsp;
-                    </c:forEach>
-                </p>
-                <c:set var = "hasFilters" value = "true"/>
-            </c:if>
 
 
-            <c:if test="${fn:length(originalFromDateText) > 0 || fn:length(originalToDateText) > 0}">
-                <p class="margin-0"><spring:message code="search.filters.date" />&nbsp;
-
-                    <c:choose>
-                        <c:when test="${fn:length(originalFromDateText) > 0}">
-                            <c:out value="${originalFromDateText}"/>
-                        </c:when>
-                        <c:otherwise>
-                            <spring:message code="search.filters.date.any" />
-                        </c:otherwise>
-                    </c:choose>
-
-                    &nbsp;-&nbsp;
-
-                    <c:choose>
-                        <c:when test="${fn:length(originalToDateText) > 0}">
-                            <c:out value="${originalToDateText}"/>
-                        </c:when>
-                        <c:otherwise>
-                            <spring:message code="search.filters.date.any" />
-                        </c:otherwise>
-                    </c:choose>
-
-                </p>
-                <c:set var = "hasFilters" value = "true"/>
-            </c:if>
-
-            <c:if test="${fn:length(originalCollections) > 0}">
-                <p class="margin-0"><spring:message code="search.filters.collection" />&nbsp;
-                    <c:forEach items="${originalCollections}" var="collection">
-                        &quot;<c:out value="${collection}"/>&quot;&nbsp;
-                    </c:forEach>
-                </p>
-                <c:set var = "hasFilters" value = "true"/>
-            </c:if>
-
-            <c:if test="${hasFilters == 'true'}">
-                <p class="margin-0">
-                    <button type="button" id="btn_reset_filters" title="<spring:message code="search.filters.reset" />" class="button margin-top-10 text-small"><spring:message code="search.filters.reset" /></button>
-                </p>
-            </c:if>
-
-        </div>
-    </div>
 
   <div class="row margin-0 padding-0">
 
     <div class="col-lg-3 col-md-4 col-sm-12 sidebar-white-blue padding-0">
     <aside id="sidebar">
+        <div class="row padding-top-10 dark-gray">
+            <div class="col-md-12 col-sm-12">
+
+                <c:set var = "hasFilters" value = "false"/>
+                <c:if test="${searchPage == 'true'}">
+                    <p class="margin-0 padding-left-20"><spring:message code="search.filters.access" />&nbsp;
+
+                        <c:if test="${originalAccessView.contains('va') || empty originalAccessView}">
+                            <spring:message code="search.filters.access.open" />
+                        </c:if>
+
+                        <c:if test="${originalAccessView.contains('vool')}">
+                            <spring:message code="search.filters.access.all" />
+                        </c:if>
+
+                    </p>
+                    <c:set var = "hasFilters" value = "true"/>
+                </c:if>
+
+                <c:if test="${fn:length(originalDomains) > 0}">
+                    <p class="margin-0 padding-left-20"><spring:message code="search.filters.domain" />&nbsp;
+                        <c:forEach items="${originalDomains}" var="domain">
+                            &quot;<c:out value="${domain}"/>&quot;&nbsp;
+                        </c:forEach>
+                    </p>
+                    <c:set var = "hasFilters" value = "true"/>
+                </c:if>
+
+                <c:if test="${fn:length(originalContentTypes) > 0}">
+                    <p class="margin-0 padding-left-20"><spring:message code="search.filters.doctype" />&nbsp;
+                        <c:forEach items="${originalContentTypes}" var="doctype">
+                            &quot;<c:out value="${doctype}"/>&quot;&nbsp;
+                        </c:forEach>
+                    </p>
+                    <c:set var = "hasFilters" value = "true"/>
+                </c:if>
+
+                <c:if test="${fn:length(originalPublicSuffixes) > 0}">
+                    <p class="margin-0 padding-left-20"><spring:message code="search.filters.suffix" />&nbsp;
+                        <c:forEach items="${originalPublicSuffixes}" var="suffix">
+                            &quot;<c:out value="${suffix}"/>&quot;&nbsp;
+                        </c:forEach>
+                    </p>
+                    <c:set var = "hasFilters" value = "true"/>
+                </c:if>
+
+
+                <c:if test="${fn:length(originalFromDateText) > 0 || fn:length(originalToDateText) > 0}">
+                    <p class="margin-0 padding-left-20"><spring:message code="search.filters.date" />&nbsp;
+
+                        <c:choose>
+                            <c:when test="${fn:length(originalFromDateText) > 0}">
+                                <c:out value="${originalFromDateText}"/>
+                            </c:when>
+                            <c:otherwise>
+                                <spring:message code="search.filters.date.any" />
+                            </c:otherwise>
+                        </c:choose>
+
+                        &nbsp;-&nbsp;
+
+                        <c:choose>
+                            <c:when test="${fn:length(originalToDateText) > 0}">
+                                <c:out value="${originalToDateText}"/>
+                            </c:when>
+                            <c:otherwise>
+                                <spring:message code="search.filters.date.any" />
+                            </c:otherwise>
+                        </c:choose>
+
+                    </p>
+                    <c:set var = "hasFilters" value = "true"/>
+                </c:if>
+
+                <c:if test="${fn:length(originalCollections) > 0}">
+                    <p class="margin-0 padding-left-20"><spring:message code="search.filters.collection" />&nbsp;
+                        <c:forEach items="${originalCollections}" var="collection">
+                            &quot;<c:out value="${collection}"/>&quot;&nbsp;
+                        </c:forEach>
+                    </p>
+                    <c:set var = "hasFilters" value = "true"/>
+                </c:if>
+
+                <c:if test="${hasFilters == 'true'}">
+                    <p class="margin-0 padding-left-20 padding-bottom-20">
+                        <button type="button" id="btn_reset_filters" title="<spring:message code="search.filters.reset" />" class="button-radius-5 button-blue margin-top-10 text-small"><spring:message code="search.filters.reset" /></button>
+                    </p>
+                </c:if>
+
+            </div>
+        </div>
     <div class="height-0"><spring:message code="search.filter.notice" /></div>
       <form action="search" method="get" enctype="multipart/form-data" name="filter_form" id="filter_form">
         <div class="sidebar-item toggle open vl" id="toggle-sidebar"></div>
@@ -168,10 +170,6 @@ ${pageContext.response.locale}
                 <label class="main-search-check-label blue" for="view_filter_1" title="<spring:message code="search.side.view.1" />"><spring:message code="search.side.view.1" /> <span class="label-counts">(<span class="results-count"><c:out value="${vaCount}"/></span>)</span></label>
               </div>
             </div>
-
-              <div class="showmore-button small blue" title="<spring:message code="search.side.view.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.view.tip" />" tabindex="0"></div>
-
-
 
 
             <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
@@ -210,7 +208,9 @@ ${pageContext.response.locale}
                     </c:if>
 
                 </c:forEach>
+                  <div class="padding-left-20"><a href="javascript:void(0);" id="showMoreDomainLink" title="Show More Domains">Show more</a></div>
               </c:if>
+
             </div>
 
                 <div id="domains_filter_div" class="sidebar-filter expanded no-collapse" style="display:none;" role="tabpanel" aria-hidden="true" aria-labelledby="t_domain">
@@ -218,9 +218,8 @@ ${pageContext.response.locale}
                         <c:forEach begin="0" end="${domains.size() - 1}" step="2" var="i">
 
 
-
                             <c:if test="${domains.get(i + 1) != 0 && (i > 6)}">
-                                <div class="sidebar-filter-checkbox col-md-12 col-sm-12 " >
+                                <div class="sidebar-filter-checkbox col-md-12 col-sm-12 padding-bottom-20" >
                                     <div class="form-check-cont padding-0" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
                                         <input type="checkbox" class="blue" name="domain_filter" id="domain_filter_<c:out value="${i}"/>"
                                                value="${domains.get(i)}"
@@ -236,17 +235,15 @@ ${pageContext.response.locale}
                     </c:if>
                 </div>
 
-                <div class="showmore-button small blue" title="<spring:message code="search.side.view.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.view.tip" />" tabindex="0"></div>
-                <a href="javascript:void(0);" id="showMoreDomainLink" title="Show More Domains">
-                    Show more
-                </a>
+
+
                 <hr class="search-sidebar-hr"/>
             <%--   Document type collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
               <div class="sidebar-filter-header-title" id="t_doctype"><spring:message code="search.side.doctype.title" /></div>
               <div class="help-button small blue" title="<spring:message code="search.side.doctype.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
             </div>
-            <div class="sidebar-filter" role="tabpanel" aria-hidden="true" aria-labelledby="t_doctype">
+            <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_doctype">
               <c:if test="${contentTypes.size() > 1}">
                 <c:forEach begin="0" end="${contentTypes.size() - 1}" step="2" var="i">
                   <c:if test="${contentTypes.get(i + 1) != 0}">
@@ -270,10 +267,11 @@ ${pageContext.response.locale}
               <div class="sidebar-filter-header-title" id="t_suffix"><spring:message code="search.side.suffix.title" /></div>
               <div class="help-button small blue" title="<spring:message code="search.side.suffix.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.suffix.tip" />" tabindex="0"></div>
             </div>
-            <div class="sidebar-filter" role="tabpanel" aria-hidden="true" aria-labelledby="t_suffix">
+            <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_suffix">
               <c:if test="${publicSuffixes.size() > 1}">
+
                 <c:forEach begin="0" end="${publicSuffixes.size() - 1}" step="2" var="i">
-                  <c:if test="${publicSuffixes.get(i + 1) != 0}">
+                  <c:if test="${publicSuffixes.get(i + 1) != 0 && (i < 6)}">
                     <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                       <div class="form-check-cont padding-0" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
                         <input type="checkbox" class="blue" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
@@ -286,15 +284,41 @@ ${pageContext.response.locale}
                     </div>
                   </c:if>
                 </c:forEach>
+                  <div class="padding-left-20"><a href="javascript:void(0);" id="showMoreSuffixLink" title="Show More Suffix">Show more</a></div>
               </c:if>
+
             </div>
+
+                <div id="suffix_filter_div" class="sidebar-filter expanded no-collapse" style="display:none;" role="tabpanel" aria-hidden="true" aria-labelledby="t_suffix">
+                    <c:if test="${publicSuffixes.size() > 1}">
+                        <c:forEach begin="0" end="${publicSuffixes.size() - 1}" step="2" var="i">
+
+
+                            <c:if test="${publicSuffixes.get(i + 1) != 0 && (i > 6)}">
+                                <div class="sidebar-filter-checkbox col-md-12 col-sm-12 padding-bottom-20" >
+                                    <div class="form-check-cont padding-0" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
+                                        <input type="checkbox" class="blue" name="public_suffix" id="collection_filter_<c:out value="${i}"/>"
+                                               value="${publicSuffixes.get(i)}"
+                                            ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
+                                        <label class="main-search-check-label blue" for="public_suffix_<c:out value="${i}"/>" title="<c:out value="${publicSuffixes.get(i)}"/> (<c:out value="${publicSuffixes.get(i + 1)}"/>)">
+                                            <c:out value="${publicSuffixes.get(i)}"/>
+                                            <span class="label-counts">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
+                                    </div>
+                                </div>
+                            </c:if>
+
+                        </c:forEach>
+                    </c:if>
+                </div>
+
+
                 <hr class="search-sidebar-hr"/>
             <%--   Archived year collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open archived-date" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.date.title" />" tabindex="0" id="dates_header" role="tab">
               <div class="sidebar-filter-header-title" id="t_date"><spring:message code="search.side.date.title" /></div>
               <div class="help-button small blue" title="<spring:message code="search.side.date.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.date.tip" />" tabindex="0"></div>
             </div>
-            <div class="sidebar-filter" id="dates_container" role="tabpanel" aria-hidden="true" aria-labelledby="t_date">
+            <div class="sidebar-filter expanded no-collapse" id="dates_container" role="tabpanel" aria-hidden="true" aria-labelledby="t_date">
               <div class="row padding-bottom-20 padding-top-20">
                 <div class="col-sm-6">
                   <label for="from_date" class="blue date-range-label"><spring:message code="search.side.date.from" /></label>
@@ -315,8 +339,8 @@ ${pageContext.response.locale}
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <button type="submit" title="<spring:message code="search.side.date.submit" />" class="button button-white float-sm-right margin-left-10 margin-top-10 text-small"><spring:message code="search.side.date.submit" /></button>
-                  <button type="button" title="<spring:message code="search.side.date.reset" />" class="button button-white float-sm-right margin-top-10 text-small" id="btn_reset_dates">X</button>
+                  <button type="submit" title="<spring:message code="search.side.date.submit" />" class="button-blue float-sm-right margin-left-10 margin-top-10 text-small"><spring:message code="search.side.date.submit" /></button>
+                  <button type="button" title="<spring:message code="search.side.date.reset" />" class="button-blue float-sm-right margin-top-10 text-small" id="btn_reset_dates">X</button>
                 </div>
               </div>
             </div>
@@ -326,10 +350,11 @@ ${pageContext.response.locale}
               <div class="sidebar-filter-header-title" id="t_coll"><spring:message code="search.side.coll.title" /></div>
               <div class="help-button small blue" title="<spring:message code="search.side.coll.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.coll.tip" />" tabindex="0"></div>
             </div>
-            <div class="sidebar-filter" role="tabpanel" aria-hidden="true" aria-labelledby="t_coll">
+            <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_coll">
               <c:if test="${collections.size() > 1}">
+
                 <c:forEach begin="0" end="${collections.size() - 1}" step="2" var="i">
-                  <c:if test="${collections.get(i + 1) != 0}">
+                  <c:if test="${collections.get(i + 1) != 0 && (i < 6)}">
                     <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                       <div class="form-check-cont padding-0" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
                         <input type="checkbox" class="blue" name="collection" id="collection_<c:out value="${i}"/>"
@@ -342,9 +367,34 @@ ${pageContext.response.locale}
                       </div>
                     </div>
                   </c:if>
+
                 </c:forEach>
+                  <div class="padding-left-20"><a href="javascript:void(0);" id="showMoreCollectionLink" title="Show More Collections">Show more</a></div>
               </c:if>
+
             </div>
+                <div id="collections_filter_div" class="sidebar-filter expanded no-collapse" style="display:none;" role="tabpanel" aria-hidden="true" aria-labelledby="t_coll">
+                    <c:if test="${collections.size() > 1}">
+                        <c:forEach begin="0" end="${collections.size() - 1}" step="2" var="i">
+
+                            <c:if test="${collections.get(i + 1) != 0 && (i > 6)}">
+                                <div class="sidebar-filter-checkbox col-md-12 col-sm-12 padding-bottom-20" >
+                                    <div class="form-check-cont padding-0" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
+                                        <input type="checkbox" class="blue" name="collection_" id="collection_filter_<c:out value="${i}"/>"
+                                               value="${collections.get(i)}"
+                                            ${originalCollections.contains(collections.get(i) )? 'checked' : ''}/>
+                                        <label class="main-search-check-label blue" for="collection_<c:out value="${i}"/>" title="<c:out value="${collections.get(i)}"/> (<c:out value="${collections.get(i + 1)}"/>)">
+                                            <c:out value="${collections.get(i)}"/>
+                                            <span class="label-counts">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
+                                    </div>
+                                </div>
+                            </c:if>
+
+                        </c:forEach>
+                    </c:if>
+                </div>
+
+
                 <hr class="search-sidebar-hr"/>
 
             <input type="hidden" name="search_location" id="search_location" value="${originalSearchLocation}">
@@ -366,9 +416,9 @@ ${pageContext.response.locale}
               <%@include file="searchpage_searchForm.jsp" %>
           </div>
       <div class="row">
-        <div class="col-sm-12 padding-top-5">
-          <span class="results-count"><c:out value="${totalSearchResultsSize}"/></span>
-          <spring:message code="search.results.num" /> <span class="bold">&quot;<c:out value="${originalSearchRequest}" escapeXml="false"/>&quot;</span></div>
+        <div class="col-sm-12" style="padding-left:30px;">
+            <span class="search-results-main-heading bold">Search results: </span><span class="search-results-main-heading"><c:out value="${totalSearchResultsSize}"/></span>
+            <span class="search-results-main-heading ">&nbsp;<spring:message code="search.results.num"/>&nbsp;</span><span class="search-results-main-heading">&quot;<c:out value="${originalSearchRequest}" escapeXml="false"/>&quot;</span></div>
       </div>
       
        <c:choose>
@@ -382,6 +432,33 @@ ${pageContext.response.locale}
       </c:choose>
 
       </div>
+
+        <div class="row border-bottom-gray margin-0 left">
+            <div class="col-md-12 padding-20 padding-mobile-side-0">
+                <div class="search-results-top-filters width-200 margin-top-10">
+                    <div class="form-check-cont form-margin-check" title="Newest to Oldest" tabindex="0">
+                        <input type="radio" name="sort" id="sort_1" value="nto" class="sort"
+                        ${originalSortValue.contains('nto') || empty originalSortValue ? 'checked' : ''}/>
+                        <label class="main-search-check-label text-small" for="sort_1" title="<spring:message code="search.results.sort.newest" />"><spring:message code="search.results.sort.newest" /></label>
+                    </div>
+                </div>
+                <div class="search-results-top-filters width-200 margin-top-10">
+                    <div class="form-check-cont form-margin-check" title="Oldest to Newest" tabindex="0">
+                        <input type="radio" name="sort" id="sort_2" value="otn" class="sort"
+                        ${originalSortValue.contains('otn') ? 'checked' : ''}/>
+                        <label class="main-search-check-label text-small" for="sort_2" title="<spring:message code="search.results.sort.oldest" />"><spring:message code="search.results.sort.oldest" /></label>
+                    </div>
+                </div>
+                <div class="search-results-top-filters results-items-per-page">
+                    <label for="count" title="<spring:message code="search.results.items" />" class="margin-top-10 text-small"><spring:message code="search.results.items" /></label>
+                    <select class="form-control search-results-display-count" name="count" id="count" tabindex="0">
+                        <option value="50" ${rowsPerPageLimit == 50 ? 'selected' : ''}>50</option>
+                        <option value="100" ${rowsPerPageLimit == 100 ? 'selected' : ''}>100</option>
+                        <option value="200" ${rowsPerPageLimit == 200 ? 'selected' : ''}>200</option>
+                    </select>
+                </div>
+            </div>
+        </div>
       <div class="row padding-0 margin-0">
         <div class="col-md-12 pagination-cont">
           <%--preserve all current parameters in URL and change only page parameter--%>
@@ -412,32 +489,7 @@ ${pageContext.response.locale}
         <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit && !deepPaging}"> <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />">Next<div class="pagination-button arrow right-arrow"></div></a> </c:if>
       </div>
     </div>
-    <div class="row border-bottom-gray margin-0">
-      <div class="col-md-12 padding-20 padding-mobile-side-0">
-        <div class="search-results-top-filters width-200 margin-top-10">
-          <div class="form-check-cont form-margin-check" title="Newest to Oldest" tabindex="0">
-            <input type="radio" name="sort" id="sort_1" value="nto" class="sort"
-              ${originalSortValue.contains('nto') || empty originalSortValue ? 'checked' : ''}/>
-            <label class="main-search-check-label text-small" for="sort_1" title="<spring:message code="search.results.sort.newest" />"><spring:message code="search.results.sort.newest" /></label>
-          </div>
-        </div>
-        <div class="search-results-top-filters width-200 margin-top-10">
-          <div class="form-check-cont form-margin-check" title="Oldest to Newest" tabindex="0">
-            <input type="radio" name="sort" id="sort_2" value="otn" class="sort"
-              ${originalSortValue.contains('otn') ? 'checked' : ''}/>
-            <label class="main-search-check-label text-small" for="sort_2" title="<spring:message code="search.results.sort.oldest" />"><spring:message code="search.results.sort.oldest" /></label>
-          </div>
-        </div>
-        <div class="search-results-top-filters results-items-per-page">
-          <label for="count" title="<spring:message code="search.results.items" />" class="margin-top-10 text-small"><spring:message code="search.results.items" /></label>
-          <select class="form-control search-results-display-count" name="count" id="count" tabindex="0">
-            <option value="50" ${rowsPerPageLimit == 50 ? 'selected' : ''}>50</option>
-            <option value="100" ${rowsPerPageLimit == 100 ? 'selected' : ''}>100</option>
-            <option value="200" ${rowsPerPageLimit == 200 ? 'selected' : ''}>200</option>
-          </select>
-        </div>
-      </div>
-    </div>
+
 
 
 
@@ -462,14 +514,16 @@ ${pageContext.response.locale}
               </span>
             </c:when>
           </c:choose>
-          <span class="results-title-text results-title-date padding-0 padding-top-20">
-          <spring:message code="search.results.archived.date" /> <c:out value="${searchResult.date}"/>
-          </span> 
           
           <span class="results-title-text clearfix padding-vert-10"> <a title="<c:out value="${searchResult.displayUrl}"/>" class="break-all" href="<c:out value="${searchResult.url}"/>">           <span class="results-for-highlight"><c:out value="${searchResult.displayUrl}"/></span>
           </a> </span> <span class="results-title-text clearfix break-all">
            <span class="results-for-highlight"><c:out value="${searchResult.text}"/></span>
-          </span> </div>
+          </span>
+            <span class="results-title-text results-title-date padding-0 padding-top-20 bold"><spring:message code="search.results.archived.date"/></span>
+            <span class="results-title-text results-title-date padding-0 padding-top-20"><c:out value="${searchResult.date}"/></span>
+
+          </span>
+        </div>
       </div>
       
       <!--/RESULT ROW--> 

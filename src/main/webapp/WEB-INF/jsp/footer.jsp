@@ -120,16 +120,32 @@
 
         $("#showMoreDomainLink").click(function() {
             if($("#domains_filter_div").is(":visible")){ //hide then
-                //alert("action changed to search");
-                //$("#search_form").attr('action', 'search');
                 $("#domains_filter_div").hide(300);
                 $('#showMoreDomainLink').html('Show more');
             }
             else{
-                //alert("action changed to advancedSearch");
                 $("#domains_filter_div").show(300);
-                //$("#search_form").attr('action', 'advancedsearch');
                 $('#showMoreDomainLink').html('Show less');
+            }
+        });
+        $("#showMoreCollectionLink").click(function() {
+            if($("#collections_filter_div").is(":visible")){ //hide then
+                $("#collections_filter_div").hide(300);
+                $('#showMoreCollectionLink').html('Show more');
+            }
+            else{
+                $("#collections_filter_div").show(300);
+                $('#showMoreCollectionLink').html('Show less');
+            }
+        });
+        $("#showMoreSuffixLink").click(function() {
+            if($("#suffix_filter_div").is(":visible")){ //hide then
+                $("#suffix_filter_div").hide(300);
+                $('#showMoreSuffixLink').html('Show more');
+            }
+            else{
+                $("#suffix_filter_div").show(300);
+                $('#showMoreSuffixLink').html('Show less');
             }
         });
 

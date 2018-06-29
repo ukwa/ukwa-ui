@@ -48,8 +48,8 @@ input, button, textarea, select {
 }
 
 :focus {
-	outline-color: $dark-gray2 !important;
-	outline-width: 2px !important;
+	outline-color: white !important;
+	outline-width: 1px !important;
 	outline-style: solid !important;	 
 }
 
@@ -447,7 +447,7 @@ footer {
 	position:relative;
 }
 
-.button-radius-30 {
+.button-radius-5 {
   height:auto;
   text-align:center;
   border-radius:5px;
@@ -959,12 +959,12 @@ h3 {
 }
 .search-header-hr {
   border:none;
-  height: 20px;
+  height: 10px;
   width: 90%;
-  height: 50px;
+  height: 30px;
   margin-top: 0;
   border-bottom: 1px solid #818182;
-  box-shadow: 0 20px 20px -20px #333;
+  box-shadow: 0 10px 10px -10px #333;
   margin: 1px auto 10px;
 }
 .search-sidebar-hr {
@@ -991,7 +991,7 @@ h3 {
   border-left:solid grey 3px;
   background:#818182;
   width:80%; height:100%;
-  box-shadow: 5px 0 5px -5px #333;
+  box-shadow: 0px 5px 5px -5px #333;
 }
 .translate-cont {
 	padding-top:80px;	
@@ -1357,7 +1357,7 @@ footer {
 	cursor:pointer;
 	box-shadow: 1px 1px 7px $dark-gray;
 	z-index:100;
-	float:left;
+	float:right;
 	color:$white;
 	font-size:30px;
 	text-align:center;
@@ -1841,6 +1841,10 @@ footer {
 
 .collection-main-heading {
 	font-size: 2.4em;	
+}
+
+.search-results-main-heading {
+  font-size: 1.2em;
 }
 
 /*ABOUT*/
