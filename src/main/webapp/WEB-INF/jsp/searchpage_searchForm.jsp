@@ -1,5 +1,5 @@
 
-<div class="col-sm-12 padding-mobile-side-15  white left" style="padding-bottom:70px;padding-top:20px;padding-left:15%;padding-right:15%">
+<div class="col-sm-12 padding-mobile-side-15 white left" style="padding-bottom:70px;padding-top:20px;padding-left:15%;padding-right:15%">
     <form action="search" method="get" enctype="multipart/form-data" name="search_form" id="search_form">
 
 

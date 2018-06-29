@@ -44,7 +44,7 @@ ${pageContext.response.locale}
       </div>
 
         <div class="row padding-top-20">
-            <div class="col-md-9">
+            <div class="col-md-8">
             <p class="main-subheading-bold-2-redesign">
                 <spring:message code="home.header.text1" />
             </p><br/>
@@ -55,7 +55,7 @@ ${pageContext.response.locale}
                 <a href="about" title="<spring:message code="home.header.text.link" />"><spring:message code="home.header.text.link" /></a>
             </p>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                     <a href="index" ><figure><img class="img-responsive" src="img/about2.png" alt="About UKWA"/> </figure></a>
             </div>
         </div>
@@ -64,25 +64,26 @@ ${pageContext.response.locale}
   </section>
 
 <section id="collections">
-  <div class="row padding-top-80 margin-0">
-    <div class="col-lg-12  col-md-12 col-sm-12">
-
-        <p class="main-heading-2-redesign padding-0">
+    <div class="padding-top-40">
+        <p class="main-heading-2-redesign">
             <spring:message code="home.page.collections.title"/>
         </p>
     </div>
-  </div>
 
-    <div class="row padding-top-20 margin-0 padding-side-20">
-    <div class="col-lg-12  col-md-12 col-sm-12 main-subheading-2-redesign">
 
-      <spring:message code="home.page.collections.subtitle"/>
-
+    <div class="row padding-top-20">
+        <div class="col-md-8">
+            <p class="main-subheading-2-redesign">
+                <spring:message code="home.page.collections.subtitle"/>
+            </p>
+        </div>
+        <div class="col-md-4">
+            &nbsp;
+        </div>
     </div>
-    </div>
 
 
-  <div class="row">
+  <div class="row padding-top-40">
     <div class="col-lg-4 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/329" class="collection-link">
       <figure><img class="img-responsive border-gray coll-img" alt="British Stand-up Comedy Archive" src="img/collections/collection_329.png"/>
         <figcaption class="img-square-caption shadow">FEATURED</figcaption>

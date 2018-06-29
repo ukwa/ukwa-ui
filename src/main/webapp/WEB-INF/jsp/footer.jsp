@@ -1,49 +1,51 @@
 
 <div class="row margin-0 padding-30">
     <div class="col-lg-auto col-md-auto col-sm-auto padding-0">
-<div><a href="index" ><img src="img/ukwa-logo-60px.jpg" class="header-logo"></a></div>
+<a href="index" ><img src="img/ukwa-logo-60px.jpg" class="header-logo"></a>
+    </div>
+</div>
 <div class="row">
   <div class="col-md-1">&nbsp;</div>
   <div class="col-md-3 col-md-offset-1 col-sm-12">
       <a href="index" title="<spring:message code="footer.home.title" />" class="collection-link">
-          <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.home" /></div>
+          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.home" /></div>
       </a><br/>
       <a href="info/about" title="<spring:message code="footer.about.title" />" class="collection-link">
-          <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.about" /></div>
+          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.about" /></div>
       </a><br/>
       <a href="collection" title="<spring:message code="footer.collections.title" />" class="collection-link">
-          <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.collections" /></div>
+          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.collections" /></div>
       </a><br/>
       <a href="http://britishlibrary.typepad.co.uk/webarchive/" target="_blank" title="<spring:message code="footer.blog.title" />" class="collection-link">
-          <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.blog" /></div>
+          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.blog" /></div>
       </a><br/>
       <a href="info/nominate" title="<spring:message code="footer.nominate.title" />" class="collection-link">
-          <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.nominate" /></div>
+          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.nominate" /></div>
       </a><br/>
   </div>
   <div class="col-md-1">&nbsp;</div>
   <div class="col-md-3 col-md-offset-1 col-sm-12">
       <a href="info/notice_takedown" class="collection-link" title="<spring:message code="footer.notice.title" />">
-          <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.notice" /></div>
+          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.notice" /></div>
       </a><br/>
       <a href="info/terms_conditions" class="collection-link" title="<spring:message code="footer.terms.title" />">
-          <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.terms" /></div>
+          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.terms" /></div>
       </a><br/>
       <a href="info/privacy" class="collection-link" title="<spring:message code="footer.privacy.title" />">
-          <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.privacy" /></div>
+          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.privacy" /></div>
       </a><br/>
       <a href="info/cookies" class="collection-link" title="<spring:message code="footer.cookies.title" />">
-          <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.cookies" /></div>
+          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.cookies" /></div>
       </a><br/>
   </div>
   <div class="col-md-1">&nbsp;</div>
   <div class="col-md-3 col-md-offset-1 col-sm-12">
 
       <a href="info/faq" title="<spring:message code="footer.faq" />" class="collection-link">
-          <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.faq" /></div>
+          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.faq" /></div>
       </a><br/>
       <a href="contact" title="<spring:message code="footer.contact.title" />" class="collection-link">
-          <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.contact" /></div>
+          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.contact" /></div>
       </a><br/>
 
 
@@ -68,14 +70,6 @@
       </a><br/>
   </div>
 </div>
-<div class="row padding-bottom-10 justify-content-between">
-    <div class="col-lg-2 col-md-2 col-sm-auto"><a href="https://www.bl.uk/" target="_blank"><img src="img/bl_logo_BW.png" alt="<spring:message code="footer.logo.blib" />" class="footer-logo-BW"/></a></div>
-    <div class="col-lg-2 col-md-2 col-sm-auto"><a href="https://www.llgc.org.uk/" target="_blank"><img src="img/llgc_logo_BW.png" alt="<spring:message code="footer.logo.llgc" />" class="footer-logo-BW"/></a></div>
-    <div class="col-lg-2 col-md-2 col-sm-auto"><a href="https://www.nls.uk/" target="_blank"><img src="img/NLS_logo_2_BW.jpg" alt="<spring:message code="footer.logo.nls" />" class="footer-logo-BW"/></a></div>
-    <div class="col-lg-2 col-md-2 col-sm-auto"><a href="http://www.bodleian.ox.ac.uk/" target="_blank"><img src="img/bodleian_logo_BW.jpg" alt="<spring:message code="footer.logo.bl" />" class="footer-logo-BW"/></a></div>
-    <div class="col-lg-2 col-md-2 col-sm-auto"><a href="http://www.lib.cam.ac.uk/" target="_blank"><img src="img/cambrige_logo600_BW.png" alt="<spring:message code="footer.logo.cul" />" class="footer-logo-BW"/></a></div>
-    <div class="col-lg-2 col-md-2 col-sm-auto"><a href="https://www.tcd.ie/" target="_blank"><img src="img/trinity_logo_BW.jpg" alt="<spring:message code="footer.logo.tcd" />" class="footer-logo-BW"/></a></div>
-</div>
 
 <div class="cookies-cont">
 <div class="row">
@@ -84,8 +78,16 @@
 </div>
 </div>
     </div>
-</div>
 
+
+<div class="row padding-bottom-10 justify-content-between">
+    <div class="col-md-2"><a href="https://www.bl.uk/" target="_blank"><img src="img/bl_logo_BW.png" alt="<spring:message code="footer.logo.blib" />" class="footer-logo-BW"/></a></div>
+    <div class="col-md-2"><a href="https://www.llgc.org.uk/" target="_blank"><img src="img/llgc_logo_BW.png" alt="<spring:message code="footer.logo.llgc" />" class="footer-logo-BW"/></a></div>
+    <div class="col-md-2"><a href="https://www.nls.uk/" target="_blank"><img src="img/NLS_logo_2_BW.jpg" alt="<spring:message code="footer.logo.nls" />" class="footer-logo-BW"/></a></div>
+    <div class="col-md-2"><a href="http://www.bodleian.ox.ac.uk/" target="_blank"><img src="img/bodleian_logo_BW.jpg" alt="<spring:message code="footer.logo.bl" />" class="footer-logo-BW"/></a></div>
+    <div class="col-md-2"><a href="http://www.lib.cam.ac.uk/" target="_blank"><img src="img/cambrige_logo600_BW.png" alt="<spring:message code="footer.logo.cul" />" class="footer-logo-BW"/></a></div>
+    <div class="col-md-2"><a href="https://www.tcd.ie/" target="_blank"><img src="img/trinity_logo_BW.jpg" alt="<spring:message code="footer.logo.tcd" />" class="footer-logo-BW"/></a></div>
+</div>
 <hr style="width: 100%; color: darkblue; height: 7px; background-color:royalblue; margin-bottom:1px !important;margin-top:1px !important;" />
 
 <!--[if (gt IE 9)|!(IE)]><!-->
