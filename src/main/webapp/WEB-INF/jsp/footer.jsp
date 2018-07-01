@@ -93,31 +93,6 @@
 <!--[if (gt IE 9)|!(IE)]><!-->
 <script>
     $(document).ready(function(e) {
-        //survey monkey
-        var content = '<div class="padding-20 black center width-100"><h2><spring:message code="survey.text"/></h2></div><div id="surveymonkeydiv" class="padding-20 clearfix center width-100"><a href="<spring:message code="survey.url"/>" title="<spring:message code="survey.button"/>" target="_blank"><button id="surveybutton" class="button button-blue white padding-20" role="link" tabindex="-1"><spring:message code="survey.button"/></button></a><div class="padding-20 padding-top-40 black center width-100"><img class="img-survey" alt="MonkeySurvey" src="img/surveymonkeylogo.jpg"/></div>';
-        if (typeof $.cookie('survey_viewed') === 'undefined' || $.cookie('survey_viewed')!=="true") {
-            $('#betadivlink').show();
-            $.SimpleLightbox.open({
-                content: content,
-                elementClass: 'slbContentEl'
-            });
-            $.cookie("survey_viewed", "true", { expires: 365, path: '/',  });
-        }
-
-        if (typeof $.cookie('survey_link_pressed_in_banner') === 'undefined' || $.cookie('survey_link_pressed_in_banner')!=="true") {
-            $('#betadivlink').show();
-        }
-
-        $('#betadivlink a').click(function(evt) {
-            $.cookie("survey_link_pressed_in_banner", "true", { expires: 365, path: '/',  });
-            $.cookie("survey_viewed", "true", { expires: 365, path: '/',  });
-        });
-
-        $("#surveybutton").button().click(function(){
-            $.cookie("survey_link_pressed_in_banner", "true", { expires: 365, path: '/',  });
-            $.cookie("survey_viewed", "true", { expires: 365, path: '/',  });
-        });
-
         $("#showMoreDomainLink").click(function() {
             if($("#domains_filter_div").is(":visible")){ //hide then
                 $("#domains_filter_div").hide(300);

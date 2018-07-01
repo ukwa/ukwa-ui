@@ -192,8 +192,6 @@ ${pageContext.response.locale}
               <c:if test="${domains.size() > 1}">
                 <c:forEach begin="0" end="${domains.size() - 1}" step="2" var="i">
 
-
-
                     <c:if test="${domains.get(i + 1) != 0 && (i < 6)}">
                             <div class="sidebar-filter-checkbox col-md-12 col-sm-12 " >
                                 <div class="form-check-cont padding-0" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
