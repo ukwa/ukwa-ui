@@ -49,16 +49,15 @@ ${pageContext.response.locale}
   <!--THUMBNAIL DISPLAY-->
   <div class="row margin-0 padding-side-5 padding-mobile-side-20 padding-top-0 collections" id="collections_thumbs">
     <c:forEach items="${collections}" var="collection">
-      <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/<c:out value="${collection.id}"/>" class="collection-link">
-        <div class="center light-blue padding-bottom-10 collection-heading collection-title">
-          <c:out value="${collection.name}"/>
-        </div>
-        <figure>
-          <img class="img-responsive border-gray coll-img"
-                     alt="<c:out value="${collection.imageAltMessage}"/>"
-                     src="img/collections/collection_<c:out value="${collection.id}"/>.png"/>
-          <figcaption class="img-square-caption shadow collection-description"><c:out value="${collection.description}"/></figcaption>
-        </figure></a>
+      <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
+          <a href="collection/<c:out value="${collection.id}"/>" class="collection-link">
+              <figure><img class="img-responsive border-gray coll-img" alt="<c:out value="${collection.imageAltMessage}"/>"
+                           src="img/collections/collection_<c:out value="${collection.id}"/>.png"/>
+                  <figcaption class="img-square-caption shadow">FEATURED</figcaption>
+              </figure>
+              <div class="center light-blue padding-bottom-10 collection-heading"><c:out value="${collection.name}"/></div>
+              <div class="center black padding-bottom-10 collection-heading thumbnail"><c:out value="${collection.description}"/></div>
+          </a>
         </div>
     </c:forEach>
   </div>
