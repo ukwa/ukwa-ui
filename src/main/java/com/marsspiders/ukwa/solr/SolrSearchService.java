@@ -25,6 +25,8 @@ import static com.marsspiders.ukwa.util.SolrSearchUtil.generateMultipleCondition
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.apache.solr.client.solrj.SolrQuery.ORDER.asc;
 
+import org.apache.lucene.queryparser.classic.QueryParser;
+
 @Service
 public class SolrSearchService {
     private static final Logger log = LoggerFactory.getLogger(SolrSearchService.class);
@@ -163,7 +165,7 @@ public class SolrSearchService {
         String[] facets = {FIELD_PUBLIC_SUFFIX, FIELD_TYPE, FIELD_HOST, FIELD_DOMAIN,
                 FIELD_COLLECTION, FIELD_CONTENT_TYPE_NORM, FIELD_ACCESS_TERMS};
 
-        String queryString = "{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "}" + searchText;
+        String queryString = "{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "}" + QueryParser.escape(searchText);
         return sendRequest(queryString, sort, filters, FIELD_CONTENT, ContentInfo.class, start, rows, facets);
     }
 
@@ -177,6 +179,7 @@ public class SolrSearchService {
                                                                      String... facetFields) {
         SolrQuery query = new SolrQuery();
         query.setQuery(queryString);
+        query.set("defType", "edismax");
         query.setStart(startFrom);
         query.setRows(rowsLimit);
 

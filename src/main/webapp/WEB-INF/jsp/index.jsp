@@ -15,13 +15,13 @@ ${pageContext.response.locale}
 <c:if test="${setProtocolToHttps}">
   <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
 </c:if>
-<html lang="en">
+<html lang="${locale}">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title>
 <spring:message code="home.header.title" />
 </title>
-<%@include file="head.jsp" %>
+    <%@include file="head.jsp" %>
 </head>
 
 <body>
@@ -29,85 +29,111 @@ ${pageContext.response.locale}
 <%@include file="nav.jsp" %>
 <div class="container-fluid">
   <header>
-  <%@include file="header.jsp" %>
-</header>
-<section id="home-header">
-  <div class="row header-blue white padding-top-80 padding-bottom-60">
-    <div class="col-md-6 ml-auto mr-auto col-md-offset-3 padding-side-10">
-      <p class="text-bigger">
-        <spring:message code="home.header.text1" />
-      </p>
-      <p class="text-bigger">
-        <spring:message code="home.header.text2" />
-      </p> 
-      <p class="text-bigger">
-        <a href="about" title="<spring:message code="home.header.text.link" />"><spring:message code="home.header.text.link" /></a>
-      </p>     
-    </div>
-  </div>
-</section>
+      <%@include file="header.jsp" %>
+      <%@include file="homepage_searchForm.jsp" %>
+  </header>
+
+    <div class="padding-top-80 padding-bottom-10 padding-side-70">
+  <section id="home-pre-header">
+
+
+      <div>
+          <p class="main-heading-2-redesign">
+              What we do
+          </p>
+      </div>
+
+        <div class="row padding-top-20">
+            <div class="col-md-8">
+            <p class="main-subheading-bold-2-redesign">
+                <spring:message code="home.header.text1" />
+            </p><br/>
+            <p class="main-subheading-2-redesign">
+                <spring:message code="home.header.text2" />
+            </p>
+            <p class="text-bigger">
+                <a href="about" title="<spring:message code="home.header.text.link" />"><spring:message code="home.header.text.link" /></a>
+            </p>
+            </div>
+            <div class="col-md-4">
+                    <a href="index" ><figure><img class="img-responsive" src="img/about2.png" alt="About UKWA"/> </figure></a>
+            </div>
+        </div>
+
+
+  </section>
+
 <section id="collections">
-  <div class="row padding-top-80 margin-0 padding-side-20">
-    <div class="col-lg-2  col-md-3 col-sm-12 main-heading-cont">
-      <h2 class="main-heading-2 padding-0">
-        <spring:message code="home.page.collections.title"/>
-      </h2>
-      <hr class="header-title-hr"/>
+    <div class="padding-top-40">
+        <p class="main-heading-2-redesign">
+            <spring:message code="home.page.collections.title"/>
+        </p>
     </div>
-     <div class="col-md-1"></div>
-    <div class="col-lg-5 col-md-6 col-sm-12 header-2-subtitle padding-side-10">
-      <span class="clearfix"><spring:message code="home.page.collections.subtitle"/></span>
-      <a href="collection" class="no-decoration" title="<spring:message code="home.button.viewmore.title"/>"><div class="button button-blue white margin-top-30 width-auto-inline clearfix"><spring:message code="home.button.viewmore"/></div></a>
-    </div>
-  </div>
-  
 
-  <div class="row padding-top-0 padding-side-5  margin-0 padding-mobile-side-20">
-    <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/329" class="collection-link">
-      <div class="center light-blue padding-bottom-10 collection-heading">British Stand-up Comedy Archive</div>
+
+    <div class="row padding-top-20">
+        <div class="col-md-8">
+            <p class="main-subheading-2-redesign">
+                <spring:message code="home.page.collections.subtitle"/>
+            </p>
+        </div>
+        <div class="col-md-4">
+            &nbsp;
+        </div>
+    </div>
+
+
+  <div class="row padding-top-40">
+    <div class="col-lg-4 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/329" class="collection-link">
       <figure><img class="img-responsive border-gray coll-img" alt="British Stand-up Comedy Archive" src="img/collections/collection_329.png"/>
-        <figcaption class="img-square-caption shadow">Collection owned and adminstered by Elspeth Millar. </figcaption>
+        <figcaption class="img-square-caption shadow">FEATURED</figcaption>
       </figure>
+        <div class="center light-blue padding-bottom-10 collection-heading">British Stand-up Comedy Archive</div>
+        <div class="center black padding-bottom-10 collection-heading">Collection owned and adminstered by Elspeth Millar.</div>
       </a> </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/309" class="collection-link">
-      <div class="center light-blue padding-bottom-10 collection-heading">French in London</div>
+
+    <div class="col-lg-4 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/309" class="collection-link">
       <figure><img class="img-responsive border-gray coll-img" alt="French in London" src="img/collections/collection_309.png"/>
-        <figcaption class="img-square-caption shadow">This collection of websites has been selected by Saskia Huc-Hepher.</figcaption>
+        <figcaption class="img-square-caption shadow">FEATURED</figcaption>
       </figure>
-      </a> </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/65" class="collection-link">
-      <div class="center light-blue padding-bottom-10 collection-heading">Scottish Independence Referendum</div>
-      <figure><img class="img-responsive border-gray coll-img" alt="Scottish Independence Referendum" src="img/collections/collection_65.png"/>
-        <figcaption class="img-square-caption shadow">Provisional title for collection on Scottish Devolution. </figcaption>
-      </figure>
-      </a> </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/138" class="collection-link">
-      <div class="center light-blue padding-bottom-10 collection-heading">News Sites</div>
+        <div class="center light-blue padding-bottom-10 collection-heading">French in London</div>
+        <div class="center black padding-bottom-10 collection-heading">This collection of websites has been selected by Saskia Huc-Hepher.</div>
+      </a></div>
+
+    <div class="col-lg-4 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/138" class="collection-link">
       <figure><img class="img-responsive border-gray coll-img" alt="News Sites" src="img/collections/collection_138.png"/>
-        <figcaption class="img-square-caption shadow">558 titles are included in this collection. </figcaption>
+        <figcaption class="img-square-caption shadow">FEATURED</figcaption>
       </figure>
-      </a> </div>
+        <div class="center light-blue padding-bottom-10 collection-heading">News Sites</div>
+        <div class="center black padding-bottom-10 collection-heading thumbnail">558 titles are included in this collection.</div>
+      </a></div>
   </div>
 
+    <div class="row ">
+        <div class="col-lg-4 col-md-6 col-sm-12 image-grid-col">
+            <hr class="topics-themes-hr"/>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 image-grid-col ">
+            <hr class="topics-themes-hr"/>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 image-grid-col">
+            <hr class="topics-themes-hr"/>
+        </div>
+    </div>
+
+    <div class="padding-bottom-60 center">
+        <a href="collection" class="no-decoration" title="<spring:message code="home.button.viewmore.title"/>">
+            <div class="button-radius-5 button-blue width-auto-inline "><spring:message code="home.button.viewmore"/></div></a>
+    </div>
 </section>
-<footer>
-  <%@include file="footer.jsp" %>
-</footer>
+
+        </div>
+    </div>
+
 </div>
-<!--[if (gt IE 9)|!(IE)]><!-->
-<script>
-$(document).ready(function(e) {
-    //survey monkey
-	var content = '<div class="padding-20 black center width-100"><h2><spring:message code="survey.text"/></h2></div><div class="padding-20 clearfix center width-100"><a href="<spring:message code="survey.url"/>" title="<spring:message code="survey.button"/>" target="_blank"><button class="button button-blue white padding-20" role="link" tabindex="-1"><spring:message code="survey.button"/></button></a><div class="padding-20 padding-top-40 black center width-100"><img class="img-survey" alt="MonkeySurvey" src="img/surveymonkeylogo.jpg"/></div>';
-	if (typeof $.cookie('survey_viewed') === 'undefined' || $.cookie('survey_viewed')!=="true") {
-		$.SimpleLightbox.open({
-			content: content,
-			elementClass: 'slbContentEl'
-		});
-		$.cookie("survey_viewed", "true", { expires: 365, path: '/' });
-	} 
-});
-</script>
-<!--<![endif]-->
+</div>
+<footer>
+    <%@include file="footer.jsp" %>
+</footer>
 </body>
 </html>

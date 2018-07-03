@@ -15,7 +15,7 @@ ${req.requestURL}
 <c:set var="locale">
   ${pageContext.response.locale}
 </c:set>
-<html lang="en">
+<html lang="${locale}">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title><spring:message code="nominate.title" /></title>

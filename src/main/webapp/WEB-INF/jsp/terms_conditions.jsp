@@ -15,7 +15,7 @@ ${pageContext.response.locale}
 <c:if test="${setProtocolToHttps}">
   <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
 </c:if>
-<html lang="en">
+<html lang="${locale}">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title><spring:message code="terms.title" /></title>

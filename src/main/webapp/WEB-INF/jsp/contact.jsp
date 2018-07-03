@@ -6,16 +6,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="req" value="${pageContext.request}"/>
 <c:set var="uri" value="${req.requestURI}"/>
-<c:set var="url">
-${req.requestURL}
-</c:set>
+<c:set var="url">${req.requestURL}</c:set>
 <c:if test="${setProtocolToHttps}">
   <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
 </c:if>
-<c:set var="locale">
-${pageContext.response.locale}
-</c:set>
-<html lang="en">
+<c:set var="locale">${pageContext.response.locale}</c:set>
+<html lang="${locale}">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title><spring:message code="contact.title" /></title>

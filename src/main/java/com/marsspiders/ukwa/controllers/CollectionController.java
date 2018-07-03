@@ -6,6 +6,8 @@ import com.marsspiders.ukwa.ip.WaybackIpResolver;
 import com.marsspiders.ukwa.solr.SolrSearchService;
 import com.marsspiders.ukwa.solr.data.CollectionInfo;
 import com.marsspiders.ukwa.solr.data.SolrSearchResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
@@ -39,6 +41,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @Controller
 @RequestMapping(value = HomeController.PROJECT_NAME + "/collection")
 public class CollectionController {
+    private static final Logger log = LoggerFactory.getLogger(CollectionController.class);
 
     static final int ROWS_PER_PAGE_DEFAULT = 50;
     private static final String COLLECTION_ALT_MESSAGE_DEFAULT = "coll.alt.default";
@@ -53,8 +56,21 @@ public class CollectionController {
     @Value("${set.protocol.to.https}")
     private Boolean setProtocolToHttps;
 
-    @Value("${bl.wayback.future.snapshot}")
-    private String waybackFutureSnapshot;
+    /**
+     # The following parameter governs which instance we find in Wayback when we do not have an exact reference.
+     # According to it the wayback points to the closest crawl capture instance of particular website.
+     # Configuration is general for all crawled websites.
+     # Date and time format example: 20100207230904 (accordingly YYYYMMDDHHMMSS).
+     # We can specify “first”, “last” or closest instance using minimum, maximum or any timestamp respectively.
+     # e.g. to redirect to the first instance specify any VALID date and time before it – using '10000101000000'. In order to redirect to the last instance, specify any date and time after it (2099….. would work as “end of time” for our purposes here)
+     # Here we want to redirect to the first instance (earliest one).
+     # Usage examples (MUST be a valid date and time format):
+     # 10000101000000 - earliest
+     # 20100207230904 - wayback will point to the closest crawl capture of particular website to that date and time
+     # 99999999999999 - latest, simply putting the value far to the future, it always will force wayback point to the latest crawl date and time of any crawled website
+     */
+    @Value("${bl.wayback.closest.crawled.capture.datetime}")
+    private String waybackClosestCrawledCaptureDatetime;
 
     @Autowired
     WaybackIpResolver waybackIpResolver;
@@ -76,6 +92,7 @@ public class CollectionController {
     public ModelAndView collectionOverviewPage(@PathVariable("collectionId") String collectionId,
                                                @RequestParam(value = "page", required = false) String pageNum,
                                                HttpServletRequest request) throws MalformedURLException, URISyntaxException {
+        log.debug("collectionOverviewPage");
         boolean userIpFromBl = waybackIpResolver.isUserIpFromBl(request);
         int totalSearchResultsSize = 0;
         int targetPageNumber = isNumeric(pageNum) ? Integer.valueOf(pageNum) : 1;
@@ -138,6 +155,7 @@ public class CollectionController {
                 .fetchChildCollections(singletonList(collectionId), TYPE_COLLECTION, 1000, 0)
                 .getResponseBody().getDocuments()
                 .stream()
+                .filter(x -> (searchService.fetchChildCollections(singletonList(x.getId()), TYPE_TARGET, ROWS_PER_PAGE_DEFAULT, 1).getResponseBody().getNumFound() > 0))
                 .map(d -> toCollectionDTO(d, true, locale))
                 .collect(Collectors.toList());
     }
@@ -219,7 +237,7 @@ public class CollectionController {
             //Need to replace "jsp", "JSP" to avoid treating .jsp file in wayback url as its own url by Spring
             String urlWithUppercaseJsp = websiteInfo.getUrl().replace(".jsp", ".JSP");
             //If site available for Open Access, we should set accessFlag to 'OA' to use default off-site wayback url in ArchiveController
-            wayBackUrl = rootPathWithLang + "wayback/" + accessFlag + "/" + waybackFutureSnapshot +"/" + urlWithUppercaseJsp;
+            wayBackUrl = rootPathWithLang + "wayback/" + accessFlag + "/" + waybackClosestCrawledCaptureDatetime +"/" + urlWithUppercaseJsp;
         }
 
         TargetWebsiteDTO targetWebsite = new TargetWebsiteDTO();

@@ -16,7 +16,7 @@ ${pageContext.response.locale}
   <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
 </c:if>
 <spring:eval expression="@environment.getProperty('application.version')" var="applicationVersion" />
-<html>
+<html lang="${locale}">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title>UKWA Nominate</title>
