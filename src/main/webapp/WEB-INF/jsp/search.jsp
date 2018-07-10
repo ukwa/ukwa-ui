@@ -192,7 +192,7 @@ ${pageContext.response.locale}
               <c:if test="${domains.size() > 1}">
                 <c:forEach begin="0" end="${domains.size() - 1}" step="2" var="i">
 
-                    <c:if test="${domains.get(i + 1) != 0 && (i < 6)}">
+                    <c:if test="${(domains.get(i + 1) != 0 && (i < 5)) || (originalDomains.contains(domains.get(i))?true:false)}">
                             <div class="sidebar-filter-checkbox col-md-12 col-sm-12 " >
                                 <div class="form-check-cont padding-0" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
                                     <input type="checkbox" class="blue" name="domain_filter" id="domain_filter_<c:out value="${i}"/>"
@@ -212,11 +212,11 @@ ${pageContext.response.locale}
             </div>
 
                 <div id="domains_filter_div" class="sidebar-filter expanded no-collapse" style="display:none;" role="tabpanel" aria-hidden="true" aria-labelledby="t_domain">
-                    <c:if test="${domains.size() > 1}">
-                        <c:forEach begin="0" end="${domains.size() - 1}" step="2" var="i">
+                    <c:if test="${domains.size() > 3}">
+                        <c:forEach begin="4" end="${domains.size() - 1}" step="2" var="i">
 
 
-                            <c:if test="${domains.get(i + 1) != 0 && (i > 6)}">
+                            <c:if test="${(domains.get(i + 1) != 0 && (i > 4)) && (originalDomains.contains(domains.get(i))?false:true)}">
                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12 padding-bottom-20" >
                                     <div class="form-check-cont padding-0" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
                                         <input type="checkbox" class="blue" name="domain_filter" id="domain_filter_<c:out value="${i}"/>"
@@ -269,7 +269,7 @@ ${pageContext.response.locale}
               <c:if test="${publicSuffixes.size() > 1}">
 
                 <c:forEach begin="0" end="${publicSuffixes.size() - 1}" step="2" var="i">
-                  <c:if test="${publicSuffixes.get(i + 1) != 0 && (i < 6)}">
+                  <c:if test="${(publicSuffixes.get(i + 1) != 0 && (i < 5)) || (originalPublicSuffixes.contains(publicSuffixes.get(i))?true:false)}">
                     <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                       <div class="form-check-cont padding-0" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
                         <input type="checkbox" class="blue" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
@@ -288,11 +288,11 @@ ${pageContext.response.locale}
             </div>
 
                 <div id="suffix_filter_div" class="sidebar-filter expanded no-collapse" style="display:none;" role="tabpanel" aria-hidden="true" aria-labelledby="t_suffix">
-                    <c:if test="${publicSuffixes.size() > 1}">
-                        <c:forEach begin="0" end="${publicSuffixes.size() - 1}" step="2" var="i">
+                    <c:if test="${publicSuffixes.size() > 3}">
+                        <c:forEach begin="4" end="${publicSuffixes.size() - 1}" step="2" var="i">
 
 
-                            <c:if test="${publicSuffixes.get(i + 1) != 0 && (i > 6)}">
+                            <c:if test="${(publicSuffixes.get(i + 1) != 0 && (i > 4)) && (originalPublicSuffixes.contains(publicSuffixes.get(i))?false:true)}">
                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12 padding-bottom-20" >
                                     <div class="form-check-cont padding-0" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
                                         <input type="checkbox" class="blue" name="public_suffix" id="collection_filter_<c:out value="${i}"/>"
@@ -352,7 +352,7 @@ ${pageContext.response.locale}
               <c:if test="${collections.size() > 1}">
 
                 <c:forEach begin="0" end="${collections.size() - 1}" step="2" var="i">
-                  <c:if test="${collections.get(i + 1) != 0 && (i < 6)}">
+                  <c:if test="${(collections.get(i + 1) != 0 && (i < 5)) || (originalCollections.contains(collections.get(i))?true:false)}">
                     <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                       <div class="form-check-cont padding-0" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
                         <input type="checkbox" class="blue" name="collection" id="collection_<c:out value="${i}"/>"
@@ -372,10 +372,10 @@ ${pageContext.response.locale}
 
             </div>
                 <div id="collections_filter_div" class="sidebar-filter expanded no-collapse" style="display:none;" role="tabpanel" aria-hidden="true" aria-labelledby="t_coll">
-                    <c:if test="${collections.size() > 1}">
-                        <c:forEach begin="0" end="${collections.size() - 1}" step="2" var="i">
+                    <c:if test="${collections.size() > 3}">
+                        <c:forEach begin="4" end="${collections.size() - 1}" step="2" var="i">
 
-                            <c:if test="${collections.get(i + 1) != 0 && (i > 6)}">
+                            <c:if test="${(collections.get(i + 1) != 0 && (i > 4)) && (originalCollections.contains(collections.get(i))?false:true)}">
                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12 padding-bottom-20" >
                                     <div class="form-check-cont padding-0" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
                                         <input type="checkbox" class="blue" name="collection_" id="collection_filter_<c:out value="${i}"/>"
