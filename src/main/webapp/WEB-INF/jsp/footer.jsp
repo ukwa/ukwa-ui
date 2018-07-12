@@ -100,7 +100,7 @@
             }
             else{
                 $("#domains_filter_div").show(300);
-                $('#showMoreDomainLink').html('Show less');
+                $('#showMoreDomainLink').html('Hide');
             }
         });
         $("#showMoreCollectionLink").click(function() {
@@ -110,7 +110,7 @@
             }
             else{
                 $("#collections_filter_div").show(300);
-                $('#showMoreCollectionLink').html('Show less');
+                $('#showMoreCollectionLink').html('Hide');
             }
         });
         $("#showMoreSuffixLink").click(function() {
@@ -120,7 +120,7 @@
             }
             else{
                 $("#suffix_filter_div").show(300);
-                $('#showMoreSuffixLink').html('Show less');
+                $('#showMoreSuffixLink').html('Hide');
             }
         });
         $("#showMoreDocumentTypeLink").click(function() {
@@ -130,7 +130,7 @@
             }
             else{
                 $("#content_type_filter_div").show(300);
-                $('#showMoreDocumentTypeLink').html('Show less');
+                $('#showMoreDocumentTypeLink').html('Hide');
             }
         });
     });

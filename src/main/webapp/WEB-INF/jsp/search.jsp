@@ -208,13 +208,11 @@ ${pageContext.response.locale}
                 </c:forEach>
                   <div class="padding-left-20"><a href="javascript:void(0);" id="showMoreDomainLink" title="Show More Domains">Show more</a></div>
               </c:if>
-
             </div>
 
                 <div id="domains_filter_div" class="sidebar-filter expanded no-collapse" style="display:none;" role="tabpanel" aria-hidden="true" aria-labelledby="t_domain">
                     <c:if test="${domains.size() > 3}">
                         <c:forEach begin="4" end="${domains.size() - 1}" step="2" var="i">
-
 
                             <c:if test="${(domains.get(i + 1) != 0 && (i > 4)) && (originalDomains.contains(domains.get(i))?false:true)}">
                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12 padding-bottom-20" >
@@ -232,7 +230,6 @@ ${pageContext.response.locale}
                         </c:forEach>
                     </c:if>
                 </div>
-
 
 
                 <hr class="search-sidebar-hr"/>
@@ -316,10 +313,10 @@ ${pageContext.response.locale}
                             <c:if test="${(publicSuffixes.get(i + 1) != 0 && (i > 4)) && (originalPublicSuffixes.contains(publicSuffixes.get(i))?false:true)}">
                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12 padding-bottom-20" >
                                     <div class="form-check-cont padding-0" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
-                                        <input type="checkbox" class="blue" name="public_suffix" id="collection_filter_<c:out value="${i}"/>"
+                                        <input type="checkbox" class="blue" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
                                                value="${publicSuffixes.get(i)}"
                                             ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
-                                        <label class="main-search-check-label blue" for="public_suffix_<c:out value="${i}"/>" title="<c:out value="${publicSuffixes.get(i)}"/> (<c:out value="${publicSuffixes.get(i + 1)}"/>)">
+                                        <label class="main-search-check-label blue" for="public_suffix_<c:out value="${i}"/>">
                                             <c:out value="${publicSuffixes.get(i)}"/>
                                             <span class="label-counts">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
                                     </div>
@@ -399,10 +396,11 @@ ${pageContext.response.locale}
                             <c:if test="${(collections.get(i + 1) != 0 && (i > 4)) && (originalCollections.contains(collections.get(i))?false:true)}">
                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12 padding-bottom-20" >
                                     <div class="form-check-cont padding-0" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
-                                        <input type="checkbox" class="blue" name="collection_" id="collection_filter_<c:out value="${i}"/>"
+                                        <input type="checkbox" class="blue" name="collection" id="collection_<c:out value="${i}"/>"
                                                value="${collections.get(i)}"
                                             ${originalCollections.contains(collections.get(i) )? 'checked' : ''}/>
-                                        <label class="main-search-check-label blue" for="collection_<c:out value="${i}"/>" title="<c:out value="${collections.get(i)}"/> (<c:out value="${collections.get(i + 1)}"/>)">
+                                        <label class="main-search-check-label blue" for="collection_<c:out value="${i}"/>"
+                                               title="<c:out value="${collections.get(i)}"/> (<c:out value="${collections.get(i + 1)}"/>)">
                                             <c:out value="${collections.get(i)}"/>
                                             <span class="label-counts">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
                                     </div>
