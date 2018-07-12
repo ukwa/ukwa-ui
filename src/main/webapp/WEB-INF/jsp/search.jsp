@@ -244,7 +244,8 @@ ${pageContext.response.locale}
             <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_doctype">
               <c:if test="${contentTypes.size() > 1}">
                 <c:forEach begin="0" end="${contentTypes.size() - 1}" step="2" var="i">
-                  <c:if test="${contentTypes.get(i + 1) != 0}">
+
+                  <c:if test="${(contentTypes.get(i + 1) != 0 && (i < 5)) || (originalContentTypes.contains(contentTypes.get(i))?true:false)}">
                     <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                       <div class="form-check-cont padding-0" title="<c:out value="${contentTypes.get(i)}"/>" tabindex="0">
                         <input type="checkbox" class="blue" name="content_type" id="content_type_<c:out value="${i}"/>"
@@ -256,9 +257,29 @@ ${pageContext.response.locale}
                       </div>
                     </div>
                   </c:if>
+
                 </c:forEach>
+                  <div class="padding-left-20"><a href="javascript:void(0);" id="showMoreDocumentTypeLink" title="Show More Document Types">Show more</a></div>
               </c:if>
             </div>
+                <div id="content_type_filter_div" class="sidebar-filter expanded no-collapse" style="display:none;" role="tabpanel" aria-hidden="true" aria-labelledby="t_doctype">
+                    <c:if test="${contentTypes.size() > 1}">
+                        <c:forEach begin="4" end="${contentTypes.size() - 1}" step="2" var="i">
+                            <c:if test="${(contentTypes.get(i + 1) != 0 && (i > 4)) && (originalContentTypes.contains(contentTypes.get(i))?false:true)}">
+                                <div class="sidebar-filter-checkbox col-md-12 col-sm-12 padding-bottom-20">
+                                    <div class="form-check-cont padding-0" title="<c:out value="${contentTypes.get(i)}"/>" tabindex="0">
+                                        <input type="checkbox" class="blue" name="content_type" id="content_type_<c:out value="${i}"/>"
+                                               value="${contentTypes.get(i)}"
+                                            ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
+                                        <label class="main-search-check-label blue" for="content_type_<c:out value="${i}"/>">
+                                            <c:out value="${contentTypes.get(i)}"/>
+                                            <span class="label-counts">(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
+                                    </div>
+                                </div>
+                            </c:if>
+                        </c:forEach>
+                    </c:if>
+                </div>
                 <hr class="search-sidebar-hr"/>
             <%--   Public suffix collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.suffix.title" />" tabindex="0" role="tab">

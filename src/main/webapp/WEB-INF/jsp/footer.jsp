@@ -123,7 +123,16 @@
                 $('#showMoreSuffixLink').html('Show less');
             }
         });
-
+        $("#showMoreDocumentTypeLink").click(function() {
+            if($("#content_type_filter_div").is(":visible")){ //hide then
+                $("#content_type_filter_div").hide(300);
+                $('#showMoreDocumentTypeLink').html('Show more');
+            }
+            else{
+                $("#content_type_filter_div").show(300);
+                $('#showMoreDocumentTypeLink').html('Show less');
+            }
+        });
     });
 
     //progress bar
