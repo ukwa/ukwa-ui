@@ -55,8 +55,10 @@ ${pageContext.response.locale}
                 <a href="about" title="<spring:message code="home.header.text.link" />"><spring:message code="home.header.text.link" /></a>
             </p>
             </div>
-            <div class="col-md-4">
-                    <a href="index" ><figure><img class="img-responsive" src="img/about2.png" alt="About UKWA"/> </figure></a>
+            <div class="col-md-4 embed-responsive">
+                <video controls class="embed-responsive-item video-fluid z-depth-1">
+                    <source src="img/WhatUKWAcollect.mp4" type="video/mp4">
+                </video>
             </div>
         </div>
 
