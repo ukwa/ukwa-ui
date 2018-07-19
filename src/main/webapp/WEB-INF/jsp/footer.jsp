@@ -92,6 +92,9 @@
 
 <!--[if (gt IE 9)|!(IE)]><!-->
 <script>
+    if(jQuery){
+        console.log('yes');
+    }
     $(document).ready(function(e) {
         $("#showMoreDomainLink").click(function() {
             if($("#domains_filter_div").is(":visible")){ //hide then
