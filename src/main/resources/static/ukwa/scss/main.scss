@@ -689,13 +689,18 @@ input[type=radio]:checked + label {
 	background-image:url(../img/icons/down-arrow.png);	
 }
 
-
 .form-button-right-arrow {
 	padding-right:80px;
 	background-position: center right 15px;
 	background-repeat:no-repeat;
 	background-image:url(../img/icons/right-arrow-blue.png);	
 }
+
+.large.tooltip-inner {
+  max-width: 650px;
+  width: 650px;
+}
+
 
 /* HEADINGS */
 
@@ -908,6 +913,9 @@ h3 {
   text-decoration:none !important;
   text-transform:none;
   color:black;
+}
+.main-subheading-2-redesign blueColor{
+  color: #0c49b0;
 }
 .main-subheading-bold-2-redesign {
   font-family: Helvetica,Arial,sans-serif;

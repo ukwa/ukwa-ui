@@ -96,6 +96,9 @@
         console.log('yes');
     }
     $(document).ready(function(e) {
+        $('.tt_large').tooltip({
+            template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner large"></div></div>'
+        });
         $("#showMoreDomainLink").click(function() {
             if($("#domains_filter_div").is(":visible")){ //hide then
                 $("#domains_filter_div").hide(300);
