@@ -36,6 +36,36 @@ ${pageContext.response.locale}
     <div class="padding-top-80 padding-bottom-10 padding-side-70">
   <section id="home-pre-header">
 
+      <!-- Modal -->
+      <div class="modal fade" id="searchingUKWAModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title main-heading-2-redesign" id="exampleModalLongTitle">Get the most from searching the UKWA</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <p>
+                          If you are looking for a single website that you believe may be in the UK Web Archive, you can search for it via the Search tab. Use a phrase or name that you think is most likely to be in the website and in that website alone. This will search across all the archived websites.<br/>
+                      </p>
+                      <p>
+                          <br/>There are several options for narrowing your search. For example, a phrase search uses more than one term (i.e. more than a single word). If two (or more) terms are submitted without the use of quotes, only one of those terms need appear in the documents to produce a result. If the terms are quoted, then only that precise string will be returned. See the Query Syntax section below for full details.<br/>
+                      </p>
+                      <p>
+                          <br/>Having submitted your query you can further refine your search using the facets on the left-hand side of the full text search results page. This allows the matching results to be filtered by various properties, such as content type, collection and crawl year. For example, you can use the Refine by domain suffix facet to limit the results set to those resources hosted on domains with names that share the same common suffix, such as co.uk, ac.uk or com.<br/>
+                      </p>
+                      <p>
+                          <br/>Note that all queries are case-insensitive.
+                      </p>
+                  </div>
+                  <div class="modal-footer center">
+                      <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+          </div>
+      </div>
 
       <div>
           <p class="main-heading-2-redesign">
@@ -53,7 +83,7 @@ ${pageContext.response.locale}
             </p><br/><br/>
                 <p>
                     <span class="right light-blue collection-heading">
-                        <a href="#" rel="tooltip" data-html="true" title="If you are looking for a single website that you believe may be in the UK Web Archive, you can search for it via the Search tab. Use a phrase or name that you think is most likely to be in the website and in that website alone. This will search across all the archived websites.<br/><br/>There are several options for narrowing your search. For example, a phrase search uses more than one term (i.e. more than a single word). If two (or more) terms are submitted without the use of quotes, only one of those terms need appear in the documents to produce a result. If the terms are quoted, then only that precise string will be returned. See the Query Syntax section below for full details.<br/><br/>Having submitted your query you can further refine your search using the facets on the left-hand side of the full text search results page. This allows the matching results to be filtered by various properties, such as content type, collection and crawl year. For example, you can use the Refine by domain suffix facet to limit the results set to those resources hosted on domains with names that share the same common suffix, such as co.uk, ac.uk or com.<br/><br/>Note that all queries are case-insensitive." class="tt_large">Get the most from searching the UKWA</a>
+                        <a href="#" data-toggle="modal" data-target="#searchingUKWAModalCenter" rel="tooltip" data-html="true" title="Get the most from searching the UKWA" class="tt_large">Get the most from searching the UKWA</a>
                     </span>
                 </p>
             </div>
