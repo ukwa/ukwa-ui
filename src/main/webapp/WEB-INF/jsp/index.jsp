@@ -123,6 +123,9 @@ ${pageContext.response.locale}
         <div class="col-md-8">
             <p class="main-subheading-2-redesign">
                 <spring:message code="home.page.collections.subtitle"/>
+
+                        <a href="collection" title="Get the most from searching the UKWA">Find out more</a>
+
             </p>
         </div>
         <div class="col-md-4">
