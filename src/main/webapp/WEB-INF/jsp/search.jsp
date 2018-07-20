@@ -37,10 +37,11 @@ ${pageContext.response.locale}
 <%@include file="nav.jsp" %>
 <div class="container-fluid">
   <header>
-  <%@include file="header.jsp" %>
-</header>
+      <%@include file="header.jsp" %>
+  </header>
 
-    <div><hr class="search-header-hr" /></div>
+
+    <div class="side-bar-bottom padding-bottom-40"></div>
 
 <section id="content">
 
@@ -48,7 +49,7 @@ ${pageContext.response.locale}
 
   <div class="row margin-0 padding-0">
 
-    <div class="col-lg-3 col-md-4 col-sm-12 sidebar-white-blue padding-0">
+    <div class="col-lg-3 col-md-4 col-sm-12 sidebar-white-blue padding-0 side-bar-right">
     <aside id="sidebar">
         <div class="row padding-top-10 dark-gray">
             <div class="col-md-12 col-sm-12">
@@ -427,7 +428,7 @@ ${pageContext.response.locale}
       </aside>
     </div>
 
-    <div class="col-lg-9 col-md-8 col-sm-12 padding-0 border-sidebar">
+    <div class="col-lg-9 col-md-8 col-sm-12 padding-0 padding-left-20">
       <div class="results-header border-bottom-gray">
           <div class="row margin-0 padding-0">
               <%@include file="searchpage_searchForm.jsp" %>

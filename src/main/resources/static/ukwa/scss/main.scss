@@ -536,6 +536,8 @@ footer {
   color: $white;
 }
 
+dt, dd { display: block; float: left; margin-top: 20px; }
+dt { clear: both; }
 
 input[type=checkbox],
 input[type=radio]{
