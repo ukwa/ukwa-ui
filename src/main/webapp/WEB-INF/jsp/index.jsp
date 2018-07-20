@@ -98,8 +98,8 @@ ${pageContext.response.locale}
                     </span>
                 </p>
             </div>
-            <div class="col-md-4 embed-responsive">
-                <video controls class="embed-responsive-item video-fluid z-depth-1">
+            <div class="col-md-4 embed-responsive embed-responsive-16by9">
+                <video controls class="embed-responsive-item">
                     <source src="img/WhatUKWAcollect.mp4" type="video/mp4">
                 </video>
             </div>
