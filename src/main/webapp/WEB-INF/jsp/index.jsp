@@ -58,19 +58,16 @@ ${pageContext.response.locale}
                                   <li>
                                       There are several options for narrowing your search. For example, a phrase search uses more than one term (i.e. more than a single word). If two (or more) terms are submitted without the use of quotes, only one of those terms need appear in the documents to produce a result. If the terms are quoted, then only that precise string will be returned. See the Query Syntax section below for full details.
                                   </li></ul>
-
                           </dd>
                           <dd>
                               <ul><li>
                                   Having submitted your query you can further refine your search using the facets on the left-hand side of the full text search results page. This allows the matching results to be filtered by various properties, such as content type, collection and crawl year. For example, you can use the Refine by domain suffix facet to limit the results set to those resources hosted on domains with names that share the same common suffix, such as co.uk, ac.uk or com.
                               </li></ul>
-
                           </dd>
                           <dd>
                               <ul><li>
                                   Note that all queries are case-insensitive.
                               </li></ul>
-
                           </dd>
                       </dl>
                   </div>
@@ -117,15 +114,11 @@ ${pageContext.response.locale}
             <spring:message code="home.page.collections.title"/>
         </p>
     </div>
-
-
     <div class="row padding-top-20">
         <div class="col-md-8">
             <p class="main-subheading-2-redesign">
                 <spring:message code="home.page.collections.subtitle"/>
-
-                        <a href="collection" title="Get the most from searching the UKWA">Find out more</a>
-
+                        <a href="collection" title="Find out more about Topics and Themes">Find out more</a>
             </p>
         </div>
         <div class="col-md-4">
