@@ -364,7 +364,33 @@ li {
 
 
 /*OTHER GENERAL STYLES */
-
+.infolink:before
+{
+	content: '?';
+	display: inline-block;
+	font-family: "Open Sans";
+	text-align: center;
+	width: 1.8ex;
+	height: 1.8ex;
+	line-height: 1.8ex;
+	border-radius: 1.2ex;
+	margin-right: 4px;
+	padding: 1px;
+	color: lightblue;
+	background: white;
+	border: 1px solid lightblue;
+    vertical-align: super;
+	text-decoration: none;
+    top: -0.5em;
+    font-size: 80%;
+}
+.infolink:hover:before
+{
+	color: white;
+	background: blue;
+	border-color: white;
+	text-decoration: none;
+}
 .img-responsive {
   display:block;
   position:relative;
