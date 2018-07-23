@@ -53,10 +53,9 @@ ${pageContext.response.locale}
           <a href="collection/<c:out value="${collection.id}"/>" class="collection-link">
               <figure><img class="img-responsive border-gray coll-img" alt="<c:out value="${collection.imageAltMessage}"/>"
                            src="img/collections/collection_<c:out value="${collection.id}"/>.png"/>
-                  <figcaption class="img-square-caption shadow">FEATURED</figcaption>
               </figure>
-              <div class="center light-blue padding-bottom-10 collection-heading"><c:out value="${collection.name}"/></div>
-              <div class="center black padding-bottom-10 collection-heading thumbnail"><c:out value="${collection.description}"/></div>
+              <div class="left light-blue padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold"><c:out value="${collection.name}"/></div>
+              <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail"><c:out value="${collection.description}"/></div>
           </a>
         </div>
     </c:forEach>
