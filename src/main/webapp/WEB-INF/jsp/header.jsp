@@ -23,7 +23,7 @@
 
 <!-- Language menu -->
 <div class="row  navbar-collapse justify-content-end">
-<div class="col-lg-3 col-md-12 padding-0 right">
+<div class="col-lg-3 col-md-12 padding-right-20 right">
         <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
         <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy' || textUri == '/gd'
                                         ? '/'
