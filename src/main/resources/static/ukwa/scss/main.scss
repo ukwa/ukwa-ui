@@ -4,10 +4,13 @@
     font-family: 'Open Sans';
     src: url('../fonts/OpenSans-Semibold.ttf');
 }
-
 @font-face {
     font-family: 'Open Sans Bold';
-    src: url('../fonts/OpenSans-ExtraBold.ttf');
+    src: url('../fonts/OpenSans-Bold.ttf');
+}
+@font-face {
+  font-family: 'Open Sans Extra Bold';
+  src: url('../fonts/OpenSans-ExtraBold.ttf');
 }
 
 
@@ -892,25 +895,29 @@ h3 {
 .main-header-heading > a:link, .main-heading > a:visited, .main-heading > a:active .main-heading > a:hover {
   text-decoration:none !important;
 }
-
-.main-heading-2-redesign {
-  font-family: Helvetica,Arial,sans-serif;
+.main-heading-2-bold-redesign {
+  font-family: "Open Sans Bold",Arial;
   font-size:32px;
-  font-weight: 900;
-
   margin-bottom:0;
   text-decoration:none !important;
   text-transform:none;
   color:#0c49b0;
 }
-
+.main-heading-2-redesign {
+  font-family: "Open Sans",Arial;
+  font-size:32px;
+  margin-bottom:0;
+  text-decoration:none !important;
+  text-transform:none;
+  color:#0c49b0;
+}
 .main-heading-2-redesign > a:link, .main-heading > a:visited, .main-heading > a:active .main-heading > a:hover {
   text-decoration:none !important;
 }
 .main-subheading-2-redesign {
-  font-family: Helvetica,Arial,sans-serif;
+  font-family: "Open Sans",Arial;
   font-size:18px;
-  line-height:1.2em;
+  line-height:1.5em;
   margin-bottom:0;
   text-decoration:none !important;
   text-transform:none;
@@ -920,14 +927,13 @@ h3 {
   color: #0c49b0;
 }
 .main-subheading-bold-2-redesign {
-  font-family: Helvetica,Arial,sans-serif;
+  font-family: "Open Sans Bold",Arial;
   font-size:18px;
-
+  line-height:1.5em;
   margin-bottom:0;
   text-decoration:none !important;
   text-transform:none;
   color:black;
-  font-weight: 900;
 }
 .main-subheading {
 	font-size:0.9em;
@@ -1588,9 +1594,7 @@ footer {
 		background-image:url(../img/icons/left-arrow-blue.png);
 	}
 }
-
 /*HOME*/
-
 .home-title-cont {
 	background-position:center;
 	background-size:cover;
@@ -1812,12 +1816,23 @@ footer {
 /*SPECIAL COLLECTIONS*/
 
 .collection-heading {
+    font-family:"Open Sans",Arial;
+    font-size:18px;
+    line-height:1.5em;
+    margin-bottom:0;
 	display:block;
 	position:relative;
 }
-
+.collection-heading-bold {
+    font-family:"Open Sans Bold",Arial;
+    font-size:18px;
+    line-height:1.5em;
+    margin-bottom:0;
+    display:block;
+    position:relative;
+}
 .collection-link {
-	text-decoration:none !important;	
+	text-decoration:none !important;
 	display:block;
 	height:auto;
 	width:auto;
