@@ -435,7 +435,7 @@ ${pageContext.response.locale}
           </div>
       <div class="row">
         <div class="col-sm-12" style="padding-left:30px;">
-            <span class="search-results-main-heading bold">Search results: </span><span class="search-results-main-heading"><c:out value="${totalSearchResultsSize}"/></span>
+            <span class="search-results-main-heading bold">Search results: </span><span class="search-results-main-heading"><c:out value="${totalSearchResultsSizeFormated}"/></span>
             <span class="search-results-main-heading ">&nbsp;<spring:message code="search.results.num"/>&nbsp;</span><span class="search-results-main-heading">&quot;<c:out value="${originalSearchRequest}" escapeXml="false"/>&quot;</span></div>
       </div>
       
