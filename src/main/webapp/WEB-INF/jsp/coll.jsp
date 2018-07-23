@@ -79,10 +79,8 @@ ${pageContext.response.locale}
                   <input type="hidden" name="collection" value="<c:out value="${currentCollection.name}"/>"/>
                   <button type="submit" class="coll-search-button" title="<spring:message code="coll.search.button" />"></button>
                   </div>
-
                 </div>
               </div>
-
         </form>
     </div>
     </div>
