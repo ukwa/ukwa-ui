@@ -136,7 +136,7 @@ ${pageContext.response.locale}
 
                 <c:if test="${hasFilters == 'true'}">
                     <p class="margin-0 padding-left-20 padding-bottom-20">
-                        <button type="button" id="btn_reset_filters" title="<spring:message code="search.filters.reset" />" class="button-radius-5 button-blue margin-top-10 text-small"><spring:message code="search.filters.reset" /></button>
+                        <button type="button" id="btn_reset_filters" title="<spring:message code="search.filters.reset" />" class="button-radius-5 searchResetRedesigned margin-top-10 text-small"><spring:message code="search.filters.reset" /></button>
                     </p>
                 </c:if>
 
@@ -435,7 +435,7 @@ ${pageContext.response.locale}
           </div>
       <div class="row">
         <div class="col-sm-12" style="padding-left:30px;">
-            <span class="search-results-main-heading bold">Search results: </span><span class="search-results-main-heading"><c:out value="${totalSearchResultsSizeFormated}"/></span>
+            <span class="search-results-main-heading bold">Search results: </span><span class="search-results-main-heading"><c:out value="${totalSearchResultsSizeFormatted}"/></span>
             <span class="search-results-main-heading ">&nbsp;<spring:message code="search.results.num"/>&nbsp;</span><span class="search-results-main-heading">&quot;<c:out value="${originalSearchRequest}" escapeXml="false"/>&quot;</span></div>
       </div>
       

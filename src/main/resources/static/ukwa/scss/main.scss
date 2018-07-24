@@ -478,11 +478,25 @@ footer {
 	cursor:pointer;
 	position:relative;
 }
-
 .button-radius-5 {
   height:auto;
   text-align:center;
   border-radius:5px;
+  font-size:1.2em;
+  border:none;
+  padding: 7px 30px 7px 30px;
+  cursor:pointer;
+  position:relative;
+  &.searchResetRedesigned{
+    background: white;
+    color: #0c49b0;
+    border:solid 1px #0c49b0 !important;
+  }
+}
+.button-radius-30 {
+  height:auto;
+  text-align:center;
+  border-radius:30px;
   font-size:1.2em;
   border:none;
   padding: 7px 30px 7px 30px;
