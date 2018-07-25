@@ -56,7 +56,7 @@ ${pageContext.response.locale}
 
                 <c:set var = "hasFilters" value = "false"/>
                 <c:if test="${searchPage == 'true'}">
-                    <p class="margin-0 padding-left-60 searchFilter" ><spring:message code="search.filters.access" />&nbsp;
+                    <p class="searchFilter" ><spring:message code="search.filters.access" />&nbsp;
 
                         <c:if test="${originalAccessView.contains('va') || empty originalAccessView}">
                             <spring:message code="search.filters.access.open" />
@@ -71,7 +71,7 @@ ${pageContext.response.locale}
                 </c:if>
 
                 <c:if test="${fn:length(originalDomains) > 0}">
-                    <p class="margin-0 padding-left-20 searchFilter"><spring:message code="search.filters.domain" />&nbsp;
+                    <p class="searchFilter"><spring:message code="search.filters.domain" />&nbsp;
                         <c:forEach items="${originalDomains}" var="domain">
                             &quot;<c:out value="${domain}"/>&quot;&nbsp;
                         </c:forEach>
@@ -80,7 +80,7 @@ ${pageContext.response.locale}
                 </c:if>
 
                 <c:if test="${fn:length(originalContentTypes) > 0}">
-                    <p class="margin-0 padding-left-20 searchFilter"><spring:message code="search.filters.doctype" />&nbsp;
+                    <p class="searchFilter"><spring:message code="search.filters.doctype" />&nbsp;
                         <c:forEach items="${originalContentTypes}" var="doctype">
                             &quot;<c:out value="${doctype}"/>&quot;&nbsp;
                         </c:forEach>
@@ -89,7 +89,7 @@ ${pageContext.response.locale}
                 </c:if>
 
                 <c:if test="${fn:length(originalPublicSuffixes) > 0}">
-                    <p class="margin-0 padding-left-20 searchFilter"><spring:message code="search.filters.suffix" />&nbsp;
+                    <p class="searchFilter"><spring:message code="search.filters.suffix" />&nbsp;
                         <c:forEach items="${originalPublicSuffixes}" var="suffix">
                             &quot;<c:out value="${suffix}"/>&quot;&nbsp;
                         </c:forEach>
@@ -99,7 +99,7 @@ ${pageContext.response.locale}
 
 
                 <c:if test="${fn:length(originalFromDateText) > 0 || fn:length(originalToDateText) > 0}">
-                    <p class="margin-0 padding-left-20 searchFilter"><spring:message code="search.filters.date" />&nbsp;
+                    <p class="searchFilter"><spring:message code="search.filters.date" />&nbsp;
 
                         <c:choose>
                             <c:when test="${fn:length(originalFromDateText) > 0}">
@@ -126,7 +126,7 @@ ${pageContext.response.locale}
                 </c:if>
 
                 <c:if test="${fn:length(originalCollections) > 0}">
-                    <p class="margin-0 padding-left-20 searchFilter"><spring:message code="search.filters.collection" />&nbsp;
+                    <p class="searchFilter"><spring:message code="search.filters.collection" />&nbsp;
                         <c:forEach items="${originalCollections}" var="collection">
                             &quot;<c:out value="${collection}"/>&quot;&nbsp;
                         </c:forEach>
@@ -138,6 +138,7 @@ ${pageContext.response.locale}
                     <p class="margin-0">
                         <button type="button" id="btn_reset_filters" title="<spring:message code="search.filters.reset" />" class="button-radius-5 searchResetRedesigned margin-top-10 padding-side-70"><spring:message code="search.filters.reset" /></button>
                     </p>
+                    <hr class="search-sidebar-hr-reset"/>
                 </c:if>
 
             </div>

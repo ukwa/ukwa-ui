@@ -65,7 +65,13 @@ img {
 
 /* GENERAL STYLES AND COLORS*/
 p.searchFilter{
-  border: 1px solid grey;
+  font-family: "Open Sans Regular",Arial;
+  border: 1px solid darkgray !important;
+  display: inline-block;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  padding: 5px;
+  color: darkgray;
 }
 
 .center {
@@ -492,6 +498,7 @@ footer {
   cursor:pointer;
   position:relative;
   &.searchResetRedesigned{
+    font-family: "Open Sans Regular",Arial;
     background: white;
     color: #0c49b0;
     border:solid 1px #0c49b0 !important;
@@ -1032,14 +1039,22 @@ h3 {
   margin: 1px auto 10px;
 }
 .search-sidebar-hr {
-	width:80%;
-	height:0px;
-	border-top: solid 1px $gray;
-	margin-left:10%;
-	margin-right:auto;
-	margin-bottom:20px;
-	text-align:center;
-	margin-top:20px;
+  width:80%;
+  height:0px;
+  border-top: solid 1px $gray;
+  margin-left:10%;
+  margin-right:auto;
+  margin-bottom:20px;
+  text-align:center;
+  margin-top:20px;
+}
+.search-sidebar-hr-reset {
+  width:90%;
+  height:0px;
+  border-top:solid 1px $gray;
+  margin-bottom:20px;
+  text-align:center;
+  margin-top:20px;
 }
 .topics-themes-hr {
   width:100%;
