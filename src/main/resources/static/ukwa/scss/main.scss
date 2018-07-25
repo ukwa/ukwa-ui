@@ -1861,12 +1861,17 @@ footer {
 }
 
 .search-results-top-filters {
-	float:right;
+	float:left;
 	display:block;
 	position:relative;
 	height:40px; 	
 }
-
+.search-results-top-filters-2 {
+  float:right;
+  display:block;
+  position:relative;
+  height:40px;
+}
 .results-highlight {
 	font-family: $font-bold;
 }

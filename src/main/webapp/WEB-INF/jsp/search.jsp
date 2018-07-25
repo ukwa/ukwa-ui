@@ -451,7 +451,6 @@ ${pageContext.response.locale}
       </c:choose>
 
       </div>
-
         <div class="row border-bottom-gray margin-0 left">
             <div class="col-md-12 padding-20 padding-mobile-side-0">
                 <div class="search-results-top-filters width-200 margin-top-10">
@@ -468,7 +467,7 @@ ${pageContext.response.locale}
                         <label class="main-search-check-label text-small" for="sort_2" title="<spring:message code="search.results.sort.oldest" />"><spring:message code="search.results.sort.oldest" /></label>
                     </div>
                 </div>
-                <div class="search-results-top-filters results-items-per-page">
+                <div class="search-results-top-filters-2 results-items-per-page">
                     <label for="count" title="<spring:message code="search.results.items" />" class="margin-top-10 text-small"><spring:message code="search.results.items" /></label>
                     <select class="form-control search-results-display-count" name="count" id="count" tabindex="0">
                         <option value="50" ${rowsPerPageLimit == 50 ? 'selected' : ''}>50</option>
