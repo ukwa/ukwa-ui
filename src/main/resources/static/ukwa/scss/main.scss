@@ -968,7 +968,7 @@ h3 {
   text-decoration:none !important;
 }
 .main-subheading-2-redesign {
-  font-family: "Open Sans",Arial;
+  font-family: "Open Sans";
   font-size:18px;
   line-height:1.5em;
   margin-bottom:0;
@@ -977,7 +977,14 @@ h3 {
   color:black;
 }
 .main-subheading-2-redesign blueColor{
+  text-decoration: underline;
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-color: #0c49b0;
   color: #0c49b0;
+  -webkit-text-underline-position: under;
+  -ms-text-underline-position: below;
+  text-underline-position: under;
 }
 .main-subheading-bold-2-redesign {
   font-family: "Open Sans Bold",Arial;
@@ -1723,6 +1730,18 @@ footer {
 	width:50%;
 	height:auto;
 	max-width:200px;
+}
+
+.tooltip.right {
+  margin-top:8px;
+}
+.tooltip.right .tooltip-arrow{
+  top: 7%;
+  margin-top:0;
+}
+.tooltip.top .tooltip-arrow{
+  left: 6%;
+  bottom:1px;
 }
 
 /*NO RESULTS*/
