@@ -1608,6 +1608,53 @@ footer {
 	text-align:center;
 	padding: 40px 20px 40px 20px;	
 }
+.pagination-number-redesign {
+  min-width:25px;
+  width:auto;
+  padding-left:5px;
+  padding-right:5px;
+  height:45px;
+  font-size: 16px;
+  color:$light-blue;
+  background-color:$white;
+  margin: 10px 10px 10px 10px;
+  display:inline-block;
+  padding-top:11px;
+  cursor:pointer;
+}
+.pagination-number-redesign {
+  &.active {
+    font-size: 18px;font-weight: 900;
+  }
+  &.dots {
+    cursor: default !important;
+    font-weight: 900;
+  }
+  &.dots:before {
+    content: "...";
+  }
+
+  &.arrow {
+    background-color:transparent;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size: 30px auto;
+    color:transparent;
+    border: none;
+  }
+
+  &.arrow:before {
+    content: ".";
+  }
+
+  &.right-arrow {
+    background-image:url(../img/icons/right-arrow-blue.png);
+  }
+
+  &.left-arrow {
+    background-image:url(../img/icons/left-arrow-blue.png);
+  }
+}
 
 .pagination-button {
 	min-width:45px;
@@ -1663,6 +1710,7 @@ footer {
 		background-image:url(../img/icons/left-arrow-blue.png);
 	}
 }
+
 /*HOME*/
 .home-title-cont {
 	background-position:center;
