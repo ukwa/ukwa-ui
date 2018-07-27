@@ -5,7 +5,7 @@
         <input type="hidden" name="search_location" id="search_location_full_text" value="full_text"/>
         <input type="hidden" name="reset_filters" id="reset_filters" value="false"/>
 
-        <button type="submit" title="<spring:message code="search.main.button.title" />" class="main-search-button-blue white" style="border-radius: 5px;">Search</button>
+        <button type="submit" title="<spring:message code="search.main.button.title" />" class="main-search-button-blue white">Search</button>
     </div>
     </form>
 </div>
