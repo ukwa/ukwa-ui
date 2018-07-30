@@ -154,7 +154,7 @@ public class SearchController {
 
         ModelAndView mav = new ModelAndView("search");
         mav.addObject("totalSearchResultsSize", totalSearchResultsSize);
-        mav.addObject("totalSearchResultsSizeFormated", NumberFormat.getInstance().format(totalSearchResultsSize));
+        mav.addObject("totalSearchResultsSizeFormatted", NumberFormat.getInstance().format(totalSearchResultsSize));
         mav.addObject("accessTerms", accessTermsPairs);
         mav.addObject("contentTypes", contentTypesPairs);
         mav.addObject("publicSuffixes", publicSuffixesPairs);
