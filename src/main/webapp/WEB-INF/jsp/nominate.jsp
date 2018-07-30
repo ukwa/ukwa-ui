@@ -106,6 +106,9 @@ ${req.requestURL}
 <script>
 
 $(document).ready(function(e) {
+    var $menuItems = $('.header-menu-item');
+    $menuItems.removeClass('active');
+    $("#headermenu_save").addClass('active');
    	
 	$("#nominate-form").submit(function(e) {
     	var response = grecaptcha.getResponse();

@@ -179,5 +179,12 @@ ${pageContext.response.locale}
 <footer>
     <%@include file="footer.jsp" %>
 </footer>
+<script>
+    $(document).ready(function(e) {
+        var $menuItems = $('.header-menu-item');
+        $menuItems.removeClass('active');
+        $("#headermenu_index").addClass('active');
+    });
+</script>
 </body>
 </html>

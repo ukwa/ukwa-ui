@@ -112,6 +112,9 @@ function toggleView(action, fcs) {
 }
 
 $(document).ready(function(e) {
+    var $menuItems = $('.header-menu-item');
+    $menuItems.removeClass('active');
+    $("#headermenu_collection").addClass('active');
 
 	if (typeof $.cookie('collections_display') === 'undefined' || $.cookie('collections_display')!=="list") {
 		toggleView("thumbs", false);

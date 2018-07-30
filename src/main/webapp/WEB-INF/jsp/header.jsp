@@ -18,7 +18,7 @@
 
 <!-- Top Line -->
 <div>
-    <hr style="width: 100%; color: darkblue; height: 2px; background-color:royalblue; margin-bottom:1px !important;margin-top:5px !important;" />
+    <hr style="width: 100%; color: darkblue; height: 2px; background-color:royalblue; margin-bottom:1px !important;margin-top:1px !important;" />
 </div>
 
 <!-- Language menu -->
@@ -63,7 +63,7 @@
   <div id="headermenu_collection" class="col-sm-auto header-menu-item padding-bottom-10"><a href="collection" title="<spring:message code="main.menu.collections.title" />">
     <spring:message code="main.menu.collections" />
     </a></div>
-  <div id="headermenu_info" class="col-sm-auto header-menu-item padding-bottom-10"><a href="info/nominate" title="<spring:message code="main.menu.nominate.title" />">
+  <div id="headermenu_save" class="col-sm-auto header-menu-item padding-bottom-10"><a href="info/nominate" title="<spring:message code="main.menu.nominate.title" />">
     <spring:message code="main.menu.nominate" />
     </a></div>
   <div id="headermenu_about" class="col-sm-auto header-menu-item padding-bottom-10"><a href="about" title="<spring:message code="main.menu.about.title" />">

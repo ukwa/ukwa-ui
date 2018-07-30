@@ -72,9 +72,17 @@
     </div>
   </div>
 </section>
+
 <footer>
   <%@include file="footer.jsp" %>
 </footer>
 </div>
+<script>
+    $(document).ready(function(e) {
+        var $menuItems = $('.header-menu-item');
+        $menuItems.removeClass('active');
+        $("#headermenu_about").addClass('active');
+    });
+</script>
 </body>
 </html>
