@@ -147,9 +147,11 @@ ${pageContext.response.locale}
       <form action="search" method="get" enctype="multipart/form-data" name="filter_form" id="filter_form">
         <div class="sidebar-item toggle open vl" id="toggle-sidebar"></div>
         <div class="sidebar-collapse" role="region">
-          <%--   View facet   --%>
-          <div class="sidebar-filter-header no-collapse" id="t_access" title="<spring:message code="search.side.view.title" />"><spring:message code="search.side.view.title" />
-            <div class="help-button small blue" title="<spring:message code="search.side.view.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.view.tip" />" tabindex="0"></div>
+          <%--   View facets   --%>
+          <%--   Accessing Content collapse filter   --%>
+          <div class="sidebar-filter-header no-collapse" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.view.title" />" tabindex="0" role="tab">
+              <div class="sidebar-filter-header-title" id="t_access"><spring:message code="search.side.view.title"/></div>
+            <div class="infotooltip" title="<spring:message code="search.side.view.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.view.tip" />" tabindex="0"></div>
           </div>
           <div class="sidebar-filter expanded no-collapse" aria-labelledby="t_access">
             <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
@@ -166,10 +168,13 @@ ${pageContext.response.locale}
                 </c:forEach>
               </c:if>
 
-              <div class="form-check-cont padding-0" title="<spring:message code="search.side.view.1" />" tabindex="0">
+                <div class="form-check-cont padding-0" title="<spring:message code="search.side.view.1" />" tabindex="0">
                 <input tabindex="-1" type="radio" class="blue access_filter" name="view_filter" id="view_filter_1" value="va"
                       ${originalAccessView.contains('va') || empty originalAccessView ? 'checked' : ''}/>
-                <label class="main-search-check-label blue" for="view_filter_1" title="<spring:message code="search.side.view.1" />"><spring:message code="search.side.view.1" /> <span class="label-counts">(<span class="results-count"><c:out value="${vaCount}"/></span>)</span></label>
+                <label class="main-search-check-label blue" for="view_filter_1" title="<spring:message code="search.side.view.1" />">
+                    <spring:message code="search.side.view.1" />
+                    <span class="label-counts">(<span class="results-count"><c:out value="${vaCount}"/></span>)</span>
+                </label>
               </div>
             </div>
 
@@ -188,7 +193,7 @@ ${pageContext.response.locale}
             <%--   Domains collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.domain.title" />" tabindex="0" role="tab">
               <div class="sidebar-filter-header-title" id="t_domain"><spring:message code="search.side.domain.title" /></div>
-              <div class="help-button small blue" title="<spring:message code="search.side.domain.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.domain.tip" />" tabindex="0"></div>
+              <div class="infotooltip" title="<spring:message code="search.side.domain.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.domain.tip" />" tabindex="0"></div>
             </div>
             <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_domain">
               <c:if test="${domains.size() > 1}">
@@ -238,7 +243,7 @@ ${pageContext.response.locale}
             <%--   Document type collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
               <div class="sidebar-filter-header-title" id="t_doctype"><spring:message code="search.side.doctype.title" /></div>
-              <div class="help-button small blue" title="<spring:message code="search.side.doctype.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
+              <div class="infotooltip" title="<spring:message code="search.side.doctype.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
             </div>
             <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_doctype">
               <c:if test="${contentTypes.size() > 1}">
@@ -283,7 +288,7 @@ ${pageContext.response.locale}
             <%--   Public suffix collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.suffix.title" />" tabindex="0" role="tab">
               <div class="sidebar-filter-header-title" id="t_suffix"><spring:message code="search.side.suffix.title" /></div>
-              <div class="help-button small blue" title="<spring:message code="search.side.suffix.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.suffix.tip" />" tabindex="0"></div>
+              <div class="infotooltip" title="<spring:message code="search.side.suffix.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.suffix.tip" />" tabindex="0"></div>
             </div>
             <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_suffix">
               <c:if test="${publicSuffixes.size() > 1}">
@@ -334,7 +339,7 @@ ${pageContext.response.locale}
             <%--   Archived year collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open archived-date" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.date.title" />" tabindex="0" id="dates_header" role="tab">
               <div class="sidebar-filter-header-title" id="t_date"><spring:message code="search.side.date.title" /></div>
-              <div class="help-button small blue" title="<spring:message code="search.side.date.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.date.tip" />" tabindex="0"></div>
+              <div class="infotooltip" title="<spring:message code="search.side.date.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.date.tip" />" tabindex="0"></div>
             </div>
             <div class="sidebar-filter expanded no-collapse" id="dates_container" role="tabpanel" aria-hidden="true" aria-labelledby="t_date">
               <div class="row padding-bottom-20 padding-top-20">
@@ -366,7 +371,7 @@ ${pageContext.response.locale}
             <%--   Collection collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.coll.title" />" tabindex="0" role="tab">
               <div class="sidebar-filter-header-title" id="t_coll"><spring:message code="search.side.coll.title" /></div>
-              <div class="help-button small blue" title="<spring:message code="search.side.coll.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.coll.tip" />" tabindex="0"></div>
+              <div class="infotooltip" title="<spring:message code="search.side.coll.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.coll.tip" />" tabindex="0"></div>
             </div>
             <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_coll">
               <c:if test="${collections.size() > 1}">
