@@ -395,10 +395,36 @@ li {
 }
 .infolink:hover:after
 {
-	color: white;
-	background: blue;
-	border-color: white;
-	text-decoration: none;
+  color: white;
+  background: blue;
+  border-color: white;
+  text-decoration: none;
+}
+.infotooltip:after{
+  content:'?';
+  display:inline-block;
+  font-family: "Open Sans";
+  text-align: center;
+  width: 1.8ex;
+  height: 1.8ex;
+  line-height: 1.3ex;
+  border-radius: 2ex;
+  margin-right: 4px;
+  padding: 1px;
+  color: white;
+  background: #0c49b0;
+  border: 1px solid white;
+  vertical-align: middle;
+  text-decoration: none;
+  top: 1.8em;
+  font-size: 100%
+}
+.infotooltip:hover:after
+{
+  color: blue;
+  background: white;
+  border-color: blue;
+  text-decoration: none;
 }
 .img-responsive {
   display:block;
@@ -1400,8 +1426,8 @@ footer {
 }
 
 .sidebar-filter-header {
-	
-	padding:15px 20px 15px 20px;
+  display:inline-block;
+  padding:15px 20px 15px 20px;
 	font-family: $font-bold;
 	font-size:1.4em;
 	background-position: bottom 15px right 18px;
@@ -1411,7 +1437,6 @@ footer {
 	cursor:pointer;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
 	height:95px;
 	
 	&.open {
@@ -1431,7 +1456,7 @@ footer {
 }
 
 .sidebar-filter-header-title {
-	display:block;
+	display:inline-block;
 	position:relative;
 	padding-top:20px;
 	float:left;	
@@ -1485,7 +1510,7 @@ footer {
 	cursor:pointer;
 	box-shadow: 1px 1px 7px $dark-gray;
 	z-index:100;
-	float:right;
+	float:left;
 	color:$white;
 	font-size:30px;
 	text-align:center;
@@ -1581,7 +1606,7 @@ footer {
 	position:fixed;
 	bottom:40px;
 	right:40px;
-	
+
 }
 
 

@@ -47,29 +47,17 @@ ${pageContext.response.locale}
                       </button>
                   </div>
                   <div class="modal-body">
-                      <dl>
-                          <dd>
-                              <ul>
-                                  <li>If you are looking for a single website that you believe may be in the UK Web Archive, you can search for it via the Search tab. Use a phrase or name that you think is most likely to be in the website and in that website alone. This will search across all the archived websites.</li>
-                              </ul>
-                          </dd>
-                          <dd>
-                              <ul>
-                                  <li>
-                                      There are several options for narrowing your search. For example, a phrase search uses more than one term (i.e. more than a single word). If two (or more) terms are submitted without the use of quotes, only one of those terms need appear in the documents to produce a result. If the terms are quoted, then only that precise string will be returned. See the Query Syntax section below for full details.
-                                  </li></ul>
-                          </dd>
-                          <dd>
-                              <ul><li>
-                                  Having submitted your query you can further refine your search using the facets on the left-hand side of the full text search results page. This allows the matching results to be filtered by various properties, such as content type, collection and crawl year. For example, you can use the Refine by domain suffix facet to limit the results set to those resources hosted on domains with names that share the same common suffix, such as co.uk, ac.uk or com.
-                              </li></ul>
-                          </dd>
-                          <dd>
-                              <ul><li>
-                                  Note that all queries are case-insensitive.
-                              </li></ul>
-                          </dd>
-                      </dl>
+                      <div class="row">
+                          <div class="col-md-2 col-sm-12 pagination-button active center">1</div>
+                          <div class="col-md-10 col-sm-12">If you are looking for a single website that you believe may be in the UK Web Archive, you can search for it via the Search tab. Use a phrase or name that you think is most likely to be in the website and in that website alone. This will search across all the archived websites.
+                          </div>
+                          <div class="col-md-2 col-sm-12 pagination-button active center padding-30">2</div>
+                          <div class="col-md-10 col-sm-12 padding-30">There are several options for narrowing your search. For example, a phrase search uses more than one term (i.e. more than a single word). If two (or more) terms are submitted without the use of quotes, only one of those terms need appear in the documents to produce a result. If the terms are quoted, then only that precise string will be returned. See the Query Syntax section below for full details.</div>
+                          <div class="col-md-1 col-sm-12 pagination-button active center padding-30">3</div>
+                          <div class="col-md-11 col-sm-12 padding-30">Having submitted your query you can further refine your search using the facets on the left-hand side of the full text search results page. This allows the matching results to be filtered by various properties, such as content type, collection and crawl year. For example, you can use the Refine by domain suffix facet to limit the results set to those resources hosted on domains with names that share the same common suffix, such as co.uk, ac.uk or com.</div>
+                          <div class="col-md-1 col-sm-12 pagination-button active center padding-30">4</div>
+                          <div class="col-md-11 col-sm-12 padding-30">Note that all queries are case-insensitive.</div>
+                      </div>
                   </div>
                   <div class="modal-footer center">
                       <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -91,7 +79,7 @@ ${pageContext.response.locale}
             </p><br/>
             <p class="main-subheading-2-redesign">
                 <spring:message code="home.header.text2" />
-            </p><br/><br/>
+            </p><br/>
                 <p>
                     <span class="right light-blue collection-heading">
                         <a href="#" data-toggle="modal" data-target="#searchingUKWAModalCenter"  title="Get the most from searching the UKWA" >Get the most from searching the UKWA</a>
@@ -104,7 +92,6 @@ ${pageContext.response.locale}
                 </video>
             </div>
         </div>
-
 
   </section>
 
@@ -133,7 +120,7 @@ ${pageContext.response.locale}
         <figcaption class="img-square-caption shadow">FEATURED</figcaption>
       </figure>
         <div class="left light-blue padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold">British Stand-up Comedy Archive</div>
-        <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading">Collection owned and adminstered by Elspeth Millar.</div>
+        <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail">Collection owned and adminstered by Elspeth Millar.</div>
       </a> </div>
 
     <div class="col-lg-4 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/309" class="collection-link">
@@ -141,7 +128,7 @@ ${pageContext.response.locale}
         <figcaption class="img-square-caption shadow">FEATURED</figcaption>
       </figure>
         <div class="left light-blue padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold">French in London</div>
-        <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading">This collection of websites has been selected by Saskia Huc-Hepher.</div>
+        <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail">This collection of websites has been selected by Saskia Huc-Hepher.</div>
       </a></div>
 
     <div class="col-lg-4 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/138" class="collection-link">
@@ -149,7 +136,7 @@ ${pageContext.response.locale}
         <figcaption class="img-square-caption shadow">FEATURED</figcaption>
       </figure>
         <div class="left light-blue padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold">News Sites</div>
-        <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading">558 titles are included in this collection.</div>
+        <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail">558 titles are included in this collection.</div>
       </a></div>
   </div>
 
