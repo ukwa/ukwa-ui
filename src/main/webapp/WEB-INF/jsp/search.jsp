@@ -30,12 +30,12 @@ ${pageContext.response.locale}
 <%@include file="head.jsp" %>
 </head>
 
-<body>
-
+<body class="background-blue">
 <c:set var = "searchPage" value = "true"/>
 
 <%@include file="nav.jsp" %>
-<div class="container-fluid">
+<div class="container background-white margin-top-5 margin-bottom-20">
+
   <header>
       <%@include file="header.jsp" %>
   </header>

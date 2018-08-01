@@ -23,9 +23,9 @@ ${pageContext.response.locale}
 <%@include file="head.jsp" %>
 </head>
 
-<body>
+<body class="background-blue">
 <%@include file="nav.jsp" %>
-<div class="container-fluid">
+<div class="container background-white margin-top-5 margin-bottom-20">
   <header>
   <%@include file="header.jsp" %>
 <div class="row margin-0 padding-side-20 padding-top-80">

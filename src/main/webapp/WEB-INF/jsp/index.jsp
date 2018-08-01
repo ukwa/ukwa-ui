@@ -24,10 +24,10 @@ ${pageContext.response.locale}
     <%@include file="head.jsp" %>
 </head>
 
-<body>
+<body class="background-blue">
 
 <%@include file="nav.jsp" %>
-<div class="container-fluid">
+<div class="container background-white margin-top-5 margin-bottom-20">
   <header>
       <%@include file="header.jsp" %>
       <%@include file="homepage_searchForm.jsp" %>
@@ -35,48 +35,6 @@ ${pageContext.response.locale}
 
     <div class="padding-top-80 padding-bottom-10 padding-side-70">
   <section id="home-pre-header">
-
-      <!-- Modal -->
-      <div class="modal fade" id="searchingUKWAModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title main-heading-2-redesign" id="exampleModalLongTitle">Get the most from searching the UKWA</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                      <dl>
-                          <dd>
-                              <ul>
-                                  <li>If you are looking for a single website that you believe may be in the UK Web Archive, you can search for it via the Search tab. Use a phrase or name that you think is most likely to be in the website and in that website alone. This will search across all the archived websites.</li>
-                              </ul>
-                          </dd>
-                          <dd>
-                              <ul>
-                                  <li>
-                                      There are several options for narrowing your search. For example, a phrase search uses more than one term (i.e. more than a single word). If two (or more) terms are submitted without the use of quotes, only one of those terms need appear in the documents to produce a result. If the terms are quoted, then only that precise string will be returned. See the Query Syntax section below for full details.
-                                  </li></ul>
-                          </dd>
-                          <dd>
-                              <ul><li>
-                                  Having submitted your query you can further refine your search using the facets on the left-hand side of the full text search results page. This allows the matching results to be filtered by various properties, such as content type, collection and crawl year. For example, you can use the Refine by domain suffix facet to limit the results set to those resources hosted on domains with names that share the same common suffix, such as co.uk, ac.uk or com.
-                              </li></ul>
-                          </dd>
-                          <dd>
-                              <ul><li>
-                                  Note that all queries are case-insensitive.
-                              </li></ul>
-                          </dd>
-                      </dl>
-                  </div>
-                  <div class="modal-footer center">
-                      <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                  </div>
-              </div>
-          </div>
-      </div>
 
       <div>
           <p class="main-heading-2-bold-redesign">
@@ -109,7 +67,7 @@ ${pageContext.response.locale}
   </section>
 
 <section id="collections">
-    <div class="padding-top-40">
+    <div class="padding-top-40 background-white">
         <p class="main-heading-2-bold-redesign">
             <spring:message code="home.page.collections.title"/>
         </p>
@@ -172,13 +130,12 @@ ${pageContext.response.locale}
 </section>
 
         </div>
-    </div>
 
-</div>
-</div>
+
 <footer>
     <%@include file="footer.jsp" %>
 </footer>
+</div>
 <script>
     $(document).ready(function(e) {
         var $menuItems = $('.header-menu-item');

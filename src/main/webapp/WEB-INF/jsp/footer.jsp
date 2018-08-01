@@ -1,4 +1,3 @@
-
 <div class="row margin-0 padding-30">
     <div class="col-lg-auto col-md-auto col-sm-auto padding-0">
 <a href="index" ><img src="img/ukwa-logo-60px.jpg" class="header-logo"></a>
@@ -77,10 +76,8 @@
 <div class="col-md-4 col-sm-12 padding-top-mobile-10"><button class="button button-white float-sm-right" id="btn_cookies" title="<spring:message code="footer.cookies.button.title" />"><spring:message code="footer.cookies.button" /></button></div>
 </div>
 </div>
-    </div>
 
-
-<div class="row padding-bottom-10 justify-content-between">
+<div class="row padding-bottom-20 justify-content-between background-white">
     <div class="col-md-2"><a href="https://www.bl.uk/" target="_blank"><img src="img/bl_logo_BW.png" alt="<spring:message code="footer.logo.blib" />" class="footer-logo-BW"/></a></div>
     <div class="col-md-2"><a href="https://www.llgc.org.uk/" target="_blank"><img src="img/llgc_logo_BW.png" alt="<spring:message code="footer.logo.llgc" />" class="footer-logo-BW"/></a></div>
     <div class="col-md-2"><a href="https://www.nls.uk/" target="_blank"><img src="img/NLS_logo_2_BW.jpg" alt="<spring:message code="footer.logo.nls" />" class="footer-logo-BW"/></a></div>
@@ -88,13 +85,9 @@
     <div class="col-md-2"><a href="http://www.lib.cam.ac.uk/" target="_blank"><img src="img/cambrige_logo600_BW.png" alt="<spring:message code="footer.logo.cul" />" class="footer-logo-BW"/></a></div>
     <div class="col-md-2"><a href="https://www.tcd.ie/" target="_blank"><img src="img/trinity_logo_BW.jpg" alt="<spring:message code="footer.logo.tcd" />" class="footer-logo-BW"/></a></div>
 </div>
-<hr style="width: 100%; color: darkblue; height: 7px; background-color:royalblue; margin-bottom:1px !important;margin-top:1px !important;" />
 
 <!--[if (gt IE 9)|!(IE)]><!-->
 <script>
-    if(jQuery){
-        console.log('yes');
-    }
     $(document).ready(function(e) {
         $('.tt_large').tooltip({
             template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner large"></div></div>'

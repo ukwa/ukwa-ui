@@ -23,9 +23,9 @@ ${req.requestURL}
 <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
-<body>
+<body class="background-blue">
 <%@include file="nav.jsp" %>
-<div class="container-fluid">
+<div class="container background-white margin-top-5 margin-bottom-20">
   <header>
   <%@include file="header.jsp" %>
 </header>
