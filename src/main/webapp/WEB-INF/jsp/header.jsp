@@ -21,6 +21,7 @@
     <hr style="width: 100%; color: darkblue; height: 2px; background-color:royalblue; margin-bottom:1px !important;margin-top:1px !important;" />
 </div>
 
+<div class="relative shadow-redesign" style="z-index: 1001">
 <!-- Language menu -->
 <div class="row  navbar-collapse justify-content-end">
 <div class="col-lg-3 col-md-12 padding-right-20 right">
@@ -73,3 +74,5 @@
     <spring:message code="main.menu.contact" />
     </a></div>
   </div>
+
+</div>
