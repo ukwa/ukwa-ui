@@ -41,7 +41,6 @@ ${pageContext.response.locale}
   </header>
 
 
-    <div class="side-bar-bottom padding-bottom-40"></div>
 
 <section id="content">
 
@@ -96,7 +95,6 @@ ${pageContext.response.locale}
                     </p>
                     <c:set var = "hasFilters" value = "true"/>
                 </c:if>
-
 
                 <c:if test="${fn:length(originalFromDateText) > 0 || fn:length(originalToDateText) > 0}">
                     <p class="searchFilter sidebar-clear-filter-6"><spring:message code="search.filters.date" />&nbsp;
