@@ -52,11 +52,11 @@ ${pageContext.response.locale}
     <div class="col-lg-3 col-md-4 col-sm-12 sidebar-white-blue padding-0 side-bar-right">
     <aside id="sidebar">
         <div class="row padding-top-10 dark-gray">
-            <div class="col-md-12 col-sm-12 padding-left-60 padding-right-20">
+            <div class="col-md-12 col-sm-12 padding-left-60 padding-right-20 sidebar-clear-filter-layout">
 
                 <c:set var = "hasFilters" value = "false"/>
                 <c:if test="${searchPage == 'true'}">
-                    <p class="searchFilter" ><spring:message code="search.filters.access" />&nbsp;
+                    <p class="searchFilter sidebar-clear-filter-2" ><spring:message code="search.filters.access" />&nbsp;
 
                         <c:if test="${originalAccessView.contains('va') || empty originalAccessView}">
                             <spring:message code="search.filters.access.open" />
@@ -71,7 +71,7 @@ ${pageContext.response.locale}
                 </c:if>
 
                 <c:if test="${fn:length(originalDomains) > 0}">
-                    <p class="searchFilter"><spring:message code="search.filters.domain" />&nbsp;
+                    <p class="searchFilter sidebar-clear-filter-3"><spring:message code="search.filters.domain" />&nbsp;
                         <c:forEach items="${originalDomains}" var="domain">
                             &quot;<c:out value="${domain}"/>&quot;&nbsp;
                         </c:forEach>
@@ -80,7 +80,7 @@ ${pageContext.response.locale}
                 </c:if>
 
                 <c:if test="${fn:length(originalContentTypes) > 0}">
-                    <p class="searchFilter"><spring:message code="search.filters.doctype" />&nbsp;
+                    <p class="searchFilter sidebar-clear-filter-4"><spring:message code="search.filters.doctype" />&nbsp;
                         <c:forEach items="${originalContentTypes}" var="doctype">
                             &quot;<c:out value="${doctype}"/>&quot;&nbsp;
                         </c:forEach>
@@ -89,7 +89,7 @@ ${pageContext.response.locale}
                 </c:if>
 
                 <c:if test="${fn:length(originalPublicSuffixes) > 0}">
-                    <p class="searchFilter"><spring:message code="search.filters.suffix" />&nbsp;
+                    <p class="searchFilter sidebar-clear-filter-5"><spring:message code="search.filters.suffix" />&nbsp;
                         <c:forEach items="${originalPublicSuffixes}" var="suffix">
                             &quot;<c:out value="${suffix}"/>&quot;&nbsp;
                         </c:forEach>
@@ -99,7 +99,7 @@ ${pageContext.response.locale}
 
 
                 <c:if test="${fn:length(originalFromDateText) > 0 || fn:length(originalToDateText) > 0}">
-                    <p class="searchFilter"><spring:message code="search.filters.date" />&nbsp;
+                    <p class="searchFilter sidebar-clear-filter-6"><spring:message code="search.filters.date" />&nbsp;
 
                         <c:choose>
                             <c:when test="${fn:length(originalFromDateText) > 0}">
@@ -126,7 +126,7 @@ ${pageContext.response.locale}
                 </c:if>
 
                 <c:if test="${fn:length(originalCollections) > 0}">
-                    <p class="searchFilter"><spring:message code="search.filters.collection" />&nbsp;
+                    <p class="searchFilter sidebar-clear-filter-7"><spring:message code="search.filters.collection" />&nbsp;
                         <c:forEach items="${originalCollections}" var="collection">
                             &quot;<c:out value="${collection}"/>&quot;&nbsp;
                         </c:forEach>
@@ -135,13 +135,13 @@ ${pageContext.response.locale}
                 </c:if>
 
                 <c:if test="${hasFilters == 'true'}">
-                    <p class="margin-0">
+                    <p class="margin-0 sidebar-clear-filter-button">
                         <button type="button" id="btn_reset_filters" title="<spring:message code="search.filters.reset" />" class="button-radius-5 searchResetRedesigned margin-top-10 padding-side-70"><spring:message code="search.filters.reset" /></button>
                     </p>
-                    <hr class="search-sidebar-hr-reset"/>
                 </c:if>
 
             </div>
+            <hr class="search-sidebar-hr"/>
         </div>
     <div class="height-0"><spring:message code="search.filter.notice" /></div>
       <form action="search" method="get" enctype="multipart/form-data" name="filter_form" id="filter_form">
@@ -337,6 +337,12 @@ ${pageContext.response.locale}
 
                 <hr class="search-sidebar-hr"/>
             <%--   Archived year collapse filter   --%>
+                <div class="input-group date" data-provide="datepicker">
+                    <input type="text" class="form-control">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-th"></span>
+                    </div>
+                </div>
             <div class="sidebar-filter-header border-top-white open archived-date" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.date.title" />" tabindex="0" id="dates_header" role="tab">
               <div class="sidebar-filter-header-title" id="t_date"><spring:message code="search.side.date.title" /></div>
               <div class="infotooltip" title="<spring:message code="search.side.date.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.date.tip" />" tabindex="0"></div>
