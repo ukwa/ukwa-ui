@@ -45,12 +45,11 @@ ${pageContext.response.locale}
 <section id="content">
 
 
-
   <div class="row margin-0 padding-0">
 
-    <div class="col-lg-3 col-md-4 col-sm-12 sidebar-white-blue padding-0 side-bar-right">
+    <div class="col-lg-3 col-md-4 col-sm-12  padding-0 side-bar-right">
     <aside id="sidebar">
-        <div class="row padding-top-10 dark-gray">
+        <div class="row padding-top-10">
             <div class="col-md-12 col-sm-12 padding-left-60 padding-right-20 sidebar-clear-filter-layout">
 
                 <c:set var = "hasFilters" value = "false"/>
@@ -236,7 +235,6 @@ ${pageContext.response.locale}
                     </c:if>
                 </div>
 
-
                 <hr class="search-sidebar-hr"/>
             <%--   Document type collapse filter   --%>
             <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
@@ -332,15 +330,8 @@ ${pageContext.response.locale}
                     </c:if>
                 </div>
 
-
                 <hr class="search-sidebar-hr"/>
             <%--   Archived year collapse filter   --%>
-                <div class="input-group date" data-provide="datepicker">
-                    <input type="text" class="form-control">
-                    <div class="input-group-addon">
-                        <span class="glyphicon glyphicon-th"></span>
-                    </div>
-                </div>
             <div class="sidebar-filter-header border-top-white open archived-date" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.date.title" />" tabindex="0" id="dates_header" role="tab">
               <div class="sidebar-filter-header-title" id="t_date"><spring:message code="search.side.date.title" /></div>
               <div class="infotooltip" title="<spring:message code="search.side.date.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.date.tip" />" tabindex="0"></div>
