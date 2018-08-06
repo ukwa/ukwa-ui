@@ -41,22 +41,29 @@ ${pageContext.response.locale}
           <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
               <div class="modal-content">
                   <div class="modal-header">
-                      <h5 class="modal-title main-heading-2-redesign" id="exampleModalLongTitle">Get the most from searching the UKWA</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="float-right blue" aria-hidden="true">&times;</span>
                       </button>
                   </div>
+
                   <div class="modal-body">
+                      <div class="main-heading-2-redesign padding-bottom-20 padding-top-20 bg-gray2" id="exampleModalLongTitle">How to get the most from searching the UKWA</div>
+
+
                       <div class="row">
-                          <div class="col-md-2 col-sm-12 pagination-button active center">1</div>
-                          <div class="col-md-10 col-sm-12">If you are looking for a single website that you believe may be in the UK Web Archive, you can search for it via the Search tab. Use a phrase or name that you think is most likely to be in the website and in that website alone. This will search across all the archived websites.
-                          </div>
-                          <div class="col-md-2 col-sm-12 pagination-button active center padding-30">2</div>
-                          <div class="col-md-10 col-sm-12 padding-30">There are several options for narrowing your search. For example, a phrase search uses more than one term (i.e. more than a single word). If two (or more) terms are submitted without the use of quotes, only one of those terms need appear in the documents to produce a result. If the terms are quoted, then only that precise string will be returned. See the Query Syntax section below for full details.</div>
-                          <div class="col-md-1 col-sm-12 pagination-button active center padding-30">3</div>
-                          <div class="col-md-11 col-sm-12 padding-30">Having submitted your query you can further refine your search using the facets on the left-hand side of the full text search results page. This allows the matching results to be filtered by various properties, such as content type, collection and crawl year. For example, you can use the Refine by domain suffix facet to limit the results set to those resources hosted on domains with names that share the same common suffix, such as co.uk, ac.uk or com.</div>
-                          <div class="col-md-1 col-sm-12 pagination-button active center padding-30">4</div>
-                          <div class="col-md-11 col-sm-12 padding-30">Note that all queries are case-insensitive.</div>
+                          <div class="col-md-1 col-sm-2 tooltip-circle-redesign center padding-30">1</div>
+                          <div class="col-md-9 col-sm-9">If you are looking for a single website that you believe may be in the UK Web Archive, you can search for it via the Search tab. Use a phrase or name that you think is most likely to be in the website and in that website alone. This will search across all the archived websites.</div>
+                      </div>
+                      <div class="row ">
+                          <div class="col-md-1 col-sm-2 tooltip-circle-redesign center padding-30">2</div>
+                          <div class="col-md-9 col-sm-9 padding-30">There are several options for narrowing your search. For example, a phrase search uses more than one term (i.e. more than a single word). If two (or more) terms are submitted without the use of quotes, only one of those terms need appear in the documents to produce a result. If the terms are quoted, then only that precise string will be returned. See the Query Syntax section below for full details.</div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-1 col-sm-12 tooltip-circle-redesign center padding-30">3</div>
+                          <div class="col-md-10 col-sm-12 padding-30">Having submitted your query you can further refine your search using the facets on the left-hand side of the full text search results page. This allows the matching results to be filtered by various properties, such as content type, collection and crawl year. For example, you can use the Refine by domain suffix facet to limit the results set to those resources hosted on domains with names that share the same common suffix, such as co.uk, ac.uk or com.</div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-1 col-sm-12 tooltip-circle-redesign center padding-30">4</div>
+                          <div class="col-md-10 col-sm-12 padding-30">Note that all queries are case-insensitive.</div>
                       </div>
                   </div>
                   <div class="modal-footer center">
