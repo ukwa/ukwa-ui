@@ -336,29 +336,39 @@ ${pageContext.response.locale}
               <div class="sidebar-filter-header-title" id="t_date"><spring:message code="search.side.date.title" /></div>
               <div class="infotooltip" title="<spring:message code="search.side.date.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.date.tip" />" tabindex="0"></div>
             </div>
-            <div class="sidebar-filter expanded no-collapse" id="dates_container" role="tabpanel" aria-hidden="true" aria-labelledby="t_date">
-              <div class="row padding-bottom-20 padding-top-20">
-                <div class="col-sm-6">
-                  <label for="from_date" class="blue date-range-label"><spring:message code="search.side.date.from" /></label>
-                </div>
-                <div class="col-sm-6">
-                  <input type="text" class="form-control blue form-white-placeholder" name="from_date" id="from_date" title="<spring:message code="search.side.date.from" />" placeholder="YYYY-MM-DD"
-                       value="${originalFromDateText != null ? originalFromDateText : ''}"/>
-                </div>
-              </div>
-              <div class="row padding-bottom-20">
-                <div class="col-sm-6">
-                  <label for="to_date" class="blue date-range-label"><spring:message code="search.side.date.to" /></label>
-                </div>
-                <div class="col-sm-6">
-                  <input type="text" class="form-control blue form-white-placeholder" name="to_date" id="to_date" title="<spring:message code="search.side.date.to" />" placeholder="YYYY-MM-DD"
-                       value="${originalToDateText != null ? originalToDateText : ''}"/>
-                </div>
-              </div>
-              <div class="row">
+                <div class="sidebar-filter expanded no-collapse" id="dates_container" role="tabpanel" aria-hidden="true"
+                     aria-labelledby="t_date">
+                    <div class="row padding-top-10">
+                        <div class="col-auto">
+                            <label for="from_date" class="blue date-range-label"><spring:message
+                                    code="search.side.date.from"/></label>
+                        </div>
+                    </div>
+                    <div class="row padding-bottom-10">
+                        <div class="col-auto">
+                            <input type="text" class="form-control form-white-placeholder" name="from_date"
+                                   id="from_date" title="<spring:message code="search.side.date.from" />"
+                                   placeholder="YYYY-MM-DD"
+                                   value="${originalFromDateText != null ? originalFromDateText : ''}"/>
+                        </div>
+                    </div>
+                    <div class="row padding-top-10">
+                        <div class="col-auto">
+                            <label for="to_date" class="blue date-range-label"><spring:message
+                                    code="search.side.date.to"/></label>
+                        </div>
+                    </div>
+                    <div class="row padding-bottom-10 ">
+                        <div class="col-auto">
+                            <input type="text" class="form-control form-white-placeholder" name="to_date" id="to_date"
+                                   title="<spring:message code="search.side.date.to" />" placeholder="YYYY-MM-DD"
+                                   value="${originalToDateText != null ? originalToDateText : ''}"/>
+                        </div>
+                    </div>
+                    <div class="row padding-top-20">
                 <div class="col-sm-12">
-                  <button type="submit" title="<spring:message code="search.side.date.submit" />" class="button-blue float-sm-right margin-left-10 margin-top-10 text-small"><spring:message code="search.side.date.submit" /></button>
-                  <button type="button" title="<spring:message code="search.side.date.reset" />" class="button-blue float-sm-right margin-top-10 text-small" id="btn_reset_dates">X</button>
+                  <button type="submit" title="<spring:message code="search.side.date.submit" />" class="button button-blue width-auto-inline"><spring:message code="search.side.date.submit" /></button>
+                  <button type="button" title="<spring:message code="search.side.date.reset" />" class="button button-blue width-auto-inline margin-top-10 text-small" id="btn_reset_dates">X</button>
                 </div>
               </div>
             </div>
@@ -508,10 +518,6 @@ ${pageContext.response.locale}
       </div>
     </div>
 
-
-
-
-    
     <div class="results-container">
     <c:forEach items="${searchResults}" var="searchResult"> 
       <!--RESULT ROW-->
