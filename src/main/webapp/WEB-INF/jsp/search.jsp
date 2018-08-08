@@ -170,7 +170,7 @@ ${pageContext.response.locale}
                       ${originalAccessView.contains('va') || empty originalAccessView ? 'checked' : ''}/>
                 <label class="main-search-check-label blue" for="view_filter_1" title="<spring:message code="search.side.view.1" />">
                     <spring:message code="search.side.view.1" />
-                    <span class="label-counts">(<span class="results-count"><c:out value="${vaCount}"/></span>)</span>
+                    <span class="label-counts black">(<span class="results-count"><c:out value="${vaCount}"/></span>)</span>
                 </label>
               </div>
             </div>
@@ -180,7 +180,7 @@ ${pageContext.response.locale}
               <div class="form-check-cont padding-0" title="<spring:message code="search.side.view.2" />" tabindex="0">
                 <input type="radio" class="blue access_filter" name="view_filter" id="view_filter_2" value="vool"
                       ${originalAccessView.contains('vool') ? 'checked' : ''}/>
-                <label class="main-search-check-label blue" for="view_filter_2" title="<spring:message code="search.side.view.2" />"> <spring:message code="search.side.view.2" /> <span class="label-counts">(<span class="results-count"><c:out value="${voolCount}"/></span>)</span></label>
+                <label class="main-search-check-label blue" for="view_filter_2" title="<spring:message code="search.side.view.2" />"> <spring:message code="search.side.view.2" /> <span class="label-counts black">(<span class="results-count"><c:out value="${voolCount}"/></span>)</span></label>
               </div>
             </div>
           </div>
@@ -204,7 +204,7 @@ ${pageContext.response.locale}
                                         ${originalDomains.contains(domains.get(i) )? 'checked' : ''}/>
                                     <label class="main-search-check-label blue" for="domain_filter_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
                                         <c:out value="${domains.get(i)}"/>
-                                        <span class="label-counts">(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
+                                        <span class="label-counts black">(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
                                 </div>
                             </div>
                     </c:if>
@@ -226,7 +226,7 @@ ${pageContext.response.locale}
                                             ${originalDomains.contains(domains.get(i) )? 'checked' : ''}/>
                                         <label class="main-search-check-label blue" for="domain_filter_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
                                             <c:out value="${domains.get(i)}"/>
-                                            <span class="label-counts">(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
+                                            <span class="label-counts black">(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
                                     </div>
                                 </div>
                             </c:if>
@@ -251,9 +251,9 @@ ${pageContext.response.locale}
                         <input type="checkbox" class="blue" name="content_type" id="content_type_<c:out value="${i}"/>"
                        value="${contentTypes.get(i)}"
                        ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
-                        <label class="main-search-check-label blue" for="content_type_<c:out value="${i}"/>">
+                        <label class="main-search-check-label" style="color: #0c49b0" for="content_type_<c:out value="${i}"/>">
                           <c:out value="${contentTypes.get(i)}"/>
-                          <span class="label-counts">(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
+                          <span class="label-counts black" >(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
                       </div>
                     </div>
                   </c:if>
@@ -273,7 +273,7 @@ ${pageContext.response.locale}
                                             ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
                                         <label class="main-search-check-label blue" for="content_type_<c:out value="${i}"/>">
                                             <c:out value="${contentTypes.get(i)}"/>
-                                            <span class="label-counts">(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
+                                            <span class="label-counts black">(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
                                     </div>
                                 </div>
                             </c:if>
@@ -298,7 +298,7 @@ ${pageContext.response.locale}
                   ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
                         <label class="main-search-check-label blue" for="public_suffix_<c:out value="${i}"/>">
                           <c:out value="${publicSuffixes.get(i)}"/>
-                          <span class="label-counts">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
+                          <span class="label-counts black">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
                       </div>
                     </div>
                   </c:if>
@@ -321,7 +321,7 @@ ${pageContext.response.locale}
                                             ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
                                         <label class="main-search-check-label blue" for="public_suffix_<c:out value="${i}"/>">
                                             <c:out value="${publicSuffixes.get(i)}"/>
-                                            <span class="label-counts">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
+                                            <span class="label-counts black">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
                                     </div>
                                 </div>
                             </c:if>
@@ -391,7 +391,7 @@ ${pageContext.response.locale}
                         <label class="main-search-check-label blue" for="collection_<c:out value="${i}"/>"
                              title="<c:out value="${collections.get(i)}"/> (<c:out value="${collections.get(i + 1)}"/>)">
                           <c:out value="${collections.get(i)}"/>
-                          <span class="label-counts">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
+                          <span class="label-counts black">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
                       </div>
                     </div>
                   </c:if>
@@ -414,7 +414,7 @@ ${pageContext.response.locale}
                                         <label class="main-search-check-label blue" for="collection_<c:out value="${i}"/>"
                                                title="<c:out value="${collections.get(i)}"/> (<c:out value="${collections.get(i + 1)}"/>)">
                                             <c:out value="${collections.get(i)}"/>
-                                            <span class="label-counts">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
+                                            <span class="label-counts black">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
                                     </div>
                                 </div>
                             </c:if>
