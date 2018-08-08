@@ -41,11 +41,10 @@ ${pageContext.response.locale}
           <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
               <div class="modal-content">
                   <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="float-right blue" aria-hidden="true">&times;</span>
-                      </button>
+                      <button type="button" class="close right" data-dismiss="modal" aria-label="Close"><span class="float-right blue" aria-hidden="true">&times;</span></button>
                   </div>
 
-                  <div class="modal-body">
+                  <div class="modal-body" style="padding: 0;">
                       <div class="main-heading-2-redesign padding-bottom-20 padding-top-20 bg-gray2" id="exampleModalLongTitle">How to get the most from searching the UKWA</div>
 
 
