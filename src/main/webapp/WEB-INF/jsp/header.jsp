@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="pleaseWaitDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog"  role="document">
+    <div class="modal-dialog" style="padding-top:15%" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title text-center">Your search is in progress  Please wait...</h2>
