@@ -1,15 +1,13 @@
 <!-- Modal -->
 <div class="modal fade" id="pleaseWaitDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="padding-top:15%" role="document">
+    <div class="modal-dialog"  role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title text-center">Your search is in progress. Please wait..</h2>
+                <h2 class="modal-title text-center">Your search is in progress  Please wait...</h2>
             </div>
-            <div class="modal-body">
-                <div class="center-block" >
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%;">
-                        <span class="sr-only">Please wait...</span>
-                    </div>
+            <div class="modal-body center" style="max-height: calc(100vh - 143px);overflow-y: auto;">
+                <div class="center-block align-items-center" >
+                        <img src="img/icons/progress_8.gif">
                 </div>
             </div>
         </div>
