@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body center" style="max-height: calc(100vh - 143px);overflow-y: auto;">
                 <div class="center-block align-items-center" >
-                        <img src="img/icons/progress_8.gif">
+                        <img src="img/icons/gif3.2.gif">
                 </div>
             </div>
         </div>
