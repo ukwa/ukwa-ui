@@ -147,7 +147,7 @@
                             <%--   View facets   --%>
                             <%--   Accessing Content collapse filter   --%>
                             <div class="sidebar-filter-header no-collapse" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.view.title" />" tabindex="0" role="tab">
-                                <div class="sidebar-filter-header-title" id="t_access"><spring:message code="search.side.view.title"/></div>
+                                <div class="sidebar-filter-header-title-redesign" id="t_access"><spring:message code="search.side.view.title"/></div>
                                 <div class="infotooltip" title="<spring:message code="search.side.view.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.view.tip" />" tabindex="0"></div>
                             </div>
                             <div class="sidebar-filter expanded no-collapse" aria-labelledby="t_access">
@@ -189,7 +189,7 @@
 
                                 <%--   Domains collapse filter   --%>
                                 <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.domain.title" />" tabindex="0" role="tab">
-                                    <div class="sidebar-filter-header-title" id="t_domain"><spring:message code="search.side.domain.title" /></div>
+                                    <div class="sidebar-filter-header-title-redesign" id="t_domain"><spring:message code="search.side.domain.title" /></div>
                                     <div class="infotooltip" title="<spring:message code="search.side.domain.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.domain.tip" />" tabindex="0"></div>
                                 </div>
                                 <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_domain">
@@ -238,7 +238,7 @@
                                 <hr class="search-sidebar-hr"/>
                                 <%--   Document type collapse filter   --%>
                                 <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
-                                    <div class="sidebar-filter-header-title" id="t_doctype"><spring:message code="search.side.doctype.title" /></div>
+                                    <div class="sidebar-filter-header-title-redesign" id="t_doctype"><spring:message code="search.side.doctype.title" /></div>
                                     <div class="infotooltip" title="<spring:message code="search.side.doctype.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
                                 </div>
                                 <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_doctype">
@@ -283,7 +283,7 @@
                                 <hr class="search-sidebar-hr"/>
                                 <%--   Public suffix collapse filter   --%>
                                 <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.suffix.title" />" tabindex="0" role="tab">
-                                    <div class="sidebar-filter-header-title" id="t_suffix"><spring:message code="search.side.suffix.title" /></div>
+                                    <div class="sidebar-filter-header-title-redesign" id="t_suffix"><spring:message code="search.side.suffix.title" /></div>
                                     <div class="infotooltip" title="<spring:message code="search.side.suffix.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.suffix.tip" />" tabindex="0"></div>
                                 </div>
                                 <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_suffix">
@@ -333,7 +333,7 @@
                                 <hr class="search-sidebar-hr"/>
                                 <%--   Archived year collapse filter   --%>
                                 <div class="sidebar-filter-header border-top-white open archived-date" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.date.title" />" tabindex="0" id="dates_header" role="tab">
-                                    <div class="sidebar-filter-header-title" id="t_date"><spring:message code="search.side.date.title" /></div>
+                                    <div class="sidebar-filter-header-title-redesign" id="t_date"><spring:message code="search.side.date.title" /></div>
                                     <div class="infotooltip" title="<spring:message code="search.side.date.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.date.tip" />" tabindex="0"></div>
                                 </div>
                                 <div class="sidebar-filter expanded no-collapse" id="dates_container" role="tabpanel" aria-hidden="true"
@@ -375,7 +375,7 @@
                                 <hr class="search-sidebar-hr"/>
                                 <%--   Collection collapse filter   --%>
                                 <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.coll.title" />" tabindex="0" role="tab">
-                                    <div class="sidebar-filter-header-title" id="t_coll"><spring:message code="search.side.coll.title" /></div>
+                                    <div class="sidebar-filter-header-title-redesign" id="t_coll"><spring:message code="search.side.coll.title" /></div>
                                     <div class="infotooltip" title="<spring:message code="search.side.coll.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.coll.tip" />" tabindex="0"></div>
                                 </div>
                                 <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_coll">
