@@ -28,9 +28,12 @@ ${pageContext.response.locale}
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
 <title><spring:message code="search.title" /></title>
 <%@include file="head.jsp" %>
+
+
 </head>
 
 <body>
+
 
 <c:set var = "searchPage" value = "true"/>
 
@@ -42,7 +45,162 @@ ${pageContext.response.locale}
 
 
 
-<section id="content">
+    <!-- Modal -->
+    <div class="modal fade" id="SearchFilterDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="d-flex flex-row mt-2">
+
+                        <!-- nav-tabs--vertical: display: flex;	flex-flow: column nowrap;-->
+                        <!-- nav-tabs--left (BAD!) flex: 1 0 auto; -->
+                        <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" role="navigation">
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#domain" role="tab">Domain</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#documenttype" role="tab">Document Type</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#suffix" role="tab">Suffix</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#topicsandthemes" role="tab">Topics and Themes</a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <!-- Domain -->
+                            <div class="tab-pane" id="domain" role="tabpanel">
+                                <div class="container-inline-flex column wrap fixed-height-500 fixed-width-750">
+
+                                <c:if test="${domains.size() > 1}">
+                                    <c:forEach begin="0" end="${domains.size() - 1}" step="2" var="i">
+
+                                        <c:if test="${(domains.get(i + 1) != 0 ) || (originalDomains.contains(domains.get(i))?true:false)}">
+                                                <div class="form-check-cont box2 relative" style="width: 310px;padding: 10px;word-wrap:break-word;text-overflow: ellipsis" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
+                                                    <input type="checkbox" class="blue" name="domain_filter" id="domain_filter_modal_<c:out value="${i}"/>"
+                                                           value="${domains.get(i)}"
+                                                        ${originalDomains.contains(domains.get(i) )? 'checked' : ''}/>
+                                                    <label class="main-search-check-label blue" style="width: 100px; word-wrap:break-word;" for="domain_filter_modal_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
+                                                        <c:out value="${domains.get(i)}"/>
+                                                        <span class="label-counts black" style="text-overflow: ellipsis">(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
+                                                </div>
+                                        </c:if>
+                                    </c:forEach>
+                                </c:if>
+
+                                </div>
+                            </div>
+
+                            <!-- Document Type -->
+                            <div class="tab-pane" id="documenttype" role="tabpanel">
+
+                                <div class="container-inline-flex column wrap fixed-height-500 fixed-width-750">
+
+                                    <c:if test="${contentTypes.size() > 1}">
+                                        <c:forEach begin="0" end="${contentTypes.size() - 1}" step="2" var="i">
+
+                                            <c:if test="${(contentTypes.get(i + 1) != 0) || (originalContentTypes.contains(contentTypes.get(i))?true:false)}">
+
+                                                    <div class="form-check-cont box2 relative" style="width: 310px;padding: 10px" title="<c:out value="${contentTypes.get(i)}"/>" tabindex="0">
+                                                        <input type="checkbox" class="blue" name="content_type" id="content_type_<c:out value="${i}"/>"
+                                                               value="${contentTypes.get(i)}"
+                                                            ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
+                                                        <label class="main-search-check-label" style="color: #0c49b0" for="content_type_<c:out value="${i}"/>">
+                                                            <c:out value="${contentTypes.get(i)}"/>
+                                                            <span class="label-counts black no-italics" >(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
+                                                    </div>
+
+                                            </c:if>
+
+                                        </c:forEach>
+                                    </c:if>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- Suffix -->
+                            <div class="tab-pane" id="suffix" role="tabpanel">
+
+                                <div class="container-inline-flex column wrap fixed-height-500 fixed-width-750">
+
+                                <c:if test="${publicSuffixes.size() > 1}">
+
+                                    <c:forEach begin="0" end="${publicSuffixes.size() - 1}" step="2" var="i">
+                                        <c:if test="${(publicSuffixes.get(i + 1) != 0) || (originalPublicSuffixes.contains(publicSuffixes.get(i))?true:false)}">
+
+                                                <div class="form-check-cont box2 relative" style="width: 310px;padding: 10px" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
+                                                    <input type="checkbox" class="blue" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
+                                                           value="${publicSuffixes.get(i)}"
+                                                        ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
+                                                    <label class="main-search-check-label blue no-italics" for="public_suffix_<c:out value="${i}"/>">
+                                                        <c:out value="${publicSuffixes.get(i)}"/>
+                                                        <span class="label-counts black no-italics">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
+                                                </div>
+
+                                        </c:if>
+                                    </c:forEach>
+                                </c:if>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- Topics and Themes -->
+                            <div class="tab-pane" id="topicsandthemes" role="tabpanel">
+                                <div class="container-inline-flex column wrap fixed-height-500 fixed-width-750">
+
+
+                                    <c:if test="${collections.size() > 1}">
+
+                                        <c:forEach begin="0" end="${collections.size() - 1}" step="2" var="i">
+                                            <c:if test="${(collections.get(i + 1) != 0) || (originalCollections.contains(collections.get(i))?true:false)}">
+                                                    <div class="form-check-cont box2 relative" style="width: 310px;padding: 10px" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
+                                                        <input type="checkbox" class="blue" name="collection" id="collection_<c:out value="${i}"/>"
+                                                               value="${collections.get(i)}"
+                                                            ${originalCollections.contains(collections.get(i) )? 'checked' : ''}/>
+                                                        <label class="main-search-check-label blue no-italics box2" style="overflow: hidden" for="collection_<c:out value="${i}"/>"
+                                                               title="<c:out value="${collections.get(i)}"/> (<c:out value="${collections.get(i + 1)}"/>)">
+                                                            <c:out value="${collections.get(i)}"/>
+                                                            <span class="label-counts black no-italics">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
+                                                    </div>
+                                            </c:if>
+
+                                        </c:forEach>
+                                    </c:if>
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="content">
 
 
   <div class="row margin-0 padding-0">
@@ -140,7 +298,8 @@ ${pageContext.response.locale}
             </div>
             <hr class="search-sidebar-hr"/>
         </div>
-    <div class="height-0"><spring:message code="search.filter.notice" /></div>
+
+        <div class="height-0"><spring:message code="search.filter.notice" /></div>
       <form action="search" method="get" enctype="multipart/form-data" name="filter_form" id="filter_form">
         <div class="sidebar-item toggle open vl" id="toggle-sidebar"></div>
         <div class="sidebar-collapse" role="region">
@@ -168,9 +327,9 @@ ${pageContext.response.locale}
                 <div class="form-check-cont padding-0" title="<spring:message code="search.side.view.1" />" tabindex="0">
                 <input tabindex="-1" type="radio" class="blue access_filter" name="view_filter" id="view_filter_1" value="va"
                       ${originalAccessView.contains('va') || empty originalAccessView ? 'checked' : ''}/>
-                <label class="main-search-check-label blue" for="view_filter_1" title="<spring:message code="search.side.view.1" />">
+                <label class="main-search-check-label blue no-italics" for="view_filter_1" title="<spring:message code="search.side.view.1" />">
                     <spring:message code="search.side.view.1" />
-                    <span class="label-counts black">(<span class="results-count"><c:out value="${vaCount}"/></span>)</span>
+                    <span class="label-counts black no-italics">(<span class="results-count"><c:out value="${vaCount}"/></span>)</span>
                 </label>
               </div>
             </div>
@@ -180,7 +339,7 @@ ${pageContext.response.locale}
               <div class="form-check-cont padding-0" title="<spring:message code="search.side.view.2" />" tabindex="0">
                 <input type="radio" class="blue access_filter" name="view_filter" id="view_filter_2" value="vool"
                       ${originalAccessView.contains('vool') ? 'checked' : ''}/>
-                <label class="main-search-check-label blue" for="view_filter_2" title="<spring:message code="search.side.view.2" />"> <spring:message code="search.side.view.2" /> <span class="label-counts black">(<span class="results-count"><c:out value="${voolCount}"/></span>)</span></label>
+                <label class="main-search-check-label blue no-italics" for="view_filter_2" title="<spring:message code="search.side.view.2" />"> <spring:message code="search.side.view.2" /> <span class="label-counts black">(<span class="results-count"><c:out value="${voolCount}"/></span>)</span></label>
               </div>
             </div>
           </div>
@@ -202,15 +361,15 @@ ${pageContext.response.locale}
                                     <input type="checkbox" class="blue" name="domain_filter" id="domain_filter_<c:out value="${i}"/>"
                                            value="${domains.get(i)}"
                                         ${originalDomains.contains(domains.get(i) )? 'checked' : ''}/>
-                                    <label class="main-search-check-label blue" for="domain_filter_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
+                                    <label class="main-search-check-label blue no-italics" for="domain_filter_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
                                         <c:out value="${domains.get(i)}"/>
-                                        <span class="label-counts black">(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
+                                        <span class="label-counts black no-italics">(<span class="results-count no-italics"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
                                 </div>
                             </div>
                     </c:if>
 
                 </c:forEach>
-                  <div class="padding-left-20"><a href="javascript:void(0);" id="showMoreDomainLink" title="Show More Domains">Show more</a></div>
+                  <div class="padding-left-20"><a href="#domain" data-toggle="modal" data-target="#SearchFilterDialog">Show more (domain)</a></div>
               </c:if>
             </div>
 
@@ -224,9 +383,9 @@ ${pageContext.response.locale}
                                         <input type="checkbox" class="blue" name="domain_filter" id="domain_filter_<c:out value="${i}"/>"
                                                value="${domains.get(i)}"
                                             ${originalDomains.contains(domains.get(i) )? 'checked' : ''}/>
-                                        <label class="main-search-check-label blue" for="domain_filter_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
+                                        <label class="main-search-check-label blue no-italics" for="domain_filter_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
                                             <c:out value="${domains.get(i)}"/>
-                                            <span class="label-counts black">(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
+                                            <span class="label-counts black no-italics">(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
                                     </div>
                                 </div>
                             </c:if>
@@ -253,13 +412,13 @@ ${pageContext.response.locale}
                        ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
                         <label class="main-search-check-label" style="color: #0c49b0" for="content_type_<c:out value="${i}"/>">
                           <c:out value="${contentTypes.get(i)}"/>
-                          <span class="label-counts black" >(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
+                          <span class="label-counts black no-italics" >(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
                       </div>
                     </div>
                   </c:if>
 
                 </c:forEach>
-                  <div class="padding-left-20"><a href="javascript:void(0);" id="showMoreDocumentTypeLink" title="Show More Document Types">Show more</a></div>
+                  <div class="padding-left-20"> <a href="#documenttype" data-toggle="modal" data-target="#SearchFilterDialog">Show more (Document Type)</a></div>
               </c:if>
             </div>
                 <div id="content_type_filter_div" class="sidebar-filter expanded no-collapse" style="display:none;" role="tabpanel" aria-hidden="true" aria-labelledby="t_doctype">
@@ -271,9 +430,9 @@ ${pageContext.response.locale}
                                         <input type="checkbox" class="blue" name="content_type" id="content_type_<c:out value="${i}"/>"
                                                value="${contentTypes.get(i)}"
                                             ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
-                                        <label class="main-search-check-label blue" for="content_type_<c:out value="${i}"/>">
+                                        <label class="main-search-check-label blue no-italics" for="content_type_<c:out value="${i}"/>">
                                             <c:out value="${contentTypes.get(i)}"/>
-                                            <span class="label-counts black">(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
+                                            <span class="label-counts black no-italics">(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
                                     </div>
                                 </div>
                             </c:if>
@@ -296,14 +455,14 @@ ${pageContext.response.locale}
                         <input type="checkbox" class="blue" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
                        value="${publicSuffixes.get(i)}"
                   ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
-                        <label class="main-search-check-label blue" for="public_suffix_<c:out value="${i}"/>">
+                        <label class="main-search-check-label blue no-italics" for="public_suffix_<c:out value="${i}"/>">
                           <c:out value="${publicSuffixes.get(i)}"/>
-                          <span class="label-counts black">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
+                          <span class="label-counts black no-italics">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
                       </div>
                     </div>
                   </c:if>
                 </c:forEach>
-                  <div class="padding-left-20"><a href="javascript:void(0);" id="showMoreSuffixLink" title="Show More Suffix">Show more</a></div>
+                  <div class="padding-left-20"><a href="#suffix" data-toggle="modal" data-target="#SearchFilterDialog">Show more (suffix)</a></div>
               </c:if>
 
             </div>
@@ -319,9 +478,9 @@ ${pageContext.response.locale}
                                         <input type="checkbox" class="blue" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
                                                value="${publicSuffixes.get(i)}"
                                             ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
-                                        <label class="main-search-check-label blue" for="public_suffix_<c:out value="${i}"/>">
+                                        <label class="main-search-check-label blue no-italics" for="public_suffix_<c:out value="${i}"/>">
                                             <c:out value="${publicSuffixes.get(i)}"/>
-                                            <span class="label-counts black">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
+                                            <span class="label-counts black no-italics">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
                                     </div>
                                 </div>
                             </c:if>
@@ -388,16 +547,16 @@ ${pageContext.response.locale}
                         <input type="checkbox" class="blue" name="collection" id="collection_<c:out value="${i}"/>"
                              value="${collections.get(i)}"
                         ${originalCollections.contains(collections.get(i) )? 'checked' : ''}/>
-                        <label class="main-search-check-label blue" for="collection_<c:out value="${i}"/>"
+                        <label class="main-search-check-label blue no-italics" for="collection_<c:out value="${i}"/>"
                              title="<c:out value="${collections.get(i)}"/> (<c:out value="${collections.get(i + 1)}"/>)">
                           <c:out value="${collections.get(i)}"/>
-                          <span class="label-counts black">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
+                          <span class="label-counts black no-italics">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
                       </div>
                     </div>
                   </c:if>
 
                 </c:forEach>
-                  <div class="padding-left-20"><a href="javascript:void(0);" id="showMoreCollectionLink" title="Show More Collections">Show more</a></div>
+                  <div class="padding-left-20"><a href="#topicsandthemes" data-toggle="modal" data-target="#SearchFilterDialog">Show more (topics and themes)</a></div>
               </c:if>
 
             </div>
@@ -411,10 +570,10 @@ ${pageContext.response.locale}
                                         <input type="checkbox" class="blue" name="collection" id="collection_<c:out value="${i}"/>"
                                                value="${collections.get(i)}"
                                             ${originalCollections.contains(collections.get(i) )? 'checked' : ''}/>
-                                        <label class="main-search-check-label blue" for="collection_<c:out value="${i}"/>"
+                                        <label class="main-search-check-label blue no-italics" for="collection_<c:out value="${i}"/>"
                                                title="<c:out value="${collections.get(i)}"/> (<c:out value="${collections.get(i + 1)}"/>)">
                                             <c:out value="${collections.get(i)}"/>
-                                            <span class="label-counts black">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
+                                            <span class="label-counts black no-italics">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
                                     </div>
                                 </div>
                             </c:if>
@@ -637,6 +796,11 @@ function toggle(el) {
 }
 
 $(document).ready(function(e) {
+
+    $("#SearchFilterDialog").on('shown.bs.modal', function(e) {
+        var tab = e.relatedTarget.hash;
+        $('.nav-tabs a[href="'+tab+'"]').tab('show')
+    });
 
 	$("#from_date, #to_date").datepicker({
 		dateFormat: "yy-mm-dd",

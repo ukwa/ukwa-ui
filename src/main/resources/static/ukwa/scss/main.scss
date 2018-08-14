@@ -65,6 +65,46 @@ img {
 }
 
 /* GENERAL STYLES AND COLORS*/
+.nav-tabs {
+	&--vertical {
+		border-bottom: none;
+		border-right: 1px solid $color-border;
+		display: flex;
+		flex-flow: column nowrap;
+	}
+
+	&--left {
+		margin: 0 $padding-base;
+
+		.nav-item + .nav-item {
+			margin-top: .25rem;
+		}
+
+		.nav-link {
+			transition: border-color .125s ease-in;
+			white-space: nowrap;
+
+			&:hover {
+				background-color: lighten($color-border, 10%);
+				border-color: transparent;
+			}
+		}
+
+		.nav-link.active {
+			border-bottom-color: $color-border;
+			border-right-color: $color-body;
+			border-bottom-left-radius: $border-radius;
+			border-top-right-radius: 0;
+			margin-right: -1px;
+
+			&:hover {
+				background-color: $color-body;
+				border-color: $color-link $color-body $color-link $color-link;
+			}
+		}
+	}
+}
+
 p.searchFilter{
   font-family: "Open Sans Regular",Arial;
   border: 1px solid darkgray !important;
