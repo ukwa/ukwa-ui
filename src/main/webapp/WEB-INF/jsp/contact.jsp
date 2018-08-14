@@ -30,7 +30,7 @@
             <div class="main-heading-2-bold-redesign white padding-top-40"><spring:message code="main.menu.contact" /></div>
         </div>
     </div>
-    <div class="row header-2-subtitle padding-top-40">
+    <div class="row header-2-subtitle-redesign padding-top-40">
         <div class="col-md-6 mr-auto ml-auto col-md-offset-3 padding-side-10 padding-mobile-side-0">
             <spring:message code="contact.text" />
         </div>
@@ -38,7 +38,7 @@
 
 <section id="content">
 <c:if test="${sent}">
-<div class="row page-content padding-bottom-20">
+<div class="row page-content">
 <div class="col-sm-12 form-content-col bold red">
 <spring:message code="contact.sent.message"/>
 </div>
