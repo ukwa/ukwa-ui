@@ -28,22 +28,25 @@ ${pageContext.response.locale}
 <div class="container-fluid">
   <header>
   <%@include file="header.jsp" %>
+  </header>
+        <div class="row bg-transparent">
+            <div class="white main-search-input-new" style="padding-bottom:170px;padding-top:40px;padding-left:5%;padding-right:5%;">
+                <div class="main-heading-2-bold-redesign white padding-top-40"><spring:message code="coll.main.heading" /></div>
+            </div>
+        </div>
+
 <div class="row margin-0 padding-side-20 padding-top-80">
-  <div class="col-lg-2 col-md-3 col-sm-12 main-heading-cont">
-    <h1 class="main-heading"><spring:message code="coll.main.heading" /></h1>
-    <hr class="header-title-hr"/>
-  </div>
-  <div class="col-lg-4 col-md-5 offset-md-1 col-md-offset-1 col-sm-12 header-2-subtitle padding-side-10"><spring:message code="coll.subtitle" /></div>
+  <div class="col-lg-6 col-md-8 offset-md-1 col-md-offset-1 col-sm-12 header-2-subtitle padding-side-10"><spring:message code="coll.subtitle" /></div>
 
   <div class="col-lg-2 offset-lg-3 col-lg-offset-3 col-md-2 offset-md-1 col-md-offset-1 col-sm-12 right padding-top-mobile-20">
-    <img title="<spring:message code="coll.thumbs" />" alt="<spring:message code="coll.thumbs" />" class="collections-display" id="btn_thumbs" src="img/icons/icn_grid.png" tabindex="0"/>
-    <img title="<spring:message code="coll.list" />" alt="<spring:message code="coll.list" />" class="collections-display" id="btn_list" src="img/icons/icn_list.png" tabindex="0"/>
+      <img title="<spring:message code="coll.thumbs" />" alt="<spring:message code="coll.thumbs" />" class="collections-display" id="btn_thumbs" src="img/icons/icn_grid.png" tabindex="0"/>
+      <img title="<spring:message code="coll.list" />" alt="<spring:message code="coll.list" />" class="collections-display" id="btn_list" src="img/icons/icn_list.png" tabindex="0"/>
   </div>
 
 </div>
 
-</header>
-<section id="content">
+
+    <section id="content">
 
 
   <!--THUMBNAIL DISPLAY-->

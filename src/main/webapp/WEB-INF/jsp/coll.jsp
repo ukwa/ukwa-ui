@@ -33,6 +33,11 @@ ${pageContext.response.locale}
   <header>
   <%@include file="header.jsp" %>
 </header>
+    <div class="row bg-transparent">
+        <div class="white main-search-input-new" style="padding-bottom:170px;padding-top:40px;padding-left:5%;padding-right:5%;">
+            <div class="main-heading-2-bold-redesign white padding-top-40"><c:out value="${currentCollection.name}"/></div>
+        </div>
+    </div>
 <section id="content">
 <div class="row margin-0 padding-0">
 
@@ -59,10 +64,7 @@ ${pageContext.response.locale}
       </div>
   
     <div class="row margin-0 padding-side-5">
-      <div class="col-md-12 col-sm-12 padding-top-40 padding-bottom-20 light-blue">
-        <h2 class="padding-0 margin-0 collection-main-heading">
-          <c:out value="${currentCollection.name}"/>
-        </h2>
+      <div class="col-md-12 col-sm-12 padding-top-20 padding-bottom-20 light-blue">
         <p class="black margin-top-20 margin-bottom-0 hidden" id="coll_description" data-descript="<c:out value="${currentCollection.description}"/>"></p>
         <p class="margin-bottom-0"><a href="#" class="hidden" title="<spring:message code="coll.readmore" />" id="readmore"><spring:message code="coll.readmore" /></a></p>
       </div>
