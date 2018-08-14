@@ -30,7 +30,7 @@
             <div class="main-heading-2-bold-redesign white padding-top-40"><spring:message code="main.menu.contact" /></div>
         </div>
     </div>
-    <div class="row header-white light-blue">
+    <div class="row header-2-subtitle padding-top-40">
         <div class="col-md-6 mr-auto ml-auto col-md-offset-3 padding-side-10 padding-mobile-side-0">
             <spring:message code="contact.text" />
         </div>
