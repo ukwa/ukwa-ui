@@ -29,10 +29,16 @@ ${req.requestURL}
   <header>
   <%@include file="header.jsp" %>
 </header>
+  <div class="col-sm-12 padding-mobile-side-15 white main-search-input-new left" style="padding-bottom:170px;padding-top:40px;padding-left:15%;padding-right:15%">
+      <div class="row bg-transparent">
+          <div class="col-md-6 mr-auto ml-auto col-md-offset-3 padding-side-10 padding-mobile-side-0">
+              <h2><spring:message code="main.menu.nominate" /></h2>
+          </div>
+      </div>
+  </div>
 <section id="nominate-header">
   <div class="row header-white light-blue">
     <div class="col-md-6 mr-auto ml-auto col-md-offset-3 padding-side-10 padding-mobile-side-0">
-      <h2><spring:message code="nominate.main.heading" /></h2>
       <spring:message code="nominate.text" />
     </div>
   </div>

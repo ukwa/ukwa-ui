@@ -25,14 +25,16 @@
   <header>
   <%@include file="header.jsp" %>
 </header>
-<section id="contact-header">
-  <div class="row header-blue white">
-    <div class="col-md-6 mr-auto ml-auto col-md-offset-3 padding-side-10 padding-mobile-side-0">
-      <h2><spring:message code="contact.main.heading" /></h2>
-      <spring:message code="contact.text" />
-    </div>
+  <div class="col-sm-12 padding-mobile-side-15 white main-search-input-new left" style="padding-bottom:170px;padding-top:40px;padding-left:15%;padding-right:15%">
+      <section id="contact-header">
+          <div class="row bg-transparent">
+              <div class="col-md-6 mr-auto ml-auto col-md-offset-3 padding-side-10 padding-mobile-side-0">
+                  <h2><spring:message code="contact.main.heading" /></h2>
+                  <spring:message code="contact.text" />
+              </div>
+          </div>
+      </section>
   </div>
-</section>
 <section id="content">
 <c:if test="${sent}">
 <div class="row page-content padding-bottom-20">
