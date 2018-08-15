@@ -141,9 +141,6 @@ ${pageContext.response.locale}
             </c:if>
           </c:forEach>
 
-          <c:if test="${targetPageNumber + 4 < totalPages}">
-            <div class="pagination-button dots inactive"></div>
-          </c:if>
           <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit}"> <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />">Next<div class="pagination-number-redesign arrow right-arrow"></div></a> </c:if>
         </div>
     </div>
