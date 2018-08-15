@@ -337,7 +337,7 @@
                                     <div class="infotooltip" title="<spring:message code="search.side.date.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.date.tip" />" tabindex="0"></div>
                                 </div>
                                 <div class="sidebar-filter expanded no-collapse" id="dates_container" role="tabpanel" aria-hidden="true"
-                                     aria-labelledby="t_date">
+                                     aria-labelledby="t_date" style="padding-left: 40px">
                                     <div class="row padding-top-10">
                                         <div class="col-auto">
                                             <label for="from_date" class="blue date-range-label"><spring:message
