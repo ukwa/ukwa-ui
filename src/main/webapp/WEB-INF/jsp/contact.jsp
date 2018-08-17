@@ -31,7 +31,7 @@
         </div>
     </div>
     <div class="row header-2-subtitle-redesign padding-top-40">
-        <div class="col-md-6 mr-auto ml-auto col-md-offset-3 padding-side-10 padding-mobile-side-0">
+        <div class="col-md-12 mr-auto ml-auto col-md-offset-2 padding-mobile-side-0" style="padding-right: 15%; padding-left: 5%">
             <spring:message code="contact.text" />
         </div>
     </div>
