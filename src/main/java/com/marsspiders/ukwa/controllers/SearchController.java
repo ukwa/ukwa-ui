@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -153,6 +154,7 @@ public class SearchController {
 
         ModelAndView mav = new ModelAndView("search");
         mav.addObject("totalSearchResultsSize", totalSearchResultsSize);
+        mav.addObject("totalSearchResultsSizeFormatted", NumberFormat.getInstance().format(totalSearchResultsSize));
         mav.addObject("accessTerms", accessTermsPairs);
         mav.addObject("contentTypes", contentTypesPairs);
         mav.addObject("publicSuffixes", publicSuffixesPairs);

@@ -29,10 +29,14 @@ ${req.requestURL}
   <header>
   <%@include file="header.jsp" %>
 </header>
+  <div class="row bg-transparent">
+    <div class="white main-search-input-new" style="padding-bottom:170px;padding-top:40px;padding-left:5%;padding-right:5%;">
+      <div class="main-heading-2-bold-redesign white padding-top-40"><spring:message code="main.menu.nominate" /></div>
+    </div>
+  </div>
 <section id="nominate-header">
-  <div class="row header-white light-blue">
-    <div class="col-md-6 mr-auto ml-auto col-md-offset-3 padding-side-10 padding-mobile-side-0">
-      <h2><spring:message code="nominate.main.heading" /></h2>
+  <div class="row header-2-subtitle-redesign padding-top-40 padding-bottom-20">
+    <div class="col-md-12 mr-auto ml-auto col-md-offset-2 padding-mobile-side-0" style="padding-right: 15%; padding-left: 5%">
       <spring:message code="nominate.text" />
     </div>
   </div>
@@ -106,6 +110,9 @@ ${req.requestURL}
 <script>
 
 $(document).ready(function(e) {
+    var $menuItems = $('.header-menu-item');
+    $menuItems.removeClass('active');
+    $("#headermenu_save").addClass('active');
    	
 	$("#nominate-form").submit(function(e) {
     	var response = grecaptcha.getResponse();

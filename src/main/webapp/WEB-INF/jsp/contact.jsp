@@ -25,17 +25,20 @@
   <header>
   <%@include file="header.jsp" %>
 </header>
-<section id="contact-header">
-  <div class="row header-blue white">
-    <div class="col-md-6 mr-auto ml-auto col-md-offset-3 padding-side-10 padding-mobile-side-0">
-      <h2><spring:message code="contact.main.heading" /></h2>
-      <spring:message code="contact.text" />
+    <div class="row bg-transparent">
+        <div class="white main-search-input-new" style="padding-bottom:170px;padding-top:40px;padding-left:5%;padding-right:5%;">
+            <div class="main-heading-2-bold-redesign white padding-top-40"><spring:message code="main.menu.contact" /></div>
+        </div>
     </div>
-  </div>
-</section>
+    <div class="row header-2-subtitle-redesign padding-top-40">
+        <div class="col-md-12 mr-auto ml-auto col-md-offset-2 padding-mobile-side-0" style="padding-right: 15%; padding-left: 5%">
+            <spring:message code="contact.text" />
+        </div>
+    </div>
+
 <section id="content">
 <c:if test="${sent}">
-<div class="row page-content padding-bottom-20">
+<div class="row page-content">
 <div class="col-sm-12 form-content-col bold red">
 <spring:message code="contact.sent.message"/>
 </div>
@@ -85,6 +88,9 @@
 <script>
 
 $(document).ready(function(e) {
+    var $menuItems = $('.header-menu-item');
+    $menuItems.removeClass('active');
+    $("#headermenu_contact").addClass('active');
    	
 	$("#contact-form").submit(function(e) {
     	var response = grecaptcha.getResponse();

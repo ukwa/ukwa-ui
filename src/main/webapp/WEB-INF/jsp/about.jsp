@@ -26,6 +26,12 @@
   <header>
   <%@include file="header.jsp" %>
 </header>
+  <div class="row bg-transparent">
+    <div class="white main-search-input-new" style="padding-bottom:170px;padding-top:40px;padding-left:5%;padding-right:5%;">
+      <div class="main-heading-2-bold-redesign white padding-top-40"><spring:message code="main.menu.about" /></div>
+    </div>
+  </div>
+
 <figure>
   <div class="header-white about-video-container padding-0">
 <div class="embed-responsive embed-responsive-16by9">
@@ -72,9 +78,17 @@
     </div>
   </div>
 </section>
+
 <footer>
   <%@include file="footer.jsp" %>
 </footer>
 </div>
+<script>
+    $(document).ready(function(e) {
+        var $menuItems = $('.header-menu-item');
+        $menuItems.removeClass('active');
+        $("#headermenu_about").addClass('active');
+    });
+</script>
 </body>
 </html>

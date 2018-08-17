@@ -179,6 +179,7 @@ public class SolrSearchService {
                                                                      String... facetFields) {
         SolrQuery query = new SolrQuery();
         query.setQuery(queryString);
+        query.set("defType", "edismax");
         query.setStart(startFrom);
         query.setRows(rowsLimit);
 
