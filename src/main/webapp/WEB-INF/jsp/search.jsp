@@ -210,7 +210,7 @@
                                             </c:if>
 
                                         </c:forEach>
-                                        <div class="padding-left-20"><a href="javascript:void(0);" id="showMoreDomainLink" title="Show More Domains">Show more</a></div>
+                                        <div><a href="javascript:void(0);" class="padding-left-10 openPlusSign" id="showMoreDomainLink" title="Show More Domains" style="text-decoration:none">Show more...</a></div>
                                     </c:if>
                                 </div>
 
@@ -259,7 +259,7 @@
                                             </c:if>
 
                                         </c:forEach>
-                                        <div class="padding-left-20"><a href="javascript:void(0);" id="showMoreDocumentTypeLink" title="Show More Document Types">Show more</a></div>
+                                        <div><a href="javascript:void(0);" class="padding-left-10 openPlusSign" id="showMoreDocumentTypeLink" title="Show More Document Types" style="text-decoration:none">Show more...</a></div>
                                     </c:if>
                                 </div>
                                 <div id="content_type_filter_div" class="sidebar-filter expanded no-collapse" style="display:none;" role="tabpanel" aria-hidden="true" aria-labelledby="t_doctype">
@@ -303,7 +303,7 @@
                                                 </div>
                                             </c:if>
                                         </c:forEach>
-                                        <div class="padding-left-20"><a href="javascript:void(0);" id="showMoreSuffixLink" title="Show More Suffix">Show more</a></div>
+                                        <div><a href="javascript:void(0);" class="padding-left-10 openPlusSign" id="showMoreSuffixLink" title="Show More Suffix" style="text-decoration:none">Show more...</a></div>
                                     </c:if>
 
                                 </div>
@@ -397,7 +397,7 @@
                                             </c:if>
 
                                         </c:forEach>
-                                        <div class="padding-left-20"><a href="javascript:void(0);" id="showMoreCollectionLink" title="Show More Collections">Show more</a></div>
+                                        <div><a href="javascript:void(0);" class="padding-left-10 openPlusSign" id="showMoreCollectionLink" title="Show More Collections" style="text-decoration:none">Show more...</a></div>
                                     </c:if>
 
                                 </div>
