@@ -54,7 +54,7 @@
 
                             <c:set var = "hasFilters" value = "false"/>
                             <c:if test="${searchPage == 'true'}">
-                                <p class="searchFilter sidebar-clear-filter-2" ><spring:message code="search.filters.access" />&nbsp;
+                                <p class="searchFilter sidebar-clear-filter-2 clearable x onX" ><spring:message code="search.filters.access" />&nbsp;
 
                                     <c:if test="${originalAccessView.contains('va') || empty originalAccessView}">
                                         <spring:message code="search.filters.access.open" />
@@ -69,7 +69,7 @@
                             </c:if>
 
                             <c:if test="${fn:length(originalDomains) > 0}">
-                                <p class="searchFilter sidebar-clear-filter-3"><spring:message code="search.filters.domain" />&nbsp;
+                                <p class="searchFilter sidebar-clear-filter-3 clearable x onX"><spring:message code="search.filters.domain" />&nbsp;
                                     <c:forEach items="${originalDomains}" var="domain">
                                         &quot;<c:out value="${domain}"/>&quot;&nbsp;
                                     </c:forEach>
@@ -78,7 +78,7 @@
                             </c:if>
 
                             <c:if test="${fn:length(originalContentTypes) > 0}">
-                                <p class="searchFilter sidebar-clear-filter-4"><spring:message code="search.filters.doctype" />&nbsp;
+                                <p class="searchFilter sidebar-clear-filter-4 clearable x onX"><spring:message code="search.filters.doctype" />&nbsp;
                                     <c:forEach items="${originalContentTypes}" var="doctype">
                                         &quot;<c:out value="${doctype}"/>&quot;&nbsp;
                                     </c:forEach>
@@ -87,7 +87,7 @@
                             </c:if>
 
                             <c:if test="${fn:length(originalPublicSuffixes) > 0}">
-                                <p class="searchFilter sidebar-clear-filter-5"><spring:message code="search.filters.suffix" />&nbsp;
+                                <p class="searchFilter sidebar-clear-filter-5 clearable x onX"><spring:message code="search.filters.suffix" />&nbsp;
                                     <c:forEach items="${originalPublicSuffixes}" var="suffix">
                                         &quot;<c:out value="${suffix}"/>&quot;&nbsp;
                                     </c:forEach>
@@ -96,7 +96,7 @@
                             </c:if>
 
                             <c:if test="${fn:length(originalFromDateText) > 0 || fn:length(originalToDateText) > 0}">
-                                <p class="searchFilter sidebar-clear-filter-6"><spring:message code="search.filters.date" />&nbsp;
+                                <p class="searchFilter sidebar-clear-filter-6 clearable x onX"><spring:message code="search.filters.date" />&nbsp;
 
                                     <c:choose>
                                         <c:when test="${fn:length(originalFromDateText) > 0}">
@@ -123,7 +123,7 @@
                             </c:if>
 
                             <c:if test="${fn:length(originalCollections) > 0}">
-                                <p class="searchFilter sidebar-clear-filter-7"><spring:message code="search.filters.collection" />&nbsp;
+                                <p class="searchFilter sidebar-clear-filter-7 clearable x onX"><spring:message code="search.filters.collection" />&nbsp;
                                     <c:forEach items="${originalCollections}" var="collection">
                                         &quot;<c:out value="${collection}"/>&quot;&nbsp;
                                     </c:forEach>
@@ -599,6 +599,9 @@
 </div>
 <script>
 
+
+
+
     function showDateReset() {
         if ($(".archived-date").length>0) {
             if ($("#from_date").val().trim()!=="" || $("#to_date").val().trim()!=="") {
@@ -624,7 +627,24 @@
 
     }
 
+    // Removal of Filter Criteria
+    function tog(v){return v?'addClass':'removeClass';}
+
     $(document).ready(function(e) {
+
+        // Removal of Filter Criteria
+        $(document).on('p', '.clearable', function(){
+            //$(this)[tog(this.value)]('x');
+        }).on('mousemove', '.x', function( e ){
+            $(this)[tog(this.offsetWidth-18 < e.clientX-this.getBoundingClientRect().left)]('onX');
+        }).on('touchstart click', '.onX', function( ev ){
+            alert('Sorry, this feature is still in progress.');
+            ev.preventDefault();
+            //-----------------------------------
+            // filter id submit form
+            //-----------------------------------
+            //$(this).removeClass('x onX').val('').change();
+        });
 
         $("#from_date, #to_date").datepicker({
             dateFormat: "yy-mm-dd",
