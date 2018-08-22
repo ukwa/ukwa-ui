@@ -28,14 +28,15 @@ ${pageContext.response.locale}
   <header>
   <%@include file="header.jsp" %>
 </header>
-<section id="content">
-  <div class="row header-blue white">
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 padding-mobile-side-0">
-      <h2 class="uppercase"><spring:message code="cookies.main.heading" /></h2>
+  <div class="row bg-transparent">
+    <div class="white main-search-input-new" style="padding-bottom:170px;padding-top:40px;padding-left:5%;padding-right:5%;">
+      <div class="main-heading-2-bold-redesign white padding-top-40"><spring:message code="cookies.main.heading" /></div>
     </div>
   </div>
-  <div class="row margin-0 padding-side-20 padding-top-80 padding-bottom-80 padding-mobile-side-5">
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 text-content">
+<section id="content">
+
+  <div class="row margin-0 padding-side-20 padding-top-40 padding-bottom-40 padding-mobile-side-5">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 text-content">
 <spring:message code="cookies.text" />
     </div>
   </div>
