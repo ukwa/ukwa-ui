@@ -44,14 +44,14 @@ public class ArchiveController {
 
         //If you are sending the user to the Open Access Wayback Service, the -cy needs to be added when browsing in Welsh.
         //If you are sending the user to a Reading Room Wayback Service, the -cy should not be added as those services do not support that feature.
-        if (!accessFlag.equals("PRO")){ //is not PRO, i.e. is OA and etc.
+        if (!accessFlag.equals("OA")){ //is not PRO, i.e. is OA and etc.
             String localeStr = LocaleContextHolder.getLocale().toString();
             log.info("Locale = " + localeStr);
             //TODO: wayback had to be available in all languages UKWA-UI has offered. English and Welsh only at the moment!
             //(!locale.toString().equals("en_GB")){ // for all except default en_GB
             if (localeStr.equals("cy")){
                 String insert_locale = "-"+ localeStr;
-                waybackUrl = new StringBuffer(waybackUrl).insert(waybackUrl.length()-1, insert_locale).toString(); //StringBuffer - used because of synchronization
+                waybackUrl = new StringBuilder(waybackUrl).insert(waybackUrl.length()-1, insert_locale).toString();
             }
         }
         String redirectUrl = waybackUrl + timestamp + "/" + prettySiteUrl;
