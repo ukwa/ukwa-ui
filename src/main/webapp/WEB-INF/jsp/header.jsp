@@ -23,26 +23,27 @@
 <!-- Language menu -->
 <div class="row  navbar-collapse justify-content-end">
 <div class="col-lg-3 col-md-12 padding-right-20 right">
+        <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
         <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
         <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy' || textUri == '/gd'
                                         ? '/'
                                         : fn:replace(fn:replace(fn:replace(textUri, '/en/', '/'), '/gd/', '/'), '/cy/', '/')}"/>
 
         <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}">
-            <div class="header-menu-language-item margin-0"><a href="/cy<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.welsh.title" />">
+            <div class="header-menu-language-item margin-0"><a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="main.menu.welsh.title" />">
                 <span lang="cy"><spring:message code="main.menu.welsh" /></span>
             </a></div>
         </c:if>
 
         <c:if test="${!fn:startsWith(textUri, '/gd/') && textUri != '/gd'}">
-            <div class="header-menu-language-item"><a href="/gd<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.scottish.title" />">
+            <div class="header-menu-language-item"><a href="/gd<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="main.menu.scottish.title" />">
                 <span lang="gd"><spring:message code="main.menu.scottish" /></span>
             </a></div>
         </c:if>
 
         <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
-      && (fn:contains(textUri, '/gd/') || textUri =='/gd' || fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
-            <div class="header-menu-language-item"><a href="/en<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.english.title" />">
+          && (fn:contains(textUri, '/gd/') || textUri =='/gd' || fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
+            <div class="header-menu-language-item"><a href="/en<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="main.menu.english.title" />">
                 <span lang="en"><spring:message code="main.menu.english" /></span>
             </a></div>
         </c:if>
