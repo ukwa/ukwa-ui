@@ -13,12 +13,10 @@
         </div>
     </div>
 </div>
-
 <!-- Top Line -->
 <div>
     <hr style="width: 100%; color: darkblue; height: 2px; background-color:royalblue; margin-bottom:1px !important;margin-top:1px !important;" />
 </div>
-
 <div class="relative shadow-redesign" style="z-index: 1001">
 <!-- Language menu -->
 <div class="row  navbar-collapse justify-content-end">
@@ -28,19 +26,16 @@
         <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy' || textUri == '/gd'
                                         ? '/'
                                         : fn:replace(fn:replace(fn:replace(textUri, '/en/', '/'), '/gd/', '/'), '/cy/', '/')}"/>
-
         <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}">
             <div class="header-menu-language-item margin-0"><a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="main.menu.welsh.title" />">
                 <span lang="cy"><spring:message code="main.menu.welsh" /></span>
             </a></div>
         </c:if>
-
         <c:if test="${!fn:startsWith(textUri, '/gd/') && textUri != '/gd'}">
             <div class="header-menu-language-item"><a href="/gd<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="main.menu.scottish.title" />">
                 <span lang="gd"><spring:message code="main.menu.scottish" /></span>
             </a></div>
         </c:if>
-
         <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
           && (fn:contains(textUri, '/gd/') || textUri =='/gd' || fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
             <div class="header-menu-language-item"><a href="/en<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="main.menu.english.title" />">
@@ -49,8 +44,6 @@
         </c:if>
 </div>
 </div>
-
-
 <div id="header-menu" class="row center padding-left-60 padding-bottom-20 align-items-end">
     <div class="col-sm-auto col-md-auto col-sm-auto">
         <a href="index"><img src="img/ukwa-logo-60px.jpg" class="header-logo"></a>
@@ -73,5 +66,4 @@
     <spring:message code="main.menu.contact" />
     </a></div>
   </div>
-
 </div>

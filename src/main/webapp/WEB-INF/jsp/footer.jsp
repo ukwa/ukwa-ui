@@ -47,8 +47,6 @@
       <a href="contact" title="<spring:message code="footer.contact.title" />" class="collection-link">
           <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.contact" /></div>
       </a><br/>
-
-
     <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
     <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
     <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy' || textUri == '/gd'
@@ -65,7 +63,6 @@
     <c:if test="${!fn:startsWith(textUri, '/gd/') && textUri != '/gd'}"> <span lang="gn"><a href="/gd<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.scottish.title" />" class="collection-link">
       <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.scottish" /></div></a></span><br/>
     </c:if>
-
       <a href="https://www.webarchive.org.uk/rss/recent.xml" title="<spring:message code="footer.rss.title" />" class="collection-link">
           <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.rss" /></div>
       </a><br/>
