@@ -66,8 +66,8 @@ ${pageContext.response.locale}
                           </div>
                       </div>
                   </div>
-                  <div class="modal-footer inline-block-items">
-                      <button type="button" class="btn btn-primary" style="margin-left: auto;margin-right: auto" data-dismiss="modal">Close</button>
+                  <div class="modal-footer inline-block-items justify-content-center" style="width: 100%;">
+                      <button type="button" class="btn btn-primary" style="width: 20%;" data-dismiss="modal">Close</button>
                   </div>
               </div>
           </div>
