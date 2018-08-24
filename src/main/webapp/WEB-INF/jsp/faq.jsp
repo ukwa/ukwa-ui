@@ -28,50 +28,52 @@ ${pageContext.response.locale}
   <header>
   <%@include file="header.jsp" %>
 </header>
-<section id="content">
-  <div class="row header-blue white">
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 padding-mobile-side-0">
-      <h2 class="uppercase"><spring:message code="faq.main.heading" /></h2>
-      <p class="text-medium"><spring:message code="faq.subtitle" /></p>
+    <div class="row bg-transparent">
+        <div class="white main-search-input-new" style="padding-bottom:170px;padding-top:40px;padding-left:5%;padding-right:5%;">
+            <div class="main-heading-2-bold-redesign white padding-top-40"><spring:message code="faq.main.heading" /></div>
+        </div>
     </div>
-  </div>
-  <div class="row margin-0 padding-side-20 padding-top-80 padding-bottom-80 text-content padding-mobile-side-5">
-    
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q1" /></div>
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a1" /></div>
 
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q2" /></div>
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a2" /></div>
+    <section id="content">
+  <div class="row margin-0 padding-top-20 padding-bottom-80 text-content padding-mobile-side-5">
+
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid main-subheading-2-redesign black padding-bottom-60"><spring:message code="faq.subtitle" /></div>
+
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q1" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a1" /></div>
+
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q2" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a2" /></div>
     
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q3" /></div>
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a3" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q3" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a3" /></div>
            
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q4" /></div>
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a4" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q4" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a4" /></div>
     
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q5" /></div>
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a5" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q5" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a5" /></div>
   
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q6" /></div>
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a6" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q6" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a6" /></div>
 
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q7" /></div>
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a7" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q7" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a7" /></div>
 
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q8" /></div>
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a8" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q8" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a8" /></div>
  
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q9" /></div>
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a9" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q9" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a9" /></div>
             
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q10" /></div>
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a10" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q10" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a10" /></div>
 
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q11" /></div>
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a11" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q11" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a11" /></div>
     
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q12" /></div>
-    <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a12" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-grid"><spring:message code="faq.q12" /></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 q-description"><spring:message code="faq.a12" /></div>
     
   </div>
 </section>
