@@ -80,6 +80,11 @@ public class SearchController {
                                    @RequestParam(value = "view_sort", required = false) String sortValue,
                                    @RequestParam(value = "view_count", required = false) String viewCount,
                                    @RequestParam(value = "view_filter", required = false) String accessViewFilter,
+                                   //Modal Dialog - hidden modal_domains_vals FOR MAIN FILTER FORM
+                                   @RequestParam(value = "modal_filter_domains_vals", required = false) String[] checked_domains_FromModal,
+                                   @RequestParam(value = "modal_filter_suffix_vals", required = false) String[] checked_suffix_FromModal,
+                                   @RequestParam(value = "modal_filter_documenttypes_vals", required = false) String[] checked_contenttypes_FromModal,
+                                   @RequestParam(value = "modal_filter_collections_vals", required = false) String[] checked_collections_FromModal,
                                    HttpServletRequest request) throws MalformedURLException, URISyntaxException, ParseException {
 
         List<SearchResultDTO> searchResultDTOs = new ArrayList<>();
@@ -89,11 +94,11 @@ public class SearchController {
         List<String> domainsPairs = new LinkedList<>();
         List<String> collectionPairs = new LinkedList<>();
 
-        List<String> originalContentTypes = checkedContentTypes != null ? asList(checkedContentTypes) : emptyList();
-        List<String> originalPublicSuffixes = checkedPublicSuffixes != null ? asList(checkedPublicSuffixes) : emptyList();
-        List<String> originalDomains = checkedDomains != null ? asList(checkedDomains) : emptyList();
+        List<String> originalDomains = ((checked_domains_FromModal != null && checked_domains_FromModal.length!=0) ? asList(checked_domains_FromModal) : (checkedDomains != null ? asList(checkedDomains) : emptyList()));
+        List<String> originalContentTypes = (checked_contenttypes_FromModal != null && checked_contenttypes_FromModal.length!=0) ? asList(checked_contenttypes_FromModal) : checkedContentTypes != null ? asList(checkedContentTypes) : emptyList();
+        List<String> originalPublicSuffixes = (checked_suffix_FromModal != null && checked_suffix_FromModal.length!=0) ? asList(checked_suffix_FromModal) : checkedPublicSuffixes != null ? asList(checkedPublicSuffixes) : emptyList();
         List<String> originalRangeDates = checkedRangeDates != null ? asList(checkedRangeDates) : emptyList();
-        List<String> originalCollections = checkedCollections != null ? asList(checkedCollections) : emptyList();
+        List<String> originalCollections = (checked_collections_FromModal != null && checked_collections_FromModal.length!=0) ? asList(checked_collections_FromModal) : checkedCollections != null ? asList(checkedCollections) : emptyList();
 
         int rowsPerPage = isNumeric(viewCount) ? Integer.valueOf(viewCount) : ROWS_PER_PAGE_DEFAULT;
         int targetPageNumber = isNumeric(pageNum) ? Integer.valueOf(pageNum) : 1;
@@ -151,6 +156,10 @@ public class SearchController {
 
         String originalAccessView = accessTo == null ? "" : accessTo.getWebRequestAccessRestriction();
         String originalSortValue = sortBy == null ? "" : sortBy.getWebRequestOrderValue();
+
+        log.debug("originalAccessView = " + originalAccessView);
+        log.debug("originalSortValue = " + originalSortValue);
+
 
         ModelAndView mav = new ModelAndView("search");
         mav.addObject("totalSearchResultsSize", totalSearchResultsSize);
