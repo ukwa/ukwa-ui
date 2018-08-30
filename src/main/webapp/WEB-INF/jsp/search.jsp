@@ -830,19 +830,6 @@
         $(".sidebar-filter-input-checkbox, .access_filter").click(function(e) { $("#filter_form").submit(); });
 
 
-        //$("input[type='checkbox'].sidebar-filter-input-checkbox-modal-domains").click(function(e) {
-
-            //4 filter data arrays
-            // 1. Domains
-            // 2. PublicSuffixes
-            // 3. ContentTypes
-            // 4. Collections
-
-        //    var checkedVals = $('.sidebar-filter-input-checkbox-modal-domains:checkbox:checked').map(function() {
-        //        return this.value;
-        //    }).get();
-
-        //});
         $.fn.getDataFromModalFilter = function () {
             var checkedModalDomains  = $('.sidebar-filter-input-checkbox-modal-domains:checkbox:checked').map(function() {
                 return this.value;
