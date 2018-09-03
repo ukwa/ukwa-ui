@@ -26,10 +26,7 @@ import java.net.URISyntaxException;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static com.marsspiders.ukwa.controllers.CollectionController.ROWS_PER_PAGE_DEFAULT;
 import static com.marsspiders.ukwa.controllers.HomeController.PROJECT_NAME;
@@ -87,6 +84,9 @@ public class SearchController {
                                    @RequestParam(value = "modal_filter_collections_vals", required = false) String[] checked_collections_FromModal,
                                    HttpServletRequest request) throws MalformedURLException, URISyntaxException, ParseException {
 
+        String remove_from_filter = request.getParameter("filter_array_x");
+        String remove_from_filter_item = request.getParameter("filter_array_x_item");
+
         List<SearchResultDTO> searchResultDTOs = new ArrayList<>();
         List<String> accessTermsPairs = new LinkedList<>();
         List<String> contentTypesPairs = new LinkedList<>();
@@ -94,11 +94,30 @@ public class SearchController {
         List<String> domainsPairs = new LinkedList<>();
         List<String> collectionPairs = new LinkedList<>();
 
-        List<String> originalDomains = ((checked_domains_FromModal != null && checked_domains_FromModal.length!=0) ? asList(checked_domains_FromModal) : (checkedDomains != null ? asList(checkedDomains) : emptyList()));
-        List<String> originalContentTypes = (checked_contenttypes_FromModal != null && checked_contenttypes_FromModal.length!=0) ? asList(checked_contenttypes_FromModal) : checkedContentTypes != null ? asList(checkedContentTypes) : emptyList();
-        List<String> originalPublicSuffixes = (checked_suffix_FromModal != null && checked_suffix_FromModal.length!=0) ? asList(checked_suffix_FromModal) : checkedPublicSuffixes != null ? asList(checkedPublicSuffixes) : emptyList();
+        //List<String> list = new LinkedList<String>(Arrays.asList(checked_domains_FromModal));
+        List<String> originalDomains = ((checked_domains_FromModal != null && checked_domains_FromModal.length!=0) ? (new LinkedList<>(Arrays.asList(checked_domains_FromModal))) : (checkedDomains != null ? (new LinkedList<>(Arrays.asList(checkedDomains))) : emptyList()));
+        List<String> originalContentTypes = (checked_contenttypes_FromModal != null && checked_contenttypes_FromModal.length!=0) ? (new LinkedList<>(Arrays.asList(checked_contenttypes_FromModal))) : checkedContentTypes != null ? (new LinkedList<>(Arrays.asList(checkedContentTypes))) : emptyList();
+        List<String> originalPublicSuffixes = (checked_suffix_FromModal != null && checked_suffix_FromModal.length!=0) ? (new LinkedList<>(Arrays.asList(checked_suffix_FromModal))) : checkedPublicSuffixes != null ? (new LinkedList<>(Arrays.asList(checkedPublicSuffixes))) : emptyList();
         List<String> originalRangeDates = checkedRangeDates != null ? asList(checkedRangeDates) : emptyList();
-        List<String> originalCollections = (checked_collections_FromModal != null && checked_collections_FromModal.length!=0) ? asList(checked_collections_FromModal) : checkedCollections != null ? asList(checkedCollections) : emptyList();
+        List<String> originalCollections = (checked_collections_FromModal != null && checked_collections_FromModal.length!=0) ? (new LinkedList<>(Arrays.asList(checked_collections_FromModal))) : checkedCollections != null ? (new LinkedList<>(Arrays.asList(checkedCollections))) : emptyList();
+
+        if(remove_from_filter != null)
+        {
+            switch(remove_from_filter) {
+                case "domains":
+                    originalDomains.removeIf(x -> originalDomains.contains(remove_from_filter_item));
+                    break;
+                case "documenttype":
+                    originalContentTypes.removeIf(x -> originalContentTypes.contains(remove_from_filter_item));
+                    break;
+                case "suffix":
+                    originalPublicSuffixes.removeIf(x -> originalPublicSuffixes.contains(remove_from_filter_item));
+                    break;
+                case "collections":
+                    originalCollections.removeIf(x -> originalCollections.contains(remove_from_filter_item));
+                    break;
+            }
+        }
 
         int rowsPerPage = isNumeric(viewCount) ? Integer.valueOf(viewCount) : ROWS_PER_PAGE_DEFAULT;
         int targetPageNumber = isNumeric(pageNum) ? Integer.valueOf(pageNum) : 1;
@@ -159,7 +178,6 @@ public class SearchController {
 
         log.debug("originalAccessView = " + originalAccessView);
         log.debug("originalSortValue = " + originalSortValue);
-
 
         ModelAndView mav = new ModelAndView("search");
         mav.addObject("totalSearchResultsSize", totalSearchResultsSize);

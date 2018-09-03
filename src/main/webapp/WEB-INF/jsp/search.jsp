@@ -218,7 +218,8 @@
                             </c:if>
 
                             <c:if test="${fn:length(originalDomains) > 0}">
-                                <p class="searchFilter sidebar-clear-filter-3 clearable x onX"><spring:message code="search.filters.domain" />&nbsp;
+                                <p class="searchFilter sidebar-clear-filter-3 clearable"><spring:message code="search.filters.domain" />&nbsp;</p>
+                                <p class="searchFilter sidebar-clear-filter-3 clearable x onX">
                                     <c:forEach items="${originalDomains}" var="domain">
                                         &quot;<c:out value="${domain}"/>&quot;&nbsp;
                                     </c:forEach>
@@ -227,7 +228,8 @@
                             </c:if>
 
                             <c:if test="${fn:length(originalContentTypes) > 0}">
-                                <p class="searchFilter sidebar-clear-filter-4 clearable x onX"><spring:message code="search.filters.doctype" />&nbsp;
+                                <p class="searchFilter sidebar-clear-filter-4 clearable"><spring:message code="search.filters.doctype" />&nbsp;</p>
+                                <p class="searchFilter sidebar-clear-filter-4 clearable x onX">
                                     <c:forEach items="${originalContentTypes}" var="doctype">
                                         &quot;<c:out value="${doctype}"/>&quot;&nbsp;
                                     </c:forEach>
@@ -236,11 +238,12 @@
                             </c:if>
 
                             <c:if test="${fn:length(originalPublicSuffixes) > 0}">
-                                <p class="searchFilter sidebar-clear-filter-5 clearable x onX"><spring:message code="search.filters.suffix" />&nbsp;
+                                <p class="searchFilter sidebar-clear-filter-5 clearable"><spring:message code="search.filters.suffix" />&nbsp;</p>
                                     <c:forEach items="${originalPublicSuffixes}" var="suffix">
-                                        &quot;<c:out value="${suffix}"/>&quot;&nbsp;
+                                        <p class="searchFilter sidebar-clear-filter-5 clearable x onX">
+                                        &quot;<c:out value="${suffix}"/>&quot;
+                                        </p>
                                     </c:forEach>
-                                </p>
                                 <c:set var = "hasFilters" value = "true"/>
                             </c:if>
 
@@ -272,9 +275,10 @@
                             </c:if>
 
                             <c:if test="${fn:length(originalCollections) > 0}">
-                                <p class="searchFilter sidebar-clear-filter-7 clearable x onX"><spring:message code="search.filters.collection" />&nbsp;
+                                <p class="searchFilter sidebar-clear-filter-7 clearable"><spring:message code="search.filters.collection" />&nbsp;</p>
+                                <p class="searchFilter sidebar-clear-filter-7 clearable x onX">
                                     <c:forEach items="${originalCollections}" var="collection">
-                                        &quot;<c:out value="${collection}"/>&quot;&nbsp;
+                                        &quot;<c:out value="${collection}"/>&quot;
                                     </c:forEach>
                                 </p>
                                 <c:set var = "hasFilters" value = "true"/>
@@ -494,14 +498,18 @@
 
                                 <hr class="search-sidebar-hr"/>
 
-                                    <input type="hidden" name="modal_filter_domains_vals" id="input_hidden_field_checked_modal_domains_array" value="">
-                                    <input type="hidden" name="modal_filter_suffix_vals" id="input_hidden_field_checked_modal_suffix_array">
-                                    <input type="hidden" name="modal_filter_documenttypes_vals" id="input_hidden_field_checked_modal_documenttypes_array">
-                                    <input type="hidden" name="modal_filter_collections_vals" id="input_hidden_field_checked_modal_collections_array">
-                                <input type="hidden" name="search_location" id="search_location" value="${originalSearchLocation}">
-                                <input type="hidden" name="text" id="text_hidden" value="${originalSearchRequest}">
-                                <input type="hidden" name="view_sort" id="view_sort" value="${empty originalSortValue ? 'nto' : originalSortValue}">
-                                <input type="hidden" name="view_count" id="view_count" value="${empty rowsPerPageLimit ? '50' : rowsPerPageLimit}">
+                                    <input type="hidden" name="modal_filter_domains_vals" id="input_hidden_field_checked_modal_domains_array" />
+                                    <input type="hidden" name="modal_filter_suffix_vals" id="input_hidden_field_checked_modal_suffix_array" />
+                                    <input type="hidden" name="modal_filter_documenttypes_vals" id="input_hidden_field_checked_modal_documenttypes_array" />
+                                    <input type="hidden" name="modal_filter_collections_vals" id="input_hidden_field_checked_modal_collections_array" />
+
+                                    <input type="hidden" name="filter_array_x" id="filter_array_x"  value="" />
+                                    <input type="hidden" name="filter_array_x_item" id="filter_array_x_item"  value="" />
+
+                                <input type="hidden" name="search_location" id="search_location" value="${originalSearchLocation}" />
+                                <input type="hidden" name="text" id="text_hidden" value="${originalSearchRequest}" />
+                                <input type="hidden" name="view_sort" id="view_sort" value="${empty originalSortValue ? 'nto' : originalSortValue}" />
+                                <input type="hidden" name="view_count" id="view_count" value="${empty rowsPerPageLimit ? '50' : rowsPerPageLimit}" />
                             </div>
 
                             <div class="border-top-white">&nbsp;</div>
@@ -699,24 +707,44 @@
 
     }
 
+
+    $(document).on('p', '.clearable', function(){
+        //$(this)[tog(this.value)]('x');
+    }).on('mousemove', '.x', function( e ){
+        $(this)[tog(this.offsetWidth-18 < e.clientX-this.getBoundingClientRect().left)]('onX');
+    }).on('touchstart click', '.onX', function( ev ){
+
+        ev.preventDefault();
+
+        var filter_value_removal = $.trim($(this).text()).replace(/"/g, "");
+        if($(this).hasClass('sidebar-clear-filter-3')) { //domains
+            $('input[name=filter_array_x]').val("domains");
+        }else if($(this).hasClass('sidebar-clear-filter-4')) { //documenttypes
+            $('input[name=filter_array_x]').val("documenttype");
+        }else if ($(this).hasClass('sidebar-clear-filter-5')) { //suffixes
+            $('input[name=filter_array_x]').val("suffix");
+        } else if ($(this).hasClass('sidebar-clear-filter-7')) { //collections
+            $('input[name=filter_array_x]').val("collections");
+        }
+
+        //$('#filter_array_x_item').val(filter_value_removal);//"co.uk");
+        $('input[name=filter_array_x_item]').val(filter_value_removal);
+
+        //-----------------------------------
+        // filter id submit form
+        //-----------------------------------
+        $("#filter_form").submit();
+    });
+
+
+
     // Removal of Filter Criteria
     function tog(v){return v?'addClass':'removeClass';}
 
+
+
     $(document).ready(function(e) {
 
-        // Removal of Filter Criteria
-        $(document).on('p', '.clearable', function(){
-            //$(this)[tog(this.value)]('x');
-        }).on('mousemove', '.x', function( e ){
-            $(this)[tog(this.offsetWidth-18 < e.clientX-this.getBoundingClientRect().left)]('onX');
-        }).on('touchstart click', '.onX', function( ev ){
-            alert('Sorry, this feature is still in progress.');
-            ev.preventDefault();
-            //-----------------------------------
-            // filter id submit form
-            //-----------------------------------
-            //$(this).removeClass('x onX').val('').change();
-        });
 
 
         $("#SearchFilterDialog").on('shown.bs.modal', function(e) {
@@ -727,7 +755,7 @@
         $('#SearchFilterDialog').on('hidden.bs.modal', function (e) {
             //alert("hide modal");
 
-
+            //showPleaseWait();
             //var value = $('#myPopupInput').val();
             //$('#myMainPageInput').val(value);
         });
@@ -854,19 +882,12 @@
 
         $("#apply-modal-filter").click(function () {
 
+            $('#SearchFilterDialog').modal('hide');
+            showPleaseWait();
 
             $.fn.getDataFromModalFilter();
             // submit old form
             $("#filter_form").submit();
-        });
-
-        //form validation
-        $("#filter_form_modal").submit(function(e) {
-
-            showPleaseWait();
-
-            var isValid = true;
-            return true;
         });
 
             //submit on resort
@@ -885,6 +906,9 @@
 
         //form validation
         $("#filter_form").submit(function(e) {
+            //var hv1 = $('#remove_from_filter_array_x').val();
+            //var hv2 = $('#remove_from_filter_array_x_item').val();
+            //alert("Hidden values from filter form : " + hv1 + ' and ' + hv2);
 
             showPleaseWait();
 
@@ -906,6 +930,10 @@
             }
 
         });
+
+        //$("p").hasClass("sidebar-clear-filter-5"){
+
+        //};
 
         //checks should filters be retained and submits
         $("#search_form").submit(function(e) {
@@ -939,8 +967,13 @@
             showDateReset();
         });
 
+
+
+
         showDateReset();
         checkboxSize(); //expand checkbox size to fit label content
+
+
 
 
     });
