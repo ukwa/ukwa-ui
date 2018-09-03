@@ -198,7 +198,7 @@
 
             <div class="col-lg-3 col-md-4 col-sm-12  padding-0 side-bar-right">
                 <aside id="sidebar">
-                    <div class="row padding-top-10">
+                    <div class="row padding-top-10 token-filter-container">
                         <div class="col-md-12 col-sm-12 sidebar-clear-filter-layout" style="padding-left: 50px; padding-right: 50px">
 
                             <c:set var = "hasFilters" value = "false"/>
@@ -219,21 +219,21 @@
 
                             <c:if test="${fn:length(originalDomains) > 0}">
                                 <p class="searchFilter sidebar-clear-filter-3 clearable"><spring:message code="search.filters.domain" />&nbsp;</p>
-                                <p class="searchFilter sidebar-clear-filter-3 clearable x onX">
                                     <c:forEach items="${originalDomains}" var="domain">
+                                        <p class="searchFilter sidebar-clear-filter-3 clearable x onX">
                                         &quot;<c:out value="${domain}"/>&quot;&nbsp;
+                                        </p>
                                     </c:forEach>
-                                </p>
                                 <c:set var = "hasFilters" value = "true"/>
                             </c:if>
 
                             <c:if test="${fn:length(originalContentTypes) > 0}">
                                 <p class="searchFilter sidebar-clear-filter-4 clearable"><spring:message code="search.filters.doctype" />&nbsp;</p>
-                                <p class="searchFilter sidebar-clear-filter-4 clearable x onX">
                                     <c:forEach items="${originalContentTypes}" var="doctype">
+                                        <p class="searchFilter sidebar-clear-filter-4 clearable x onX">
                                         &quot;<c:out value="${doctype}"/>&quot;&nbsp;
+                                        </p>
                                     </c:forEach>
-                                </p>
                                 <c:set var = "hasFilters" value = "true"/>
                             </c:if>
 
@@ -276,11 +276,11 @@
 
                             <c:if test="${fn:length(originalCollections) > 0}">
                                 <p class="searchFilter sidebar-clear-filter-7 clearable"><spring:message code="search.filters.collection" />&nbsp;</p>
-                                <p class="searchFilter sidebar-clear-filter-7 clearable x onX">
                                     <c:forEach items="${originalCollections}" var="collection">
+                                        <p class="searchFilter sidebar-clear-filter-7 clearable x onX">
                                         &quot;<c:out value="${collection}"/>&quot;
+                                        </p>
                                     </c:forEach>
-                                </p>
                                 <c:set var = "hasFilters" value = "true"/>
                             </c:if>
 
