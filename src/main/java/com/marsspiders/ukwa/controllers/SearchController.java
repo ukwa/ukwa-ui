@@ -105,16 +105,16 @@ public class SearchController {
         {
             switch(remove_from_filter) {
                 case "domains":
-                    originalDomains.removeIf(x -> originalDomains.contains(remove_from_filter_item));
+                    originalDomains.removeIf(x -> x.equals(remove_from_filter_item));//originalDomains.contains(remove_from_filter_item));
                     break;
                 case "documenttype":
-                    originalContentTypes.removeIf(x -> originalContentTypes.contains(remove_from_filter_item));
+                    originalContentTypes.removeIf(x -> x.equals(remove_from_filter_item));//originalContentTypes.contains(remove_from_filter_item));
                     break;
                 case "suffix":
-                    originalPublicSuffixes.removeIf(x -> originalPublicSuffixes.contains(remove_from_filter_item));
+                    originalPublicSuffixes.removeIf(x -> x.equals(remove_from_filter_item));//originalPublicSuffixes.contains(remove_from_filter_item));
                     break;
                 case "collections":
-                    originalCollections.removeIf(x -> originalCollections.contains(remove_from_filter_item));
+                    originalCollections.removeIf(x -> x.equals(remove_from_filter_item));//originalCollections.contains(remove_from_filter_item));
                     break;
             }
         }
