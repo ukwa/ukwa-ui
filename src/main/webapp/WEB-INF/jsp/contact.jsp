@@ -48,7 +48,7 @@
   <form action="contact" method="post" enctype="multipart/form-data" name="contact" id="contact-form">
     <div class="row page-content">
       <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
-        <h3 class="light-blue bold"><spring:message code="contact.form.heading" /></h3>
+        <h3 class="light-blue bold"><spring:message code="contact.form.heading" />(Testing)</h3>
         <spring:message code="contact.form.notice" />
       </div>
             <div class="col-md-6 col-sm-12 form-content-col">
