@@ -198,12 +198,12 @@
 
             <div class="col-lg-3 col-md-4 col-sm-12  padding-0 side-bar-right">
                 <aside id="sidebar">
-                    <div class="row padding-top-10 token-filter-container">
-                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-layout" style="padding-left: 50px; padding-right: 50px">
+                    <div class="row padding-top-10 sidebar-clear-filter-container-group">
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-2">
 
                             <c:set var = "hasFilters" value = "false"/>
                             <c:if test="${searchPage == 'true'}">
-                                <p class="searchFilter sidebar-clear-filter-2 clearable x onX" ><spring:message code="search.filters.access" />&nbsp;
+                                <p class="searchFilter sidebar-clear-filter clearable x onX" ><spring:message code="search.filters.access" />&nbsp;
 
                                     <c:if test="${originalAccessView.contains('va') || empty originalAccessView}">
                                         <spring:message code="search.filters.access.open" />
@@ -217,38 +217,51 @@
                                 <c:set var = "hasFilters" value = "true"/>
                             </c:if>
 
+                        </div>
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-3">
+
                             <c:if test="${fn:length(originalDomains) > 0}">
-                                <p class="searchFilter sidebar-clear-filter-3 clearable"><spring:message code="search.filters.domain" />&nbsp;</p>
+                                <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.domain" />&nbsp;</p>
                                     <c:forEach items="${originalDomains}" var="domain">
-                                        <p class="searchFilter sidebar-clear-filter-3 clearable x onX">
+                                        <p class="searchFilter sidebar-clear-filter clearable x onX">
                                         &quot;<c:out value="${domain}"/>&quot;&nbsp;
                                         </p>
                                     </c:forEach>
                                 <c:set var = "hasFilters" value = "true"/>
                             </c:if>
 
+                        </div>
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-4">
+
                             <c:if test="${fn:length(originalContentTypes) > 0}">
-                                <p class="searchFilter sidebar-clear-filter-4 clearable"><spring:message code="search.filters.doctype" />&nbsp;</p>
+                                <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.doctype" />&nbsp;</p>
                                     <c:forEach items="${originalContentTypes}" var="doctype">
-                                        <p class="searchFilter sidebar-clear-filter-4 clearable x onX">
+                                        <p class="searchFilter sidebar-clear-filter clearable x onX">
                                         &quot;<c:out value="${doctype}"/>&quot;&nbsp;
                                         </p>
                                     </c:forEach>
                                 <c:set var = "hasFilters" value = "true"/>
                             </c:if>
 
-                            <c:if test="${fn:length(originalPublicSuffixes) > 0}">
-                                <p class="searchFilter sidebar-clear-filter-5 clearable"><spring:message code="search.filters.suffix" />&nbsp;</p>
+                        </div>
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-5">
+
+
+                        <c:if test="${fn:length(originalPublicSuffixes) > 0}">
+                                <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.suffix" />&nbsp;</p>
                                     <c:forEach items="${originalPublicSuffixes}" var="suffix">
-                                        <p class="searchFilter sidebar-clear-filter-5 clearable x onX">
+                                        <p class="searchFilter sidebar-clear-filter clearable x onX">
                                         &quot;<c:out value="${suffix}"/>&quot;
                                         </p>
                                     </c:forEach>
                                 <c:set var = "hasFilters" value = "true"/>
                             </c:if>
 
-                            <c:if test="${fn:length(originalFromDateText) > 0 || fn:length(originalToDateText) > 0}">
-                                <p class="searchFilter sidebar-clear-filter-6 clearable x onX"><spring:message code="search.filters.date" />&nbsp;
+                        </div>
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-6">
+
+                        <c:if test="${fn:length(originalFromDateText) > 0 || fn:length(originalToDateText) > 0}">
+                                <p class="searchFilter sidebar-clear-filter clearable x onX"><spring:message code="search.filters.date" />&nbsp;
 
                                     <c:choose>
                                         <c:when test="${fn:length(originalFromDateText) > 0}">
@@ -274,15 +287,20 @@
                                 <c:set var = "hasFilters" value = "true"/>
                             </c:if>
 
+                        </div>
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-7">
+
                             <c:if test="${fn:length(originalCollections) > 0}">
-                                <p class="searchFilter sidebar-clear-filter-7 clearable"><spring:message code="search.filters.collection" />&nbsp;</p>
+                                <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.collection" />&nbsp;</p>
                                     <c:forEach items="${originalCollections}" var="collection">
-                                        <p class="searchFilter sidebar-clear-filter-7 clearable x onX">
+                                        <p class="searchFilter sidebar-clear-filter clearable x onX">
                                         &quot;<c:out value="${collection}"/>&quot;
                                         </p>
                                     </c:forEach>
                                 <c:set var = "hasFilters" value = "true"/>
                             </c:if>
+                        </div>
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-1">
 
                             <c:if test="${hasFilters == 'true'}">
                                 <p class="margin-0 sidebar-clear-filter-button">
@@ -291,8 +309,9 @@
                             </c:if>
 
                         </div>
-                        <hr class="search-sidebar-hr"/>
+
                     </div>
+                    <hr class="search-sidebar-hr"/>
                     <div class="height-0"><spring:message code="search.filter.notice" /></div>
                     <form action="search" method="get" enctype="multipart/form-data" name="filter_form" id="filter_form">
                         <div class="sidebar-item toggle open vl" id="toggle-sidebar"></div>
