@@ -286,7 +286,7 @@
 
                             <c:if test="${hasFilters == 'true'}">
                                 <p class="margin-0 sidebar-clear-filter-button">
-                                    <button type="button" id="btn_reset_filters" title="<spring:message code="search.filters.reset" />" class="button-radius-5 searchResetRedesigned margin-top-10 padding-side-70 margin-bottom-20"><spring:message code="search.filters.reset" /></button>
+                                    <button type="button" id="btn_reset_filters" title="<spring:message code="search.filters.reset" />" class="button-radius-5 searchResetRedesigned margin-top-10 margin-bottom-20"><spring:message code="search.filters.reset" /></button>
                                 </p>
                             </c:if>
 
