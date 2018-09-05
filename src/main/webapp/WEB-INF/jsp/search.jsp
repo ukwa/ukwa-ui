@@ -199,10 +199,10 @@
             <div class="col-lg-3 col-md-4 col-sm-12  padding-0 side-bar-right">
                 <aside id="sidebar">
                     <div class="row padding-top-10 sidebar-clear-filter-container-group">
-                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-2">
 
                             <c:set var = "hasFilters" value = "false"/>
                             <c:if test="${searchPage == 'true'}">
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-2">
                                 <p class="searchFilter sidebar-clear-filter clearable x onX" ><spring:message code="search.filters.access" />&nbsp;
 
                                     <c:if test="${originalAccessView.contains('va') || empty originalAccessView}">
@@ -215,12 +215,12 @@
 
                                 </p>
                                 <c:set var = "hasFilters" value = "true"/>
+                        </div>
                             </c:if>
 
-                        </div>
-                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-3">
 
                             <c:if test="${fn:length(originalDomains) > 0}">
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-3">
                                 <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.domain" />&nbsp;</p>
                                     <c:forEach items="${originalDomains}" var="domain">
                                         <p class="searchFilter sidebar-clear-filter clearable x onX">
@@ -228,12 +228,12 @@
                                         </p>
                                     </c:forEach>
                                 <c:set var = "hasFilters" value = "true"/>
+                        </div>
                             </c:if>
 
-                        </div>
-                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-4">
 
                             <c:if test="${fn:length(originalContentTypes) > 0}">
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-4">
                                 <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.doctype" />&nbsp;</p>
                                     <c:forEach items="${originalContentTypes}" var="doctype">
                                         <p class="searchFilter sidebar-clear-filter clearable x onX">
@@ -241,13 +241,11 @@
                                         </p>
                                     </c:forEach>
                                 <c:set var = "hasFilters" value = "true"/>
+                        </div>
                             </c:if>
 
-                        </div>
-                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-5">
-
-
                         <c:if test="${fn:length(originalPublicSuffixes) > 0}">
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-5">
                                 <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.suffix" />&nbsp;</p>
                                     <c:forEach items="${originalPublicSuffixes}" var="suffix">
                                         <p class="searchFilter sidebar-clear-filter clearable x onX">
@@ -255,12 +253,12 @@
                                         </p>
                                     </c:forEach>
                                 <c:set var = "hasFilters" value = "true"/>
+                        </div>
                             </c:if>
 
-                        </div>
-                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-6">
 
                         <c:if test="${fn:length(originalFromDateText) > 0 || fn:length(originalToDateText) > 0}">
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-6">
                                 <p class="searchFilter sidebar-clear-filter clearable x onX"><spring:message code="search.filters.date" />&nbsp;
 
                                     <c:choose>
@@ -285,12 +283,12 @@
 
                                 </p>
                                 <c:set var = "hasFilters" value = "true"/>
+                        </div>
                             </c:if>
 
-                        </div>
-                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-7">
 
                             <c:if test="${fn:length(originalCollections) > 0}">
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-7">
                                 <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.collection" />&nbsp;</p>
                                     <c:forEach items="${originalCollections}" var="collection">
                                         <p class="searchFilter sidebar-clear-filter clearable x onX">
@@ -298,15 +296,15 @@
                                         </p>
                                     </c:forEach>
                                 <c:set var = "hasFilters" value = "true"/>
-                            </c:if>
                         </div>
-                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-1">
+                            </c:if>
 
                             <c:if test="${hasFilters == 'true'}">
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-1">
                                     <button type="button" id="btn_reset_filters" title="<spring:message code="search.filters.reset" />" class="button-radius-5 searchResetRedesigned margin-top-10 margin-bottom-20 sidebar-clear-filter-button"><spring:message code="search.filters.reset" /></button>
+                        </div>
                             </c:if>
 
-                        </div>
 
                     </div>
                     <hr class="search-sidebar-hr"/>
@@ -734,22 +732,19 @@
         ev.preventDefault();
 
         var filter_value_removal = $.trim($(this).text()).replace(/"/g, "");
-        if($(this).hasClass('sidebar-clear-filter-3')) { //domains
+        if($(this).parent().hasClass('sidebar-clear-filter-order-3')) { //domains
             $('input[name=filter_array_x]').val("domains");
-        }else if($(this).hasClass('sidebar-clear-filter-4')) { //documenttypes
+        }else if($(this).parent().hasClass('sidebar-clear-filter-order-4')) { //documenttypes
             $('input[name=filter_array_x]').val("documenttype");
-        }else if ($(this).hasClass('sidebar-clear-filter-5')) { //suffixes
+        }else if ($(this).parent().hasClass('sidebar-clear-filter-order-5')) { //suffixes
             $('input[name=filter_array_x]').val("suffix");
-        } else if ($(this).hasClass('sidebar-clear-filter-7')) { //collections
+        } else if ($(this).parent().hasClass('sidebar-clear-filter-order-7')) { //collections
             $('input[name=filter_array_x]').val("collections");
         }
 
-        //$('#filter_array_x_item').val(filter_value_removal);//"co.uk");
         $('input[name=filter_array_x_item]').val(filter_value_removal);
 
-        //-----------------------------------
         // filter id submit form
-        //-----------------------------------
         $("#filter_form").submit();
     });
 
