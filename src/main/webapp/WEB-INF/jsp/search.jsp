@@ -303,9 +303,7 @@
                         <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-1">
 
                             <c:if test="${hasFilters == 'true'}">
-                                <p class="margin-0 sidebar-clear-filter-button">
-                                    <button type="button" id="btn_reset_filters" title="<spring:message code="search.filters.reset" />" class="button-radius-5 searchResetRedesigned margin-top-10 margin-bottom-20"><spring:message code="search.filters.reset" /></button>
-                                </p>
+                                    <button type="button" id="btn_reset_filters" title="<spring:message code="search.filters.reset" />" class="button-radius-5 searchResetRedesigned margin-top-10 margin-bottom-20 sidebar-clear-filter-button"><spring:message code="search.filters.reset" /></button>
                             </c:if>
 
                         </div>
