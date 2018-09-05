@@ -707,6 +707,17 @@
         }
     }
 
+    function showDateResetX() {
+        if ($(".archived-date").length>0) {
+            if ($("#from_date").val().trim()!=="" || $("#to_date").val().trim()!=="") {
+                $("#from_date, #to_date").val("");
+                $("#btn_reset_dates").hide();
+            }
+
+        }
+    }
+
+
     function toggle(el) {
 
         if (el.hasClass("open")) {
@@ -738,12 +749,12 @@
             $('input[name=filter_array_x]').val("documenttype");
         }else if ($(this).parent().hasClass('sidebar-clear-filter-order-5')) { //suffixes
             $('input[name=filter_array_x]').val("suffix");
-        } else if ($(this).parent().hasClass('sidebar-clear-filter-order-7')) { //collections
+        }else if ($(this).parent().hasClass('sidebar-clear-filter-order-7')) { //collections
             $('input[name=filter_array_x]').val("collections");
+        }else if ($(this).parent().hasClass('sidebar-clear-filter-order-6')) { //date
+            showDateResetX();
         }
-
         $('input[name=filter_array_x_item]').val(filter_value_removal);
-
         // filter id submit form
         $("#filter_form").submit();
     });
