@@ -41,7 +41,7 @@
     </header>
 
     <!-- Modal Search Filter CheckBox Dialog -->
-    <div class="modal fade" id="SearchFilterDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="SearchFilterDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="margin: 0 auto; margin-top: 5%">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header float-right">
@@ -49,12 +49,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" style="max-height: calc(100vh - 143px);overflow-y: auto;">
+                <div class="modal-body" style="max-height: calc(70vh - 143px);overflow-y: auto;">
 
                         <div class="d-flex flex-row mt-2">
-
-                            <!-- nav-tabs--vertical: display: flex;	flex-flow: column nowrap;-->
-                            <!-- nav-tabs--left (BAD!) flex: 1 0 auto; -->
                             <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" role="navigation">
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#domain" role="tab">Domain</a>
@@ -69,7 +66,6 @@
                                     <a class="nav-link" data-toggle="tab" href="#topicsandthemes" role="tab">Topics and Themes</a>
                                 </li>
                             </ul>
-
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <!-- Domain -->
