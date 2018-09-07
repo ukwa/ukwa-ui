@@ -26,13 +26,9 @@
   <%@include file="header.jsp" %>
 </header>
     <div class="row bg-transparent">
-        <div class="white main-search-input-new" style="padding-bottom:170px;padding-top:40px;padding-left:5%;padding-right:5%;">
+        <div class="col-md-12 mr-auto ml-auto col-md-offset-2 padding-mobile-side-0 white main-search-input-new" style="padding-bottom:220px;padding-top:40px;padding-left:5%;padding-right:5%;">
             <div class="main-heading-2-bold-redesign white padding-top-40"><spring:message code="main.menu.contact" /></div>
-        </div>
-    </div>
-    <div class="row header-2-subtitle-redesign padding-top-40">
-        <div class="col-md-12 mr-auto ml-auto col-md-offset-2 padding-mobile-side-0" style="padding-right: 15%; padding-left: 5%">
-            <spring:message code="contact.text" />
+            <div class="header-2-subtitle-redesign white padding-top-20"><spring:message code="contact.text" /></div>
         </div>
     </div>
 
@@ -48,7 +44,7 @@
   <form action="contact" method="post" enctype="multipart/form-data" name="contact" id="contact-form">
     <div class="row page-content">
       <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
-        <h3 class="light-blue bold"><spring:message code="contact.form.heading" />(Testing)</h3>
+        <h3 class="light-blue bold"><spring:message code="contact.form.heading" /></h3>
         <spring:message code="contact.form.notice" />
       </div>
             <div class="col-md-6 col-sm-12 form-content-col">
