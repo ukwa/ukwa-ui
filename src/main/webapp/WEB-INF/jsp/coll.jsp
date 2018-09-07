@@ -34,17 +34,18 @@ ${pageContext.response.locale}
   <%@include file="header.jsp" %>
 </header>
     <div class="row bg-transparent">
-        <div class="white main-search-input-new" style="padding-bottom:170px;padding-top:40px;padding-left:5%;padding-right:5%;">
+        <div class="col-md-12 mr-auto ml-auto col-md-offset-2 padding-mobile-side-0 white main-search-input-new" style="padding-bottom:170px;padding-top:40px;padding-left:10vh;padding-right:5%;">
             <div class="main-heading-2-bold-redesign white padding-top-40"><c:out value="${currentCollection.name}"/></div>
         </div>
     </div>
 <section id="content">
-<div class="row margin-0 padding-0">
 
+    <div class=" padding-right-20" style="padding-left: 40px">
+<div class="row margin-0 padding-right-20">
 
-  <div class="col-sm-12 padding-0" id="coll_header">
+  <div class="col-sm-12" id="coll_header">
   
-        <div class="row results-header margin-0 border-bottom-gray">
+        <div class="row results-header-redesign margin-0 border-bottom-gray padding-left-20">
         <div class="col-sm-12 padding-left-0">
           <span class="bold"><spring:message code="coll.breadcrumb.text1" /></span>
           <a href="collection" title="<spring:message code="coll.breadcrumb.text2" />"><spring:message code="coll.breadcrumb.text2" /></a>
@@ -69,7 +70,7 @@ ${pageContext.response.locale}
         <p class="margin-bottom-0"><a href="#" class="hidden" title="<spring:message code="coll.readmore" />" id="readmore"><spring:message code="coll.readmore" /></a></p>
       </div>
     </div>
-    
+
          <div class="row margin-0 border-bottom-gray">
    <div class="col-md-6 col-sm-12 padding-bottom-20 padding-20 light-blue">
        <form action="search" method="get" enctype="multipart/form-data" name="search_coll_form" id="search_coll_form">
@@ -86,7 +87,7 @@ ${pageContext.response.locale}
         </form>
     </div>
     </div>
-    
+
     <c:if test="${!empty subCollections}">
       <%--Do something if subCollections not empty--%>
       <div class="row margin-0">
@@ -146,7 +147,7 @@ ${pageContext.response.locale}
     </div>
 
 
-    <c:forEach items="${targetWebsites}" var="targetWebsite"> 
+    <c:forEach items="${targetWebsites}" var="targetWebsite">
       <!--RESULT ROW-->
       <div class="row margin-0 padding-0 border-bottom-gray">
         <div class="col-md-12 col-sm-12 results-result">
@@ -165,7 +166,7 @@ ${pageContext.response.locale}
               </span>
             </c:when>
           </c:choose>
-         
+
           <c:out value="${targetWebsite.description}"/>
           <c:if test="${not empty targetWebsite.startDate}">
             <span class="results-title-text margin-top-10 clearfix"> <spring:message code="coll.archived.date"/>
@@ -177,9 +178,9 @@ ${pageContext.response.locale}
             </span>
         </div>
       </div>
-      <!--/RESULT ROW--> 
+      <!--/RESULT ROW-->
     </c:forEach>
-	
+
     <!--NO RESULTS-->
     <c:if test="${currentCollection.websitesNum == 0 && empty subCollections}">
     <div class="row margin-0 padding-0 border-bottom-gray">
@@ -191,7 +192,7 @@ ${pageContext.response.locale}
       </div>
     </c:if>
     <!--/NO RESULTS-->
-    
+
     <div class="row padding-0 margin-0">
       <div class="col-md-12 pagination-cont">
         <%--preserve all current parameters in URL and change only page parameter--%>
@@ -220,14 +221,15 @@ ${pageContext.response.locale}
         <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit}"> <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><div class="pagination-button arrow right-arrow"></div></a> </c:if>
       </div>
     </div>
-  
+
    </c:if> <%--END if no results does not show results rows and pagination at all--%>
- 
+
   
   </div>
 
-  
 </div>
+    </div>
+
 </section>
 <div class="up-button" title="<spring:message code="top.of.page" />" aria-label="<spring:message code="top.of.page" />" tabindex="0"></div>
 <footer>
