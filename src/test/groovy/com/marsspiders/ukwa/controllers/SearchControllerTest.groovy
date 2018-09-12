@@ -17,12 +17,14 @@ import spock.mock.DetachedMockFactory
  */
 @WebMvcTest
 class SearchControllerTest extends spock.lang.Specification {
+    /*
     @Autowired
     MockMvc mockMvc
     @Autowired
     SearchController searchController
     @Autowired
     SolrSearchService solrSearchService
+    */
 
     //mvc modelandview parameterized - integrated test in searchController searchPage
     def "user sets search parameters and gets view"() {
@@ -63,6 +65,7 @@ class SearchControllerTest extends spock.lang.Specification {
         */
     }
 
+    /*
     @TestConfiguration
     static class MockConfig {
         def detachedMockFactory = new DetachedMockFactory()
@@ -87,4 +90,5 @@ class SearchControllerTest extends spock.lang.Specification {
             return detachedMockFactory.Stub(JavaMailSender)
         }
     }
+    */
 }
