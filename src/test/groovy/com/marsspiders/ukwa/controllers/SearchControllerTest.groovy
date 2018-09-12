@@ -1,16 +1,18 @@
 package com.marsspiders.ukwa.controllers
 
+/*
 import com.marsspiders.ukwa.WaybackIpConfiguration
 import com.marsspiders.ukwa.ip.WaybackIpResolver
 import com.marsspiders.ukwa.solr.SolrCommunicator
 import com.marsspiders.ukwa.solr.SolrSearchService
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.boot.test.context.TestConfiguration
 import spock.mock.DetachedMockFactory
+*/
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 
 /**
  * A Spock Spring MVC test that doesn't require a full spring context
