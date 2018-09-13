@@ -44,8 +44,8 @@
     <div class="modal fade" id="SearchFilterDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="margin: 0 auto; margin-top: 5%">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header float-right">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div class="modal-header d-block">
+                    <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -76,13 +76,13 @@
                                             <c:forEach begin="0" end="${domains.size() - 1}" step="2" var="i">
 
                                                 <c:if test="${(domains.get(i + 1) != 0 ) || (originalDomains.contains(domains.get(i))?true:false)}">
-                                                    <div class="form-check-cont box2 relative" style="width: 310px;padding: 10px;word-wrap:break-word;text-overflow: ellipsis" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
+                                                    <div class="form-check-cont relative" style="width: 310px;padding: 10px;word-wrap:break-word;text-overflow: ellipsis" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
                                                         <input type="checkbox" class="blue sidebar-filter-input-checkbox-modal-domains" name="domain_filter_modal" id="domain_filter_modal_<c:out value="${i}"/>"
                                                                value="${domains.get(i)}"
                                                             ${originalDomains.contains(domains.get(i) )? 'checked' : ''}/>
-                                                        <label class="main-search-check-label blue" style="width: 100px; word-wrap:break-word;" for="domain_filter_modal_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
+                                                        <label class="main-search-check-label blue no-italics box2" style="overflow: hidden" for="domain_filter_modal_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
                                                             <c:out value="${domains.get(i)}"/>
-                                                            <span class="label-counts black" style="text-overflow: ellipsis">(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
+                                                            <span class="label-counts black no-italics" >(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
                                                     </div>
                                                 </c:if>
                                             </c:forEach>
@@ -101,11 +101,11 @@
 
                                                 <c:if test="${(contentTypes.get(i + 1) != 0) || (originalContentTypes.contains(contentTypes.get(i))?true:false)}">
 
-                                                    <div class="form-check-cont box2 relative" style="width: 310px;padding: 10px" title="<c:out value="${contentTypes.get(i)}"/>" tabindex="0">
+                                                    <div class="form-check-cont relative" style="width: 310px;padding: 10px" title="<c:out value="${contentTypes.get(i)}"/>" tabindex="0">
                                                         <input type="checkbox" class="blue sidebar-filter-input-checkbox-modal-documenttypes" name="content_type_filter_modal" id="content_type_filter_modal_<c:out value="${i}"/>"
                                                                value="${contentTypes.get(i)}"
                                                             ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
-                                                        <label class="main-search-check-label" style="color: #0c49b0" for="content_type_filter_modal_<c:out value="${i}"/>">
+                                                        <label class="main-search-check-label blue no-italics box2" style="overflow: hidden" for="content_type_filter_modal_<c:out value="${i}"/>">
                                                             <c:out value="${contentTypes.get(i)}"/>
                                                             <span class="label-counts black no-italics" >(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
                                                     </div>
@@ -129,11 +129,11 @@
                                             <c:forEach begin="0" end="${publicSuffixes.size() - 1}" step="2" var="i">
                                                 <c:if test="${(publicSuffixes.get(i + 1) != 0) || (originalPublicSuffixes.contains(publicSuffixes.get(i))?true:false)}">
 
-                                                    <div class="form-check-cont box2 relative" style="width: 310px;padding: 10px" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
+                                                    <div class="form-check-cont relative" style="width: 310px;padding: 10px" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
                                                         <input type="checkbox" class="blue sidebar-filter-input-checkbox-modal-suffixes" name="public_suffix_filter_modal" id="public_suffix_filter_modal_<c:out value="${i}"/>"
                                                                value="${publicSuffixes.get(i)}"
                                                             ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
-                                                        <label class="main-search-check-label blue no-italics" for="public_suffix_filter_modal_<c:out value="${i}"/>">
+                                                        <label class="main-search-check-label blue no-italics box2" style="overflow: hidden" for="public_suffix_filter_modal_<c:out value="${i}"/>">
                                                             <c:out value="${publicSuffixes.get(i)}"/>
                                                             <span class="label-counts black no-italics">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
                                                     </div>
@@ -156,7 +156,7 @@
 
                                             <c:forEach begin="0" end="${collections.size() - 1}" step="2" var="i">
                                                 <c:if test="${(collections.get(i + 1) != 0) || (originalCollections.contains(collections.get(i))?true:false)}">
-                                                    <div class="form-check-cont box2 relative" style="width: 310px;padding: 10px" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
+                                                    <div class="form-check-cont relative" style="width: 310px;padding: 10px" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
                                                         <input type="checkbox" class="blue sidebar-filter-input-checkbox-modal-collections" name="collection_filter_modal" id="collection_filter_modal_<c:out value="${i}"/>"
                                                                value="${collections.get(i)}"
                                                             ${originalCollections.contains(collections.get(i) )? 'checked' : ''}/>
