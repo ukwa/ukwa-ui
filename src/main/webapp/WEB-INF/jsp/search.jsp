@@ -40,6 +40,151 @@
         <%@include file="header.jsp" %>
     </header>
 
+    <!-- Modal Search Filter CheckBox Dialog -->
+    <div class="modal fade" id="SearchFilterDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="margin: 0 auto; margin-top: 5%">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header d-block">
+                    <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="max-height: calc(70vh - 143px);overflow-y: auto;">
+
+                        <div class="d-flex flex-row mt-2">
+                            <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" role="navigation">
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#domain" role="tab">Domain</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#documenttype" role="tab">Document Type</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#suffix" role="tab">Suffix</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#topicsandthemes" role="tab">Topics and Themes</a>
+                                </li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <!-- Domain -->
+                                <div class="tab-pane" id="domain" role="tabpanel">
+                                    <div class="container-inline-flex column wrap fixed-width-750">
+
+                                        <c:if test="${domains.size() > 1}">
+                                            <c:forEach begin="0" end="${domains.size() - 1}" step="2" var="i">
+
+                                                <c:if test="${(domains.get(i + 1) != 0 ) || (originalDomains.contains(domains.get(i))?true:false)}">
+                                                    <div class="form-check-cont relative" style="width: 310px;padding: 10px;word-wrap:break-word;text-overflow: ellipsis" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
+                                                        <input type="checkbox" class="blue sidebar-filter-input-checkbox-modal-domains" name="domain_filter_modal" id="domain_filter_modal_<c:out value="${i}"/>"
+                                                               value="${domains.get(i)}"
+                                                            ${originalDomains.contains(domains.get(i) )? 'checked' : ''}/>
+                                                        <label class="main-search-check-label blue no-italics box2" style="overflow: hidden" for="domain_filter_modal_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
+                                                            <c:out value="${domains.get(i)}"/>
+                                                            <span class="label-counts black no-italics" >(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
+                                                    </div>
+                                                </c:if>
+                                            </c:forEach>
+                                        </c:if>
+
+                                    </div>
+                                </div>
+
+                                <!-- Document Type -->
+                                <div class="tab-pane" id="documenttype" role="tabpanel">
+
+                                    <div class="container-inline-flex column wrap fixed-height-500 fixed-width-750">
+
+                                        <c:if test="${contentTypes.size() > 1}">
+                                            <c:forEach begin="0" end="${contentTypes.size() - 1}" step="2" var="i">
+
+                                                <c:if test="${(contentTypes.get(i + 1) != 0) || (originalContentTypes.contains(contentTypes.get(i))?true:false)}">
+
+                                                    <div class="form-check-cont relative" style="width: 310px;padding: 10px" title="<c:out value="${contentTypes.get(i)}"/>" tabindex="0">
+                                                        <input type="checkbox" class="blue sidebar-filter-input-checkbox-modal-documenttypes" name="content_type_filter_modal" id="content_type_filter_modal_<c:out value="${i}"/>"
+                                                               value="${contentTypes.get(i)}"
+                                                            ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
+                                                        <label class="main-search-check-label blue no-italics box2" style="overflow: hidden" for="content_type_filter_modal_<c:out value="${i}"/>">
+                                                            <c:out value="${contentTypes.get(i)}"/>
+                                                            <span class="label-counts black no-italics" >(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
+                                                    </div>
+
+                                                </c:if>
+
+                                            </c:forEach>
+                                        </c:if>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Suffix -->
+                                <div class="tab-pane" id="suffix" role="tabpanel">
+
+                                    <div class="container-inline-flex column wrap fixed-height-500 fixed-width-750">
+
+                                        <c:if test="${publicSuffixes.size() > 1}">
+
+                                            <c:forEach begin="0" end="${publicSuffixes.size() - 1}" step="2" var="i">
+                                                <c:if test="${(publicSuffixes.get(i + 1) != 0) || (originalPublicSuffixes.contains(publicSuffixes.get(i))?true:false)}">
+
+                                                    <div class="form-check-cont relative" style="width: 310px;padding: 10px" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
+                                                        <input type="checkbox" class="blue sidebar-filter-input-checkbox-modal-suffixes" name="public_suffix_filter_modal" id="public_suffix_filter_modal_<c:out value="${i}"/>"
+                                                               value="${publicSuffixes.get(i)}"
+                                                            ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
+                                                        <label class="main-search-check-label blue no-italics box2" style="overflow: hidden" for="public_suffix_filter_modal_<c:out value="${i}"/>">
+                                                            <c:out value="${publicSuffixes.get(i)}"/>
+                                                            <span class="label-counts black no-italics">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
+                                                    </div>
+
+                                                </c:if>
+                                            </c:forEach>
+                                        </c:if>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <!-- Topics and Themes -->
+                                <div class="tab-pane" id="topicsandthemes" role="tabpanel">
+                                    <div class="container-inline-flex column wrap fixed-height-500 fixed-width-750">
+
+                                        <c:if test="${collections.size() > 1}">
+
+                                            <c:forEach begin="0" end="${collections.size() - 1}" step="2" var="i">
+                                                <c:if test="${(collections.get(i + 1) != 0) || (originalCollections.contains(collections.get(i))?true:false)}">
+                                                    <div class="form-check-cont relative" style="width: 310px;padding: 10px" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
+                                                        <input type="checkbox" class="blue sidebar-filter-input-checkbox-modal-collections" name="collection_filter_modal" id="collection_filter_modal_<c:out value="${i}"/>"
+                                                               value="${collections.get(i)}"
+                                                            ${originalCollections.contains(collections.get(i) )? 'checked' : ''}/>
+                                                        <label class="main-search-check-label blue no-italics box2" style="overflow: hidden" for="collection_filter_modal_<c:out value="${i}"/>"
+                                                               title="<c:out value="${collections.get(i)}"/> (<c:out value="${collections.get(i + 1)}"/>)">
+                                                            <c:out value="${collections.get(i)}"/>
+                                                            <span class="label-counts black no-italics">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
+                                                    </div>
+                                                </c:if>
+
+                                            </c:forEach>
+                                        </c:if>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                </div>
+                <div class="modal-footer center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="apply-modal-filter">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
     <section id="content">
@@ -49,12 +194,12 @@
 
             <div class="col-lg-3 col-md-4 col-sm-12  padding-0 side-bar-right">
                 <aside id="sidebar">
-                    <div class="row padding-top-10">
-                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-layout" style="padding-left: 50px; padding-right: 50px">
+                    <div class="row padding-top-10 sidebar-clear-filter-container-group">
 
                             <c:set var = "hasFilters" value = "false"/>
                             <c:if test="${searchPage == 'true'}">
-                                <p class="searchFilter sidebar-clear-filter-2 clearable x onX" ><spring:message code="search.filters.access" />&nbsp;
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-2">
+                                <p class="searchFilter sidebar-clear-filter clearable x onX" ><spring:message code="search.filters.access" />&nbsp;
 
                                     <c:if test="${originalAccessView.contains('va') || empty originalAccessView}">
                                         <spring:message code="search.filters.access.open" />
@@ -66,37 +211,51 @@
 
                                 </p>
                                 <c:set var = "hasFilters" value = "true"/>
+                        </div>
                             </c:if>
+
 
                             <c:if test="${fn:length(originalDomains) > 0}">
-                                <p class="searchFilter sidebar-clear-filter-3 clearable x onX"><spring:message code="search.filters.domain" />&nbsp;
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-3">
+                                <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.domain" />&nbsp;</p>
                                     <c:forEach items="${originalDomains}" var="domain">
+                                        <p class="searchFilter sidebar-clear-filter clearable x onX">
                                         &quot;<c:out value="${domain}"/>&quot;&nbsp;
+                                        </p>
                                     </c:forEach>
-                                </p>
                                 <c:set var = "hasFilters" value = "true"/>
+                        </div>
                             </c:if>
+
 
                             <c:if test="${fn:length(originalContentTypes) > 0}">
-                                <p class="searchFilter sidebar-clear-filter-4 clearable x onX"><spring:message code="search.filters.doctype" />&nbsp;
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-4">
+                                <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.doctype" />&nbsp;</p>
                                     <c:forEach items="${originalContentTypes}" var="doctype">
+                                        <p class="searchFilter sidebar-clear-filter clearable x onX">
                                         &quot;<c:out value="${doctype}"/>&quot;&nbsp;
+                                        </p>
                                     </c:forEach>
-                                </p>
                                 <c:set var = "hasFilters" value = "true"/>
+                        </div>
                             </c:if>
 
-                            <c:if test="${fn:length(originalPublicSuffixes) > 0}">
-                                <p class="searchFilter sidebar-clear-filter-5 clearable x onX"><spring:message code="search.filters.suffix" />&nbsp;
+                        <c:if test="${fn:length(originalPublicSuffixes) > 0}">
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-5">
+                                <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.suffix" />&nbsp;</p>
                                     <c:forEach items="${originalPublicSuffixes}" var="suffix">
-                                        &quot;<c:out value="${suffix}"/>&quot;&nbsp;
+                                        <p class="searchFilter sidebar-clear-filter clearable x onX">
+                                        &quot;<c:out value="${suffix}"/>&quot;
+                                        </p>
                                     </c:forEach>
-                                </p>
                                 <c:set var = "hasFilters" value = "true"/>
+                        </div>
                             </c:if>
 
-                            <c:if test="${fn:length(originalFromDateText) > 0 || fn:length(originalToDateText) > 0}">
-                                <p class="searchFilter sidebar-clear-filter-6 clearable x onX"><spring:message code="search.filters.date" />&nbsp;
+
+                        <c:if test="${fn:length(originalFromDateText) > 0 || fn:length(originalToDateText) > 0}">
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-6">
+                                <p class="searchFilter sidebar-clear-filter clearable x onX"><spring:message code="search.filters.date" />&nbsp;
 
                                     <c:choose>
                                         <c:when test="${fn:length(originalFromDateText) > 0}">
@@ -120,26 +279,31 @@
 
                                 </p>
                                 <c:set var = "hasFilters" value = "true"/>
+                        </div>
                             </c:if>
 
+
                             <c:if test="${fn:length(originalCollections) > 0}">
-                                <p class="searchFilter sidebar-clear-filter-7 clearable x onX"><spring:message code="search.filters.collection" />&nbsp;
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-7">
+                                <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.collection" />&nbsp;</p>
                                     <c:forEach items="${originalCollections}" var="collection">
-                                        &quot;<c:out value="${collection}"/>&quot;&nbsp;
+                                        <p class="searchFilter sidebar-clear-filter clearable x onX">
+                                        &quot;<c:out value="${collection}"/>&quot;
+                                        </p>
                                     </c:forEach>
-                                </p>
                                 <c:set var = "hasFilters" value = "true"/>
+                        </div>
                             </c:if>
 
                             <c:if test="${hasFilters == 'true'}">
-                                <p class="margin-0 sidebar-clear-filter-button">
-                                    <button type="button" id="btn_reset_filters" title="<spring:message code="search.filters.reset" />" class="button-radius-5 searchResetRedesigned margin-top-10 padding-side-70 margin-bottom-20"><spring:message code="search.filters.reset" /></button>
-                                </p>
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-1">
+                                    <button type="button" id="btn_reset_filters" title="<spring:message code="search.filters.reset" />" class="button-radius-5 searchResetRedesigned margin-top-10 margin-bottom-20 sidebar-clear-filter-button"><spring:message code="search.filters.reset" /></button>
+                        </div>
                             </c:if>
 
-                        </div>
-                        <hr class="search-sidebar-hr"/>
+
                     </div>
+                    <hr class="search-sidebar-hr"/>
                     <div class="height-0"><spring:message code="search.filter.notice" /></div>
                     <form action="search" method="get" enctype="multipart/form-data" name="filter_form" id="filter_form">
                         <div class="sidebar-item toggle open vl" id="toggle-sidebar"></div>
@@ -199,7 +363,7 @@
                                             <c:if test="${(domains.get(i + 1) != 0 && (i < 5)) || (originalDomains.contains(domains.get(i))?true:false)}">
                                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12 " >
                                                     <div class="form-check-cont padding-0" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="blue" name="domain_filter" id="domain_filter_<c:out value="${i}"/>"
+                                                        <input type="checkbox" class="blue sidebar-filter-input-checkbox" name="domain_filter" id="domain_filter_<c:out value="${i}"/>"
                                                                value="${domains.get(i)}"
                                                             ${originalDomains.contains(domains.get(i) )? 'checked' : ''}/>
                                                         <label class="main-search-check-label blue block-two-text-lines" for="domain_filter_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
@@ -210,28 +374,7 @@
                                             </c:if>
 
                                         </c:forEach>
-                                        <div><a href="javascript:void(0);" class="padding-left-10 openPlusSign" id="showMoreDomainLink" title="Show More Domains" style="text-decoration:none">Show more...</a></div>
-                                    </c:if>
-                                </div>
-
-                                <div id="domains_filter_div" class="sidebar-filter expanded no-collapse" style="display:none;" role="tabpanel" aria-hidden="true" aria-labelledby="t_domain">
-                                    <c:if test="${domains.size() > 3}">
-                                        <c:forEach begin="4" end="${domains.size() - 1}" step="2" var="i">
-
-                                            <c:if test="${(domains.get(i + 1) != 0 && (i > 4)) && (originalDomains.contains(domains.get(i))?false:true)}">
-                                                <div class="sidebar-filter-checkbox col-md-12 col-sm-12 padding-bottom-20" >
-                                                    <div class="form-check-cont padding-0" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="blue" name="domain_filter" id="domain_filter_<c:out value="${i}"/>"
-                                                               value="${domains.get(i)}"
-                                                            ${originalDomains.contains(domains.get(i) )? 'checked' : ''}/>
-                                                        <label class="main-search-check-label blue block-two-text-lines" for="domain_filter_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
-                                                            <c:out value="${domains.get(i)}"/>
-                                                            <span class="label-counts black">(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
-                                                    </div>
-                                                </div>
-                                            </c:if>
-
-                                        </c:forEach>
+                                        <div class="openPlusSign" style="margin-left: 10px"><a href="#domain" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none">Show more</a></div>
                                     </c:if>
                                 </div>
 
@@ -248,7 +391,7 @@
                                             <c:if test="${(contentTypes.get(i + 1) != 0 && (i < 5)) || (originalContentTypes.contains(contentTypes.get(i))?true:false)}">
                                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                                                     <div class="form-check-cont padding-0" title="<c:out value="${contentTypes.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="blue" name="content_type" id="content_type_<c:out value="${i}"/>"
+                                                        <input type="checkbox" class="blue sidebar-filter-input-checkbox" name="content_type" id="content_type_<c:out value="${i}"/>"
                                                                value="${contentTypes.get(i)}"
                                                             ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
                                                         <label class="main-search-check-label" style="color: #0c49b0" for="content_type_<c:out value="${i}"/>">
@@ -259,28 +402,12 @@
                                             </c:if>
 
                                         </c:forEach>
-                                        <div><a href="javascript:void(0);" class="padding-left-10 openPlusSign" id="showMoreDocumentTypeLink" title="Show More Document Types" style="text-decoration:none">Show more...</a></div>
+                                        <div class="openPlusSign" style="margin-left: 10px"><a href="#documenttype" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none">Show more</a></div>
                                     </c:if>
                                 </div>
-                                <div id="content_type_filter_div" class="sidebar-filter expanded no-collapse" style="display:none;" role="tabpanel" aria-hidden="true" aria-labelledby="t_doctype">
-                                    <c:if test="${contentTypes.size() > 1}">
-                                        <c:forEach begin="4" end="${contentTypes.size() - 1}" step="2" var="i">
-                                            <c:if test="${(contentTypes.get(i + 1) != 0 && (i > 4)) && (originalContentTypes.contains(contentTypes.get(i))?false:true)}">
-                                                <div class="sidebar-filter-checkbox col-md-12 col-sm-12 padding-bottom-20">
-                                                    <div class="form-check-cont padding-0" title="<c:out value="${contentTypes.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="blue" name="content_type" id="content_type_<c:out value="${i}"/>"
-                                                               value="${contentTypes.get(i)}"
-                                                            ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
-                                                        <label class="main-search-check-label blue block-two-text-lines" for="content_type_<c:out value="${i}"/>">
-                                                            <c:out value="${contentTypes.get(i)}"/>
-                                                            <span class="label-counts black">(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
-                                                    </div>
-                                                </div>
-                                            </c:if>
-                                        </c:forEach>
-                                    </c:if>
-                                </div>
-                                <hr class="search-sidebar-hr"/>
+
+                                    <hr class="search-sidebar-hr"/>
+
                                 <%--   Public suffix collapse filter   --%>
                                 <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.suffix.title" />" tabindex="0" role="tab">
                                     <div class="sidebar-filter-header-title-redesign" id="t_suffix"><spring:message code="search.side.suffix.title" /></div>
@@ -293,7 +420,7 @@
                                             <c:if test="${(publicSuffixes.get(i + 1) != 0 && (i < 5)) || (originalPublicSuffixes.contains(publicSuffixes.get(i))?true:false)}">
                                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                                                     <div class="form-check-cont padding-0" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="blue" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
+                                                        <input type="checkbox" class="blue sidebar-filter-input-checkbox" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
                                                                value="${publicSuffixes.get(i)}"
                                                             ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
                                                         <label class="main-search-check-label blue block-two-text-lines" for="public_suffix_<c:out value="${i}"/>">
@@ -303,31 +430,9 @@
                                                 </div>
                                             </c:if>
                                         </c:forEach>
-                                        <div><a href="javascript:void(0);" class="padding-left-10 openPlusSign" id="showMoreSuffixLink" title="Show More Suffix" style="text-decoration:none">Show more...</a></div>
+                                        <div class="openPlusSign" style="margin-left: 10px"><a href="#suffix" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none">Show more</a></div>
                                     </c:if>
 
-                                </div>
-
-                                <div id="suffix_filter_div" class="sidebar-filter expanded no-collapse" style="display:none;" role="tabpanel" aria-hidden="true" aria-labelledby="t_suffix">
-                                    <c:if test="${publicSuffixes.size() > 3}">
-                                        <c:forEach begin="4" end="${publicSuffixes.size() - 1}" step="2" var="i">
-
-
-                                            <c:if test="${(publicSuffixes.get(i + 1) != 0 && (i > 4)) && (originalPublicSuffixes.contains(publicSuffixes.get(i))?false:true)}">
-                                                <div class="sidebar-filter-checkbox col-md-12 col-sm-12 padding-bottom-20" >
-                                                    <div class="form-check-cont padding-0" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="blue" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
-                                                               value="${publicSuffixes.get(i)}"
-                                                            ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
-                                                        <label class="main-search-check-label blue block-two-text-lines" for="public_suffix_<c:out value="${i}"/>">
-                                                            <c:out value="${publicSuffixes.get(i)}"/>
-                                                            <span class="label-counts black">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
-                                                    </div>
-                                                </div>
-                                            </c:if>
-
-                                        </c:forEach>
-                                    </c:if>
                                 </div>
 
                                 <hr class="search-sidebar-hr"/>
@@ -385,7 +490,7 @@
                                             <c:if test="${(collections.get(i + 1) != 0 && (i < 5)) || (originalCollections.contains(collections.get(i))?true:false)}">
                                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                                                     <div class="form-check-cont padding-0" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="blue" name="collection" id="collection_<c:out value="${i}"/>"
+                                                        <input type="checkbox" class="blue sidebar-filter-input-checkbox" name="collection" id="collection_<c:out value="${i}"/>"
                                                                value="${collections.get(i)}"
                                                             ${originalCollections.contains(collections.get(i) )? 'checked' : ''}/>
                                                         <label class="main-search-check-label blue block-two-text-lines" for="collection_<c:out value="${i}"/>"
@@ -397,39 +502,25 @@
                                             </c:if>
 
                                         </c:forEach>
-                                        <div><a href="javascript:void(0);" class="padding-left-10 openPlusSign" id="showMoreCollectionLink" title="Show More Collections" style="text-decoration:none">Show more...</a></div>
+                                        <div class="openPlusSign" style="margin-left: 10px"><a href="#topicsandthemes" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none">Show more</a></div>
                                     </c:if>
 
                                 </div>
-                                <div id="collections_filter_div" class="sidebar-filter expanded no-collapse" style="display:none;" role="tabpanel" aria-hidden="true" aria-labelledby="t_coll">
-                                    <c:if test="${collections.size() > 3}">
-                                        <c:forEach begin="4" end="${collections.size() - 1}" step="2" var="i">
-
-                                            <c:if test="${(collections.get(i + 1) != 0 && (i > 4)) && (originalCollections.contains(collections.get(i))?false:true)}">
-                                                <div class="sidebar-filter-checkbox col-md-12 col-sm-12 padding-bottom-20" >
-                                                    <div class="form-check-cont padding-0" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="blue" name="collection" id="collection_<c:out value="${i}"/>"
-                                                               value="${collections.get(i)}"
-                                                            ${originalCollections.contains(collections.get(i) )? 'checked' : ''}/>
-                                                        <label class="main-search-check-label blue block-two-text-lines" for="collection_<c:out value="${i}"/>"
-                                                               title="<c:out value="${collections.get(i)}"/> (<c:out value="${collections.get(i + 1)}"/>)">
-                                                            <c:out value="${collections.get(i)}"/>
-                                                            <span class="label-counts black">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
-                                                    </div>
-                                                </div>
-                                            </c:if>
-
-                                        </c:forEach>
-                                    </c:if>
-                                </div>
-
 
                                 <hr class="search-sidebar-hr"/>
 
-                                <input type="hidden" name="search_location" id="search_location" value="${originalSearchLocation}">
-                                <input type="hidden" name="text" id="text_hidden" value="${originalSearchRequest}">
-                                <input type="hidden" name="view_sort" id="view_sort" value="${empty originalSortValue ? 'nto' : originalSortValue}">
-                                <input type="hidden" name="view_count" id="view_count" value="${empty rowsPerPageLimit ? '50' : rowsPerPageLimit}">
+                                    <input type="hidden" name="modal_filter_domains_vals" id="input_hidden_field_checked_modal_domains_array" />
+                                    <input type="hidden" name="modal_filter_suffix_vals" id="input_hidden_field_checked_modal_suffix_array" />
+                                    <input type="hidden" name="modal_filter_documenttypes_vals" id="input_hidden_field_checked_modal_documenttypes_array" />
+                                    <input type="hidden" name="modal_filter_collections_vals" id="input_hidden_field_checked_modal_collections_array" />
+
+                                    <input type="hidden" name="filter_array_x" id="filter_array_x"  value="" />
+                                    <input type="hidden" name="filter_array_x_item" id="filter_array_x_item"  value="" />
+
+                                <input type="hidden" name="search_location" id="search_location" value="${originalSearchLocation}" />
+                                <input type="hidden" name="text" id="text_hidden" value="${originalSearchRequest}" />
+                                <input type="hidden" name="view_sort" id="view_sort" value="${empty originalSortValue ? 'nto' : originalSortValue}" />
+                                <input type="hidden" name="view_count" id="view_count" value="${empty rowsPerPageLimit ? '50' : rowsPerPageLimit}" />
                             </div>
 
                             <div class="border-top-white">&nbsp;</div>
@@ -612,6 +703,17 @@
         }
     }
 
+    function showDateResetX() {
+        if ($(".archived-date").length>0) {
+            if ($("#from_date").val().trim()!=="" || $("#to_date").val().trim()!=="") {
+                $("#from_date, #to_date").val("");
+                $("#btn_reset_dates").hide();
+            }
+
+        }
+    }
+
+
     function toggle(el) {
 
         if (el.hasClass("open")) {
@@ -627,23 +729,54 @@
 
     }
 
+
+    $(document).on('p', '.clearable', function(){
+        //$(this)[tog(this.value)]('x');
+    }).on('mousemove', '.x', function( e ){
+        $(this)[tog(this.offsetWidth-18 < e.clientX-this.getBoundingClientRect().left)]('onX');
+    }).on('touchstart click', '.onX', function( ev ){
+
+        ev.preventDefault();
+
+        var filter_value_removal = $.trim($(this).text()).replace(/"/g, "");
+        if($(this).parent().hasClass('sidebar-clear-filter-order-3')) { //domains
+            $('input[name=filter_array_x]').val("domains");
+        }else if($(this).parent().hasClass('sidebar-clear-filter-order-4')) { //documenttypes
+            $('input[name=filter_array_x]').val("documenttype");
+        }else if ($(this).parent().hasClass('sidebar-clear-filter-order-5')) { //suffixes
+            $('input[name=filter_array_x]').val("suffix");
+        }else if ($(this).parent().hasClass('sidebar-clear-filter-order-7')) { //collections
+            $('input[name=filter_array_x]').val("collections");
+        }else if ($(this).parent().hasClass('sidebar-clear-filter-order-6')) { //date
+            showDateResetX();
+        }
+        $('input[name=filter_array_x_item]').val(filter_value_removal);
+        // filter id submit form
+        $("#filter_form").submit();
+    });
+
+
+
     // Removal of Filter Criteria
     function tog(v){return v?'addClass':'removeClass';}
 
+
+
     $(document).ready(function(e) {
 
-        // Removal of Filter Criteria
-        $(document).on('p', '.clearable', function(){
-            //$(this)[tog(this.value)]('x');
-        }).on('mousemove', '.x', function( e ){
-            $(this)[tog(this.offsetWidth-18 < e.clientX-this.getBoundingClientRect().left)]('onX');
-        }).on('touchstart click', '.onX', function( ev ){
-            alert('Sorry, this feature is still in progress.');
-            ev.preventDefault();
-            //-----------------------------------
-            // filter id submit form
-            //-----------------------------------
-            //$(this).removeClass('x onX').val('').change();
+
+
+        $("#SearchFilterDialog").on('shown.bs.modal', function(e) {
+            var tab = e.relatedTarget.hash;
+            $('.nav-tabs a[href="'+tab+'"]').tab('show')
+        });
+
+        $('#SearchFilterDialog').on('hidden.bs.modal', function (e) {
+            //alert("hide modal");
+
+            //showPleaseWait();
+            //var value = $('#myPopupInput').val();
+            //$('#myMainPageInput').val(value);
         });
 
         $("#from_date, #to_date").datepicker({
@@ -740,9 +873,43 @@
         }
 
         //change filters
-        $("input[type='checkbox'], .access_filter").click(function(e) { $("#filter_form").submit(); });
+        //$("input[type='checkbox'], .access_filter").click(function(e) { $("#filter_form").submit(); });
+        $(".sidebar-filter-input-checkbox, .access_filter").click(function(e) { $("#filter_form").submit(); });
 
-        //submit on resort
+
+        $.fn.getDataFromModalFilter = function () {
+            var checkedModalDomains  = $('.sidebar-filter-input-checkbox-modal-domains:checkbox:checked').map(function() {
+                return this.value;
+            }).get();
+            var checkedModalPublicSuffixArray  = $('.sidebar-filter-input-checkbox-modal-suffixes:checkbox:checked').map(function() {
+                return this.value;
+            }).get();
+            var checkedModalDocumentTypes  = $('.sidebar-filter-input-checkbox-modal-documenttypes:checkbox:checked').map(function() {
+                return this.value;
+            }).get();
+            var checkedModalCollections  = $('.sidebar-filter-input-checkbox-modal-collections:checkbox:checked').map(function() {
+                return this.value;
+            }).get();
+
+            //store in hidden field
+            $('#input_hidden_field_checked_modal_domains_array').val(checkedModalDomains);//JSON.stringify(checkedModalDomainsArray));
+            $('#input_hidden_field_checked_modal_suffix_array').val(checkedModalPublicSuffixArray);
+            $('#input_hidden_field_checked_modal_documenttypes_array').val(checkedModalDocumentTypes);
+            $('#input_hidden_field_checked_modal_collections_array').val(checkedModalCollections);
+
+        };
+
+        $("#apply-modal-filter").click(function () {
+
+            $('#SearchFilterDialog').modal('hide');
+            showPleaseWait();
+
+            $.fn.getDataFromModalFilter();
+            // submit old form
+            $("#filter_form").submit();
+        });
+
+            //submit on resort
         $(".sort").each(function(index, element) {
             $(this).click(function(e) {
                 $("#view_sort").val($(this).val());
@@ -758,6 +925,9 @@
 
         //form validation
         $("#filter_form").submit(function(e) {
+            //var hv1 = $('#remove_from_filter_array_x').val();
+            //var hv2 = $('#remove_from_filter_array_x_item').val();
+            //alert("Hidden values from filter form : " + hv1 + ' and ' + hv2);
 
             showPleaseWait();
 
@@ -779,6 +949,10 @@
             }
 
         });
+
+        //$("p").hasClass("sidebar-clear-filter-5"){
+
+        //};
 
         //checks should filters be retained and submits
         $("#search_form").submit(function(e) {
@@ -812,8 +986,13 @@
             showDateReset();
         });
 
+
+
+
         showDateReset();
         checkboxSize(); //expand checkbox size to fit label content
+
+
 
 
     });

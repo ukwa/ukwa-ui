@@ -41,13 +41,11 @@ public class ArchiveController {
         String siteUrl = evaluateUrlFromRequest(request);
         String prettySiteUrl = siteUrl.replaceAll(":/([a-zA-Z0-9])", "://$1");
 
-        log.info("Requesting archived page '" + prettySiteUrl + "' for the following period: " + timestamp);
-
         //If you are sending the user to the Open Access Wayback Service, the -cy needs to be added when browsing in Welsh.
         //If you are sending the user to a Reading Room Wayback Service, the -cy should not be added as those services do not support that feature.
-        if (!accessFlag.equals("PRO")){ //is not PRO, i.e. is OA and etc.
+        if (accessFlag.equals("PRO")){ //is not PRO, i.e. is OA and etc.
             String localeStr = LocaleContextHolder.getLocale().toString();
-            log.info("Locale = " + localeStr);
+            log.debug("Locale = " + localeStr);
             //TODO: wayback had to be available in all languages UKWA-UI has offered. English and Welsh only at the moment!
             //(!locale.toString().equals("en_GB")){ // for all except default en_GB
             if (localeStr.equals("cy")){
@@ -69,34 +67,36 @@ public class ArchiveController {
     }
 
     private String fetchWaybackUrlByIp(HttpServletRequest request, String accessFlag) {
+        log.debug("------- accessFlag " + accessFlag);
         //If site available for Open Access, we should use default off-site wayback url
         if(VIEWABLE_ANYWHERE.getSolrRequestAccessRestriction().equals(accessFlag)){
-            log.info("IF VIEWABLE_ANYWHERE " + waybackIpConfiguration.getOffSiteUrl());
+            log.debug("IF VIEWABLE_ANYWHERE " + waybackIpConfiguration.getOffSiteUrl());
             return waybackIpConfiguration.getOffSiteUrl();
         }
         else if(VIEWABLE_ONLY_ON_LIBRARY.getSolrRequestAccessRestriction().equals(accessFlag)){
-            log.info("IF VIEWABLE_ONLY_ON_LIBRARY " + waybackIpConfiguration.getOffSiteUrl());
+            log.debug("IF VIEWABLE_ONLY_ON_LIBRARY " + waybackIpConfiguration.getOffSiteUrl());
 
             String waybackUrl = fetchWaybackUrlByIp(request, accessFlag);
             String localeStr = LocaleContextHolder.getLocale().toString();
 
             log.info("Locale = " + localeStr);
             if (localeStr.equals("cy")){
+                log.info("waybackUrl before = " + waybackUrl);
                 StringBuilder sb = new StringBuilder(waybackUrl);
                 sb.setLength(sb.length() - 3);
                 waybackUrl = sb.toString();
+                log.info("waybackUrl after = " + waybackUrl);
                 return waybackUrl;
             }
-
             return waybackIpConfiguration.getOffSiteUrl();
         }
         else//
         {
-            log.info("ELSE VIEWABLE " + waybackIpConfiguration.getOffSiteUrl());
+            log.debug("ELSE VIEWABLE " + waybackIpConfiguration.getOffSiteUrl());
         }
 
         List<String> clientIps = fetchClientIps(request);
-        log.debug("User's client ips: " + clientIps);
+        log.debug("User's client ips (ArchiveController): " + clientIps);
 
         List<String> locationsIpRanges = waybackIpConfiguration.getIpAddressListAtLocation();
 

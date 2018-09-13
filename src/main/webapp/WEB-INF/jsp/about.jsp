@@ -27,7 +27,7 @@
   <%@include file="header.jsp" %>
 </header>
   <div class="row bg-transparent">
-    <div class="white main-search-input-new" style="padding-bottom:170px;padding-top:40px;padding-left:5%;padding-right:5%;">
+    <div class="col-md-12 mr-auto ml-auto col-md-offset-2 padding-mobile-side-0 white main-search-input-new" style="padding-bottom:170px;padding-top:40px;padding-left:10vh;padding-right:5%;">
       <div class="main-heading-2-bold-redesign white padding-top-40"><spring:message code="main.menu.about" /></div>
     </div>
   </div>
