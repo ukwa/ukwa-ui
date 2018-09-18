@@ -40,33 +40,34 @@ ${pageContext.response.locale}
       <div class="modal fade" id="searchingUKWAModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
               <div class="modal-content">
-                  <div class="modal-header">
-                      <button type="button" class="close right" data-dismiss="modal" aria-label="Close"><span class="float-right blue" aria-hidden="true">&times;</span></button>
+                  <div class="modal-header d-block">
+                      <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
                   </div>
-
-                  <div class="modal-body" style="padding: 0;">
-                      <div class="main-heading-2-redesign padding-bottom-20 padding-top-20 bg-gray2" id="exampleModalLongTitle">How to get the most from searching the UKWA</div>
-
-
-                      <div class="row">
-                          <div class="col-md-1 col-sm-2 tooltip-circle-redesign center padding-30">1</div>
-                          <div class="col-md-9 col-sm-9">If you are looking for a single website that you believe may be in the UK Web Archive, you can search for it via the Search tab. Use a phrase or name that you think is most likely to be in the website and in that website alone. This will search across all the archived websites.</div>
-                      </div>
-                      <div class="row ">
-                          <div class="col-md-1 col-sm-2 tooltip-circle-redesign center padding-30">2</div>
-                          <div class="col-md-9 col-sm-9 padding-30">There are several options for narrowing your search. For example, a phrase search uses more than one term (i.e. more than a single word). If two (or more) terms are submitted without the use of quotes, only one of those terms need appear in the documents to produce a result. If the terms are quoted, then only that precise string will be returned. See the Query Syntax section below for full details.</div>
-                      </div>
-                      <div class="row">
-                          <div class="col-md-1 col-sm-12 tooltip-circle-redesign center padding-30">3</div>
-                          <div class="col-md-10 col-sm-12 padding-30">Having submitted your query you can further refine your search using the facets on the left-hand side of the full text search results page. This allows the matching results to be filtered by various properties, such as content type, collection and crawl year. For example, you can use the Refine by domain suffix facet to limit the results set to those resources hosted on domains with names that share the same common suffix, such as co.uk, ac.uk or com.</div>
-                      </div>
-                      <div class="row">
-                          <div class="col-md-1 col-sm-12 tooltip-circle-redesign center padding-30">4</div>
-                          <div class="col-md-10 col-sm-12 padding-30">Note that all queries are case-insensitive.</div>
+                  <div class="modal-body" style="padding: 0">
+                      <div class="main-heading-2-redesign padding-top-40 bg-gray2" id="exampleModalLongTitle" style="padding-left: 40px;padding-bottom: 40px">How to get the most from searching the UKWA</div>
+                      <div class="padding-left-20">
+                          <div class="row padding-top-40 padding-bottom-10">
+                              <div class="col-md-2 col-sm-2 circle"><span>1</span></div>
+                              <div class="col-md-10 col-sm-9 circle-text"><b>Tip 1 - </b>If you are looking for a single website that you believe may be in the UK Web Archive, you can search for it via the Search tab. Use a phrase or name that you think is most likely to be in the website and in that website alone. This will search across all the archived websites.</div>
+                          </div>
+                          <div class="row padding-top-10 padding-bottom-10">
+                              <div class="col-md-2 col-sm-2 circle"><span>2</span></div>
+                              <div class="col-md-10 col-sm-9 circle-text"><b>Tip 2 - </b>There are several options for narrowing your search. For example, a phrase search uses more than one term (i.e. more than a single word). If two (or more) terms are submitted without the use of quotes, only one of those terms need appear in the documents to produce a result. If the terms are quoted, then only that precise string will be returned. See the Query Syntax section below for full details.</div>
+                          </div>
+                          <div class="row padding-top-10 padding-bottom-10">
+                              <div class="col-md-2 col-sm-12 circle"><span>3</span></div>
+                              <div class="col-md-10 col-sm-12 circle-text"><b>Tip 3 - </b>Having submitted your query you can further refine your search using the facets on the left-hand side of the full text search results page. This allows the matching results to be filtered by various properties, such as content type, collection and crawl year. For example, you can use the Refine by domain suffix facet to limit the results set to those resources hosted on domains with names that share the same common suffix, such as co.uk, ac.uk or com.</div>
+                          </div>
+                          <div class="row padding-top-10 padding-bottom-10">
+                              <div class="col-md-2 col-sm-12 circle"><span>4</span></div>
+                              <div class="col-md-10 col-sm-12 circle-text"><b>Tip 4 - </b>Note that all queries are case-insensitive.</div>
+                          </div>
                       </div>
                   </div>
-                  <div class="modal-footer center">
-                      <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                  <div class="modal-footer inline-block-items justify-content-center" style="width: 100%;">
+                      <button type="button" class="btn btn-primary" style="width: 20%;" data-dismiss="modal">Close</button>
                   </div>
               </div>
           </div>

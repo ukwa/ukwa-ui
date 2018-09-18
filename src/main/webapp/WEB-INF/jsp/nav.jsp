@@ -20,19 +20,20 @@
       <spring:message code="main.menu.contact" />
     </div>
     </a>
+    <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
     <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
     <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy' || textUri == '/gd'
                                   ? '/'
                                   : fn:replace(fn:replace(fn:replace(textUri, '/en/', '/'), '/gd/', '/'), '/cy/', '/')}"/>
     <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
           && (fn:contains(textUri, '/gd/') || textUri =='/gd' || fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
-      <a href="/en<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.english.title" />" tabindex="-1">
+      <a href="/en<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="main.menu.english.title" />" tabindex="-1">
       <div class="main-menu-item border-none"><span lang="en"><spring:message code="main.menu.english.title" /></span></div>
       </a> </c:if>
-    <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}"> <a href="/cy<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.welsh.title" />" tabindex="-1">
+    <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}"> <a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="main.menu.welsh.title" />" tabindex="-1">
       <div class="main-menu-item border-none"><span lang="cy"><spring:message code="main.menu.welsh.title" /></span> </div>
       </a></c:if>
-    <c:if test="${!fn:startsWith(textUri, '/gd/') && textUri != '/gd'}"> <a href="/gd<c:out value="${textUriWithoutLang}"/>" title="<spring:message code="main.menu.scottish.title" />" tabindex="-1">
+    <c:if test="${!fn:startsWith(textUri, '/gd/') && textUri != '/gd'}"> <a href="/gd<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="main.menu.scottish.title" />" tabindex="-1">
       <div class="main-menu-item border-none"><span lang="gd"><spring:message code="main.menu.scottish.title" /></span></div>
       </a> </c:if>
   </div>
