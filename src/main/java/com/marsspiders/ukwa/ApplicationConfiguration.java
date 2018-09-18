@@ -3,7 +3,6 @@ package com.marsspiders.ukwa;
 import com.marsspiders.ukwa.ip.WaybackIpResolver;
 import com.marsspiders.ukwa.solr.SolrCommunicator;
 import com.marsspiders.ukwa.solr.SolrSearchService;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -14,7 +13,6 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
-import java.util.Properties;
 
 @SpringBootApplication
 public class ApplicationConfiguration extends SpringBootServletInitializer {
@@ -35,7 +33,7 @@ public class ApplicationConfiguration extends SpringBootServletInitializer {
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
-    
+
     @Bean
     SolrSearchService solrSearchService() {
         return new SolrSearchService();
@@ -61,5 +59,4 @@ public class ApplicationConfiguration extends SpringBootServletInitializer {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         return mailSender;
     }
-
 }

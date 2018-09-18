@@ -128,7 +128,7 @@ public class SearchController {
         SearchByEnum searchBy = SearchByEnum.fromString(searchLocation);
         SortByEnum sortBy = SortByEnum.fromString(sortValue);
         if (sortBy == null) {
-            sortBy = SortByEnum.NEWEST_TO_OLDEST;
+            sortBy = SortByEnum.MOSTRELEVANT_TO_LEASTRELEVANT;
         }
 
         AccessToEnum accessTo = AccessToEnum.fromString(accessViewFilter);

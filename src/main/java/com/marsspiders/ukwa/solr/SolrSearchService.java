@@ -146,7 +146,8 @@ public class SolrSearchService {
 
         SortClause sort = sortBy == null
                 ? null
-                : new SortClause(FIELD_CRAWL_DATE, sortBy.getSolrOrderValue());
+                : new SortClause("score", sortBy.getSolrOrderValue());
+
         String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
         String accessToQuery = generateAccessToQuery(accessTo);
         String contentTypeQuery = generateMultipleConditionsQuery(contentTypes, FIELD_TYPE);
@@ -165,7 +166,7 @@ public class SolrSearchService {
         String[] facets = {FIELD_PUBLIC_SUFFIX, FIELD_TYPE, FIELD_HOST, FIELD_DOMAIN,
                 FIELD_COLLECTION, FIELD_CONTENT_TYPE_NORM, FIELD_ACCESS_TERMS};
 
-        String queryString = "{!q.op=" + AND_JOINER + " df=" + FIELD_TEXT + "}" + QueryParser.escape(searchText);
+        String queryString = QueryParser.escape(searchText);
         return sendRequest(queryString, sort, filters, FIELD_CONTENT, ContentInfo.class, start, rows, facets);
     }
 
@@ -187,15 +188,28 @@ public class SolrSearchService {
             query.addSort(sortClause);
         }
 
+        //
+        //Edismax can:
+        // -- run queries against all query fields,
+        // -- (and also) run a query in the form of a phrase against the phrase fields
+        //
+
+        query.set("qf", FIELD_TEXT);
+        query.set("pf", FIELD_TEXT);
+        query.set("mm", "2");
+
         if(filterQueries != null && filterQueries.size() > 0){
             query.addFilterQuery(filterQueries.toArray(new String[filterQueries.size()]));
         }
 
+        //hl
         if(isNotBlank(highlightField)){
             query.setHighlight(true);
             query.addHighlightField(highlightField);
         }
 
+        //facet=true
+        //facet.field=...
         if(facetFields.length > 0){
             query.setFacet(true);
 
