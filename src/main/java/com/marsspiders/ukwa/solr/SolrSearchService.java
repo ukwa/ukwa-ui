@@ -216,9 +216,9 @@ public class SolrSearchService {
 
             for (String facetField : facetFields) {
                 if (facetField.equals(FIELD_ACCESS_TERMS)) {
-                    query.addFacetField(EXCLUDE_POINT_FIRST_LAYER_TAG + facetField);
+                    query.addFacetField( facetField);
                 } else {
-                    query.addFacetField(EXCLUDE_POINT_SECOND_LAYER_TAG + facetField);
+                    query.addFacetField( facetField);
                 }
             }
         }
