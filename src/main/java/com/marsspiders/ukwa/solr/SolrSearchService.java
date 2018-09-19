@@ -196,7 +196,8 @@ public class SolrSearchService {
 
         query.set("qf", FIELD_TEXT);
         query.set("pf", FIELD_TEXT);
-        query.set("mm", "2");
+        //query.set("sow", "false");
+        //query.set("mm", "2");
 
         if(filterQueries != null && filterQueries.size() > 0){
             query.addFilterQuery(filterQueries.toArray(new String[filterQueries.size()]));
