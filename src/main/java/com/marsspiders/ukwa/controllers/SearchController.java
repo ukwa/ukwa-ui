@@ -94,27 +94,26 @@ public class SearchController {
         List<String> domainsPairs = new LinkedList<>();
         List<String> collectionPairs = new LinkedList<>();
 
-        //List<String> list = new LinkedList<String>(Arrays.asList(checked_domains_FromModal));
-        List<String> originalDomains = ((checked_domains_FromModal != null && checked_domains_FromModal.length!=0) ? (new LinkedList<>(Arrays.asList(checked_domains_FromModal))) : (checkedDomains != null ? (new LinkedList<>(Arrays.asList(checkedDomains))) : emptyList()));
-        List<String> originalContentTypes = (checked_contenttypes_FromModal != null && checked_contenttypes_FromModal.length!=0) ? (new LinkedList<>(Arrays.asList(checked_contenttypes_FromModal))) : checkedContentTypes != null ? (new LinkedList<>(Arrays.asList(checkedContentTypes))) : emptyList();
-        List<String> originalPublicSuffixes = (checked_suffix_FromModal != null && checked_suffix_FromModal.length!=0) ? (new LinkedList<>(Arrays.asList(checked_suffix_FromModal))) : checkedPublicSuffixes != null ? (new LinkedList<>(Arrays.asList(checkedPublicSuffixes))) : emptyList();
+        List<String> originalDomains = ((checked_domains_FromModal != null) ? (new LinkedList<>(Arrays.asList(checked_domains_FromModal))) : (checkedDomains != null ? (new LinkedList<>(Arrays.asList(checkedDomains))) : emptyList()));
+        List<String> originalContentTypes = (checked_contenttypes_FromModal != null) ? (new LinkedList<>(Arrays.asList(checked_contenttypes_FromModal))) : checkedContentTypes != null ? (new LinkedList<>(Arrays.asList(checkedContentTypes))) : emptyList();
+        List<String> originalPublicSuffixes = (checked_suffix_FromModal != null) ? (new LinkedList<>(Arrays.asList(checked_suffix_FromModal))) : checkedPublicSuffixes != null ? (new LinkedList<>(Arrays.asList(checkedPublicSuffixes))) : emptyList();
         List<String> originalRangeDates = checkedRangeDates != null ? asList(checkedRangeDates) : emptyList();
-        List<String> originalCollections = (checked_collections_FromModal != null && checked_collections_FromModal.length!=0) ? (new LinkedList<>(Arrays.asList(checked_collections_FromModal))) : checkedCollections != null ? (new LinkedList<>(Arrays.asList(checkedCollections))) : emptyList();
+        List<String> originalCollections = (checked_collections_FromModal != null) ? (new LinkedList<>(Arrays.asList(checked_collections_FromModal))) : checkedCollections != null ? (new LinkedList<>(Arrays.asList(checkedCollections))) : emptyList();
 
         if(remove_from_filter != null)
         {
             switch(remove_from_filter) {
                 case "domains":
-                    originalDomains.removeIf(x -> x.equals(remove_from_filter_item));//originalDomains.contains(remove_from_filter_item));
+                    originalDomains.removeIf(x -> x.equals(remove_from_filter_item));
                     break;
                 case "documenttype":
-                    originalContentTypes.removeIf(x -> x.equals(remove_from_filter_item));//originalContentTypes.contains(remove_from_filter_item));
+                    originalContentTypes.removeIf(x -> x.equals(remove_from_filter_item));
                     break;
                 case "suffix":
-                    originalPublicSuffixes.removeIf(x -> x.equals(remove_from_filter_item));//originalPublicSuffixes.contains(remove_from_filter_item));
+                    originalPublicSuffixes.removeIf(x -> x.equals(remove_from_filter_item));
                     break;
                 case "collections":
-                    originalCollections.removeIf(x -> x.equals(remove_from_filter_item));//originalCollections.contains(remove_from_filter_item));
+                    originalCollections.removeIf(x -> x.equals(remove_from_filter_item));
                     break;
             }
         }
@@ -128,7 +127,7 @@ public class SearchController {
         SearchByEnum searchBy = SearchByEnum.fromString(searchLocation);
         SortByEnum sortBy = SortByEnum.fromString(sortValue);
         if (sortBy == null) {
-            sortBy = SortByEnum.NEWEST_TO_OLDEST;
+            sortBy = SortByEnum.MOSTRELEVANT_TO_LEASTRELEVANT;
         }
 
         AccessToEnum accessTo = AccessToEnum.fromString(accessViewFilter);

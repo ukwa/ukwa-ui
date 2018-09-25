@@ -199,7 +199,7 @@
                             <c:set var = "hasFilters" value = "false"/>
                             <c:if test="${searchPage == 'true'}">
                         <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-2">
-                                <p class="searchFilter sidebar-clear-filter clearable x onX" ><spring:message code="search.filters.access" />&nbsp;
+                                <p class="searchFilter sidebar-clear-filter clearable" ><spring:message code="search.filters.access" />&nbsp;
 
                                     <c:if test="${originalAccessView.contains('va') || empty originalAccessView}">
                                         <spring:message code="search.filters.access.open" />
