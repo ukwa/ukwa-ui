@@ -77,6 +77,7 @@ public class SearchController {
                                    @RequestParam(value = "view_sort", required = false) String sortValue,
                                    @RequestParam(value = "view_count", required = false) String viewCount,
                                    @RequestParam(value = "view_filter", required = false) String accessViewFilter,
+                                   @RequestParam(value = "filter_source", required = false) String filter_source,
                                    //Modal Dialog - hidden modal_domains_vals FOR MAIN FILTER FORM
                                    @RequestParam(value = "modal_filter_domains_vals", required = false) String[] checked_domains_FromModal,
                                    @RequestParam(value = "modal_filter_suffix_vals", required = false) String[] checked_suffix_FromModal,
@@ -94,11 +95,11 @@ public class SearchController {
         List<String> domainsPairs = new LinkedList<>();
         List<String> collectionPairs = new LinkedList<>();
 
-        List<String> originalDomains = ((checked_domains_FromModal != null) ? (new LinkedList<>(Arrays.asList(checked_domains_FromModal))) : (checkedDomains != null ? (new LinkedList<>(Arrays.asList(checkedDomains))) : emptyList()));
-        List<String> originalContentTypes = (checked_contenttypes_FromModal != null) ? (new LinkedList<>(Arrays.asList(checked_contenttypes_FromModal))) : checkedContentTypes != null ? (new LinkedList<>(Arrays.asList(checkedContentTypes))) : emptyList();
-        List<String> originalPublicSuffixes = (checked_suffix_FromModal != null) ? (new LinkedList<>(Arrays.asList(checked_suffix_FromModal))) : checkedPublicSuffixes != null ? (new LinkedList<>(Arrays.asList(checkedPublicSuffixes))) : emptyList();
+        List<String> originalDomains = (checked_domains_FromModal != null && filter_source.equals("2")) ? (new LinkedList<>(Arrays.asList(checked_domains_FromModal))) : ((checkedDomains != null && filter_source.equals("1")) ? (new LinkedList<>(Arrays.asList(checkedDomains))) : emptyList());
+        List<String> originalContentTypes = (checked_contenttypes_FromModal != null && filter_source.equals("2")) ? (new LinkedList<>(Arrays.asList(checked_contenttypes_FromModal))) : ((checkedContentTypes != null ) ? (new LinkedList<>(Arrays.asList(checkedContentTypes))) : emptyList());
+        List<String> originalPublicSuffixes = (checked_suffix_FromModal != null && filter_source.equals("2")) ? (new LinkedList<>(Arrays.asList(checked_suffix_FromModal))) : ((checkedPublicSuffixes != null && filter_source.equals("1")) ? (new LinkedList<>(Arrays.asList(checkedPublicSuffixes))) : emptyList());
         List<String> originalRangeDates = checkedRangeDates != null ? asList(checkedRangeDates) : emptyList();
-        List<String> originalCollections = (checked_collections_FromModal != null) ? (new LinkedList<>(Arrays.asList(checked_collections_FromModal))) : checkedCollections != null ? (new LinkedList<>(Arrays.asList(checkedCollections))) : emptyList();
+        List<String> originalCollections = (checked_collections_FromModal != null && filter_source.equals("2")) ? (new LinkedList<>(Arrays.asList(checked_collections_FromModal))) : ((checkedCollections != null && filter_source.equals("1")) ? (new LinkedList<>(Arrays.asList(checkedCollections))) : emptyList());
 
         if(remove_from_filter != null)
         {

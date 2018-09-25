@@ -514,6 +514,8 @@
                                     <input type="hidden" name="modal_filter_documenttypes_vals" id="input_hidden_field_checked_modal_documenttypes_array" />
                                     <input type="hidden" name="modal_filter_collections_vals" id="input_hidden_field_checked_modal_collections_array" />
 
+                                    <input type="hidden" name="filter_source" id="input_hidden_field_filter_source" value="1" />
+
                                     <input type="hidden" name="filter_array_x" id="filter_array_x"  value="" />
                                     <input type="hidden" name="filter_array_x_item" id="filter_array_x_item"  value="" />
 
@@ -873,8 +875,7 @@
         }
 
         //change filters
-        //$("input[type='checkbox'], .access_filter").click(function(e) { $("#filter_form").submit(); });
-        $(".sidebar-filter-input-checkbox, .access_filter").click(function(e) { $("#filter_form").submit(); });
+        $(".sidebar-filter-input-checkbox, .access_filter").click(function(e) { $('#input_hidden_field_filter_source').val("1"); $("#filter_form").submit(); });
 
 
         $.fn.getDataFromModalFilter = function () {
@@ -892,12 +893,18 @@
             }).get();
 
             //store in hidden field
-            $('#input_hidden_field_checked_modal_domains_array').val(checkedModalDomains);//JSON.stringify(checkedModalDomainsArray));
+            $('#input_hidden_field_checked_modal_domains_array').val(checkedModalDomains);
             $('#input_hidden_field_checked_modal_suffix_array').val(checkedModalPublicSuffixArray);
             $('#input_hidden_field_checked_modal_documenttypes_array').val(checkedModalDocumentTypes);
             $('#input_hidden_field_checked_modal_collections_array').val(checkedModalCollections);
-
         };
+
+        $.fn.setDataFromModalFilterToNull = function () {
+            $('#input_hidden_field_checked_modal_domains_array').val("");
+            $('#input_hidden_field_checked_modal_suffix_array').val("");
+            $('#input_hidden_field_checked_modal_documenttypes_array').val("");
+            $('#input_hidden_field_checked_modal_collections_array').val("");
+        }
 
         $("#apply-modal-filter").click(function () {
 
@@ -905,6 +912,7 @@
             showPleaseWait();
 
             $.fn.getDataFromModalFilter();
+            $('#input_hidden_field_filter_source').val("2");
             // submit old form
             $("#filter_form").submit();
         });
