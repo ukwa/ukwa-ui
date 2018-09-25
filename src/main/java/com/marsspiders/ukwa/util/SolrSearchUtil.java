@@ -59,7 +59,7 @@ public class SolrSearchUtil {
 
         if(conditions.size() > 0){
             String multipleConditionsQuery = toMultipleConditionsQuery(conditions, fieldName);
-            multipleConditionQueryWithExclude = EXCLUDE_MARKER_SECOND_LAYER_TAG + multipleConditionsQuery;
+            multipleConditionQueryWithExclude = multipleConditionsQuery;
         }
 
         return multipleConditionQueryWithExclude;
