@@ -67,37 +67,23 @@ public class ArchiveController {
     }
 
     private String fetchWaybackUrlByIp(HttpServletRequest request, String accessFlag) {
-        log.debug("------- accessFlag " + accessFlag);
         //If site available for Open Access, we should use default off-site wayback url
         if(VIEWABLE_ANYWHERE.getSolrRequestAccessRestriction().equals(accessFlag)){
-            log.debug("IF VIEWABLE_ANYWHERE " + waybackIpConfiguration.getOffSiteUrl());
             return waybackIpConfiguration.getOffSiteUrl();
         }
         else if(VIEWABLE_ONLY_ON_LIBRARY.getSolrRequestAccessRestriction().equals(accessFlag)){
-            log.debug("IF VIEWABLE_ONLY_ON_LIBRARY " + waybackIpConfiguration.getOffSiteUrl());
-
             String waybackUrl = fetchWaybackUrlByIp(request, accessFlag);
             String localeStr = LocaleContextHolder.getLocale().toString();
-
-            log.info("Locale = " + localeStr);
             if (localeStr.equals("cy")){
-                log.info("waybackUrl before = " + waybackUrl);
                 StringBuilder sb = new StringBuilder(waybackUrl);
                 sb.setLength(sb.length() - 3);
                 waybackUrl = sb.toString();
-                log.info("waybackUrl after = " + waybackUrl);
                 return waybackUrl;
             }
             return waybackIpConfiguration.getOffSiteUrl();
         }
-        else//
-        {
-            log.debug("ELSE VIEWABLE " + waybackIpConfiguration.getOffSiteUrl());
-        }
 
         List<String> clientIps = fetchClientIps(request);
-        log.debug("User's client ips (ArchiveController): " + clientIps);
-
         List<String> locationsIpRanges = waybackIpConfiguration.getIpAddressListAtLocation();
 
         for (String currentLocationIpRanges : locationsIpRanges) {
@@ -118,16 +104,11 @@ public class ArchiveController {
             for (String clientIp : clientIps) {
                 if (ipWithinRange(clientIp, locationIpRange.trim())) {
                     List<String> locationsIpRanges = waybackIpConfiguration.getIpAddressListAtLocation();
-                    List<String> waybackLocations = waybackIpConfiguration.getIndexToLocation();
                     List<String> waybackUrls = waybackIpConfiguration.getUrl();
-
                     int locationId = locationsIpRanges.indexOf(locationIpRanges);
-                    log.debug("Ip belongs to: " + waybackLocations.get(locationId) + " location");
-
                     return waybackUrls.get(locationId);
                 }
             }
-
         }
 
         return null;
