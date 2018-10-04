@@ -25,8 +25,6 @@ import static com.marsspiders.ukwa.util.SolrSearchUtil.generateMultipleCondition
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.apache.solr.client.solrj.SolrQuery.ORDER.asc;
 
-import org.apache.lucene.queryparser.classic.QueryParser;
-
 @Service
 public class SolrSearchService {
     private static final Logger log = LoggerFactory.getLogger(SolrSearchService.class);
@@ -130,7 +128,7 @@ public class SolrSearchService {
     }
 
     public SolrSearchResult<ContentInfo> searchContent(SearchByEnum searchLocation,
-                                                       String searchText,
+                                                       String queryString,
                                                        int rows,
                                                        SortByEnum sortBy,
                                                        AccessToEnum accessTo,
@@ -142,7 +140,7 @@ public class SolrSearchService {
                                                        Date toDatePicked,
                                                        List<String> rangeDates,
                                                        List<String> collections) {
-        log.info("Searching content for '" + searchText + "' by " + searchLocation);
+        log.debug("Searching content for '" + queryString + "' by " + searchLocation);
 
         SortClause sort = sortBy == null
                 ? null
@@ -166,8 +164,8 @@ public class SolrSearchService {
         String[] facets = {FIELD_PUBLIC_SUFFIX, FIELD_TYPE, FIELD_HOST, FIELD_DOMAIN,
                 FIELD_COLLECTION, FIELD_CONTENT_TYPE_NORM, FIELD_ACCESS_TERMS};
 
-        String queryString = QueryParser.escape(searchText);
-        return sendRequest(queryString, sort, filters, FIELD_CONTENT, ContentInfo.class, start, rows, facets);
+        //QueryParser.escape(searchText); // removes     //+ - && || ! ( ) { } [ ] ^ " ~ * ? : \ /
+        return sendRequest(queryString.replaceAll("[&|*()?:!.,~{}^/]+", " "), sort, filters, FIELD_CONTENT, ContentInfo.class, start, rows, facets);
     }
 
     private <T extends BodyDocsType> SolrSearchResult<T> sendRequest(String queryString,
