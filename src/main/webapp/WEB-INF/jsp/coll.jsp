@@ -74,8 +74,8 @@ ${pageContext.response.locale}
          <div class="row margin-0 border-bottom-gray">
    <div class="col-md-6 col-sm-12 padding-bottom-20 padding-20 light-blue">
        <form action="search" method="get" enctype="multipart/form-data" name="search_coll_form" id="search_coll_form">
-       <div class="row padding-bottom-20">
-            <div class="col-sm-12">
+           <div class="row padding-bottom-20">
+               <div class="col-sm-12">
                   <div class="coll-search-input">
                   <input type="text" class="coll-search-field" name="text" id="text_collections" title="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" aria-label="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" placeholder="<spring:message code="coll.search.text1" /> within &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" required/>
                   <input type="hidden" name="search_location" value="full_text"/>
@@ -84,7 +84,8 @@ ${pageContext.response.locale}
                   </div>
                 </div>
               </div>
-        </form>
+           <input type="hidden" name="filter_source" id="input_hidden_field_filter_source" value="3" />
+       </form>
     </div>
     </div>
 

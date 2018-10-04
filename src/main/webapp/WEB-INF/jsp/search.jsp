@@ -41,15 +41,15 @@
     </header>
 
     <!-- Modal Search Filter CheckBox Dialog -->
-    <div class="modal fade" id="SearchFilterDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="margin: 0 auto; margin-top: 5%">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal fade vertically-modal filter-dialog" id="SearchFilterDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog  modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header d-block">
                     <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" style="max-height: calc(70vh - 143px);overflow-y: auto;">
+                <div class="modal-body" >
 
                         <div class="d-flex flex-row mt-2">
                             <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" role="navigation">
@@ -67,16 +67,16 @@
                                 </li>
                             </ul>
                             <!-- Tab panes -->
-                            <div class="tab-content">
+                            <div class="tab-content ">
                                 <!-- Domain -->
                                 <div class="tab-pane" id="domain" role="tabpanel">
-                                    <div class="container-inline-flex column wrap fixed-width-750">
+                                    <div class="container-inline-flex column wrap modal-content-tab-panel" style="width: 540px">
 
                                         <c:if test="${domains.size() > 1}">
                                             <c:forEach begin="0" end="${domains.size() - 1}" step="2" var="i">
 
                                                 <c:if test="${(domains.get(i + 1) != 0 ) || (originalDomains.contains(domains.get(i))?true:false)}">
-                                                    <div class="form-check-cont relative" style="width: 310px;padding: 10px;word-wrap:break-word;text-overflow: ellipsis" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
+                                                    <div class="form-check-cont relative" style="width: 250px;padding: 10px;word-wrap:break-word;text-overflow: ellipsis" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
                                                         <input type="checkbox" class="blue sidebar-filter-input-checkbox-modal-domains" name="domain_filter_modal" id="domain_filter_modal_<c:out value="${i}"/>"
                                                                value="${domains.get(i)}"
                                                             ${originalDomains.contains(domains.get(i) )? 'checked' : ''}/>
@@ -94,14 +94,14 @@
                                 <!-- Document Type -->
                                 <div class="tab-pane" id="documenttype" role="tabpanel">
 
-                                    <div class="container-inline-flex column wrap fixed-height-500 fixed-width-750">
+                                    <div class="container-inline-flex column wrap modal-content-tab-panel" style="width: 540px">
 
                                         <c:if test="${contentTypes.size() > 1}">
                                             <c:forEach begin="0" end="${contentTypes.size() - 1}" step="2" var="i">
 
                                                 <c:if test="${(contentTypes.get(i + 1) != 0) || (originalContentTypes.contains(contentTypes.get(i))?true:false)}">
 
-                                                    <div class="form-check-cont relative" style="width: 310px;padding: 10px" title="<c:out value="${contentTypes.get(i)}"/>" tabindex="0">
+                                                    <div class="form-check-cont relative" style="width: 250px;padding: 10px" title="<c:out value="${contentTypes.get(i)}"/>" tabindex="0">
                                                         <input type="checkbox" class="blue sidebar-filter-input-checkbox-modal-documenttypes" name="content_type_filter_modal" id="content_type_filter_modal_<c:out value="${i}"/>"
                                                                value="${contentTypes.get(i)}"
                                                             ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
@@ -122,14 +122,14 @@
                                 <!-- Suffix -->
                                 <div class="tab-pane" id="suffix" role="tabpanel">
 
-                                    <div class="container-inline-flex column wrap fixed-height-500 fixed-width-750">
+                                    <div class="container-inline-flex column wrap modal-content-tab-panel" style="width: 540px">
 
                                         <c:if test="${publicSuffixes.size() > 1}">
 
                                             <c:forEach begin="0" end="${publicSuffixes.size() - 1}" step="2" var="i">
                                                 <c:if test="${(publicSuffixes.get(i + 1) != 0) || (originalPublicSuffixes.contains(publicSuffixes.get(i))?true:false)}">
 
-                                                    <div class="form-check-cont relative" style="width: 310px;padding: 10px" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
+                                                    <div class="form-check-cont relative" style="width: 250px;padding: 10px" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
                                                         <input type="checkbox" class="blue sidebar-filter-input-checkbox-modal-suffixes" name="public_suffix_filter_modal" id="public_suffix_filter_modal_<c:out value="${i}"/>"
                                                                value="${publicSuffixes.get(i)}"
                                                             ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
@@ -150,13 +150,13 @@
 
                                 <!-- Topics and Themes -->
                                 <div class="tab-pane" id="topicsandthemes" role="tabpanel">
-                                    <div class="container-inline-flex column wrap fixed-height-500 fixed-width-750">
+                                    <div class="container-inline-flex column wrap modal-content-tab-panel" style="width: 540px">
 
                                         <c:if test="${collections.size() > 1}">
 
                                             <c:forEach begin="0" end="${collections.size() - 1}" step="2" var="i">
                                                 <c:if test="${(collections.get(i + 1) != 0) || (originalCollections.contains(collections.get(i))?true:false)}">
-                                                    <div class="form-check-cont relative" style="width: 310px;padding: 10px" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
+                                                    <div class="form-check-cont relative" style="width: 250px;padding: 10px" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
                                                         <input type="checkbox" class="blue sidebar-filter-input-checkbox-modal-collections" name="collection_filter_modal" id="collection_filter_modal_<c:out value="${i}"/>"
                                                                value="${collections.get(i)}"
                                                             ${originalCollections.contains(collections.get(i) )? 'checked' : ''}/>

@@ -95,11 +95,27 @@ public class SearchController {
         List<String> domainsPairs = new LinkedList<>();
         List<String> collectionPairs = new LinkedList<>();
 
-        List<String> originalDomains = (checked_domains_FromModal != null && filter_source.equals("2")) ? (new LinkedList<>(Arrays.asList(checked_domains_FromModal))) : ((checkedDomains != null && filter_source.equals("1")) ? (new LinkedList<>(Arrays.asList(checkedDomains))) : emptyList());
-        List<String> originalContentTypes = (checked_contenttypes_FromModal != null && filter_source.equals("2")) ? (new LinkedList<>(Arrays.asList(checked_contenttypes_FromModal))) : ((checkedContentTypes != null ) ? (new LinkedList<>(Arrays.asList(checkedContentTypes))) : emptyList());
-        List<String> originalPublicSuffixes = (checked_suffix_FromModal != null && filter_source.equals("2")) ? (new LinkedList<>(Arrays.asList(checked_suffix_FromModal))) : ((checkedPublicSuffixes != null && filter_source.equals("1")) ? (new LinkedList<>(Arrays.asList(checkedPublicSuffixes))) : emptyList());
-        List<String> originalRangeDates = checkedRangeDates != null ? asList(checkedRangeDates) : emptyList();
-        List<String> originalCollections = (checked_collections_FromModal != null && filter_source.equals("2")) ? (new LinkedList<>(Arrays.asList(checked_collections_FromModal))) : ((checkedCollections != null && filter_source.equals("1")) ? (new LinkedList<>(Arrays.asList(checkedCollections))) : emptyList());
+
+        List<String> originalContentTypes;
+        List<String> originalPublicSuffixes;
+        List<String> originalDomains;
+        List<String> originalRangeDates;
+        List<String> originalCollections;
+
+        if (filter_source==null || filter_source.equals("3")) { //covers initial search from home page AND initial search within collections
+            originalContentTypes = checkedContentTypes != null ? asList(checkedContentTypes) : emptyList();
+            originalPublicSuffixes = checkedPublicSuffixes != null ? asList(checkedPublicSuffixes) : emptyList();
+            originalDomains = checkedDomains != null ? asList(checkedDomains) : emptyList();
+            originalRangeDates = checkedRangeDates != null ? asList(checkedRangeDates) : emptyList();
+            originalCollections = checkedCollections != null ? asList(checkedCollections) : emptyList();
+        }
+        else {
+            originalDomains = (checked_domains_FromModal != null && filter_source.equals("2")) ? (new LinkedList<>(Arrays.asList(checked_domains_FromModal))) : ((checkedDomains != null && filter_source.equals("1")) ? (new LinkedList<>(Arrays.asList(checkedDomains))) : emptyList());
+            originalContentTypes = (checked_contenttypes_FromModal != null && filter_source.equals("2")) ? (new LinkedList<>(Arrays.asList(checked_contenttypes_FromModal))) : ((checkedContentTypes != null) ? (new LinkedList<>(Arrays.asList(checkedContentTypes))) : emptyList());
+            originalPublicSuffixes = (checked_suffix_FromModal != null && filter_source.equals("2")) ? (new LinkedList<>(Arrays.asList(checked_suffix_FromModal))) : ((checkedPublicSuffixes != null && filter_source.equals("1")) ? (new LinkedList<>(Arrays.asList(checkedPublicSuffixes))) : emptyList());
+            originalRangeDates = checkedRangeDates != null ? asList(checkedRangeDates) : emptyList();
+            originalCollections = (checked_collections_FromModal != null && filter_source.equals("2")) ? (new LinkedList<>(Arrays.asList(checked_collections_FromModal))) : ((checkedCollections != null && filter_source.equals("1")) ? (new LinkedList<>(Arrays.asList(checkedCollections))) : emptyList());
+        }
 
         if(remove_from_filter != null)
         {

@@ -110,7 +110,7 @@ $(document).ready(function(e) {
 		$(".results-for-highlight").each(function(index, element) {
 		
 			var restext=$(this).html();
-			var query=$(".main-search-field").val();
+			var query=$(".main-search-field-redesign").val();
 			var matches=[];
 			var uniqueMatches=[];
 			var invalid = /[°"§%()\[\]{}=\\?´`'#<>|,;.:~*\\+_-]+/g;

@@ -38,7 +38,7 @@ ${pageContext.response.locale}
 
       <!-- Modal -->
       <div class="modal fade" id="searchingUKWAModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+          <div class="modal-dialog tips-dialog modal-lg modal-dialog-centered" role="document">
               <div class="modal-content">
                   <div class="modal-header d-block">
                       <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close">
@@ -63,6 +63,19 @@ ${pageContext.response.locale}
                           <div class="row padding-top-10 padding-bottom-10">
                               <div class="col-md-2 col-sm-12 circle"><span>4</span></div>
                               <div class="col-md-10 col-sm-12 circle-text"><b>Tip 4 - </b>Note that all queries are case-insensitive.</div>
+                          </div>
+
+                          <div class="row padding-top-10 padding-bottom-10">
+                              <div class="col-md-2 col-sm-12 circle"><span>5</span></div>
+                              <div class="col-md-10 col-sm-12 circle-text"><b>Tip 5 - </b>Use Boolean search terms - AND, NOT, OR etc. e.g. apple NOT fruit.</div>
+                          </div>
+                          <div class="row padding-top-10 padding-bottom-10">
+                              <div class="col-md-2 col-sm-12 circle"><span>6</span></div>
+                              <div class="col-md-10 col-sm-12 circle-text"><b>Tip 6 - </b>Use quote marks when looking for a specific phrase e.g. &quot;London Olympics&quot;.</div>
+                          </div>
+                          <div class="row padding-top-10 padding-bottom-10">
+                              <div class="col-md-2 col-sm-12 circle"><span>7</span></div>
+                              <div class="col-md-10 col-sm-12 circle-text"><b>Tip 7 - </b>Dates refer to when items were collected and not when they were made available on the Internet.</div>
                           </div>
                       </div>
                   </div>
