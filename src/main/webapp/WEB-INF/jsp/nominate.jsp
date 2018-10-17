@@ -36,7 +36,7 @@ ${req.requestURL}
   </div>
 <section id="nominate-header">
   <div class="row header-2-subtitle-redesign padding-top-40 padding-bottom-20">
-    <div class="col-md-12 mr-auto ml-auto col-md-offset-2 padding-mobile-side-0" style="padding-left:10vh;padding-right: 60px">
+    <div class="col-md-12 mr-auto ml-auto col-md-offset-2 padding-mobile-side-0 nominate-text" style="padding-left:10vh;padding-right: 60px">
       <spring:message code="nominate.text" />
     </div>
   </div>
@@ -97,7 +97,7 @@ ${req.requestURL}
         <div class=" margin-top-30 clearfix">
          <div class="g-recaptcha" data-sitekey="6Lcn5C4UAAAAAFzANA394u7Jqfk2QmvxyUjM8UiM"></div>
       <div class="captcha-message"><spring:message code="captcha.message" /></div>
-        <button type="submit" class="button button-blue margin-top-30" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button></div>
+        <button type="submit" class="button button-blue margin-top-30 button_form_submit" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button></div>
         
       </div>
     </div>

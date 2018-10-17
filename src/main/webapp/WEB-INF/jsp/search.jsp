@@ -40,6 +40,56 @@
         <%@include file="header.jsp" %>
     </header>
 
+    <!-- Modal -->
+    <div class="modal fade" id="searchingUKWAModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog tips-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header d-block">
+                    <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="padding: 0">
+                    <div class="main-heading-2-redesign padding-top-40 bg-gray2" id="exampleModalLongTitle" style="padding-left: 40px;padding-bottom: 40px">How to get the most from searching the UKWA</div>
+                    <div class="padding-left-20">
+                        <div class="row padding-top-40 padding-bottom-10">
+                            <div class="col-md-2 col-sm-2 circle"><span>1</span></div>
+                            <div class="col-md-10 col-sm-9 circle-text"><b>Tip 1 - </b>If you are looking for a single website that you believe may be in the UK Web Archive, you can search for it via the Search tab. Use a phrase or name that you think is most likely to be in the website and in that website alone. This will search across all the archived websites.</div>
+                        </div>
+                        <div class="row padding-top-10 padding-bottom-10">
+                            <div class="col-md-2 col-sm-2 circle"><span>2</span></div>
+                            <div class="col-md-10 col-sm-9 circle-text"><b>Tip 2 - </b>There are several options for narrowing your search. For example, a phrase search uses more than one term (i.e. more than a single word). If two (or more) terms are submitted without the use of quotes, only one of those terms need appear in the documents to produce a result. If the terms are quoted, then only that precise string will be returned. See the Query Syntax section below for full details.</div>
+                        </div>
+                        <div class="row padding-top-10 padding-bottom-10">
+                            <div class="col-md-2 col-sm-12 circle"><span>3</span></div>
+                            <div class="col-md-10 col-sm-12 circle-text"><b>Tip 3 - </b>Having submitted your query you can further refine your search using the facets on the left-hand side of the full text search results page. This allows the matching results to be filtered by various properties, such as content type, collection and crawl year. For example, you can use the Refine by domain suffix facet to limit the results set to those resources hosted on domains with names that share the same common suffix, such as co.uk, ac.uk or com.</div>
+                        </div>
+                        <div class="row padding-top-10 padding-bottom-10">
+                            <div class="col-md-2 col-sm-12 circle"><span>4</span></div>
+                            <div class="col-md-10 col-sm-12 circle-text"><b>Tip 4 - </b>Note that all queries are case-insensitive.</div>
+                        </div>
+
+                        <div class="row padding-top-10 padding-bottom-10">
+                            <div class="col-md-2 col-sm-12 circle"><span>5</span></div>
+                            <div class="col-md-10 col-sm-12 circle-text"><b>Tip 5 - </b>Use Boolean search terms - AND, NOT, OR etc. e.g. apple NOT fruit.</div>
+                        </div>
+                        <div class="row padding-top-10 padding-bottom-10">
+                            <div class="col-md-2 col-sm-12 circle"><span>6</span></div>
+                            <div class="col-md-10 col-sm-12 circle-text"><b>Tip 6 - </b>Use quote marks when looking for a specific phrase e.g. &quot;London Olympics&quot;.</div>
+                        </div>
+                        <div class="row padding-top-10 padding-bottom-10">
+                            <div class="col-md-2 col-sm-12 circle"><span>7</span></div>
+                            <div class="col-md-10 col-sm-12 circle-text"><b>Tip 7 - </b>Dates refer to when items were collected and not when they were made available on the Internet.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer inline-block-items justify-content-center" style="width: 100%;">
+                    <button type="button" class="btn btn-primary" style="width: 20%;" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal Search Filter CheckBox Dialog -->
     <div class="modal fade vertically-modal filter-dialog" id="SearchFilterDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog  modal-lg modal-dialog-centered" role="document">
@@ -192,7 +242,7 @@
 
         <div class="row margin-0 padding-0">
 
-            <div class="col-lg-3 col-md-4 col-sm-12  padding-0 side-bar-right">
+            <div class="col-lg-3 col-md-4 col-sm-4 padding-0 side-bar-right">
                 <aside id="sidebar">
                     <div class="row padding-top-10 sidebar-clear-filter-container-group">
 
@@ -472,8 +522,8 @@
                                     </div>
                                     <div class="row padding-top-20">
                                         <div class="col-sm-12">
-                                            <button type="submit" title="<spring:message code="search.side.date.submit" />" class="button button-blue width-auto-inline"><spring:message code="search.side.date.submit" /></button>
-                                            <button type="button" title="<spring:message code="search.side.date.reset" />" class="button button-blue width-auto-inline margin-top-10 text-small" id="btn_reset_dates">X</button>
+                                            <button type="submit" title="<spring:message code="search.side.date.submit" />" class="button button-blue width-auto-inline date-filter-button"><spring:message code="search.side.date.submit" /></button>
+                                            <button type="button" title="<spring:message code="search.side.date.reset" />" class="button button-blue width-auto-inline date-filter-button margin-top-10 text-small" id="btn_reset_dates">X</button>
                                         </div>
                                     </div>
                                 </div>
@@ -532,13 +582,13 @@
                 </aside>
             </div>
 
-            <div class="col-lg-9 col-md-8 col-sm-12 padding-0 padding-left-20">
+            <div class="col-lg-9 col-md-8 col-sm-8 padding-0 padding-left-20">
                 <div class="results-header border-bottom-gray">
                     <div class="row margin-0 padding-0">
                         <%@include file="searchpage_searchForm.jsp" %>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12" style="padding-left:30px;">
+                        <div class="col-sm-12 results_settings" >
                             <span class="search-results-main-heading bold">Search results: </span><span class="search-results-main-heading"><c:out value="${totalSearchResultsSizeFormatted}"/></span>
                             <span class="search-results-main-heading ">&nbsp;<spring:message code="search.results.num"/>&nbsp;</span><span class="search-results-main-heading">&quot;<c:out value="${originalSearchRequest}" escapeXml="false"/>&quot;</span></div>
                     </div>

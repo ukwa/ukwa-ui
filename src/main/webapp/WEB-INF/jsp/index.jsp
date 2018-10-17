@@ -100,16 +100,11 @@ ${pageContext.response.locale}
             <p class="main-subheading-2-redesign">
                 <spring:message code="home.header.text2" />
             </p><br/>
-                <p>
-                    <span class="right light-blue collection-heading">
-                        <a href="#" data-toggle="modal" data-target="#searchingUKWAModalCenter"  title="Get the most from searching the UKWA" >Get the most from searching the UKWA</a>
-                    </span>
-                </p>
             </div>
             <div class="col-md-4 embed-responsive">
-                <video controls class="embed-responsive-item">
-                    <source src="img/WhatUKWAcollect.mp4" type="video/mp4">
-                </video>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/1QLMPIRwJEo" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
 
@@ -174,7 +169,7 @@ ${pageContext.response.locale}
 
     <div class="padding-bottom-60 center">
         <a href="collection" class="no-decoration" title="<spring:message code="home.button.viewmore.title"/>">
-            <div class="button button-blue width-auto-inline "><spring:message code="home.button.viewmore"/></div></a>
+            <div class="button button-blue width-auto-inline view-more-button"><spring:message code="home.button.viewmore"/></div></a>
     </div>
 </section>
 

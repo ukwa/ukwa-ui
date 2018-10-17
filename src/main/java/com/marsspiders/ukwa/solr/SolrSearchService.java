@@ -165,7 +165,7 @@ public class SolrSearchService {
                 FIELD_COLLECTION, FIELD_CONTENT_TYPE_NORM, FIELD_ACCESS_TERMS};
 
         //QueryParser.escape(searchText); // removes     //+ - && || ! ( ) { } [ ] ^ " ~ * ? : \ /
-        return sendRequest(queryString.replaceAll("[&|*()?:!.,~{}^/]+", " "), sort, filters, FIELD_CONTENT, ContentInfo.class, start, rows, facets);
+        return sendRequest(queryString.replaceAll("[&|*()?:!,~{}^/]+", " "), sort, filters, FIELD_CONTENT, ContentInfo.class, start, rows, facets);
     }
 
     private <T extends BodyDocsType> SolrSearchResult<T> sendRequest(String queryString,
