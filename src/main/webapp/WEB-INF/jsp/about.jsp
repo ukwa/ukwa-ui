@@ -47,10 +47,10 @@
       </article>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
-      <figure><img class="img-responsive" src="img/about1.png" alt="About UKWA"/> </figure>
+      <figure><img class="img-responsive" src="img/47007971.jpg" alt="About UKWA"/> </figure>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
-      <figure><img class="img-responsive" src="img/about2.png" alt="About UKWA"/> </figure>
+      <figure><img class="img-responsive" src="img/47008070.jpg" alt="About UKWA"/> </figure>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
       <article>
