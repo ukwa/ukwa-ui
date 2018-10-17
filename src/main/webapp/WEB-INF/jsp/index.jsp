@@ -169,7 +169,7 @@ ${pageContext.response.locale}
 
     <div class="padding-bottom-60 center">
         <a href="collection" class="no-decoration" title="<spring:message code="home.button.viewmore.title"/>">
-            <div class="button button-blue width-auto-inline "><spring:message code="home.button.viewmore"/></div></a>
+            <div class="button button-blue width-auto-inline view-more-button"><spring:message code="home.button.viewmore"/></div></a>
     </div>
 </section>
 
