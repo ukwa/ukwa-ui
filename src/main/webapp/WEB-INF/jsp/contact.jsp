@@ -72,7 +72,7 @@
       <div class="col-md-6 col-sm-12 form-content-col padding-top-0">
       <div class="g-recaptcha" data-sitekey="6Lcn5C4UAAAAAFzANA394u7Jqfk2QmvxyUjM8UiM"></div>
       <div class="captcha-message"><spring:message code="captcha.message" /></div>
-        <button type="submit" class="button button-blue margin-top-30" title="<spring:message code="contact.form.button.submit" />"><spring:message code="contact.form.button.submit" /></button>
+        <button type="submit" class="button button-blue margin-top-30 button_form_submit" title="<spring:message code="contact.form.button.submit" />"><spring:message code="contact.form.button.submit" /></button>
       </div>
     </div>
   </form>

@@ -33,11 +33,7 @@
   </div>
 
 <figure>
-  <div class="header-white about-video-container padding-0">
-<div class="embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ubDHY-ynWi0" allowfullscreen></iframe>
-</div>
-</div>
+
 </figure>
 <section id="content">
   <div class="row page-content">
@@ -51,10 +47,10 @@
       </article>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
-      <figure><img class="img-responsive" src="img/about1.png" alt="About UKWA"/> </figure>
+      <figure><img class="img-responsive" src="img/47007971.jpg" alt="About UKWA"/> </figure>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
-      <figure><img class="img-responsive" src="img/about2.png" alt="About UKWA"/> </figure>
+      <figure><img class="img-responsive" src="img/47008070.jpg" alt="About UKWA"/> </figure>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
       <article>
@@ -78,6 +74,11 @@
     </div>
   </div>
 </section>
+  <div class="header-white about-video-container padding-0">
+    <div class="embed-responsive embed-responsive-16by9">
+      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ubDHY-ynWi0" allowfullscreen></iframe>
+    </div>
+  </div>
 
 <footer>
   <%@include file="footer.jsp" %>
