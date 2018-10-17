@@ -100,16 +100,11 @@ ${pageContext.response.locale}
             <p class="main-subheading-2-redesign">
                 <spring:message code="home.header.text2" />
             </p><br/>
-                <p>
-                    <span class="right light-blue collection-heading">
-                        <a href="#" data-toggle="modal" data-target="#searchingUKWAModalCenter"  title="Get the most from searching the UKWA" >Get the most from searching the UKWA</a>
-                    </span>
-                </p>
             </div>
             <div class="col-md-4 embed-responsive">
-                <video controls class="embed-responsive-item">
-                    <source src="img/WhatUKWAcollect.mp4" type="video/mp4">
-                </video>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/1QLMPIRwJEo" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
 
