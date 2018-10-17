@@ -1,4 +1,3 @@
-
 <div class="row margin-0 padding-30">
     <div class="col-lg-auto col-md-auto col-sm-auto padding-0">
 <a href="index" ><img src="img/ukwa-logo-60px.jpg" class="header-logo"></a>
@@ -8,44 +7,44 @@
   <div class="col-md-1">&nbsp;</div>
   <div class="col-md-3 col-md-offset-1 col-sm-12">
       <a href="index" title="<spring:message code="footer.home.title" />" class="collection-link">
-          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.home" /></div>
+          <div class="left light-blue padding-bottom-5 dialog-link"><spring:message code="footer.home" /></div>
       </a><br/>
       <a href="info/about" title="<spring:message code="footer.about.title" />" class="collection-link">
-          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.about" /></div>
+          <div class="left light-blue padding-bottom-5 dialog-link"><spring:message code="footer.about" /></div>
       </a><br/>
       <a href="collection" title="<spring:message code="footer.collections.title" />" class="collection-link">
-          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.collections" /></div>
+          <div class="left light-blue padding-bottom-5 dialog-link"><spring:message code="footer.collections" /></div>
       </a><br/>
       <a href="http://britishlibrary.typepad.co.uk/webarchive/" target="_blank" title="<spring:message code="footer.blog.title" />" class="collection-link">
-          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.blog" /></div>
+          <div class="left light-blue padding-bottom-5 dialog-link"><spring:message code="footer.blog" /></div>
       </a><br/>
       <a href="info/nominate" title="<spring:message code="footer.nominate.title" />" class="collection-link">
-          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.nominate" /></div>
+          <div class="left light-blue padding-bottom-5 dialog-link"><spring:message code="footer.nominate" /></div>
       </a><br/>
   </div>
   <div class="col-md-1">&nbsp;</div>
   <div class="col-md-3 col-md-offset-1 col-sm-12">
       <a href="info/notice_takedown" class="collection-link" title="<spring:message code="footer.notice.title" />">
-          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.notice" /></div>
+          <div class="left light-blue padding-bottom-5 dialog-link"><spring:message code="footer.notice" /></div>
       </a><br/>
       <a href="info/terms_conditions" class="collection-link" title="<spring:message code="footer.terms.title" />">
-          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.terms" /></div>
+          <div class="left light-blue padding-bottom-5 dialog-link"><spring:message code="footer.terms" /></div>
       </a><br/>
       <a href="info/privacy" class="collection-link" title="<spring:message code="footer.privacy.title" />">
-          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.privacy" /></div>
+          <div class="left light-blue padding-bottom-5 dialog-link"><spring:message code="footer.privacy" /></div>
       </a><br/>
       <a href="info/cookies" class="collection-link" title="<spring:message code="footer.cookies.title" />">
-          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.cookies" /></div>
+          <div class="left light-blue padding-bottom-5 dialog-link"><spring:message code="footer.cookies" /></div>
       </a><br/>
   </div>
   <div class="col-md-1">&nbsp;</div>
   <div class="col-md-3 col-md-offset-1 col-sm-12">
 
       <a href="info/faq" title="<spring:message code="footer.faq" />" class="collection-link">
-          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.faq" /></div>
+          <div class="left light-blue padding-bottom-5 dialog-link"><spring:message code="footer.faq" /></div>
       </a><br/>
       <a href="contact" title="<spring:message code="footer.contact.title" />" class="collection-link">
-          <div class="left light-blue padding-bottom-5 collection-heading"><spring:message code="footer.contact" /></div>
+          <div class="left light-blue padding-bottom-5 dialog-link"><spring:message code="footer.contact" /></div>
       </a><br/>
     <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
     <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
@@ -55,16 +54,16 @@
     <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
           && (fn:contains(textUri, '/gd/') || textUri =='/gd' || fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
       <span lang="en"><a href="/en<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.english.title" />" class="collection-link">
-      <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.english" /></div></a></span><br/>
+      <div class="left light-blue padding-bottom-10 dialog-link"><spring:message code="footer.english" /></div></a></span><br/>
     </c:if>
     <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}"> <span lang="cy"><a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.welsh.title" />" class="collection-link">
-      <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.welsh" /></div></a></span><br/>
+      <div class="left light-blue padding-bottom-10 dialog-link"><spring:message code="footer.welsh" /></div></a></span><br/>
     </c:if>
     <c:if test="${!fn:startsWith(textUri, '/gd/') && textUri != '/gd'}"> <span lang="gn"><a href="/gd<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.scottish.title" />" class="collection-link">
-      <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.scottish" /></div></a></span><br/>
+      <div class="left light-blue padding-bottom-10 dialog-link"><spring:message code="footer.scottish" /></div></a></span><br/>
     </c:if>
       <a href="https://www.webarchive.org.uk/rss/recent.xml" title="<spring:message code="footer.rss.title" />" class="collection-link">
-          <div class="left light-blue padding-bottom-10 collection-heading"><spring:message code="footer.rss" /></div>
+          <div class="left light-blue padding-bottom-10 dialog-link"><spring:message code="footer.rss" /></div>
       </a><br/>
   </div>
 </div>
@@ -76,7 +75,12 @@
 </div>
 </div>
     </div>
-
+<hr/>
+<div class="row margin-0 padding-30">
+    <div class="col-12 center footer-legal-deposit">
+    The UK Web Archive collects on behalf of these UK Legal deposit Libraries
+    </div>
+</div>
 
 <div class="row padding-bottom-10 justify-content-between">
     <div class="col-md-2"><a href="https://www.bl.uk/" target="_blank"><img src="img/bl_logo_BW.png" alt="<spring:message code="footer.logo.blib" />" class="footer-logo-BW"/></a></div>
