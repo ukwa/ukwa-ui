@@ -1,6 +1,6 @@
 <div class="row margin-0 padding-30">
     <div class="col-lg-auto col-md-auto col-sm-auto padding-0">
-<a href="index" ><img src="img/ukwa-logo-60px.jpg" class="header-logo"></a>
+<a href="index" ><img src="img/ukwa-2018-logo.png" class="header-logo"></a>
     </div>
 </div>
 <div class="row">
