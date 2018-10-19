@@ -47,7 +47,7 @@
       </article>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
-      <figure><img class="img-responsive" src="img/47007971.jpg" alt="About UKWA"/> </figure>
+      <figure><img class="img-responsive" src="img/47007971.JPG" alt="About UKWA"/> </figure>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
       <figure><img class="img-responsive" src="img/47008070.jpg" alt="About UKWA"/> </figure>

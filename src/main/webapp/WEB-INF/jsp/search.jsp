@@ -444,7 +444,7 @@
                                                         <input type="checkbox" class="blue sidebar-filter-input-checkbox" name="content_type" id="content_type_<c:out value="${i}"/>"
                                                                value="${contentTypes.get(i)}"
                                                             ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
-                                                        <label class="main-search-check-label" style="color: #0c49b0" for="content_type_<c:out value="${i}"/>">
+                                                        <label class="main-search-check-label blue block-two-text-lines" for="content_type_<c:out value="${i}"/>">
                                                             <c:out value="${contentTypes.get(i)}"/>
                                                             <span class="label-counts black" >(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
                                                     </div>
@@ -501,7 +501,7 @@
                                     </div>
                                     <div class="row padding-bottom-10">
                                         <div class="col-auto">
-                                            <input type="text" class="form-control form-white-placeholder" name="from_date"
+                                            <input type="text" class="form-control form-white-placeholder filter-form-control" name="from_date"
                                                    id="from_date" title="<spring:message code="search.side.date.from" />"
                                                    placeholder="YYYY-MM-DD"
                                                    value="${originalFromDateText != null ? originalFromDateText : ''}"/>
@@ -515,15 +515,15 @@
                                     </div>
                                     <div class="row padding-bottom-10 ">
                                         <div class="col-auto">
-                                            <input type="text" class="form-control form-white-placeholder" name="to_date" id="to_date"
+                                            <input type="text" class="form-control form-white-placeholder filter-form-control" name="to_date" id="to_date"
                                                    title="<spring:message code="search.side.date.to" />" placeholder="YYYY-MM-DD"
                                                    value="${originalToDateText != null ? originalToDateText : ''}"/>
                                         </div>
                                     </div>
                                     <div class="row padding-top-20">
                                         <div class="col-sm-12">
-                                            <button type="submit" title="<spring:message code="search.side.date.submit" />" class="button button-blue width-auto-inline date-filter-button"><spring:message code="search.side.date.submit" /></button>
-                                            <button type="button" title="<spring:message code="search.side.date.reset" />" class="button button-blue width-auto-inline date-filter-button margin-top-10 text-small" id="btn_reset_dates">X</button>
+                                            <button type="submit" title="<spring:message code="search.side.date.submit" />" class="button button-blue width-auto-inline date-filter-button filter-form-control"><spring:message code="search.side.date.submit" /></button>
+                                            <button type="button" title="<spring:message code="search.side.date.reset" />" class="button button-blue width-auto-inline date-filter-button margin-top-10 filter-form-control" id="btn_reset_dates">X</button>
                                         </div>
                                     </div>
                                 </div>
@@ -583,8 +583,8 @@
             </div>
 
             <div class="col-lg-9 col-md-8 col-sm-8 padding-0 padding-left-20">
-                <div class="results-header border-bottom-gray">
-                    <div class="row margin-0 padding-0">
+                <div class="results-header">
+                    <div class="row bg-gray2">
                         <%@include file="searchpage_searchForm.jsp" %>
                     </div>
                     <div class="row">
@@ -604,24 +604,24 @@
                     </c:choose>
 
                 </div>
-                <div class="row border-bottom-gray margin-0 left">
+                <div class="row margin-0 left">
                     <div class="col-md-12 padding-20 padding-mobile-side-0">
-                        <div class="search-results-top-filters width-200 margin-top-10">
+                        <div class="search-results-top-filters margin-top-10">
                             <div class="form-check-cont form-margin-check" title="Newest to Oldest" tabindex="0">
                                 <input type="radio" name="sort" id="sort_1" value="nto" class="sort"
                                 ${originalSortValue.contains('nto') || empty originalSortValue ? 'checked' : ''}/>
-                                <label class="main-search-check-label text-small" for="sort_1" title="<spring:message code="search.results.sort.newest" />"><spring:message code="search.results.sort.newest" /></label>
+                                <label class="main-search-check-label blue" for="sort_1" title="<spring:message code="search.results.sort.newest" />"><spring:message code="search.results.sort.newest" /></label>
                             </div>
                         </div>
-                        <div class="search-results-top-filters width-200 margin-top-10">
+                        <div class="search-results-top-filters margin-top-10">
                             <div class="form-check-cont form-margin-check" title="Oldest to Newest" tabindex="0">
                                 <input type="radio" name="sort" id="sort_2" value="otn" class="sort"
                                 ${originalSortValue.contains('otn') ? 'checked' : ''}/>
-                                <label class="main-search-check-label text-small" for="sort_2" title="<spring:message code="search.results.sort.oldest" />"><spring:message code="search.results.sort.oldest" /></label>
+                                <label class="main-search-check-label blue" for="sort_2" title="<spring:message code="search.results.sort.oldest" />"><spring:message code="search.results.sort.oldest" /></label>
                             </div>
                         </div>
                         <div class="search-results-top-filters-2 results-items-per-page">
-                            <label for="count" title="<spring:message code="search.results.items" />" class="margin-top-10 text-small"><spring:message code="search.results.items" /></label>
+                            <label for="count" title="<spring:message code="search.results.items" />"><spring:message code="search.results.items" /></label>
                             <select class="form-control search-results-display-count" name="count" id="count" tabindex="0">
                                 <option value="50" ${rowsPerPageLimit == 50 ? 'selected' : ''}>50</option>
                                 <option value="100" ${rowsPerPageLimit == 100 ? 'selected' : ''}>100</option>

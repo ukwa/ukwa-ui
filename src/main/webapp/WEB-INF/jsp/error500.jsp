@@ -7,30 +7,30 @@
 <c:set var="req" value="${pageContext.request}" />
 <c:set var="uri" value="${req.requestURI}" />
 <c:set var="url">
-${req.requestURL}
+  ${req.requestURL}
 </c:set>
 <c:set var="locale">
-${pageContext.response.locale}
+  ${pageContext.response.locale}
 </c:set>
 <c:if test="${setProtocolToHttps}">
   <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
 </c:if>
 <html lang="${locale}">
 <head>
-<base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
-<title><spring:message code="error.500.title" /></title>
-<%@include file="head.jsp" %>
+  <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
+  <title><spring:message code="error.500.title" /></title>
+  <%@include file="head.jsp" %>
 </head>
 
 <body>
 <%@include file="nav.jsp" %>
 <div class="container-fluid">
   <header>
-  <%@include file="header.jsp" %>
-</header>
+    <%@include file="header.jsp" %>
+  </header>
   <div class="row bg-transparent">
     <div class="col-md-12 mr-auto ml-auto col-md-offset-2 padding-mobile-side-0 white main-search-input-new" style="padding-bottom:170px;padding-top:40px;padding-left:10vh;padding-right:5%;">
-      <div class="col-md-12 col-sm-12 padding-side-0 margin-top-minus-20 back-button"><a href="javascript:window.history.back();" title="<spring:message code="error.500.back.button" />" class="no-decoration"><img class="h3-icon" src="img/icons/left-arrow-white.png" alt="<spring:message code="error.500.back.button" />"/><span class="text-big bold"><spring:message code="error.500.back.button" /></span></a>
+      <div class="col-md-12 col-sm-12 padding-side-0 margin-top-minus-20 back-button"><a href="javascript:window.history.back();" title="<spring:message code="error.500.back.button" />" class="no-decoration"><img class="h3-icon" src="img/icons/left-arrow-white.png" alt="<spring:message code="error.500.back.button" />"/><span class="text-content"><spring:message code="error.500.back.button" /></span></a>
       </div>
       <div class="col-md-6 ml-auto mr-auto col-md-offset-3 padding-side-10 margin-top-20">
         <h2 class="uppercase">
@@ -41,23 +41,23 @@ ${pageContext.response.locale}
       </div>
     </div>
   </div>
-<section id="content">
-  <div class="row header-blue white">
+  <section id="content">
+    <div class="row header-blue white">
 
-  </div>
-  <div class="row margin-0 padding-side-10 padding-mobile-side-5 padding-top-80 padding-bottom-80">
-    <div class="col-lg-6 ml-auto mr-auto col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 text-bigger bold">
-		<spring:message code="error.500.text" />
     </div>
-    <div class="coll-sm-12">&nbsp;</div>
-    <div class="col-lg-6 ml-auto mr-auto col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 margin-top-60">
-		<spring:message code="error.500.note" />
-    </div>    
-  </div>
-</section>
-<footer>
-  <%@include file="footer.jsp" %>
-</footer>
+    <div class="row margin-0 padding-side-10 padding-mobile-side-5 padding-top-80 padding-bottom-80">
+      <div class="col-lg-6 ml-auto mr-auto col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 text-bigger bold">
+        <spring:message code="error.500.text" />
+      </div>
+      <div class="coll-sm-12">&nbsp;</div>
+      <div class="col-lg-6 ml-auto mr-auto col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 margin-top-60">
+        <spring:message code="error.500.note" />
+      </div>
+    </div>
+  </section>
+  <footer>
+    <%@include file="footer.jsp" %>
+  </footer>
 </div>
 </body>
 </html>
