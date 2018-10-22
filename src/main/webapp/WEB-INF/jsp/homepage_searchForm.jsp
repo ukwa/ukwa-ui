@@ -15,7 +15,7 @@
             </div>
             <div class="row"> 
                 <div class="col-12 left white dialog-link">
-                        <a href="#" data-toggle="modal" data-target="#searchingUKWAModalCenter" class="no-decoration" title="Get the most from searching the UKWA" >Help with searching</a>
+                        <a href="#" data-toggle="modal" data-target="#searchingUKWAModalCenter" class="no-decoration" title="Get the most from searching the UKWA" ><spring:message code="search.tips.tipsnotes" /></a>
                 </div>
             </div>
             <input type="hidden" name="search_location" id="search_location_full_text" value="full_text"/>
