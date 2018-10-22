@@ -2753,8 +2753,8 @@ footer {
 /* for screen resolutions higher than (xs < 576) */ 
 @media only screen and (min-width: 576px) and (max-width: 1024px){
   /*--------------------------------------------------------------
-                            General for all
-      -----------------------------------------------------------------*/
+                          General for all
+    -----------------------------------------------------------------*/
   .header-logo {
     height: 3rem;
   }
@@ -2763,22 +2763,80 @@ footer {
     width: 80vw;
     margin-left: 5vw;
   }
+  /* 18px */
   .header-menu-item {
     font-size:0.7rem;
-    padding: 0 0.5rem 0 0;
-    &.language {
-      font-size:0.1rem;
-      float:left !important;
-      padding: 0 0.3rem 0 0 !important;
-    }
+    padding: 0 0.6rem 0 0;
   }
+  .header-menu-item.language {
+    /*14*/
+    font-size:0.4rem! important;
+    float:left !important;
+    padding: 0 2rem 0 0 !important;
+  }
+  .dialog-link {
+    /* 18px */
+    font-size:0.54rem;
+    padding-top: 0.6rem;
+  }
+  /* 12px */
+  .footer-legal-deposit{
+    font-size:0.3rem;
+  }
+  .footer-logo-BW{
+    margin:1rem;
+    width:7rem;
+  }
+  /*
+      Font style used in JSPs:
+      - index
+      - homepage-searchForm
+  */
+  /* 32px */
+  .main-heading-2-redesign {
+    font-size: 1rem;
+  }
+
+  /*
+      Font style used in JSPs: ???? check!!!
+      - coll
+      - speccoll
+      - index
+      - footer
+  */
+  .collection-link{
+
+  }
+  /*
+      Font style used in JSPs: ???? check!!!
+      - coll
+      - speccoll
+      - index
+      - footer
+  */
+  /*
+  contact
+  save uk website (nominate)
+    18px
+  */
+  .header-2-subtitle-redesign{
+    font-size:0.54rem;
+  }
+  /*16*/
+  .button_form_submit{
+    width:15vw;
+    height: 1rem;
+    font-size:0.5rem;
+  }
+
+  .sidebar-filter-input-checkbox{
+    transform: scale(0.5) !important;
+  }
+
   .dialog-link {
     /* 18px */
     font-size:0.64rem;
     padding-top: 0.6rem;
-  }
-  .subject-grid:nth-child(1n) {
-    border-right: none;
   }
   .footer-logo-BW{
     margin:1rem;
@@ -2787,7 +2845,6 @@ footer {
   .main-search-input-new{
     height: 8rem;
   }
-
   .main-heading-2-bold-redesign {
     font-size: 1.1rem;
   }
@@ -2796,7 +2853,7 @@ footer {
     padding-top:2.5rem;
     padding-bottom:2.5rem;
     padding-left:5rem;
-  }  
+  }
   /*---------------------------------------------------------------
                                     Home page
       ---------------------------------------------------------------*/
@@ -2804,7 +2861,6 @@ footer {
     padding-top:1rem;
     padding-bottom:3.5rem;
   }
-
   .main-search-field{
     height: 2rem;
     font-size:0.7rem;
@@ -2813,50 +2869,222 @@ footer {
     margin-right: 0.5rem;
   }
   .main-search-button{
-    /* should be auto by flex container
-    width: 1rem !important;
-    */
+    /* width could auto by flex container */
+    width: 6rem !important;
     height: 2rem !important;
-    width: 6.5rem;
     font-size: 0.7rem;
-    background-size: 2rem;
+    background-size: 1.5rem;
   }
-
-  .topics-themes-hr{
-    display: none;
+  .main-subheading-bold-2-redesign, .main-subheading-2-redesign {
+    /* 18px */
+    font-size:0.54rem;
   }
-  .main-heading-2-redesign {
-    font-size: 1rem;
+  .img-square-caption {
+    /* 18px */
+    font-size:0.44rem;
+    width: 30vw !important;
   }
-  .main-subheading-bold-2-redesign, .main-subheading-2-redesign, .img-square-caption {
-    font-size: 0.7rem;
+  /* 18px bold */
+  .collection-heading-bold{
+    font-size:0.54rem;
   }
-
+  /* 16px */
+  .collection-heading{
+    font-size:0.5rem;
+  }
+  .view-more-button{
+    /* 18px */
+    font-size:0.54rem;
+    height: 1.5rem;
+    width: 32vw;
+  }
   /*---------------------------------------------------------------
                                     Search page
       ---------------------------------------------------------------*/
   .searchpage_search_bg_settings{
-    padding-top:2rem;
+    padding-top:1rem;
     padding-bottom:1rem;
     padding-left: 2rem;
   }
   /* 18px */
   .main-search-field-redesign{
-    height: 2rem;
-    font-size:0.7rem;
-    float:left !important;
+    /* width could auto by flex container */
+    width: 6rem !important;
+    height: 2rem !important;
+    font-size: 0.7rem;
+    background-size: 1.5rem;
     padding: 0.5rem !important;
-    margin-right: 0.5rem;
   }
   /* 18px */
   .main-search-button-blue{
-   /* should be auto by flex container
-    width: 1rem !important;
-    */
+    /* width could auto by flex container */
+    width: 6rem !important;
     height: 2rem !important;
-    width: 2.2rem;
     font-size: 0.7rem;
-    background-size: 2rem;
+    background-size: 1.5rem;
+  }
+
+  /*-------------------------- Sorting -------------------------*/
+  /* 16px */
+  .search-results-top-filters{
+    font-size:0.5rem;
+  }
+  /* 16px */
+  .search-results-top-filters-2{
+    font-size:0.5rem;
+  }
+  /*20px*/
+  .search-results-display-count{
+    font-size:0.62rem! important;
+    height: 1rem! important;
+  }
+  /*-------------------------------- Filtering -----------------------*/
+  /* date and sorting field settings*/
+  .filter-form-control{
+    height: 1.5rem !important;
+    width:100% !important;
+  }
+  /* 22px */
+  .sidebar-filter-header-title-redesign, .infotooltip{
+    font-size:0.68rem;
+  }
+  /* 14px */
+  .sidebar-clear-filter{
+    font-size:0.42rem;
+  }
+  /* 18px */
+  .sidebar-clear-filter-button{
+    font-size:0.54rem;
+  }
+  /* 18px */
+  .date-filter-button{
+    font-size:0.54rem;
+    height: 2rem !important;
+  }
+  /* 16px */
+  .sidebar-filter-input-checkbox{
+    font-size:0.5rem;
+  }
+  /* 16px */
+  .block-two-text-lines{
+    font-size:0.5rem;
+  }
+  /* 16px */
+  .label-counts{
+    font-size:0.5rem;
+  }
+  /* 16px */
+  .results-count{
+    font-size:0.5rem;
+  }
+  /*------------------------------- Pagination ----------------------*/
+  /* 16px */
+  .pagination-cont{
+    font-size:0.5rem;
+  }
+  /* 16px */
+  .pagination-number-redesign{
+    font-size:0.5rem;
+  }
+  /* 18px */
+  .pagination-number-redesign.active{
+    font-size:0.54rem;
+  }
+  /*-------------------------------- Results -----------------------*/
+  /* 32px */
+  .search-results-main-heading{
+    font-size:0.5rem;
+  }
+  /*20px*/
+  .search-results-display-count{
+    font-size:0.62rem;
+    width: 2rem;
+    height: 1.5rem! important;
+  }
+  /*16px*/
+  .results-result{
+    font-size:0.5rem;
+  }
+  .results_settings{
+    padding-top: 1rem;
+  }
+
+  /*---------------------------------------------------------------
+                                    Topics & Themes page
+      ---------------------------------------------------------------*/
+  /*18*/
+  .collection-heading-bold{
+    font-size:0.54rem;
+  }
+  /*18*/
+  .collection-heading{
+    font-size:0.54rem;
+  }
+  /*18*/
+  .header-2-subtitle{
+    font-size:0.54rem;
+  }
+  /*18*/
+  .collections{
+    font-size:0.54rem;
+  }
+  /*16*/
+  .collections-subcollections{
+    font-size:0.5rem;
+  }
+  /*18*/
+  .collection-title{
+    font-size:0.54rem;
+  }
+  /*16*/
+  .collection-description{
+    font-size:0.5rem;
+  }
+  /*16*/
+  .collections-view-subcollections{
+    font-size:0.5rem;
+  }
+  /*16*/
+  .collections-subcollections-link{
+    font-size:0.5rem;
+  }
+
+  /*---------------------------------------------------------------
+                                    About page
+      ---------------------------------------------------------------*/
+  /* 18px */
+  .page-content-col{
+    font-size:0.54rem;
+  }
+
+  /*---------------------------------------------------------------
+                                    Nominate page
+      ---------------------------------------------------------------*/
+  /* 18px */
+  .form-group{
+    font-size:0.54rem;
+  }
+  .captcha-message{
+
+  }
+  .nominate-button{
+
+  }
+
+  /*---------------------------------------------------------------
+                                    Contact page
+      ---------------------------------------------------------------*/
+  /* 18px */
+  .form-content-col{
+    font-size:0.54rem;
+  }
+
+  /*---------------------------------------------------------------
+                       Cookies/Privacy/FAQ/terms&conditions/NoticeTakedown page
+    ---------------------------------------------------------------*/
+  /* 18px */
+  .text-content{
+    font-size:0.54rem;
   }
 
 }
@@ -2906,7 +3134,7 @@ footer {
   */
   /* 32px */
   .main-heading-2-redesign {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   /*
@@ -2926,10 +3154,6 @@ footer {
       - index
       - footer
   */
-  /*32*/
-  .main-search-input-new {
-    font-size: 0.5rem;
-  }
   /*
   contact
   save uk website (nominate)
@@ -2948,40 +3172,34 @@ footer {
   .sidebar-filter-input-checkbox{
      transform: scale(0.5) !important;
   }
-  .main-search-input-new{
-    height: 6rem;
+
+  .dialog-link {
+    /* 18px */
+    font-size:0.64rem;
+    padding-top: 0.6rem;
   }
-
-.background-settings-default{
-    padding-top:3.5rem;
-    padding-bottom:4.5rem;
-    padding-left:5rem;
-  }  
-  /*
-      Font style "main-heading-2-bold-redesign" used in JSPs:
-      - contact
-      - coll
-      - speccoll
-      - index
-      - nominate (save UK website)
-      - about
-
-      - privacy
-      - cookies
-      - terms_conditions
-      - notice_takedown
-      - faq
-  */
-  /* 32px */
+  .footer-logo-BW{
+    margin:1rem;
+    width:4rem;
+  }
+  .main-search-input-new{
+    height: 8rem;
+  }
   .main-heading-2-bold-redesign {
-    font-size: 0.7rem;
+    font-size: 1.1rem;
+  }
+  /* background settings for about*/
+  .background-settings-default{
+    padding-top:2.5rem;
+    padding-bottom:2.5rem;
+    padding-left:5rem;
   }
   /*---------------------------------------------------------------
                                     Home page
       ---------------------------------------------------------------*/
   .homepage_search_bg_settings{
     padding-top:1rem;
-    padding-bottom:7rem;
+    padding-bottom:3.5rem;
   }
   .main-search-field{
     height: 2rem;
