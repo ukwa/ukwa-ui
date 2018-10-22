@@ -33,10 +33,7 @@
         <%@include file="homepage_searchForm.jsp" %>
     </header>
 
-    <div class="padding-top-80 padding-bottom-10 padding-side-70">
-        <section id="home-pre-header">
-
-            <!-- Modal -->
+                <!-- Modal -->
             <div class="modal fade" id="searchingUKWAModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog tips-dialog modal-lg modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -46,36 +43,19 @@
                             </button>
                         </div>
                         <div class="modal-body" style="padding: 0">
-                            <div class="main-heading-2-redesign padding-top-40 bg-gray2" id="exampleModalLongTitle" style="padding-left: 40px;padding-bottom: 40px">How to get the most from searching the UKWA</div>
+                            <div class="main-heading-2-redesign bg-gray2" id="exampleModalLongTitle" style="padding-left: 40px;padding-bottom: 40px">How to get the most from searching the UKWA</div>
                             <div class="padding-left-20">
-                                <div class="row padding-top-40 padding-bottom-10">
-                                    <div class="col-md-2 col-sm-2 circle"><span>1</span></div>
-                                    <div class="col-md-10 col-sm-9 circle-text"><b>Tip 1 - </b>If you are looking for a single website that you believe may be in the UK Web Archive, you can search for it via the Search tab. Use a phrase or name that you think is most likely to be in the website and in that website alone. This will search across all the archived websites.</div>
+                                <div class="row padding-top-10 padding-bottom-10">
+                                    <div class="col-md-2 col-sm-12 circle"><span>1</span></div>
+                                    <div class="col-md-10 col-sm-12 circle-text"><b>Tip 1 - </b>Note that all queries are case-insensitive.</div>
                                 </div>
                                 <div class="row padding-top-10 padding-bottom-10">
-                                    <div class="col-md-2 col-sm-2 circle"><span>2</span></div>
-                                    <div class="col-md-10 col-sm-9 circle-text"><b>Tip 2 - </b>There are several options for narrowing your search. For example, a phrase search uses more than one term (i.e. more than a single word). If two (or more) terms are submitted without the use of quotes, only one of those terms need appear in the documents to produce a result. If the terms are quoted, then only that precise string will be returned. See the Query Syntax section below for full details.</div>
+                                    <div class="col-md-2 col-sm-12 circle"><span>2</span></div>
+                                    <div class="col-md-10 col-sm-12 circle-text"><b>Tip 2 - </b>Use Boolean search terms - AND, NOT, OR etc. e.g. apple NOT fruit.</div>
                                 </div>
                                 <div class="row padding-top-10 padding-bottom-10">
                                     <div class="col-md-2 col-sm-12 circle"><span>3</span></div>
-                                    <div class="col-md-10 col-sm-12 circle-text"><b>Tip 3 - </b>Having submitted your query you can further refine your search using the facets on the left-hand side of the full text search results page. This allows the matching results to be filtered by various properties, such as content type, collection and crawl year. For example, you can use the Refine by domain suffix facet to limit the results set to those resources hosted on domains with names that share the same common suffix, such as co.uk, ac.uk or com.</div>
-                                </div>
-                                <div class="row padding-top-10 padding-bottom-10">
-                                    <div class="col-md-2 col-sm-12 circle"><span>4</span></div>
-                                    <div class="col-md-10 col-sm-12 circle-text"><b>Tip 4 - </b>Note that all queries are case-insensitive.</div>
-                                </div>
-
-                                <div class="row padding-top-10 padding-bottom-10">
-                                    <div class="col-md-2 col-sm-12 circle"><span>5</span></div>
-                                    <div class="col-md-10 col-sm-12 circle-text"><b>Tip 5 - </b>Use Boolean search terms - AND, NOT, OR etc. e.g. apple NOT fruit.</div>
-                                </div>
-                                <div class="row padding-top-10 padding-bottom-10">
-                                    <div class="col-md-2 col-sm-12 circle"><span>6</span></div>
-                                    <div class="col-md-10 col-sm-12 circle-text"><b>Tip 6 - </b>Use quote marks when looking for a specific phrase e.g. &quot;London Olympics&quot;.</div>
-                                </div>
-                                <div class="row padding-top-10 padding-bottom-10">
-                                    <div class="col-md-2 col-sm-12 circle"><span>7</span></div>
-                                    <div class="col-md-10 col-sm-12 circle-text"><b>Tip 7 - </b>Dates refer to when items were collected and not when they were made available on the Internet.</div>
+                                    <div class="col-md-10 col-sm-12 circle-text"><b>Tip 3 - </b>Use quote marks when looking for a specific phrase e.g. &quot;London Olympics&quot;.</div>
                                 </div>
                             </div>
                         </div>
@@ -85,6 +65,10 @@
                     </div>
                 </div>
             </div>
+
+
+    <div class="padding-top-20 padding-bottom-10 padding-side-70">
+        <section id="home-pre-header">
 
             <div>
                 <p class="main-heading-2-bold-redesign">
@@ -155,15 +139,17 @@
                 </a></div>
             </div>
 
-            <div class="row ">
-                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 image-grid-col">
-                    <hr class="topics-themes-hr"/>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 image-grid-col ">
-                    <hr class="topics-themes-hr"/>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 image-grid-col">
-                    <hr class="topics-themes-hr"/>
+            <div class="d-none d-sm-block">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 image-grid-col">
+                        <hr class="topics-themes-hr"/>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 image-grid-col ">
+                        <hr class="topics-themes-hr"/>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 image-grid-col">
+                        <hr class="topics-themes-hr"/>
+                    </div>
                 </div>
             </div>
 

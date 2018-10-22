@@ -1,12 +1,13 @@
-<div class="col-auto white left searchpage_search_bg_settings">
+<div class="col-12 white left searchpage_search_bg_settings">
     <form action="search" method="get" enctype="multipart/form-data" name="search_form" id="search_form">
-
         <div class="row">
-            <div class="col-md-10 col-sm-9 col-xs-12">
-                <input type="text" name="text" id="text" title="<spring:message code="search.main.input.title" />" placeholder="<spring:message code="search.main.input.title" />" class="main-search-field-redesign" value="${originalSearchRequest}" style="color: #0c49b0" required/>
-            </div>
-            <div class="col-md-2 col-sm-3 col-xs-12">
-                <button type="submit" title="<spring:message code="search.main.button.title" />" class="main-search-button-blue white">Search</button>
+            <div class="col-12">
+                <div class="container-search-field-group">
+                    <input type="text" name="text" id="text" title="<spring:message code="search.main.input.title" />" placeholder="<spring:message code="search.main.input.title" />" class="main-search-field-redesign" value="${originalSearchRequest}" style="color: #0c49b0" required/>
+                    <button type="submit" title="<spring:message code="search.main.button.title" />" class="main-search-button-blue white">
+                        <span class="d-none d-sm-block">Search</span>
+                    </button>
+                </div>
             </div>
         </div>
         <div class="row">

@@ -33,9 +33,9 @@ ${pageContext.response.locale}
   <header>
   <%@include file="header.jsp" %>
 </header>
-    <div class="row bg-transparent">
-        <div class="col-md-12 mr-auto ml-auto col-md-offset-2 padding-mobile-side-0 white main-search-input-new" style="padding-bottom:170px;padding-top:40px;padding-left:10vh;padding-right:5%;">
-            <div class="main-heading-2-bold-redesign white padding-top-40"><c:out value="${currentCollection.name}"/></div>
+    <div class="row">
+    <div class="col-12 white main-search-input-new left background-settings-default">
+      <div class="main-heading-2-bold-redesign white"><c:out value="${currentCollection.name}"/></div>
         </div>
     </div>
 <section id="content">
