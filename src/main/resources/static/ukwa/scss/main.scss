@@ -2772,16 +2772,20 @@ footer {
       padding: 0 0.3rem 0 0 !important;
     }
   }
+  .dialog-link {
+    /* 18px */
+    font-size:0.64rem;
+    padding-top: 0.6rem;
+  }
   .subject-grid:nth-child(1n) {
     border-right: none;
   }
-
   .footer-logo-BW{
     margin:1rem;
     width:4rem;
   }
-    .main-search-input-new{
-    height: 7rem;
+  .main-search-input-new{
+    height: 8rem;
   }
 
   .main-heading-2-bold-redesign {
@@ -2789,16 +2793,16 @@ footer {
   }
   /* background settings for about*/
   .background-settings-default{
-    padding-top:0.5rem;
-    padding-bottom:2rem;
-    padding-left:2rem;
+    padding-top:2.5rem;
+    padding-bottom:2.5rem;
+    padding-left:5rem;
   }  
   /*---------------------------------------------------------------
                                     Home page
       ---------------------------------------------------------------*/
   .homepage_search_bg_settings{
-    padding-top:0.5rem;
-    padding-bottom:2rem;
+    padding-top:1rem;
+    padding-bottom:3.5rem;
   }
 
   .main-search-field{
@@ -2813,7 +2817,7 @@ footer {
     width: 1rem !important;
     */
     height: 2rem !important;
-    width: 2.2rem;
+    width: 6.5rem;
     font-size: 0.7rem;
     background-size: 2rem;
   }
@@ -2949,9 +2953,9 @@ footer {
   }
 
 .background-settings-default{
-    padding-top:1rem;
-    padding-bottom:7rem;
-    padding-left:2rem;
+    padding-top:3.5rem;
+    padding-bottom:4.5rem;
+    padding-left:5rem;
   }  
   /*
       Font style "main-heading-2-bold-redesign" used in JSPs:
@@ -3252,9 +3256,9 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   }
 
   .background-settings-default{
-    padding-top:2rem;
-    padding-bottom:12rem;
-    padding-left:2rem;
+    padding-top:6rem;
+    padding-bottom:8rem;
+    padding-left:5rem;
   }  
   /*
       Font style "main-heading-2-bold-redesign" used in JSPs:
@@ -3336,7 +3340,7 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
     height: 2.5rem;
     font-size:1.07rem;
     float:left !important;
-    padding: 1 !important;
+    padding: 1rem !important;
     margin-right: 2rem;
   }
   .main-search-button{
@@ -3363,7 +3367,7 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
     height: 3rem;
     width: 25rem !important;
     font-size:1.07rem;
-    padding: 1 !important;
+    padding: 1rem !important;
     margin-right: 2rem;
   }
   /* 18px */
@@ -3586,9 +3590,9 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   }
 
   .background-settings-default{
-    padding-top:4rem;
-    padding-bottom:16rem;
-    padding-left:2rem;
+    padding-top:6rem;
+    padding-bottom:10rem;
+    padding-left:5rem;
   }  
   /*
       Font style "main-heading-2-bold-redesign" used in JSPs:
@@ -3658,8 +3662,8 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
                                     Home page
       ---------------------------------------------------------------*/
   .homepage_search_bg_settings{
-    padding-top:4rem;
-    padding-bottom:16rem;
+    padding-top:3rem;
+    padding-bottom:13rem;
   }
   /*background image hight*/
   .main-search-input-new{
@@ -3670,7 +3674,7 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
     height: 3rem;
     font-size:1.2rem;
     float:left !important;
-    padding: 1 !important;
+    padding: 1rem !important;
     margin-right: 2rem;
   }
   .main-search-button{
@@ -3717,7 +3721,7 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
     height: 3rem;
     font-size:1.2rem;
     float:left !important;
-    padding: 1 !important;
+    padding: 1rem !important;
     margin-right: 2rem;
   }
   /* 18px */
@@ -3943,9 +3947,9 @@ From Top10 list
   }
 
   .background-settings-default{
-    padding-top:4rem;
-    padding-bottom:17rem;
-    padding-left:2rem;
+    padding-top:9rem;
+    padding-bottom:12rem;
+    padding-left:5rem;
   }  
   /*
       Font style "main-heading-2-bold-redesign" used in JSPs:
@@ -3964,7 +3968,7 @@ From Top10 list
   */
   /* 32px */
   .main-heading-2-bold-redesign {
-    font-size: 1.9rem;
+    font-size: 2.6rem;
   }
   /*
       Font style used in JSPs:
@@ -4029,7 +4033,7 @@ From Top10 list
     height: 4rem;
     font-size:1.49rem;
     float:left !important;
-    padding: 1 !important;
+    padding: 1rem !important;
     margin-right: 2rem;
   }
   .main-search-button{
@@ -4074,7 +4078,7 @@ From Top10 list
     height: 4rem;
     font-size:1.49rem;
     float:left !important;
-    padding: 1 !important;
+    padding: 1rem !important;
     margin-right: 2rem;
   }
   /* 18px */
@@ -4298,9 +4302,9 @@ Retina like displays
   }
 
   .background-settings-default{
-    padding-top:5rem;
-    padding-bottom:20rem;
-    padding-left:2rem;
+    padding-top:11rem;
+    padding-bottom:14rem;
+    padding-left:5rem;
   }  
   /*
       Font style "main-heading-2-bold-redesign" used in JSPs:
@@ -4454,7 +4458,7 @@ Retina like displays
   .search-results-display-count{
     font-size:2.22rem! important;
     width: 6rem;
-    height: 5rem! important;
+    height: 4rem! important;
   }
   /*-------------------------------- Filtering -----------------------*/
   /* 22px */
