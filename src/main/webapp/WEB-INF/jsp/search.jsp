@@ -50,38 +50,37 @@
                     </button>
                 </div>
                 <div class="modal-body" style="padding: 0">
-                    <div class="main-heading-2-redesign padding-top-40 bg-gray2" id="exampleModalLongTitle" style="padding-left: 40px;padding-bottom: 40px">How to get the most from searching the UKWA</div>
+                    <div class="main-heading-2-redesign bg-gray2" id="exampleModalLongTitle" style="padding-left: 40px;padding-bottom: 40px"><spring:message code="search.tips.tipsnotes" /></div>
                     <div class="padding-left-20">
-                        <div class="row padding-top-40 padding-bottom-10">
-                            <div class="col-md-2 col-sm-2 circle"><span>1</span></div>
-                            <div class="col-md-10 col-sm-9 circle-text"><b>Tip 1 - </b>If you are looking for a single website that you believe may be in the UK Web Archive, you can search for it via the Search tab. Use a phrase or name that you think is most likely to be in the website and in that website alone. This will search across all the archived websites.</div>
-                        </div>
-                        <div class="row padding-top-10 padding-bottom-10">
-                            <div class="col-md-2 col-sm-2 circle"><span>2</span></div>
-                            <div class="col-md-10 col-sm-9 circle-text"><b>Tip 2 - </b>There are several options for narrowing your search. For example, a phrase search uses more than one term (i.e. more than a single word). If two (or more) terms are submitted without the use of quotes, only one of those terms need appear in the documents to produce a result. If the terms are quoted, then only that precise string will be returned. See the Query Syntax section below for full details.</div>
-                        </div>
-                        <div class="row padding-top-10 padding-bottom-10">
-                            <div class="col-md-2 col-sm-12 circle"><span>3</span></div>
-                            <div class="col-md-10 col-sm-12 circle-text"><b>Tip 3 - </b>Having submitted your query you can further refine your search using the facets on the left-hand side of the full text search results page. This allows the matching results to be filtered by various properties, such as content type, collection and crawl year. For example, you can use the Refine by domain suffix facet to limit the results set to those resources hosted on domains with names that share the same common suffix, such as co.uk, ac.uk or com.</div>
-                        </div>
-                        <div class="row padding-top-10 padding-bottom-10">
-                            <div class="col-md-2 col-sm-12 circle"><span>4</span></div>
-                            <div class="col-md-10 col-sm-12 circle-text"><b>Tip 4 - </b>Note that all queries are case-insensitive.</div>
-                        </div>
-
-                        <div class="row padding-top-10 padding-bottom-10">
-                            <div class="col-md-2 col-sm-12 circle"><span>5</span></div>
-                            <div class="col-md-10 col-sm-12 circle-text"><b>Tip 5 - </b>Use Boolean search terms - AND, NOT, OR etc. e.g. apple NOT fruit.</div>
-                        </div>
-                        <div class="row padding-top-10 padding-bottom-10">
-                            <div class="col-md-2 col-sm-12 circle"><span>6</span></div>
-                            <div class="col-md-10 col-sm-12 circle-text"><b>Tip 6 - </b>Use quote marks when looking for a specific phrase e.g. &quot;London Olympics&quot;.</div>
-                        </div>
-                        <div class="row padding-top-10 padding-bottom-10">
-                            <div class="col-md-2 col-sm-12 circle"><span>7</span></div>
-                            <div class="col-md-10 col-sm-12 circle-text"><b>Tip 7 - </b>Dates refer to when items were collected and not when they were made available on the Internet.</div>
-                        </div>
-                    </div>
+                                <div class="row padding-top-10 padding-bottom-10">
+                                    <div class="col-md-2 col-sm-2 circle"><span>1</span></div>
+                                    <div class="col-md-10 col-sm-10 circle-text"><b>Tip 1 - </b><spring:message code="search.tip.1.text" /></div>
+                                </div>
+                                <div class="row padding-top-10 padding-bottom-10">
+                                    <div class="col-md-2 col-sm-2 circle"><span>2</span></div>
+                                    <div class="col-md-10 col-sm-10 circle-text"><b>Tip 2 - </b><spring:message code="search.tip.2.text" /></div>
+                                </div>
+                                <div class="row padding-top-10 padding-bottom-10">
+                                    <div class="col-md-2 col-sm-2 circle"><span>3</span></div>
+                                    <div class="col-md-10 col-sm-10 circle-text"><b>Tip 3 - </b><spring:message code="search.tip.3.text" /></div>
+                                </div>
+                                <div class="row padding-top-10 padding-bottom-10">
+                                    <div class="col-md-2 col-sm-2 circle"><span>4</span></div>
+                                    <div class="col-md-10 col-sm-10 circle-text"><b>Tip 4 - </b><spring:message code="search.tip.4.text" /></div>
+                                </div>
+                                <div class="row padding-top-10 padding-bottom-10">
+                                    <div class="col-md-2 col-sm-2 circle"><span>5</span></div>
+                                    <div class="col-md-10 col-sm-10 circle-text"><b>Tip 5 - </b><spring:message code="search.tip.5.text" /></div>
+                                </div>
+                                <div class="row padding-top-10 padding-bottom-10">
+                                    <div class="col-md-2 col-sm-2 circle"><span>6</span></div>
+                                    <div class="col-md-10 col-sm-10 circle-text"><b>Tip 6 - </b><spring:message code="search.tip.6.text" /></div>
+                                </div>
+                                <div class="row padding-top-10 padding-bottom-10">
+                                    <div class="col-md-2 col-sm-2 circle"><span>7</span></div>
+                                    <div class="col-md-10 col-sm-10 circle-text"><b>Tip 7 - </b><spring:message code="search.tip.7.text" /></div>
+                                </div>
+                            </div>
                 </div>
                 <div class="modal-footer inline-block-items justify-content-center" style="width: 100%;">
                     <button type="button" class="btn btn-primary" style="width: 20%;" data-dismiss="modal">Close</button>
@@ -242,7 +241,8 @@
 
         <div class="row margin-0 padding-0">
 
-            <div class="col-lg-3 col-md-4 col-sm-4 padding-0 side-bar-right">
+            <!-- hide on low screen resolution (xs < 576px) -->
+            <div class="col-lg-3 col-md-4 col-sm-4 padding-0 side-bar-right d-none d-sm-block">
                 <aside id="sidebar">
                     <div class="row padding-top-10 sidebar-clear-filter-container-group">
 
@@ -347,7 +347,7 @@
 
                             <c:if test="${hasFilters == 'true'}">
                         <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-1">
-                                    <button type="button" id="btn_reset_filters" title="<spring:message code="search.filters.reset" />" class="button-radius-5 searchResetRedesigned margin-top-10 margin-bottom-20 sidebar-clear-filter-button"><spring:message code="search.filters.reset" /></button>
+                                    <button type="button" id="btn_reset_filters" title="<spring:message code="search.main.clearallfilters" />" class="button-radius-5 searchResetRedesigned margin-top-10 margin-bottom-20 sidebar-clear-filter-button"><spring:message code="search.main.clearallfilters" /></button>
                         </div>
                             </c:if>
 
@@ -444,7 +444,7 @@
                                                         <input type="checkbox" class="blue sidebar-filter-input-checkbox" name="content_type" id="content_type_<c:out value="${i}"/>"
                                                                value="${contentTypes.get(i)}"
                                                             ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
-                                                        <label class="main-search-check-label" style="color: #0c49b0" for="content_type_<c:out value="${i}"/>">
+                                                        <label class="main-search-check-label blue block-two-text-lines" for="content_type_<c:out value="${i}"/>">
                                                             <c:out value="${contentTypes.get(i)}"/>
                                                             <span class="label-counts black" >(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
                                                     </div>
@@ -501,7 +501,7 @@
                                     </div>
                                     <div class="row padding-bottom-10">
                                         <div class="col-auto">
-                                            <input type="text" class="form-control form-white-placeholder" name="from_date"
+                                            <input type="text" class="form-control form-white-placeholder filter-form-control" name="from_date"
                                                    id="from_date" title="<spring:message code="search.side.date.from" />"
                                                    placeholder="YYYY-MM-DD"
                                                    value="${originalFromDateText != null ? originalFromDateText : ''}"/>
@@ -515,15 +515,15 @@
                                     </div>
                                     <div class="row padding-bottom-10 ">
                                         <div class="col-auto">
-                                            <input type="text" class="form-control form-white-placeholder" name="to_date" id="to_date"
+                                            <input type="text" class="form-control form-white-placeholder filter-form-control" name="to_date" id="to_date"
                                                    title="<spring:message code="search.side.date.to" />" placeholder="YYYY-MM-DD"
                                                    value="${originalToDateText != null ? originalToDateText : ''}"/>
                                         </div>
                                     </div>
                                     <div class="row padding-top-20">
                                         <div class="col-sm-12">
-                                            <button type="submit" title="<spring:message code="search.side.date.submit" />" class="button button-blue width-auto-inline date-filter-button"><spring:message code="search.side.date.submit" /></button>
-                                            <button type="button" title="<spring:message code="search.side.date.reset" />" class="button button-blue width-auto-inline date-filter-button margin-top-10 text-small" id="btn_reset_dates">X</button>
+                                            <button type="submit" title="<spring:message code="search.side.date.submit" />" class="button button-blue width-auto-inline date-filter-button filter-form-control"><spring:message code="search.side.date.submit" /></button>
+                                            <button type="button" title="<spring:message code="search.side.date.reset" />" class="button button-blue width-auto-inline date-filter-button margin-top-10 filter-form-control" id="btn_reset_dates">X</button>
                                         </div>
                                     </div>
                                 </div>
@@ -583,13 +583,13 @@
             </div>
 
             <div class="col-lg-9 col-md-8 col-sm-8 padding-0 padding-left-20">
-                <div class="results-header border-bottom-gray">
-                    <div class="row margin-0 padding-0">
+                <div class="results-header">
+                    <div class="row bg-gray2">
                         <%@include file="searchpage_searchForm.jsp" %>
                     </div>
                     <div class="row">
                         <div class="col-sm-12 results_settings" >
-                            <span class="search-results-main-heading bold">Search results: </span><span class="search-results-main-heading"><c:out value="${totalSearchResultsSizeFormatted}"/></span>
+                            <span class="search-results-main-heading bold"><spring:message code="search.main.results.text" /></span><span class="search-results-main-heading"><c:out value="${totalSearchResultsSizeFormatted}"/></span>
                             <span class="search-results-main-heading ">&nbsp;<spring:message code="search.results.num"/>&nbsp;</span><span class="search-results-main-heading">&quot;<c:out value="${originalSearchRequest}" escapeXml="false"/>&quot;</span></div>
                     </div>
 
@@ -604,30 +604,36 @@
                     </c:choose>
 
                 </div>
-                <div class="row border-bottom-gray margin-0 left">
+                <div class="row margin-0 left">
                     <div class="col-md-12 padding-20 padding-mobile-side-0">
-                        <div class="search-results-top-filters width-200 margin-top-10">
-                            <div class="form-check-cont form-margin-check" title="Newest to Oldest" tabindex="0">
-                                <input type="radio" name="sort" id="sort_1" value="nto" class="sort"
-                                ${originalSortValue.contains('nto') || empty originalSortValue ? 'checked' : ''}/>
-                                <label class="main-search-check-label text-small" for="sort_1" title="<spring:message code="search.results.sort.newest" />"><spring:message code="search.results.sort.newest" /></label>
+                    
+                        <div class="container-sort-group">
+                    
+                            <div class="search-results-top-filters margin-top-10">
+                                <div class="form-check-cont form-margin-check" title="Newest to Oldest" tabindex="0">
+                                    <input type="radio" name="sort" id="sort_1" value="nto" class="sort"
+                                    ${originalSortValue.contains('nto') || empty originalSortValue ? 'checked' : ''}/>
+                                    <label class="main-search-check-label blue" for="sort_1" title="<spring:message code="search.results.sort.newest" />"><spring:message code="search.results.sort.newest" /></label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="search-results-top-filters width-200 margin-top-10">
-                            <div class="form-check-cont form-margin-check" title="Oldest to Newest" tabindex="0">
-                                <input type="radio" name="sort" id="sort_2" value="otn" class="sort"
-                                ${originalSortValue.contains('otn') ? 'checked' : ''}/>
-                                <label class="main-search-check-label text-small" for="sort_2" title="<spring:message code="search.results.sort.oldest" />"><spring:message code="search.results.sort.oldest" /></label>
+                            <div class="search-results-top-filters margin-top-10">
+                                <div class="form-check-cont form-margin-check" title="Oldest to Newest" tabindex="0">
+                                    <input type="radio" name="sort" id="sort_2" value="otn" class="sort"
+                                    ${originalSortValue.contains('otn') ? 'checked' : ''}/>
+                                    <label class="main-search-check-label blue" for="sort_2" title="<spring:message code="search.results.sort.oldest" />"><spring:message code="search.results.sort.oldest" /></label>
+                                </div>
                             </div>
+                            <div class="search-results-top-filters-2 results-items-per-page">
+                                <label for="count" class="right" title="<spring:message code="search.results.items" />"><spring:message code="search.results.items" /></label>
+                                <select class="form-control search-results-display-count" name="count" id="count" tabindex="0">
+                                    <option value="50" ${rowsPerPageLimit == 50 ? 'selected' : ''}>50</option>
+                                    <option value="100" ${rowsPerPageLimit == 100 ? 'selected' : ''}>100</option>
+                                    <option value="200" ${rowsPerPageLimit == 200 ? 'selected' : ''}>200</option>
+                                </select>
+                            </div> 
+
                         </div>
-                        <div class="search-results-top-filters-2 results-items-per-page">
-                            <label for="count" title="<spring:message code="search.results.items" />" class="margin-top-10 text-small"><spring:message code="search.results.items" /></label>
-                            <select class="form-control search-results-display-count" name="count" id="count" tabindex="0">
-                                <option value="50" ${rowsPerPageLimit == 50 ? 'selected' : ''}>50</option>
-                                <option value="100" ${rowsPerPageLimit == 100 ? 'selected' : ''}>100</option>
-                                <option value="200" ${rowsPerPageLimit == 200 ? 'selected' : ''}>200</option>
-                            </select>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="row padding-0 margin-0">
@@ -642,7 +648,7 @@
                             <%--set page value as a placeholder as it is going to be changed for each link--%>
                             <c:param name="page" value="PAGE_NUM_PLACEHOLDER" />
                         </c:url>
-                        <c:if test="${targetPageNumber > 1}"> <a style="text-decoration: none" href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>"><div class="pagination-number-redesign arrow left-arrow" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"></div>Previous</a></c:if>
+                        <c:if test="${targetPageNumber > 1}"> <a style="text-decoration: none" href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>"><div class="pagination-number-redesign arrow left-arrow" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"></div><spring:message code="search.results.previous" /></a></c:if>
                         <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
                             <c:if test="${i <= totalPages && !deepPaging}">
                                 <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>" title="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>">
@@ -651,7 +657,7 @@
                                     </div></a>
                             </c:if>
                         </c:forEach>
-                        <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit && !deepPaging}"> <a style="text-decoration: none" href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />">Next<div class="pagination-number-redesign arrow right-arrow"></div></a> </c:if>
+                        <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit && !deepPaging}"> <a style="text-decoration: none" href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><spring:message code="search.results.next" /><div class="pagination-number-redesign arrow right-arrow"></div></a> </c:if>
                     </div>
                 </div>
 
@@ -719,7 +725,7 @@
                             <%--set page value as a placeholder as it is going to be changed for each link--%>
                             <c:param name="page" value="PAGE_NUM_PLACEHOLDER" />
                         </c:url>
-                        <c:if test="${targetPageNumber > 1}"> <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>"><div class="pagination-number-redesign arrow left-arrow" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"></div>Previous</a> </c:if>
+                        <c:if test="${targetPageNumber > 1}"> <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>"><div class="pagination-number-redesign arrow left-arrow" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"></div><spring:message code="search.results.previous" /></a> </c:if>
                         <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
                             <c:if test="${i <= totalPages && !deepPaging}">
                                 <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>" title="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>">
@@ -728,7 +734,7 @@
                                     </div></a>
                             </c:if>
                         </c:forEach>
-                        <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit && !deepPaging}"> <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />">Next<div class="pagination-number-redesign arrow right-arrow"></div></a> </c:if>
+                        <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit && !deepPaging}"> <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><spring:message code="search.results.next" /><div class="pagination-number-redesign arrow right-arrow"></div></a> </c:if>
                     </div>
                 </div>
             </div>
@@ -764,7 +770,6 @@
 
         }
     }
-
 
     function toggle(el) {
 
@@ -808,14 +813,11 @@
     });
 
 
-
     // Removal of Filter Criteria
     function tog(v){return v?'addClass':'removeClass';}
 
 
-
     $(document).ready(function(e) {
-
 
 
         $("#SearchFilterDialog").on('shown.bs.modal', function(e) {

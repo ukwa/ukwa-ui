@@ -26,16 +26,60 @@
   <header>
   <%@include file="header.jsp" %>
 </header>
-  <div class="row bg-transparent">
-    <div class="col-md-12 mr-auto ml-auto col-md-offset-2 padding-mobile-side-0 white main-search-input-new" style="padding-bottom:170px;padding-top:40px;padding-left:10vh;padding-right:5%;">
-      <div class="main-heading-2-bold-redesign white padding-top-40"><spring:message code="main.menu.about" /></div>
+  <div class="row">
+    <div class="col-12 white main-search-input-new left background-settings-default">
+      <div class="main-heading-2-bold-redesign white"><spring:message code="main.menu.about" /></div>
     </div>
   </div>
 
-<figure>
 
-</figure>
-<section id="content">
+    <section id="about-pre-header">
+
+        <div class="padding-30">
+            <div class="padding-30">
+                <div class="padding-bottom-20">
+                    <p class="main-subheading-2-redesign">
+                        <spring:message code="about.page.1.text"/>
+                    </p>
+                </div>
+                <div class="padding-bottom-20">
+                    <p class="main-subheading-2-redesign">
+                        <spring:message code="about.page.2.text"/>
+                    </p>
+                </div>
+                <div class="padding-bottom-20">
+                    <p class="main-subheading-2-redesign">
+                        <spring:message code="about.page.3.text"/>
+                    </p>
+                </div>
+                <div class="padding-bottom-20">
+                    <p class="main-subheading-2-redesign">
+                        <spring:message code="about.page.4.text"/>
+                    </p>
+                </div>
+                <div class="padding-bottom-20">
+                    <p class="main-subheading-2-redesign">
+                        <spring:message code="about.page.5.text"/>
+                    </p>
+                </div>
+                <div class="padding-bottom-20">
+                    <p class="main-subheading-2-redesign">
+                        <spring:message code="about.page.6.text"/>
+                    </p>
+                </div>
+                <div class="padding-bottom-20">
+                    <p class="main-subheading-2-redesign">
+                        <spring:message code="about.page.7.text"/>
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="content">
   <div class="row page-content">
     <div class="col-md-6 col-sm-12 page-content-col">
       <article>
@@ -47,7 +91,7 @@
       </article>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
-      <figure><img class="img-responsive" src="img/47007971.jpg" alt="About UKWA"/> </figure>
+      <figure><img class="img-responsive" src="img/47007971.JPG" alt="About UKWA"/> </figure>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
       <figure><img class="img-responsive" src="img/47008070.jpg" alt="About UKWA"/> </figure>

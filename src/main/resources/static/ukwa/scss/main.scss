@@ -28,8 +28,11 @@ html, body {
   width: 100%;
   font-family: "Open Sans",sans-serif;
   position: relative;
+  /*
   overflow: auto;
+  */
 }
+
 
 .modal-dialog {
   &.tips-dialog, &.filter-dialog {
@@ -49,8 +52,14 @@ html, body {
 }
 
 .modal-content {
+  
+  /*
+  max-height: 100vh;
+  max-height: 100vw;
+
   max-height: calc(90vh);
   max-width: calc(70vw);
+  */
   overflow-x: auto;
   overflow-y: auto;
   padding: 40px;
@@ -255,7 +264,6 @@ p.searchFilter {
 }
 
 .width-auto-inline {
-  width: auto;
   display: inline-block;
 }
 
@@ -902,8 +910,8 @@ input {
 }
 
 .main-search-input-new {
+  height: 0;
   width: 100%;
-  height: 50px;
   clear: both;
   background-color: blue;
   background-repeat: no-repeat;
@@ -912,29 +920,29 @@ input {
 }
 
 .main-search-field {
-  width: calc(100% - 5em);
-  height: 50px;
+  font-family: "Open Sans Bold",sans-serif !important;
+  width: 100%;
   padding: 10px 10px 10px 10px;
-  font-size: 1.2em;
   border: none;
   color: #636c72;
   display: inline;
   float: left;
   position: relative;
   box-shadow: 1px 1px 7px #464747;
+  flex:1;
 }
 
 .main-search-field-redesign {
-  width: calc(100% - 1em);
-  height: 50px;
+  font-family: "Open Sans Bold",sans-serif !important;
+  width: 100%;
   padding: 10px 10px 10px 10px;
-  font-size: 1.2em;
   border: none;
   color: #636c72;
   display: inline;
   float: left;
   position: relative;
   box-shadow: 1px 1px 7px #464747;
+  flex:1;
 }
 
 .main-search-input.noshadow {
@@ -945,9 +953,6 @@ input {
 }
 
 .main-search-button {
-  width: 160px;
-  height: 50px;
-  font-size: 1.2em;
   border: none;
   border-radius: 5px;
   color: #0c49b0;
@@ -961,13 +966,9 @@ input {
   float: right;
   position: relative;
   box-shadow: 1px 1px 7px #464747;
-  background-size: 34px;
 }
 
 .main-search-button-blue {
-  width: 160px;
-  height: 50px;
-  font-size: 1.2em;
   border: none;
   border-radius: 5px;
   background-color: #2e6dd9;
@@ -979,7 +980,6 @@ input {
   float: left;
   position: relative;
   box-shadow: 1px 1px 7px #464747;
-  background-size: 30px;
 }
 
 .main-search-check-label {
@@ -1222,7 +1222,6 @@ h3 {
 .main-heading-2-bold-redesign {
   font-family: "Open Sans Bold",sans-serif,Arial;
   font-size: 32px;
-  margin-bottom: 0;
   text-decoration: none !important;
   text-transform: none;
   color: #0c49b0;
@@ -1482,9 +1481,8 @@ footer {
 }
 
 .footer-logo-BW {
-  margin: 10px;
-  height: 60px;
-  width: auto;
+  flex:1;
+  margin: auto;
 }
 
 .page-content {
@@ -1675,7 +1673,7 @@ footer {
   padding-left: 20px;
   padding-top: 20px;
   float: left;
-  max-width: 80%;
+  max-width: 100%;
   text-overflow: ellipsis;
   color: #0c49b0;
 }
@@ -1857,12 +1855,10 @@ footer {
 }
 
 .pagination-number-redesign {
-  min-width: 35px;
+  font-family: "Open Sans Semibold",sans-serif;
   width: auto;
   padding-left: 5px;
   padding-right: 5px;
-  height: 45px;
-  font-size: 14px;
   color: #2e6dd9;
   background-color: white;
   margin: 5px 5px 5px 5px;
@@ -1870,8 +1866,7 @@ footer {
   padding-top: 11px;
   cursor: pointer;
   &.active {
-    font-size: 18px;
-    font-weight: 900;
+    font-family: "Open Sans Bold",sans-serif;
   }
   &.dots {
     font-weight: 900;
@@ -1975,7 +1970,7 @@ footer {
 
 .bg-gray2 {
   width: 100%;
-  background-color: #eeeeee;
+  background-color: #efefef;
 }
 
 .nav-tabs--vertical {
@@ -2144,7 +2139,6 @@ footer {
 }
 
 .results-header {
-  padding: 10vh 10vh 10vh 10vh;
   color: #000;
   width: 100%;
   position: relative;
@@ -2152,7 +2146,6 @@ footer {
 }
 
 .results-header-redesign {
-  padding: 10vh 10vh 10vh 0;
   color: #000;
   width: 100%;
   position: relative;
@@ -2161,12 +2154,11 @@ footer {
 
 .results-title {
   background-color: #fafafa;
-  padding: 20px;
+  padding: 1vw;
 }
 
 .results-title-text {
   display: block;
-  padding: 0 0 10px 0;
   text-overflow: ellipsis;
 }
 
@@ -2203,22 +2195,19 @@ footer {
 }
 
 .search-results-display-count {
-  width: 100px;
   float: right;
 }
 
 .search-results-top-filters {
   float: left;
-  display: block;
   position: relative;
-  height: 40px;
+  flex:1;
 }
 
 .search-results-top-filters-2 {
   float: right;
-  display: block;
   position: relative;
-  height: 40px;
+  flex:1;
 }
 
 .results-highlight {
@@ -2412,17 +2401,12 @@ footer {
 }
 
 .homepage_search_bg_settings{
-  padding-bottom:170px;
-  padding-top:40px;
   padding-left:15%;
   padding-right:15%
 }
 
 .searchpage_search_bg_settings{
-  padding-bottom:30px;
-  padding-top:20px;
-  padding-left:10px;
-  padding-right:5%
+
 }
 
 .footer-legal-deposit{
@@ -2439,6 +2423,321 @@ footer {
 
 }
 
+.container-sort-group{
+  display: flex;
+  justify-content:space-between;
+}
+.container-footer-group{
+  display: flex;
+  margin: auto;
+  padding: 1rem;
+  align-items: center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+.container-search-field-group{
+  display: flex;
+}
+.container-search-group-homePage{
+}
+.container-tootip-group{
+  display: flex;
+}
+
+/* bootsrap xs < 576, reduced functionality 
+  iPhone 5/SE resolution 320 x 568 (portrait & landscape)
+  Galaxy S5 resolution 360 x 640 (portrait only)
+*/ 
+@media only screen and (max-width: 576px){
+  /*--------------------------------------------------------------
+                          General for all
+    -----------------------------------------------------------------*/
+  .header-logo {
+    height: 4rem;
+  }
+  /* 18px */
+  .header-menu-item {
+    font-size:0.8rem;
+    padding: 0.5rem 0.3rem 0 0 !important;
+  }
+  .header-menu-item.language {
+    /* 14px */
+    font-size:0.22rem;
+    float:left !important;
+    padding: 0 1rem 0 0 !important;
+  }
+  .dialog-link {
+    /* 18px */
+    font-size:0.55rem;
+    padding-top: 0.5rem;
+  }
+  /* 12px */
+  .footer-legal-deposit{
+    font-size:0.22rem;
+  }
+  .footer-logo-BW{
+    height: 1rem
+  }
+
+  /*
+      Font style used in JSPs:
+      - index
+      - homepage-searchForm
+  */
+  /* 32px */
+  .main-heading-2-redesign {
+    font-size: 0.8rem;
+  }
+
+  /*
+      Font style used in JSPs: ???? check!!!
+      - coll
+      - speccoll
+      - index
+      - footer
+  */
+  .collection-link{
+
+  }
+  
+  /*
+  contact
+  save uk website (nominate)
+  */
+  .header-2-subtitle-redesign{
+    font-size:1rem;
+  }
+  /*16*/
+  .button_form_submit{
+    width:11rem;
+    height: 3rem;
+    font-size:0.25rem;
+  }
+
+  /* background settings for about*/
+  .background-settings-default{
+    padding-top:1rem;
+    padding-bottom:3rem;
+    padding-left:2rem;
+  }  
+  /*
+      Font style "main-heading-2-bold-redesign" used in JSPs:
+      - contact
+      - coll
+      - speccoll
+      - index
+      - nominate (save UK website)
+      - about
+
+      - privacy
+      - cookies
+      - terms_conditions
+      - notice_takedown
+      - faq
+  */
+  /* 32px */
+  .main-heading-2-bold-redesign {
+    font-size: 1.2rem;
+  }  
+
+  /*------------------------------ Tips Dialog ------------------------*/
+  .circle-text{
+    font-size: 0.8rem;
+  }
+
+  /*---------------------------------------------------------------
+                                    Home page
+      ---------------------------------------------------------------*/
+  .homepage_search_bg_settings{
+    padding-top:1rem;
+    padding-bottom:6rem;
+  }
+  
+  /* 18px */
+  .main-search-field{
+    height: 2rem;
+    font-size:1rem;
+    float:left !important;
+    padding: 0.5 !important;
+    margin-right: 0.5rem;
+  }
+  .main-search-button{
+    /* should be auto by flex container
+    width: 1rem !important;
+    */
+    /* 18px */
+    font-size:0.5rem;
+    height: 2rem !important; 
+    width: 2.3rem;
+    /* magnify glass size*/
+    background-size: 2rem;
+  }
+  .view-more-button{
+    /* 18px */
+    font-size:1rem;
+    height: 2.2rem;
+    width: 12rem;
+  }
+  /*---------------------------------------------------------------
+                                    Search page
+      ---------------------------------------------------------------*/
+  .searchpage_search_bg_settings{
+    padding-top:3rem;
+    padding-left: 2rem;
+    padding-bottom:2rem;
+  }  
+  /* 18px */
+  .main-search-field-redesign{
+    height: 1rem;
+    font-size:0.28rem;
+    float:left !important;
+    padding: 0.5 !important;
+    margin-right: 2rem;
+  }
+  /* 18px */
+  .main-search-button-blue{
+    height: 1rem !important; 
+    width: 1.6rem;
+    /* magnify glass size*/
+    background-size: 1.2rem;
+  }
+  .main-subheading-bold-2-redesign, .main-subheading-2-redesign, .img-square-caption {
+    /* 18px */
+    font-size:0.7rem;
+  }
+ 
+
+  /* 16px */
+  .collection-heading{
+    font-size:0.5rem;
+  }
+
+
+  /*-------------------------- Sorting -------------------------*/
+  /* 16px */
+  .search-results-top-filters{
+    font-size:0.25rem;
+    width:11rem;
+  }
+  /* 16px */
+  .search-results-top-filters-2{
+    font-size:0.25rem;
+  }
+  /*20px*/
+  .search-results-display-count{
+    font-size:0.31rem! important;
+    width:5rem! important;
+    height:1.8rem! important;
+  }
+  /*-------------------------------- Filtering -----------------------*/
+  /* date and sorting field settings*/
+  .filter-form-control{
+    height: 2.5rem !important;
+    width:100% !important;
+  }
+  /* 22px */
+  .sidebar-filter-header-title-redesign, .infotooltip{
+    font-size:0.34rem;
+  }
+  /* 14px */
+  .sidebar-clear-filter{
+    font-size:0.22rem;
+  }
+  /* 18px */
+  .sidebar-clear-filter-button{
+    font-size:0.28rem;
+  }
+  /* 18px */
+  .date-filter-button{
+    font-size:0.28rem;
+  }
+  /* 16px */
+  .sidebar-filter-input-checkbox, .block-two-text-lines, .label-counts, .results-count{
+    font-size:0.25rem;
+  }
+  /*------------------------------- Pagination ----------------------*/
+  /* 16px */
+  .pagination-cont, .pagination-number-redesign{
+    font-size:0.25rem;
+  }
+  /* 18px */
+  .pagination-number-redesign.active{
+    font-size:0.28rem;
+  }
+  /*-------------------------------- Results -----------------------*/
+  /* 32px */
+  .search-results-main-heading{
+    font-size:0.5rem;
+  }
+  /*20px*/
+  .search-results-display-count{
+    font-size:0.31rem;
+    width:5rem! important;
+    height: 2.5rem! important;
+  }
+  /*16px*/
+  .results-result{
+    font-size:0.25rem;
+  }
+  .results_settings{
+    padding-top: 3rem;
+  }
+
+  /*---------------------------------------------------------------
+                                    Topics & Themes page
+      ---------------------------------------------------------------*/
+  /*18*/
+  .collection-heading-bold, .header-2-subtitle, .collections, .collection-title{
+    font-size:0.6rem;
+  }
+  /*16*/
+  .collection-heading, .collections-subcollections, .collection-description, .collections-view-subcollections, .collections-subcollections-link{
+    font-size:0.5rem;
+  }
+
+  /*---------------------------------------------------------------
+                                    About page
+      ---------------------------------------------------------------*/
+  .page-content-col{
+    font-size:0.5rem;
+  }
+
+  /*---------------------------------------------------------------
+                                    Nominate page
+      ---------------------------------------------------------------*/
+  /* 18px */
+  .form-group{
+    font-size:0.5rem;
+  }
+  .captcha-message{
+
+  }
+  .nominate-button{
+
+  }
+
+  /*---------------------------------------------------------------
+                                    Contact page
+      ---------------------------------------------------------------*/
+  /* 18px */
+  .form-content-col{
+    font-size:0.5rem;
+  }
+
+  /*---------------------------------------------------------------
+                       Cookies/Privacy/FAQ/terms&conditions/NoticeTakedown page
+                       error-500
+    ---------------------------------------------------------------*/
+  /* 18px */
+  .text-content{
+    font-size:0.5rem;
+  }
+  .back-button{
+    font-size:0.5rem;
+  }
+
+}
+
 /* XPeria Z3*/
 /*Small devices (landscape phones, 576px and up)*/
 /*
@@ -2448,119 +2747,688 @@ footer {
    375
 */
 
-@media only screen and (min-width: 320px) and (max-width: 1023px){
+/* for screen resolutions higher than (xs < 576) */ 
+@media only screen and (min-width: 576px) and (max-width: 1024px){
   /*--------------------------------------------------------------
-                            General for all
-      -----------------------------------------------------------------*/
+                          General for all
+    -----------------------------------------------------------------*/
   .header-logo {
-    height: 2rem;
+    height: 3rem;
   }
+  .modal-content {
+    height: 80vh;
+    width: 80vw;
+    margin-left: 5vw;
+  }
+  /* 18px */
   .header-menu-item {
     font-size:0.7rem;
-    padding: 0 0.5rem 0 0;
-    &.language {
-      font-size:0.1rem;
-      float:left !important;
-      padding: 0 0.3rem 0 0 !important;
-    }
+    padding: 0 0.6rem 0 0;
   }
-  .subject-grid:nth-child(1n) {
-    border-right: none;
+  .header-menu-item.language {
+    /*14*/
+    font-size:0.4rem! important;
+    float:left !important;
+    padding: 0 2rem 0 0 !important;
   }
-
-  /*---------------------------------------------------------------
-                                    Home page
-      ---------------------------------------------------------------*/
-  .topics-themes-hr{
-    display: none;
+  .dialog-link {
+    /* 18px */
+    font-size:0.54rem;
+    padding-top: 0.6rem;
   }
+  /* 12px */
+  .footer-legal-deposit{
+    font-size:0.3rem;
+  }
+  .footer-logo-BW{
+    margin:1rem;
+    width:7rem;
+  }
+  /*
+      Font style used in JSPs:
+      - index
+      - homepage-searchForm
+  */
+  /* 32px */
   .main-heading-2-redesign {
     font-size: 1rem;
+  }
+
+  /*
+      Font style used in JSPs: ???? check!!!
+      - coll
+      - speccoll
+      - index
+      - footer
+  */
+  .collection-link{
+
+  }
+  /*
+      Font style used in JSPs: ???? check!!!
+      - coll
+      - speccoll
+      - index
+      - footer
+  */
+  /*
+  contact
+  save uk website (nominate)
+    18px
+  */
+  .header-2-subtitle-redesign{
+    font-size:0.54rem;
+  }
+  /*16*/
+  .button_form_submit{
+    width:15vw;
+    height: 1rem;
+    font-size:0.5rem;
+  }
+
+  .sidebar-filter-input-checkbox{
+    transform: scale(0.5) !important;
+  }
+
+  .dialog-link {
+    /* 18px */
+    font-size:0.64rem;
+    padding-top: 0.6rem;
+  }
+  .footer-logo-BW{
+    margin:1rem;
+    width:4rem;
+  }
+  .main-search-input-new{
+    height: 8rem;
   }
   .main-heading-2-bold-redesign {
     font-size: 1.1rem;
   }
-  .main-subheading-bold-2-redesign, .main-subheading-2-redesign, .img-square-caption {
-    font-size: 0.7rem;
-  }
-  .main-search-field{
-    height: 2rem;
-    width: 100%;
-    font-size:0.7rem;
-    float:left !important;
-    padding: 0 1rem 0 0 !important;
-  }
-  .main-search-button{
-    width: 7rem;
-    height: 2rem;
-    font-size: 0.7rem;
-    padding-top: 0.3rem;
-  }
-  /*---------------------------------------------------------------
-                                    Search page
-      ---------------------------------------------------------------*/
-  .searchpage_search_bg_settings{
-    padding-top:3rem;
-    padding-bottom:7rem;
-  }
-}
-@media only screen and (min-width: 320px) and (max-width: 1023px) and (orientation:landscape){
-  /*--------------------------------------------------------------
-                            General for all
-      -----------------------------------------------------------------*/
-  .header-logo {
-    height: 2rem;
-  }
-  .header-menu-item {
-    font-size:0.7rem;
-    padding: 0 1rem 0 0;
-    &.language {
-      font-size:0.3rem;
-      float:left !important;
-      padding: 0 2rem 0 0 !important;
-    }
+  /* background settings for about*/
+  .background-settings-default{
+    padding-top:2.5rem;
+    padding-bottom:2.5rem;
+    padding-left:5rem;
   }
   /*---------------------------------------------------------------
                                     Home page
       ---------------------------------------------------------------*/
-  .main-heading-2-redesign {
-    font-size: 1.2rem;
+  .homepage_search_bg_settings{
+    padding-top:1rem;
+    padding-bottom:3.5rem;
   }
   .main-search-field{
     height: 2rem;
-    width: 100%;
     font-size:0.7rem;
     float:left !important;
-    padding: 0 0 0 0 !important;
+    padding: 0.5rem !important;
+    margin-right: 0.5rem;
   }
   .main-search-button{
-    width: 7rem;
-    height: 2rem;
+    /* width could auto by flex container */
+    width: 6rem !important;
+    height: 2rem !important;
     font-size: 0.7rem;
+    background-size: 1.5rem;
   }
-
+  .main-subheading-bold-2-redesign, .main-subheading-2-redesign {
+    /* 18px */
+    font-size:0.54rem;
+  }
+  .topics-themes-hr{
+    display: none;
+  }
+  .img-square-caption {
+    /* 18px */
+    font-size:0.44rem;
+    width: 30vw !important;
+  }
+  /* 18px bold */
+  .collection-heading-bold{
+    font-size:0.54rem;
+  }
+  /* 16px */
+  .collection-heading{
+    font-size:0.5rem;
+  }
+  .view-more-button{
+    /* 18px */
+    font-size:0.54rem;
+    height: 1.5rem;
+    width: 32vw;
+  }
   /*---------------------------------------------------------------
                                     Search page
       ---------------------------------------------------------------*/
-  .main-search-field-redesign{
-    height: 2rem;
-    width: 100%;
-    font-size:0.7rem;
-    float:left !important;
-    padding: 0 1rem 0 0 !important;
+  .searchpage_search_bg_settings{
+    padding-top:1rem;
+    padding-bottom:1rem;
+    padding-left: 2rem;
   }
-  .main-search-button-blue{
-    width: 7rem;
-    height: 2rem;
+  /* 18px */
+  .main-search-field-redesign{
+    /* width could auto by flex container */
+    width: 6rem !important;
+    height: 2rem !important;
     font-size: 0.7rem;
-    padding-top: 0.3rem;
+    background-size: 1.5rem;
+    padding: 0.5rem !important;
+  }
+  /* 18px */
+  .main-search-button-blue{
+    /* width could auto by flex container */
+    width: 6rem !important;
+    height: 2rem !important;
+    font-size: 0.7rem;
+    background-size: 1.5rem;
+  }
+
+  /*-------------------------- Sorting -------------------------*/
+  /* 16px */
+  .search-results-top-filters{
+    font-size:0.5rem;
+  }
+  /* 16px */
+  .search-results-top-filters-2{
+    font-size:0.5rem;
+  }
+  /*20px*/
+  .search-results-display-count{
+    font-size:0.62rem! important;
+    height: 1rem! important;
+  }
+  /*-------------------------------- Filtering -----------------------*/
+  /* date and sorting field settings*/
+  .filter-form-control{
+    height: 1.5rem !important;
+    width:100% !important;
+  }
+  /* 22px */
+  .sidebar-filter-header-title-redesign, .infotooltip{
+    font-size:0.68rem;
+  }
+  /* 14px */
+  .sidebar-clear-filter{
+    font-size:0.42rem;
+  }
+  /* 18px */
+  .sidebar-clear-filter-button{
+    font-size:0.54rem;
+  }
+  /* 18px */
+  .date-filter-button{
+    font-size:0.54rem;
+    height: 2rem !important;
+  }
+  /* 16px */
+  .sidebar-filter-input-checkbox{
+    font-size:0.5rem;
+  }
+  /* 16px */
+  .block-two-text-lines{
+    font-size:0.5rem;
+  }
+  /* 16px */
+  .label-counts{
+    font-size:0.5rem;
+  }
+  /* 16px */
+  .results-count{
+    font-size:0.5rem;
+  }
+  /*------------------------------- Pagination ----------------------*/
+  /* 16px */
+  .pagination-cont{
+    font-size:0.5rem;
+  }
+  /* 16px */
+  .pagination-number-redesign{
+    font-size:0.5rem;
+  }
+  /* 18px */
+  .pagination-number-redesign.active{
+    font-size:0.54rem;
+  }
+  /*-------------------------------- Results -----------------------*/
+  /* 32px */
+  .search-results-main-heading{
+    font-size:0.5rem;
+  }
+  /*20px*/
+  .search-results-display-count{
+    font-size:0.62rem;
+    width: 2rem;
+    height: 1.5rem! important;
+  }
+  /*16px*/
+  .results-result{
+    font-size:0.5rem;
+  }
+  .results_settings{
+    padding-top: 1rem;
+  }
+
+  /*---------------------------------------------------------------
+                                    Topics & Themes page
+      ---------------------------------------------------------------*/
+  /*18*/
+  .collection-heading-bold{
+    font-size:0.54rem;
+  }
+  /*18*/
+  .collection-heading{
+    font-size:0.54rem;
+  }
+  /*18*/
+  .header-2-subtitle{
+    font-size:0.54rem;
+  }
+  /*18*/
+  .collections{
+    font-size:0.54rem;
+  }
+  /*16*/
+  .collections-subcollections{
+    font-size:0.5rem;
+  }
+  /*18*/
+  .collection-title{
+    font-size:0.54rem;
+  }
+  /*16*/
+  .collection-description{
+    font-size:0.5rem;
+  }
+  /*16*/
+  .collections-view-subcollections{
+    font-size:0.5rem;
+  }
+  /*16*/
+  .collections-subcollections-link{
+    font-size:0.5rem;
+  }
+
+  /*---------------------------------------------------------------
+                                    About page
+      ---------------------------------------------------------------*/
+  /* 18px */
+  .page-content-col{
+    font-size:0.54rem;
+  }
+
+  /*---------------------------------------------------------------
+                                    Nominate page
+      ---------------------------------------------------------------*/
+  /* 18px */
+  .form-group{
+    font-size:0.54rem;
+  }
+  .captcha-message{
 
   }
-  .searchpage_search_bg_settings{
-    padding-top:3rem;
-    padding-bottom:5rem;
+  .nominate-button{
+
   }
+
+  /*---------------------------------------------------------------
+                                    Contact page
+      ---------------------------------------------------------------*/
+  /* 18px */
+  .form-content-col{
+    font-size:0.54rem;
+  }
+
+  /*---------------------------------------------------------------
+                       Cookies/Privacy/FAQ/terms&conditions/NoticeTakedown page
+    ---------------------------------------------------------------*/
+  /* 18px */
+  .text-content{
+    font-size:0.54rem;
+  }
+
 }
+
+
+@media only screen and (min-width: 576px) and (max-width: 1024px) and (orientation:landscape){
+
+  /*--------------------------------------------------------------
+                          General for all
+    -----------------------------------------------------------------*/
+  .header-logo {
+    height: 3rem;
+  }
+  .modal-content {
+    height: 80vh;
+    width: 80vw;
+    margin-left: 5vw;
+  }
+  /* 18px */
+  .header-menu-item {
+    font-size:0.7rem;
+    padding: 0 0.6rem 0 0;
+  }
+  .header-menu-item.language {
+    /*14*/
+    font-size:0.4rem! important;
+    float:left !important;
+    padding: 0 2rem 0 0 !important;
+  }
+  .dialog-link {
+    /* 18px */
+    font-size:0.54rem;
+    padding-top: 0.6rem;
+  }
+  /* 12px */
+  .footer-legal-deposit{
+    font-size:0.3rem;
+  }
+  .footer-logo-BW{
+    margin:1rem;
+    width:7rem;
+  }
+  /*
+      Font style used in JSPs:
+      - index
+      - homepage-searchForm
+  */
+  /* 32px */
+  .main-heading-2-redesign {
+    font-size: 1rem;
+  }
+
+  /*
+      Font style used in JSPs: ???? check!!!
+      - coll
+      - speccoll
+      - index
+      - footer
+  */
+  .collection-link{
+
+  }
+  /*
+      Font style used in JSPs: ???? check!!!
+      - coll
+      - speccoll
+      - index
+      - footer
+  */
+  /*
+  contact
+  save uk website (nominate)
+    18px
+  */
+  .header-2-subtitle-redesign{
+    font-size:0.54rem;
+  }
+  /*16*/
+  .button_form_submit{
+    width:15vw;
+    height: 1rem;
+    font-size:0.5rem;
+  }
+
+  .sidebar-filter-input-checkbox{
+     transform: scale(0.5) !important;
+  }
+
+  .dialog-link {
+    /* 18px */
+    font-size:0.64rem;
+    padding-top: 0.6rem;
+  }
+  .footer-logo-BW{
+    margin:1rem;
+    width:4rem;
+  }
+  .main-search-input-new{
+    height: 8rem;
+  }
+  .main-heading-2-bold-redesign {
+    font-size: 1.1rem;
+  }
+  /* background settings for about*/
+  .background-settings-default{
+    padding-top:2.5rem;
+    padding-bottom:2.5rem;
+    padding-left:5rem;
+  }
+  /*---------------------------------------------------------------
+                                    Home page
+      ---------------------------------------------------------------*/
+  .homepage_search_bg_settings{
+    padding-top:1rem;
+    padding-bottom:3.5rem;
+  }
+  .main-search-field{
+    height: 2rem;
+    font-size:0.7rem;
+    float:left !important;
+    padding: 0.5rem !important;
+    margin-right: 0.5rem;
+  }
+  .main-search-button{
+    /* width could auto by flex container */
+    width: 6rem !important;
+    height: 2rem !important;
+    font-size: 0.7rem;
+    background-size: 1.5rem;
+  }
+  .main-subheading-bold-2-redesign, .main-subheading-2-redesign {
+    /* 18px */
+    font-size:0.54rem;
+  }
+  .img-square-caption {
+    /* 18px */
+    font-size:0.44rem;
+    width: 30vw !important;
+  }
+  /* 18px bold */
+  .collection-heading-bold{
+    font-size:0.54rem;
+  }
+  /* 16px */
+  .collection-heading{
+    font-size:0.5rem;
+  }
+  .view-more-button{
+    /* 18px */
+    font-size:0.54rem;
+    height: 1.5rem;
+    width: 32vw;
+  }
+  /*---------------------------------------------------------------
+                                    Search page
+      ---------------------------------------------------------------*/
+  .searchpage_search_bg_settings{
+    padding-top:1rem;
+    padding-bottom:1rem;
+    padding-left: 2rem;
+  }
+  /* 18px */
+  .main-search-field-redesign{
+    /* width could auto by flex container */
+    width: 6rem !important;
+    height: 2rem !important;
+    font-size: 0.7rem;
+    background-size: 1.5rem;
+    padding: 0.5rem !important;
+  }
+  /* 18px */
+  .main-search-button-blue{
+    /* width could auto by flex container */
+    width: 6rem !important;
+    height: 2rem !important;
+    font-size: 0.7rem;
+    background-size: 1.5rem;
+  }
+
+  /*-------------------------- Sorting -------------------------*/
+  /* 16px */
+  .search-results-top-filters{
+    font-size:0.5rem;
+  }
+  /* 16px */
+  .search-results-top-filters-2{
+    font-size:0.5rem;
+  }
+  /*20px*/
+  .search-results-display-count{
+    font-size:0.62rem! important;    
+    height: 1rem! important;
+  }
+  /*-------------------------------- Filtering -----------------------*/
+  /* date and sorting field settings*/
+  .filter-form-control{
+    height: 1.5rem !important;
+    width:100% !important;
+  }
+  /* 22px */
+  .sidebar-filter-header-title-redesign, .infotooltip{
+    font-size:0.68rem;
+  }
+  /* 14px */
+  .sidebar-clear-filter{
+    font-size:0.42rem;
+  }
+  /* 18px */
+  .sidebar-clear-filter-button{
+    font-size:0.54rem;
+  }
+  /* 18px */
+  .date-filter-button{
+    font-size:0.54rem;
+    height: 2rem !important;
+  }
+  /* 16px */
+  .sidebar-filter-input-checkbox{
+    font-size:0.5rem;
+  }
+  /* 16px */
+  .block-two-text-lines{
+    font-size:0.5rem;
+  }
+  /* 16px */
+  .label-counts{
+    font-size:0.5rem;
+  }
+  /* 16px */
+  .results-count{
+    font-size:0.5rem;
+  }
+  /*------------------------------- Pagination ----------------------*/
+  /* 16px */
+  .pagination-cont{
+    font-size:0.5rem;
+  }
+  /* 16px */
+  .pagination-number-redesign{
+    font-size:0.5rem;
+  }
+  /* 18px */
+  .pagination-number-redesign.active{
+    font-size:0.54rem;
+  }
+  /*-------------------------------- Results -----------------------*/
+  /* 32px */
+  .search-results-main-heading{
+    font-size:0.5rem;
+  }
+  /*20px*/
+  .search-results-display-count{
+    font-size:0.62rem;
+    width: 2rem;
+    height: 1.5rem! important;
+  }
+  /*16px*/
+  .results-result{
+    font-size:0.5rem;
+  }
+  .results_settings{
+    padding-top: 1rem;
+  }
+
+  /*---------------------------------------------------------------
+                                    Topics & Themes page
+      ---------------------------------------------------------------*/
+  /*18*/
+  .collection-heading-bold{
+    font-size:0.54rem;
+  }
+  /*18*/
+  .collection-heading{
+    font-size:0.54rem;
+  }
+  /*18*/
+  .header-2-subtitle{
+    font-size:0.54rem;
+  }
+  /*18*/
+  .collections{
+    font-size:0.54rem;
+  }
+  /*16*/
+  .collections-subcollections{
+    font-size:0.5rem;
+  }
+  /*18*/
+  .collection-title{
+    font-size:0.54rem;
+  }
+  /*16*/
+  .collection-description{
+    font-size:0.5rem;
+  }
+  /*16*/
+  .collections-view-subcollections{
+    font-size:0.5rem;
+  }
+  /*16*/
+  .collections-subcollections-link{
+    font-size:0.5rem;
+  }
+
+  /*---------------------------------------------------------------
+                                    About page
+      ---------------------------------------------------------------*/
+  /* 18px */
+  .page-content-col{
+    font-size:0.54rem;
+  }
+
+  /*---------------------------------------------------------------
+                                    Nominate page
+      ---------------------------------------------------------------*/
+  /* 18px */
+  .form-group{
+    font-size:0.54rem;
+  }
+  .captcha-message{
+
+  }
+  .nominate-button{
+
+  }
+
+  /*---------------------------------------------------------------
+                                    Contact page
+      ---------------------------------------------------------------*/
+  /* 18px */
+  .form-content-col{
+    font-size:0.54rem;
+  }
+
+  /*---------------------------------------------------------------
+                       Cookies/Privacy/FAQ/terms&conditions/NoticeTakedown page
+    ---------------------------------------------------------------*/
+  /* 18px */
+  .text-content{
+    font-size:0.54rem;
+  }
+
+}
+
 
 /*
 Resolutions From Top10 list
@@ -2579,18 +3447,18 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
                           General for all
     -----------------------------------------------------------------*/
   .header-logo {
-    height: 3.5rem;
+    height: 4rem;
   }
   /* 18px */
   .header-menu-item {
     font-size:1.07rem;
     padding: 0 2.3rem 0 0 !important;
-    &.language {
-      /* 14px */
-      font-size:0.83rem;
-      float:left !important;
-      padding: 0 1rem 0 0 !important;
-    }
+  }
+  .header-menu-item.language {
+    /* 14px */
+    font-size:0.83rem;
+    float:left !important;
+    padding: 0 1rem 0 0 !important;
   }
   .dialog-link {
     /* 18px */
@@ -2604,6 +3472,12 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   .footer-logo-BW{
     height: 4rem
   }
+
+  .background-settings-default{
+    padding-top:6rem;
+    padding-bottom:8rem;
+    padding-left:5rem;
+  }  
   /*
       Font style "main-heading-2-bold-redesign" used in JSPs:
       - contact
@@ -2667,30 +3541,62 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
     height: 3rem;
     font-size:0.95rem;
   }
-
+  /*background hight*/
+  .main-search-input-new{
+    height: 6rem;
+  }
   /*---------------------------------------------------------------
                                     Home page
       ---------------------------------------------------------------*/
   .homepage_search_bg_settings{
     padding-top:2rem;
     padding-bottom:12rem;
-  }
+  }  
+
   /* 18px */
   .main-search-field{
-    height: 3rem;
-    width: 47vw;
-    /* 18px */
+    height: 2.5rem;
     font-size:1.07rem;
     float:left !important;
-    padding: 0 1rem 0 0 !important;
+    padding: 1rem !important;
+    margin-right: 2rem;
   }
-
   .main-search-button{
+    /* should be auto by flex container
+    width: 1rem !important;
+    */
     /* 18px */
     font-size:1.07rem;
-    height: 3rem;
-    width: 13rem;
+    height: 2.5rem !important; 
+    width: 9rem;
+    /* magnify glass size*/
+    background-size: 2.5rem;
   }
+  /*---------------------------------------------------------------
+                                    Search page
+      ---------------------------------------------------------------*/
+  .searchpage_search_bg_settings{
+    padding-top:3rem;
+    padding-left: 2rem;
+    padding-bottom:2rem;
+  }
+  /* 18px */
+  .main-search-field-redesign{
+    height: 3rem;
+    width: 25rem !important;
+    font-size:1.07rem;
+    padding: 1rem !important;
+    margin-right: 2rem;
+  }
+  /* 18px */
+  .main-search-button-blue{
+    font-size:1.07rem;
+    height: 3rem;
+    width: 10rem;
+    background-size: 2rem;
+  }
+
+
   .main-subheading-bold-2-redesign, .main-subheading-2-redesign, .img-square-caption {
     /* 18px */
     font-size:1.07rem;
@@ -2709,31 +3615,31 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
     height: 2.5rem;
     width: 22rem;
   }
-  /*---------------------------------------------------------------
-                                    Search page
-      ---------------------------------------------------------------*/
-  .searchpage_search_bg_settings{
-    padding-top:0;
-    padding-bottom:0;
+
+  /*-------------------------- Sorting -------------------------*/
+  /* 16px */
+  .search-results-top-filters{
+    font-size:0.83rem;
+    width:11rem;
   }
-  /* 18px */
-  .main-search-field-redesign{
-    height: 3rem;
-    width: 43vw;
-    font-size:1.07rem;
+  /* 16px */
+  .search-results-top-filters-2{
+    font-size:0.83rem;
   }
-  /* 18px */
-  .main-search-button-blue{
-    font-size:1.07rem;
-    height: 3rem;
-    width: 14vw;
+  /*20px*/
+  .search-results-display-count{
+    font-size:1.18rem! important;
+    width:7rem! important;
+    height:1.8rem! important;
   }
   /*-------------------------------- Filtering -----------------------*/
-  /* 22px */
-  .sidebar-filter-header-title-redesign{
-    font-size:1.3rem;
+  /* date and sorting field settings*/
+  .filter-form-control{
+    height: 2.5rem !important;
+    width:100% !important;
   }
-  .infotooltip{
+  /* 22px */
+  .sidebar-filter-header-title-redesign, .infotooltip{
     font-size:1.3rem;
   }
   /* 14px */
@@ -2746,25 +3652,24 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   }
   /* 18px */
   .date-filter-button{
-    font-size:1.07rem;
-    height: 3rem;
-    width: 14rem;
-  }
-  /* 16px */
-  .sidebar-filter-input-checkbox{
     font-size:0.95rem;
   }
   /* 16px */
-  .block-two-text-lines{
+  .sidebar-filter-input-checkbox, .block-two-text-lines, .label-counts, .results-count{
+    font-size:0.95rem;
+  }
+  /*------------------------------- Pagination ----------------------*/
+  /* 16px */
+  .pagination-cont{
     font-size:0.95rem;
   }
   /* 16px */
-  .label-counts{
+  .pagination-number-redesign{
     font-size:0.95rem;
   }
-  /* 16px */
-  .results-count{
-    font-size:0.95rem;
+  /* 18px */
+  .pagination-number-redesign.active{
+    font-size:1.06rem;
   }
   /*-------------------------------- Results -----------------------*/
   /* 32px */
@@ -2774,6 +3679,8 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   /*20px*/
   .search-results-display-count{
     font-size:1.19rem;
+    width:5rem! important;
+    height: 2.5rem! important;
   }
   /*16px*/
   .results-result{
@@ -2854,29 +3761,32 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
 
   /*---------------------------------------------------------------
                        Cookies/Privacy/FAQ/terms&conditions/NoticeTakedown page
+                       error-500
     ---------------------------------------------------------------*/
   /* 18px */
   .text-content{
     font-size:1.07rem;
   }
+  .back-button{
+    font-size:0.77rem;
+  }
 }
-
 
 /*
 1536
 1680
 */
-@media only screen and (min-width: 1441px) and (max-width: 1899px){
+@media only screen and (min-width: 1440px) and (max-width: 1900px){
   /*--------------------------------------------------------------
                           General for all
     -----------------------------------------------------------------*/
   .header-logo {
-    height: 4rem;
+    height: 6rem;
   }
   /* 18px */
   .header-menu-item {
     font-size:1.2rem;
-    padding: 0 4rem 0 0 !important;
+    padding: 0 3rem 0 0 !important;
     &.language {
       /* 14px */
       font-size:0.93rem;
@@ -2896,6 +3806,12 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   .footer-logo-BW{
     height: 4rem
   }
+
+  .background-settings-default{
+    padding-top:6rem;
+    padding-bottom:10rem;
+    padding-left:5rem;
+  }  
   /*
       Font style "main-heading-2-bold-redesign" used in JSPs:
       - contact
@@ -2964,25 +3880,33 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
                                     Home page
       ---------------------------------------------------------------*/
   .homepage_search_bg_settings{
-    padding-top:4rem;
-    padding-bottom:16rem;
+    padding-top:3rem;
+    padding-bottom:13rem;
+  }
+  /*background image hight*/
+  .main-search-input-new{
+    height: 0;
   }
   /* 18px */
   .main-search-field{
     height: 3rem;
-    width: 50vw;
-    /* 18px */
     font-size:1.2rem;
     float:left !important;
-    padding: 0 1rem 0 0 !important;
+    padding: 1rem !important;
+    margin-right: 2rem;
   }
-
   .main-search-button{
+    /* should be auto by flex container
+    width: 1rem !important;
+    */
     /* 18px */
     font-size:1.2rem;
     height: 3rem;
-    width: 10rem;
+    width: 11rem;
+    /* magnify glass size*/
+    background-size: 2.5rem;
   }
+
   .main-subheading-bold-2-redesign, .main-subheading-2-redesign, .img-square-caption {
     /* 18px */
     font-size:1.2rem;
@@ -3005,22 +3929,55 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
                                     Search page
       ---------------------------------------------------------------*/
   .searchpage_search_bg_settings{
-    padding-top:0;
-    padding-bottom:0;
+    padding-top:3rem;
+    padding-bottom:3rem;
+    padding-left: 2rem;
   }
+
   /* 18px */
   .main-search-field-redesign{
     height: 3rem;
-    width: 40vw;
     font-size:1.2rem;
+    float:left !important;
+    padding: 1rem !important;
+    margin-right: 2rem;
   }
   /* 18px */
   .main-search-button-blue{
+    /* should be auto by flex container
+    width: 1rem !important;
+    */
+    /* 18px */
     font-size:1.2rem;
     height: 3rem;
-    width: 12vw;
+    width: 11rem;
+    /* magnify glass size*/
+    background-size: 2.5rem;
+  }
+
+  /*-------------------------- Sorting -------------------------*/
+  /* 16px */
+  .search-results-top-filters{
+    font-size:1.06rem;
+    width: 15vw;
+  }
+  /* 16px */
+  .search-results-top-filters-2{
+    font-size:1.06rem;
+  }
+  /*20px*/
+  .search-results-display-count{
+    font-size:1.33rem! important;
+    width: 5rem;
+    height: 2.8rem! important;
   }
   /*-------------------------------- Filtering -----------------------*/
+  /* date and sorting field settings*/
+  .filter-form-control{
+    height: 2.5rem! important;
+    width:100%;
+  }
+
   /* 22px */
   .sidebar-filter-header-title-redesign{
     font-size:1.46rem;
@@ -3039,8 +3996,7 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   /* 18px */
   .date-filter-button{
     font-size:1.2rem;
-    height: 3rem;
-    width: 13rem;
+
   }
   /* 16px */
   .sidebar-filter-input-checkbox{
@@ -3058,6 +4014,20 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   .results-count{
     font-size:1.06rem;
   }
+  /*------------------------------- Pagination ----------------------*/
+  /* 16px */
+  .pagination-cont{
+    font-size:1.07rem;
+  }
+  /* 16px */
+  .pagination-number-redesign{
+    font-size:1.07rem;
+  }
+  /* 18px */
+  .pagination-number-redesign.active{
+    font-size:1.2rem;
+  }
+
   /*-------------------------------- Results -----------------------*/
   /* 32px */
   .search-results-main-heading{
@@ -3066,6 +4036,8 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   /*20px*/
   .search-results-display-count{
     font-size:1.33rem;
+    width: 5rem;
+    height: 2.8rem! important;
   }
   /*16px*/
   .results-result{
@@ -3161,17 +4133,17 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
 From Top10 list
 1920
 */
-@media only screen and (min-width: 1900px) and (max-width: 2599px){
+@media only screen and (min-width: 1900px) and (max-width: 2600px){
   /*--------------------------------------------------------------
                           General for all
     -----------------------------------------------------------------*/
   .header-logo {
-    height: 5rem;
+    height: 6rem;
   }
   /* 18px */
   .header-menu-item {
     font-size:1.49rem;
-    padding: 0 4rem 0 0 !important;
+    padding: 0 3rem 0 0 !important;
     &.language {
       /* 14px */
       font-size:1.17rem;
@@ -3191,6 +4163,12 @@ From Top10 list
   .footer-logo-BW{
     height: 6rem
   }
+
+  .background-settings-default{
+    padding-top:9rem;
+    padding-bottom:12rem;
+    padding-left:5rem;
+  }  
   /*
       Font style "main-heading-2-bold-redesign" used in JSPs:
       - contact
@@ -3208,7 +4186,7 @@ From Top10 list
   */
   /* 32px */
   .main-heading-2-bold-redesign {
-    font-size: 1.9rem;
+    font-size: 2.6rem;
   }
   /*
       Font style used in JSPs:
@@ -3264,21 +4242,28 @@ From Top10 list
     padding-top:4rem;
     padding-bottom:17rem;
   }
+  /*background image hight*/
+  .main-search-input-new{
+    height: 0;
+  }
   /* 18px */
   .main-search-field{
     height: 4rem;
-    width: 56vw;
-    /* 18px */
     font-size:1.49rem;
     float:left !important;
-    padding: 0 1rem 0 0 !important;
+    padding: 1rem !important;
+    margin-right: 2rem;
   }
-
   .main-search-button{
+    /* should be auto by flex container
+    width: 1rem !important;
+    */
     /* 18px */
     font-size:1.49rem;
     height: 4rem;
-    width: 13rem;
+    width: 15rem;
+    /* magnify glass size*/
+    background-size: 2.5rem;
   }
   .main-subheading-bold-2-redesign, .main-subheading-2-redesign, .img-square-caption {
     /* 18px */
@@ -3302,22 +4287,54 @@ From Top10 list
                                     Search page
       ---------------------------------------------------------------*/
   .searchpage_search_bg_settings{
-    padding-top:0;
-    padding-bottom:0;
+    padding-top:4rem;
+    padding-bottom:4rem;
+    padding-left: 2rem;
   }
   /* 18px */
   .main-search-field-redesign{
-    height: 3rem;
-    width: 43vw;
+    height: 4rem;
     font-size:1.49rem;
+    float:left !important;
+    padding: 1rem !important;
+    margin-right: 2rem;
   }
   /* 18px */
   .main-search-button-blue{
+    /* should be auto by flex container
+    width: 1rem !important;
+    */
+    /* 18px */
     font-size:1.49rem;
-    height: 3rem;
-    width: 14vw;
+    height: 4rem;
+    width: 15rem;
+    /* magnify glass size*/
+    background-size: 2.5rem;
+  }
+
+  /*-------------------------- Sorting -------------------------*/
+  /* 16px */
+  .search-results-top-filters{
+    font-size:1.33rem;
+    width: 15vw;
+  }
+  /* 16px */
+  .search-results-top-filters-2{
+    font-size:1.33rem;
+  }
+  /*20px*/
+  .search-results-display-count{
+    font-size:1.66rem! important;
+    width:6rem! important;
+    height: 5rem! important;
   }
   /*-------------------------------- Filtering -----------------------*/
+  /* date and sorting field settings*/
+  .filter-form-control{
+    height: 4rem! important;
+    width:100%! important;
+  }
+
   /* 22px */
   .sidebar-filter-header-title-redesign{
     font-size:1.83rem;
@@ -3336,8 +4353,7 @@ From Top10 list
   /* 18px */
   .date-filter-button{
     font-size:1.49rem;
-    height: 3rem;
-    width: 14rem;
+
   }
   /* 16px */
   .sidebar-filter-input-checkbox{
@@ -3355,6 +4371,19 @@ From Top10 list
   .results-count{
     font-size:1.33rem;
   }
+  /*------------------------------- Pagination ----------------------*/
+  /* 16px */
+  .pagination-cont{
+    font-size:1.33rem;
+  }
+  /* 16px */
+  .pagination-number-redesign{
+    font-size:1.33rem;
+  }
+  .pagination-number-redesign.active{
+    font-size:1.49rem;
+  }
+
   /*-------------------------------- Results -----------------------*/
   /* 32px */
   .search-results-main-heading{
@@ -3363,6 +4392,8 @@ From Top10 list
   /*20px*/
   .search-results-display-count{
     font-size:1.66rem;
+    width: 7rem;
+    height: 5.8rem! important;
   }
   /*16px*/
   .results-result{
@@ -3454,7 +4485,6 @@ From Top10 list
 
 }
 
-
 /*
 Retina like displays
 */
@@ -3463,7 +4493,7 @@ Retina like displays
                           General for all
     -----------------------------------------------------------------*/
   .header-logo {
-    height: 6rem;
+    height: 8rem;
   }
   /* 18px */
   .header-menu-item {
@@ -3488,6 +4518,12 @@ Retina like displays
   .footer-logo-BW{
     height: 8rem
   }
+
+  .background-settings-default{
+    padding-top:11rem;
+    padding-bottom:14rem;
+    padding-left:5rem;
+  }  
   /*
       Font style "main-heading-2-bold-redesign" used in JSPs:
       - contact
@@ -3534,10 +4570,6 @@ Retina like displays
       - index
       - footer
   */
-  /*32*/
-  .main-search-input-new {
-    font-size: 3.55rem;
-  }
   /*
   contact
   save uk website (nominate)
@@ -3559,22 +4591,31 @@ Retina like displays
     padding-top:5rem;
     padding-bottom:20rem;
   }
+
+  /*background image hight*/
+  .main-search-input-new{
+    height: 0;
+  }
   /* 18px */
   .main-search-field{
     height: 5rem;
-    width: 50vw;
-    /* 18px */
     font-size:2rem;
     float:left !important;
-    padding: 0 2rem 0 0 !important;
+    padding: 2rem !important;
+    margin-right: 2rem;
   }
-
   .main-search-button{
+    /* should be auto by flex container
+    width: 1rem !important;
+    */
     /* 18px */
     font-size:2rem;
     height: 5rem;
-    width: 15rem;
+    width: 20rem;
+    /* magnify glass size*/
+    background-size: 2.5rem;
   }
+
   .main-subheading-bold-2-redesign, .main-subheading-2-redesign, .img-square-caption {
     /* 18px */
     font-size:2rem;
@@ -3597,20 +4638,45 @@ Retina like displays
                                     Search page
       ---------------------------------------------------------------*/
   .searchpage_search_bg_settings{
-    padding-top:0;
-    padding-bottom:0;
+    padding-top:4rem;
+    padding-bottom:4rem;
+    padding-left: 2rem;
   }
   /* 18px */
   .main-search-field-redesign{
     height: 5rem;
-    width: 50vw;
     font-size:2rem;
+    float:left !important;
+    padding: 2rem !important;
+    margin-right: 2rem;
   }
   /* 18px */
   .main-search-button-blue{
+    /* should be auto by flex container
+    width: 1rem !important;
+    */
+    /* 18px */
     font-size:2rem;
     height: 5rem;
-    width: 20vw;
+    width: 20rem;
+    /* magnify glass size*/
+    background-size: 2.5rem;
+  }
+  /*-------------------------- Sorting -------------------------*/
+  /* 16px */
+  .search-results-top-filters{
+    font-size:1.77rem;
+    width: 15vw;
+  }
+  /* 16px */
+  .search-results-top-filters-2{
+    font-size:1.77rem;
+  }
+  /*20px*/
+  .search-results-display-count{
+    font-size:2.22rem! important;
+    width: 6rem;
+    height: 4rem! important;
   }
   /*-------------------------------- Filtering -----------------------*/
   /* 22px */
@@ -3631,8 +4697,7 @@ Retina like displays
   /* 18px */
   .date-filter-button{
     font-size:2rem;
-    height: 5rem;
-    width: 20rem;
+
   }
   /* 16px */
   .sidebar-filter-input-checkbox{
@@ -3650,6 +4715,20 @@ Retina like displays
   .results-count{
     font-size:1.7rem;
   }
+  /*------------------------------- Pagination ----------------------*/
+  /* 16px */
+  .pagination-cont{
+    font-size:1.77rem;
+  }
+  /* 16px */
+  .pagination-number-redesign{
+    font-size:1.77rem;
+  }
+  /* 18px */
+  .pagination-number-redesign.active{
+    font-size:2rem;
+  }
+
   /*-------------------------------- Results -----------------------*/
   /* 32px */
   .search-results-main-heading{
@@ -3658,6 +4737,8 @@ Retina like displays
   /*20px*/
   .search-results-display-count{
     font-size:3.55rem;
+    width:7rem !important;
+    height: 4rem !important;
   }
   /*16px*/
   .results-result{
