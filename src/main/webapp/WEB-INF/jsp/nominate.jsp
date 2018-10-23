@@ -38,15 +38,13 @@ ${req.requestURL}
 
     <div class="padding-30">
         <div class="padding-30">
-            <div class="padding-bottom-20">
-                <p class="main-subheading-2-redesign">
-                    <spring:message code="nominate.text" />
-                </p>
-            </div>
+            <p class="main-subheading-2-redesign">
+                <spring:message code="nominate.text"/>
+            </p>
         </div>
     </div>
 
-  <div class="row header-blue padding-30 white">
+    <div class="row header-blue padding-30 white">
       <div class="col-md-6 col-sm-12 padding-bottom-20 padding-30">
         <h2><spring:message code="nominate.subtitle1" /></h2>
         <spring:message code="nominate.list1" />

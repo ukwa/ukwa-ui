@@ -28,7 +28,7 @@
     <div class="row">
     <div class="col-12 white main-search-input-new left background-settings-default">
       <div class="main-heading-2-bold-redesign white"><spring:message code="main.menu.contact" /></div>
-            <div class="header-2-subtitle-redesign white padding-top-20"><spring:message code="contact.text" /></div>
+
         </div>
     </div>
 
@@ -41,7 +41,14 @@
 </div>
 </c:if>
 
-  <form action="contact" method="post" enctype="multipart/form-data" name="contact" id="contact-form">
+    <div style="padding-top: 30px; padding-right: 60px;padding-left: 60px">
+        <p class="main-subheading-2-redesign">
+            <spring:message code="contact.text"/>
+        </p>
+    </div>
+
+    <form action="contact" method="post" enctype="multipart/form-data" name="contact" id="contact-form">
+
     <div class="row page-content">
       <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
         <h3 class="light-blue bold"><spring:message code="contact.form.heading" /></h3>

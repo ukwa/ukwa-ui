@@ -8,7 +8,7 @@
                     <div class="container-search-field-group">
                         <input type="text" name="text" id="text" title="<spring:message code="search.main.input.title" />" placeholder="<spring:message code="search.main.input.title" />" class="main-search-field" value="${originalSearchRequest}" required/>
                         <button type="submit" title="<spring:message code="search.main.button.title" />" class="main-search-button">
-                            <span class="d-none d-sm-block">Search</span>
+                            <span class="d-none d-sm-block"><spring:message code="search.main.button.title" /></span>
                         </button>    
                     </div>
                 </div>

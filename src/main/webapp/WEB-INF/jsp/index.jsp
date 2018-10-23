@@ -120,7 +120,7 @@
                 <div class="col-md-8">
                     <p class="main-subheading-2-redesign">
                         <spring:message code="home.page.collections.subtitle"/>
-                        <a href="collection" title="Find out more about Topics and Themes">Find out more</a>
+                        <a href="collection" title="<spring:message code="home.page.findoutmore"/>"><spring:message code="home.page.findoutmore"/></a>.
                     </p>
                 </div>
                 <div class="col-md-4">
@@ -128,11 +128,10 @@
                 </div>
             </div>
 
-
             <div class="row padding-top-40">
                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/329" class="collection-link">
                     <figure><img class="img-responsive border-gray coll-img" alt="British Stand-up Comedy Archive" src="img/collections/collection_329.png"/>
-                        <figcaption class="img-square-caption shadow">FEATURED</figcaption>
+                        <figcaption class="img-square-caption shadow"><spring:message code="home.page.featured.text"/></figcaption>
                     </figure>
                     <div class="left light-blue padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold">British Stand-up Comedy Archive</div>
                     <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail">Collection owned and adminstered by Elspeth Millar.</div>
@@ -140,7 +139,7 @@
 
                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/309" class="collection-link">
                     <figure><img class="img-responsive border-gray coll-img" alt="French in London" src="img/collections/collection_309.png"/>
-                        <figcaption class="img-square-caption shadow">FEATURED</figcaption>
+                        <figcaption class="img-square-caption shadow"><spring:message code="home.page.featured.text"/></figcaption>
                     </figure>
                     <div class="left light-blue padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold">French in London</div>
                     <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail">This collection of websites has been selected by Saskia Huc-Hepher.</div>
@@ -148,7 +147,7 @@
 
                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/138" class="collection-link">
                     <figure><img class="img-responsive border-gray coll-img" alt="News Sites" src="img/collections/collection_138.png"/>
-                        <figcaption class="img-square-caption shadow">FEATURED</figcaption>
+                        <figcaption class="img-square-caption shadow"><spring:message code="home.page.featured.text"/></figcaption>
                     </figure>
                     <div class="left light-blue padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold">News Sites</div>
                     <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail">558 titles are included in this collection.</div>
