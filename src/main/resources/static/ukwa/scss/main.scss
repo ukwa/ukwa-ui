@@ -2876,6 +2876,9 @@ footer {
     /* 18px */
     font-size:0.54rem;
   }
+  .topics-themes-hr{
+    display: none;
+  }
   .img-square-caption {
     /* 18px */
     font-size:0.44rem;
@@ -3783,7 +3786,7 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   /* 18px */
   .header-menu-item {
     font-size:1.2rem;
-    padding: 0 4rem 0 0 !important;
+    padding: 0 3rem 0 0 !important;
     &.language {
       /* 14px */
       font-size:0.93rem;
@@ -4140,7 +4143,7 @@ From Top10 list
   /* 18px */
   .header-menu-item {
     font-size:1.49rem;
-    padding: 0 4rem 0 0 !important;
+    padding: 0 3rem 0 0 !important;
     &.language {
       /* 14px */
       font-size:1.17rem;
