@@ -35,20 +35,26 @@ ${req.requestURL}
     </div>
   </div>
 <section id="nominate-header">
-  <div class="row header-2-subtitle-redesign padding-top-20 padding-bottom-20">
-    <div class="col-md-12 mr-auto ml-auto col-md-offset-2 padding-mobile-side-0 nominate-text" style="padding-left:10vh;padding-right: 60px">
-      <spring:message code="nominate.text" />
+
+    <div class="padding-30">
+        <div class="padding-30">
+            <div class="padding-bottom-20">
+                <p class="main-subheading-2-redesign">
+                    <spring:message code="nominate.text" />
+                </p>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="row header-blue padding-side-70 white">
-    <div class="col-md-6 col-sm-12 padding-bottom-20 padding-side-10 padding-mobile-side-0">
-      <h2><spring:message code="nominate.subtitle1" /></h2>
-      <spring:message code="nominate.list1" />
-    </div>
-    <div class="col-md-6 col-sm-12 padding-bottom-20 padding-side-10 padding-mobile-side-0">
-      <h2><spring:message code="nominate.subtitle2" /></h2>
-     <spring:message code="nominate.list2" />
-    </div>
+
+  <div class="row header-blue padding-30 white">
+      <div class="col-md-6 col-sm-12 padding-bottom-20 padding-30">
+        <h2><spring:message code="nominate.subtitle1" /></h2>
+        <spring:message code="nominate.list1" />
+      </div>
+      <div class="col-md-6 col-sm-12 padding-bottom-20 ">
+        <h2><spring:message code="nominate.subtitle2" /></h2>
+        <spring:message code="nominate.list2" />
+      </div>
   </div>
 </section>
 <section id="content">
