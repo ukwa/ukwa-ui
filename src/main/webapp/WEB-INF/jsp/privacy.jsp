@@ -34,11 +34,13 @@ ${pageContext.response.locale}
         </div>
     </div>
 <section id="content">
-  <div class="row margin-0 padding-side-20 padding-top-20 padding-bottom-40">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 text-content padding-mobile-side-5">
-     <spring:message code="privacy.text" />
+    <div class="padding-30">
+        <div class="padding-30">
+            <p class="main-subheading-2-redesign">
+                <spring:message code="privacy.text"/>
+            </p>
+        </div>
     </div>
-  </div>
 </section>
 <footer>
   <%@include file="footer.jsp" %>

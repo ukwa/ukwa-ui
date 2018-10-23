@@ -1,7 +1,7 @@
 <div class="col-12 white main-search-input-new left homepage_search_bg_settings">
     <form action="search" method="get" enctype="multipart/form-data" name="search_form" id="search_form">
             <div class="row">
-                <div class="col-12 main-heading-2-redesign white padding-bottom-20">Search the UK Web Archive</div>
+                <div class="col-12 main-heading-2-redesign white padding-bottom-20"><spring:message code="search.main.webarchivename" /></div>
             </div>
             <div class="row">                
                 <div class="col-12">

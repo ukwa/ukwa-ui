@@ -30,7 +30,7 @@
         <a href="info/terms_conditions" class="collection-link" title="<spring:message code="footer.terms.title" />">
             <div class="left light-blue padding-bottom-5 dialog-link"><spring:message code="footer.terms" /></div>
         </a><br/>
-        <a href="info/privacy" class="collection-link" title="<spring:message code="footer.privacy.title" />">
+        <a href="http://www.bl.uk/aboutus/terms/privacy/index.html" class="collection-link" title="<spring:message code="footer.privacy.title" />" target="_blank">
             <div class="left light-blue padding-bottom-5 dialog-link"><spring:message code="footer.privacy" /></div>
         </a><br/>
         <a href="info/cookies" class="collection-link" title="<spring:message code="footer.cookies.title" />">
