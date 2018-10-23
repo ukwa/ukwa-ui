@@ -48,7 +48,7 @@
     <div class="col-auto">
         <a href="index"><img src="img/ukwa-2018-logo.png" class="header-logo"></a>
     </div>
-    <div class="col-lg-1 col-md-1 col-sm-1">&nbsp;</div>
+    <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block">&nbsp;</div>
 
   <div id="headermenu_index" class="col-sm-auto header-menu-item padding-bottom-10"><a href="index" title="<spring:message code="main.menu.home.title" />">
     <spring:message code="main.menu.home" />

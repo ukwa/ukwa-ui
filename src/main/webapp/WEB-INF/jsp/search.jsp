@@ -52,35 +52,35 @@
                 <div class="modal-body" style="padding: 0">
                     <div class="main-heading-2-redesign bg-gray2" id="exampleModalLongTitle" style="padding-left: 40px;padding-bottom: 40px"><spring:message code="search.tips.tipsnotes" /></div>
                     <div class="padding-left-20">
-                        <div class="row padding-top-10 padding-bottom-10">
-                            <div class="col-md-2 col-sm-12 circle"><span>1</span></div>
-                            <div class="col-md-10 col-sm-12 circle-text"><b>Tip 1 - </b><spring:message code="search.tip.1.text" /></div>
-                        </div>
-                        <div class="row padding-top-10 padding-bottom-10">
-                            <div class="col-md-2 col-sm-12 circle"><span>2</span></div>
-                            <div class="col-md-10 col-sm-12 circle-text"><b>Tip 2 - </b><spring:message code="search.tip.2.text" /></div>
-                        </div>
-                        <div class="row padding-top-10 padding-bottom-10">
-                            <div class="col-md-2 col-sm-12 circle"><span>3</span></div>
-                            <div class="col-md-10 col-sm-12 circle-text"><b>Tip 3 - </b><spring:message code="search.tip.3.text" /></div>
-                        </div>
-                        <div class="row padding-top-10 padding-bottom-10">
-                            <div class="col-md-2 col-sm-12 circle"><span>4</span></div>
-                            <div class="col-md-10 col-sm-12 circle-text"><b>Tip 4 - </b><spring:message code="search.tip.4.text" /></div>
-                        </div>
-                        <div class="row padding-top-10 padding-bottom-10">
-                            <div class="col-md-2 col-sm-12 circle"><span>5</span></div>
-                            <div class="col-md-10 col-sm-12 circle-text"><b>Tip 5 - </b><spring:message code="search.tip.5.text" /></div>
-                        </div>
-                        <div class="row padding-top-10 padding-bottom-10">
-                            <div class="col-md-2 col-sm-12 circle"><span>6</span></div>
-                            <div class="col-md-10 col-sm-12 circle-text"><b>Tip 6 - </b><spring:message code="search.tip.6.text" /></div>
-                        </div>
-                        <div class="row padding-top-10 padding-bottom-10">
-                            <div class="col-md-2 col-sm-12 circle"><span>7</span></div>
-                            <div class="col-md-10 col-sm-12 circle-text"><b>Tip 7 - </b><spring:message code="search.tip.7.text" /></div>
-                        </div>
-                    </div>
+                                <div class="row padding-top-10 padding-bottom-10">
+                                    <div class="col-md-2 col-sm-2 circle"><span>1</span></div>
+                                    <div class="col-md-10 col-sm-10 circle-text"><b>Tip 1 - </b><spring:message code="search.tip.1.text" /></div>
+                                </div>
+                                <div class="row padding-top-10 padding-bottom-10">
+                                    <div class="col-md-2 col-sm-2 circle"><span>2</span></div>
+                                    <div class="col-md-10 col-sm-10 circle-text"><b>Tip 2 - </b><spring:message code="search.tip.2.text" /></div>
+                                </div>
+                                <div class="row padding-top-10 padding-bottom-10">
+                                    <div class="col-md-2 col-sm-2 circle"><span>3</span></div>
+                                    <div class="col-md-10 col-sm-10 circle-text"><b>Tip 3 - </b><spring:message code="search.tip.3.text" /></div>
+                                </div>
+                                <div class="row padding-top-10 padding-bottom-10">
+                                    <div class="col-md-2 col-sm-2 circle"><span>4</span></div>
+                                    <div class="col-md-10 col-sm-10 circle-text"><b>Tip 4 - </b><spring:message code="search.tip.4.text" /></div>
+                                </div>
+                                <div class="row padding-top-10 padding-bottom-10">
+                                    <div class="col-md-2 col-sm-2 circle"><span>5</span></div>
+                                    <div class="col-md-10 col-sm-10 circle-text"><b>Tip 5 - </b><spring:message code="search.tip.5.text" /></div>
+                                </div>
+                                <div class="row padding-top-10 padding-bottom-10">
+                                    <div class="col-md-2 col-sm-2 circle"><span>6</span></div>
+                                    <div class="col-md-10 col-sm-10 circle-text"><b>Tip 6 - </b><spring:message code="search.tip.6.text" /></div>
+                                </div>
+                                <div class="row padding-top-10 padding-bottom-10">
+                                    <div class="col-md-2 col-sm-2 circle"><span>7</span></div>
+                                    <div class="col-md-10 col-sm-10 circle-text"><b>Tip 7 - </b><spring:message code="search.tip.7.text" /></div>
+                                </div>
+                            </div>
                 </div>
                 <div class="modal-footer inline-block-items justify-content-center" style="width: 100%;">
                     <button type="button" class="btn btn-primary" style="width: 20%;" data-dismiss="modal">Close</button>

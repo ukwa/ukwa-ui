@@ -4,7 +4,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-1 col-sm-1">&nbsp;</div>
+    <div class="col-md-1 col-sm-1 d-none d-sm-block">&nbsp;</div>
     <div class="col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 col-xs-12">
         <a href="index" title="<spring:message code="footer.home.title" />" class="collection-link">
             <div class="left light-blue padding-bottom-5 dialog-link"><spring:message code="footer.home" /></div>
@@ -22,7 +22,7 @@
             <div class="left light-blue padding-bottom-5 dialog-link"><spring:message code="footer.nominate" /></div>
         </a><br/>
     </div>
-    <div class="col-md-1 col-sm-1">&nbsp;</div>
+    <div class="col-md-1 col-sm-1 d-none d-sm-block">&nbsp;</div>
     <div class="col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 col-xs-12">
         <a href="info/notice_takedown" class="collection-link" title="<spring:message code="footer.notice.title" />">
             <div class="left light-blue padding-bottom-5 dialog-link"><spring:message code="footer.notice" /></div>
@@ -37,8 +37,8 @@
             <div class="left light-blue padding-bottom-5 dialog-link"><spring:message code="footer.cookies" /></div>
         </a><br/>
     </div>
-    <div class="col-md-1 col-sm-1">&nbsp;</div>
-    <div class="col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1  col-xs-12">
+    <div class="col-md-1 col-sm-1 d-none d-sm-block">&nbsp;</div>
+    <div class="col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 col-xs-12">
 
         <a href="info/faq" title="<spring:message code="footer.faq" />" class="collection-link">
             <div class="left light-blue padding-bottom-5 dialog-link"><spring:message code="footer.faq" /></div>

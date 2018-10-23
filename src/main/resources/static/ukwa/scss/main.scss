@@ -2540,7 +2540,7 @@ footer {
     font-size: 1.2rem;
   }  
 
-  /*------------------------------ Dialog ------------------------*/
+  /*------------------------------ Tips Dialog ------------------------*/
   .circle-text{
     font-size: 0.8rem;
   }
@@ -2596,7 +2596,6 @@ footer {
   }
   /* 18px */
   .main-search-button-blue{
-    font-size:0.28rem;
     height: 1rem !important; 
     width: 1.6rem;
     /* magnify glass size*/
@@ -2604,15 +2603,13 @@ footer {
   }
   .main-subheading-bold-2-redesign, .main-subheading-2-redesign, .img-square-caption {
     /* 18px */
-    font-size:0.28rem;
+    font-size:0.7rem;
   }
-  /* 18px bold */
-  .collection-heading-bold{
-    font-size:0.28rem;
-  }
+ 
+
   /* 16px */
   .collection-heading{
-    font-size:0.25rem;
+    font-size:0.5rem;
   }
 
 
@@ -2690,19 +2687,19 @@ footer {
                                     Topics & Themes page
       ---------------------------------------------------------------*/
   /*18*/
-  .collection-heading-bold, .collection-heading, .header-2-subtitle, .collections, .collection-title{
-    font-size:0.28rem;
+  .collection-heading-bold, .header-2-subtitle, .collections, .collection-title{
+    font-size:0.6rem;
   }
   /*16*/
-  .collections-subcollections, .collection-description, .collections-view-subcollections, .collections-subcollections-link{
-    font-size:0.25rem;
+  .collection-heading, .collections-subcollections, .collection-description, .collections-view-subcollections, .collections-subcollections-link{
+    font-size:0.5rem;
   }
 
   /*---------------------------------------------------------------
                                     About page
       ---------------------------------------------------------------*/
   .page-content-col{
-    font-size:0.25rem;
+    font-size:0.5rem;
   }
 
   /*---------------------------------------------------------------
@@ -2710,7 +2707,7 @@ footer {
       ---------------------------------------------------------------*/
   /* 18px */
   .form-group{
-    font-size:0.25rem;
+    font-size:0.5rem;
   }
   .captcha-message{
 
@@ -2724,7 +2721,7 @@ footer {
       ---------------------------------------------------------------*/
   /* 18px */
   .form-content-col{
-    font-size:0.25rem;
+    font-size:0.5rem;
   }
 
   /*---------------------------------------------------------------
@@ -2733,10 +2730,10 @@ footer {
     ---------------------------------------------------------------*/
   /* 18px */
   .text-content{
-    font-size:0.25rem;
+    font-size:0.5rem;
   }
   .back-button{
-    font-size:0.25rem;
+    font-size:0.5rem;
   }
 
 }
@@ -3629,7 +3626,7 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   /*20px*/
   .search-results-display-count{
     font-size:1.18rem! important;
-    width:5rem! important;
+    width:7rem! important;
     height:1.8rem! important;
   }
   /*-------------------------------- Filtering -----------------------*/
