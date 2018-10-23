@@ -28,9 +28,9 @@ ${pageContext.response.locale}
   <header>
   <%@include file="header.jsp" %>
 </header>
-    <div class="row bg-transparent">
-        <div class="white main-search-input-new" style="padding-bottom:170px;padding-top:40px;padding-left:5%;padding-right:5%;">
-            <div class="main-heading-2-bold-redesign white padding-top-40"><spring:message code="terms.main.heading" /></div>
+    <div class="row">
+    <div class="col-12 white main-search-input-new left background-settings-default">
+      <div class="main-heading-2-bold-redesign white"><spring:message code="terms.main.heading" /></div>
         </div>
     </div>
     <section id="content">

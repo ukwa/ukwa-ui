@@ -20,7 +20,7 @@
 <div class="relative shadow-redesign" style="z-index: 1001">
 <!-- Language menu -->
 <div class="row  navbar-collapse justify-content-end">
-<div class="col-lg-3 col-md-12 padding-right-20 right">
+<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 padding-right-20 right">
         <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
         <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
         <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy' || textUri == '/gd'
@@ -45,10 +45,10 @@
 </div>
 </div>
 <div id="header-menu" class="row center padding-left-60 padding-bottom-20 align-items-end">
-    <div class="col-sm-auto col-md-auto col-sm-auto">
-        <a href="index"><img src="img/ukwa-logo-60px.jpg" class="header-logo"></a>
+    <div class="col-auto">
+        <a href="index"><img src="img/ukwa-2018-logo.png" class="header-logo"></a>
     </div>
-    <div class="col-lg-1 col-md-1 col-sm-1">&nbsp;</div>
+    <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block">&nbsp;</div>
 
   <div id="headermenu_index" class="col-sm-auto header-menu-item padding-bottom-10"><a href="index" title="<spring:message code="main.menu.home.title" />">
     <spring:message code="main.menu.home" />
