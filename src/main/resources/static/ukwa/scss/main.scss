@@ -496,6 +496,13 @@ li {
   margin-bottom: 0;
 }
 
+.default-padding {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
 .infolink {
   &:after {
     content: '?';
@@ -1481,8 +1488,12 @@ footer {
 }
 
 .footer-logo-BW {
-  flex:1;
-  margin: auto;
+  flex: 1;
+}
+
+.footer-logo-BW>* {
+  flex: 1 1 160px;
+  margin: 10px;
 }
 
 .page-content {
@@ -2090,9 +2101,11 @@ footer {
 }
 
 .q-grid {
+  /*
   padding: 10px 15px 10px 15px;
+  */
   text-align: left;
-  font-size: 1em;
+  font-size: 1rem;
   width: 100%;
   clear: both;
   font-family: "Open Sans Bold",sans-serif;
@@ -2100,7 +2113,9 @@ footer {
 }
 
 .q-description {
+  /*
   padding: 20px 15px 40px 15px;
+  */
   text-align: left;
   text-align: justify;
 }
@@ -2429,11 +2444,10 @@ footer {
 }
 .container-footer-group{
   display: flex;
-  margin: auto;
-  padding: 1rem;
-  align-items: center;
   justify-content:space-between;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
+  align-items: center;
+
 }
 .container-search-field-group{
   display: flex;
@@ -2474,9 +2488,6 @@ footer {
   /* 12px */
   .footer-legal-deposit{
     font-size:0.22rem;
-  }
-  .footer-logo-BW{
-    height: 1rem
   }
 
   /*
@@ -2538,8 +2549,12 @@ footer {
   /* 32px */
   .main-heading-2-bold-redesign {
     font-size: 1.2rem;
-  }  
+  }
 
+  .footer-logo-BW img{
+    width: 8rem;
+
+  }
   /*------------------------------ Tips Dialog ------------------------*/
   .circle-text{
     font-size: 0.8rem;
@@ -2603,7 +2618,7 @@ footer {
   }
   .main-subheading-bold-2-redesign, .main-subheading-2-redesign, .img-square-caption {
     /* 18px */
-    font-size:0.7rem;
+    font-size:0.9rem;
   }
  
 
@@ -2735,6 +2750,12 @@ footer {
   .back-button{
     font-size:0.5rem;
   }
+  .default-padding {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 
 }
 
@@ -2780,10 +2801,7 @@ footer {
   .footer-legal-deposit{
     font-size:0.3rem;
   }
-  .footer-logo-BW{
-    margin:1rem;
-    width:7rem;
-  }
+
   /*
       Font style used in JSPs:
       - index
@@ -2835,10 +2853,10 @@ footer {
     font-size:0.64rem;
     padding-top: 0.6rem;
   }
-  .footer-logo-BW{
-    margin:1rem;
-    width:4rem;
+  .footer-logo-BW img{
+    width: 70%;
   }
+
   .main-search-input-new{
     height: 8rem;
   }
@@ -3123,9 +3141,8 @@ footer {
   .footer-legal-deposit{
     font-size:0.3rem;
   }
-  .footer-logo-BW{
-    margin:1rem;
-    width:7rem;
+  .footer-logo-BW img{
+    width: 70%;
   }
   /*
       Font style used in JSPs:
@@ -3178,10 +3195,10 @@ footer {
     font-size:0.64rem;
     padding-top: 0.6rem;
   }
-  .footer-logo-BW{
-    margin:1rem;
-    width:4rem;
+  .footer-logo-BW img{
+    width: 70%;
   }
+
   .main-search-input-new{
     height: 8rem;
   }
@@ -3210,7 +3227,7 @@ footer {
   }
   .main-search-button{
     /* width could auto by flex container */
-    width: 6rem !important;
+    width: 9rem !important;
     height: 2rem !important;
     font-size: 0.7rem;
     background-size: 1.5rem;
@@ -3469,9 +3486,10 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   .footer-legal-deposit{
     font-size:0.71rem;
   }
-  .footer-logo-BW{
-    height: 4rem
+  .footer-logo-BW img{
+    width: 70%;
   }
+
 
   .background-settings-default{
     padding-top:6rem;
@@ -3568,7 +3586,7 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
     /* 18px */
     font-size:1.07rem;
     height: 2.5rem !important; 
-    width: 9rem;
+    width: 10rem !important;
     /* magnify glass size*/
     background-size: 2.5rem;
   }
@@ -3770,6 +3788,15 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   .back-button{
     font-size:0.77rem;
   }
+  /*
+  FAQ
+  */
+  .q-grid{
+    font-size:1.07rem;
+  }
+  .q-description{
+    font-size:1.07rem;
+  }
 }
 
 /*
@@ -3803,9 +3830,10 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   .footer-legal-deposit{
     font-size:0.8rem;
   }
-  .footer-logo-BW{
-    height: 4rem
+  .footer-logo-BW img{
+    width: 70%;
   }
+
 
   .background-settings-default{
     padding-top:6rem;
@@ -4160,9 +4188,10 @@ From Top10 list
   .footer-legal-deposit{
     font-size:1rem;
   }
-  .footer-logo-BW{
-    height: 6rem
+  .footer-logo-BW img{
+    width: 70%;
   }
+
 
   .background-settings-default{
     padding-top:9rem;
@@ -4515,8 +4544,8 @@ Retina like displays
   .footer-legal-deposit{
     font-size:1.33rem;
   }
-  .footer-logo-BW{
-    height: 8rem
+  .footer-logo-BW img{
+    width: 70%;
   }
 
   .background-settings-default{

@@ -34,10 +34,8 @@ ${pageContext.response.locale}
         </div>
     </div>
     <section id="content">
-  <div class="row margin-0 padding-side-20 padding-top-80 padding-bottom-80 padding-mobile-side-5">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 text-content">
-<spring:message code="terms.text" />
-    </div>
+  <div class="default-padding text-content">
+    <spring:message code="terms.text" />
   </div>
 </section>
 <footer>

@@ -49,7 +49,7 @@ ${req.requestURL}
         <h2><spring:message code="nominate.subtitle1" /></h2>
         <spring:message code="nominate.list1" />
       </div>
-      <div class="col-md-6 col-sm-12 padding-bottom-20 ">
+      <div class="col-md-6 col-sm-12 ">
         <h2><spring:message code="nominate.subtitle2" /></h2>
         <spring:message code="nominate.list2" />
       </div>
