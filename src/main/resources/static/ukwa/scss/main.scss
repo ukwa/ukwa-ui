@@ -1488,8 +1488,12 @@ footer {
 }
 
 .footer-logo-BW {
-  flex:1;
-  margin: auto;
+  flex: 1;
+}
+
+.footer-logo-BW>* {
+  flex: 1 1 160px;
+  margin: 10px;
 }
 
 .page-content {
@@ -2440,11 +2444,10 @@ footer {
 }
 .container-footer-group{
   display: flex;
-  margin: auto;
-  padding: 1rem;
-  align-items: center;
   justify-content:space-between;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
+  align-items: center;
+
 }
 .container-search-field-group{
   display: flex;
@@ -2485,9 +2488,6 @@ footer {
   /* 12px */
   .footer-legal-deposit{
     font-size:0.22rem;
-  }
-  .footer-logo-BW{
-    height: 1rem
   }
 
   /*
@@ -2549,8 +2549,12 @@ footer {
   /* 32px */
   .main-heading-2-bold-redesign {
     font-size: 1.2rem;
-  }  
+  }
 
+  .footer-logo-BW img{
+    width: 10rem;
+
+  }
   /*------------------------------ Tips Dialog ------------------------*/
   .circle-text{
     font-size: 0.8rem;
@@ -2797,10 +2801,7 @@ footer {
   .footer-legal-deposit{
     font-size:0.3rem;
   }
-  .footer-logo-BW{
-    margin:1rem;
-    width:7rem;
-  }
+
   /*
       Font style used in JSPs:
       - index
@@ -2852,10 +2853,10 @@ footer {
     font-size:0.64rem;
     padding-top: 0.6rem;
   }
-  .footer-logo-BW{
-    margin:1rem;
-    width:4rem;
+  .footer-logo-BW img{
+    width: 70%;
   }
+
   .main-search-input-new{
     height: 8rem;
   }
@@ -3140,9 +3141,8 @@ footer {
   .footer-legal-deposit{
     font-size:0.3rem;
   }
-  .footer-logo-BW{
-    margin:1rem;
-    width:7rem;
+  .footer-logo-BW img{
+    width: 70%;
   }
   /*
       Font style used in JSPs:
@@ -3195,10 +3195,10 @@ footer {
     font-size:0.64rem;
     padding-top: 0.6rem;
   }
-  .footer-logo-BW{
-    margin:1rem;
-    width:4rem;
+  .footer-logo-BW img{
+    width: 70%;
   }
+
   .main-search-input-new{
     height: 8rem;
   }
@@ -3486,9 +3486,10 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   .footer-legal-deposit{
     font-size:0.71rem;
   }
-  .footer-logo-BW{
-    height: 4rem
+  .footer-logo-BW img{
+    width: 70%;
   }
+
 
   .background-settings-default{
     padding-top:6rem;
@@ -3829,9 +3830,10 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   .footer-legal-deposit{
     font-size:0.8rem;
   }
-  .footer-logo-BW{
-    height: 4rem
+  .footer-logo-BW img{
+    width: 70%;
   }
+
 
   .background-settings-default{
     padding-top:6rem;
@@ -4186,9 +4188,10 @@ From Top10 list
   .footer-legal-deposit{
     font-size:1rem;
   }
-  .footer-logo-BW{
-    height: 6rem
+  .footer-logo-BW img{
+    width: 70%;
   }
+
 
   .background-settings-default{
     padding-top:9rem;
@@ -4541,8 +4544,8 @@ Retina like displays
   .footer-legal-deposit{
     font-size:1.33rem;
   }
-  .footer-logo-BW{
-    height: 8rem
+  .footer-logo-BW img{
+    width: 70%;
   }
 
   .background-settings-default{
