@@ -34,12 +34,10 @@ ${pageContext.response.locale}
     </div>
   </div>
 <section id="content">
-  <div class="padding-30">
-    <div class="padding-30">
+  <div class="default-padding text-content">
       <p class="main-subheading-2-redesign">
         <spring:message code="takedown.text"/>
       </p>
-    </div>
   </div>
 </section>
 <footer>

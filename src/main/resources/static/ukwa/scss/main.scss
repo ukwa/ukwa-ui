@@ -496,6 +496,13 @@ li {
   margin-bottom: 0;
 }
 
+.default-padding {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
 .infolink {
   &:after {
     content: '?';
@@ -2090,9 +2097,11 @@ footer {
 }
 
 .q-grid {
+  /*
   padding: 10px 15px 10px 15px;
+  */
   text-align: left;
-  font-size: 1em;
+  font-size: 1rem;
   width: 100%;
   clear: both;
   font-family: "Open Sans Bold",sans-serif;
@@ -2100,7 +2109,9 @@ footer {
 }
 
 .q-description {
+  /*
   padding: 20px 15px 40px 15px;
+  */
   text-align: left;
   text-align: justify;
 }
@@ -2603,7 +2614,7 @@ footer {
   }
   .main-subheading-bold-2-redesign, .main-subheading-2-redesign, .img-square-caption {
     /* 18px */
-    font-size:0.7rem;
+    font-size:0.9rem;
   }
  
 
@@ -2734,6 +2745,12 @@ footer {
   }
   .back-button{
     font-size:0.5rem;
+  }
+  .default-padding {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
 }
@@ -3769,6 +3786,15 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   }
   .back-button{
     font-size:0.77rem;
+  }
+  /*
+  FAQ
+  */
+  .q-grid{
+    font-size:1.07rem;
+  }
+  .q-description{
+    font-size:1.07rem;
   }
 }
 
