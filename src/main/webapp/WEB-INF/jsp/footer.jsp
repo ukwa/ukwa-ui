@@ -48,19 +48,16 @@
         </a><br/>
         <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
         <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
-        <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy' || textUri == '/gd'
+        <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy'
                                         ? '/'
-                                        : fn:replace(fn:replace(fn:replace(textUri, '/en/', '/'), '/gd/', '/'), '/cy/', '/')}"/>
+                                        : fn:replace(fn:replace(textUri, '/en/', '/'), '/cy/', '/')}"/>
         <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
-          && (fn:contains(textUri, '/gd/') || textUri =='/gd' || fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
+          && (fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
       <span lang="en"><a href="/en<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.english.title" />" class="collection-link">
       <div class="left light-blue padding-bottom-10 dialog-link"><spring:message code="footer.english" /></div></a></span><br/>
         </c:if>
         <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}"> <span lang="cy"><a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.welsh.title" />" class="collection-link">
       <div class="left light-blue padding-bottom-10 dialog-link"><spring:message code="footer.welsh" /></div></a></span><br/>
-        </c:if>
-        <c:if test="${!fn:startsWith(textUri, '/gd/') && textUri != '/gd'}"> <span lang="gn"><a href="/gd<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.scottish.title" />" class="collection-link">
-      <div class="left light-blue padding-bottom-10 dialog-link"><spring:message code="footer.scottish" /></div></a></span><br/>
         </c:if>
         <a href="https://www.webarchive.org.uk/rss/recent.xml" title="<spring:message code="footer.rss.title" />" class="collection-link">
             <div class="left light-blue padding-bottom-10 dialog-link"><spring:message code="footer.rss" /></div>
@@ -85,12 +82,12 @@
 <div class="row">
     <div class="col-12">
     <div class="container-footer-group">
-        <div><a href="https://www.bl.uk/" target="_blank"><img src="img/bl_logo_BW.png" alt="<spring:message code="footer.logo.blib" />" class="footer-logo-BW"/></a></div>
-        <div><a href="https://www.llgc.org.uk/" target="_blank"><img src="img/llgc_logo_BW.png" alt="<spring:message code="footer.logo.llgc" />" class="footer-logo-BW"/></a></div>
-        <div><a href="https://www.nls.uk/" target="_blank"><img src="img/NLS_logo_2_BW.jpg" alt="<spring:message code="footer.logo.nls" />" class="footer-logo-BW"/></a></div>
-        <div><a href="http://www.bodleian.ox.ac.uk/" target="_blank"><img src="img/bodleian_logo_BW.jpg" alt="<spring:message code="footer.logo.bl" />" class="footer-logo-BW"/></a></div>
-        <div><a href="http://www.lib.cam.ac.uk/" target="_blank"><img src="img/cambrige_logo600_BW.png" alt="<spring:message code="footer.logo.cul" />" class="footer-logo-BW"/></a></div>
-        <div><a href="https://www.tcd.ie/" target="_blank"><img src="img/trinity_logo_BW.jpg" alt="<spring:message code="footer.logo.tcd" />" class="footer-logo-BW"/></a></div>
+        <div class="footer-logo-BW"><a href="http://www.bodleian.ox.ac.uk/" target="_blank"><img src="img/bodleian_logo_BW.jpg" alt="<spring:message code="footer.logo.bl" />" /></a></div>
+        <div class="footer-logo-BW"><a href="https://www.llgc.org.uk/" target="_blank"><img src="img/llgc_logo_BW.png" alt="<spring:message code="footer.logo.llgc" />" /></a></div>
+        <div class="footer-logo-BW"><a href="https://www.nls.uk/" target="_blank"><img src="img/NLS_logo_2_BW.jpg" alt="<spring:message code="footer.logo.nls" />" /></a></div>
+        <div class="footer-logo-BW"><a href="https://www.bl.uk/" target="_blank"><img src="img/bl_logo_BW.png" alt="<spring:message code="footer.logo.blib" />" /></a></div>
+        <div class="footer-logo-BW"><a href="http://www.lib.cam.ac.uk/" target="_blank"><img src="img/cambrige_logo600_BW.png" alt="<spring:message code="footer.logo.cul" />" /></a></div>
+        <div class="footer-logo-BW"><a href="https://www.tcd.ie/" target="_blank"><img src="img/trinity_logo_BW.jpg" alt="<spring:message code="footer.logo.tcd" />" /></a></div>
     </div>
     </div>
 </div>

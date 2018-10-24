@@ -30,13 +30,11 @@ ${pageContext.response.locale}
   <%@include file="header.jsp" %>
 </header>
 <section id="nominate-header">
-  <div class="row header-white light-blue">
-    <div class="col-md-6 offset-md-3 col-md-offset-3">
+  <div class="default-padding text-content header-white light-blue">
       <h2>Version of a Site</h2>
-      <p>
+      <p class="main-heading-2-bold-redesign">
         <c:out value="${applicationVersion}"/>
       </p>
-    </div>
   </div>
 </section>
 <footer>

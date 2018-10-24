@@ -103,16 +103,16 @@
                         <div class="d-flex flex-row mt-2">
                             <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" role="navigation">
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#domain" role="tab">Domain</a>
+                                    <a class="nav-link" data-toggle="tab" href="#domain" role="tab"><spring:message code="search.side.domain.title" /></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#documenttype" role="tab">Document Type</a>
+                                    <a class="nav-link" data-toggle="tab" href="#documenttype" role="tab"><spring:message code="search.side.doctype.title" /></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#suffix" role="tab">Suffix</a>
+                                    <a class="nav-link" data-toggle="tab" href="#suffix" role="tab"><spring:message code="search.side.suffix.title" /></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#topicsandthemes" role="tab">Topics and Themes</a>
+                                    <a class="nav-link" data-toggle="tab" href="#topicsandthemes" role="tab"><spring:message code="search.side.coll.title" /></a>
                                 </li>
                             </ul>
                             <!-- Tab panes -->
@@ -424,7 +424,7 @@
                                             </c:if>
 
                                         </c:forEach>
-                                        <div class="openPlusSign" style="margin-left: 10px"><a href="#domain" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none">Show more</a></div>
+                                        <div class="openPlusSign" style="margin-left: 10px"><a href="#domain" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
                                     </c:if>
                                 </div>
 
@@ -452,7 +452,7 @@
                                             </c:if>
 
                                         </c:forEach>
-                                        <div class="openPlusSign" style="margin-left: 10px"><a href="#documenttype" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none">Show more</a></div>
+                                        <div class="openPlusSign" style="margin-left: 10px"><a href="#documenttype" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
                                     </c:if>
                                 </div>
 
@@ -480,7 +480,7 @@
                                                 </div>
                                             </c:if>
                                         </c:forEach>
-                                        <div class="openPlusSign" style="margin-left: 10px"><a href="#suffix" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none">Show more</a></div>
+                                        <div class="openPlusSign" style="margin-left: 10px"><a href="#suffix" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
                                     </c:if>
 
                                 </div>
@@ -552,7 +552,7 @@
                                             </c:if>
 
                                         </c:forEach>
-                                        <div class="openPlusSign" style="margin-left: 10px"><a href="#topicsandthemes" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none">Show more</a></div>
+                                        <div class="openPlusSign" style="margin-left: 10px"><a href="#topicsandthemes" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
                                     </c:if>
 
                                 </div>
