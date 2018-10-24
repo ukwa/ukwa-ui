@@ -48,19 +48,16 @@
         </a><br/>
         <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
         <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
-        <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy' || textUri == '/gd'
+        <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy'
                                         ? '/'
-                                        : fn:replace(fn:replace(fn:replace(textUri, '/en/', '/'), '/gd/', '/'), '/cy/', '/')}"/>
+                                        : fn:replace(fn:replace(textUri, '/en/', '/'), '/cy/', '/')}"/>
         <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
-          && (fn:contains(textUri, '/gd/') || textUri =='/gd' || fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
+          && (fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
       <span lang="en"><a href="/en<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.english.title" />" class="collection-link">
       <div class="left light-blue padding-bottom-10 dialog-link"><spring:message code="footer.english" /></div></a></span><br/>
         </c:if>
         <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}"> <span lang="cy"><a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.welsh.title" />" class="collection-link">
       <div class="left light-blue padding-bottom-10 dialog-link"><spring:message code="footer.welsh" /></div></a></span><br/>
-        </c:if>
-        <c:if test="${!fn:startsWith(textUri, '/gd/') && textUri != '/gd'}"> <span lang="gn"><a href="/gd<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.scottish.title" />" class="collection-link">
-      <div class="left light-blue padding-bottom-10 dialog-link"><spring:message code="footer.scottish" /></div></a></span><br/>
         </c:if>
         <a href="https://www.webarchive.org.uk/rss/recent.xml" title="<spring:message code="footer.rss.title" />" class="collection-link">
             <div class="left light-blue padding-bottom-10 dialog-link"><spring:message code="footer.rss" /></div>

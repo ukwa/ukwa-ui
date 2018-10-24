@@ -23,17 +23,12 @@
 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 padding-right-20 right">
         <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
         <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
-        <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy' || textUri == '/gd'
+        <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy'
                                         ? '/'
-                                        : fn:replace(fn:replace(fn:replace(textUri, '/en/', '/'), '/gd/', '/'), '/cy/', '/')}"/>
+                                        : fn:replace(fn:replace(textUri, '/en/', '/'), '/cy/', '/')}"/>
         <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}">
             <div class="header-menu-language-item margin-0"><a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="main.menu.welsh.title" />">
                 <span lang="cy"><spring:message code="main.menu.welsh" /></span>
-            </a></div>
-        </c:if>
-        <c:if test="${!fn:startsWith(textUri, '/gd/') && textUri != '/gd'}">
-            <div class="header-menu-language-item"><a href="/gd<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="main.menu.scottish.title" />">
-                <span lang="gd"><spring:message code="main.menu.scottish" /></span>
             </a></div>
         </c:if>
         <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
