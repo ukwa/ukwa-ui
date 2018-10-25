@@ -141,11 +141,7 @@ public class SolrSearchService {
                                                        List<String> rangeDates,
                                                        List<String> collections) {
         log.debug("Searching content for '" + queryString + "' by " + searchLocation);
-
-        SortClause sort = sortBy == null
-                ? null
-                : new SortClause("score", sortBy.getSolrOrderValue());
-
+        SortClause sort = sortBy == null ? null : (sortBy.getWebRequestOrderValue()=="relevant" ? new SortClause("score", sortBy.getSolrOrderValue()) : new SortClause(FIELD_CRAWL_DATE, sortBy.getSolrOrderValue()));
         String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
         String accessToQuery = generateAccessToQuery(accessTo);
         String contentTypeQuery = generateMultipleConditionsQuery(contentTypes, FIELD_TYPE);

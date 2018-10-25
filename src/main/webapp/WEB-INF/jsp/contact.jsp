@@ -34,14 +34,14 @@
 
 <section id="content">
 <c:if test="${sent}">
-<div class="row page-content">
+<div class="row default-padding page-content">
 <div class="col-sm-12 form-content-col bold red">
 <spring:message code="contact.sent.message"/>
 </div>
 </div>
 </c:if>
 
-    <div style="padding-top: 30px; padding-right: 60px;padding-left: 60px">
+    <div class="default-padding">
         <p class="main-subheading-2-redesign">
             <spring:message code="contact.text"/>
         </p>
