@@ -3,9 +3,10 @@
     <div class="modal-dialog" style="padding-top:15%" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title text-center">Your search is in progress  Please wait...</h2>
+                <h2 class="modal-title mobile-dialog text-center"><spring:message code="header.modal.pleasewait.text" />                    
+                </h2>
             </div>
-            <div class="modal-body center" style="max-height: calc(100vh - 143px);overflow-y: auto;">
+            <div class="modal-body center pleasewait-modal-body-config">
                 <div class="center-block align-items-center" >
                         <img src="img/icons/gif4.gif">
                 </div>

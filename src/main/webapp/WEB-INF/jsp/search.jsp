@@ -380,7 +380,7 @@
                                     </c:if>
 
                                     <div class="form-check-cont padding-0" title="<spring:message code="search.side.view.1" />" tabindex="0">
-                                        <input tabindex="-1" type="radio" class="blue access_filter" name="view_filter" id="view_filter_1" value="va"
+                                        <input tabindex="-1" type="radio" class="blue access_filter" name="view_filter" id="view_filter_1" value="va" 
                                         ${originalAccessView.contains('va') || empty originalAccessView ? 'checked' : ''}/>
                                         <label class="main-search-check-label blue block-two-text-lines" for="view_filter_1" title="<spring:message code="search.side.view.1" />">
                                             <spring:message code="search.side.view.1" />

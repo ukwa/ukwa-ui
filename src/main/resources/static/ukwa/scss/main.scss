@@ -33,6 +33,12 @@ html, body {
   */
 }
 
+.modal-title{
+  &.mobile-dialog{
+    font-size: 1rem;
+  }
+
+}
 
 .modal-dialog {
   &.tips-dialog, &.filter-dialog {
@@ -274,11 +280,11 @@ p.searchFilter {
 .block-two-text-lines {
   overflow: hidden;
   position: relative;
-  line-height: 1.2em;
-  max-height: 2.4em;
+  line-height: 1.2rem;
+  max-height: 2.4rem;
   text-align: justify;
-  margin-right: -1em;
-  padding-right: 2em;
+  margin-right: -1rem;
+  padding-right: 2rem;
   &:before {
     content: '...';
     position: absolute;
@@ -289,9 +295,9 @@ p.searchFilter {
     content: '';
     position: absolute;
     right: 0;
-    width: 1em;
-    height: 1em;
-    margin-top: .2em;
+    width: 1rem;
+    height: 1rem;
+    margin-top: .2rem;
     background: #fff;
   }
 }
@@ -773,14 +779,14 @@ footer a {
 
 .form-radio-label {
   color: #000;
-  font-size: 0.9em;
+  font-size: 0.9rem;
 }
 
 .form-check-cont {
   width: auto;
-  height: 40px;
-  margin-bottom: 8px;
-  margin-top: 8px;
+  height: 2rem;
+  margin-bottom: 0.1rem;
+  margin-top: 0.1rem;
 }
 
 .form-white-placeholder::placeholder {
@@ -820,7 +826,7 @@ input {
     background-repeat: no-repeat;
     background-position: 0 0;
     background-image: url("../img/icons/check-back.png");
-    line-height: 20px;
+    line-height: 1.3rem;
     height: auto;
     word-break: break-all;
   }
@@ -919,8 +925,6 @@ input {
 .main-search-input-new {
   height: 0;
   width: 100%;
-  clear: both;
-  background-color: blue;
   background-repeat: no-repeat;
   background-image: url("../img/icons/UKWA-hero-composite-final.png");
   background-size: cover;
@@ -991,9 +995,9 @@ input {
 
 .main-search-check-label {
   display: block;
-  font-size: 1em;
+  font-size: 1rem;
   width: 100%;
-  padding-right: 20px;
+  padding-right: 1rem;  
   &.blue {
     color: #0c49b0;
   }
@@ -2457,6 +2461,10 @@ footer {
 .container-tootip-group{
   display: flex;
 }
+.pleasewait-modal-body-config{
+    max-height: calc(100vh - 143px);
+    overflow-y: auto;    
+}
 
 /* bootsrap xs < 576, reduced functionality 
   iPhone 5/SE resolution 320 x 568 (portrait & landscape)
@@ -2522,7 +2530,7 @@ footer {
   .button_form_submit{
     width:11rem;
     height: 3rem;
-    font-size:0.25rem;
+    font-size:0.5rem;
   }
 
   /* background settings for about*/
@@ -2604,21 +2612,21 @@ footer {
   /* 18px */
   .main-search-field-redesign{
     height: 1rem;
-    font-size:0.28rem;
+    font-size:0.5rem;
     float:left !important;
     padding: 0.5 !important;
     margin-right: 2rem;
   }
   /* 18px */
   .main-search-button-blue{
-    height: 1rem !important; 
+    height: 1.3rem !important; 
     width: 1.6rem;
     /* magnify glass size*/
     background-size: 1.2rem;
   }
   .main-subheading-bold-2-redesign, .main-subheading-2-redesign, .img-square-caption {
     /* 18px */
-    font-size:0.9rem;
+    font-size:0.7rem;
   }
  
 
@@ -2856,7 +2864,6 @@ footer {
   .footer-logo-BW img{
     width: 70%;
   }
-
   .main-search-input-new{
     height: 8rem;
   }
@@ -3997,7 +4004,7 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   .search-results-display-count{
     font-size:1.33rem! important;
     width: 5rem;
-    height: 2.8rem! important;
+    height: 1.8rem! important;
   }
   /*-------------------------------- Filtering -----------------------*/
   /* date and sorting field settings*/
