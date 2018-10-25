@@ -33,60 +33,15 @@
   </div>
 
 
-    <section id="about-pre-header">
-
-        <div class="padding-30">
-            <div class="padding-30">
-                <div class="padding-bottom-20">
-                    <p class="main-subheading-2-redesign">
-                        <spring:message code="about.page.1.text"/>
-                    </p>
-                </div>
-                <div class="padding-bottom-20">
-                    <p class="main-subheading-2-redesign">
-                        <spring:message code="about.page.2.text"/>
-                    </p>
-                </div>
-                <div class="padding-bottom-20">
-                    <p class="main-subheading-2-redesign">
-                        <spring:message code="about.page.3.text"/>
-                    </p>
-                </div>
-                <div class="padding-bottom-20">
-                    <p class="main-subheading-2-redesign">
-                        <spring:message code="about.page.4.text"/>
-                    </p>
-                </div>
-                <div class="padding-bottom-20">
-                    <p class="main-subheading-2-redesign">
-                        <spring:message code="about.page.5.text"/>
-                    </p>
-                </div>
-                <div class="padding-bottom-20">
-                    <p class="main-subheading-2-redesign">
-                        <spring:message code="about.page.6.text"/>
-                    </p>
-                </div>
-                <div class="padding-bottom-20">
-                    <p class="main-subheading-2-redesign">
-                        <spring:message code="about.page.7.text"/>
-                    </p>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
 
     <section id="content">
-  <div class="row page-content">
+  <div class="row default-padding page-content">
     <div class="col-md-6 col-sm-12 page-content-col">
       <article>
         <h3 class="light-blue bold">
-          <spring:message code="about.page.title1" />
+          <spring:message code="about.page.title2" />
         </h3>
-          <spring:message code="about.page.p1" />
+        <spring:message code="about.page.p2" />
 
       </article>
     </div>
@@ -99,9 +54,9 @@
     <div class="col-md-6 col-sm-12 page-content-col">
       <article>
         <h3 class="light-blue bold">
-          <spring:message code="about.page.title2" />
+          <spring:message code="about.page.title1" />
         </h3>
-          <spring:message code="about.page.p2" />
+        <spring:message code="about.page.p1" />
 
       </article>
     </div>

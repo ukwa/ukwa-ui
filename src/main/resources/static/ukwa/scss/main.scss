@@ -33,6 +33,12 @@ html, body {
   */
 }
 
+.modal-title{
+  &.mobile-dialog{
+    font-size: 1rem;
+  }
+
+}
 
 .modal-dialog {
   &.tips-dialog, &.filter-dialog {
@@ -274,11 +280,11 @@ p.searchFilter {
 .block-two-text-lines {
   overflow: hidden;
   position: relative;
-  line-height: 1.2em;
-  max-height: 2.4em;
+  line-height: 1.2rem;
+  max-height: 2.4rem;
   text-align: justify;
-  margin-right: -1em;
-  padding-right: 2em;
+  margin-right: -1rem;
+  padding-right: 2rem;
   &:before {
     content: '...';
     position: absolute;
@@ -289,9 +295,9 @@ p.searchFilter {
     content: '';
     position: absolute;
     right: 0;
-    width: 1em;
-    height: 1em;
-    margin-top: .2em;
+    width: 1rem;
+    height: 1rem;
+    margin-top: .2rem;
     background: #fff;
   }
 }
@@ -773,14 +779,14 @@ footer a {
 
 .form-radio-label {
   color: #000;
-  font-size: 0.9em;
+  font-size: 0.9rem;
 }
 
 .form-check-cont {
   width: auto;
-  height: 40px;
-  margin-bottom: 8px;
-  margin-top: 8px;
+  height: 2rem;
+  margin-bottom: 0.1rem;
+  margin-top: 0.1rem;
 }
 
 .form-white-placeholder::placeholder {
@@ -820,7 +826,7 @@ input {
     background-repeat: no-repeat;
     background-position: 0 0;
     background-image: url("../img/icons/check-back.png");
-    line-height: 20px;
+    line-height: 1.3rem;
     height: auto;
     word-break: break-all;
   }
@@ -919,8 +925,6 @@ input {
 .main-search-input-new {
   height: 0;
   width: 100%;
-  clear: both;
-  background-color: blue;
   background-repeat: no-repeat;
   background-image: url("../img/icons/UKWA-hero-composite-final.png");
   background-size: cover;
@@ -991,9 +995,9 @@ input {
 
 .main-search-check-label {
   display: block;
-  font-size: 1em;
+  font-size: 1rem;
   width: 100%;
-  padding-right: 20px;
+  padding-right: 1rem;  
   &.blue {
     color: #0c49b0;
   }
@@ -1791,7 +1795,7 @@ footer {
   border-radius: 30px;
   background-color: #2e6dd9;
   cursor: pointer;
-  box-shadow: 1px 1px 7px dark-gray;
+  box-shadow: 1px 1px 7px darkgray;
   z-index: 100;
   float: left;
   color: white;
@@ -2440,7 +2444,6 @@ footer {
 
 .container-sort-group{
   display: flex;
-  justify-content:space-between;
 }
 .container-footer-group{
   display: flex;
@@ -2456,6 +2459,14 @@ footer {
 }
 .container-tootip-group{
   display: flex;
+}
+.pleasewait-modal-body-config{
+    max-height: calc(100vh - 143px);
+    overflow-y: auto;    
+}
+.search-results-display-sort{
+  flex: 1;
+  flex-basis: 10rem;
 }
 
 /* bootsrap xs < 576, reduced functionality 
@@ -2522,7 +2533,7 @@ footer {
   .button_form_submit{
     width:11rem;
     height: 3rem;
-    font-size:0.25rem;
+    font-size:0.5rem;
   }
 
   /* background settings for about*/
@@ -2573,7 +2584,7 @@ footer {
     height: 2rem;
     font-size:1rem;
     float:left !important;
-    padding: 0.5 !important;
+    padding: 0.5rem !important;
     margin-right: 0.5rem;
   }
   .main-search-button{
@@ -2604,21 +2615,21 @@ footer {
   /* 18px */
   .main-search-field-redesign{
     height: 1rem;
-    font-size:0.28rem;
+    font-size:0.5rem;
     float:left !important;
-    padding: 0.5 !important;
+    padding: 0.5rem !important;
     margin-right: 2rem;
   }
   /* 18px */
   .main-search-button-blue{
-    height: 1rem !important; 
+    height: 1.3rem !important; 
     width: 1.6rem;
     /* magnify glass size*/
     background-size: 1.2rem;
   }
   .main-subheading-bold-2-redesign, .main-subheading-2-redesign, .img-square-caption {
     /* 18px */
-    font-size:0.9rem;
+    font-size:0.7rem;
   }
  
 
@@ -2630,11 +2641,6 @@ footer {
 
   /*-------------------------- Sorting -------------------------*/
   /* 16px */
-  .search-results-top-filters{
-    font-size:0.25rem;
-    width:11rem;
-  }
-  /* 16px */
   .search-results-top-filters-2{
     font-size:0.25rem;
   }
@@ -2642,6 +2648,12 @@ footer {
   .search-results-display-count{
     font-size:0.31rem! important;
     width:5rem! important;
+    height:1.8rem! important;
+  }
+  /*20px*/
+  .search-results-display-sort{
+    font-size:0.31rem! important;
+    width:9rem! important;
     height:1.8rem! important;
   }
   /*-------------------------------- Filtering -----------------------*/
@@ -2684,12 +2696,7 @@ footer {
   .search-results-main-heading{
     font-size:0.5rem;
   }
-  /*20px*/
-  .search-results-display-count{
-    font-size:0.31rem;
-    width:5rem! important;
-    height: 2.5rem! important;
-  }
+
   /*16px*/
   .results-result{
     font-size:0.25rem;
@@ -2856,7 +2863,6 @@ footer {
   .footer-logo-BW img{
     width: 70%;
   }
-
   .main-search-input-new{
     height: 8rem;
   }
@@ -2944,17 +2950,20 @@ footer {
 
   /*-------------------------- Sorting -------------------------*/
   /* 16px */
-  .search-results-top-filters{
-    font-size:0.5rem;
-  }
-  /* 16px */
   .search-results-top-filters-2{
     font-size:0.5rem;
   }
   /*20px*/
   .search-results-display-count{
     font-size:0.62rem! important;
-    height: 1rem! important;
+    height: 1.2rem! important;
+    width: 3rem! important;
+  }
+  /*20px*/
+  .search-results-display-sort{
+    font-size:0.62rem! important;
+    height: 1.2rem! important;
+    width: 6rem! important;
   }
   /*-------------------------------- Filtering -----------------------*/
   /* date and sorting field settings*/
@@ -3013,12 +3022,7 @@ footer {
   .search-results-main-heading{
     font-size:0.5rem;
   }
-  /*20px*/
-  .search-results-display-count{
-    font-size:0.62rem;
-    width: 2rem;
-    height: 1.5rem! important;
-  }
+
   /*16px*/
   .results-result{
     font-size:0.5rem;
@@ -3283,17 +3287,20 @@ footer {
 
   /*-------------------------- Sorting -------------------------*/
   /* 16px */
-  .search-results-top-filters{
-    font-size:0.5rem;
-  }
-  /* 16px */
   .search-results-top-filters-2{
     font-size:0.5rem;
   }
   /*20px*/
   .search-results-display-count{
     font-size:0.62rem! important;    
-    height: 1rem! important;
+    height: 1.2rem! important;
+    width: 3rem! important;
+  }
+  /*20px*/
+  .search-results-display-sort{
+    font-size:0.62rem! important;
+    height: 1.2rem! important;
+    width: 10rem! important;
   }
   /*-------------------------------- Filtering -----------------------*/
   /* date and sorting field settings*/
@@ -3352,12 +3359,7 @@ footer {
   .search-results-main-heading{
     font-size:0.5rem;
   }
-  /*20px*/
-  .search-results-display-count{
-    font-size:0.62rem;
-    width: 2rem;
-    height: 1.5rem! important;
-  }
+
   /*16px*/
   .results-result{
     font-size:0.5rem;
@@ -3636,11 +3638,6 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
 
   /*-------------------------- Sorting -------------------------*/
   /* 16px */
-  .search-results-top-filters{
-    font-size:0.83rem;
-    width:11rem;
-  }
-  /* 16px */
   .search-results-top-filters-2{
     font-size:0.83rem;
   }
@@ -3648,6 +3645,12 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   .search-results-display-count{
     font-size:1.18rem! important;
     width:7rem! important;
+    height:1.8rem! important;
+  }
+  /*20px*/
+  .search-results-display-sort{
+    font-size:1.18rem! important;
+    width:14rem! important;
     height:1.8rem! important;
   }
   /*-------------------------------- Filtering -----------------------*/
@@ -3694,12 +3697,7 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   .search-results-main-heading{
     font-size:1.9rem;
   }
-  /*20px*/
-  .search-results-display-count{
-    font-size:1.19rem;
-    width:5rem! important;
-    height: 2.5rem! important;
-  }
+
   /*16px*/
   .results-result{
     font-size:0.95rem;
@@ -3985,20 +3983,24 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
 
   /*-------------------------- Sorting -------------------------*/
   /* 16px */
-  .search-results-top-filters{
-    font-size:1.06rem;
-    width: 15vw;
-  }
-  /* 16px */
   .search-results-top-filters-2{
     font-size:1.06rem;
+    display: block;
+    flex:1;
   }
   /*20px*/
   .search-results-display-count{
-    font-size:1.33rem! important;
+    font-size:1.33rem;
     width: 5rem;
-    height: 2.8rem! important;
+    height: 2rem! important;
   }
+  /*20px*/
+  .search-results-display-sort{
+    font-size:1.33rem;
+    width: 15rem;
+    height: 2rem! important;
+  }
+
   /*-------------------------------- Filtering -----------------------*/
   /* date and sorting field settings*/
   .filter-form-control{
@@ -4061,12 +4063,7 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   .search-results-main-heading{
     font-size:2.13rem;
   }
-  /*20px*/
-  .search-results-display-count{
-    font-size:1.33rem;
-    width: 5rem;
-    height: 2.8rem! important;
-  }
+
   /*16px*/
   .results-result{
     font-size:1.06rem;
@@ -4343,11 +4340,6 @@ From Top10 list
 
   /*-------------------------- Sorting -------------------------*/
   /* 16px */
-  .search-results-top-filters{
-    font-size:1.33rem;
-    width: 15vw;
-  }
-  /* 16px */
   .search-results-top-filters-2{
     font-size:1.33rem;
   }
@@ -4355,7 +4347,13 @@ From Top10 list
   .search-results-display-count{
     font-size:1.66rem! important;
     width:6rem! important;
-    height: 5rem! important;
+    height: 3.5rem! important;
+  }
+  /*20px*/
+  .search-results-display-sort{
+    font-size:1.66rem! important;
+    width:17rem! important;
+    height: 3.5rem! important;
   }
   /*-------------------------------- Filtering -----------------------*/
   /* date and sorting field settings*/
@@ -4417,12 +4415,6 @@ From Top10 list
   /* 32px */
   .search-results-main-heading{
     font-size:2.66rem;
-  }
-  /*20px*/
-  .search-results-display-count{
-    font-size:1.66rem;
-    width: 7rem;
-    height: 5.8rem! important;
   }
   /*16px*/
   .results-result{
@@ -4693,11 +4685,6 @@ Retina like displays
   }
   /*-------------------------- Sorting -------------------------*/
   /* 16px */
-  .search-results-top-filters{
-    font-size:1.77rem;
-    width: 15vw;
-  }
-  /* 16px */
   .search-results-top-filters-2{
     font-size:1.77rem;
   }
@@ -4705,6 +4692,12 @@ Retina like displays
   .search-results-display-count{
     font-size:2.22rem! important;
     width: 6rem;
+    height: 4rem! important;
+  }
+  /*20px*/
+  .search-results-display-sort{
+    font-size:2.22rem! important;
+    width: 22rem;
     height: 4rem! important;
   }
   /*-------------------------------- Filtering -----------------------*/
@@ -4744,6 +4737,10 @@ Retina like displays
   .results-count{
     font-size:1.7rem;
   }
+  .sidebar-filter-checkbox{
+    padding-bottom: 1.8rem;
+    line-height: 3rem;
+  }
   /*------------------------------- Pagination ----------------------*/
   /* 16px */
   .pagination-cont{
@@ -4762,12 +4759,6 @@ Retina like displays
   /* 32px */
   .search-results-main-heading{
     font-size:3.55rem;
-  }
-  /*20px*/
-  .search-results-display-count{
-    font-size:3.55rem;
-    width:7rem !important;
-    height: 4rem !important;
   }
   /*16px*/
   .results-result{
