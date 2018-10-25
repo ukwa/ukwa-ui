@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,6 +35,7 @@ import static com.marsspiders.ukwa.solr.AccessToEnum.VIEWABLE_ANYWHERE;
 import static com.marsspiders.ukwa.solr.SearchByEnum.FULL_TEXT;
 import static com.marsspiders.ukwa.util.UrlUtil.getRootPathWithLang;
 import static java.util.Arrays.asList;
+import static java.util.Arrays.sort;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.StringUtils.abbreviate;
@@ -44,7 +46,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @Controller
 @RequestMapping(value = PROJECT_NAME + "/search")
 public class SearchController {
-    private static final Logger log = LoggerFactory.getLogger(SolrSearchService.class);
+    private static final Logger log = LoggerFactory.getLogger(SearchController.class);
 
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private static final String URL_PATTERN = "(?i)^(?:(?:https?|ftp)://)?(?:\\S+(?::\\S*)?@)?(?:(?!(?:10|127)(?:\\.\\d{1,3}){3})(?!(?:169\\.254|192\\.168)(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,}))\\.?)(?::\\d{2,5})?(?:[/?#]\\S*)?$";
@@ -84,6 +86,9 @@ public class SearchController {
                                    @RequestParam(value = "modal_filter_documenttypes_vals", required = false) String[] checked_contenttypes_FromModal,
                                    @RequestParam(value = "modal_filter_collections_vals", required = false) String[] checked_collections_FromModal,
                                    HttpServletRequest request) throws MalformedURLException, URISyntaxException, ParseException {
+        log.debug("--------searchPage method + parameters");
+        log.debug("--------searchPage method, text = " + text);
+        log.debug("--------searchPage method, searchLocation = " + searchLocation);
 
         String remove_from_filter = request.getParameter("filter_array_x");
         String remove_from_filter_item = request.getParameter("filter_array_x_item");
@@ -94,7 +99,6 @@ public class SearchController {
         List<String> publicSuffixesPairs = new LinkedList<>();
         List<String> domainsPairs = new LinkedList<>();
         List<String> collectionPairs = new LinkedList<>();
-
 
         List<String> originalContentTypes;
         List<String> originalPublicSuffixes;
@@ -144,7 +148,7 @@ public class SearchController {
         SearchByEnum searchBy = SearchByEnum.fromString(searchLocation);
         SortByEnum sortBy = SortByEnum.fromString(sortValue);
         if (sortBy == null) {
-            sortBy = SortByEnum.MOSTRELEVANT_TO_LEASTRELEVANT;
+            sortBy = SortByEnum.MOSTRELEVANT;
         }
 
         AccessToEnum accessTo = AccessToEnum.fromString(accessViewFilter);
@@ -228,6 +232,13 @@ public class SearchController {
         }
 
         return mav;
+    }
+
+    @GetMapping("/goToViewPage")
+    public ModelAndView passParametersWithModelAndView() {
+        ModelAndView modelAndView = new ModelAndView("viewPage");
+        modelAndView.addObject("message", "test AJAX for");
+        return modelAndView;
     }
 
 
