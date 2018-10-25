@@ -227,8 +227,8 @@
 
                 </div>
                 <div class="modal-footer center">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="apply-modal-filter">Apply</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><spring:message code="button.close" /></button>
+                    <button type="button" class="btn btn-primary" id="apply-modal-filter"><spring:message code="button.apply" /></button>
                 </div>
             </div>
         </div>
@@ -571,7 +571,7 @@
 
                                 <input type="hidden" name="search_location" id="search_location" value="${originalSearchLocation}" />
                                 <input type="hidden" name="text" id="text_hidden" value="${originalSearchRequest}" />
-                                <input type="hidden" name="view_sort" id="view_sort" value="${empty originalSortValue ? 'nto' : originalSortValue}" />
+                                <input type="hidden" name="view_sort" id="view_sort" value="${empty originalSortValue ? 'relevant' : originalSortValue}" />
                                 <input type="hidden" name="view_count" id="view_count" value="${empty rowsPerPageLimit ? '50' : rowsPerPageLimit}" />
                             </div>
 
@@ -608,24 +608,19 @@
                     <div class="col-md-12 padding-20 padding-mobile-side-0">
                     
                         <div class="container-sort-group">
-                    
-                            <div class="search-results-top-filters margin-top-10">
-                                <div class="form-check-cont form-margin-check" title="Newest to Oldest" tabindex="0">
-                                    <input type="radio" name="sort" id="sort_1" value="nto" class="sort"
-                                    ${originalSortValue.contains('nto') || empty originalSortValue ? 'checked' : ''}/>
-                                    <label class="main-search-check-label blue" for="sort_1" title="<spring:message code="search.results.sort.newest" />"><spring:message code="search.results.sort.newest" /></label>
-                                </div>
+
+                            <div class="search-results-top-filters-2">
+                                <label for="sorting" class="padding-right-20" title="<spring:message code="search.results.sortby" />"><spring:message code="search.results.sortby" /></label>
+                                <select class="search-results-display-sort" name="sorting" id="sorting" tabindex="0">
+                                    <option value="relevant" ${originalSortValue == 'relevant' ? 'selected' : ''}><spring:message code="search.results.sort.relevant" /></option>
+                                    <option value="otn" ${originalSortValue == 'otn' ? 'selected' : ''} ><spring:message code="search.results.sort.oldest" /></option>
+                                    <option value="nto" ${originalSortValue == 'nto' ? 'selected' : ''}><spring:message code="search.results.sort.newest" /></option>
+                                </select>
                             </div>
-                            <div class="search-results-top-filters margin-top-10">
-                                <div class="form-check-cont form-margin-check" title="Oldest to Newest" tabindex="0">
-                                    <input type="radio" name="sort" id="sort_2" value="otn" class="sort"
-                                    ${originalSortValue.contains('otn') ? 'checked' : ''}/>
-                                    <label class="main-search-check-label blue" for="sort_2" title="<spring:message code="search.results.sort.oldest" />"><spring:message code="search.results.sort.oldest" /></label>
-                                </div>
-                            </div>
-                            <div class="search-results-top-filters-2 results-items-per-page">
-                                <label for="count" class="right" title="<spring:message code="search.results.items" />"><spring:message code="search.results.items" /></label>
-                                <select class="form-control search-results-display-count" name="count" id="count" tabindex="0">
+
+                            <div class="search-results-top-filters-2 right">
+                                <label for="count" class="padding-right-20" title="<spring:message code="search.results.items" />"><spring:message code="search.results.items" /></label>
+                                <select class="search-results-display-count" name="count" id="count" tabindex="0">
                                     <option value="50" ${rowsPerPageLimit == 50 ? 'selected' : ''}>50</option>
                                     <option value="100" ${rowsPerPageLimit == 100 ? 'selected' : ''}>100</option>
                                     <option value="200" ${rowsPerPageLimit == 200 ? 'selected' : ''}>200</option>
@@ -969,12 +964,10 @@
             $("#filter_form").submit();
         });
 
-            //submit on resort
-        $(".sort").each(function(index, element) {
-            $(this).click(function(e) {
-                $("#view_sort").val($(this).val());
-                $("#filter_form").submit();
-            });
+        //form submit on re-sort (select)
+        $("#sorting").change(function(e) {
+            $("#view_sort").val($(this).val());
+            $("#filter_form").submit();
         });
 
         //form count

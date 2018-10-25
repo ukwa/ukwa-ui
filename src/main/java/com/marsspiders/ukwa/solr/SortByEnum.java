@@ -1,8 +1,9 @@
 package com.marsspiders.ukwa.solr;
 
 public enum SortByEnum {
-    MOSTRELEVANT_TO_LEASTRELEVANT("nto", "desc"),
-    LEASTRELEVANT_TO_MOSTRELEVANT("otn", "asc");
+    MOSTRELEVANT("relevant", "desc"),
+    NEWEST_TO_OLDEST("nto", "desc"),
+    OLDEST_TO_NEWEST("otn", "asc");
 
     private String webRequestOrderValue;
     private String solrOrderValue;
