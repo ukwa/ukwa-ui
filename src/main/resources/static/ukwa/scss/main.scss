@@ -2794,6 +2794,7 @@ footer {
                           General for all
     -----------------------------------------------------------------*/
   .header-logo {
+    margin-top: 1rem;
     height: 3rem;
   }
   .img-responsive-1024, .img-responsive-1440, .img-responsive-1900,  .img-responsive-2500 {
@@ -3134,6 +3135,7 @@ footer {
                           General for all
     -----------------------------------------------------------------*/
   .header-logo {
+    margin-top: 1rem;
     height: 3rem;
   }
   .img-responsive-1024, .img-responsive-1440, .img-responsive-1900,  .img-responsive-2500 {
@@ -3486,6 +3488,7 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
                           General for all
     -----------------------------------------------------------------*/
   .header-logo {
+    margin-top: 1rem;
     height: 4rem;
   }
 
@@ -3831,7 +3834,8 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
                           General for all
     -----------------------------------------------------------------*/
   .header-logo {
-    height: 6rem;
+    margin-top: 1rem;
+    height: 5rem;
   }
 
   .img-responsive-576, .img-responsive-1024, .img-responsive-1900,  .img-responsive-2500 {
@@ -4193,17 +4197,12 @@ From Top10 list
                           General for all
     -----------------------------------------------------------------*/
   .header-logo {
-    height: 7rem;
+    margin-top: 1rem;
+    height: 6rem;
   }
 
   .img-responsive-576, .img-responsive-1024, .img-responsive-1440,  .img-responsive-2500 {
     display: none;
-  }
-
-  @-moz-document url-prefix() {
-    .img {
-      transform: rotate( .0001deg );
-    }
   }
 
   /* 18px */
@@ -4555,6 +4554,7 @@ Retina like displays
                           General for all
     -----------------------------------------------------------------*/
   .header-logo {
+    margin-top: 1rem;
     height: 8rem;
   }
 

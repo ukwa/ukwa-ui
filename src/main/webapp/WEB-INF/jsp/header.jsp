@@ -43,10 +43,10 @@
 <div id="header-menu" class="row center padding-left-60 padding-bottom-20 align-items-end">
     <div class="col-auto">
         <a href="index"><img src="img/ukwa-2018-onwhite-close-125px.png" class="header-logo img-responsive-576"></a>
-        <a href="index"><img src="img/ukwa-2018-onwhite-close-200px.png" class="header-logo img-responsive-1024"></a>
-        <a href="index"><img src="img/ukwa-2018-onwhite-close-250px.png" class="header-logo img-responsive-1440"></a>
-        <a href="index"><img src="img/ukwa-2018-onwhite-close-300px.png" class="header-logo img-responsive-1900"></a>
-        <a href="index"><img src="img/ukwa-2018-onwhite-close-400px.png" class="header-logo img-responsive-2500"></a>
+        <a href="index"><img src="img/ukwa-2018-onwhite-close-150px.png" class="header-logo img-responsive-1024"></a>
+        <a href="index"><img src="img/ukwa-2018-onwhite-close-200px.png" class="header-logo img-responsive-1440"></a>
+        <a href="index"><img src="img/ukwa-2018-onwhite-close-250px.png" class="header-logo img-responsive-1900"></a>
+        <a href="index"><img src="img/ukwa-2018-onwhite-close-350px.png" class="header-logo img-responsive-2500"></a>
     </div>
     <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block">&nbsp;</div>
 
