@@ -172,9 +172,6 @@ input, button, textarea, select {
   outline-style: solid !important;
 }
 
-img {
-  -ms-interpolation-mode: bicubic;
-}
 
 p.searchFilter {
   font-family: "Open Sans Regular",sans-serif,Arial;
@@ -1418,9 +1415,8 @@ h3 {
 }
 
 .header-logo {
-  margin: 5px;
-  height: 60px;
-  width: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .search-advanced {
@@ -2214,7 +2210,8 @@ footer {
 }
 
 .search-results-display-count {
-  float: right;
+  flex: 1;
+  flex-basis: 10rem;
 }
 
 .search-results-top-filters {
@@ -2469,6 +2466,18 @@ footer {
   flex-basis: 10rem;
 }
 
+.img-responsive-576 {
+}
+.img-responsive-1024 {
+}
+.img-responsive-1440 {
+}
+.img-responsive-1900 {
+}
+.img-responsive-2500 {
+}
+
+
 /* bootsrap xs < 576, reduced functionality 
   iPhone 5/SE resolution 320 x 568 (portrait & landscape)
   Galaxy S5 resolution 360 x 640 (portrait only)
@@ -2478,8 +2487,12 @@ footer {
                           General for all
     -----------------------------------------------------------------*/
   .header-logo {
-    height: 4rem;
+    height: 2.5rem;
   }
+  .img-responsive-1024, .img-responsive-1440, .img-responsive-1900,  .img-responsive-2500 {
+    display: none;
+  }
+
   /* 18px */
   .header-menu-item {
     font-size:0.8rem;
@@ -2782,6 +2795,9 @@ footer {
     -----------------------------------------------------------------*/
   .header-logo {
     height: 3rem;
+  }
+  .img-responsive-1024, .img-responsive-1440, .img-responsive-1900,  .img-responsive-2500 {
+    display: none;
   }
   .modal-content {
     height: 80vh;
@@ -3120,6 +3136,10 @@ footer {
   .header-logo {
     height: 3rem;
   }
+  .img-responsive-1024, .img-responsive-1440, .img-responsive-1900,  .img-responsive-2500 {
+    display: none;
+  }
+
   .modal-content {
     height: 80vh;
     width: 80vw;
@@ -3468,6 +3488,11 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   .header-logo {
     height: 4rem;
   }
+
+  .img-responsive-576, .img-responsive-1440, .img-responsive-1900,  .img-responsive-2500 {
+    display: none;
+  }
+
   /* 18px */
   .header-menu-item {
     font-size:1.07rem;
@@ -3808,6 +3833,11 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   .header-logo {
     height: 6rem;
   }
+
+  .img-responsive-576, .img-responsive-1024, .img-responsive-1900,  .img-responsive-2500 {
+    display: none;
+  }
+
   /* 18px */
   .header-menu-item {
     font-size:1.2rem;
@@ -4163,8 +4193,19 @@ From Top10 list
                           General for all
     -----------------------------------------------------------------*/
   .header-logo {
-    height: 6rem;
+    height: 7rem;
   }
+
+  .img-responsive-576, .img-responsive-1024, .img-responsive-1440,  .img-responsive-2500 {
+    display: none;
+  }
+
+  @-moz-document url-prefix() {
+    .img {
+      transform: rotate( .0001deg );
+    }
+  }
+
   /* 18px */
   .header-menu-item {
     font-size:1.49rem;
@@ -4516,6 +4557,11 @@ Retina like displays
   .header-logo {
     height: 8rem;
   }
+
+  .img-responsive-576, .img-responsive-1024, .img-responsive-1440, .img-responsive-1900 {
+    display: none;
+  }
+
   /* 18px */
   .header-menu-item {
     font-size:2rem;
