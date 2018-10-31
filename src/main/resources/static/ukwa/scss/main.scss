@@ -1488,12 +1488,32 @@ footer {
 }
 
 .footer-logo-BW {
-  flex: 1;
+  flex: 0 1 auto;
+  flex-basis: 14%;
 }
 
-.footer-logo-BW>* {
-  flex: 1 1 160px;
-  margin: 10px;
+.footer-logo-BW img{
+  width: 100%;
+  padding-bottom: 1rem;
+}
+
+.container-footer-group{
+  display: flex;
+  justify-content:space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.container-footer-menu-group{
+  display: flex;
+  justify-content:space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.footer-menu-item {
+  flex: 0 1 auto;
+  flex-basis: 33%;
 }
 
 .page-content {
@@ -2579,6 +2599,10 @@ footer {
     width: 8rem;
 
   }
+  .footer-menu-item {
+    flex-basis: 45%;
+  }
+
   /*------------------------------ Tips Dialog ------------------------*/
   .circle-text{
     font-size: 0.8rem;
@@ -2879,6 +2903,9 @@ footer {
   }
   .footer-logo-BW img{
     width: 70%;
+  }
+  .footer-menu-item {
+    flex-basis: 45%;
   }
   .main-search-input-new{
     height: 8rem;
