@@ -26,7 +26,6 @@
         <a href="info/nominate" title="<spring:message code="footer.nominate.title" />" class="collection-link footer-menu-item">
             <div class="left light-blue   dialog-link"><spring:message code="footer.nominate" /></div>
         </a>
-
         <a href="info/notice_takedown" class="collection-link footer-menu-item" title="<spring:message code="footer.notice.title" />">
             <div class="left light-blue   dialog-link"><spring:message code="footer.notice" /></div>
         </a>
@@ -39,7 +38,6 @@
         <a href="info/cookies" class="collection-link footer-menu-item" title="<spring:message code="footer.cookies.title" />">
             <div class="left light-blue dialog-link"><spring:message code="footer.cookies" /></div>
         </a>
-
         <a href="info/faq" title="<spring:message code="footer.faq" />" class="collection-link footer-menu-item">
             <div class="left light-blue  dialog-link"><spring:message code="footer.faq" /></div>
         </a>
@@ -78,7 +76,7 @@
 <hr/>
 <div class="row margin-0 padding-30">
     <div class="col-12 center footer-legal-deposit">
-        The UK Web Archive collects on behalf of these UK Legal deposit Libraries
+        <spring:message code="footer.logos.title" />
     </div>
 </div>
 
