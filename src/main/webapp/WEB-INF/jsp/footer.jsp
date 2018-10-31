@@ -53,11 +53,11 @@
                                         : fn:replace(fn:replace(textUri, '/en/', '/'), '/cy/', '/')}"/>
         <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
           && (fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
-      <span lang="en"><a href="/en<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.english.title" />" class="collection-link footer-menu-item">
-      <div class="left light-blue dialog-link"><spring:message code="footer.english" /></div></a></span>
+      <a href="/en<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.english.title" />" class="collection-link footer-menu-item">
+      <div class="left light-blue dialog-link"><spring:message code="footer.english" /></div></a>
         </c:if>
-        <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}"> <span lang="cy"><a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.welsh.title" />" class="collection-link footer-menu-item">
-      <div class="left light-blue dialog-link"><spring:message code="footer.welsh" /></div></a></span>
+        <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}"> <a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.welsh.title" />" class="collection-link footer-menu-item">
+      <div class="left light-blue dialog-link"><spring:message code="footer.welsh" /></div></a>
         </c:if>
         <a href="https://www.webarchive.org.uk/rss/recent.xml" title="<spring:message code="footer.rss.title" />" class="collection-link footer-menu-item">
             <div class="left light-blue dialog-link"><spring:message code="footer.rss" /></div>
