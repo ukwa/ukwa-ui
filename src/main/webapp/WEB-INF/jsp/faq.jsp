@@ -30,10 +30,10 @@ ${pageContext.response.locale}
 </header>
 
 <div class="row">
-      <div class="col-12 white main-search-input-new left background-settings-default">
+    <div class="col-12 white main-search-input-new left background-settings-default">
         <div class="main-heading-2-bold-redesign white"><spring:message code="faq.main.heading" /></div>
-        </div>
-  </div>
+    </div>
+</div>
 
 
 <section id="content">
