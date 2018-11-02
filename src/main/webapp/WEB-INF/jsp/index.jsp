@@ -134,7 +134,7 @@
                         <figcaption class="img-square-caption shadow"><spring:message code="home.page.featured.text"/></figcaption>
                     </figure>
                     <div class="left light-blue padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold">British Stand-up Comedy Archive</div>
-                    <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail">Collection owned and adminstered by Elspeth Millar.</div>
+                    <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail"><spring:message code="collection.ownedandadministredby"/>Elspeth Millar.</div>
                 </a> </div>
 
                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/309" class="collection-link">
@@ -142,7 +142,7 @@
                         <figcaption class="img-square-caption shadow"><spring:message code="home.page.featured.text"/></figcaption>
                     </figure>
                     <div class="left light-blue padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold">French in London</div>
-                    <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail">This collection of websites has been selected by Saskia Huc-Hepher.</div>
+                    <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail"><spring:message code="collection.selectedby"/>Saskia Huc-Hepher.</div>
                 </a></div>
 
                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/138" class="collection-link">
@@ -150,7 +150,7 @@
                         <figcaption class="img-square-caption shadow"><spring:message code="home.page.featured.text"/></figcaption>
                     </figure>
                     <div class="left light-blue padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold">News Sites</div>
-                    <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail">558 titles are included in this collection.</div>
+                    <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail">558 <spring:message code="collection.titlecountwithin"/></div>
                 </a></div>
             </div>
 

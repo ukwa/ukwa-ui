@@ -40,26 +40,34 @@
         </c:if>
 </div>
 </div>
+<!-- Menu -->
 <div id="header-menu" class="row center padding-left-60 padding-bottom-20 align-items-end">
+
     <div class="col-auto">
-        <a href="index"><img src="img/ukwa-2018-logo.png" class="header-logo"></a>
+        <a href="index"><img src="img/ukwa-2018-onwhite-close-125px.png" class="header-logo img-responsive-576"></a>
+        <a href="index"><img src="img/ukwa-2018-onwhite-close-150px.png" class="header-logo img-responsive-1024"></a>
+        <a href="index"><img src="img/ukwa-2018-onwhite-close-200px.png" class="header-logo img-responsive-1440"></a>
+        <a href="index"><img src="img/ukwa-2018-onwhite-close-250px.png" class="header-logo img-responsive-1900"></a>
+        <a href="index"><img src="img/ukwa-2018-onwhite-close-350px.png" class="header-logo img-responsive-2500"></a>
     </div>
+    
     <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block">&nbsp;</div>
 
-  <div id="headermenu_index" class="col-sm-auto header-menu-item padding-bottom-10"><a href="index" title="<spring:message code="main.menu.home.title" />">
-    <spring:message code="main.menu.home" />
+    <div id="headermenu_index" class="col-sm-auto header-menu-item padding-bottom-10"><a href="index" title="<spring:message code="main.menu.home.title" />">
+        <spring:message code="main.menu.home" />
     </a></div>
-  <div id="headermenu_collection" class="col-sm-auto header-menu-item padding-bottom-10"><a href="collection" title="<spring:message code="main.menu.collections.title" />">
-    <spring:message code="main.menu.collections" />
+    <div id="headermenu_collection" class="col-sm-auto header-menu-item padding-bottom-10"><a href="collection" title="<spring:message code="main.menu.collections.title" />">
+        <spring:message code="main.menu.collections" />
     </a></div>
-  <div id="headermenu_save" class="col-sm-auto header-menu-item padding-bottom-10"><a href="info/nominate" title="<spring:message code="main.menu.nominate.title" />">
-    <spring:message code="main.menu.nominate" />
+    <div id="headermenu_save" class="col-sm-auto header-menu-item padding-bottom-10"><a href="info/nominate" title="<spring:message code="main.menu.nominate.title" />">
+        <spring:message code="main.menu.nominate" />
     </a></div>
-  <div id="headermenu_about" class="col-sm-auto header-menu-item padding-bottom-10"><a href="about" title="<spring:message code="main.menu.about.title" />">
-    <spring:message code="main.menu.about" />
+    <div id="headermenu_about" class="col-sm-auto header-menu-item padding-bottom-10"><a href="about" title="<spring:message code="main.menu.about.title" />">
+        <spring:message code="main.menu.about" />
     </a></div>
-  <div id="headermenu_contact" class="col-sm-auto header-menu-item padding-bottom-10"><a href="contact" title="<spring:message code="main.menu.contact.title" />">
-    <spring:message code="main.menu.contact" />
+    <div id="headermenu_contact" class="col-sm-auto header-menu-item padding-bottom-10"><a href="contact" title="<spring:message code="main.menu.contact.title" />">
+        <spring:message code="main.menu.contact" />
     </a></div>
+
   </div>
 </div>

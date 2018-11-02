@@ -172,9 +172,6 @@ input, button, textarea, select {
   outline-style: solid !important;
 }
 
-img {
-  -ms-interpolation-mode: bicubic;
-}
 
 p.searchFilter {
   font-family: "Open Sans Regular",sans-serif,Arial;
@@ -281,7 +278,7 @@ p.searchFilter {
   overflow: hidden;
   position: relative;
   line-height: 1.2rem;
-  max-height: 2.4rem;
+  max-height: 3.5rem;
   text-align: justify;
   margin-right: -1rem;
   padding-right: 2rem;
@@ -610,11 +607,12 @@ li {
   }
 }
 
-.img-responsive {
-  display: block;
-  position: relative;
-  width: 100%;
-  height: auto;
+.img {
+  -ms-interpolation-mode: nearest-neighbor;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-pixelated;
+  image-rendering: pixelated;
 }
 
 .img-non-responsive {
@@ -1418,9 +1416,8 @@ h3 {
 }
 
 .header-logo {
-  margin: 5px;
-  height: 60px;
-  width: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .search-advanced {
@@ -1492,12 +1489,31 @@ footer {
 }
 
 .footer-logo-BW {
-  flex: 1;
+  flex: 0 1 auto;
+  flex-basis: 14%;
 }
 
-.footer-logo-BW>* {
-  flex: 1 1 160px;
-  margin: 10px;
+.footer-logo-BW img{
+  width: 100%;
+  padding-bottom: 1rem;
+}
+
+.container-footer-logos-group{
+  display: flex;
+  justify-content:space-between;
+  flex-wrap: wrap;
+}
+
+.container-footer-menu-group{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;  
+}
+
+.footer-menu-item {
+  flex: 0 1 auto;
+  flex-basis: 33%;
+  align-self: center;
 }
 
 .page-content {
@@ -2214,7 +2230,8 @@ footer {
 }
 
 .search-results-display-count {
-  float: right;
+  flex: 1;
+  flex-basis: 10rem;
 }
 
 .search-results-top-filters {
@@ -2450,7 +2467,6 @@ footer {
   justify-content:space-between;
   flex-wrap: wrap;
   align-items: center;
-
 }
 .container-search-field-group{
   display: flex;
@@ -2469,6 +2485,40 @@ footer {
   flex-basis: 10rem;
 }
 
+.img-responsive-576 {
+}
+.img-responsive-1024 {
+}
+.img-responsive-1440 {
+}
+.img-responsive-1900 {
+}
+.img-responsive-2500 {
+}
+
+
+.footer-menu-home-item{ order:1; }
+.footer-menu-notice-item{ order:2;}
+.footer-menu-blog-item{order:3;}
+
+.footer-menu-collections-item{order:4;}
+.footer-menu-terms-item{order:5;}
+.footer-menu-faq-item{order:6;}
+
+.footer-menu-nominate-item{order:7;}
+.footer-menu-privacy-item{order:8;}
+.footer-menu-rss-item{order:9;}
+
+.footer-menu-about-item{order:10;}
+.footer-menu-cookies-item{order:11;}
+
+.footer-menu-cy-lang-item{order:12;}
+.footer-menu-en-lang-item{order:13;}
+
+.footer-menu-contact-item{order:14;}
+
+
+
 /* bootsrap xs < 576, reduced functionality 
   iPhone 5/SE resolution 320 x 568 (portrait & landscape)
   Galaxy S5 resolution 360 x 640 (portrait only)
@@ -2478,8 +2528,12 @@ footer {
                           General for all
     -----------------------------------------------------------------*/
   .header-logo {
-    height: 4rem;
+    height: 2.5rem;
   }
+  .img-responsive-1024, .img-responsive-1440, .img-responsive-1900,  .img-responsive-2500 {
+    display: none;
+  }
+
   /* 18px */
   .header-menu-item {
     font-size:0.8rem;
@@ -2496,6 +2550,22 @@ footer {
     font-size:0.55rem;
     padding-top: 0.5rem;
   }
+
+  .footer-menu-home-item{ order:1; }
+  .footer-menu-notice-item{ order:2;}
+  .footer-menu-collections-item{order:3;} 
+  .footer-menu-terms-item{order:4;}
+  .footer-menu-nominate-item{order:5;}  
+  .footer-menu-privacy-item{order:6;}
+  .footer-menu-about-item{order:7;}
+  .footer-menu-cookies-item{order:8;}
+  .footer-menu-contact-item{order:9;}
+  .footer-menu-blog-item{order:10;}
+  .footer-menu-cy-lang-item{order:11;}
+  .footer-menu-en-lang-item{order:12;}
+  .footer-menu-rss-item{order:13;}
+  .footer-menu-faq-item{order:14;}
+ 
   /* 12px */
   .footer-legal-deposit{
     font-size:0.22rem;
@@ -2566,6 +2636,10 @@ footer {
     width: 8rem;
 
   }
+  .footer-menu-item {
+    flex-basis: 45%;
+  }
+
   /*------------------------------ Tips Dialog ------------------------*/
   .circle-text{
     font-size: 0.8rem;
@@ -2597,6 +2671,11 @@ footer {
     width: 2.3rem;
     /* magnify glass size*/
     background-size: 2rem;
+  }
+    .img-square-caption {
+    /* 18px */
+    font-size:0.6rem;
+    width: 30vw !important;
   }
   .view-more-button{
     /* 18px */
@@ -2660,7 +2739,7 @@ footer {
   /* date and sorting field settings*/
   .filter-form-control{
     height: 2.5rem !important;
-    width:100% !important;
+    width:10rem !important;
   }
   /* 22px */
   .sidebar-filter-header-title-redesign, .infotooltip{
@@ -2781,7 +2860,11 @@ footer {
                           General for all
     -----------------------------------------------------------------*/
   .header-logo {
+    margin-top: 1rem;
     height: 3rem;
+  }
+  .img-responsive-1024, .img-responsive-1440, .img-responsive-1900,  .img-responsive-2500 {
+    display: none;
   }
   .modal-content {
     height: 80vh;
@@ -2863,6 +2946,25 @@ footer {
   .footer-logo-BW img{
     width: 70%;
   }
+  .footer-menu-item {
+    flex-basis: 45%;
+  }
+  .footer-menu-home-item{ order:1; }
+  .footer-menu-notice-item{ order:2;}
+  .footer-menu-collections-item{order:3;} 
+  .footer-menu-terms-item{order:4;}
+  .footer-menu-nominate-item{order:5;}  
+  .footer-menu-privacy-item{order:6;}
+  .footer-menu-about-item{order:7;}
+  .footer-menu-cookies-item{order:8;}
+  .footer-menu-contact-item{order:9;}
+  .footer-menu-blog-item{order:10;}
+  .footer-menu-cy-lang-item{order:11;}
+  .footer-menu-en-lang-item{order:12;}
+  .footer-menu-rss-item{order:13;}
+  .footer-menu-faq-item{order:14;}
+
+  
   .main-search-input-new{
     height: 8rem;
   }
@@ -2969,7 +3071,7 @@ footer {
   /* date and sorting field settings*/
   .filter-form-control{
     height: 1.5rem !important;
-    width:100% !important;
+    width:10rem !important;
   }
   /* 22px */
   .sidebar-filter-header-title-redesign, .infotooltip{
@@ -3118,8 +3220,13 @@ footer {
                           General for all
     -----------------------------------------------------------------*/
   .header-logo {
+    margin-top: 1rem;
     height: 3rem;
   }
+  .img-responsive-1024, .img-responsive-1440, .img-responsive-1900,  .img-responsive-2500 {
+    display: none;
+  }
+
   .modal-content {
     height: 80vh;
     width: 80vw;
@@ -3190,10 +3297,6 @@ footer {
     font-size:0.5rem;
   }
 
-  .sidebar-filter-input-checkbox{
-     transform: scale(0.5) !important;
-  }
-
   .dialog-link {
     /* 18px */
     font-size:0.64rem;
@@ -3243,7 +3346,7 @@ footer {
   .img-square-caption {
     /* 18px */
     font-size:0.44rem;
-    width: 30vw !important;
+    width: 10vw !important;
   }
   /* 18px bold */
   .collection-heading-bold{
@@ -3304,10 +3407,6 @@ footer {
   }
   /*-------------------------------- Filtering -----------------------*/
   /* date and sorting field settings*/
-  .filter-form-control{
-    height: 1.5rem !important;
-    width:100% !important;
-  }
   /* 22px */
   .sidebar-filter-header-title-redesign, .infotooltip{
     font-size:0.68rem;
@@ -3319,6 +3418,10 @@ footer {
   /* 18px */
   .sidebar-clear-filter-button{
     font-size:0.54rem;
+  }
+  .filter-form-control{
+    height: 2rem !important;
+    width:10rem !important;
   }
   /* 18px */
   .date-filter-button{
@@ -3466,8 +3569,14 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
                           General for all
     -----------------------------------------------------------------*/
   .header-logo {
+    margin-top: 1rem;
     height: 4rem;
   }
+
+  .img-responsive-576, .img-responsive-1440, .img-responsive-1900,  .img-responsive-2500 {
+    display: none;
+  }
+
   /* 18px */
   .header-menu-item {
     font-size:1.07rem;
@@ -3591,6 +3700,11 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
     width: 10rem !important;
     /* magnify glass size*/
     background-size: 2.5rem;
+  }
+    .img-square-caption {
+    /* 18px */
+    font-size:1.07rem;
+    width: 20vw !important;
   }
   /*---------------------------------------------------------------
                                     Search page
@@ -3806,8 +3920,14 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
                           General for all
     -----------------------------------------------------------------*/
   .header-logo {
-    height: 6rem;
+    margin-top: 1rem;
+    height: 5rem;
   }
+
+  .img-responsive-576, .img-responsive-1024, .img-responsive-1900,  .img-responsive-2500 {
+    display: none;
+  }
+
   /* 18px */
   .header-menu-item {
     font-size:1.2rem;
@@ -4163,8 +4283,14 @@ From Top10 list
                           General for all
     -----------------------------------------------------------------*/
   .header-logo {
+    margin-top: 1rem;
     height: 6rem;
   }
+
+  .img-responsive-576, .img-responsive-1024, .img-responsive-1440,  .img-responsive-2500 {
+    display: none;
+  }
+
   /* 18px */
   .header-menu-item {
     font-size:1.49rem;
@@ -4385,10 +4511,13 @@ From Top10 list
   /* 16px */
   .sidebar-filter-input-checkbox{
     font-size:1.33rem;
+    padding-bottom: 2rem;
+    line-height: 2rem;
   }
   /* 16px */
   .block-two-text-lines{
     font-size:1.33rem;
+    line-height: 2rem;
   }
   /* 16px */
   .label-counts{
@@ -4398,6 +4527,17 @@ From Top10 list
   .results-count{
     font-size:1.33rem;
   }
+  .main-search-check-label{
+    line-height: 1.3rem !important;
+    padding-bottom: 0.5rem;
+  }
+  /* 16px */
+  .block-two-text-lines{
+    font-size:1.33rem;
+    line-height: 1.2rem !important;
+    padding-bottom: 0.5rem;
+  }
+
   /*------------------------------- Pagination ----------------------*/
   /* 16px */
   .pagination-cont{
@@ -4514,8 +4654,14 @@ Retina like displays
                           General for all
     -----------------------------------------------------------------*/
   .header-logo {
+    margin-top: 1rem;
     height: 8rem;
   }
+
+  .img-responsive-576, .img-responsive-1024, .img-responsive-1440, .img-responsive-1900 {
+    display: none;
+  }
+
   /* 18px */
   .header-menu-item {
     font-size:2rem;
@@ -4683,6 +4829,13 @@ Retina like displays
     /* magnify glass size*/
     background-size: 2.5rem;
   }
+  .label-count-modal{
+    font-size:2rem;
+  }
+  .results-count-modal{
+    font-size:2rem;
+  }
+
   /*-------------------------- Sorting -------------------------*/
   /* 16px */
   .search-results-top-filters-2{
@@ -4701,6 +4854,10 @@ Retina like displays
     height: 4rem! important;
   }
   /*-------------------------------- Filtering -----------------------*/
+  .filter-form-control{
+    height: 4rem! important;
+    width:100%! important;
+  }
   /* 22px */
   .sidebar-filter-header-title-redesign{
     font-size:2.4rem;
@@ -4726,21 +4883,36 @@ Retina like displays
     font-size:1.7rem;
   }
   /* 16px */
-  .block-two-text-lines{
-    font-size:1.7rem;
-  }
-  /* 16px */
   .label-counts{
-    font-size:1.7rem;
+    font-size:1.7rem !important;;
   }
   /* 16px */
   .results-count{
+    font-size:1.7rem !important;;
+  }
+  .label-count-modal{
     font-size:1.7rem;
   }
-  .sidebar-filter-checkbox{
-    padding-bottom: 1.8rem;
-    line-height: 3rem;
+  .results-count-modal{
+    font-size:1.7rem;
   }
+
+  .sidebar-filter-checkbox{
+    padding-bottom: 1rem;
+    line-height: 3rem;
+
+  }
+  .main-search-check-label{
+    line-height: 1.3rem !important;
+    padding-bottom: 1rem;
+  }
+  /* 16px */
+  .block-two-text-lines{
+    font-size:1.7rem;
+    line-height: 1.5rem !important;
+    padding-bottom: 1rem;
+  }
+
   /*------------------------------- Pagination ----------------------*/
   /* 16px */
   .pagination-cont{
