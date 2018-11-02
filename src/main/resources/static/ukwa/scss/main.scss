@@ -278,7 +278,7 @@ p.searchFilter {
   overflow: hidden;
   position: relative;
   line-height: 1.2rem;
-  max-height: 2.4rem;
+  max-height: 3.5rem;
   text-align: justify;
   margin-right: -1rem;
   padding-right: 2rem;
@@ -607,11 +607,12 @@ li {
   }
 }
 
-.img-responsive {
-  display: block;
-  position: relative;
-  width: 100%;
-  height: auto;
+.img {
+  -ms-interpolation-mode: nearest-neighbor;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-pixelated;
+  image-rendering: pixelated;
 }
 
 .img-non-responsive {
@@ -2738,7 +2739,7 @@ footer {
   /* date and sorting field settings*/
   .filter-form-control{
     height: 2.5rem !important;
-    width:100% !important;
+    width:10rem !important;
   }
   /* 22px */
   .sidebar-filter-header-title-redesign, .infotooltip{
@@ -3070,7 +3071,7 @@ footer {
   /* date and sorting field settings*/
   .filter-form-control{
     height: 1.5rem !important;
-    width:100% !important;
+    width:10rem !important;
   }
   /* 22px */
   .sidebar-filter-header-title-redesign, .infotooltip{
@@ -3406,10 +3407,6 @@ footer {
   }
   /*-------------------------------- Filtering -----------------------*/
   /* date and sorting field settings*/
-  .filter-form-control{
-    height: 1.5rem !important;
-    width:100% !important;
-  }
   /* 22px */
   .sidebar-filter-header-title-redesign, .infotooltip{
     font-size:0.68rem;
@@ -3421,6 +3418,10 @@ footer {
   /* 18px */
   .sidebar-clear-filter-button{
     font-size:0.54rem;
+  }
+  .filter-form-control{
+    height: 2rem !important;
+    width:10rem !important;
   }
   /* 18px */
   .date-filter-button{
@@ -4510,10 +4511,13 @@ From Top10 list
   /* 16px */
   .sidebar-filter-input-checkbox{
     font-size:1.33rem;
+    padding-bottom: 2rem;
+    line-height: 2rem;
   }
   /* 16px */
   .block-two-text-lines{
     font-size:1.33rem;
+    line-height: 2rem;
   }
   /* 16px */
   .label-counts{
@@ -4523,6 +4527,17 @@ From Top10 list
   .results-count{
     font-size:1.33rem;
   }
+  .main-search-check-label{
+    line-height: 1.3rem !important;
+    padding-bottom: 0.5rem;
+  }
+  /* 16px */
+  .block-two-text-lines{
+    font-size:1.33rem;
+    line-height: 1.2rem !important;
+    padding-bottom: 0.5rem;
+  }
+
   /*------------------------------- Pagination ----------------------*/
   /* 16px */
   .pagination-cont{
@@ -4814,6 +4829,13 @@ Retina like displays
     /* magnify glass size*/
     background-size: 2.5rem;
   }
+  .label-count-modal{
+    font-size:2rem;
+  }
+  .results-count-modal{
+    font-size:2rem;
+  }
+
   /*-------------------------- Sorting -------------------------*/
   /* 16px */
   .search-results-top-filters-2{
@@ -4832,6 +4854,10 @@ Retina like displays
     height: 4rem! important;
   }
   /*-------------------------------- Filtering -----------------------*/
+  .filter-form-control{
+    height: 4rem! important;
+    width:100%! important;
+  }
   /* 22px */
   .sidebar-filter-header-title-redesign{
     font-size:2.4rem;
@@ -4857,21 +4883,36 @@ Retina like displays
     font-size:1.7rem;
   }
   /* 16px */
-  .block-two-text-lines{
-    font-size:1.7rem;
-  }
-  /* 16px */
   .label-counts{
-    font-size:1.7rem;
+    font-size:1.7rem !important;;
   }
   /* 16px */
   .results-count{
+    font-size:1.7rem !important;;
+  }
+  .label-count-modal{
     font-size:1.7rem;
   }
-  .sidebar-filter-checkbox{
-    padding-bottom: 1.8rem;
-    line-height: 3rem;
+  .results-count-modal{
+    font-size:1.7rem;
   }
+
+  .sidebar-filter-checkbox{
+    padding-bottom: 1rem;
+    line-height: 3rem;
+
+  }
+  .main-search-check-label{
+    line-height: 1.3rem !important;
+    padding-bottom: 1rem;
+  }
+  /* 16px */
+  .block-two-text-lines{
+    font-size:1.7rem;
+    line-height: 1.5rem !important;
+    padding-bottom: 1rem;
+  }
+
   /*------------------------------- Pagination ----------------------*/
   /* 16px */
   .pagination-cont{
