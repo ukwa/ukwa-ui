@@ -607,7 +607,7 @@ li {
   }
 }
 
-.img {
+img {
   -ms-interpolation-mode: nearest-neighbor;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: -moz-crisp-edges;
@@ -1488,22 +1488,23 @@ footer {
   width: auto;
 }
 
-.footer-logo-BW {
-  flex: 0 1 auto;
-  flex-basis: 14%;
-}
-
-.footer-logo-BW img{
-  width: 100%;
-  padding-bottom: 1rem;
-}
-
 .container-footer-logos-group{
   display: flex;
   justify-content:space-between;
   flex-wrap: wrap;
 }
 
+.footer-logo-BW {
+  flex: 0 1 auto;
+  flex-basis: 14%;
+  align-self: center;
+  text-align: center;
+}
+
+.footer-logo-BW img{
+  width: 100%;
+  padding-bottom: 1rem;
+}
 .container-footer-menu-group{
   display: flex;
   justify-content: space-between;
@@ -2485,6 +2486,20 @@ footer {
   flex-basis: 10rem;
 }
 
+.img-responsive {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.img-non-responsive {
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: auto;
+}
+
 .img-responsive-576 {
 }
 .img-responsive-1024 {
@@ -2632,10 +2647,17 @@ footer {
     font-size: 1.2rem;
   }
 
-  .footer-logo-BW img{
-    width: 8rem;
-
+  .container-footer-logos-group{
+    justify-content:center !important;
   }
+
+  .footer-logo-BW img{
+    width: 50%;
+  }
+  .footer-logo-BW {
+    flex-basis: 45%;
+    align-self: center;
+  }  
   .footer-menu-item {
     flex-basis: 45%;
   }
@@ -2943,8 +2965,15 @@ footer {
     font-size:0.64rem;
     padding-top: 0.6rem;
   }
+  .container-footer-logos-group{
+    justify-content:center !important;
+  }
+  .footer-logo-BW {
+    flex-basis: 32%;
+    align-self: center;
+  }  
   .footer-logo-BW img{
-    width: 70%;
+    width: 50%;
   }
   .footer-menu-item {
     flex-basis: 45%;
@@ -3252,8 +3281,15 @@ footer {
   .footer-legal-deposit{
     font-size:0.3rem;
   }
+  .container-footer-logos-group{
+    justify-content:center !important;
+  }
+  .footer-logo-BW {
+    flex-basis: 32%;
+    align-self: center;
+  }  
   .footer-logo-BW img{
-    width: 70%;
+    width: 50%;
   }
   /*
       Font style used in JSPs:
@@ -3302,8 +3338,15 @@ footer {
     font-size:0.64rem;
     padding-top: 0.6rem;
   }
+  .container-footer-logos-group{
+    justify-content:center !important;
+  }
+  .footer-logo-BW {
+    flex-basis: 32%;
+    align-self: center;
+  }  
   .footer-logo-BW img{
-    width: 70%;
+    width: 50%;
   }
 
   .main-search-input-new{
@@ -3346,7 +3389,7 @@ footer {
   .img-square-caption {
     /* 18px */
     font-size:0.44rem;
-    width: 10vw !important;
+    width: 20vw !important;
   }
   /* 18px bold */
   .collection-heading-bold{
