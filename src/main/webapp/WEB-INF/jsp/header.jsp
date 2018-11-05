@@ -21,24 +21,6 @@
 <div class="relative shadow-redesign" style="z-index: 1001">
 <!-- Language menu -->
 <div class="row  navbar-collapse justify-content-end">
-    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 padding-right-20 right">
-            <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
-            <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
-            <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy'
-                                            ? '/'
-                                            : fn:replace(fn:replace(textUri, '/en/', '/'), '/cy/', '/')}"/>
-            <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}">
-                <div class="header-menu-language-item margin-0"><a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="main.menu.welsh.title" />">
-                    <span lang="cy"><spring:message code="main.menu.welsh" /></span>
-                </a></div>
-            </c:if>
-            <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
-              && (fn:contains(textUri, '/gd/') || textUri =='/gd' || fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
-                <div class="header-menu-language-item"><a href="/en<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="main.menu.english.title" />">
-                    <span lang="en"><spring:message code="main.menu.english" /></span>
-                </a></div>
-            </c:if>
-    </div>
 </div>
 <!-- Menu -->
 <div id="header-menu" class="row center padding-left-60 padding-bottom-20">
@@ -83,6 +65,38 @@
                 
             </div>
 
+            <div class="container-header-main-logo-menu-lang-inner-group">
+
+
+                <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
+                <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
+                <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy'
+                                            ? '/'
+                                            : fn:replace(fn:replace(textUri, '/en/', '/'), '/cy/', '/')}"/>
+                <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}">
+
+                    <div class="header-menu-lang-item">
+                        <a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="main.menu.welsh.title" />">
+                            <spring:message code="main.menu.welsh" />
+                        </a>
+                    </div>
+
+                </c:if>
+                <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
+              && (fn:contains(textUri, '/gd/') || textUri =='/gd' || fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
+
+                    <div class="header-menu-lang-item">
+                        <a href="/en<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="main.menu.english.title" />">
+                            <spring:message code="main.menu.english" />
+                        </a>
+                    </div>
+
+                </c:if>
+
+
+
+
+            </div>
         </div>
     </div>
     

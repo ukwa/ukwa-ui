@@ -1410,6 +1410,7 @@ h3 {
 .main-logo {
   max-width: 100%;
   height: auto;
+  padding-bottom: 3rem;
 }
 
 .search-advanced {
@@ -1507,23 +1508,48 @@ footer {
   flex: 0 1 auto;
   flex-basis: 33%;
   align-self: center;
+
+  a {
+    &:link, &:visited, &:hover, &:active{
+      text-decoration: none !important;
+      color: #2e6dd9;
+    }
+  }
 }
 
 /*header logo + main menu*/
   .container-header-main-logo-menu-group{
     display: flex;
     justify-content:space-between;
+    height: 6rem;
   }
   .container-header-main-logo-menu-inner-group{
-    /* flex: 0 1 auto; default settings */
+    /* flex: 0 1 auto; default settings
     flex-basis: 80%;
+    */
+    flex: 1 1 auto;
     display: flex;
     justify-content:flex-start;
   }
+  .container-header-main-logo-menu-lang-inner-group{
+    /* flex: 0 1 auto; default settings
+    flex-basis: 80%;
+    */
+    display: flex;
+    justify-content:flex-end;
+    align-content: flex-start;
+    width: 150px;
+    height:100%;
+    margin: 0;
+  }
   .header-main-logo {
-    /* flex: 0 1 auto; default settings */
+    /* flex: 0 1 auto; default settings
     flex-basis: 20%;
+    */
+    margin-top: 2rem;
     align-self: center;
+    flex: 0 0 auto;
+    align-self: flex-end;
     text-align: left;
   }  
   .header-main-logo img{
@@ -1536,6 +1562,7 @@ footer {
   .header-menu-item{
     flex: 1;
     align-self: flex-end;
+
 
     a {
       &:hover, &:link {
@@ -1556,9 +1583,22 @@ footer {
       width: 100%;
       border-bottom: 5px solid #0c49b0;
     }
+  }
+  .header-menu-lang-item{
+    width: 3rem;
+    height:100%;
+    margin: 0 2rem;
+    align-self: flex-end;
 
+    a {
+      &:link, &:visited, &:hover, &:active{
+        text-decoration: none !important;
+        color: #2e6dd9;
+      }
+    }
 
   }
+
 /* END header logo + main menu*/
 
 .page-content {
@@ -2602,13 +2642,19 @@ footer {
   /*--------------------------------------------------------------
                           General for all
     -----------------------------------------------------------------*/
+
+  .main-logo {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+  }
+
   .container-header-main-logo-menu-inner-group{
     flex-direction: column;
     margin-left: 2rem;
     flex-basis: 50%;
   }
   .header-main-logo {
-    flex-basis: 50%;
+
   }
   /* 18px */
   .header-menu-item {
@@ -2951,9 +2997,10 @@ footer {
                           General for all
     -----------------------------------------------------------------*/
   .main-logo {
-    margin-top: 1rem;
-    height: 3rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
   }
+
   .img-responsive-1024, .img-responsive-1440, .img-responsive-1900,  .img-responsive-2500 {
     display: none;
   }
@@ -3318,9 +3365,10 @@ footer {
                           General for all
     -----------------------------------------------------------------*/
   .main-logo {
-    margin-top: 1rem;
-    height: 3rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
   }
+
   .img-responsive-1024, .img-responsive-1440, .img-responsive-1900,  .img-responsive-2500 {
     display: none;
   }
@@ -3680,11 +3728,7 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   /*--------------------------------------------------------------
                           General for all
     -----------------------------------------------------------------*/
-  .main-logo {
-    margin-top: 1rem;
-    height: 100%;    
-    width: 100%;
-  }
+
 
   .img-responsive-576, .img-responsive-1440, .img-responsive-1900,  .img-responsive-2500 {
     display: none;
@@ -4032,10 +4076,8 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   /*--------------------------------------------------------------
                           General for all
     -----------------------------------------------------------------*/
-  .main-logo {
-    margin-top: 1rem;
-    height: 100%;    
-    width: 100%;
+  .container-header-main-logo-menu-group{
+    height: 8rem;
   }
 
   .img-responsive-576, .img-responsive-1024, .img-responsive-1900,  .img-responsive-2500 {
@@ -4199,8 +4241,8 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
     height: 3rem;
     font-size:1.2rem;
     float:left !important;
-    padding: 1rem !important;
-    margin-right: 2rem;
+    padding: .5rem !important;
+    margin-right: 1rem;
   }
   /* 18px */
   .main-search-button-blue{
@@ -4396,10 +4438,11 @@ From Top10 list
   /*--------------------------------------------------------------
                           General for all
     -----------------------------------------------------------------*/
-  .main-logo {
-    margin-top: 1rem;
-    height: 6rem;
+  .container-header-main-logo-menu-group{
+    height: 10rem;
+    margin-bottom: 2rem;
   }
+
 
   .img-responsive-576, .img-responsive-1024, .img-responsive-1440,  .img-responsive-2500 {
     display: none;
@@ -4767,9 +4810,15 @@ Retina like displays
   /*--------------------------------------------------------------
                           General for all
     -----------------------------------------------------------------*/
+
+  .container-header-main-logo-menu-group{
+    height: 14rem;
+    margin-bottom: 3rem;
+  }
+
+
   .main-logo {
-    margin-top: 1rem;
-    height: 8rem;
+    padding-bottom: 5rem;
   }
 
   .img-responsive-576, .img-responsive-1024, .img-responsive-1440, .img-responsive-1900 {
@@ -4882,7 +4931,7 @@ Retina like displays
     height: 5rem;
     font-size:2rem;
     float:left !important;
-    padding: 2rem !important;
+    padding: 1rem !important;
     margin-right: 2rem;
   }
   .main-search-button{
