@@ -1,14 +1,26 @@
 <div class="row margin-0 padding-30">
-    <div class="col-lg-auto col-md-auto col-sm-auto padding-0">
-        <a href="index"><img src="img/ukwa-2018-onwhite-close-125px.png" class="header-logo img-responsive-576"></a>
-        <a href="index"><img src="img/ukwa-2018-onwhite-close-150px.png" class="header-logo img-responsive-1024"></a>
-        <a href="index"><img src="img/ukwa-2018-onwhite-close-200px.png" class="header-logo img-responsive-1440"></a>
-        <a href="index"><img src="img/ukwa-2018-onwhite-close-250px.png" class="header-logo img-responsive-1900"></a>
-        <a href="index"><img src="img/ukwa-2018-onwhite-close-350px.png" class="header-logo img-responsive-2500"></a>
-    </div>
-</div>
-<div class="row margin-0 padding-30">
     <div class="col-12">
+
+            <div class="main-logo img-responsive-576">
+                <a href="index"><img src="img/ukwa-2018-onwhite-close-125px.png"</a>
+            </div>
+            <div class="main-logo img-responsive-1024">
+                <a href="index"><img src="img/ukwa-2018-onwhite-close-150px.png"></a>
+            </div>
+ 
+            <div class="main-logo img-responsive-1440">
+                <a href="index"><img src="img/ukwa-2018-onwhite-close-200px.png"></a>
+            </div>
+
+            <div class="main-logo img-responsive-1900">
+                <a href="index"><img src="img/ukwa-2018-onwhite-close-250px.png"></a>
+            </div>
+
+            <div class="main-logo img-responsive-2500">
+                <a href="index"><img src="img/ukwa-2018-onwhite-close-350px.png"></a>
+            </div>
+
+    
     <div class="container-footer-menu-group">
 
         <a href="index" title="<spring:message code="footer.home.title" />" class="collection-link footer-menu-item footer-menu-home-item">
@@ -102,7 +114,7 @@
     </div>
     </div>
 </div>
-<hr style="width: 100%; color: darkblue; height: 7px; background-color:royalblue; margin-bottom:1px !important;margin-top:1px !important;" />
+<hr class="bottomline" />
 
 <!--[if (gt IE 9)|!(IE)]><!-->
 <script>
