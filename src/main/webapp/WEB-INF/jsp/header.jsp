@@ -19,11 +19,9 @@
     <hr class="topline" />
 </div>
 <div class="relative shadow-redesign" style="z-index: 1001">
-<!-- Language menu -->
-<div class="row  navbar-collapse justify-content-end">
-</div>
+
 <!-- Menu -->
-<div id="header-menu" class="row center padding-left-60 padding-bottom-20">
+<div id="header-menu" class="row header-padding">
 
     <div class="col-12">
         <div class="container-header-main-logo-menu-group">
@@ -65,8 +63,8 @@
                 
             </div>
 
+            <!-- Language menu group-->
             <div class="container-header-main-logo-menu-lang-inner-group">
-
 
                 <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
                 <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
@@ -92,8 +90,6 @@
                     </div>
 
                 </c:if>
-
-
 
 
             </div>
