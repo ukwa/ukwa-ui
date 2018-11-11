@@ -44,6 +44,7 @@ public class CollectionController {
     private static final Logger log = LoggerFactory.getLogger(CollectionController.class);
 
     static final int ROWS_PER_PAGE_DEFAULT = 50;
+    static final int ROWS_PER_PAGE_MAX = 200;
     private static final String COLLECTION_ALT_MESSAGE_DEFAULT = "coll.alt.default";
     private static final String COLLECTION_ALT_MESSAGE_ID = "coll.alt.";
 
