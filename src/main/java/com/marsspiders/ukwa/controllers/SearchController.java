@@ -220,7 +220,8 @@ public class SearchController {
         mav.addObject("originalAccessView", originalAccessView);
         mav.addObject("originalSortValue", originalSortValue);
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
-        mav.addObject("targetPageNumber", targetPageNumber);
+        long totalPageNumber = totalSearchResultsSize /  rowsPerPage;
+        mav.addObject("targetPageNumber", (totalPageNumber < targetPageNumber ? totalPageNumber : targetPageNumber));
         mav.addObject("rowsPerPageLimit", rowsPerPage);
         mav.addObject("userIpFromBl", userIpFromBl);
         mav.addObject("totalPages", (int) (Math.ceil(totalSearchResultsSize / (double) rowsPerPage)));
