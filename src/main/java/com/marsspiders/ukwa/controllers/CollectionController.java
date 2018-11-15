@@ -120,10 +120,13 @@ public class CollectionController {
         mav.addObject("subCollections", subCollections);
         mav.addObject("currentCollection", currentCollection);
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
-        mav.addObject("targetPageNumber", targetPageNumber);
         mav.addObject("rowsPerPageLimit", ROWS_PER_PAGE_DEFAULT);
         mav.addObject("totalSearchResultsSize", totalSearchResultsSize);
-        mav.addObject("totalPages", (int) (Math.ceil(totalSearchResultsSize / (double) ROWS_PER_PAGE_DEFAULT)));
+        int totalPages =  totalSearchResultsSize / ROWS_PER_PAGE_DEFAULT;
+        mav.addObject("totalPages", totalPages);
+        if (targetPageNumber > totalPages)
+            targetPageNumber = totalPages;
+        mav.addObject("targetPageNumber", targetPageNumber);
 
         return mav;
     }
