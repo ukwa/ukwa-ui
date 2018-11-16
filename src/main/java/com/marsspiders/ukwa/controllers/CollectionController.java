@@ -95,23 +95,18 @@ public class CollectionController {
                                                HttpServletRequest request) throws MalformedURLException, URISyntaxException {
         log.debug("collectionOverviewPage");
         boolean userIpFromBl = waybackIpResolver.isUserIpFromBl(request);
-        int totalSearchResultsSize = 0;
-        int targetPageNumber = isNumeric(pageNum) ? Integer.valueOf(pageNum) : 1;
+        int targetPageNumber = isNumeric(pageNum) ? Integer.valueOf(pageNum)  : 1;
         int startFromRow = (targetPageNumber - 1) * ROWS_PER_PAGE_DEFAULT;
-
         SolrSearchResult<CollectionInfo> targetWebsitesSearchResult = searchService
                 .fetchChildCollections(singletonList(collectionId), TYPE_TARGET, ROWS_PER_PAGE_DEFAULT, startFromRow);
         List<CollectionInfo> targetWebsitesDocuments = targetWebsitesSearchResult.getResponseBody().getDocuments();
-        totalSearchResultsSize = targetWebsitesSearchResult.getResponseBody().getNumFound();
-
+        int totalSearchResultsSize = targetWebsitesSearchResult.getResponseBody().getNumFound();
         String rootPathWithLang = getRootPathWithLang(request, setProtocolToHttps);
         Locale locale = getLocale(request);
-
         List<TargetWebsiteDTO> targetWebsites = generateTargetWebsitesDTOs(targetWebsitesDocuments, rootPathWithLang, userIpFromBl);
         List<CollectionDTO> subCollections = generateSubCollectionDTOs(collectionId, locale);
         CollectionDTO currentCollection = generatePlainCollectionDTO(collectionId, locale, targetWebsitesSearchResult);
         Map<String, String> breadcrumbPath = buildCollectionBreadcrumbPath(currentCollection);
-
 
         ModelAndView mav = new ModelAndView("coll");
         mav.addObject("userIpFromBl", userIpFromBl);
@@ -122,7 +117,7 @@ public class CollectionController {
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
         mav.addObject("rowsPerPageLimit", ROWS_PER_PAGE_DEFAULT);
         mav.addObject("totalSearchResultsSize", totalSearchResultsSize);
-        int totalPages =  totalSearchResultsSize / ROWS_PER_PAGE_DEFAULT;
+        int totalPages =  (int) (Math.ceil(totalSearchResultsSize / (double) ROWS_PER_PAGE_DEFAULT));
         mav.addObject("totalPages", totalPages);
         if (targetPageNumber > totalPages)
             targetPageNumber = totalPages;
