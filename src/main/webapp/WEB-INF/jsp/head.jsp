@@ -1,6 +1,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="img/icons/ukwa-2018-onwhite-close-96x96.png" type="image/png"/>
+<link rel='icon' href='img/icons/ukwa-2018-onwhite-close.ico' type='image/x-icon' />
+<link rel='shortcut icon' href='img/icons/ukwa-2018-onwhite-close.ico' type='image/x-icon' />
 
 <!--[if (gt IE 9)|!(IE)]><!-->
 <link rel="stylesheet" href="includes/bootstrap/css/bootstrap.min.css">
