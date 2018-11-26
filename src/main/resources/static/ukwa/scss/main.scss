@@ -1532,18 +1532,19 @@ footer {
     /* flex: 0 1 auto; default settings
     flex-basis: 80%;
     */
-    flex: 1 1 auto;
+    flex-basis: 90%;
     display: flex;
-    justify-content:flex-start;
+    justify-content: center;
+
   }
   .container-header-main-logo-menu-lang-inner-group{
     /* flex: 0 1 auto; default settings
     flex-basis: 80%;
     */
     display: flex;
-    justify-content:flex-end;
-    align-content: flex-start;
-    width: 150px;
+
+    align-self: flex-end;
+
     height:100%;
     margin: 0;
   }
@@ -1552,7 +1553,6 @@ footer {
     flex-basis: 20%;
     */
     margin-top: 2rem;
-    align-self: center;
     flex: 0 0 auto;
     align-self: flex-end;
     text-align: left;
@@ -1565,9 +1565,10 @@ footer {
     text-decoration: none;
   }
   .header-menu-item{
-    flex: 1;
     align-self: flex-end;
+    text-align: center;
 
+    flex: 1;
 
     a {
       &:hover, &:link {
@@ -1589,7 +1590,34 @@ footer {
       border-bottom: 5px solid #0c49b0;
     }
   }
-  .header-menu-lang-item{
+
+  .header-menu-item2x{
+    align-self: flex-end;
+    text-align: center;
+    flex: 2;
+
+    a {
+      &:hover, &:link {
+        text-decoration: none !important;
+      }
+      &:hover, &::after {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        border-bottom: 5px solid #0c49b0;
+      }
+    }
+    &.active > a {
+      position: relative;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      border-bottom: 5px solid #0c49b0;
+    }
+  }
+
+.header-menu-lang-item{
     width: 3rem;
     height:100%;
     margin: 0 2rem;
@@ -2674,7 +2702,7 @@ footer {
     text-align: left;
   }
   /* 18px */
-  .header-menu-item {
+  .header-menu-item, .header-menu-item2x {
     font-size:0.8rem;
     padding: 1px;
     align-self: flex-start;
@@ -3036,7 +3064,7 @@ footer {
     margin-left: 5vw;
   }
   /* 18px */
-  .header-menu-item {
+  .header-menu-item, .header-menu-item2x {
     font-size: .4rem;
     
     margin: 0 1rem;
@@ -3392,7 +3420,7 @@ footer {
     margin-bottom: 1rem;
   }
 
-  /* header tuning */
+  /* START ------------------ header tuning */
   .container-header-main-logo-menu-group{
       height: 5rem;
   }
@@ -3400,7 +3428,7 @@ footer {
       width: 1rem;
   }
   /* 18px */
-  .header-menu-item {
+  .header-menu-item, .header-menu-item2x {
     font-size:0.9rem;
     padding: 0 0.6rem 0 0;
     margin: 0 1rem;
@@ -3413,6 +3441,7 @@ footer {
   .img-responsive-1024, .img-responsive-1440, .img-responsive-1900,  .img-responsive-2500 {
     display: none;
   }
+  /* END ------------------ header tuning */
 
   .modal-content {
     height: 80vh;
@@ -3780,7 +3809,7 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   }
 
   /* 18px */
-  .header-menu-item {
+  .header-menu-item, .header-menu-item2x {
     display: inline-block;
     font-size:1.07rem;    
   }
@@ -4130,7 +4159,7 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   }
 
   /* 18px */
-  .header-menu-item {
+  .header-menu-item, .header-menu-item2x {
     font-size:1.2rem;
     padding: 0 3rem 0 0 !important;
     &.language {
@@ -4483,9 +4512,23 @@ From Top10 list
   /*--------------------------------------------------------------
                           General for all
     -----------------------------------------------------------------*/
+
+  /* START ------------------ header tuning */
   .container-header-main-logo-menu-group{
     height: 10rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+
+  }
+  .container-header-main-logo-menu-lang-inner-group{
+    width: 1rem;
+  }
+  /* 18px */
+  .header-menu-item, .header-menu-item2x {
+    font-size:1.49rem;
+  }
+  .header-menu-lang-item{
+    font-size:1rem;
+    margin: 0 -100px;
   }
 
 
@@ -4493,17 +4536,6 @@ From Top10 list
     display: none;
   }
 
-  /* 18px */
-  .header-menu-item {
-    font-size:1.49rem;
-    padding: 0 3rem 0 0 !important;
-    &.language {
-      /* 14px */
-      font-size:1.17rem;
-      float:left !important;
-      padding: 0 1rem 0 0 !important;
-    }
-  }
   .dialog-link {
     /* 18px */
     font-size:1.49rem;
@@ -4858,7 +4890,7 @@ Retina like displays
 
   .container-header-main-logo-menu-group{
     height: 14rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
 
@@ -4871,7 +4903,7 @@ Retina like displays
   }
 
   /* 18px */
-  .header-menu-item {
+  .header-menu-item, .header-menu-item2x {
     font-size:2rem;
     padding: 0 5rem 0 0 !important;
     &.language {

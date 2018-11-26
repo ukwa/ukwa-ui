@@ -38,63 +38,62 @@ ${pageContext.response.locale}
 
 <section id="content">
 
-</section>
-<div class="default-padding text-content">
-            <p class="main-subheading-2-redesign black padding-bottom-40"><spring:message code="faq.subtitle" />
-            </p>
+    <div class="default-padding text-content">
+        <p class="main-subheading-2-redesign black padding-bottom-40"><spring:message code="faq.subtitle"/>
+        </p>
 
-            <p class="q-grid"><spring:message code="faq.q1" /></p>
-            <p class="q-description black padding-bottom-20"><spring:message code="faq.a1" />
-            </p>
+        <p class="q-grid"><spring:message code="faq.q1"/></p>
+        <p class="q-description black padding-bottom-20"><spring:message code="faq.a1"/>
+        </p>
 
-            <p class="q-grid"><spring:message code="faq.q2" /></p>
-            <p class="q-description black padding-bottom-20"><spring:message code="faq.a2" />
-            </p>
+        <p class="q-grid"><spring:message code="faq.q2"/></p>
+        <p class="q-description black padding-bottom-20"><spring:message code="faq.a2"/>
+        </p>
 
-<p class="q-grid"><spring:message code="faq.q3" /></p>
-            <p class="q-description black padding-bottom-20"><spring:message code="faq.a3" />
-            </p>
+        <p class="q-grid"><spring:message code="faq.q3"/></p>
+        <p class="q-description black padding-bottom-20"><spring:message code="faq.a3"/>
+        </p>
 
-<p class="q-grid"><spring:message code="faq.q4" /></p>
-            <p class="q-description black padding-bottom-20"><spring:message code="faq.a4" />
-            </p>
+        <p class="q-grid"><spring:message code="faq.q4"/></p>
+        <p class="q-description black padding-bottom-20"><spring:message code="faq.a4"/>
+        </p>
 
-<p class="q-grid"><spring:message code="faq.q5" /></p>
-            <p class="q-description black padding-bottom-20"><spring:message code="faq.a5" />
-            </p>
+        <p class="q-grid"><spring:message code="faq.q5"/></p>
+        <p class="q-description black padding-bottom-20"><spring:message code="faq.a5"/>
+        </p>
 
-<p class="q-grid"><spring:message code="faq.q6" /></p>
-            <p class="q-description black padding-bottom-20"><spring:message code="faq.a6" />
-            </p>
+        <p class="q-grid"><spring:message code="faq.q6"/></p>
+        <p class="q-description black padding-bottom-20"><spring:message code="faq.a6"/>
+        </p>
 
-<p class="q-grid"><spring:message code="faq.q7" /></p>
-            <p class="q-description black padding-bottom-20"><spring:message code="faq.a7" />
-            </p>
+        <p class="q-grid"><spring:message code="faq.q7"/></p>
+        <p class="q-description black padding-bottom-20"><spring:message code="faq.a7"/>
+        </p>
 
-<p class="q-grid"><spring:message code="faq.q8" /></p>
-            <p class="q-description black padding-bottom-20"><spring:message code="faq.a8" />
-            </p>
+        <p class="q-grid"><spring:message code="faq.q8"/></p>
+        <p class="q-description black padding-bottom-20"><spring:message code="faq.a8"/>
+        </p>
 
-<p class="q-grid"><spring:message code="faq.q9" /></p>
-            <p class="q-description black padding-bottom-20"><spring:message code="faq.a9" />
-            </p>
+        <p class="q-grid"><spring:message code="faq.q9"/></p>
+        <p class="q-description black padding-bottom-20"><spring:message code="faq.a9"/>
+        </p>
 
-<p class="q-grid"><spring:message code="faq.q10" /></p>
-            <p class="q-description black padding-bottom-20"><spring:message code="faq.a10" />
-            </p>
+        <p class="q-grid"><spring:message code="faq.q10"/></p>
+        <p class="q-description black padding-bottom-20"><spring:message code="faq.a10"/>
+        </p>
 
-<p class="q-grid"><spring:message code="faq.q11" /></p>
-            <p class="q-description black padding-bottom-20"><spring:message code="faq.a11" />
-            </p>
+        <p class="q-grid"><spring:message code="faq.q11"/></p>
+        <p class="q-description black padding-bottom-20"><spring:message code="faq.a11"/>
+        </p>
 
-<p class="q-grid"><spring:message code="faq.q12" /></p>
-            <p class="q-description black padding-bottom-20"><spring:message code="faq.a12" />
-            </p>
+        <p class="q-grid"><spring:message code="faq.q12"/></p>
+        <p class="q-description black padding-bottom-20"><spring:message code="faq.a12"/>
+        </p>
 
     </div>
+</section>
 
-    
-<footer>
+    <footer>
   <%@include file="footer.jsp" %>
 </footer>
 </div>

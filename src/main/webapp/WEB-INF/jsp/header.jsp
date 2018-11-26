@@ -48,10 +48,10 @@
                 <div id="headermenu_index" class="header-menu-item"><a href="index" title="<spring:message code="main.menu.home.title" />" >
                     <spring:message code="main.menu.home" />
                 </a></div>
-                <div id="headermenu_collection" class="header-menu-item"><a href="collection" title="<spring:message code="main.menu.collections.title" />">
+                <div id="headermenu_collection" class="header-menu-item2x"><a href="collection" title="<spring:message code="main.menu.collections.title" />">
                     <spring:message code="main.menu.collections" />
                 </a></div>
-                <div id="headermenu_save" class="header-menu-item"><a href="info/nominate" title="<spring:message code="main.menu.nominate.title" />">
+                <div id="headermenu_save" class="header-menu-item2x"><a href="info/nominate" title="<spring:message code="main.menu.nominate.title" />">
                     <spring:message code="main.menu.nominate" />
                 </a></div>
                 <div id="headermenu_about" class="header-menu-item"><a href="about" title="<spring:message code="main.menu.about.title" />">
@@ -60,7 +60,6 @@
                 <div id="headermenu_contact" class="header-menu-item"><a href="contact" title="<spring:message code="main.menu.contact.title" />">
                     <spring:message code="main.menu.contact" />
                 </a></div>
-                
             </div>
 
             <!-- Language menu group-->
