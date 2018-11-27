@@ -1535,6 +1535,9 @@ footer {
     flex-basis: 90%;
     display: flex;
     justify-content: center;
+    /*
+    align-items: baseline;
+    */
 
   }
   .container-header-main-logo-menu-lang-inner-group{
@@ -3796,9 +3799,7 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
     -----------------------------------------------------------------*/
 
   /* header tuning */
-  .container-header-main-logo-menu-lang-inner-group{
-      width: 1rem;
-  }
+
  .header-menu-lang-item{
     font-size:.83rem; 
     margin: 0 1rem;
@@ -4517,18 +4518,14 @@ From Top10 list
   .container-header-main-logo-menu-group{
     height: 10rem;
     margin-bottom: 1rem;
+  }
 
-  }
-  .container-header-main-logo-menu-lang-inner-group{
-    width: 1rem;
-  }
   /* 18px */
   .header-menu-item, .header-menu-item2x {
     font-size:1.49rem;
   }
   .header-menu-lang-item{
     font-size:1rem;
-    margin: 0 -100px;
   }
 
 
@@ -4887,21 +4884,16 @@ Retina like displays
   /*--------------------------------------------------------------
                           General for all
     -----------------------------------------------------------------*/
-
   .container-header-main-logo-menu-group{
     height: 14rem;
     margin-bottom: 2rem;
   }
-
-
   .main-logo {
     padding-bottom: 5rem;
   }
-
   .img-responsive-576, .img-responsive-1024, .img-responsive-1440, .img-responsive-1900 {
     display: none;
   }
-
   /* 18px */
   .header-menu-item, .header-menu-item2x {
     font-size:2rem;
@@ -5261,6 +5253,5 @@ Retina like displays
   }
 
 }
-
 
 /*# sourceMappingURL=main.css.map */
