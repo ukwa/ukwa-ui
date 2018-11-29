@@ -44,7 +44,7 @@
                 <a href="index"><img src="img/ukwa-2018-onwhite-close-350px.png"></a>
             </div>
 
-            <div class="container-header-main-logo-menu-inner-group">
+            <div class="container-header-main-logo-menu-inner-group header-main-logo-menu-desktop">
                 <div id="headermenu_index" class="header-menu-item"><a href="index" title="<spring:message code="main.menu.home.title" />" >
                     <spring:message code="main.menu.home" />
                 </a></div>
@@ -60,10 +60,64 @@
                 <div id="headermenu_contact" class="header-menu-item"><a href="contact" title="<spring:message code="main.menu.contact.title" />">
                     <spring:message code="main.menu.contact" />
                 </a></div>
+
             </div>
 
+
+
+            <div class="header-main-logo-menu-mobile header-main-logo">
+
+                    <!-- Top Navigation Menu -->
+                    <div class="topnav">
+                        <a href="#home" class="active">&nbsp;&nbsp;&nbsp;</a>
+                        <!-- Navigation links (hidden by default) -->
+                        <div id="myLinks">
+                            <a href="index" title="<spring:message code="main.menu.home.title" />" ><spring:message code="main.menu.home" /></a>
+                            <a href="collection" title="<spring:message code="main.menu.collections.title" />"><spring:message code="main.menu.collections" /></a>
+                            <a href="info/nominate" title="<spring:message code="main.menu.nominate.title" />"><spring:message code="main.menu.nominate" /></a>
+                            <a href="about" title="<spring:message code="main.menu.about.title" />"><spring:message code="main.menu.about" /></a>
+                            <a href="contact" title="<spring:message code="main.menu.contact.title" />"><spring:message code="main.menu.contact" /></a>
+
+
+                            <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
+                            <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
+                            <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy'
+                                            ? '/'
+                                            : fn:replace(fn:replace(textUri, '/en/', '/'), '/cy/', '/')}"/>
+                            <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}">
+
+
+                                    <a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="main.menu.welsh.title" />">
+                                        <spring:message code="main.menu.welsh" />
+                                    </a>
+
+
+                            </c:if>
+                            <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
+              && (fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
+
+
+                                    <a href="/en<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="main.menu.english.title" />">
+                                        <spring:message code="main.menu.english" />
+                                    </a>
+
+
+                            </c:if>
+
+                        </div>
+                        <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+                        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                            <i class="fa fa-bars fa-lg"></i>
+                        </a>
+                    </div>
+
+            </div>
+
+
+
+
             <!-- Language menu group-->
-            <div class="container-header-main-logo-menu-lang-inner-group">
+            <div class="container-header-main-logo-menu-lang-inner-group header-main-logo-menu-desktop">
 
                 <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
                 <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
@@ -80,7 +134,7 @@
 
                 </c:if>
                 <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
-              && (fn:contains(textUri, '/gd/') || textUri =='/gd' || fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
+              && (fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
 
                     <div class="header-menu-lang-item">
                         <a href="/en<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="main.menu.english.title" />">
@@ -89,9 +143,9 @@
                     </div>
 
                 </c:if>
-
-
             </div>
+
+
         </div>
     </div>
     

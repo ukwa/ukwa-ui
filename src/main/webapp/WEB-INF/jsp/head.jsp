@@ -36,3 +36,5 @@
 <script src="includes/jquery-lightbox/dist/simpleLightbox.min.js"></script>
 <script src="includes/common.js"></script>
 
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

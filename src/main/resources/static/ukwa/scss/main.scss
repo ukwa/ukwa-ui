@@ -1620,7 +1620,7 @@ footer {
     }
   }
 
-.header-menu-lang-item{
+  .header-menu-lang-item{
     width: 3rem;
     height:100%;
     margin: 0 2rem;
@@ -1634,6 +1634,9 @@ footer {
     }
 
   }
+
+  .header-main-logo-menu-desktop{}
+  .header-main-logo-menu-mobile{}
 
 /* END header logo + main menu*/
 
@@ -2135,6 +2138,66 @@ footer {
 .nav-tabs--left {
   margin: 0 15px;
 }
+
+
+
+
+
+
+
+
+
+/* Style the navigation menu */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  position: relative;
+
+}
+
+/* Hide the links inside the navigation menu (except for logo/home) */
+.topnav #myLinks {
+  display: none;
+}
+
+/* Style navigation menu links */
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+/* Style the hamburger menu */
+.topnav a.icon {
+  background: white;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #2e6dd9;
+}
+
+/* Add a grey background color on mouse-over */
+.topnav a:hover {
+  background-color: #333;
+  color: white;
+}
+
+/* Style the active link (or home/logo) */
+.active {
+  color: #fff;
+  background-color: white;
+}
+
+
+
+
+
+
+
+
 
 .pagination-button {
   &.active {
@@ -2670,6 +2733,7 @@ footer {
 }
 
 
+
 /* bootsrap xs < 576, reduced functionality 
   iPhone 5/SE resolution 320 x 568 (portrait & landscape)
   Galaxy S5 resolution 360 x 640 (portrait only)
@@ -2687,6 +2751,11 @@ footer {
   .header-padding{
     padding-left: 1rem;
   }
+
+  .header-main-logo-menu-desktop{
+    display: none;
+  }
+
   .container-header-main-logo-menu-lang-inner-group{
       width: 1rem;
   }
@@ -3042,8 +3111,10 @@ footer {
     padding-bottom: 1rem;
     margin-bottom: 1rem;
   }
-
   /* header tuning */
+  .header-main-logo-menu-mobile{
+    display: none;
+  }
   .container-header-main-logo-menu-group{
       height: 5rem;
   }
@@ -3052,7 +3123,6 @@ footer {
   }
   .header-menu-lang-item{
     font-size:0.5rem; 
-    margin: 0 1rem;
   }
 
   .img-responsive-1024, .img-responsive-1440, .img-responsive-1900,  .img-responsive-2500 {
@@ -3424,6 +3494,9 @@ footer {
   }
 
   /* START ------------------ header tuning */
+  .header-main-logo-menu-mobile{
+    display: none;
+  }
   .container-header-main-logo-menu-group{
       height: 5rem;
   }
@@ -3799,8 +3872,10 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
     -----------------------------------------------------------------*/
 
   /* header tuning */
-
- .header-menu-lang-item{
+  .header-main-logo-menu-mobile{
+    display: none;
+  }
+  .header-menu-lang-item{
     font-size:.83rem; 
     margin: 0 1rem;
   }
@@ -4151,14 +4226,15 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   /*--------------------------------------------------------------
                           General for all
     -----------------------------------------------------------------*/
+  .header-main-logo-menu-mobile{
+    display: none;
+  }
   .container-header-main-logo-menu-group{
     height: 8rem;
   }
-
   .img-responsive-576, .img-responsive-1024, .img-responsive-1900,  .img-responsive-2500 {
     display: none;
   }
-
   /* 18px */
   .header-menu-item, .header-menu-item2x {
     font-size:1.2rem;
@@ -4515,6 +4591,9 @@ From Top10 list
     -----------------------------------------------------------------*/
 
   /* START ------------------ header tuning */
+  .header-main-logo-menu-mobile{
+    display: none;
+  }
   .container-header-main-logo-menu-group{
     height: 10rem;
     margin-bottom: 1rem;
@@ -4884,6 +4963,9 @@ Retina like displays
   /*--------------------------------------------------------------
                           General for all
     -----------------------------------------------------------------*/
+  .header-main-logo-menu-mobile{
+    display: none;
+  }
   .container-header-main-logo-menu-group{
     height: 14rem;
     margin-bottom: 2rem;

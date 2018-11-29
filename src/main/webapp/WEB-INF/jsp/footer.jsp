@@ -140,9 +140,15 @@
 
 <!--[if (gt IE 9)|!(IE)]><!-->
 <script>
-    if(jQuery){
-        console.log('yes');
+    function myFunction() {
+        var x = document.getElementById("myLinks");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
     }
+
     $(document).ready(function(e) {
         $("#showMoreDomainLink").click(function() {
             if($("#domains_filter_div").is(":visible")){ //hide then
