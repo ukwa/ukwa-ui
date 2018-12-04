@@ -645,7 +645,9 @@
                                     <%--set page value as a placeholder as it is going to be changed for each link--%>
                                     <c:param name="page" value="PAGE_NUM_PLACEHOLDER" />
                                 </c:url>
-                                <c:if test="${targetPageNumber > 1}"> <a style="text-decoration: none" href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>"><div class="pagination-number-redesign arrow left-arrow" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"></div><spring:message code="search.results.previous" /></a></c:if>
+                                <c:if test="${targetPageNumber > 1}"> <a style="text-decoration: none" href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>">
+                                    <div class="pagination-number-redesign" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"><i class="fa fa-chevron-left fa-lg" aria-hidden="true"></i></div>
+                                    <spring:message code="search.results.previous" /></a></c:if>
                                 <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
                                     <c:if test="${i <= totalPages && !deepPaging}">
                                         <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>" title="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>">
@@ -654,7 +656,7 @@
                                             </div></a>
                                     </c:if>
                                 </c:forEach>
-                                <c:if test="${(targetPageNumber < totalSearchResultsSize/rowsPerPageLimit) && !deepPaging}"> <a style="text-decoration: none" href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><spring:message code="search.results.next" /><div class="pagination-number-redesign arrow right-arrow"></div></a> </c:if>
+                                        <c:if test="${(targetPageNumber < totalSearchResultsSize/rowsPerPageLimit) && !deepPaging}"><a style="text-decoration: none" href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><spring:message code="search.results.next" /><div class="pagination-number-redesign"><i class="fa fa-chevron-right fa-lg" aria-hidden="true"></i></div></a></c:if>
                             </div>
                         </div>
 
@@ -722,8 +724,8 @@
                                     <%--set page value as a placeholder as it is going to be changed for each link--%>
                                     <c:param name="page" value="PAGE_NUM_PLACEHOLDER" />
                                 </c:url>
-                                <c:if test="${targetPageNumber > 1}"> <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>"><div class="pagination-number-redesign arrow left-arrow" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"></div><spring:message code="search.results.previous" /></a> </c:if>
-                                <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
+                                        <div class="pagination-number-redesign" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"><i class="fa fa-chevron-left fa-lg" aria-hidden="true"></i></div>
+                                        <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
                                     <c:if test="${i <= totalPages && !deepPaging}">
                                         <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>" title="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>">
                                             <div class="pagination-number-redesign ${i == targetPageNumber ? "p-active" : "inactive hide-mobile"}">
@@ -731,7 +733,7 @@
                                             </div></a>
                                     </c:if>
                                 </c:forEach>
-                                <c:if test="${(targetPageNumber < totalSearchResultsSize/rowsPerPageLimit) && !deepPaging}"> <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><spring:message code="search.results.next" /><div class="pagination-number-redesign arrow right-arrow"></div></a> </c:if>
+                                        <c:if test="${(targetPageNumber < totalSearchResultsSize/rowsPerPageLimit) && !deepPaging}"><a style="text-decoration: none" href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><spring:message code="search.results.next" /><div class="pagination-number-redesign"><i class="fa fa-chevron-right fa-lg" aria-hidden="true"></i></div></a></c:if>
                             </div>
                         </div>
 
