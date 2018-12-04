@@ -140,8 +140,8 @@
 
 <!--[if (gt IE 9)|!(IE)]><!-->
 <script>
-    function myFunction() {
-        var x = document.getElementById("myLinks");
+    function menuFunction() {
+        var x = document.getElementById("menuLinks");
         if (x.style.display === "block") {
             x.style.display = "none";
         } else {
@@ -150,6 +150,11 @@
     }
 
     $(document).ready(function(e) {
+
+        $(".menu-item-has-children").mouseleave(function(){
+            $(".dropdown").removeClass("open");
+        });
+
         $("#showMoreDomainLink").click(function() {
             if($("#domains_filter_div").is(":visible")){ //hide then
                 $("#domains_filter_div").hide(300);

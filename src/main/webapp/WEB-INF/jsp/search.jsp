@@ -649,7 +649,7 @@
                                 <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
                                     <c:if test="${i <= totalPages && !deepPaging}">
                                         <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>" title="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>">
-                                            <div class="pagination-number-redesign ${i == targetPageNumber ? "active" : "inactive hide-mobile"}">
+                                            <div class="pagination-number-redesign ${i == targetPageNumber ? "p-active" : "inactive hide-mobile"}">
                                                 <c:out value="${i}"/>
                                             </div></a>
                                     </c:if>
@@ -726,7 +726,7 @@
                                 <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
                                     <c:if test="${i <= totalPages && !deepPaging}">
                                         <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>" title="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>">
-                                            <div class="pagination-number-redesign ${i == targetPageNumber ? "active" : "inactive hide-mobile"}">
+                                            <div class="pagination-number-redesign ${i == targetPageNumber ? "p-active" : "inactive hide-mobile"}">
                                                 <c:out value="${i}"/>
                                             </div></a>
                                     </c:if>

@@ -71,7 +71,7 @@
                     <div class="topnav">
                         <a href="#home" class="active">&nbsp;&nbsp;&nbsp;</a>
                         <!-- Navigation links (hidden by default) -->
-                        <div id="myLinks">
+                        <div id="menuLinks">
                             <a href="index" title="<spring:message code="main.menu.home.title" />" ><spring:message code="main.menu.home" /></a>
                             <a href="collection" title="<spring:message code="main.menu.collections.title" />"><spring:message code="main.menu.collections" /></a>
                             <a href="info/nominate" title="<spring:message code="main.menu.nominate.title" />"><spring:message code="main.menu.nominate" /></a>
@@ -106,7 +106,10 @@
 
                         </div>
                         <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
-                        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+
+                        <!-- <i class="fa fa-window-close" aria-hidden="true"></i> -->
+
+                        <a href="javascript:void(0);" class="icon" onclick="menuFunction()">
                             <i class="fa fa-bars fa-lg"></i>
                         </a>
                     </div>

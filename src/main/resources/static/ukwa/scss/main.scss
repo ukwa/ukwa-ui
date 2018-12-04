@@ -2025,7 +2025,7 @@ footer {
   display: inline-block;
   padding-top: 11px;
   cursor: pointer;
-  &.active {
+  &.p-active {
     font-family: "Open Sans Bold",sans-serif;
   }
   &.dots {
@@ -2185,7 +2185,7 @@ footer {
 
 /* Add a grey background color on mouse-over */
 .topnav a:hover {
-  background-color: #333;
+  background-color: #888;
   color: white;
 }
 
