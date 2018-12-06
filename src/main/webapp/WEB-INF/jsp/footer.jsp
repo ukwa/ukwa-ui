@@ -140,16 +140,30 @@
 
 <!--[if (gt IE 9)|!(IE)]><!-->
 <script>
-    function menuFunction() {
-        var x = document.getElementById("menuLinks");
-        if (x.style.display === "block") {
-            x.style.display = "none";
-        } else {
-            x.style.display = "block";
-        }
-    }
+
 
     $(document).ready(function(e) {
+
+        $(".header-mobile-menu-link").click(function(){
+
+            if($("#menuLinks").is(":visible")){ //hide then
+                $("#menuLinks").css( 'display', 'none' );
+                $(this).css('background', '#fff');
+
+                $(".mobile-menu-icon-settings").css( 'color', '#2e6dd9' );
+                $(".mobile-menu-icon-settings").css( 'background-color', '#fff' );
+            }
+            else{
+                $(this).css('background', '#333');
+
+                $(this).find('.menuLinks').stop(true, true).slideDown(800);
+                $("#menuLinks").css( 'display', 'block' );
+
+                $(".mobile-menu-icon-settings").css( 'color', '#fff' );
+                $(".mobile-menu-icon-settings").css( 'background-color', '#333' );
+            }
+
+        });
 
         $(".menu-item-has-children").mouseleave(function(){
             $(".dropdown").removeClass("open");

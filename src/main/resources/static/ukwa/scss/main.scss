@@ -2149,6 +2149,12 @@ footer {
 
 
 
+.header-mobile-menu-link{
+  height: 100%;
+  width: 100%;
+  flex-basis: 4.2rem;
+  text-align: right;
+}
 
 
 
@@ -2164,43 +2170,53 @@ footer {
   display: none;
 }
 
+/* Hide the links inside the navigation menu (except for logo/home) */
+.menuLinks {
+  display: none;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
 /* Style navigation menu links */
 .topnav a {
   color: white;
-  padding: 14px 16px;
+  padding: 1rem 1rem;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 1.25rem;
   display: block;
 }
 
 /* Style the hamburger menu */
 .topnav a.icon {
-  background: white;
+  background: #333;
   display: block;
   position: absolute;
   right: 0;
   top: 0;
-  color: #2e6dd9;
+
+  color: #333;
+
 }
 
 /* Add a grey background color on mouse-over */
 .topnav a:hover {
-  background-color: #888;
+  background-color: #333;
   color: white;
 }
 
 /* Style the active link (or home/logo) */
 .active {
-  color: #fff;
+  color: #333;
   background-color: white;
 }
 
-.icon:hover ~ a {
-  display: block;
-  color: black;
+.mobile-menu-icon-settings{
+  color:#2e6dd9;
+  background-color: #fff;
 }
-
-
 
 
 
@@ -2756,6 +2772,7 @@ footer {
 
   .header-padding{
     padding-left: 1rem;
+    padding-bottom: 0;
   }
 
   .header-main-logo-menu-desktop{
