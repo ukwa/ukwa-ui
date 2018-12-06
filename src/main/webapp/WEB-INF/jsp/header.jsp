@@ -69,7 +69,6 @@
                     </a></div>
                 </div>
 
-
                 <!-- Language menu group-->
                 <div class="container-header-main-logo-menu-lang-inner-group header-main-logo-menu-desktop">
 
@@ -104,19 +103,11 @@
                 <!-- Mobile menu empty -->
                 <div class="header-main-logo-menu-mobile header-menu-item2x">
 
-
                 </div>
-
                 <!-- Mobile menu icon -->
                 <div class="header-main-logo-menu-mobile padding-right-20 padding-top-30 header-mobile-menu-link">
-
-                    <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
-                    <!-- <i class="fa fa-window-close" aria-hidden="true"></i> -->
-
-                    <a href="#home" class="active"><i class="fa fa-bars fa-border fa-2x mobile-menu-icon-settings"></i></a>
-
+                    <a target="" class="active"><i class="fa fa-bars fa-border fa-2x mobile-menu-icon-settings"></i></a>
                 </div>
-
 
             </div>
 
