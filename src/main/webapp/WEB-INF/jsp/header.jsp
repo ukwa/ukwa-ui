@@ -113,7 +113,7 @@
                     <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
                     <!-- <i class="fa fa-window-close" aria-hidden="true"></i> -->
 
-                    <a href="#home" class="active"><i class="fa fa-bars fa-2x mobile-menu-icon-settings"></i></a>
+                    <a href="#home" class="active"><i class="fa fa-bars fa-border fa-2x mobile-menu-icon-settings"></i></a>
 
                 </div>
 
