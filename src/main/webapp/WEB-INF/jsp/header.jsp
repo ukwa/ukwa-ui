@@ -102,11 +102,11 @@
 
                 <!-- Mobile menu empty -->
                 <div class="header-main-logo-menu-mobile header-menu-item2x">
-
                 </div>
+
                 <!-- Mobile menu icon -->
                 <div class="header-main-logo-menu-mobile padding-right-20 padding-top-30 header-mobile-menu-link">
-                    <a target="" class="active"><i class="fa fa-bars fa-border fa-2x mobile-menu-icon-settings"></i></a>
+                    <a href="#mobilemenu2" data-toggle="collapse" class="q-grid no-decoration"><i class="fa fa-bars fa-border fa-2x mobile-menu-icon-settings icon-to-change"></i></a>
                 </div>
 
             </div>
@@ -117,14 +117,12 @@
     </div>
 
     <div class="row">
-
         <div class="col-12">
-
             <!-- Top Navigation Menu -->
-            <div class="topnav">
+                <div class="topnav">
 
                 <!-- Navigation links (hidden by default) -->
-                <div id="menuLinks">
+                <div id="mobilemenu2" class="collapse padding-bottom-20 padding-top-20">
                     <a href="index" title="<spring:message code="main.menu.home.title" />"><spring:message
                             code="main.menu.home"/></a>
                     <a href="collection" title="<spring:message code="main.menu.collections.title" />"><spring:message
@@ -167,9 +165,10 @@
                 </div>
 
             </div>
-
         </div>
-
-
     </div>
+
+
+
+
 </div>

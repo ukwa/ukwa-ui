@@ -144,24 +144,39 @@
 
     $(document).ready(function(e) {
 
-        $(".header-mobile-menu-link").click(function(){
 
-            if($("#menuLinks").is(":visible")){ //hide then
-                $("#menuLinks").css( 'display', 'none' );
-                $(this).css('background', '#fff');
-
-                $(".mobile-menu-icon-settings").css( 'color', '#2e6dd9' );
-                $(".mobile-menu-icon-settings").css( 'background-color', '#fff' );
+        $('.header-mobile-menu-link').click(function(){
+            var ele = $('.icon-to-change');
+            if(ele.hasClass('fa-bars')){
+                ele.removeClass('fa-bars')
+                    .addClass('fa-window-close')
             }
             else{
-                $(this).css('background', '#333');
-
-                $(this).find('.menuLinks').stop(true, true).slideDown(800);
-                $("#menuLinks").css( 'display', 'block' );
-
-                $(".mobile-menu-icon-settings").css( 'color', '#fff' );
-                $(".mobile-menu-icon-settings").css( 'background-color', '#333' );
+                ele.addClass('fa-bars')
+                    .removeClass('fa-window-close')
             }
+        })
+
+
+        $('#mobilemenu2').on('show.bs.collapse', function () {
+            $(this).css('background', '#333');
+
+            $(".mobile-menu-icon-settings").css( 'color', '#fff' );
+            $(".mobile-menu-icon-settings").css( 'background-color', '#333' );
+
+            $(".header-mobile-menu-link").css( 'background-color', '#333' );
+        });
+
+        $('#mobilemenu2').on('hide.bs.collapse', function () {
+            $(this).css('background', '#fff');
+
+            $(".mobile-menu-icon-settings").css( 'color', '#2e6dd9' );
+            $(".mobile-menu-icon-settings").css( 'background-color', '#fff' );
+
+            $(".header-mobile-menu-link").css( 'background-color', '#fff' );
+        });
+
+        $(".header-mobile-menu-link").click(function(){
 
         });
 

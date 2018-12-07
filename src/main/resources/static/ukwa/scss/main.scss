@@ -2157,7 +2157,6 @@ footer {
 }
 
 
-
 /* Style the navigation menu */
 .topnav {
   overflow: hidden;
@@ -2165,20 +2164,6 @@ footer {
   position: relative;
 }
 
-/* Hide the links inside the navigation menu (except for logo/home) */
-.topnav #menuLinks {
-  display: none;
-}
-
-/* Hide the links inside the navigation menu (except for logo/home) */
-.menuLinks {
-  display: none;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -ms-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
-}
 
 /* Style navigation menu links */
 .topnav a {
