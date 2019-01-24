@@ -1,7 +1,7 @@
 <div class="row margin-0 padding-30">
     <div class="col-12">
         <div class="main-logo">
-            <a href="index"><img class="logo-svg" src="img/ukwa-2018-onwhite-close.svg"></a>
+            <a href="index"><img class="logo-svg" src="img/ukwa-2018-onwhite-close.svg" alt="UK Web Archive"></a>
         </div>
     <div class="container-footer-menu-group">
         <div class="footer-menu-item footer-menu-home-item">

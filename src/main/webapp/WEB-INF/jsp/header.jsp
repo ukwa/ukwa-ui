@@ -27,7 +27,7 @@
         <div class="col-12">
             <div class="container-header-main-logo-menu-group">
                 <div class="header-main-logo">
-                    <a href="index"><img class="logo-svg" src="img/ukwa-2018-onwhite-close.svg"></a>
+                    <a href="index"><img class="logo-svg" src="img/ukwa-2018-onwhite-close.svg" alt="UK Web Archive"></a>
                 </div>
                 <div class="container-header-main-logo-menu-inner-group header-main-logo-menu-desktop">
                     <div id="headermenu_index" class="header-menu-item"><a href="index"
