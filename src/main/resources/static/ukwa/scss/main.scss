@@ -1565,10 +1565,6 @@ footer {
     align-self: flex-end;
     text-align: left;
   }  
-  .header-main-logo img{
-    width: 100%;
-    height: auto;
-  }
   .header-main-logo a{
     text-decoration: none;
   }
@@ -2690,17 +2686,6 @@ footer {
   height: auto;
 }
 
-.img-responsive-576 {
-}
-.img-responsive-1024 {
-}
-.img-responsive-1440 {
-}
-.img-responsive-1900 {
-}
-.img-responsive-2500 {
-}
-
 
 .footer-menu-home-item{ order:1; }
 .footer-menu-notice-item{ order:2;}
@@ -2740,7 +2725,6 @@ footer {
 }
 
 
-
 /* bootsrap xs < 576, reduced functionality 
   iPhone 5/SE resolution 320 x 568 (portrait & landscape)
   Galaxy S5 resolution 360 x 640 (portrait only)
@@ -2750,9 +2734,10 @@ footer {
                           General for all
     -----------------------------------------------------------------*/
 
-  .main-logo {
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
+  /* SVG LOGO settings*/
+  .logo-svg{
+    width: auto;
+    height: 3.5rem;
   }
 
   .header-padding{
@@ -2789,11 +2774,9 @@ footer {
   }
   .main-logo {
     height: 2.5rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
   }
-  .img-responsive-1024, .img-responsive-1440, .img-responsive-1900, .img-responsive-2500 {
-    display: none;
-  }
-
   .dialog-link {
     /* 18px */
     font-size:0.55rem;
@@ -3119,6 +3102,11 @@ footer {
     padding-bottom: 1rem;
     margin-bottom: 1rem;
   }
+  /* SVG LOGO settings*/
+  .logo-svg{
+    width: auto;
+    height: 4.5rem;
+  }
   /* header tuning */
   .header-main-logo-menu-mobile{
     display: none;
@@ -3133,11 +3121,7 @@ footer {
     font-size:0.5rem; 
   }
 
-  .img-responsive-1024, .img-responsive-1440, .img-responsive-1900,  .img-responsive-2500 {
-    display: none;
-  }
   /* header tuning */
-
 
   .modal-content {
     height: 80vh;
@@ -3147,7 +3131,6 @@ footer {
   /* 18px */
   .header-menu-item, .header-menu-item2x {
     font-size: .4rem;
-    
     margin: 0 1rem;
   }
 
@@ -3501,6 +3484,13 @@ footer {
     margin-bottom: 1rem;
   }
 
+  /* SVG LOGO settings*/
+  .logo-svg{
+    width: auto;
+    height: 4.5rem;
+  }
+
+
   /* START ------------------ header tuning */
   .header-main-logo-menu-mobile{
     display: none;
@@ -3522,9 +3512,6 @@ footer {
     margin: 0 1rem;
   }
 
-  .img-responsive-1024, .img-responsive-1440, .img-responsive-1900,  .img-responsive-2500 {
-    display: none;
-  }
   /* END ------------------ header tuning */
 
   .modal-content {
@@ -3883,13 +3870,17 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   .header-main-logo-menu-mobile{
     display: none;
   }
+
+  /* SVG LOGO settings*/
+  .logo-svg{
+    width: auto;
+    height: 5.5rem;
+  }
+
+
   .header-menu-lang-item{
     font-size:.83rem; 
     margin: 0 1rem;
-  }
-
-  .img-responsive-576, .img-responsive-1440, .img-responsive-1900,  .img-responsive-2500 {
-    display: none;
   }
 
   /* 18px */
@@ -4237,11 +4228,13 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   .header-main-logo-menu-mobile{
     display: none;
   }
+  /* SVG LOGO settings*/
+  .logo-svg{
+    width: auto;
+    height: 7rem;
+  }
   .container-header-main-logo-menu-group{
     height: 8rem;
-  }
-  .img-responsive-576, .img-responsive-1024, .img-responsive-1900,  .img-responsive-2500 {
-    display: none;
   }
   /* 18px */
   .header-menu-item, .header-menu-item2x {
@@ -4602,6 +4595,11 @@ From Top10 list
   .header-main-logo-menu-mobile{
     display: none;
   }
+  /* SVG LOGO settings*/
+  .logo-svg{
+    width: auto;
+    height: 8rem;
+  }
   .container-header-main-logo-menu-group{
     height: 10rem;
     margin-bottom: 1rem;
@@ -4613,11 +4611,6 @@ From Top10 list
   }
   .header-menu-lang-item{
     font-size:1rem;
-  }
-
-
-  .img-responsive-576, .img-responsive-1024, .img-responsive-1440,  .img-responsive-2500 {
-    display: none;
   }
 
   .dialog-link {
@@ -4973,6 +4966,11 @@ Retina like displays
     -----------------------------------------------------------------*/
   .header-main-logo-menu-mobile{
     display: none;
+  }
+  /* SVG LOGO settings*/
+  .logo-svg{
+    width: auto;
+    height: 10rem;
   }
   .container-header-main-logo-menu-group{
     height: 14rem;

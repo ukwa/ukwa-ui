@@ -24,28 +24,11 @@
     <!-- Menu -->
     <div id="header-menu" class="row header-padding">
 
-
         <div class="col-12">
             <div class="container-header-main-logo-menu-group">
-                <div class="header-main-logo img-responsive-576">
-                    <a href="index"><img src="img/ukwa-2018-onwhite-close-125px.png"></a>
+                <div class="header-main-logo">
+                    <a href="index"><img class="logo-svg" src="img/ukwa-2018-onwhite-close.svg"></a>
                 </div>
-                <div class="header-main-logo img-responsive-1024">
-                    <a href="index"><img src="img/ukwa-2018-onwhite-close-150px.png"></a>
-                </div>
-
-                <div class="header-main-logo img-responsive-1440">
-                    <a href="index"><img src="img/ukwa-2018-onwhite-close-200px.png"></a>
-                </div>
-
-                <div class="header-main-logo img-responsive-1900">
-                    <a href="index"><img src="img/ukwa-2018-onwhite-close-250px.png"></a>
-                </div>
-
-                <div class="header-main-logo img-responsive-2500">
-                    <a href="index"><img src="img/ukwa-2018-onwhite-close-350px.png"></a>
-                </div>
-
                 <div class="container-header-main-logo-menu-inner-group header-main-logo-menu-desktop">
                     <div id="headermenu_index" class="header-menu-item"><a href="index"
                                                                            title="<spring:message code="main.menu.home.title" />">
