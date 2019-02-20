@@ -30,12 +30,12 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static com.marsspiders.ukwa.controllers.CollectionController.ROWS_PER_PAGE_DEFAULT;
+import static com.marsspiders.ukwa.controllers.CollectionController.ROWS_PER_PAGE_MAX;
 import static com.marsspiders.ukwa.controllers.HomeController.PROJECT_NAME;
 import static com.marsspiders.ukwa.solr.AccessToEnum.VIEWABLE_ANYWHERE;
 import static com.marsspiders.ukwa.solr.SearchByEnum.FULL_TEXT;
 import static com.marsspiders.ukwa.util.UrlUtil.getRootPathWithLang;
 import static java.util.Arrays.asList;
-import static java.util.Arrays.sort;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.StringUtils.abbreviate;
@@ -139,7 +139,7 @@ public class SearchController {
             }
         }
 
-        int rowsPerPage = isNumeric(viewCount) ? Integer.valueOf(viewCount) : ROWS_PER_PAGE_DEFAULT;
+        int rowsPerPage = isNumeric(viewCount) ? (Integer.valueOf(viewCount) > ROWS_PER_PAGE_MAX ? ROWS_PER_PAGE_MAX : Integer.valueOf(viewCount)) : ROWS_PER_PAGE_DEFAULT;
         int targetPageNumber = isNumeric(pageNum) ? Integer.valueOf(pageNum) : 1;
         int startFromRow = (targetPageNumber - 1) * rowsPerPage;
         long totalSearchResultsSize = 0;
@@ -219,14 +219,18 @@ public class SearchController {
         mav.addObject("originalAccessView", originalAccessView);
         mav.addObject("originalSortValue", originalSortValue);
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
-        mav.addObject("targetPageNumber", targetPageNumber);
+        long totalPageNumber = totalSearchResultsSize > 0 ?
+                (totalSearchResultsSize <= solrSearchResultsLimit?
+                (int) (Math.ceil(totalSearchResultsSize / (double) rowsPerPage)) : (int) (Math.ceil(solrSearchResultsLimit / (double) rowsPerPage)))
+                : 0;
+        mav.addObject("targetPageNumber", totalPageNumber < targetPageNumber ? totalPageNumber : targetPageNumber);
+        mav.addObject("totalPages", totalPageNumber);
         mav.addObject("rowsPerPageLimit", rowsPerPage);
         mav.addObject("userIpFromBl", userIpFromBl);
-        mav.addObject("totalPages", (int) (Math.ceil(totalSearchResultsSize / (double) rowsPerPage)));
 
-        if (startFromRow < solrSearchResultsLimit) {
+        if (startFromRow < solrSearchResultsLimit)
             mav.addObject("searchResults", searchResultDTOs);
-        } else {
+        else {
             mav.addObject("deepPaging", true);
             mav.addObject("searchResults", new ArrayList<>());
         }

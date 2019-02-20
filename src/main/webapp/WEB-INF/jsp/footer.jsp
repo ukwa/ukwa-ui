@@ -1,58 +1,70 @@
 <div class="row margin-0 padding-30">
-    <div class="col-lg-auto col-md-auto col-sm-auto padding-0">
-        <a href="index"><img src="img/ukwa-2018-onwhite-close-125px.png" class="header-logo img-responsive-576"></a>
-        <a href="index"><img src="img/ukwa-2018-onwhite-close-150px.png" class="header-logo img-responsive-1024"></a>
-        <a href="index"><img src="img/ukwa-2018-onwhite-close-200px.png" class="header-logo img-responsive-1440"></a>
-        <a href="index"><img src="img/ukwa-2018-onwhite-close-250px.png" class="header-logo img-responsive-1900"></a>
-        <a href="index"><img src="img/ukwa-2018-onwhite-close-350px.png" class="header-logo img-responsive-2500"></a>
-    </div>
-</div>
-<div class="row margin-0 padding-30">
     <div class="col-12">
+        <div class="main-logo">
+            <a href="index"><img class="logo-svg" src="img/ukwa-2018-onwhite-close.svg" alt="UK Web Archive"></a>
+        </div>
     <div class="container-footer-menu-group">
+        <div class="footer-menu-item footer-menu-home-item">
+            <a href="index" title="<spring:message code="footer.home.title" />" class="dialog-link">
+                <spring:message code="footer.home" />
+            </a>
+        </div>
+        <div class="footer-menu-item footer-menu-terms-item">
+            <a href="index" title="<spring:message code="footer.terms.title" />" class="dialog-link">
+                <spring:message code="footer.terms" />
+            </a>
+        </div>
+        <div class="footer-menu-item footer-menu-blog-item">
+            <a href="http://britishlibrary.typepad.co.uk/webarchive/" target="_blank" title="<spring:message code="footer.blog.title" />" class="dialog-link">
+                <spring:message code="footer.blog" />
+            </a>
+        </div>
+        <div class="footer-menu-item footer-menu-collections-item">
+            <a href="collection" title="<spring:message code="footer.collections.title" />" class="dialog-link">
+                <spring:message code="footer.collections" />
+            </a>
+        </div>
+        <div class="footer-menu-item footer-menu-notice-item">
+            <a href="info/notice_takedown" class="dialog-link" title="<spring:message code="footer.notice.title" />">
+                <spring:message code="footer.notice" />
+            </a>
+        </div>
+        <div class="footer-menu-item footer-menu-faq-item">
+            <a href="info/faq" title="<spring:message code="footer.faq" />" class="dialog-link">
+                <spring:message code="footer.faq" />
+            </a>
+        </div>
+        <div class="footer-menu-item footer-menu-nominate-item">
+            <a href="info/nominate" title="<spring:message code="footer.nominate.title" />" class="dialog-link">
+                <spring:message code="footer.nominate" />
+            </a>
+        </div>
+        <div class="footer-menu-item footer-menu-privacy-item">
+            <a href="http://www.bl.uk/aboutus/terms/privacy/index.html" class="dialog-link" title="<spring:message code="footer.privacy.title" />" target="_blank">
+                <spring:message code="footer.privacy" />
+            </a>
+        </div>
+        <div class="footer-menu-item footer-menu-cookies-item">
+            <a href="info/cookies" class="dialog-link" title="<spring:message code="footer.cookies.title" />">
+                <spring:message code="footer.cookies" />
+            </a>
+        </div>
+        <div class="footer-menu-item footer-menu-about-item">
+            <a href="info/about" title="<spring:message code="footer.about.title" />" class="dialog-link">
+                <spring:message code="footer.about" />
+            </a>
+        </div>
+        <div class="footer-menu-item footer-menu-rss-item">
+            <a href="https://www.webarchive.org.uk/rss/recent.xml" title="<spring:message code="footer.rss.title" />" class="dialog-link">
+                <spring:message code="footer.rss" />
+            </a>
+        </div>
+        <div class="footer-menu-item footer-menu-contact-item">
+            <a href="contact" title="<spring:message code="footer.contact.title" />" class="dialog-link">
+                <spring:message code="footer.contact" />
+            </a>
+        </div>
 
-        <a href="index" title="<spring:message code="footer.home.title" />" class="collection-link footer-menu-item footer-menu-home-item">
-            <div class="light-blue dialog-link"><spring:message code="footer.home" /></div>
-        </a>
-
-        <a href="info/terms_conditions" class="collection-link footer-menu-item footer-menu-terms-item" title="<spring:message code="footer.terms.title" />">
-            <div class="light-blue   dialog-link"><spring:message code="footer.terms" /></div>
-        </a>
-
-        <a href="http://britishlibrary.typepad.co.uk/webarchive/" target="_blank" title="<spring:message code="footer.blog.title" />" class="collection-link footer-menu-item footer-menu-blog-item">
-            <div class="light-blue   dialog-link"><spring:message code="footer.blog" /></div>
-        </a>
-
-        <a href="collection" title="<spring:message code="footer.collections.title" />" class="collection-link footer-menu-item footer-menu-collections-item">
-            <div class="light-blue   dialog-link"><spring:message code="footer.collections" /></div>
-        </a>
-        <a href="info/notice_takedown" class="collection-link footer-menu-item footer-menu-notice-item" title="<spring:message code="footer.notice.title" />">
-            <div class="light-blue   dialog-link"><spring:message code="footer.notice" /></div>
-        </a>
-        <a href="info/faq" title="<spring:message code="footer.faq" />" class="collection-link footer-menu-item footer-menu-faq-item">
-            <div class="light-blue  dialog-link"><spring:message code="footer.faq" /></div>
-        </a>
-
-        <a href="info/nominate" title="<spring:message code="footer.nominate.title" />" class="collection-link footer-menu-item footer-menu-nominate-item">
-            <div class="light-blue   dialog-link"><spring:message code="footer.nominate" /></div>
-        </a>
-
-
-        <a href="http://www.bl.uk/aboutus/terms/privacy/index.html" class="collection-link footer-menu-item footer-menu-privacy-item" title="<spring:message code="footer.privacy.title" />" target="_blank">
-            <div class="light-blue   dialog-link"><spring:message code="footer.privacy" /></div>
-        </a>
-        <a href="info/cookies" class="collection-link footer-menu-item footer-menu-cookies-item" title="<spring:message code="footer.cookies.title" />">
-            <div class="light-blue dialog-link"><spring:message code="footer.cookies" /></div>
-        </a>
-
-        <a href="info/about" title="<spring:message code="footer.about.title" />" class="collection-link footer-menu-item footer-menu-about-item">
-            <div class="light-blue   dialog-link"><spring:message code="footer.about" /></div>
-        </a>
-
-
-        <a href="https://www.webarchive.org.uk/rss/recent.xml" title="<spring:message code="footer.rss.title" />" class="collection-link footer-menu-item footer-menu-rss-item">
-            <div class="light-blue dialog-link"><spring:message code="footer.rss" /></div>
-        </a>
         <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
         <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
         <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy'
@@ -60,16 +72,19 @@
                                         : fn:replace(fn:replace(textUri, '/en/', '/'), '/cy/', '/')}"/>
         <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
           && (fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
-      <a href="/en<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.english.title" />" class="collection-link footer-menu-item footer-menu-en-lang-item">
-      <div class="light-blue dialog-link"><spring:message code="footer.english" /></div></a>
+            <div class="footer-menu-item footer-menu-en-lang-item">
+                <a href="/en<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.english.title" />" class="dialog-link">
+                    <spring:message code="footer.english" /></a>
+            </div>
         </c:if>
-        <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}"> <a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.welsh.title" />" class="collection-link footer-menu-item footer-menu-cy-lang-item">
-      <div class="light-blue dialog-link"><spring:message code="footer.welsh" /></div></a>
+        <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}">
+            <div class="footer-menu-item footer-menu-cy-lang-item">
+                <a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.welsh.title" />" class="dialog-link">
+                    <spring:message code="footer.welsh" /></a>
+            </div>
         </c:if>
     
-        <a href="contact" title="<spring:message code="footer.contact.title" />" class="collection-link footer-menu-item footer-menu-contact-item">
-            <div class="light-blue dialog-link"><spring:message code="footer.contact" /></div>
-        </a>
+
 
     </div>
 </div>
@@ -102,14 +117,54 @@
     </div>
     </div>
 </div>
-<hr style="width: 100%; color: darkblue; height: 7px; background-color:royalblue; margin-bottom:1px !important;margin-top:1px !important;" />
+<hr class="bottomline" />
 
 <!--[if (gt IE 9)|!(IE)]><!-->
 <script>
-    if(jQuery){
-        console.log('yes');
-    }
+
+
     $(document).ready(function(e) {
+
+
+        $('.header-mobile-menu-link').click(function(){
+            var ele = $('.icon-to-change');
+            if(ele.hasClass('fa-bars')){
+                ele.removeClass('fa-bars')
+                    .addClass('fa-window-close')
+            }
+            else{
+                ele.addClass('fa-bars')
+                    .removeClass('fa-window-close')
+            }
+        })
+
+
+        $('#mobilemenu2').on('show.bs.collapse', function () {
+            $(this).css('background', '#333');
+
+            $(".mobile-menu-icon-settings").css( 'color', '#fff' );
+            $(".mobile-menu-icon-settings").css( 'background-color', '#333' );
+
+            $(".header-mobile-menu-link").css( 'background-color', '#333' );
+        });
+
+        $('#mobilemenu2').on('hide.bs.collapse', function () {
+            $(this).css('background', '#fff');
+
+            $(".mobile-menu-icon-settings").css( 'color', '#2e6dd9' );
+            $(".mobile-menu-icon-settings").css( 'background-color', '#fff' );
+
+            $(".header-mobile-menu-link").css( 'background-color', '#fff' );
+        });
+
+        $(".header-mobile-menu-link").click(function(){
+
+        });
+
+        $(".menu-item-has-children").mouseleave(function(){
+            $(".dropdown").removeClass("open");
+        });
+
         $("#showMoreDomainLink").click(function() {
             if($("#domains_filter_div").is(":visible")){ //hide then
                 $("#domains_filter_div").hide(300);

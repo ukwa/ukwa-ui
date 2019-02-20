@@ -1,6 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="img/icons/favicon.png" type="image/png"/>
+<link rel='shortcut icon' href='img/icons/ukwa-2018-onwhite-close-96x96.ico' type='image/x-icon' />
 
 <!--[if (gt IE 9)|!(IE)]><!-->
 <link rel="stylesheet" href="includes/bootstrap/css/bootstrap.min.css">
@@ -35,3 +36,5 @@
 <script src="includes/jquery-lightbox/dist/simpleLightbox.min.js"></script>
 <script src="includes/common.js"></script>
 
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

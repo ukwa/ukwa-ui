@@ -44,6 +44,7 @@ public class CollectionController {
     private static final Logger log = LoggerFactory.getLogger(CollectionController.class);
 
     static final int ROWS_PER_PAGE_DEFAULT = 50;
+    static final int ROWS_PER_PAGE_MAX = 200;
     private static final String COLLECTION_ALT_MESSAGE_DEFAULT = "coll.alt.default";
     private static final String COLLECTION_ALT_MESSAGE_ID = "coll.alt.";
 
@@ -94,23 +95,18 @@ public class CollectionController {
                                                HttpServletRequest request) throws MalformedURLException, URISyntaxException {
         log.debug("collectionOverviewPage");
         boolean userIpFromBl = waybackIpResolver.isUserIpFromBl(request);
-        int totalSearchResultsSize = 0;
-        int targetPageNumber = isNumeric(pageNum) ? Integer.valueOf(pageNum) : 1;
+        int targetPageNumber = isNumeric(pageNum) ? Integer.valueOf(pageNum)  : 1;
         int startFromRow = (targetPageNumber - 1) * ROWS_PER_PAGE_DEFAULT;
-
         SolrSearchResult<CollectionInfo> targetWebsitesSearchResult = searchService
                 .fetchChildCollections(singletonList(collectionId), TYPE_TARGET, ROWS_PER_PAGE_DEFAULT, startFromRow);
         List<CollectionInfo> targetWebsitesDocuments = targetWebsitesSearchResult.getResponseBody().getDocuments();
-        totalSearchResultsSize = targetWebsitesSearchResult.getResponseBody().getNumFound();
-
+        int totalSearchResultsSize = targetWebsitesSearchResult.getResponseBody().getNumFound();
         String rootPathWithLang = getRootPathWithLang(request, setProtocolToHttps);
         Locale locale = getLocale(request);
-
         List<TargetWebsiteDTO> targetWebsites = generateTargetWebsitesDTOs(targetWebsitesDocuments, rootPathWithLang, userIpFromBl);
         List<CollectionDTO> subCollections = generateSubCollectionDTOs(collectionId, locale);
         CollectionDTO currentCollection = generatePlainCollectionDTO(collectionId, locale, targetWebsitesSearchResult);
         Map<String, String> breadcrumbPath = buildCollectionBreadcrumbPath(currentCollection);
-
 
         ModelAndView mav = new ModelAndView("coll");
         mav.addObject("userIpFromBl", userIpFromBl);
@@ -119,10 +115,13 @@ public class CollectionController {
         mav.addObject("subCollections", subCollections);
         mav.addObject("currentCollection", currentCollection);
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
-        mav.addObject("targetPageNumber", targetPageNumber);
         mav.addObject("rowsPerPageLimit", ROWS_PER_PAGE_DEFAULT);
         mav.addObject("totalSearchResultsSize", totalSearchResultsSize);
-        mav.addObject("totalPages", (int) (Math.ceil(totalSearchResultsSize / (double) ROWS_PER_PAGE_DEFAULT)));
+        int totalPages =  (int) (Math.ceil(totalSearchResultsSize / (double) ROWS_PER_PAGE_DEFAULT));
+        mav.addObject("totalPages", totalPages);
+        if (targetPageNumber > totalPages)
+            targetPageNumber = totalPages;
+        mav.addObject("targetPageNumber", targetPageNumber);
 
         return mav;
     }

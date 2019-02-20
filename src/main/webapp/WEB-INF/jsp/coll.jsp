@@ -45,7 +45,7 @@ ${pageContext.response.locale}
 
   <div class="col-sm-12" id="coll_header">
   
-        <div class="row results-header-redesign margin-0 border-bottom-gray padding-left-20">
+        <div class="row results-header margin-0 border-bottom-gray padding-left-20">
         <div class="col-sm-12 padding-left-0">
           <span class="bold"><spring:message code="coll.breadcrumb.text1" /></span>
           <a href="collection" title="<spring:message code="coll.breadcrumb.text2" />"><spring:message code="coll.breadcrumb.text2" /></a>
@@ -63,7 +63,7 @@ ${pageContext.response.locale}
           </c:forEach>
           </div>
       </div>
-  
+
     <div class="row margin-0 padding-side-5">
       <div class="col-md-12 col-sm-12 padding-top-20 padding-bottom-20 light-blue">
         <p class="black margin-top-20 margin-bottom-0 hidden" id="coll_description" data-descript="<c:out value="${currentCollection.description}"/>"></p>
@@ -107,7 +107,7 @@ ${pageContext.response.locale}
     </c:if>
 
 <c:if test="${currentCollection.websitesNum != 0}"> <%--START if no results does not show results rows and pagination at all--%>
-      <div class="row border-bottom-gray margin-0 padding-20 border-top-gray">
+      <div class="row border-bottom-gray margin-0 padding-20">
         <div class="col-sm-12 padding-0">
             <c:choose>
               <c:when test="${currentCollection.websitesNum == 1}">
@@ -121,110 +121,137 @@ ${pageContext.response.locale}
         </div>
       </div>
 
+    <c:choose>
+        <c:when test="${fn:length(targetWebsites) > 0}">
+            <%-- TOP PAGINATION ROW --%>
+            <div class="row padding-0 margin-0">
+                <div class="col-md-12 pagination-cont border-bottom-gray">
+                        <%--preserve all current parameters in URL and change only page parameter--%>
+                    <c:url var="nextUrl" value="">
+                        <c:forEach items="${param}" var="entry">
+                            <c:if test="${entry.key != 'page'}">
+                                <c:param name="${entry.key}" value="${entry.value}" />
+                            </c:if>
+                        </c:forEach>
+                        <%--set page value as a placeholder as it is going to be changed for each link--%>
+                        <c:param name="page" value="PAGE_NUM_PLACEHOLDER" />
+                    </c:url>
+                    <c:if test="${targetPageNumber > 1}"> <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>"><div class="pagination-number-redesign arrow left-arrow" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"></div><spring:message code="search.results.previous" /></a></c:if>
+                    <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
+                        <c:if test="${i <= totalPages}">
+                            <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>" title="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>"> <div class="pagination-number-redesign ${i == targetPageNumber ? "active" : "inactive hide-mobile"}">
+                                <c:out value="${i}"/>
+                            </div></a>
+                        </c:if>
+                    </c:forEach>
 
-    <div class="row padding-0 margin-0">
-        <div class="col-md-12 pagination-cont border-bottom-gray">
-          <%--preserve all current parameters in URL and change only page parameter--%>
-          <c:url var="nextUrl" value="">
-            <c:forEach items="${param}" var="entry">
-              <c:if test="${entry.key != 'page'}">
-                <c:param name="${entry.key}" value="${entry.value}" />
-              </c:if>
-            </c:forEach>
-            <%--set page value as a placeholder as it is going to be changed for each link--%>
-            <c:param name="page" value="PAGE_NUM_PLACEHOLDER" />
-          </c:url>
-          <c:if test="${targetPageNumber > 1}"> <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>"><div class="pagination-number-redesign arrow left-arrow" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"></div>Previous</a></c:if>
-          <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
-            <c:if test="${i <= totalPages}">
-        <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>" title="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>"> <div class="pagination-number-redesign ${i == targetPageNumber ? "active" : "inactive hide-mobile"}">
-                <c:out value="${i}"/>
-              </div></a>
-            </c:if>
-          </c:forEach>
-
-          <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit}"> <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />">Next<div class="pagination-number-redesign arrow right-arrow"></div></a> </c:if>
-        </div>
-    </div>
-
-
-    <c:forEach items="${targetWebsites}" var="targetWebsite">
-      <!--RESULT ROW-->
-      <div class="row margin-0 padding-0 border-bottom-gray">
-        <div class="col-md-12 col-sm-12 results-result">
-          <h2 class="margin-0">
-            <c:out value="${targetWebsite.name}"/>
-          </h2><br/>
-          <c:choose>
-            <c:when test="${targetWebsite.access == 'RRO' && userIpFromBl}">
+                    <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit}"> <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><spring:message code="search.results.next" /><div class="pagination-number-redesign arrow right-arrow"></div></a> </c:if>
+                </div>
+            </div>
+            <%-- /TOP PAGINATION ROW --%>
+            <%-- RESULT ROW --%>
+            <c:forEach items="${targetWebsites}" var="targetWebsite">
+                <!--RESULT ROW-->
+                <div class="row margin-0 padding-0 border-bottom-gray">
+                    <div class="col-md-12 col-sm-12 results-result">
+                        <h2 class="margin-0">
+                            <c:out value="${targetWebsite.name}"/>
+                        </h2><br/>
+                        <c:choose>
+                            <c:when test="${targetWebsite.access == 'RRO' && userIpFromBl}">
               <span class="results-title-text results-lib-premises text-smaller black">
                 <spring:message code="search.results.library.premises" />
               </span>
-            </c:when>
-            <c:when test="${targetWebsite.access == 'RRO' && !userIpFromBl}">
+                            </c:when>
+                            <c:when test="${targetWebsite.access == 'RRO' && !userIpFromBl}">
               <span class="results-title-text results-lib-premises text-smaller">
                 <spring:message code="search.results.library.premises" />
               </span>
-            </c:when>
-          </c:choose>
+                            </c:when>
+                        </c:choose>
 
-          <c:out value="${targetWebsite.description}"/>
-          <c:if test="${not empty targetWebsite.startDate}">
-            <span class="results-title-text margin-top-10 clearfix"> <spring:message code="coll.archived.date"/>
+                        <c:out value="${targetWebsite.description}"/>
+                        <c:if test="${not empty targetWebsite.startDate}">
+                        <span class="results-title-text margin-top-10 clearfix"> <spring:message code="coll.archived.date"/>
             <c:out value="${targetWebsite.startDate}"/>
           </c:if>
           </span>
-          <span class="results-title-text clearfix padding-vert-10">
+                        <span class="results-title-text clearfix padding-vert-10">
               <a href="<c:out value="${targetWebsite.archiveUrl}"/>" class="break-all"><c:out value="${targetWebsite.url}"/></a>
             </span>
-        </div>
-      </div>
-      <!--/RESULT ROW-->
-    </c:forEach>
-
-    <!--NO RESULTS-->
-    <c:if test="${currentCollection.websitesNum == 0 && empty subCollections}">
-    <div class="row margin-0 padding-0 border-bottom-gray">
-        <div class="col-md-12 col-sm-12 results-result">
-          <h2 class="margin-0 padding-top-20 gray">
-            <spring:message code="coll.noresults" />
-          </h2>
-        </div>
-      </div>
-    </c:if>
-    <!--/NO RESULTS-->
-
-    <div class="row padding-0 margin-0">
-        <div class="col-md-12 pagination-cont border-bottom-gray">
-                <%--preserve all current parameters in URL and change only page parameter--%>
-            <c:url var="nextUrl" value="">
-                <c:forEach items="${param}" var="entry">
-                    <c:if test="${entry.key != 'page'}">
-                        <c:param name="${entry.key}" value="${entry.value}" />
-                    </c:if>
-                </c:forEach>
-                <%--set page value as a placeholder as it is going to be changed for each link--%>
-                <c:param name="page" value="PAGE_NUM_PLACEHOLDER" />
-            </c:url>
-            <c:if test="${targetPageNumber > 1}"> <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>"><div class="pagination-number-redesign arrow left-arrow" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"></div>Previous</a></c:if>
-            <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
-                <c:if test="${i <= totalPages}">
-                    <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>" title="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>"> <div class="pagination-number-redesign ${i == targetPageNumber ? "active" : "inactive hide-mobile"}">
-                        <c:out value="${i}"/>
-                    </div></a>
-                </c:if>
+                    </div>
+                </div>
+                <!--/RESULT ROW-->
+                <%-- /RESULT ROW --%>
             </c:forEach>
+            <%--BOTTOM PAGINATION ROW --%>
+            <div class="row padding-0 margin-0">
+                <div class="col-md-12 pagination-cont ">
+                        <%--preserve all current parameters in URL and change only page parameter--%>
+                    <c:url var="nextUrl" value="">
+                        <c:forEach items="${param}" var="entry">
+                            <c:if test="${entry.key != 'page'}">
+                                <c:param name="${entry.key}" value="${entry.value}" />
+                            </c:if>
+                        </c:forEach>
+                        <%--set page value as a placeholder as it is going to be changed for each link--%>
+                        <c:param name="page" value="PAGE_NUM_PLACEHOLDER" />
+                    </c:url>
+                    <c:if test="${targetPageNumber > 1}"><a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>"><div class="pagination-number-redesign arrow left-arrow" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"></div><spring:message code="search.results.previous" /></a></c:if>
+                    <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
+                        <c:if test="${i <= totalPages}">
+                            <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>" title="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>"><div class="pagination-number-redesign ${i == targetPageNumber ? "active" : "inactive hide-mobile"}">
+                                <c:out value="${i}"/>
+                            </div></a>
+                        </c:if>
+                    </c:forEach>
 
-            <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit}"> <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />">Next<div class="pagination-number-redesign arrow right-arrow"></div></a> </c:if>
-        </div>
-    </div>
+                    <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit}"> <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><spring:message code="search.results.next" /><div class="pagination-number-redesign arrow right-arrow"></div></a> </c:if>
+                </div>
+            </div>
+            <%--/BOTTOM PAGINATION ROW --%>
+        </c:when>
+        <c:otherwise>
+            <c:choose>
+                <%-- NO RESULTS --%>
+                <c:when test="${currentCollection.websitesNum == 0 && empty subCollections}">
+                    <div class="row margin-0 padding-0 border-bottom-gray">
+                        <div class="col-md-12 col-sm-12 results-result">
+                            <h2 class="margin-0 padding-top-20 gray">
+                                <spring:message code="coll.noresults" />
+                            </h2>
+                        </div>
+                    </div>
+                </c:when>
+                <%-- /NO RESULTS --%>
+                <c:otherwise>
+                    <%-- CASE OF MANUAL PAGINATION ATTEMPT  --%>
+                    <div class="row margin-0 padding-0 border-bottom-gray">
+                        <div class="col-md-12 col-sm-12 results-result">
+                            <h2 class="margin-0 padding-top-20 gray">
+                                <spring:message code="coll.nopagingresults" />
+                            </h2>
+                        </div>
+                    </div>
+                    <%-- /CASE OF MANUAL PAGINATION ATTEMPT  --%>
+                    <%--BOTTOM PAGINATION ROW --%>
+                    <div class="row padding-0 margin-0">
+                        <div class="col-md-12 pagination-cont">
+                                <%--preserve all current parameters in URL and change only page parameter--%>
+                                    <c:if test="${targetPageNumber > totalSearchResultsSize/rowsPerPageLimit}">
+                                        <a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${(totalPages)}"/>" title="<spring:message code="pagination.next" />"  aria-label="<spring:message code="pagination.next" />"><div class="pagination-number-redesign arrow left-arrow"></div>
+                                            Return to nearest result list</a>
+                                    </c:if>
+                        </div>
+                    </div>
+                    <%--/BOTTOM PAGINATION ROW --%>
+                </c:otherwise>
+            </c:choose>
+        </c:otherwise>
+    </c:choose>
 
-
-   </c:if> <%--END if no results does not show results rows and pagination at all--%>
-
-  
+</c:if> <%--END if no results does not show results rows and pagination at all--%>
   </div>
-
 </div>
     </div>
 

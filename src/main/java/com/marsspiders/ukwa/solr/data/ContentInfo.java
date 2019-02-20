@@ -34,8 +34,6 @@ public class ContentInfo implements BodyDocsType {
     private String content_type_served;
     @JsonProperty("content_length")
     private String content_length;
-    @JsonProperty("hash")
-    private List<String> hash;
     @JsonProperty("crawl_date")
     private String crawl_date;
     @JsonProperty("crawl_year")

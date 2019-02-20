@@ -412,7 +412,7 @@
 
                                             <c:if test="${(domains.get(i + 1) != 0 && (i < 5)) || (originalDomains.contains(domains.get(i))?true:false)}">
                                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12 " >
-                                                    <div class="form-check-cont padding-0" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
+                                                    <div class="form-check-cont" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
                                                         <input type="checkbox" class="blue sidebar-filter-input-checkbox" name="domain_filter" id="domain_filter_<c:out value="${i}"/>"
                                                                value="${domains.get(i)}"
                                                             ${originalDomains.contains(domains.get(i) )? 'checked' : ''}/>
@@ -593,145 +593,155 @@
                             <span class="search-results-main-heading ">&nbsp;<spring:message code="search.results.num"/>&nbsp;</span><span class="search-results-main-heading">&quot;<c:out value="${originalSearchRequest}" escapeXml="false"/>&quot;</span></div>
                     </div>
 
-                    <c:choose>
-                        <c:when test="${deepPaging}">
-                            <div class="row margin-top-30">
-                                <div class="col-sm-12 padding-top-5">
-                                    <span class="bold gray"><spring:message code="search.deep.paging" /></span>
-                                </div>
-                            </div>
-                        </c:when>
-                    </c:choose>
+
 
                 </div>
-                <div class="row margin-0 left">
-                    <div class="col-md-12 padding-20 padding-mobile-side-0">
-                    
-                        <div class="container-sort-group">
-
-                            <div class="search-results-top-filters-2">
-                                <label for="sorting" class="padding-right-20" title="<spring:message code="search.results.sortby" />"><spring:message code="search.results.sortby" /></label>
-                                <select class="search-results-display-sort" name="sorting" id="sorting" tabindex="0">
-                                    <option value="relevant" ${originalSortValue == 'relevant' ? 'selected' : ''}><spring:message code="search.results.sort.relevant" /></option>
-                                    <option value="otn" ${originalSortValue == 'otn' ? 'selected' : ''} ><spring:message code="search.results.sort.oldest" /></option>
-                                    <option value="nto" ${originalSortValue == 'nto' ? 'selected' : ''}><spring:message code="search.results.sort.newest" /></option>
-                                </select>
+                <c:choose>
+                    <c:when test="${deepPaging}">
+                        <div class="row margin-top-30 padding-20">
+                            <div class="col-12">
+                                <span class="bold gray"><spring:message code="search.deep.paging" /></span>
                             </div>
-
-                            <div class="search-results-top-filters-2 right">
-                                <label for="count" class="padding-right-20" title="<spring:message code="search.results.items" />"><spring:message code="search.results.items" /></label>
-                                <select class="search-results-display-count" name="count" id="count" tabindex="0">
-                                    <option value="50" ${rowsPerPageLimit == 50 ? 'selected' : ''}>50</option>
-                                    <option value="100" ${rowsPerPageLimit == 100 ? 'selected' : ''}>100</option>
-                                    <option value="200" ${rowsPerPageLimit == 200 ? 'selected' : ''}>200</option>
-                                </select>
-                            </div> 
-
                         </div>
-                        
-                    </div>
-                </div>
-                <div class="row padding-0 margin-0">
-                    <div class="col-md-12 pagination-cont">
-                        <%--preserve all current parameters in URL and change only page parameter--%>
-                        <c:url var="nextUrl" value="">
-                            <c:forEach items="${param}" var="entry">
-                                <c:if test="${entry.key != 'page'}">
-                                    <c:param name="${entry.key}" value="${entry.value}" />
-                                </c:if>
-                            </c:forEach>
-                            <%--set page value as a placeholder as it is going to be changed for each link--%>
-                            <c:param name="page" value="PAGE_NUM_PLACEHOLDER" />
-                        </c:url>
-                        <c:if test="${targetPageNumber > 1}"> <a style="text-decoration: none" href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>"><div class="pagination-number-redesign arrow left-arrow" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"></div><spring:message code="search.results.previous" /></a></c:if>
-                        <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
-                            <c:if test="${i <= totalPages && !deepPaging}">
-                                <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>" title="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>">
-                                    <div class="pagination-number-redesign ${i == targetPageNumber ? "active" : "inactive hide-mobile"}">
-                                        <c:out value="${i}"/>
-                                    </div></a>
-                            </c:if>
-                        </c:forEach>
-                        <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit && !deepPaging}"> <a style="text-decoration: none" href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><spring:message code="search.results.next" /><div class="pagination-number-redesign arrow right-arrow"></div></a> </c:if>
-                    </div>
-                </div>
+                    </c:when>
 
-                <div class="results-container">
-                    <c:forEach items="${searchResults}" var="searchResult">
-                        <!--RESULT ROW-->
-                        <div class="row margin-0 padding-0 border-bottom-gray">
-                            <div class="col-md-12 results-result">
-                                <h2 class="margin-0">
-                                    <c:out value="${searchResult.title}"/>
-                                </h2><br/>
-                                <c:choose>
-                                    <c:when test="${searchResult.access == 'RRO' && userIpFromBl}">
+                    <c:otherwise>
+                        <div class="row margin-0 left">
+                            <div class="col-md-12 padding-20 padding-mobile-side-0">
+
+                                <div class="container-sort-group">
+
+                                    <div class="search-results-top-filters-2">
+                                        <label for="sorting" class="padding-right-20" title="<spring:message code="search.results.sortby" />"><spring:message code="search.results.sortby" /></label>
+                                        <select class="search-results-display-sort" name="sorting" id="sorting" tabindex="0">
+                                            <option value="relevant" ${originalSortValue == 'relevant' ? 'selected' : ''}><spring:message code="search.results.sort.relevant" /></option>
+                                            <option value="otn" ${originalSortValue == 'otn' ? 'selected' : ''} ><spring:message code="search.results.sort.oldest" /></option>
+                                            <option value="nto" ${originalSortValue == 'nto' ? 'selected' : ''}><spring:message code="search.results.sort.newest" /></option>
+                                        </select>
+                                    </div>
+
+                                    <div class="search-results-top-filters-2 right">
+                                        <label for="count" class="padding-right-20" title="<spring:message code="search.results.items" />"><spring:message code="search.results.items" /></label>
+                                        <select class="search-results-display-count" name="count" id="count" tabindex="0">
+                                            <option value="50" ${rowsPerPageLimit == 50 ? 'selected' : ''}>50</option>
+                                            <option value="100" ${rowsPerPageLimit == 100 ? 'selected' : ''}>100</option>
+                                            <option value="200" ${rowsPerPageLimit == 200 ? 'selected' : ''}>200</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row padding-0 margin-0">
+                            <div class="col-md-12 pagination-cont">
+                                    <%--preserve all current parameters in URL and change only page parameter--%>
+                                <c:url var="nextUrl" value="">
+                                    <c:forEach items="${param}" var="entry">
+                                        <c:if test="${entry.key != 'page'}">
+                                            <c:param name="${entry.key}" value="${entry.value}" />
+                                        </c:if>
+                                    </c:forEach>
+                                    <%--set page value as a placeholder as it is going to be changed for each link--%>
+                                    <c:param name="page" value="PAGE_NUM_PLACEHOLDER" />
+                                </c:url>
+                                <c:if test="${targetPageNumber > 1}"> <a style="text-decoration: none" href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>">
+                                    <div class="pagination-number-redesign" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"><i class="fa fa-chevron-left fa-lg" aria-hidden="true"></i></div>
+                                    <spring:message code="search.results.previous" /></a></c:if>
+                                <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
+                                    <c:if test="${i <= totalPages && !deepPaging}">
+                                        <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>" title="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>">
+                                            <div class="pagination-number-redesign ${i == targetPageNumber ? "p-active" : "inactive hide-mobile"}">
+                                                <c:out value="${i}"/>
+                                            </div></a>
+                                    </c:if>
+                                </c:forEach>
+                                        <c:if test="${(targetPageNumber < totalSearchResultsSize/rowsPerPageLimit) && !deepPaging}"><a style="text-decoration: none" href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><spring:message code="search.results.next" /><div class="pagination-number-redesign"><i class="fa fa-chevron-right fa-lg" aria-hidden="true"></i></div></a></c:if>
+                            </div>
+                        </div>
+
+                        <div class="results-container">
+                            <c:forEach items="${searchResults}" var="searchResult">
+                                <!--RESULT ROW-->
+                                <div class="row margin-0 padding-0 border-bottom-gray">
+                                    <div class="col-md-12 results-result">
+                                        <h2 class="margin-0">
+                                            <c:out value="${searchResult.title}"/>
+                                        </h2><br/>
+                                        <c:choose>
+                                            <c:when test="${searchResult.access == 'RRO' && userIpFromBl}">
               <span class="results-title-text results-lib-premises text-smaller black">
                 <spring:message code="search.results.library.premises" />
               </span>
-                                    </c:when>
-                                    <c:when test="${searchResult.access == 'RRO' && !userIpFromBl}">
+                                            </c:when>
+                                            <c:when test="${searchResult.access == 'RRO' && !userIpFromBl}">
               <span class="results-title-text results-lib-premises text-smaller">
                 <spring:message code="search.results.library.premises" />
               </span>
-                                    </c:when>
-                                </c:choose>
+                                            </c:when>
+                                        </c:choose>
 
-                                <span class="results-title-text clearfix padding-vert-10"> <a title="<c:out value="${searchResult.displayUrl}"/>" class="break-all" href="<c:out value="${searchResult.url}"/>">           <span class="results-for-highlight"><c:out value="${searchResult.displayUrl}"/></span>
+                                        <span class="results-title-text clearfix padding-vert-10"> <a title="<c:out value="${searchResult.displayUrl}"/>" class="break-all" href="<c:out value="${searchResult.url}"/>">           <span class="results-for-highlight"><c:out value="${searchResult.displayUrl}"/></span>
           </a> </span> <span class="results-title-text clearfix break-all">
            <span class="results-for-highlight"><c:out value="${searchResult.text}"/></span>
           </span>
-                                <span class="results-title-text results-title-date padding-0 padding-top-20 bold"><spring:message code="search.results.archived.date"/></span>
-                                <span class="results-title-text results-title-date padding-0 padding-top-20"><c:out value="${searchResult.date}"/></span>
+                                        <span class="results-title-text results-title-date padding-0 padding-top-20 bold"><spring:message code="search.results.archived.date"/></span>
+                                        <span class="results-title-text results-title-date padding-0 padding-top-20"><c:out value="${searchResult.date}"/></span>
 
-                                </span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!--/RESULT ROW-->
+                            </c:forEach>
+
+
+                            <!--NO RESULTS-->
+                            <c:choose>
+                                <c:when test="${totalPages == 0}">
+                                    <div class="row margin-0 padding-0 border-bottom-gray">
+                                        <div class="col-md-12 results-result">
+                                            <h2 class="margin-0 padding-top-20 gray">
+                                                <spring:message code="search.noresults" />
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </c:when>
+                            </c:choose>
+                            <!--/NO RESULTS-->
+
+                        </div>
+
+                        <div class="row padding-0 margin-0">
+                            <div class="col-md-12 pagination-cont">
+                                    <%--preserve all current parameters in URL and change only page parameter--%>
+                                <c:url var="nextUrl" value="">
+                                    <c:forEach items="${param}" var="entry">
+                                        <c:if test="${entry.key != 'page'}">
+                                            <c:param name="${entry.key}" value="${entry.value}" />
+                                        </c:if>
+                                    </c:forEach>
+                                    <%--set page value as a placeholder as it is going to be changed for each link--%>
+                                    <c:param name="page" value="PAGE_NUM_PLACEHOLDER" />
+                                </c:url>
+                                        <div class="pagination-number-redesign" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"><i class="fa fa-chevron-left fa-lg" aria-hidden="true"></i></div>
+                                        <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
+                                    <c:if test="${i <= totalPages && !deepPaging}">
+                                        <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>" title="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>">
+                                            <div class="pagination-number-redesign ${i == targetPageNumber ? "p-active" : "inactive hide-mobile"}">
+                                                <c:out value="${i}"/>
+                                            </div></a>
+                                    </c:if>
+                                </c:forEach>
+                                        <c:if test="${(targetPageNumber < totalSearchResultsSize/rowsPerPageLimit) && !deepPaging}"><a style="text-decoration: none" href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><spring:message code="search.results.next" /><div class="pagination-number-redesign"><i class="fa fa-chevron-right fa-lg" aria-hidden="true"></i></div></a></c:if>
                             </div>
                         </div>
 
-                        <!--/RESULT ROW-->
-                    </c:forEach>
+                    </c:otherwise>
+
+                </c:choose>
 
 
-                    <!--NO RESULTS-->
-                    <c:choose>
-                        <c:when test="${totalPages == 0}">
-                            <div class="row margin-0 padding-0 border-bottom-gray">
-                                <div class="col-md-12 results-result">
-                                    <h2 class="margin-0 padding-top-20 gray">
-                                        <spring:message code="search.noresults" />
-                                    </h2>
-                                </div>
-                            </div>
-                        </c:when>
-                    </c:choose>
-                    <!--/NO RESULTS-->
-
-                </div>
-
-                <div class="row padding-0 margin-0">
-                    <div class="col-md-12 pagination-cont">
-                        <%--preserve all current parameters in URL and change only page parameter--%>
-                        <c:url var="nextUrl" value="">
-                            <c:forEach items="${param}" var="entry">
-                                <c:if test="${entry.key != 'page'}">
-                                    <c:param name="${entry.key}" value="${entry.value}" />
-                                </c:if>
-                            </c:forEach>
-                            <%--set page value as a placeholder as it is going to be changed for each link--%>
-                            <c:param name="page" value="PAGE_NUM_PLACEHOLDER" />
-                        </c:url>
-                        <c:if test="${targetPageNumber > 1}"> <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>"><div class="pagination-number-redesign arrow left-arrow" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"></div><spring:message code="search.results.previous" /></a> </c:if>
-                        <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
-                            <c:if test="${i <= totalPages && !deepPaging}">
-                                <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>" title="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>">
-                                    <div class="pagination-number-redesign ${i == targetPageNumber ? "active" : "inactive hide-mobile"}">
-                                        <c:out value="${i}"/>
-                                    </div></a>
-                            </c:if>
-                        </c:forEach>
-                        <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit && !deepPaging}"> <a href="search<c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><spring:message code="search.results.next" /><div class="pagination-number-redesign arrow right-arrow"></div></a> </c:if>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -816,12 +826,28 @@
 
 
         $("#SearchFilterDialog").on('shown.bs.modal', function(e) {
+            console.log("shown.bs.modal");
             var tab = e.relatedTarget.hash;
-            $('.nav-tabs a[href="'+tab+'"]').tab('show')
+            $('.nav-tabs a[href="'+tab+'"]').tab('show');
         });
 
         $('#SearchFilterDialog').on('hidden.bs.modal', function (e) {
-            //alert("hide modal");
+            console.log("do some AJAX before loaing new tab (IF N were)");
+
+            //showPleaseWait();
+            //var value = $('#myPopupInput').val();
+            //$('#myMainPageInput').val(value);
+        });
+
+        $('#SearchFilterDialog').on('shown.bs.tab', function (e) {
+            console.log("TAB change Event - shown.bs.tab");
+
+            //e.target // activated tab
+            //e.relatedTarget // previous tab
+
+            console.log(e.target);
+            console.log(e.relatedTarget);
+
 
             //showPleaseWait();
             //var value = $('#myPopupInput').val();
