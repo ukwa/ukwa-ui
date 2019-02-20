@@ -179,14 +179,6 @@ public class ContentInfo implements BodyDocsType {
         this.content_length = content_length;
     }
 
-    public List<String> getHash() {
-        return hash;
-    }
-
-    public void setHash(List<String> hash) {
-        this.hash = hash;
-    }
-
     public String getCrawl_date() {
         return crawl_date;
     }
