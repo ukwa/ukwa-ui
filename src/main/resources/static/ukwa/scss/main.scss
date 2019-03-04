@@ -1,3 +1,6 @@
+@import url("https://use.fontawesome.com/releases/v5.7.2/css/all.css");
+
+
 @font-face {
   font-family: 'Open Sans';
   src: url("../fonts/OpenSans-Semibold.ttf");
@@ -58,7 +61,7 @@ html, body {
 }
 
 .modal-content {
-  
+
   /*
   max-height: 100vh;
   max-height: 100vw;
@@ -924,20 +927,19 @@ input {
   background-image: url("../img/icons/UKWA-hero-composite-final.png");
   background-size: cover;
 }
-
-.main-search-field {
+.homepage-search-form-input {
   font-family: "Open Sans Bold",sans-serif !important;
   width: 100%;
-  padding: 10px 10px 10px 10px;
+  padding: 0px 0px 10px 10px;
   border: none;
   color: #636c72;
   display: inline;
   float: left;
   position: relative;
   box-shadow: 1px 1px 7px #464747;
-  flex:1;
+  margin-right: 10px;
+  padding-left: 1rem !important
 }
-
 .main-search-field-redesign {
   font-family: "Open Sans Bold",sans-serif !important;
   width: 100%;
@@ -950,28 +952,12 @@ input {
   box-shadow: 1px 1px 7px #464747;
   flex:1;
 }
-
-.main-search-input.noshadow {
-  width: 100%;
-  height: 50px;
-  clear: both;
-  background-color: #ffffff;
-}
-
-.main-search-button {
-  border: none;
-  border-radius: 5px;
-  color: #0c49b0;
-  background: #0c49b0;
-  background-color: white;
-  background-position: right;
-  background-repeat: no-repeat;
-  background-image: url(../img/icons/Magnifying_glass_blue_256x256_2.png);
-  cursor: pointer;
-  display: block;
-  float: right;
-  position: relative;
+.homepage-search-button{
   box-shadow: 1px 1px 7px #464747;
+}
+.homepage-search-button-aw-icon{
+  vertical-align: middle;
+  color: #2e6ddf;
 }
 
 .main-search-button-blue {
@@ -988,11 +974,27 @@ input {
   box-shadow: 1px 1px 7px #464747;
 }
 
+.btn-main-search:active,
+.btn-main-search.active {
+  color: #2e6dd9 !important;
+}
+
+.btn-primary.raised {
+  box-shadow: 1px 1px 7px #464747;
+}
+
+.btn-primary.raised:active, .btn-primary.raised.active {
+  background: #464747;
+  box-shadow: none;
+  margin-bottom: -3px;
+  margin-top: 3px;
+}
+
 .main-search-check-label {
   display: block;
   font-size: 1rem;
   width: 100%;
-  padding-right: 1rem;  
+  padding-right: 1rem;
   &.blue {
     color: #0c49b0;
   }
@@ -1412,7 +1414,7 @@ h3 {
   font-size: 0.85em;
 }
 
-.main-logo {
+.main-logo-footer {
   max-width: 100%;
   height: auto;
   padding-bottom: 3rem;
@@ -1506,7 +1508,7 @@ footer {
 .container-footer-menu-group{
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;  
+  flex-wrap: wrap;
 }
 
 .footer-menu-item {
@@ -1564,7 +1566,7 @@ footer {
     flex: 0 0 auto;
     align-self: flex-end;
     text-align: left;
-  }  
+  }
   .header-main-logo a{
     text-decoration: none;
   }
@@ -2141,10 +2143,6 @@ footer {
 }
 
 
-
-
-
-
 .header-mobile-menu-link{
   height: 100%;
   width: 100%;
@@ -2164,9 +2162,9 @@ footer {
 /* Style navigation menu links */
 .topnav a {
   color: white;
-  padding: 1rem 1rem;
+  padding: 0.6rem 1rem;
   text-decoration: none;
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   display: block;
 }
 
@@ -2198,8 +2196,6 @@ footer {
   color:#2e6dd9;
   background-color: #fff;
 }
-
-
 
 
 .pagination-button {
@@ -2665,7 +2661,7 @@ footer {
 }
 .pleasewait-modal-body-config{
     max-height: calc(100vh - 143px);
-    overflow-y: auto;    
+    overflow-y: auto;
 }
 .search-results-display-sort{
   flex: 1;
@@ -2684,6 +2680,27 @@ footer {
   position: fixed;
   width: 100%;
   height: auto;
+}
+
+
+.form-rounded-homepage-search {
+  border-radius: 1rem !important;
+}
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
 }
 
 
@@ -2708,27 +2725,47 @@ footer {
 .footer-menu-contact-item{order:14;}
 
 .topline{
-  width: 100%; 
-  color: darkblue; 
-  height: 2px; 
-  background-color:royalblue; 
+  width: 100%;
+  color: darkblue;
+  height: 2px;
+  background-color:royalblue;
   margin-bottom:1px !important;
   margin-top:1px !important;
 }
 .bottomline{
-  width: 100%; 
-  color: darkblue; 
-  height: 7px; 
-  background-color:royalblue; 
+  width: 100%;
+  color: darkblue;
+  height: 7px;
+  background-color:royalblue;
   margin-bottom:1px !important;
   margin-top:1px !important;
 }
 
+.btn-outline-secondary:active {
+  background-color: #e0e0e0 !important;
+}
+.btn-outline-secondary:hover{
+  background: #e0e0e0 !important;
+}
 
-/* bootsrap xs < 576, reduced functionality 
+.homepage-search-button-clear{
+  display: none;
+  color: #636c72;
+  background: transparent;
+  margin-left: -2.15rem;
+  z-index: 3;
+  border: 0;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+
+
+
+/* bootsrap xs < 576, reduced functionality
   iPhone 5/SE resolution 320 x 568 (portrait & landscape)
   Galaxy S5 resolution 360 x 640 (portrait only)
-*/ 
+*/
 @media only screen and (max-width: 576px){
   /*--------------------------------------------------------------
                           General for all
@@ -2739,24 +2776,20 @@ footer {
     width: auto;
     height: 3.5rem;
   }
-
   .header-padding{
     padding-left: 1rem;
     padding-bottom: 0;
   }
-
   .header-main-logo-menu-desktop{
     display: none;
   }
-
   .container-header-main-logo-menu-lang-inner-group{
       width: 1rem;
   }
   .header-menu-lang-item{
-    font-size:0.5rem; 
+    font-size:0.5rem;
     margin: 0 .1rem;
   }
-
   .container-header-main-logo-menu-inner-group{
     flex-direction: column;
     margin-left: 1rem;
@@ -2772,7 +2805,7 @@ footer {
     padding: 1px;
     align-self: flex-start;
   }
-  .main-logo {
+  .main-logo-footer {
     height: 2.5rem;
     padding-bottom: 2rem;
     margin-bottom: 2rem;
@@ -2781,13 +2814,14 @@ footer {
     /* 18px */
     font-size:0.55rem;
     padding-top: 0.5rem;
+
   }
 
   .footer-menu-home-item{ order:1; }
   .footer-menu-notice-item{ order:2;}
-  .footer-menu-collections-item{order:3;} 
+  .footer-menu-collections-item{order:3;}
   .footer-menu-terms-item{order:4;}
-  .footer-menu-nominate-item{order:5;}  
+  .footer-menu-nominate-item{order:5;}
   .footer-menu-privacy-item{order:6;}
   .footer-menu-about-item{order:7;}
   .footer-menu-cookies-item{order:8;}
@@ -2797,7 +2831,7 @@ footer {
   .footer-menu-en-lang-item{order:12;}
   .footer-menu-rss-item{order:13;}
   .footer-menu-faq-item{order:14;}
- 
+
   /* 12px */
   .footer-legal-deposit{
     font-size:0.22rem;
@@ -2823,7 +2857,7 @@ footer {
   .collection-link{
 
   }
-  
+
   /*
   contact
   save uk website (nominate)
@@ -2843,7 +2877,7 @@ footer {
     padding-top:1rem;
     padding-bottom:3rem;
     padding-left:2rem;
-  }  
+  }
   /*
       Font style "main-heading-2-bold-redesign" used in JSPs:
       - contact
@@ -2874,7 +2908,7 @@ footer {
   .footer-logo-BW {
     flex-basis: 45%;
     align-self: center;
-  }  
+  }
   .footer-menu-item {
     flex-basis: 45%;
   }
@@ -2889,29 +2923,53 @@ footer {
       ---------------------------------------------------------------*/
   .homepage_search_bg_settings{
     padding-top:1rem;
-    padding-bottom:6rem;
+    padding-bottom:6.8rem;
   }
-  
+
   /* 18px */
-  .main-search-field{
-    height: 2rem;
+  .homepage-search-form-input{
     font-size:1rem;
     float:left !important;
-    padding: 0.1rem !important;
-    margin-right: 0.5rem;
+    border-top-left-radius: 1rem !important;
+    border-bottom-left-radius: 1rem !important;
+    margin-right: 0 !important;
+    height: 2.5rem;
+    width: 100%;
+    padding: 0.5rem !important;
+
   }
-  .main-search-button{
+  .homepage-search-button{
     /* should be auto by flex container
     width: 1rem !important;
     */
     /* 18px */
-    font-size:0.5rem;
-    height: 2rem !important; 
-    width: 2.3rem;
-    /* magnify glass size*/
-    background-size: 2rem;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    width: 3.5rem;
+    height: 2.5rem;
+    font-size: 1.15rem;
+    color: white;
+    text-shadow: 1px 1px 7px #272634;
   }
-    .img-square-caption {
+  .homepage-search-button-clear{
+    color: #636c72;
+    background: transparent;
+    margin-left: -2.15rem;
+    z-index: 3;
+    border: 0;
+    box-shadow: none;
+    text-shadow: none;
+  }
+  .homepage-search-button-aw-icon{
+    font-size:1.2rem;
+  }
+  .btn-outline-secondary:active {
+    background-color: transparent !important;
+  }
+  .btn-outline-secondary:hover{
+    background: #0c49b0 !important;
+  }
+  .img-square-caption {
     /* 18px */
     font-size:0.6rem;
     width: 30vw !important;
@@ -2929,7 +2987,7 @@ footer {
     padding-top:3rem;
     padding-left: 2rem;
     padding-bottom:2rem;
-  }  
+  }
   /* 18px */
   .main-search-field-redesign{
     height: 1rem;
@@ -2940,7 +2998,7 @@ footer {
   }
   /* 18px */
   .main-search-button-blue{
-    height: 1.3rem !important; 
+    height: 1.3rem !important;
     width: 1.6rem;
     /* magnify glass size*/
     background-size: 1.2rem;
@@ -2949,7 +3007,7 @@ footer {
     /* 18px */
     font-size:0.7rem;
   }
- 
+
 
   /* 16px */
   .collection-heading{
@@ -3093,12 +3151,12 @@ footer {
    375
 */
 
-/* for screen resolutions higher than (xs < 576) */ 
+/* for screen resolutions higher than (xs < 576) */
 @media only screen and (min-width: 576px) and (max-width: 1024px){
   /*--------------------------------------------------------------
                           General for all
     -----------------------------------------------------------------*/
-  .main-logo {
+  .main-logo-footer {
     padding-bottom: 1rem;
     margin-bottom: 1rem;
   }
@@ -3118,7 +3176,7 @@ footer {
       width: 1rem;
   }
   .header-menu-lang-item{
-    font-size:0.5rem; 
+    font-size:0.5rem;
   }
 
   /* header tuning */
@@ -3133,8 +3191,6 @@ footer {
     font-size: .4rem;
     margin: 0 1rem;
   }
-
-
   .dialog-link {
     /* 18px */
     font-size:0.54rem;
@@ -3202,7 +3258,7 @@ footer {
   .footer-logo-BW {
     flex-basis: 32%;
     align-self: center;
-  }  
+  }
   .footer-logo-BW img{
     width: 50%;
   }
@@ -3211,9 +3267,9 @@ footer {
   }
   .footer-menu-home-item{ order:1; }
   .footer-menu-notice-item{ order:2;}
-  .footer-menu-collections-item{order:3;} 
+  .footer-menu-collections-item{order:3;}
   .footer-menu-terms-item{order:4;}
-  .footer-menu-nominate-item{order:5;}  
+  .footer-menu-nominate-item{order:5;}
   .footer-menu-privacy-item{order:6;}
   .footer-menu-about-item{order:7;}
   .footer-menu-cookies-item{order:8;}
@@ -3224,7 +3280,7 @@ footer {
   .footer-menu-rss-item{order:13;}
   .footer-menu-faq-item{order:14;}
 
-  
+
   .main-search-input-new{
     height: 8rem;
   }
@@ -3244,19 +3300,21 @@ footer {
     padding-top:1rem;
     padding-bottom:3.5rem;
   }
-  .main-search-field{
+  .homepage-search-form-input{
     height: 2rem;
     font-size:0.7rem;
     float:left !important;
-    padding: 0.5rem !important;
+    padding: 0.35rem !important;
     margin-right: 0.5rem;
   }
-  .main-search-button{
+  .homepage-search-button{
     /* width could auto by flex container */
-    width: 6rem !important;
+    width: 9rem !important;
     height: 2rem !important;
     font-size: 0.7rem;
-    background-size: 1.5rem;
+  }
+  .homepage-search-button-aw-icon{
+    font-size:1.2rem;
   }
   .main-subheading-bold-2-redesign, .main-subheading-2-redesign {
     /* 18px */
@@ -3479,7 +3537,7 @@ footer {
   /*--------------------------------------------------------------
                           General for all
     -----------------------------------------------------------------*/
-  .main-logo {
+  .main-logo-footer {
     padding-bottom: 1rem;
     margin-bottom: 1rem;
   }
@@ -3508,7 +3566,7 @@ footer {
     margin: 0 1rem;
   }
   .header-menu-lang-item{
-    font-size:0.5rem; 
+    font-size:0.5rem;
     margin: 0 1rem;
   }
 
@@ -3519,7 +3577,7 @@ footer {
     width: 80vw;
     margin-left: 5vw;
   }
-  
+
   .header-menu-item.language {
     /*14*/
     font-size:0.4rem! important;
@@ -3541,7 +3599,7 @@ footer {
   .footer-logo-BW {
     flex-basis: 32%;
     align-self: center;
-  }  
+  }
   .footer-logo-BW img{
     width: 50%;
   }
@@ -3598,7 +3656,7 @@ footer {
   .footer-logo-BW {
     flex-basis: 32%;
     align-self: center;
-  }  
+  }
   .footer-logo-BW img{
     width: 50%;
   }
@@ -3622,19 +3680,25 @@ footer {
     padding-top:1rem;
     padding-bottom:3.5rem;
   }
-  .main-search-field{
+  .homepage-search-form-input{
     height: 2rem;
     font-size:0.7rem;
     float:left !important;
-    padding: 0.5rem !important;
+    padding: .35rem !important;
     margin-right: 0.5rem;
   }
-  .main-search-button{
+  .homepage-search-button{
     /* width could auto by flex container */
     width: 9rem !important;
     height: 2rem !important;
     font-size: 0.7rem;
-    background-size: 1.5rem;
+  }
+  .homepage-search-button-aw-icon{
+    font-size:1.3rem;
+  }
+  .btn-primary:not(:disabled):not(.disabled):active{
+    background: lightgrey;
+    border-color: yellow;
   }
   .main-subheading-bold-2-redesign, .main-subheading-2-redesign {
     /* 18px */
@@ -3692,7 +3756,7 @@ footer {
   }
   /*20px*/
   .search-results-display-count{
-    font-size:0.62rem! important;    
+    font-size:0.62rem! important;
     height: 1.2rem! important;
     width: 3rem! important;
   }
@@ -3879,14 +3943,14 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
 
 
   .header-menu-lang-item{
-    font-size:.83rem; 
+    font-size:.83rem;
     margin: 0 1rem;
   }
 
   /* 18px */
   .header-menu-item, .header-menu-item2x {
     display: inline-block;
-    font-size:1.07rem;    
+    font-size:1.07rem;
   }
   .header-menu-item.language {
     /* 14px */
@@ -3906,13 +3970,11 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   .footer-logo-BW img{
     width: 70%;
   }
-
-
   .background-settings-default{
     padding-top:6rem;
     padding-bottom:8rem;
     padding-left:5rem;
-  }  
+  }
   /*
       Font style "main-heading-2-bold-redesign" used in JSPs:
       - contact
@@ -3986,28 +4048,29 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   .homepage_search_bg_settings{
     padding-top:2rem;
     padding-bottom:12rem;
-  }  
+  }
 
   /* 18px */
-  .main-search-field{
+  .homepage-search-form-input{
     height: 2.5rem;
     font-size:1.07rem;
     float:left !important;
     padding: .5rem !important;
     margin-right: 2rem;
   }
-  .main-search-button{
+  .homepage-search-button{
     /* should be auto by flex container
     width: 1rem !important;
     */
     /* 18px */
     font-size:1.07rem;
-    height: 2.5rem !important; 
+    height: 2.5rem !important;
     width: 10rem !important;
-    /* magnify glass size*/
-    background-size: 2.5rem;
   }
-    .img-square-caption {
+  .homepage-search-button-aw-icon{
+    font-size:1.8rem;
+  }
+  .img-square-caption {
     /* 18px */
     font-size:1.07rem;
     width: 20vw !important;
@@ -4259,13 +4322,11 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
   .footer-logo-BW img{
     width: 70%;
   }
-
-
   .background-settings-default{
     padding-top:6rem;
     padding-bottom:10rem;
     padding-left:5rem;
-  }  
+  }
   /*
       Font style "main-heading-2-bold-redesign" used in JSPs:
       - contact
@@ -4342,24 +4403,39 @@ Resolutions from Top10: 1280, 1366, (1400), 1440)*/
     height: 0;
   }
   /* 18px */
-  .main-search-field{
+  .homepage-search-form-input{
     height: 3rem;
     font-size:1.2rem;
-    float:left !important;
-    padding: 1rem !important;
-    margin-right: 2rem;
+    float:left;
+    padding: .6rem !important;
+    padding-right: 2rem;
   }
-  .main-search-button{
+  /* font awesome icon only */
+  .homepage-search-button-aw-icon{
+    height: 2rem;
+    font-size:2rem;
+  }
+  /* lower resolution mode */
+  .homepage-search-button{
     /* should be auto by flex container
     width: 1rem !important;
     */
     /* 18px */
-    font-size:1.2rem;
-    height: 3rem;
+    font-size:1.2rem !important;
+    height: 3rem !important;
     width: 11rem;
-    /* magnify glass size*/
-    background-size: 2.5rem;
   }
+
+
+  .homepage-search-button-clear{
+    color: #636c72;
+    background: transparent;
+    margin-right: 0.5rem;
+    margin-left: -3rem;
+    z-index: 3;
+    border: 0;
+  }
+
 
   .main-subheading-bold-2-redesign, .main-subheading-2-redesign, .img-square-caption {
     /* 18px */
@@ -4631,7 +4707,7 @@ From Top10 list
     padding-top:9rem;
     padding-bottom:12rem;
     padding-left:5rem;
-  }  
+  }
   /*
       Font style "main-heading-2-bold-redesign" used in JSPs:
       - contact
@@ -4710,14 +4786,14 @@ From Top10 list
     height: 0;
   }
   /* 18px */
-  .main-search-field{
+  .homepage-search-form-input{
     height: 4rem;
     font-size:1.49rem;
     float:left !important;
-    padding: 1rem !important;
+    padding: .75rem !important;
     margin-right: 2rem;
   }
-  .main-search-button{
+  .homepage-search-button{
     /* should be auto by flex container
     width: 1rem !important;
     */
@@ -4725,9 +4801,11 @@ From Top10 list
     font-size:1.49rem;
     height: 4rem;
     width: 15rem;
-    /* magnify glass size*/
-    background-size: 2.5rem;
   }
+  .homepage-search-button-aw-icon{
+    font-size:3.2rem;
+  }
+
   .main-subheading-bold-2-redesign, .main-subheading-2-redesign, .img-square-caption {
     /* 18px */
     font-size:1.49rem;
@@ -4976,7 +5054,7 @@ Retina like displays
     height: 14rem;
     margin-bottom: 2rem;
   }
-  .main-logo {
+  .main-logo-footer {
     padding-bottom: 5rem;
   }
   .img-responsive-576, .img-responsive-1024, .img-responsive-1440, .img-responsive-1900 {
@@ -5010,7 +5088,7 @@ Retina like displays
     padding-top:11rem;
     padding-bottom:14rem;
     padding-left:5rem;
-  }  
+  }
   /*
       Font style "main-heading-2-bold-redesign" used in JSPs:
       - contact
@@ -5084,14 +5162,14 @@ Retina like displays
     height: 0;
   }
   /* 18px */
-  .main-search-field{
+  .homepage-search-form-input{
     height: 5rem;
     font-size:2rem;
     float:left !important;
     padding: 1rem !important;
     margin-right: 2rem;
   }
-  .main-search-button{
+  .homepage-search-button{
     /* should be auto by flex container
     width: 1rem !important;
     */
@@ -5099,8 +5177,9 @@ Retina like displays
     font-size:2rem;
     height: 5rem;
     width: 20rem;
-    /* magnify glass size*/
-    background-size: 2.5rem;
+  }
+  .homepage-search-button-aw-icon{
+    font-size:3.2rem;
   }
 
   .main-subheading-bold-2-redesign, .main-subheading-2-redesign, .img-square-caption {
