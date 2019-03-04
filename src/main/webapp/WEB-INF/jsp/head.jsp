@@ -8,10 +8,13 @@
 <!--<![endif]-->
 <!--[if lt IE 10]>
 	<link rel="stylesheet" href="includes/bootstrap3/css/bootstrap.min.css">
-<!--<![endif]--> 
+<!--<![endif]-->
 <link rel="stylesheet" href="includes/jqueryui/jquery-ui.min.css">
 <link rel="stylesheet" href="includes/jquery-lightbox/dist/simpleLightbox.min.css">
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
 <!--[if lt IE 10]>
 	<script src="includes/html5shiv/html5shiv.js"></script>
 	<script src="includes/respondjs/respond.min.js"></script>
@@ -37,4 +40,4 @@
 <script src="includes/common.js"></script>
 
 <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/font-awesome.min.css">

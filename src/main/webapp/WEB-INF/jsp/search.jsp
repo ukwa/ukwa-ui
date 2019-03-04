@@ -681,7 +681,7 @@
                                             </c:when>
                                         </c:choose>
 
-                                        <span class="results-title-text clearfix padding-vert-10"> <a title="<c:out value="${searchResult.displayUrl}"/>" class="break-all" href="<c:out value="${searchResult.url}"/>">           <span class="results-for-highlight"><c:out value="${searchResult.displayUrl}"/></span>
+                                        <span class="results-title-text clearfix padding-vert-10"> <a title="<c:out value="${searchResult.displayUrl}"/>" class="break-all" href="<c:out value="${searchResult.displayUrl}"/>">           <span class="results-for-highlight"><c:out value="${searchResult.displayUrl}"/></span>
           </a> </span> <span class="results-title-text clearfix break-all">
            <span class="results-for-highlight"><c:out value="${searchResult.text}"/></span>
           </span>
