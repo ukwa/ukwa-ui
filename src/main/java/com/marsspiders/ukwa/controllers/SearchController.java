@@ -86,10 +86,6 @@ public class SearchController {
                                    @RequestParam(value = "modal_filter_documenttypes_vals", required = false) String[] checked_contenttypes_FromModal,
                                    @RequestParam(value = "modal_filter_collections_vals", required = false) String[] checked_collections_FromModal,
                                    HttpServletRequest request) throws MalformedURLException, URISyntaxException, ParseException {
-        log.debug("--------searchPage method + parameters");
-        log.debug("--------searchPage method, text = " + text);
-        log.debug("--------searchPage method, searchLocation = " + searchLocation);
-
         String remove_from_filter = request.getParameter("filter_array_x");
         String remove_from_filter_item = request.getParameter("filter_array_x_item");
 
