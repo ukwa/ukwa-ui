@@ -63,7 +63,9 @@ public class ArchiveController {
         String bestMatchPattern = (String ) request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
 
         AntPathMatcher apm = new AntPathMatcher();
-        return apm.extractPathWithinPattern(bestMatchPattern, wholePath);
+        return (request.getAttribute("javax.servlet.forward.query_string")==null
+                ? apm.extractPathWithinPattern(bestMatchPattern, wholePath)
+                : apm.extractPathWithinPattern(bestMatchPattern, wholePath)+"?"+request.getAttribute("javax.servlet.forward.query_string"));
     }
 
     private String fetchWaybackUrlByIp(HttpServletRequest request, String accessFlag) {
