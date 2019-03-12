@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.AntPathMatcher;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.HandlerMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
@@ -59,13 +57,11 @@ public class ArchiveController {
     }
 
     private static String evaluateUrlFromRequest(HttpServletRequest request) {
-        String wholePath = (String) request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
-        String bestMatchPattern = (String ) request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
-
-        AntPathMatcher apm = new AntPathMatcher();
+        String req_url = ((String)request.getAttribute("javax.servlet.forward.request_uri")).substring(((String)request.getAttribute("javax.servlet.forward.request_uri")).indexOf("http"));
         return (request.getAttribute("javax.servlet.forward.query_string")==null
-                ? apm.extractPathWithinPattern(bestMatchPattern, wholePath)
-                : apm.extractPathWithinPattern(bestMatchPattern, wholePath)+"?"+request.getAttribute("javax.servlet.forward.query_string"));
+                ? req_url
+                :
+                req_url+"?"+request.getAttribute("javax.servlet.forward.query_string"));
     }
 
     private String fetchWaybackUrlByIp(HttpServletRequest request, String accessFlag) {
