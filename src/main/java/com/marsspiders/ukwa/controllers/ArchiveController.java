@@ -58,10 +58,9 @@ public class ArchiveController {
 
     private static String evaluateUrlFromRequest(HttpServletRequest request) {
         String req_url = ((String)request.getAttribute("javax.servlet.forward.request_uri")).substring(((String)request.getAttribute("javax.servlet.forward.request_uri")).indexOf("http"));
-        return (request.getAttribute("javax.servlet.forward.query_string")==null
+        return (request.getAttribute("javax.servlet.forward.query_string") == null
                 ? req_url
-                :
-                req_url+"?"+request.getAttribute("javax.servlet.forward.query_string"));
+                : req_url+"?"+request.getAttribute("javax.servlet.forward.query_string"));
     }
 
     private String fetchWaybackUrlByIp(HttpServletRequest request, String accessFlag) {
