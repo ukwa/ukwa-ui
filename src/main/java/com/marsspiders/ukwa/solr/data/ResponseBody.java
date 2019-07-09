@@ -11,7 +11,7 @@ import java.util.List;
 public class ResponseBody<T extends BodyDocsType> {
 
     @JsonProperty("numFound")
-    private int numFound;
+    private long numFound;
 
     @JsonProperty("start")
     private int start;
@@ -19,11 +19,11 @@ public class ResponseBody<T extends BodyDocsType> {
     @JsonProperty("docs")
     private List<T> documents;
 
-    public int getNumFound() {
+    public long getNumFound() {
         return numFound;
     }
 
-    public void setNumFound(int numFound) {
+    public void setNumFound(long numFound) {
         this.numFound = numFound;
     }
 
