@@ -1,23 +1,14 @@
 package com.marsspiders.ukwa.controllers;
 
-import com.marsspiders.ukwa.controllers.data.CollectionDTO;
-import com.marsspiders.ukwa.controllers.data.TargetWebsiteDTO;
-import com.marsspiders.ukwa.ip.WaybackIpResolver;
-import com.marsspiders.ukwa.solr.SolrSearchService;
-import com.marsspiders.ukwa.solr.data.CollectionInfo;
-import com.marsspiders.ukwa.solr.data.SolrSearchResult;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.MessageSource;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import static com.marsspiders.ukwa.solr.CollectionDocumentType.TYPE_COLLECTION;
+import static com.marsspiders.ukwa.solr.CollectionDocumentType.TYPE_TARGET;
+import static com.marsspiders.ukwa.util.UrlUtil.getLocale;
+import static com.marsspiders.ukwa.util.UrlUtil.getRootPathWithLang;
+import static java.util.Collections.singletonList;
+import static org.apache.commons.lang3.StringUtils.abbreviate;
+import static org.apache.commons.lang3.StringUtils.isNumeric;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
-import javax.servlet.http.HttpServletRequest;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -29,14 +20,25 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.marsspiders.ukwa.solr.CollectionDocumentType.TYPE_COLLECTION;
-import static com.marsspiders.ukwa.solr.CollectionDocumentType.TYPE_TARGET;
-import static com.marsspiders.ukwa.util.UrlUtil.getLocale;
-import static com.marsspiders.ukwa.util.UrlUtil.getRootPathWithLang;
-import static java.util.Collections.singletonList;
-import static org.apache.commons.lang3.StringUtils.abbreviate;
-import static org.apache.commons.lang3.StringUtils.isNumeric;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.marsspiders.ukwa.controllers.data.CollectionDTO;
+import com.marsspiders.ukwa.controllers.data.TargetWebsiteDTO;
+import com.marsspiders.ukwa.ip.WaybackIpResolver;
+import com.marsspiders.ukwa.solr.SolrSearchService;
+import com.marsspiders.ukwa.solr.data.CollectionInfo;
+import com.marsspiders.ukwa.solr.data.SolrSearchResult;
 
 @Controller
 @RequestMapping(value = HomeController.PROJECT_NAME + "/collection")
@@ -100,7 +102,8 @@ public class CollectionController {
         SolrSearchResult<CollectionInfo> targetWebsitesSearchResult = searchService
                 .fetchChildCollections(singletonList(collectionId), TYPE_TARGET, ROWS_PER_PAGE_DEFAULT, startFromRow);
         List<CollectionInfo> targetWebsitesDocuments = targetWebsitesSearchResult.getResponseBody().getDocuments();
-        int totalSearchResultsSize = targetWebsitesSearchResult.getResponseBody().getNumFound();
+        long totalSearchResultsSize = targetWebsitesSearchResult
+                .getResponseBody().getNumFound();
         String rootPathWithLang = getRootPathWithLang(request, setProtocolToHttps);
         Locale locale = getLocale(request);
         List<TargetWebsiteDTO> targetWebsites = generateTargetWebsitesDTOs(targetWebsitesDocuments, rootPathWithLang, userIpFromBl);
