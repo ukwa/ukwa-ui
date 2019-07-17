@@ -10,7 +10,7 @@
             </a>
         </div>
         <div class="footer-menu-item footer-menu-terms-item">
-            <a href="index" title="<spring:message code="footer.terms.title" />" class="dialog-link">
+            <a href="info/terms_conditions" title="<spring:message code="footer.terms.title" />" class="dialog-link">
                 <spring:message code="footer.terms" />
             </a>
         </div>
