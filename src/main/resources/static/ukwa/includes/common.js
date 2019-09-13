@@ -8,31 +8,6 @@ function checkboxSize() {
 
 $(document).ready(function(e) {
 	
-	//bootstrap tooltips
-	var isVisible=false;	
-	$('[data-toggle="tooltip"]').tooltip({
-		placement: 'bottom',
-		trigger: 'manual'
-	}).click(function(e) { e.stopPropagation(); }).keydown(function(e) { e.preventDefault(); e.stopPropagation(); }) //stopps click/keypress on the "?" button from expanding/collapsing the filters;
-	$('[data-toggle="tooltip"]').each(function(index, element) {
-        $(this).mouseleave(function(e) {
-        	$('[data-toggle="tooltip"]').tooltip('hide');
-			isVisible=false;
-    	}); 
-		$(this).on('click keydown', function (e) {
-			if (e.which==1 || e.which==32 || e.which==13) {
-				if (isVisible) {
-					$('[data-toggle="tooltip"]').tooltip('hide');
-					isVisible=false;
-				} else {
-					$(this).tooltip('show');
-					isVisible=true;
-				}
-			}
-    	});		
-    });
-	
-	
 	//remove tabindex from radio/check boxes
 	$(this).find("input[type=radio], input[type=checkbox]").attr("tabindex", "-1");
 		

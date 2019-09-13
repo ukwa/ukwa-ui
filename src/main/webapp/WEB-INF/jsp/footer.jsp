@@ -124,6 +124,10 @@
 
 
     $(document).ready(function(e) {
+    	
+    	$(function () {
+    		  $('[data-toggle="tooltip"]').tooltip()
+		})
 
 
         $('.header-mobile-menu-link').click(function(){
