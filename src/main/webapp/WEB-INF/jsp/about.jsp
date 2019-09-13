@@ -70,11 +70,6 @@
     </div>
   </div>
 </section>
-  <div class="header-white about-video-container padding-0">
-    <div class="embed-responsive embed-responsive-16by9">
-      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ubDHY-ynWi0" allowfullscreen></iframe>
-    </div>
-  </div>
 
 <footer>
   <%@include file="footer.jsp" %>

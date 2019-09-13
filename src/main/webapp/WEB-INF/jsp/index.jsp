@@ -93,18 +93,13 @@
             </div>
 
             <div class="row padding-top-20">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <p class="main-subheading-2-redesign">
                         <spring:message code="home.header.text1" />
                     </p><br/>
                     <p class="main-subheading-2-redesign">
                         <spring:message code="home.header.text2" />
                     </p><br/>
-                </div>
-                <div class="col-md-4 embed-responsive">
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/1QLMPIRwJEo" allowfullscreen></iframe>
-                    </div>
                 </div>
             </div>
 
