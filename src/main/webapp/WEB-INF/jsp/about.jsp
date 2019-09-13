@@ -31,7 +31,7 @@
 <%@include file="title.jsp" %>
 
 
-    <section id="content">
+<section id="content">
   <div class="row default-padding page-content">
     <div class="col-md-6 col-sm-12 page-content-col">
       <article>

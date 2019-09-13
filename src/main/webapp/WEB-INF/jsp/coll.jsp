@@ -21,7 +21,7 @@ ${pageContext.response.locale}
 <spring:message code="pagination.goto" var="goToPage"/>
 <spring:message code="pagination.current" var="currentPage"/>
 <spring:message code='coll.title' var="sectionTitle"/>
-<c:set var="headerTitle" value="${currentCollection.name} : ${sectionTitle}"/>
+<c:set var="headerTitle" value="${currentCollection.name} | ${sectionTitle}"/>
 <html lang="${locale}">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
