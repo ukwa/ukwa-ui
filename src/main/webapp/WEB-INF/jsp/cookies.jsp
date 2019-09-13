@@ -28,11 +28,10 @@ ${pageContext.response.locale}
   <header>
   <%@include file="header.jsp" %>
 </header>
-  <div class="row">
-    <div class="col-12 white main-search-input-new left background-settings-default">
-      <div class="main-heading-2-bold-redesign white"><spring:message code="cookies.main.heading" /></div>
-    </div>
-  </div>
+
+<spring:message code='cookies.main.heading' var="title"/>
+<%@include file="title.jsp" %>
+
 <section id="content">
 
   <div class="default-padding text-content">

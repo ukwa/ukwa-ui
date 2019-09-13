@@ -29,12 +29,10 @@ ${pageContext.response.locale}
   <header>
   <%@include file="header.jsp" %>
   </header>
-        <div class="row">
-    <div class="col-12 white main-search-input-new left background-settings-default">
-      <div class="main-heading-2-bold-redesign white"><spring:message code="coll.main.heading" /></div>
-            </div>
-        </div>
 
+<spring:message code='coll.main.heading' var="title"/>
+<%@include file="title.jsp" %>
+        
     <div style="padding-left: 40px; padding-right: 40px">
         <div class="row margin-0 padding-side-20 padding-top-40">
             <div class="col-lg-6 col-md-8 offset-md-1 col-md-offset-1 col-sm-12 header-2-subtitle padding-side-10"><spring:message code="coll.subtitle" /></div>

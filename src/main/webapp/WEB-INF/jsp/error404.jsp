@@ -28,18 +28,10 @@ ${pageContext.response.locale}
   <header>
     <%@include file="header.jsp" %>
   </header>
-  <div class="row">
-    <div class="col-12 white main-search-input-new left background-settings-default">
-        <div class="col-md-12 col-sm-12 padding-side-0 margin-top-minus-20 back-button">
-            <a href="javascript:window.history.back();" title="<spring:message code="error.404.back.button" />" class="no-decoration"><img class="h3-icon" src="img/icons/left-arrow-white.png" alt="<spring:message code="error.404.back.button" />"/><span class="text-big bold"><spring:message code="error.404.back.button" /></span></a>
-        </div>
-        <div class="col-md-6 ml-auto mr-auto col-md-offset-3 padding-side-10 margin-top-20">
-            <h2 class="uppercase">
-                <spring:message code="error.404.heading" />
-            </h2>
-        </div>
-    </div>
-  </div>
+  
+<spring:message code='error.404.heading' var="title"/>
+<%@include file="title.jsp" %>
+  
   <section id="content">
 
   <div class="row margin-0 padding-side-10 padding-mobile-side-5 padding-top-80 padding-bottom-80">

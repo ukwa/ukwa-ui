@@ -20,10 +20,12 @@ ${pageContext.response.locale}
 <jsp:useBean id="breadcrumbPath" scope="request" type="java.util.Map<java.lang.String, java.lang.String>"/>
 <spring:message code="pagination.goto" var="goToPage"/>
 <spring:message code="pagination.current" var="currentPage"/>
+<spring:message code='coll.title' var="sectionTitle"/>
+<c:set var="headerTitle" value="${currentCollection.name} : ${sectionTitle}"/>
 <html lang="${locale}">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
-<title><spring:message code="coll.title" /></title>
+<title>${headerTitle}</title>
 <%@include file="head.jsp" %>
 </head>
 
@@ -33,11 +35,10 @@ ${pageContext.response.locale}
   <header>
   <%@include file="header.jsp" %>
 </header>
-    <div class="row">
-    <div class="col-12 white main-search-input-new left background-settings-default">
-      <div class="main-heading-2-bold-redesign white"><c:out value="${currentCollection.name}"/></div>
-        </div>
-    </div>
+
+<c:set var="title" value="${currentCollection.name}"/>
+<%@include file="title.jsp" %>
+
 <section id="content">
 
     <div class=" padding-right-20" style="padding-left: 40px">

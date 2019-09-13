@@ -26,12 +26,9 @@
   <header>
   <%@include file="header.jsp" %>
 </header>
-  <div class="row">
-    <div class="col-12 white main-search-input-new left background-settings-default">
-      <div class="main-heading-2-bold-redesign white"><spring:message code="main.menu.about" /></div>
-    </div>
-  </div>
 
+<spring:message code='main.menu.about' var="title"/>
+<%@include file="title.jsp" %>
 
 
     <section id="content">

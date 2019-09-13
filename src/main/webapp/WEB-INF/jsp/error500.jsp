@@ -28,19 +28,10 @@
   <header>
     <%@include file="header.jsp" %>
   </header>
-  <div class="row">
-    <div class="col-12 white main-search-input-new left background-settings-default">
-      <div class="col-md-12 col-sm-12 padding-side-0 margin-top-minus-20 back-button"><a href="javascript:window.history.back();" title="<spring:message code="error.500.back.button" />" class="no-decoration"><img class="h3-icon" src="img/icons/left-arrow-white.png" alt="<spring:message code="error.500.back.button" />"/><span class="text-content"><spring:message code="error.500.back.button" /></span></a>
-      </div>
-      <div class="col-md-6 ml-auto mr-auto col-md-offset-3 padding-side-10 margin-top-20">
-        <h2 class="uppercase">
-
-          <spring:message code="error.500.heading" />
-
-        </h2>
-      </div>
-    </div>
-  </div>
+  
+<spring:message code='error.500.heading' var="title"/>
+<%@include file="title.jsp" %>
+  
   <section id="content">
     <div class="row header-blue white">
 
