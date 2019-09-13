@@ -14,13 +14,13 @@ FROM openjdk:8-jre
 COPY --from=build-env /ukwa-ui/target/marsspiders-ukwa-*.war /ukwa-ui.war
 
 ENV ARCHIVE_WEB_LOCATION="https://www.webarchive.org.uk/wayback/archive/" \
- SOLR_COLLECTION_SEARCH_PATH="http://192.168.45.241:8983/solr/collections/select?" \
- SOLR_FULL_TEXT_SEARCH_PATH="http://devsolr-proxy:8983/solr/all/select?" \
+ SOLR_COLLECTION_SEARCH_PATH="https://beta.webarchive.org.uk/solr/collections/select" \
+ SOLR_FULL_TEXT_SEARCH_PATH="https://beta.webarchive.org.uk/ukwa/search" \
  SOLR_READ_TIMEOUT="60000" \
  SOLR_CONNECTION_TIMEOUT="60000" \
  SOLR_SHOW_STUB_DATA_SERVICE_NOT_AVAILABLE="true" \
- SOLR_USERNAME="none" \
- SOLR_PASSWORD="none" \
+ SOLR_USERNAME="" \
+ SOLR_PASSWORD="" \
  SOLR_SHOW_STUB_DATA_SERVICE_NOT_AVAILABLE="false" \
  BL_SMTP_SERVER_HOST="mailhost" \
  BL_SMTP_USERNAME="mailuser" \
