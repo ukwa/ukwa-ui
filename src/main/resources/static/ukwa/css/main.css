@@ -501,10 +501,10 @@ p.searchFilter {
 .border-none {
   border: none !important; }
 
-a:link, a:visited, a:active, a:focus {
-  color: #2e6dd9 !important; }
-a:hover {
-  color: #0c49b0 !important; }
+a, a:link, a:visited, a:active, a:focus, .navbar-light .navbar-nav .nav-link, .navbar-light .navbar-nav .nav-link:link, .navbar-light .navbar-nav .nav-link:visited, .navbar-light .navbar-nav .nav-link:active, .navbar-light .navbar-nav .nav-link:focus {
+  color: #2e6dd9; }
+a:hover, .navbar-light .navbar-nav .nav-link:hover {
+  color: #0c49b0; }
 
 .white a:link, .white a:visited, .white a:active, .white a:focus, .white a:hover {
   text-decoration: underline;

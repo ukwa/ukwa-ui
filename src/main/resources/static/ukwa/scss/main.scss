@@ -645,12 +645,12 @@ p.searchFilter {
   border: none !important;
 }
 
-a {
-  &:link, &:visited, &:active, &:focus {
-    color: #2e6dd9 !important;
+a, .navbar-light .navbar-nav .nav-link {
+  &, &:link, &:visited, &:active, &:focus {
+    color: #2e6dd9;
   }
   &:hover {
-    color: #0c49b0 !important;
+    color: #0c49b0;
   }
 }
 
