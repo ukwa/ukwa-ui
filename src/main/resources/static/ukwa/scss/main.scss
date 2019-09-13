@@ -314,10 +314,6 @@ p.searchFilter {
   display: none;
 }
 
-li {
-  margin-top: 15px;
-}
-
 .break-all {
   word-break: break-all;
 }
@@ -651,11 +647,10 @@ li {
 
 a {
   &:link, &:visited, &:active, &:focus {
-    text-decoration: underline;
-    color: #2e6dd9;
+    color: #2e6dd9 !important;
   }
   &:hover {
-    color: #0c49b0;
+    color: #0c49b0 !important;
   }
 }
 
@@ -1178,6 +1173,10 @@ h3 {
 
 .main-menu-item:hover {
   background-color: #0c49b0;
+}
+
+header li.nav-item.active a {
+  text-decoration: underline;
 }
 
 .header-bar {

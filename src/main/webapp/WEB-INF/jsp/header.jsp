@@ -21,137 +21,62 @@
 </div>
 <div class="relative shadow-redesign" style="z-index: 1001">
 
-    <!-- Menu -->
-    <div id="header-menu" class="row header-padding">
+<c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
+<c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
+<c:choose>
+ <c:when test="${textUri == '/en' || textUri == '/cy'}">
+  <c:set var="textUriWithoutLang" value="/"/>
+ </c:when>
+ <c:otherwise>
+  <c:set var="textUriWithoutLang" value="${fn:replace(fn:replace(textUri, '/en/', '/'), '/cy/', '/')}"/>
+ </c:otherwise>
+</c:choose>
 
-        <div class="col-12">
-            <div class="container-header-main-logo-menu-group">
-                <div class="header-main-logo">
-                    <a href="index"><img class="logo-svg" src="img/ukwa-2018-onwhite-close.svg" alt="UK Web Archive"></a>
-                </div>
-                <div class="container-header-main-logo-menu-inner-group header-main-logo-menu-desktop">
-                    <div id="headermenu_index" class="header-menu-item"><a href="index"
-                                                                           title="<spring:message code="main.menu.home.title" />">
-                        <spring:message code="main.menu.home"/>
-                    </a></div>
-                    <div id="headermenu_collection" class="header-menu-item2x"><a href="collection"
-                                                                                  title="<spring:message code="main.menu.collections.title" />">
-                        <spring:message code="main.menu.collections"/>
-                    </a></div>
-                    <div id="headermenu_save" class="header-menu-item2x"><a href="info/nominate"
-                                                                            title="<spring:message code="main.menu.nominate.title" />">
-                        <spring:message code="main.menu.nominate"/>
-                    </a></div>
-                    <div id="headermenu_about" class="header-menu-item"><a href="about"
-                                                                           title="<spring:message code="main.menu.about.title" />">
-                        <spring:message code="main.menu.about"/>
-                    </a></div>
-                    <div id="headermenu_contact" class="header-menu-item"><a href="contact"
-                                                                             title="<spring:message code="main.menu.contact.title" />">
-                        <spring:message code="main.menu.contact"/>
-                    </a></div>
-                </div>
-
-                <!-- Language menu group-->
-                <div class="container-header-main-logo-menu-lang-inner-group header-main-logo-menu-desktop">
-
-                    <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
-                    <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
-                    <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy'
-                                            ? '/'
-                                            : fn:replace(fn:replace(textUri, '/en/', '/'), '/cy/', '/')}"/>
-                    <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}">
-
-                        <div class="header-menu-lang-item">
-                            <a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>"
-                               title="<spring:message code="main.menu.welsh.title" />">
-                                <spring:message code="main.menu.welsh"/>
-                            </a>
-                        </div>
-
-                    </c:if>
-                    <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
-              && (fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
-
-                        <div class="header-menu-lang-item">
-                            <a href="/en<c:out value="${textUriWithoutLang}?${params}"/>"
+<header class="header">
+    <nav class="navbar navbar-expand-md navbar-light bg-white">
+        <a class="navbar-brand" href="index">
+            <img class="logo-svg" src="img/ukwa-2018-onwhite-close.svg" alt="UK Web Archive">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item ${textUriWithoutLang == '/ukwa/index' ? 'active' : ''}">
+                        <a class="nav-link" href="index"><spring:message code="main.menu.home"/></a>
+                </li>
+                <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/collection') ? 'active' : ''}">
+                        <a class="nav-link" href="collection"><spring:message code="main.menu.collections"/></a>
+                </li>
+                <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/info/nominate') ? 'active' : ''}">
+                        <a class="nav-link" href="info/nominate"><spring:message code="main.menu.nominate"/></a>
+                </li>
+                <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/about') ? 'active' : ''}">
+                        <a class="nav-link" href="about"><spring:message code="main.menu.about"/></a>
+                </li>
+                <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/contact') ? 'active' : ''}">
+                        <a class="nav-link" href="contact"><spring:message code="main.menu.contact"/></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <spring:message code="main.menu.language"/>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/en<c:out value="${textUriWithoutLang}?${params}"/>"
                                title="<spring:message code="main.menu.english.title" />">
                                 <spring:message code="main.menu.english"/>
                             </a>
-                        </div>
-
-                    </c:if>
-                </div>
-
-                <!-- Mobile menu empty -->
-                <div class="header-main-logo-menu-mobile header-menu-item2x">
-                </div>
-
-                <!-- Mobile menu icon -->
-                <div class="header-main-logo-menu-mobile padding-right-20 padding-top-30 header-mobile-menu-link">
-                    <a href="#mobilemenu2" data-toggle="collapse" class="q-grid no-decoration"><i class="fa fa-bars fa-border fa-2x mobile-menu-icon-settings icon-to-change"></i></a>
-                </div>
-
-            </div>
-
-
+                            <a class="dropdown-item" href="/cy<c:out value="${textUriWithoutLang}?${params}"/>"
+                               title="<spring:message code="main.menu.welsh.title" />">
+                                <spring:message code="main.menu.welsh"/>
+                            </a>
+                    </div>
+                </li>
+            </ul>
         </div>
-
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <!-- Top Navigation Menu -->
-                <div class="topnav">
-
-                <!-- Navigation links (hidden by default) -->
-                <div id="mobilemenu2" class="collapse padding-bottom-20 padding-top-20">
-                    <a href="index" title="<spring:message code="main.menu.home.title" />"><spring:message
-                            code="main.menu.home"/></a>
-                    <a href="collection" title="<spring:message code="main.menu.collections.title" />"><spring:message
-                            code="main.menu.collections"/></a>
-                    <a href="info/nominate" title="<spring:message code="main.menu.nominate.title" />"><spring:message
-                            code="main.menu.nominate"/></a>
-                    <a href="about" title="<spring:message code="main.menu.about.title" />"><spring:message
-                            code="main.menu.about"/></a>
-                    <a href="contact" title="<spring:message code="main.menu.contact.title" />"><spring:message
-                            code="main.menu.contact"/></a>
-
-
-                    <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
-                    <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
-                    <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy'
-                                            ? '/'
-                                            : fn:replace(fn:replace(textUri, '/en/', '/'), '/cy/', '/')}"/>
-                    <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}">
-
-
-                        <a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>"
-                           title="<spring:message code="main.menu.welsh.title" />">
-                            <spring:message code="main.menu.welsh"/>
-                        </a>
-
-
-                    </c:if>
-                    <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
-              && (fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
-
-
-                        <a href="/en<c:out value="${textUriWithoutLang}?${params}"/>"
-                           title="<spring:message code="main.menu.english.title" />">
-                            <spring:message code="main.menu.english"/>
-                        </a>
-
-
-                    </c:if>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-
-
+    </nav>
+</header>
 </div>
