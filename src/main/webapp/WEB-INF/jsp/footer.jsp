@@ -52,6 +52,11 @@
                 <spring:message code="footer.cookies" />
             </a>
         </li>
+        <li class="list-group-item">
+            <a href="info/technical" title="<spring:message code="technical.title" />">
+                <spring:message code="technical.title" />
+            </a>
+        </li>
     </ul>
     </div>
     <div class="col-md-4">
