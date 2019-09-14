@@ -112,18 +112,14 @@
                 </p>
             </div>
             <div class="row padding-top-20">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <p class="main-subheading-2-redesign">
                         <spring:message code="home.page.collections.subtitle"/>
-                        <a href="collection" title="<spring:message code="home.page.findoutmore"/>"><spring:message code="home.page.findoutmore"/></a>.
                     </p>
-                </div>
-                <div class="col-md-4">
-                    &nbsp;
                 </div>
             </div>
 
-            <div class="row padding-top-40">
+            <div class="row padding-top-20">
                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 image-grid-col padding-bottom-20 padding-top-30"> <a href="collection/329" class="collection-link">
                     <figure><img class="img-responsive border-gray coll-img" alt="British Stand-up Comedy Archive" src="img/collections/collection_329.png"/>
                         <figcaption class="img-square-caption shadow"><spring:message code="home.page.featured.text"/></figcaption>
@@ -149,23 +145,8 @@
                 </a></div>
             </div>
 
-            <div class="d-none d-lg-block">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 image-grid-col">
-                        <hr class="topics-themes-hr"/>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 image-grid-col ">
-                        <hr class="topics-themes-hr"/>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 image-grid-col">
-                        <hr class="topics-themes-hr"/>
-                    </div>
-                </div>
-            </div>
-
             <div class="padding-bottom-60 center">
-                <a href="collection" class="no-decoration" title="<spring:message code="home.button.viewmore.title"/>">
-                    <div class="button button-blue width-auto-inline view-more-button"><spring:message code="home.button.viewmore"/></div></a>
+                <a href="collection" class="btn btn-primary white btn-lg" title="<spring:message code="home.button.viewmore.title"/>"><spring:message code="home.button.viewmore"/></a>
             </div>
         </section>
 

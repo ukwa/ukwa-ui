@@ -665,13 +665,6 @@ a.no-decoration {
   text-decoration: none !important;
 }
 
-footer a {
-  &:link, &:visited, &:active, &:focus, &:hover {
-    text-decoration: underline;
-    color: #000;
-  }
-}
-
 .button {
   height: auto;
   text-align: center;

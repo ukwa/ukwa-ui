@@ -1,69 +1,75 @@
+<div class="container-fluid">
 <div class="row margin-0 padding-30">
-    <div class="col-12">
-        <div class="main-logo">
-            <a href="index"><img class="logo-svg" src="img/ukwa-2018-onwhite-close.svg" alt="UK Web Archive"></a>
-        </div>
-    <div class="container-footer-menu-group">
-        <div class="footer-menu-item footer-menu-home-item">
-            <a href="index" title="<spring:message code="footer.home.title" />" class="dialog-link">
+    <div class="col-md-4">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <a href="index" title="<spring:message code="footer.home.title" />">
                 <spring:message code="footer.home" />
             </a>
-        </div>
-        <div class="footer-menu-item footer-menu-terms-item">
-            <a href="info/terms_conditions" title="<spring:message code="footer.terms.title" />" class="dialog-link">
-                <spring:message code="footer.terms" />
-            </a>
-        </div>
-        <div class="footer-menu-item footer-menu-blog-item">
-            <a href="http://britishlibrary.typepad.co.uk/webarchive/" target="_blank" title="<spring:message code="footer.blog.title" />" class="dialog-link">
-                <spring:message code="footer.blog" />
-            </a>
-        </div>
-        <div class="footer-menu-item footer-menu-collections-item">
-            <a href="collection" title="<spring:message code="footer.collections.title" />" class="dialog-link">
+        </li>
+        <li class="list-group-item">
+            <a href="collection" title="<spring:message code="footer.collections.title" />">
                 <spring:message code="footer.collections" />
             </a>
-        </div>
-        <div class="footer-menu-item footer-menu-notice-item">
-            <a href="info/notice_takedown" class="dialog-link" title="<spring:message code="footer.notice.title" />">
-                <spring:message code="footer.notice" />
-            </a>
-        </div>
-        <div class="footer-menu-item footer-menu-faq-item">
-            <a href="info/faq" title="<spring:message code="footer.faq" />" class="dialog-link">
-                <spring:message code="footer.faq" />
-            </a>
-        </div>
-        <div class="footer-menu-item footer-menu-nominate-item">
-            <a href="info/nominate" title="<spring:message code="footer.nominate.title" />" class="dialog-link">
+        </li>
+        <li class="list-group-item">
+            <a href="info/nominate" title="<spring:message code="footer.nominate.title" />">
                 <spring:message code="footer.nominate" />
             </a>
-        </div>
-        <div class="footer-menu-item footer-menu-privacy-item">
-            <a href="http://www.bl.uk/aboutus/terms/privacy/index.html" class="dialog-link" title="<spring:message code="footer.privacy.title" />" target="_blank">
-                <spring:message code="footer.privacy" />
-            </a>
-        </div>
-        <div class="footer-menu-item footer-menu-cookies-item">
-            <a href="info/cookies" class="dialog-link" title="<spring:message code="footer.cookies.title" />">
-                <spring:message code="footer.cookies" />
-            </a>
-        </div>
-        <div class="footer-menu-item footer-menu-about-item">
-            <a href="info/about" title="<spring:message code="footer.about.title" />" class="dialog-link">
+        </li>
+        <li class="list-group-item">
+            <a href="info/about" title="<spring:message code="footer.about.title" />">
                 <spring:message code="footer.about" />
             </a>
-        </div>
-        <div class="footer-menu-item footer-menu-rss-item">
-            <a href="https://www.webarchive.org.uk/rss/recent.xml" title="<spring:message code="footer.rss.title" />" class="dialog-link">
-                <spring:message code="footer.rss" />
-            </a>
-        </div>
-        <div class="footer-menu-item footer-menu-contact-item">
-            <a href="contact" title="<spring:message code="footer.contact.title" />" class="dialog-link">
+        </li>
+        <li class="list-group-item">
+            <a href="contact" title="<spring:message code="footer.contact.title" />">
                 <spring:message code="footer.contact" />
             </a>
-        </div>
+        </li>
+    </ul>
+    </div>
+    <div class="col-md-4">
+    <ul class="list-group list-group-flush">        
+        <li class="list-group-item">
+            <a href="info/notice_takedown" title="<spring:message code="footer.notice.title" />">
+                <spring:message code="footer.notice" />
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="info/terms_conditions" title="<spring:message code="footer.terms.title" />">
+                <spring:message code="footer.terms" />
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.bl.uk/aboutus/terms/privacy/index.html" title="<spring:message code="footer.privacy.title" />" target="_blank">
+                <spring:message code="footer.privacy" />
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="info/cookies" title="<spring:message code="footer.cookies.title" />">
+                <spring:message code="footer.cookies" />
+            </a>
+        </li>
+    </ul>
+    </div>
+    <div class="col-md-4">
+    <ul class="list-group list-group-flush">    
+        <li class="list-group-item">
+            <a href="http://britishlibrary.typepad.co.uk/webarchive/" target="_blank" title="<spring:message code="footer.blog.title" />">
+                <spring:message code="footer.blog" />
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="info/faq" title="<spring:message code="footer.faq" />">
+                <spring:message code="footer.faq" />
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.webarchive.org.uk/rss/recent.xml" title="<spring:message code="footer.rss.title" />">
+                <spring:message code="footer.rss" />
+            </a>
+        </li>
 
         <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
         <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
@@ -72,21 +78,19 @@
                                         : fn:replace(fn:replace(textUri, '/en/', '/'), '/cy/', '/')}"/>
         <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
           && (fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
-            <div class="footer-menu-item footer-menu-en-lang-item">
-                <a href="/en<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.english.title" />" class="dialog-link">
+            <li class="list-group-item">
+                <a href="/en<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.english.title" />">
                     <spring:message code="footer.english" /></a>
-            </div>
+            </li>
         </c:if>
         <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}">
-            <div class="footer-menu-item footer-menu-cy-lang-item">
-                <a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.welsh.title" />" class="dialog-link">
+            <li class="list-group-item">
+                <a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.welsh.title" />">
                     <spring:message code="footer.welsh" /></a>
-            </div>
+            </li>
         </c:if>
-    
 
-
-    </div>
+    </ul>
 </div>
 
 <div class="cookies-cont">
@@ -116,6 +120,7 @@
         <div class="footer-logo-BW"><a href="https://www.tcd.ie/" target="_blank"><img src="img/trinity_logo_BW.jpg" alt="<spring:message code="footer.logo.tcd" />" /></a></div>
     </div>
     </div>
+</div>
 </div>
 <hr class="bottomline" />
 
