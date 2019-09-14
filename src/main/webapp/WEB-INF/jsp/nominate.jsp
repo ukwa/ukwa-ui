@@ -66,7 +66,7 @@ ${req.requestURL}
   <form action="info/nominate" method="post" enctype="multipart/form-data" name="nominate" id="nominate-form">
     <div class="row page-content padding-top-40">
       <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
-        <h3 class="light-blue bold"><spring:message code="nominate.form.heading" /></h3>
+        <h2 class="light-blue bold"><spring:message code="nominate.form.heading" /></h2>
         <spring:message code="nominate.form.notice" />
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">

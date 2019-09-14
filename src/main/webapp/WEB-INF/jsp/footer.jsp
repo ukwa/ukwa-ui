@@ -1,4 +1,5 @@
 <div class="container-fluid">
+<hr/>
 <div class="row margin-0 padding-30">
     <div class="col-md-4">
     <ul class="list-group list-group-flush">

@@ -43,7 +43,7 @@
                             </button>
                         </div>
                         <div class="modal-body" style="padding: 0">
-                            <div class="main-heading-2-redesign bg-gray2" id="exampleModalLongTitle" style="padding-left: 40px;padding-bottom: 40px"><spring:message code="search.tips.tipsnotes" /></div>
+                            <h2 id="exampleModalLongTitle" style="padding-left: 40px;padding-bottom: 40px"><spring:message code="search.tips.tipsnotes" /></h2>
                             <div class="padding-left-20">
                                 <div class="row padding-top-10 padding-bottom-10">
                                     <div class="col-md-2 col-sm-2 circle"><span>1</span></div>
@@ -83,14 +83,12 @@
             </div>
 
 
-    <div class="padding-top-20 padding-bottom-10 padding-side-70">
+    <div id="content" class="padding-top-20 padding-bottom-10 padding-side-70">
         <section id="home-pre-header">
 
-            <div>
-                <p class="main-heading-2-bold-redesign">
+            <h2 class="main-heading-2-bold-redesign">
                     <spring:message code="home.page.whatwedo" />
-                </p>
-            </div>
+            </h2>
 
             <div class="row padding-top-20">
                 <div class="col-md-12">
@@ -107,9 +105,9 @@
 
         <section id="collections">
             <div class="padding-top-40">
-                <p class="main-heading-2-bold-redesign">
+	            <h2 class="main-heading-2-bold-redesign">
                     <spring:message code="home.page.collections.title"/>
-                </p>
+    	        </h2>
             </div>
             <div class="row padding-top-20">
                 <div class="col-md-12">

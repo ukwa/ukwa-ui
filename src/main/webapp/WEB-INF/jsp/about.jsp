@@ -35,9 +35,9 @@
   <div class="row default-padding page-content">
     <div class="col-md-6 col-sm-12 page-content-col">
       <article>
-        <h3 class="light-blue bold">
+        <h2 class="light-blue bold">
           <spring:message code="about.page.title2" />
-        </h3>
+        </h2>
         <spring:message code="about.page.p2" />
 
       </article>
@@ -50,18 +50,18 @@
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
       <article>
-        <h3 class="light-blue bold">
+        <h2 class="light-blue bold">
           <spring:message code="about.page.title1" />
-        </h3>
+        </h2>
         <spring:message code="about.page.p1" />
 
       </article>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
       <article>
-        <h3 class="light-blue bold">
+        <h2 class="light-blue bold">
           <spring:message code="about.page.title3" />
-        </h3>
+        </h2>
           <spring:message code="about.page.p3" />
       </article>
     </div>
