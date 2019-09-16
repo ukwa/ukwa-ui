@@ -50,9 +50,9 @@ ${pageContext.response.locale}
 
 
             <!--THUMBNAIL DISPLAY-->
-            <div class="row margin-0 padding-side-5 padding-mobile-side-20 padding-top-0 collections" id="collections_thumbs">
+            <ul class="row margin-0 padding-side-5 padding-mobile-side-20 padding-top-0 collections" id="collections_thumbs" style="list-style: none;">
                 <c:forEach items="${collections}" var="collection">
-                    <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
+                    <li class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
                         <a href="collection/<c:out value="${collection.id}"/>" class="collection-link">
                             <figure><img class="img-responsive border-gray coll-img" alt="<c:out value="${collection.imageAltMessage}"/>"
                                          src="img/collections/collection_<c:out value="${collection.id}"/>.png"/>
@@ -60,15 +60,15 @@ ${pageContext.response.locale}
                             <h2 class="left light-blue padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold"><c:out value="${collection.name}"/></h2>
                             <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail"><c:out value="${collection.description}"/></div>
                         </a>
-                    </div>
+                    </li>
                 </c:forEach>
-            </div>
+            </ul>
 
             <!--LIST DISPLAY-->
 
-            <div class="row margin-0 padding-top-30 padding-mobile-side-20 collections" id="collections_list">
+            <ul class="row margin-0 padding-top-30 padding-mobile-side-20 collections" id="collections_list" style="list-style: none;">
                 <c:forEach items="${collections}" var="collection">
-                    <div class="col-sm-12 padding-bottom-20 padding-side-20 margin-bottom-20 padding-mobile-side-0">
+                    <li class="col-sm-12 padding-bottom-20 padding-side-20 margin-bottom-20 padding-mobile-side-0">
                         <div class="border-bottom-gray padding-bottom-20">
                             <a href="collection/<c:out value="${collection.id}"/>" class="collection-link"><h2 class="padding-bottom-0 collection-title"><c:out value="${collection.name}"/></h2></a><br/>
                             <span class="collection-description"><c:out value="${collection.fullDescription}"/></span>
@@ -81,9 +81,10 @@ ${pageContext.response.locale}
                                 </div>
                                 <div class="collections-view-subcollections"><a href="#" class="collections-subcollections-link"><spring:message code="coll.subcollections.show" /></a></div>
                             </c:if>
-                        </div></div>
+                        </div>
+                    </li>
                 </c:forEach>
-            </div>
+            </ul>
 
         </section>
     </div>

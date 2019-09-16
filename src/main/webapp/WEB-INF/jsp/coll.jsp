@@ -47,24 +47,26 @@ ${pageContext.response.locale}
   <div class="col-sm-12" id="coll_header">
   
         <div class="row results-header margin-0 border-bottom-gray padding-left-20">
-        <div class="col-sm-12 padding-left-0">
-          <span class="bold"><spring:message code="coll.breadcrumb.text1" /></span>
-          <a href="collection" title="<spring:message code="coll.breadcrumb.text2" />"><spring:message code="coll.breadcrumb.text2" /></a>
-          <c:forEach var="pathItem" items="${breadcrumbPath}">
-            <c:set var="pathCount" value="${pathCount + 1}"/>
-            &gt;
-            <c:choose>
-              <c:when test="${pathCount < fn:length(breadcrumbPath)}">
-                <a href="collection/<c:out value="${pathItem.key}"/>" title="<c:out value="${pathItem.value}"/>"><c:out value="${pathItem.value}"/></a>
-              </c:when>
-              <c:otherwise>
-                <c:out value="${pathItem.value}"/>
-              </c:otherwise>
-            </c:choose>
-          </c:forEach>
-          </div>
-      </div>
 
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><spring:message code="coll.breadcrumb.text1" />&nbsp;<a href="collection" title="<spring:message code="coll.breadcrumb.text2" />"><spring:message code="coll.breadcrumb.text2" /></a></li>
+    <c:forEach var="pathItem" items="${breadcrumbPath}">
+      <c:set var="pathCount" value="${pathCount + 1}"/>
+      <c:choose>
+        <c:when test="${pathCount < fn:length(breadcrumbPath)}">
+         <li class="breadcrumb-item" aria-current="page">
+          <a href="collection/<c:out value="${pathItem.key}"/>" title="<c:out value="${pathItem.value}"/>"><c:out value="${pathItem.value}"/></a>
+         </li>
+        </c:when>
+        <c:otherwise>
+          <li class="breadcrumb-item active" aria-current="page">${pathItem.value}</li>
+        </c:otherwise>
+      </c:choose>
+    </c:forEach>
+  </ol>
+</nav>
+        
     <div class="row margin-0 padding-side-5">
       <div class="col-md-12 col-sm-12 padding-top-20 padding-bottom-20 light-blue">
         <p class="black margin-top-20 margin-bottom-0 hidden" id="coll_description" data-descript="<c:out value="${currentCollection.description}"/>"></p>
