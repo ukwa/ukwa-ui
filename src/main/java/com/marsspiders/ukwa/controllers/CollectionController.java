@@ -270,7 +270,7 @@ public class CollectionController {
                 ? abbreviate(fullDescription, 60)
                 : fullDescription;
 
-        String defaultImageAltMessage = messageSource.getMessage(COLLECTION_ALT_MESSAGE_DEFAULT, null, locale);
+        String defaultImageAltMessage = "";
         String imageAltMessage = messageSource.getMessage(COLLECTION_ALT_MESSAGE_ID + id, null, defaultImageAltMessage, locale);
 
         return new CollectionDTO(id, parentId, name, shortDescription, fullDescription, imageAltMessage, 0, 0, 0);

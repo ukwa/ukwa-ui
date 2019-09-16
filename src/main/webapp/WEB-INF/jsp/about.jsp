@@ -43,10 +43,10 @@
       </article>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
-      <figure><img class="img-responsive" src="img/47007971.JPG" alt="About UKWA"/> </figure>
+      <figure><img class="img-responsive" src="img/47007971.JPG" alt=""/> </figure>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
-      <figure><img class="img-responsive" src="img/47008070.jpg" alt="About UKWA"/> </figure>
+      <figure><img class="img-responsive" src="img/47008070.jpg" alt=""/> </figure>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
       <article>
@@ -66,7 +66,7 @@
       </article>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
-      <figure><img class="img-responsive" src="img/about-logos.png" alt="About UKWA"/> </figure>
+      <figure><img class="img-responsive" src="img/about-logos.png" alt=""/> </figure>
     </div>
   </div>
 </section>
