@@ -35,7 +35,7 @@
 
     <%@include file="searchtips_modal.jsp" %>
 
-    <div id="content" class="padding-top-20 padding-bottom-10 padding-side-70">
+    <div id="content" class="padding-top-20 padding-bottom-10 px-md-5 px-sm-3 px-xs-3 px-2">
         <section id="home-pre-header">
 
             <h2 class="main-heading-2-bold-redesign">

@@ -41,12 +41,12 @@ ${pageContext.response.locale}
 
 <section id="content">
 
-    <div class=" padding-right-20" style="padding-left: 40px">
-<div class="row margin-0 padding-right-20">
+    <div class="">
+<div class="row margin-0 px-md-3 px-sm-0">
 
   <div class="col-sm-12" id="coll_header">
   
-        <div class="row results-header margin-0 border-bottom-gray padding-left-20">
+        <div class="row results-header margin-0 border-bottom-gray px-md-3 px-sm-0">
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -68,7 +68,7 @@ ${pageContext.response.locale}
 </nav>
         
     <div class="row margin-0 padding-side-5">
-      <div class="col-md-12 col-sm-12 padding-top-20 padding-bottom-20 light-blue">
+      <div class="col-md-12 col-sm-12 pl-0 pr-0 padding-top-20 padding-bottom-20 light-blue">
         <p class="black margin-top-20 margin-bottom-0 hidden" id="coll_description" data-descript="<c:out value="${currentCollection.description}"/>"></p>
         <p class="margin-bottom-0"><a href="#" class="hidden" title="<spring:message code="coll.readmore" />" id="readmore"><spring:message code="coll.readmore" /></a></p>
       </div>
@@ -154,11 +154,11 @@ ${pageContext.response.locale}
             </div>
             <%-- /TOP PAGINATION ROW --%>
             <%-- RESULT ROW --%>
-            <ul style="list-style: none;">
+            <ul style="list-style: none;" class="row margin-0 padding-0">
             <c:forEach items="${targetWebsites}" var="targetWebsite">
                 <!--RESULT ROW-->
-                <li class="row margin-0 padding-0 border-bottom-gray">
-                    <div class="col-md-12 col-sm-12 results-result">
+                <li class="row margin-0 padding-0 border-bottom-gray col-md-12 col-sm-12">
+                    <div class=" results-result">
                         <h2 class="margin-0">
                             <c:out value="${targetWebsite.name}"/>
                         </h2><br/>

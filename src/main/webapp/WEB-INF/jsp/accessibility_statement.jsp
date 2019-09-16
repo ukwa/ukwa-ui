@@ -32,7 +32,7 @@
 
 
 <section id="content">
-  <div class="row default-padding page-content">
+  <div class="row default-padding page-content margin-0 px-md-3 px-sm-0">
     <div class="col-md-6 col-sm-12 page-content-col">
       <article>
       
