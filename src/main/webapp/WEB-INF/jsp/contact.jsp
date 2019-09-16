@@ -44,7 +44,7 @@
         </p>
     </div>
 
-    <form action="contact" method="post" enctype="multipart/form-data" name="contact" id="contact-form">
+    <form action="contact" method="post" enctype="multipart/form-data" name="contact" id="contact-form" class="needs-validation" novalidate>
 
     <div class="row page-content">
       <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
@@ -59,16 +59,25 @@
         <div class="form-group">
           <label for="name"><spring:message code="contact.form.input.name" /></label>
           <input type="text" name="name" id="name" class="form-control" placeholder="<spring:message code="contact.form.input.name.placeholder" />" required/>
+          <div class="invalid-feedback">
+            <spring:message code="contact.form.input.name.placeholder" />
+          </div>          
         </div>
          <div class="form-group">
           <label for="email"><spring:message code="contact.form.input.email" /></label>
           <input type="email" name="email" id="email" class="form-control" placeholder="<spring:message code="contact.form.input.email.placeholder" />" required/>
+          <div class="invalid-feedback">
+            <spring:message code="contact.form.input.email.placeholder" />
+          </div>          
         </div>
       </div>
                   <div class="col-md-6 col-sm-12 form-content-col">
         <div class="form-group">
           <label for="comments"><spring:message code="contact.form.input.comments" /></label>
           <textarea name="comments" id="comments" class="form-control height-145" placeholder="<spring:message code="contact.form.input.comments.placeholder" />" required></textarea>
+          <div class="invalid-feedback">
+            <spring:message code="contact.form.input.comments.placeholder" />
+          </div>          
         </div>
       </div>
 
@@ -92,6 +101,19 @@ $(document).ready(function(e) {
     $menuItems.removeClass('active');
     $("#headermenu_contact").addClass('active');
    	
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+
 	$("#contact-form").submit(function(e) {
     	var response = grecaptcha.getResponse();
 		if (response.length == 0) {

@@ -63,7 +63,7 @@ ${req.requestURL}
 </div>
 </c:if>
 
-  <form action="info/nominate" method="post" enctype="multipart/form-data" name="nominate" id="nominate-form">
+  <form action="info/nominate" method="post" enctype="multipart/form-data" name="nominate" id="nominate-form" class="needs-validation" novalidate>
     <div class="row page-content padding-top-40">
       <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
         <h2 class="light-blue bold"><spring:message code="nominate.form.heading" /></h2>
@@ -73,20 +73,32 @@ ${req.requestURL}
         <div class="form-group">
           <label for="title"><spring:message code="nominate.form.input.title" /></label>
           <input type="text" name="title" id="title" class="form-control" placeholder="<spring:message code="nominate.form.input.title.placeholder" />" required/>
+          <div class="invalid-feedback">
+            <spring:message code="nominate.form.input.title.placeholder" />
+          </div>          
         </div>
         <div class="form-group">
           <label for="url"><spring:message code="nominate.form.input.url" /></label>
           <input type="text" name="url" id="url" class="form-control" placeholder="<spring:message code="nominate.form.input.url.placeholder" />" required/>
+          <div class="invalid-feedback">
+            <spring:message code="nominate.form.input.url.placeholder" />
+          </div>          
         </div>
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
 	        <div class="form-group">
-          <label for="name"><spring:message code="nominate.form.input.name" /></label>
+          <label for="name">*<spring:message code="nominate.form.input.name" /></label>
           <input type="text" name="name" id="name" class="form-control" placeholder="<spring:message code="nominate.form.input.name.placeholder" />" required/>
+          <div class="invalid-feedback">
+            <spring:message code="nominate.form.input.name.placeholder" />
+          </div>          
         </div>      
         <div class="form-group">
           <label for="email"><spring:message code="nominate.form.input.email" /></label>
           <input type="email" name="email" id="email" class="form-control" placeholder="<spring:message code="nominate.form.input.email.placeholder" />" required/>
+          <div class="invalid-feedback">
+            <spring:message code="nominate.form.input.email.placeholder" />
+          </div>          
         </div>
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
@@ -100,8 +112,7 @@ ${req.requestURL}
         <div class=" margin-top-30 clearfix">
          <div class="g-recaptcha" data-sitekey="6Lcn5C4UAAAAAFzANA394u7Jqfk2QmvxyUjM8UiM"></div>
       <div class="captcha-message"><spring:message code="captcha.message" /></div>
-        <button type="submit" class="button button-blue margin-top-30 button_form_submit" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button></div>
-        
+        <button type="submit" class="button button-blue margin-top-30 button_form_submit" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button></div>        
       </div>
     </div>
   </form>
@@ -116,7 +127,21 @@ $(document).ready(function(e) {
     var $menuItems = $('.header-menu-item');
     $menuItems.removeClass('active');
     $("#headermenu_save").addClass('active');
-   	
+    
+    
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+
 	$("#nominate-form").submit(function(e) {
     	var response = grecaptcha.getResponse();
 		if (response.length == 0) {
