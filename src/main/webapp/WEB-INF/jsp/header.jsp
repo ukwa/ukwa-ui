@@ -1,4 +1,4 @@
-<a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+<a class="sr-only sr-only-focusable" href="#content" tabindex="1">Skip to main content</a>
 <!-- Modal -->
 <div class="modal fade" id="pleaseWaitDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
@@ -61,8 +61,8 @@
                 </li>
             </ul>
             <ul class="navbar-nav">
-                <li class="nav-item dropdown" tabindex="-1">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="2">
                         <spring:message code="main.menu.language"/>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
