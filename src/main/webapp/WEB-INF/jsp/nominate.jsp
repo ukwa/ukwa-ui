@@ -110,7 +110,8 @@ ${req.requestURL}
       <div class="col-md-6 col-sm-12 form-content-col">
         <div class="form-group">
           <label for="notes"><spring:message code="nominate.form.input.notes" /></label>
-          <textarea name="notes" id="notes" class="form-control height-145" placeholder="<spring:message code="nominate.form.input.notes.placeholder" />"></textarea>
+          <textarea name="notes" id="notes" class="form-control height-145" placeholder="" aria-describedby="notesHelp"></textarea>
+          <small id="notesHelp" class="form-text text-muted"><spring:message code="nominate.form.input.notes.placeholder" /></small>
         </div>
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
