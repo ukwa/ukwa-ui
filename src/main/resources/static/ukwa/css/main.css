@@ -127,7 +127,7 @@ input, button, textarea, select {
 
 :focus {
   outline-color: red !important;
-  outline-width: 1px !important;
+  outline-width: 2px !important;
   outline-style: solid !important; }
 
 p.searchFilter {
