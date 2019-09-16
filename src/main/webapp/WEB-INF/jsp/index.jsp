@@ -122,7 +122,7 @@
                     <figure><img class="img-responsive border-gray coll-img" alt="" src="img/collections/collection_329.png"/>
                         <figcaption class="img-square-caption shadow"><spring:message code="home.page.featured.text"/></figcaption>
                     </figure>
-                    <div class="left light-blue padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold">British Stand-up Comedy Archive</div>
+                    <h3 class="left light-blue padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold">British Stand-up Comedy Archive</h3>
                     <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail"><spring:message code="collection.ownedandadministredby"/>Elspeth Millar.</div>
                 </a> </div>
 
@@ -130,7 +130,7 @@
                     <figure><img class="img-responsive border-gray coll-img" alt="" src="img/collections/collection_309.png"/>
                         <figcaption class="img-square-caption shadow"><spring:message code="home.page.featured.text"/></figcaption>
                     </figure>
-                    <div class="left light-blue padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold">French in London</div>
+                    <h3 class="left light-blue padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold">French in London</h3>
                     <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail"><spring:message code="collection.selectedby"/>Saskia Huc-Hepher.</div>
                 </a></div>
 
@@ -138,7 +138,7 @@
                     <figure><img class="img-responsive border-gray coll-img" alt="" src="img/collections/collection_138.png"/>
                         <figcaption class="img-square-caption shadow"><spring:message code="home.page.featured.text"/></figcaption>
                     </figure>
-                    <div class="left light-blue padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold">News Sites</div>
+                    <h3 class="left light-blue padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold">News Sites</h3>
                     <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail">558 <spring:message code="collection.titlecountwithin"/></div>
                 </a></div>
             </div>

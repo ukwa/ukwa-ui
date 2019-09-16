@@ -24,6 +24,9 @@ html, body {
 .modal-title.mobile-dialog {
   font-size: 1rem; }
 
+.modal-header.d-block {
+  border: none !important; }
+
 .modal-dialog.tips-dialog, .modal-dialog.filter-dialog {
   position: relative; }
 

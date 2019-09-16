@@ -43,6 +43,10 @@ html, body {
 
 }
 
+.modal-header.d-block {
+  border: none !important;
+}
+  
 .modal-dialog {
   &.tips-dialog, &.filter-dialog {
     position: relative;
