@@ -6,7 +6,7 @@
             <div class="row">                
                 <div class="col-12 ">
                         <div class="input-group" >
-                            <input type="text" name="text"  title="<spring:message code="search.main.input.title" />" placeholder="<spring:message code="search.main.input.title" />"
+                            <input type="text" name="text"  title="<spring:message code="search.main.input.title" />" aria-label="<spring:message code="search.main.input.title" />" placeholder="<spring:message code="search.main.input.title" />"
                                 class="border bg-light homepage-search-form-input" value="${originalSearchRequest}" required/>
                             <div class="input-group-append form-inline">
                                 <button class="d-none d-sm-block btn btn-outline-secondary bg-light homepage-search-button" type="submit" title="<spring:message code="search.main.button.title" />">
