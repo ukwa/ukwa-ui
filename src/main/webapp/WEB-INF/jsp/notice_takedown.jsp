@@ -33,7 +33,7 @@ ${pageContext.response.locale}
 <%@include file="title.jsp" %>
 
 <section id="content">
-  <div class="default-padding text-content">
+  <div class="row default-padding page-content margin-0 px-md-3 px-sm-2 px-2">
       <p class="main-subheading-2-redesign">
         <spring:message code="takedown.text"/>
       </p>

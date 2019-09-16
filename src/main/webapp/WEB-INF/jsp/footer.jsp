@@ -76,11 +76,13 @@
                 <spring:message code="technical.title" />
             </a>
         </li>
+        <!-- 
         <li class="list-group-item">
             <a href="https://www.webarchive.org.uk/rss/recent.xml" title="<spring:message code="footer.rss.title" />">
                 <spring:message code="footer.rss" />
             </a>
         </li>
+         -->
 
         <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
         <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>

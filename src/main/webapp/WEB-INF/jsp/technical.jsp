@@ -39,6 +39,7 @@
 <%@include file="title.jsp" %>
     
     <section id="content">
+      <div class="row default-padding page-content margin-0 px-md-3 px-sm-2 px-2">
 
         <div class="default-padding text-content">
 
@@ -264,6 +265,7 @@
             </div>
         </div>
 
+        </div>
         </div>
     </section>    <footer>
         <%@include file="footer.jsp" %>

@@ -34,7 +34,7 @@
 <c:choose>
  <c:when test="${sent}">
  
-<div class="row page-content padding-bottom-20">
+<div class="row default-padding page-content margin-0 px-md-3 px-sm-2 px-2">
  <div class="col-sm-12">
   <div class="alert alert-success" role="alert">
    <spring:message code="contact.sent.message"/>
@@ -45,7 +45,7 @@
  </c:when>
  <c:otherwise>
 
-    <div class="default-padding">
+    <div class="row default-padding page-content margin-0 px-md-3 px-sm-2 px-2">
         <p class="main-subheading-2-redesign">
             <spring:message code="contact.text"/>
         </p>
@@ -53,7 +53,7 @@
 
     <form action="contact" method="post" enctype="multipart/form-data" name="contact" id="contact-form" class="needs-validation" novalidate>
 
-    <div class="row page-content">
+    <div class="row default-padding page-content margin-0 px-md-3 px-sm-2 px-2">
       <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
         <h2 class="light-blue bold"><spring:message code="contact.form.heading" /></h2>
         <spring:message code="contact.form.notice" />
@@ -62,7 +62,7 @@
       &nbsp;
       </div>
 
-      <div class="col-md-6 col-sm-12 form-content-col">
+      <div class="col-md-6 col-sm-12">
         <div class="form-group">
           <label for="name">* <spring:message code="contact.form.input.name" /></label>
           <input type="text" name="name" id="name" class="form-control" placeholder="<spring:message code="contact.form.input.name.placeholder" />" required/>
