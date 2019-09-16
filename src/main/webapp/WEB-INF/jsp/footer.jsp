@@ -33,6 +33,11 @@
     <div class="col-md-4">
     <ul class="list-group list-group-flush">        
         <li class="list-group-item">
+            <a href="info/accessibility_statement" title="<spring:message code="accessibility.page.title" />">
+                <spring:message code="accessibility.page.title" />
+            </a>
+        </li>
+        <li class="list-group-item">
             <a href="info/notice_takedown" title="<spring:message code="footer.notice.title" />">
                 <spring:message code="footer.notice" />
             </a>
@@ -52,11 +57,6 @@
                 <spring:message code="footer.cookies" />
             </a>
         </li>
-        <li class="list-group-item">
-            <a href="info/technical" title="<spring:message code="technical.title" />">
-                <spring:message code="technical.title" />
-            </a>
-        </li>
     </ul>
     </div>
     <div class="col-md-4">
@@ -69,6 +69,11 @@
         <li class="list-group-item">
             <a href="info/faq" title="<spring:message code="footer.faq" />">
                 <spring:message code="footer.faq" />
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="info/technical" title="<spring:message code="technical.title" />">
+                <spring:message code="technical.title" />
             </a>
         </li>
         <li class="list-group-item">
