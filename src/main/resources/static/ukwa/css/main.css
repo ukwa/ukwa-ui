@@ -1706,16 +1706,12 @@ footer {
 
 .circle {
   display: inline-block;
-  border-radius: 50%;
   max-width: 40px;
   max-height: 40px;
-  padding: 5px;
   color: #2e6dd9;
-  background-color: #eeeeee;
   text-align: center;
   font-family: "Open Sans Bold",sans-serif;
-  font-size: 1.2em;
-  line-height: 1.5em;
+  font-size: 1.1em;
   box-sizing: content-box;
   white-space: nowrap;
   margin-left: 20px; }
