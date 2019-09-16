@@ -55,13 +55,21 @@ ${req.requestURL}
   </div>
 </section>
 <section id="content">
-<c:if test="${sent}">
+
+<c:choose>
+ <c:when test="${sent}">
+ 
 <div class="row page-content padding-bottom-20">
-<div class="col-sm-12 form-content-col bold red">
-<spring:message code="nominate.sent.message"/>
+ <div class="col-sm-12">
+  <div class="alert alert-success" role="alert">
+   <spring:message code="nominate.sent.message"/>
+  </div>
+ </div>
 </div>
-</div>
-</c:if>
+ 
+ </c:when>
+ <c:otherwise>
+
 
   <form action="info/nominate" method="post" enctype="multipart/form-data" name="nominate" id="nominate-form" class="needs-validation" novalidate>
     <div class="row page-content padding-top-40">
@@ -71,14 +79,14 @@ ${req.requestURL}
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
         <div class="form-group">
-          <label for="title"><spring:message code="nominate.form.input.title" /></label>
+          <label for="title">* <spring:message code="nominate.form.input.title" /></label>
           <input type="text" name="title" id="title" class="form-control" placeholder="<spring:message code="nominate.form.input.title.placeholder" />" required/>
           <div class="invalid-feedback">
             <spring:message code="nominate.form.input.title.placeholder" />
           </div>          
         </div>
         <div class="form-group">
-          <label for="url"><spring:message code="nominate.form.input.url" /></label>
+          <label for="url">* <spring:message code="nominate.form.input.url" /></label>
           <input type="text" name="url" id="url" class="form-control" placeholder="<spring:message code="nominate.form.input.url.placeholder" />" required/>
           <div class="invalid-feedback">
             <spring:message code="nominate.form.input.url.placeholder" />
@@ -87,7 +95,7 @@ ${req.requestURL}
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
 	        <div class="form-group">
-          <label for="name">*<spring:message code="nominate.form.input.name" /></label>
+          <label for="name">* <spring:message code="nominate.form.input.name" /></label>
           <input type="text" name="name" id="name" class="form-control" placeholder="<spring:message code="nominate.form.input.name.placeholder" />" required/>
           <div class="invalid-feedback">
             <spring:message code="nominate.form.input.name.placeholder" />
@@ -95,10 +103,8 @@ ${req.requestURL}
         </div>      
         <div class="form-group">
           <label for="email"><spring:message code="nominate.form.input.email" /></label>
-          <input type="email" name="email" id="email" class="form-control" placeholder="<spring:message code="nominate.form.input.email.placeholder" />" required/>
-          <div class="invalid-feedback">
-            <spring:message code="nominate.form.input.email.placeholder" />
-          </div>          
+          <input type="email" name="email" id="email" class="form-control" placeholder="<spring:message code="nominate.form.input.email.placeholder"/>" aria-describedby="emailHelp"/>
+          <small id="emailHelp" class="form-text text-muted"><spring:message code="nominate.form.email.notice" /></small>
         </div>
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
@@ -108,7 +114,6 @@ ${req.requestURL}
         </div>
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
-      <span><spring:message code="nominate.form.email.notice" /></span>
         <div class=" margin-top-30 clearfix">
          <div class="g-recaptcha" data-sitekey="6Lcn5C4UAAAAAFzANA394u7Jqfk2QmvxyUjM8UiM"></div>
       <div class="captcha-message"><spring:message code="captcha.message" /></div>
@@ -116,6 +121,10 @@ ${req.requestURL}
       </div>
     </div>
   </form>
+  
+ </c:otherwise>
+</c:choose>
+  
 </section>
 <footer>
   <%@include file="footer.jsp" %>

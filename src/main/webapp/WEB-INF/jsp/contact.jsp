@@ -30,13 +30,20 @@
 <%@include file="title.jsp" %>
 
 <section id="content">
-<c:if test="${sent}">
-<div class="row default-padding page-content">
-<div class="col-sm-12 form-content-col bold red">
-<spring:message code="contact.sent.message"/>
+
+<c:choose>
+ <c:when test="${sent}">
+ 
+<div class="row page-content padding-bottom-20">
+ <div class="col-sm-12">
+  <div class="alert alert-success" role="alert">
+   <spring:message code="contact.sent.message"/>
+  </div>
+ </div>
 </div>
-</div>
-</c:if>
+ 
+ </c:when>
+ <c:otherwise>
 
     <div class="default-padding">
         <p class="main-subheading-2-redesign">
@@ -57,14 +64,14 @@
 
       <div class="col-md-6 col-sm-12 form-content-col">
         <div class="form-group">
-          <label for="name"><spring:message code="contact.form.input.name" /></label>
+          <label for="name">* <spring:message code="contact.form.input.name" /></label>
           <input type="text" name="name" id="name" class="form-control" placeholder="<spring:message code="contact.form.input.name.placeholder" />" required/>
           <div class="invalid-feedback">
             <spring:message code="contact.form.input.name.placeholder" />
           </div>          
         </div>
          <div class="form-group">
-          <label for="email"><spring:message code="contact.form.input.email" /></label>
+          <label for="email">* <spring:message code="contact.form.input.email" /></label>
           <input type="email" name="email" id="email" class="form-control" placeholder="<spring:message code="contact.form.input.email.placeholder" />" required/>
           <div class="invalid-feedback">
             <spring:message code="contact.form.input.email.placeholder" />
@@ -73,7 +80,7 @@
       </div>
                   <div class="col-md-6 col-sm-12 form-content-col">
         <div class="form-group">
-          <label for="comments"><spring:message code="contact.form.input.comments" /></label>
+          <label for="comments">* <spring:message code="contact.form.input.comments" /></label>
           <textarea name="comments" id="comments" class="form-control height-145" placeholder="<spring:message code="contact.form.input.comments.placeholder" />" required></textarea>
           <div class="invalid-feedback">
             <spring:message code="contact.form.input.comments.placeholder" />
@@ -89,6 +96,10 @@
       </div>
     </div>
   </form>
+  
+ </c:otherwise>
+</c:choose>
+  
 </section>
 <footer>
   <%@include file="footer.jsp" %>
