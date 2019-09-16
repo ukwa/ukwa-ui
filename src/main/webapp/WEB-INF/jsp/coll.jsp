@@ -94,19 +94,20 @@ ${pageContext.response.locale}
 
     <c:if test="${!empty subCollections}">
       <%--Do something if subCollections not empty--%>
-      <div class="row margin-0">
+      <ul class="row margin-0">
         <%--LOOP of Sub collections--%>
         <c:forEach items="${subCollections}" var="subCollection">
-          <div class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-20 padding-bottom-20"> <a href="collection/<c:out value="${subCollection.id}"/>" class="collection-link">
+          <li class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-20 padding-bottom-20" style="list-style: none;"> <a href="collection/<c:out value="${subCollection.id}"/>" class="collection-link">
             <div class="center light-blue padding-bottom-10 collection-heading">
               <c:out value="${subCollection.name}"/>
             </div>
               <div class="sub-coll-descript shadow collection-description">
                 <c:out value="${subCollection.description}"/>
               </div>
-            </a> </div>
+            </a>
+          </li>
         </c:forEach>
-      </div>
+      </ul>
     </c:if>
 
 <c:if test="${currentCollection.websitesNum != 0}"> <%--START if no results does not show results rows and pagination at all--%>
@@ -153,9 +154,10 @@ ${pageContext.response.locale}
             </div>
             <%-- /TOP PAGINATION ROW --%>
             <%-- RESULT ROW --%>
+            <ul style="list-style: none;">
             <c:forEach items="${targetWebsites}" var="targetWebsite">
                 <!--RESULT ROW-->
-                <div class="row margin-0 padding-0 border-bottom-gray">
+                <li class="row margin-0 padding-0 border-bottom-gray">
                     <div class="col-md-12 col-sm-12 results-result">
                         <h2 class="margin-0">
                             <c:out value="${targetWebsite.name}"/>
@@ -177,16 +179,17 @@ ${pageContext.response.locale}
                         <c:if test="${not empty targetWebsite.startDate}">
                         <span class="results-title-text margin-top-10 clearfix"> <spring:message code="coll.archived.date"/>
             <c:out value="${targetWebsite.startDate}"/>
-          </c:if>
           </span>
+          </c:if>
                         <span class="results-title-text clearfix padding-vert-10">
               <a href="<c:out value="${targetWebsite.archiveUrl}"/>" class="break-all"><c:out value="${targetWebsite.url}"/></a>
             </span>
                     </div>
-                </div>
+                </li>
                 <!--/RESULT ROW-->
                 <%-- /RESULT ROW --%>
             </c:forEach>
+            </ul>
             <%--BOTTOM PAGINATION ROW --%>
             <div class="row padding-0 margin-0">
                 <div class="col-md-12 pagination-cont ">
