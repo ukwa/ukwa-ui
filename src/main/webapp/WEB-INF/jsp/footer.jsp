@@ -34,7 +34,7 @@
     <ul class="list-group list-group-flush">        
         <li class="list-group-item">
             <a href="info/accessibility_statement" title="<spring:message code="accessibility.page.title" />">
-                <spring:message code="accessibility.page.title" />
+                <spring:message code="accessibility.header.title" />
             </a>
         </li>
         <li class="list-group-item">

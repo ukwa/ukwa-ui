@@ -25,11 +25,11 @@
 <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
 <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
 <c:choose>
- <c:when test="${textUri == '/en' || textUri == '/cy'}">
+ <c:when test="${textUri == '/en' || textUri == '/cy' || textUri == '/gd'}">
   <c:set var="textUriWithoutLang" value="/"/>
  </c:when>
  <c:otherwise>
-  <c:set var="textUriWithoutLang" value="${fn:replace(fn:replace(textUri, '/en/', '/'), '/cy/', '/')}"/>
+  <c:set var="textUriWithoutLang" value="${fn:replace(fn:replace(fn:replace(textUri, '/en/', '/'), '/cy/', '/'), '/gd/', '/')}"/>
  </c:otherwise>
 </c:choose>
 
