@@ -44,7 +44,7 @@
             <%@include file="accessibility_statement_body_en.jsp" %>
             
             <hr/>
-		    <h2 id="translation_gd"><spring:message code="main.menu.scottish" /></h2>
+		    <h2 id="translation_gd">Aithris Ruigsinneachd Tasglann-l&igrave;n na RA</h2>
             <%@include file="accessibility_statement_body_gd.jsp" %>
             
           </c:when>
