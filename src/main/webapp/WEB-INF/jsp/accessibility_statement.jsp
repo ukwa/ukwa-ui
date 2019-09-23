@@ -36,7 +36,7 @@
     <div class="col-md-6 col-sm-12 page-content-col">
       <article>
       
-        <spring:message code="accessibility.page.statement" />
+        <%@include file="accessibility_statement_body_en.jsp" %>
 
       </article>
     </div>
