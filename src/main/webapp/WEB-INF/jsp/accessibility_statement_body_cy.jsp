@@ -26,9 +26,11 @@
 </ul>
 <h2 id="beth-iw-wneud-os-na-allwch-chi-gael-mynediad-at-rannau-or-wefan-hon">Beth i'w wneud os na allwch chi gael mynediad at rannau o'r wefan hon</h2>
 <p>Os oes angen gwybodaeth mewn fformat gwahanol arnoch ar y wefan hon, fel PDF hygyrch, print bras, hawdd ei ddarllen, recordiad sain neu braille:</p>
-<p>&bull; anfonwch e-bost at: <a href="mailto:FOI-Enquiries@bl.uk"><span class="underline">FOI-Enquiries@bl.uk</span></a></p>
-<p>&bull; ffoniwch: 01937 546 060 (Gwasanaeth Cwsmeriaid)</p>
-<p>&bull; ysgrifennwch at: Corporate Information Unit, British Library, 96 Euston Road, London, NW1 2DB</p>
+<ul>
+<li>anfonwch e-bost at: <a href="mailto:FOI-Enquiries@bl.uk"><span class="underline">FOI-Enquiries@bl.uk</span></a></li>
+<li>ffoniwch: 01937 546 060 (Gwasanaeth Cwsmeriaid)</li>
+<li>ysgrifennwch at: Corporate Information Unit, British Library, 96 Euston Road, London, NW1 2DB</li>
+</ul>
 <p>Byddwn yn ystyried eich cais ac yn cysylltu &acirc; chi o fewn 20 diwrnod gwaith.</p>
 <h2 id="rhoi-gwybod-am-broblemau-hygyrchedd-yn-ymwneud-&acirc;r-wefan-hon">Rhoi gwybod am broblemau hygyrchedd yn ymwneud &acirc;'r wefan hon</h2>
 <p>Rydyn ni bob amser yn awyddus i wella hygyrchedd y wefan hon. Os ydych chi&rsquo;n dod ar draws unrhyw broblemau nad ydynt wedi&rsquo;u rhestru ar y dudalen hon, neu os ydych chi&rsquo;n credu nad ydym yn bodloni gofynion hygyrchedd, cysylltwch &acirc;&rsquo;r Pennaeth Rheoli Gwybodaeth Gorfforaethol drwy anfon e-bost at <a href="mailto:FOI-Enquiries@bl.uk"><span class="underline">FOI-Enquiries@bl.uk</span></a>, neu drwy anfon llythyr at Corporate Information Unit, British Library, 96 Euston Road, London, NW1 2DB.</p>
