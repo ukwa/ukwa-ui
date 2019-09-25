@@ -4,8 +4,7 @@ A new user interface for the UK Web Archive
 
 [![Build Status](https://travis-ci.org/ukwa/ukwa-ui.svg?branch=master)](https://travis-ci.org/ukwa/ukwa-ui)
 
-
-### How to Run the Code ###
+## How to Run the Code ##
 
 * Install a git client of your choice.
 * Clone this repository.
@@ -21,3 +20,14 @@ A new user interface for the UK Web Archive
 * Click OK to close the dialog.
 * Go to Run -> Run (Shift-F10). Wait for the build to finish.
 * Navigate to http://localhost:8080 in your browser.
+
+## Supporting content translation ##
+
+For the accessibility statements, most of the work was done by converting the original DOCX to HTML:
+
+    pandoc -f docx -t html --ascii acc-cy.docx > acc-cy.html
+
+The `ascii` flag ensures special characters are HTML/ampersand-escaped rather than relying on file character encoding.
+
+Properties files need a bit more care, but can be mapped via spreadsheets if needed.
+
