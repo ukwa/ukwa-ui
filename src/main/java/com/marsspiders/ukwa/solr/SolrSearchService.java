@@ -193,6 +193,11 @@ public class SolrSearchService {
         //query.set("sow", "false");
         //query.set("mm", "2");
 
+        // Limit fields coming back to those we actually need (see
+        // SearchResultDTO):
+        query.setFields("id", "access_terms", "url", "crawl_date", "title",
+                "domain");
+
         if(filterQueries != null && filterQueries.size() > 0){
             query.addFilterQuery(filterQueries.toArray(new String[filterQueries.size()]));
         }
