@@ -108,11 +108,6 @@ public class SolrSearchUtil {
             sb.append(fieldName).append(":").append(valueToInclude);
         }
 
-        if(sb.length() != 0){
-            sb.append(")");
-            sb.insert(0, AND_JOINER);
-        }
-
         return sb.toString();
     }
 }
