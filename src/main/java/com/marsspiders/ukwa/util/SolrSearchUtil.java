@@ -54,7 +54,8 @@ public class SolrSearchUtil {
             return "";
         }
 
-        String multipleConditionQuery = toMultipleConditionsQueryWithPreCondition(Arrays.asList(accessToFilters), FIELD_ACCESS_TERMS);
+        String multipleConditionQuery = toMultipleConditionsQuery(
+                Arrays.asList(accessToFilters), FIELD_ACCESS_TERMS);
 
         return EXCLUDE_MARKER_FIRST_LAYER_TAG + multipleConditionQuery;
     }
@@ -106,6 +107,11 @@ public class SolrSearchUtil {
                 sb.append(OR_JOINER);
             }
             sb.append(fieldName).append(":").append(valueToInclude);
+        }
+
+        if(sb.length() != 0){
+            sb.append(")");
+            sb.insert(0, AND_JOINER);
         }
 
         return sb.toString();
