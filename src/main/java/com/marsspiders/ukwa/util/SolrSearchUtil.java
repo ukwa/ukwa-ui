@@ -48,10 +48,15 @@ public class SolrSearchUtil {
 
         String[] accessToFilters = accessTo.getSolrRequestAccessRestriction().split(",");
 
-        String notEmptyFacetQuery = FIELD_ACCESS_TERMS + ":['' TO *]";
+        // If we're not filtering by one value, given there's only two possible
+        // values, do no filtering at all:
+        if (accessToFilters.length > 1) {
+            return "";
+        }
+
         String multipleConditionQuery = toMultipleConditionsQueryWithPreCondition(Arrays.asList(accessToFilters), FIELD_ACCESS_TERMS);
 
-        return EXCLUDE_MARKER_FIRST_LAYER_TAG + notEmptyFacetQuery + multipleConditionQuery;
+        return EXCLUDE_MARKER_FIRST_LAYER_TAG + multipleConditionQuery;
     }
 
     public static String generateMultipleConditionsQuery(List<String> conditions, String fieldName) {
