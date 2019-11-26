@@ -39,13 +39,14 @@ public class SolrSearchService {
     private static final String FIELD_NAME = "name";
     private static final String FIELD_TYPE = "type";
     private static final String FIELD_PUBLIC_SUFFIX = "public_suffix";
-    private static final String FIELD_HOST = "host";
+    // private static final String FIELD_HOST = "host";
     private static final String FIELD_DOMAIN = "domain";
     private static final String FIELD_ID = "id";
     private static final String FIELD_TITLE = "title";
     private static final String FIELD_URL = "url";
     private static final String FIELD_COLLECTION = "collection";
-    private static final String FIELD_CONTENT_TYPE_NORM = "content_type_norm";
+    // private static final String FIELD_CONTENT_TYPE_NORM =
+    // "content_type_norm";
     private static final String FIELD_CONTENT = "content";
     private static final String FIELD_TEXT = "text";
 
@@ -157,8 +158,8 @@ public class SolrSearchService {
         filters.add(domainsQuery);
         filters.add(collectionsQuery);
 
-        String[] facets = {FIELD_PUBLIC_SUFFIX, FIELD_TYPE, FIELD_HOST, FIELD_DOMAIN,
-                FIELD_COLLECTION, FIELD_CONTENT_TYPE_NORM, FIELD_ACCESS_TERMS};
+        String[] facets = { FIELD_PUBLIC_SUFFIX, FIELD_TYPE, FIELD_DOMAIN,
+                FIELD_COLLECTION, FIELD_ACCESS_TERMS };
 
         //QueryParser.escape(searchText); // removes     //+ - && || ! ( ) { } [ ] ^ " ~ * ? : \ /
         return sendRequest(queryString.replaceAll("[&|*()?:!,~{}^/]+", " "), sort, filters, FIELD_CONTENT, ContentInfo.class, start, rows, facets);
