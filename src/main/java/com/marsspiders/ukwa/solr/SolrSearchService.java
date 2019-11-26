@@ -215,6 +215,10 @@ public class SolrSearchService {
         if(facetFields.length > 0){
             query.setFacet(true);
 
+            // Use threads for faceting, try eight for now:
+            query.set("facet.threads", 8);
+
+            // Setup each facet:
             for (String facetField : facetFields) {
                 if (facetField.equals(FIELD_ACCESS_TERMS)) {
                     query.addFacetField(EXCLUDE_POINT_FIRST_LAYER_TAG + facetField);
