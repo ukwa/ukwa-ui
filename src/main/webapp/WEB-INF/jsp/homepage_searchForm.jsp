@@ -16,7 +16,8 @@
     <div class="col-md-12 offset-md-2 white dialog-link">
                     <spring:message code="search.main.input.title" />&nbsp;
                     <a href="#" data-toggle="modal" data-target="#searchingUKWAModalCenter" class="no-decoration" title="<spring:message code="search.tips.tipsnotes" />"><i class="fas fa-info-circle"></i></a>
-                </div>
+        <div class="padding-top-10"><span class="blinking">Please note that the UK Web Archive service will be unavailable on Thursday, February 27th, for maintenance.</span></div>
+    </div>
             <input type="hidden" name="search_location" id="search_location_full_text" value="full_text"/>
             <input type="hidden" name="reset_filters" id="reset_filters" value="false"/>
        </div>
