@@ -2597,14 +2597,3 @@ FAQ
 /*# sourceMappingURL=main.css.map */
 
 /*# sourceMappingURL=main.css.map */
-
-.blinking{
-  animation:blinkingText 1.2s infinite;
-}
-@keyframes blinkingText{
-  0%{     color: #FF0000;    }
-  49%{    color: #FF0000; }
-  60%{    color: transparent; }
-  99%{    color:transparent;  }
-  100%{   color: #FF0000;    }
-}
