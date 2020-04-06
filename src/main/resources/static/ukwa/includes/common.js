@@ -7,7 +7,58 @@ function checkboxSize() {
 }
 
 $(document).ready(function(e) {
-	
+
+	// Check (onLoad) if the cookie is there and set the class if it is
+	if ($.cookie('highcontrast') == "yes") {
+		$("body").addClass("highcontrast");
+	}
+	// When the element is clicked
+	$("#universalaccess_href").click(function () {
+		//------- ON CLICK ANYWAY - IF COOKIE - HCM IS YES
+		$(this).find('i').toggleClass('highcontastUAIconOff highcontastUAIcon');
+		//------------ ON LOAD - FROM COOKIE
+		//1. option SYSTEM LEVEL When the element is clicked
+
+		console.log($.cookie("highcontrast"));
+
+		//2. UKWA-UI - HCM COOOKIE VALUE - NO
+		if ($.cookie('highcontrast') == "undefined" || $.cookie('highcontrast') == "no" || $.cookie('highcontrast') == "null") {
+
+			console.log("universalaccess href click - set HCM to TRUE");
+			// ON CLICK GOING TO ADD
+			//----------- cookie - SET YES -------
+			$.cookie('highcontrast', 'yes', {
+				expires: 7,
+				path: '/'
+			});
+
+			//------------------------------------------------
+			//    PARTS AFFECTED BY HIGH CONTRAST:
+			//    BODY
+			//------------------------------------------------
+			$("body").addClass("highcontrast");
+
+		} else {
+			//3. UKWA-UI - HCM COOOKIE VALUE - YES,
+			// ON CLICK GOING TO REMOVE
+			console.log("universalaccess href click - set HCM to FALSE");
+
+			//----------- cookie - SET NO -------
+			if ($.cookie('highcontrast') == "yes") {
+				$.cookie('highcontrast', "no", {
+					path: '/'
+				});
+			}
+
+			//------------------------------------------------
+			//    REMOVE HIGH CONTRAST FROM:
+			//    BODY
+			//------------------------------------------------
+			$('body').removeClass('highcontrast');
+		}
+	});
+	//-------------------------------
+
 	//remove tabindex from radio/check boxes
 	$(this).find("input[type=radio], input[type=checkbox]").attr("tabindex", "-1");
 		

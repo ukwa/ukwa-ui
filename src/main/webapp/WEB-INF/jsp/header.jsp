@@ -76,6 +76,11 @@
                             </a>
                     </div>
                 </li>
+                <li>
+                    <a href="javascript:void(0)" id="universalaccess_href" class="col-md-1 col-sm-1">
+                        <i class="fas fa-universal-access fa fa-2x highcontastUAIconOff"></i>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>

@@ -3103,5 +3103,202 @@ footer {
   }
 
 
+/* The only bit you need */
+.highcontrast {
+  background-color: black;
+  color: white;
+  a, a:visited { color: black;  };
+  .searchFilter {
+    color: orangered !important;
+  };
+  img {
+    filter: grayscale(100%) contrast(100%);
+  }
+
+
+  .logo-svg .img{
+    filter: grayscale(100%) contrast(100%);
+  }
+
+  .ukwa-hero-banner{
+    filter: grayscale(100%) contrast(100%);
+
+  }
+
+
+  .main-heading-2-redesign {
+    color: white !important;
+  }
+
+  .main-heading-2-bold-redesign{
+    color: white !important;
+  }
+
+  .main-subheading-2-redesign{
+    color: white !important;
+  }
+
+  .collection-heading-bold{
+    color: white !important;
+  }
+
+  .btn{
+    filter: grayscale(100%) contrast(100%);
+  }
+  .btn-primary {
+    filter: grayscale(100%) contrast(100%);
+  }
+
+  .footer-legal-deposit{
+    filter: grayscale(100%) contrast(100%);
+  }
+
+  .bottomline{
+    filter: grayscale(100%) contrast(100%);
+  }
+
+  .header-blue{
+    background-color: black;
+    color: white;
+  }
+
+  .form-group{
+    filter: grayscale(100%) contrast(100%);
+  }
+
+
+  .list-group-item{
+    background-color: white;
+    color: black;
+  }
+  .list-group-item:hover{
+    background:white;
+  }
+
+  .list-group-item-text {
+    color: white;
+  }
+  .list-group-item-heading {
+    color: white;
+  }
+
+
+  .nav-link {
+    filter: grayscale(100%) contrast(500%);
+  }
+
+  .searchpage_search_bg_settings{
+    filter: grayscale(100%) contrast(500%);
+
+  }
+
+  .search-results-main-heading{
+    background-color: black;
+    color: white;
+  }
+
+  .search-results-top-filters-2{
+    background-color: black;
+    color: white;
+  }
+  .results-container{
+    background-color: black;
+    color: white;
+  }
+
+  .date-range-label{
+    background-color: black;
+    color: white;
+  }
+
+  .results-result{
+    background-color: black;
+    color: white;
+  }
+
+  .infotooltip{
+    filter: grayscale(100%) contrast(70%);
+  }
+  .tooltip{
+    filter: grayscale(100%) contrast(70%);
+  }
+
+  .light-blue{
+    background-color: black;
+    color: white;
+  }
+
+  .needs-validation{
+    background-color: black;
+    color: white;
+  }
+
+  .button-blue {
+    filter: grayscale(100%) contrast(500%);
+
+  }
+
+  .searchFilter{
+    background-color: white;
+    color: black;
+  }
+
+  .clearable{
+    background-color: white !important;
+    color: black !important;
+  }
+
+  .sidebar-clear-filter {
+    background-color: white;
+    color: black;
+  }
+  .searchFilter {
+    background-color: white;
+    color: black;
+  }
+  .sidebar-filter-header-title-redesign{
+    background-color: black;
+    color: white;
+  }
+  .main-search-check-label{
+    background-color: black;
+    color: white;
+  }
+
+  .sidebar-clear-filter-button{
+    background-color: white;
+    color: black;
+  }
+
+  .sidebar-noresults{
+    background-color: black;
+    color: white;
+  }
+
+  .main-search-check-label{
+    filter: grayscale(100%) contrast(500%);
+
+  }
+
+}
+
+.highcontastUAIcon{
+  a, a:visited { color: fuchsia; }
+}
+
+.highcontastUAIconOff{
+  a, a:visited { color: greenyellow; }
+}
+
+@media screen and (-ms-high-contrast: active) {
+  /* All high contrast styling rules */
+  .highcontrast{background-color: purple;}
+}
+@media screen and (-ms-high-contrast: black-on-white) {
+  .highcontrast{background-color: greenyellow;}
+}
+@media screen and (-ms-high-contrast: white-on-black) {
+  .highcontrast{background-color: orangered;}
+}
 
 /*# sourceMappingURL=main.css.map */
