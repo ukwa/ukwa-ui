@@ -12,37 +12,22 @@ $(document).ready(function(e) {
 	if ($.cookie('highcontrast') == "yes") {
 		$("body").addClass("highcontrast");
 	}
+
 	// When the element is clicked
 	$("#universalaccess_href").click(function () {
 		//------- ON CLICK ANYWAY - IF COOKIE - HCM IS YES
 		$(this).find('i').toggleClass('highcontastUAIconOff highcontastUAIcon');
 		//------------ ON LOAD - FROM COOKIE
+
 		//1. option SYSTEM LEVEL When the element is clicked
+		//TODO:check it and if YES, set to default (HCM to NO) and disable further checks in steps 2 and 3.
 
-		console.log($.cookie("highcontrast"));
+		//2. UKWA-UI - HCM COOOKIE VALUE - YES
 
-		//2. UKWA-UI - HCM COOOKIE VALUE - NO
-		if ($.cookie('highcontrast') == "undefined" || $.cookie('highcontrast') == "no" || $.cookie('highcontrast') == "null") {
-
-			console.log("universalaccess href click - set HCM to TRUE");
-			// ON CLICK GOING TO ADD
-			//----------- cookie - SET YES -------
-			$.cookie('highcontrast', 'yes', {
-				expires: 365,
-				path: '/',
-				secure: true
-			});
-
-			//------------------------------------------------
-			//    PARTS AFFECTED BY HIGH CONTRAST:
-			//    BODY
-			//------------------------------------------------
-			$("body").addClass("highcontrast");
-
-		} else {
+		if ($.cookie('highcontrast') === "yes") {
 			//3. UKWA-UI - HCM COOOKIE VALUE - YES,
 			// ON CLICK GOING TO REMOVE
-			console.log("universalaccess href click - set HCM to FALSE");
+			console.log("universalaccess href click - YES, but now set HCM to FALSE");
 
 			//----------- cookie - SET NO -------
 			if ($.cookie('highcontrast') == "yes") {
@@ -56,6 +41,24 @@ $(document).ready(function(e) {
 			//    BODY
 			//------------------------------------------------
 			$('body').removeClass('highcontrast');
+		}else{
+
+			//3. UKWA-UI - HCM COOOKIE VALUE - ANY kind of NO
+			console.log("universalaccess href click - set HCM to TRUE");
+			// ON CLICK GOING TO ADD
+			//----------- cookie - SET YES -------
+			$.cookie('highcontrast', 'yes', {
+				expires: 365,
+				path: '/'
+				//secure: true
+			});
+
+			//------------------------------------------------
+			//    PARTS AFFECTED BY HIGH CONTRAST:
+			//    BODY
+			//------------------------------------------------
+			$("body").addClass("highcontrast");
+
 		}
 	});
 	//-------------------------------
