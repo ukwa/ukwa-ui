@@ -28,8 +28,9 @@ $(document).ready(function(e) {
 			// ON CLICK GOING TO ADD
 			//----------- cookie - SET YES -------
 			$.cookie('highcontrast', 'yes', {
-				expires: 7,
-				path: '/'
+				expires: 365,
+				path: '/',
+				secure: true
 			});
 
 			//------------------------------------------------
