@@ -37,7 +37,7 @@
 
 <c:set var="title" value="Technical Information"/>
 <%@include file="title.jsp" %>
-    
+
     <section id="content">
       <div class="row default-padding page-content margin-0 px-md-3 px-sm-2 px-2">
 
@@ -267,7 +267,8 @@
 
         </div>
         </div>
-    </section>    <footer>
+    </section>
+    <footer class="footer-content">
         <%@include file="footer.jsp" %>
     </footer>
 </div>

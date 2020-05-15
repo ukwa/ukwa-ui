@@ -1,0 +1,126 @@
+
+//.light-blue {
+//  color: #2e6dd9;
+//}
+
+$themes: (
+        light: (
+                defaultcolor: #2e6dd9,
+                ukwa-pagetab-title-text-color:#fff,
+
+                //dialogs
+                main-heading-dialog-redesign-text-color:#111,
+
+                //ukwa-form-button: light-blue, --- aka #2e6dd9
+                ukwa-form-button-bg: #2e6dd9,
+                ukwa-form-button-color: #2e6dd9,
+
+
+                //homepage
+                home_page_btn_color: #2e6ddf,
+                home_page_btn_box-shadow: 1px 1px 7px #464747,
+                dialog-link-textColor: #fff,
+
+                redesign-text-decoration: none !important,
+                redesign-text-color: #fff,
+                redesign-text-transform: none,
+                main-heading-2-redesign-text-color:#fff,
+
+
+                //search - prev design color scheme
+                main-search-field-redesign-color:#636c72,
+                search-tips-href-color:#0c49b0,
+                main-search-field-redesign-shadow:1px 1px 7px #464747,
+                sidebar-filter-header-title-redesign-color:#0c49b0,
+                checkbox-sidebar-color:#0c49b0,
+                radio-sidebar-color:#0c49b0,
+                date-sidebar-color:#0c49b0,
+                searchFilterTextColor: darkgray,
+                searchFilterBorder:1px solid darkgray !important,
+                button-radius-5-color:cornflowerblue,
+                button-radius-5-border:solid 1px cornflowerblue !important,
+
+                search-results-main-heading-text-color:#000,
+                search-results-main-bg:#fff,
+
+
+
+//menu
+                nav-link-focus-color:#2e6dd9,
+                nav-hover-color:#0c49b0,
+
+
+
+
+                backgroundColor: #fff,
+                textColor: #000,
+
+
+                buttonTextColor: #408bbd,
+                buttonTextTransform: none,
+                buttonTextHoverColor: #61b0e7,
+                buttonColor: #fff,
+                buttonBorder: 2px solid #fff,
+
+
+                //forms
+                ukwa-form-button-text-color:#fff,
+
+        ),
+        dark: (
+                ukwa-pagetab-title-text-color: #ccc,
+                ukwa-form-button-bg: #eee,
+                ukwa-form-button-color: #111,
+
+
+                //dialogs
+                main-heading-dialog-redesign-text-color:#eee,
+
+                //search - prev design color scheme
+                main-search-field-redesign-color:#eee,
+                search-tips-href-color:#fff,
+                main-search-field-redesign-shadow:1px 1px 7px #eee,
+                sidebar-filter-header-title-redesign-color:#fff,
+                searchFilterTextColor: #eee,
+                searchFilterBorder:1px solid #eee !important,
+                button-radius-5-color:#eee,
+                button-radius-5-border:solid 1px #eee !important,
+
+                high-contrast-ratio-color: #fcfdff,
+                ukwa-form-field-info-textColor: high-contrast-ratio-color,
+
+
+                //menu
+                nav-link-focus-color:#ccc,
+                nav-hover-color:#fff,
+
+                //homepage
+                home_page_btn_color: #000,
+                home_page_btn_box-shadow: 1px 1px 7px #fff,
+                main-heading-2-redesign-text-color:#fff,
+
+                dialog-link-textColor: #eee,
+
+
+                redesign-text-decoration: none !important,
+                redesign-text-color: #eee,
+                redesign-text-transform: none,
+
+                //search
+                search-results-main-heading-text-color:#ccc,
+
+
+                backgroundColor: #222,
+                textColor: #ddd,
+
+                buttonTextColor: #ccc,
+                buttonTextTransform: uppercase,
+                buttonTextHoverColor: #ddd,
+                buttonColor: #333,
+                buttonBorder: 1px solid #aaa,
+
+
+                //forms
+                ukwa-form-button-text-color:#fff,
+        ),
+);

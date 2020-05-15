@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body" style="padding: 0">
-                <h2 class="main-heading-2-redesign" id="exampleModalLongTitle" style="padding-left: 40px;padding-bottom: 40px"><spring:message code="search.tips.tipsnotes" /></h2>
+                <h2 class="main-heading-dialog-redesign" id="exampleModalLongTitle" style="padding-left: 40px;padding-bottom: 40px"><spring:message code="search.tips.tipsnotes" /></h2>
                 <div class="padding-left-20">
               		<ol class="list-group list-group-flush">
                             <li class="list-group-item padding-top-10 padding-bottom-10">

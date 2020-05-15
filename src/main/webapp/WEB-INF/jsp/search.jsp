@@ -39,8 +39,8 @@
     <header>
         <%@include file="header.jsp" %>
     </header>
-    
-    
+
+
     <%@include file="searchtips_modal.jsp" %>
 
     <!-- Modal Search Filter CheckBox Dialog -->
@@ -80,10 +80,10 @@
 
                                                 <c:if test="${(domains.get(i + 1) != 0 ) || (originalDomains.contains(domains.get(i))?true:false)}">
                                                     <div class="form-check-cont relative" style="width: 250px;padding: 10px;word-wrap:break-word;text-overflow: ellipsis" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="blue sidebar-filter-input-checkbox-modal-domains" name="domain_filter_modal" id="domain_filter_modal_<c:out value="${i}"/>"
+                                                        <input type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox-modal-domains" name="domain_filter_modal" id="domain_filter_modal_<c:out value="${i}"/>"
                                                                value="${domains.get(i)}"
                                                             ${originalDomains.contains(domains.get(i) )? 'checked' : ''}/>
-                                                        <label class="main-search-check-label blue no-italics box2" style="overflow: hidden" for="domain_filter_modal_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
+                                                        <label class="main-search-check-label no-italics box2" style="overflow: hidden" for="domain_filter_modal_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
                                                             <c:out value="${domains.get(i)}"/>
                                                             <span class="label-counts black no-italics" >(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
                                                     </div>
@@ -105,10 +105,10 @@
                                                 <c:if test="${(contentTypes.get(i + 1) != 0) || (originalContentTypes.contains(contentTypes.get(i))?true:false)}">
 
                                                     <div class="form-check-cont relative" style="width: 250px;padding: 10px" title="<c:out value="${contentTypes.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="blue sidebar-filter-input-checkbox-modal-documenttypes" name="content_type_filter_modal" id="content_type_filter_modal_<c:out value="${i}"/>"
+                                                        <input type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox-modal-documenttypes" name="content_type_filter_modal" id="content_type_filter_modal_<c:out value="${i}"/>"
                                                                value="${contentTypes.get(i)}"
                                                             ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
-                                                        <label class="main-search-check-label blue no-italics box2" style="overflow: hidden" for="content_type_filter_modal_<c:out value="${i}"/>">
+                                                        <label class="main-search-check-label no-italics box2" style="overflow: hidden" for="content_type_filter_modal_<c:out value="${i}"/>">
                                                             <c:out value="${contentTypes.get(i)}"/>
                                                             <span class="label-counts black no-italics" >(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
                                                     </div>
@@ -133,10 +133,10 @@
                                                 <c:if test="${(publicSuffixes.get(i + 1) != 0) || (originalPublicSuffixes.contains(publicSuffixes.get(i))?true:false)}">
 
                                                     <div class="form-check-cont relative" style="width: 250px;padding: 10px" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="blue sidebar-filter-input-checkbox-modal-suffixes" name="public_suffix_filter_modal" id="public_suffix_filter_modal_<c:out value="${i}"/>"
+                                                        <input type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox-modal-suffixes" name="public_suffix_filter_modal" id="public_suffix_filter_modal_<c:out value="${i}"/>"
                                                                value="${publicSuffixes.get(i)}"
                                                             ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
-                                                        <label class="main-search-check-label blue no-italics box2" style="overflow: hidden" for="public_suffix_filter_modal_<c:out value="${i}"/>">
+                                                        <label class="main-search-check-label no-italics box2" style="overflow: hidden" for="public_suffix_filter_modal_<c:out value="${i}"/>">
                                                             <c:out value="${publicSuffixes.get(i)}"/>
                                                             <span class="label-counts black no-italics">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
                                                     </div>
@@ -160,10 +160,10 @@
                                             <c:forEach begin="0" end="${collections.size() - 1}" step="2" var="i">
                                                 <c:if test="${(collections.get(i + 1) != 0) || (originalCollections.contains(collections.get(i))?true:false)}">
                                                     <div class="form-check-cont relative" style="width: 250px;padding: 10px" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="blue sidebar-filter-input-checkbox-modal-collections" name="collection_filter_modal" id="collection_filter_modal_<c:out value="${i}"/>"
+                                                        <input type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox-modal-collections" name="collection_filter_modal" id="collection_filter_modal_<c:out value="${i}"/>"
                                                                value="${collections.get(i)}"
                                                             ${originalCollections.contains(collections.get(i) )? 'checked' : ''}/>
-                                                        <label class="main-search-check-label blue no-italics box2" style="overflow: hidden" for="collection_filter_modal_<c:out value="${i}"/>"
+                                                        <label class="main-search-check-label no-italics box2" style="overflow: hidden" for="collection_filter_modal_<c:out value="${i}"/>"
                                                                title="<c:out value="${collections.get(i)}"/> (<c:out value="${collections.get(i + 1)}"/>)">
                                                             <c:out value="${collections.get(i)}"/>
                                                             <span class="label-counts black no-italics">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
@@ -334,9 +334,9 @@
                                     </c:if>
 
                                     <div class="form-check-cont padding-0" title="<spring:message code="search.side.view.1" />" tabindex="0">
-                                        <input tabindex="-1" type="radio" class="blue access_filter" name="view_filter" id="view_filter_1" value="va" 
+                                        <input tabindex="-1" type="radio" class="radio-sidebar access_filter" name="view_filter" id="view_filter_1" value="va"
                                         ${originalAccessView.contains('va') || empty originalAccessView ? 'checked' : ''}/>
-                                        <label class="main-search-check-label blue block-two-text-lines" for="view_filter_1" title="<spring:message code="search.side.view.1" />">
+                                        <label class="main-search-check-label block-two-text-lines" for="view_filter_1" title="<spring:message code="search.side.view.1" />">
                                             <spring:message code="search.side.view.1" />
                                             <span class="label-counts black">(<span class="results-count"><c:out value="${vaCount}"/></span>)</span>
                                         </label>
@@ -346,9 +346,9 @@
 
                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                                     <div class="form-check-cont padding-0" title="<spring:message code="search.side.view.2" />" tabindex="0">
-                                        <input type="radio" class="blue access_filter" name="view_filter" id="view_filter_2" value="vool"
+                                        <input type="radio" class="radio-sidebar access_filter" name="view_filter" id="view_filter_2" value="vool"
                                         ${originalAccessView.contains('vool') ? 'checked' : ''}/>
-                                        <label class="main-search-check-label blue block-two-text-lines" for="view_filter_2" title="<spring:message code="search.side.view.2" />"> <spring:message code="search.side.view.2" /> <span class="label-counts black">(<span class="results-count"><c:out value="${voolCount}"/></span>)</span></label>
+                                        <label class="main-search-check-label block-two-text-lines" for="view_filter_2" title="<spring:message code="search.side.view.2" />"> <spring:message code="search.side.view.2" /> <span class="label-counts black">(<span class="results-count"><c:out value="${voolCount}"/></span>)</span></label>
                                     </div>
                                 </div>
                             </div>
@@ -367,10 +367,10 @@
                                             <c:if test="${(domains.get(i + 1) != 0 && (i < 5)) || (originalDomains.contains(domains.get(i))?true:false)}">
                                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12 " >
                                                     <div class="form-check-cont" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="blue sidebar-filter-input-checkbox" name="domain_filter" id="domain_filter_<c:out value="${i}"/>"
+                                                        <input type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox" name="domain_filter" id="domain_filter_<c:out value="${i}"/>"
                                                                value="${domains.get(i)}"
                                                             ${originalDomains.contains(domains.get(i) )? 'checked' : ''}/>
-                                                        <label class="main-search-check-label blue block-two-text-lines" for="domain_filter_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
+                                                        <label class="main-search-check-label block-two-text-lines" for="domain_filter_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
                                                             <c:out value="${domains.get(i)}"/>
                                                             <span class="label-counts black">(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
                                                     </div>
@@ -395,10 +395,10 @@
                                             <c:if test="${(contentTypes.get(i + 1) != 0 && (i < 5)) || (originalContentTypes.contains(contentTypes.get(i))?true:false)}">
                                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                                                     <div class="form-check-cont padding-0" title="<c:out value="${contentTypes.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="blue sidebar-filter-input-checkbox" name="content_type" id="content_type_<c:out value="${i}"/>"
+                                                        <input type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox" name="content_type" id="content_type_<c:out value="${i}"/>"
                                                                value="${contentTypes.get(i)}"
                                                             ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
-                                                        <label class="main-search-check-label blue block-two-text-lines" for="content_type_<c:out value="${i}"/>">
+                                                        <label class="main-search-check-label block-two-text-lines" for="content_type_<c:out value="${i}"/>">
                                                             <c:out value="${contentTypes.get(i)}"/>
                                                             <span class="label-counts black" >(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
                                                     </div>
@@ -424,10 +424,10 @@
                                             <c:if test="${(publicSuffixes.get(i + 1) != 0 && (i < 5)) || (originalPublicSuffixes.contains(publicSuffixes.get(i))?true:false)}">
                                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                                                     <div class="form-check-cont padding-0" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="blue sidebar-filter-input-checkbox" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
+                                                        <input type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
                                                                value="${publicSuffixes.get(i)}"
                                                             ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
-                                                        <label class="main-search-check-label blue block-two-text-lines" for="public_suffix_<c:out value="${i}"/>">
+                                                        <label class="main-search-check-label block-two-text-lines" for="public_suffix_<c:out value="${i}"/>">
                                                             <c:out value="${publicSuffixes.get(i)}"/>
                                                             <span class="label-counts black">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
                                                     </div>
@@ -449,7 +449,7 @@
                                      aria-labelledby="t_date" style="padding-left: 40px">
                                     <div class="row padding-top-10">
                                         <div class="col-auto">
-                                            <label for="from_date" class="blue date-range-label"><spring:message
+                                            <label for="from_date" class="date-sidebar date-range-label"><spring:message
                                                     code="search.side.date.from"/></label>
                                         </div>
                                     </div>
@@ -463,7 +463,7 @@
                                     </div>
                                     <div class="row padding-top-10">
                                         <div class="col-auto">
-                                            <label for="to_date" class="blue date-range-label"><spring:message
+                                            <label for="to_date" class="date-sidebar date-range-label"><spring:message
                                                     code="search.side.date.to"/></label>
                                         </div>
                                     </div>
@@ -476,8 +476,8 @@
                                     </div>
                                     <div class="row padding-top-20">
                                         <div class="col-sm-12">
-                                            <button type="submit" title="<spring:message code="search.side.date.submit" />" class="button button-blue width-auto-inline date-filter-button filter-form-control"><spring:message code="search.side.date.submit" /></button>
-                                            <button type="button" title="<spring:message code="search.side.date.reset" />" class="button button-blue width-auto-inline date-filter-button margin-top-10 filter-form-control" id="btn_reset_dates">X</button>
+                                            <button type="submit" title="<spring:message code="search.side.date.submit" />" class="btn-primary width-auto-inline date-filter-button filter-form-control"><spring:message code="search.side.date.submit" /></button>
+                                            <button type="button" title="<spring:message code="search.side.date.reset" />" class="btn-primary width-auto-inline date-filter-button margin-top-10 filter-form-control" id="btn_reset_dates">X</button>
                                         </div>
                                     </div>
                                 </div>
@@ -494,10 +494,10 @@
                                             <c:if test="${(collections.get(i + 1) != 0 && (i < 5)) || (originalCollections.contains(collections.get(i))?true:false)}">
                                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                                                     <div class="form-check-cont padding-0" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="blue sidebar-filter-input-checkbox" name="collection" id="collection_<c:out value="${i}"/>"
+                                                        <input type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox" name="collection" id="collection_<c:out value="${i}"/>"
                                                                value="${collections.get(i)}"
                                                             ${originalCollections.contains(collections.get(i) )? 'checked' : ''}/>
-                                                        <label class="main-search-check-label blue block-two-text-lines" for="collection_<c:out value="${i}"/>"
+                                                        <label class="main-search-check-label block-two-text-lines" for="collection_<c:out value="${i}"/>"
                                                                title="<c:out value="${collections.get(i)}"/> (<c:out value="${collections.get(i + 1)}"/>)">
                                                             <c:out value="${collections.get(i)}"/>
                                                             <span class="label-counts black">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
@@ -655,7 +655,7 @@
                                 <c:when test="${totalPages == 0}">
                                     <div class="row margin-0 padding-0 border-bottom-gray">
                                         <div class="col-md-12 results-result">
-                                            <h2 class="margin-0 padding-top-20 gray">
+                                            <h2 class="margin-0 padding-top-20 search-no-results">
                                                 <spring:message code="search.noresults" />
                                             </h2>
                                         </div>
@@ -701,7 +701,7 @@
     </section>
     <div class="up-button" title="<spring:message code="top.of.page" />" aria-label="<spring:message code="top.of.page" />"  tabindex="0"></div>
 
-    <footer>
+    <footer class="footer-content">
         <%@include file="footer.jsp" %>
     </footer>
 </div>

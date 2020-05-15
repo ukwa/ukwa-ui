@@ -28,12 +28,12 @@
   <header>
     <%@include file="header.jsp" %>
   </header>
-  
+
 <spring:message code='error.500.heading' var="title"/>
 <%@include file="title.jsp" %>
-  
+
   <section id="content">
-    <div class="row header-blue white">
+    <div class="row error-500-row">
 
     </div>
     <div class="row margin-0 padding-side-10 padding-mobile-side-5 padding-top-80 padding-bottom-80">
@@ -46,7 +46,7 @@
       </div>
     </div>
   </section>
-  <footer>
+  <footer class="footer-content">
     <%@include file="footer.jsp" %>
   </footer>
 </div>

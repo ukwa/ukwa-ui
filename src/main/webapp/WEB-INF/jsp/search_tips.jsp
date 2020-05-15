@@ -29,7 +29,7 @@ ${pageContext.response.locale}
   <%@include file="header.jsp" %>
 </header>
 <section id="content">
-  <div class="row header-blue white">
+  <div class="row search-tips-row">
     <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12  padding-mobile-side-0">
       <h2 class="uppercase"><spring:message code="search.tips.main.heading" /></h2>
     </div>

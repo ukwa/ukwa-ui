@@ -45,7 +45,7 @@ ${pageContext.response.locale}
 <div class="row margin-0 px-md-3 px-sm-0">
 
   <div class="col-sm-12" id="coll_header">
-  
+
         <div class="row results-header margin-0 border-bottom-gray px-md-3 px-sm-0">
 
 <nav aria-label="breadcrumb">
@@ -66,16 +66,16 @@ ${pageContext.response.locale}
     </c:forEach>
   </ol>
 </nav>
-        
+
     <div class="row margin-0 padding-side-5">
-      <div class="col-md-12 col-sm-12 pl-0 pr-0 padding-top-20 padding-bottom-20 light-blue">
+      <div class="col-md-12 col-sm-12 pl-0 pr-0 padding-top-20 padding-bottom-20">
         <p class="black margin-top-20 margin-bottom-0 hidden" id="coll_description" data-descript="<c:out value="${currentCollection.description}"/>"></p>
         <p class="margin-bottom-0"><a href="#" class="hidden" title="<spring:message code="coll.readmore" />" id="readmore"><spring:message code="coll.readmore" /></a></p>
       </div>
     </div>
 
          <div class="row margin-0 border-bottom-gray">
-   <div class="col-md-6 col-sm-12 padding-bottom-20 padding-20 light-blue">
+   <div class="col-md-6 col-sm-12 padding-bottom-20 padding-20">
        <form action="search" method="get" enctype="multipart/form-data" name="search_coll_form" id="search_coll_form">
            <div class="row padding-bottom-20">
                <div class="col-sm-12">
@@ -98,7 +98,7 @@ ${pageContext.response.locale}
         <%--LOOP of Sub collections--%>
         <c:forEach items="${subCollections}" var="subCollection">
           <li class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-20 padding-bottom-20" style="list-style: none;"> <a href="collection/<c:out value="${subCollection.id}"/>" class="collection-link">
-            <div class="center light-blue padding-bottom-10 collection-heading">
+            <div class="center padding-bottom-10 collection-heading">
               <c:out value="${subCollection.name}"/>
             </div>
               <div class="sub-coll-descript shadow collection-description">
@@ -263,7 +263,7 @@ ${pageContext.response.locale}
 
 </section>
 <div class="up-button" title="<spring:message code="top.of.page" />" aria-label="<spring:message code="top.of.page" />" tabindex="0"></div>
-<footer>
+<footer class="footer-content">
   <%@include file="footer.jsp" %>
 </footer>
 </div>
@@ -271,45 +271,45 @@ ${pageContext.response.locale}
 <script>
 
 	function showDescript(descript, len) {
-	
+
 		if (descript.length>len) {
 			$("#coll_description").text(descript.substr(0,len)+"...");
 			$("#readmore").show();
 		} else {
 			$("#coll_description").text(descript);
 		}
-		
-		return true;	
-		
+
+		return true;
+
 	}
-	
+
 	$(document).ready(function(e) {
-		
+
 		var descript=$("#coll_description").attr("data-descript");
 		var len=360;
 		var short=true;
 		var readmore = '<spring:message code="coll.descript.readmore" />';
 		var readless = '<spring:message code="coll.descript.readless" />';
-		
+
 		showDescript(descript, len);
-		
+
 		$("#coll_description").show();
-		
+
 		$("#readmore").click(function(e) {
 			e.preventDefault();
 			if (short) {
 				$(this).attr("title", readless).text(readless);
 				$("#coll_description").text(descript);
 				short=false;
-				
+
 			} else {
 				$(this).attr("title", readmore).text(readmore);
 				showDescript(descript, len);
 				short=true;
 			}
 		});
-			
-		
+
+
 	});
 	</script>
 </body>

@@ -35,7 +35,7 @@
   <div class="row default-padding page-content margin-0 px-md-3 px-sm-2 px-xs-0">
     <div class="col-md-6 col-sm-12 page-content-col">
       <article>
-        <h2 class="light-blue bold">
+        <h2 class="bold">
           <spring:message code="about.page.title2" />
         </h2>
         <spring:message code="about.page.p2" />
@@ -50,7 +50,7 @@
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
       <article>
-        <h2 class="light-blue bold">
+        <h2 class="bold">
           <spring:message code="about.page.title1" />
         </h2>
         <spring:message code="about.page.p1" />
@@ -59,7 +59,7 @@
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
       <article>
-        <h2 class="light-blue bold">
+        <h2 class="bold">
           <spring:message code="about.page.title3" />
         </h2>
           <spring:message code="about.page.p3" />
@@ -71,7 +71,7 @@
   </div>
 </section>
 
-<footer>
+<footer class="footer-content">
   <%@include file="footer.jsp" %>
 </footer>
 </div>

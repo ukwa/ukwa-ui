@@ -28,10 +28,10 @@ ${pageContext.response.locale}
   <header>
     <%@include file="header.jsp" %>
   </header>
-  
+
 <spring:message code='error.404.heading' var="title"/>
 <%@include file="title.jsp" %>
-  
+
   <section id="content">
 
   <div class="row margin-0 padding-side-10 padding-mobile-side-5 padding-top-80 padding-bottom-80">
@@ -41,10 +41,10 @@ ${pageContext.response.locale}
     <div class="coll-sm-12">&nbsp;</div>
     <div class="col-lg-6 ml-auto mr-auto col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 margin-top-60">
 		<spring:message code="error.404.note" />
-    </div>    
+    </div>
   </div>
 </section>
-<footer>
+<footer class="footer-content">
   <%@include file="footer.jsp" %>
 </footer>
 </div>

@@ -31,7 +31,7 @@
     </ul>
     </div>
     <div class="col-md-4">
-    <ul class="list-group list-group-flush">        
+    <ul class="list-group list-group-flush">
         <li class="list-group-item">
             <a href="info/accessibility_statement" title="<spring:message code="accessibility.page.title" />">
                 <spring:message code="accessibility.header.title" />
@@ -60,7 +60,7 @@
     </ul>
     </div>
     <div class="col-md-4">
-    <ul class="list-group list-group-flush">    
+    <ul class="list-group list-group-flush">
         <li class="list-group-item">
             <a href="http://britishlibrary.typepad.co.uk/webarchive/" target="_blank" title="<spring:message code="footer.blog.title" />">
                 <spring:message code="footer.blog" />
@@ -76,7 +76,7 @@
                 <spring:message code="technical.title" />
             </a>
         </li>
-        <!-- 
+        <!--
         <li class="list-group-item">
             <a href="https://www.webarchive.org.uk/rss/recent.xml" title="<spring:message code="footer.rss.title" />">
                 <spring:message code="footer.rss" />
@@ -142,7 +142,7 @@
 
 
     $(document).ready(function(e) {
-    	
+
     	$(function () {
     		  $('[data-toggle="tooltip"]').tooltip()
 		})

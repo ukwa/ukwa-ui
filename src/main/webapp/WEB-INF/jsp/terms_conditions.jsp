@@ -37,7 +37,7 @@ ${pageContext.response.locale}
     <spring:message code="terms.text" />
   </div>
 </section>
-<footer>
+<footer class="footer-content">
   <%@include file="footer.jsp" %>
 </footer>
 </div>

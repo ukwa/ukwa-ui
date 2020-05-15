@@ -34,7 +34,7 @@
 </c:choose>
 
 <header class="header">
-    <nav class="navbar navbar-expand-md navbar-light bg-white">
+    <nav class="navbar navbar-expand-md">
         <a class="navbar-brand" href="index" tabindex="-1">
             <img class="logo-svg" src="img/ukwa-2018-onwhite-close.svg" alt="UK Web Archive">
         </a>
@@ -77,10 +77,17 @@
                     </div>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" id="universalaccess_href" class="col-md-1 col-sm-1">
+                    <a href="javascript:void(0)" id="universalaccess_href" class="col-md-1 col-sm-1" aria-hidden="true">
                         <i class="fas fa-universal-access fa fa-2x highcontastUAIconOff"></i>
                     </a>
                 </li>
+                <li>
+                    <label id="toggle" class="light">
+                        <input type="checkbox" onclick="toggleDarkMode(event)">
+                        <span id="slider" class="light"></span>
+                    </label>
+                </li>
+
             </ul>
         </div>
     </nav>
