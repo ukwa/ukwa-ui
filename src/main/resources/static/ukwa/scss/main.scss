@@ -172,12 +172,14 @@ html, body {
 .nominate-result-row, .no-result-row, .ukwa-form-field,  .search-tips-row, .not-available-row, .error-500-row,
  .main-search-field-redesign, .searchpage_search_bg_settings, .search-no-results, .pagination-number-redesign, .sidebar-filter-header, .checkbox-sidebar, .radio-sidebar, .date-sidebar, .sidebar-clear-filter-button,
 .q-description,
-.results-container{
+.results-container,
+.breadcrumb {
   @include themify($themes) {
     color: themed('textColor');
     background-color: themed('backgroundColor');
   }
 }
+
 
 .search-tips-href{
   @include themify($themes) {
@@ -1293,11 +1295,20 @@ h3 {
 .main-menu-item {
   padding: 35px 20px 35px 80px;
   font-size: 1em;
-  background-color: #2e6dd9;
   cursor: pointer;
   border-top: solid 1px #fff;
   width: 100%;
-  color: #fff;
+
+  @include themify($themes) {
+  color: themed('textColor');
+  background-color: themed('backgroundColor');
+}
+}
+
+.main-menu-item:hover {
+  @include themify($themes) {
+    background-color: themed('backgroundColor');
+  }
 }
 
 .main-menu-cont a {
@@ -1313,9 +1324,7 @@ h3 {
   display: inline-block;
 }
 
-.main-menu-item:hover {
-  background-color: #0c49b0;
-}
+
 
 header li.nav-item.active a {
   text-decoration: underline;

@@ -109,7 +109,7 @@
 <div class="cookies-cont">
     <div class="row">
         <div class="col-md-8 col-sm-12"><spring:message code="footer.cookies.text" /></div>
-        <div class="col-md-4 col-sm-12 padding-top-mobile-10"><button class="button button-white float-sm-right" id="btn_cookies" title="<spring:message code="footer.cookies.button.title" />"><spring:message code="footer.cookies.button" /></button></div>
+        <div class="col-md-4 col-sm-12 padding-top-mobile-10"><button class="button float-sm-right" id="btn_cookies" title="<spring:message code="footer.cookies.button.title" />"><spring:message code="footer.cookies.button" /></button></div>
     </div>
 </div>
 

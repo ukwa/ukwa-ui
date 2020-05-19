@@ -69,7 +69,7 @@ ${pageContext.response.locale}
 
     <div class="row margin-0 padding-side-5">
       <div class="col-md-12 col-sm-12 pl-0 pr-0 padding-top-20 padding-bottom-20">
-        <p class="black margin-top-20 margin-bottom-0 hidden" id="coll_description" data-descript="<c:out value="${currentCollection.description}"/>"></p>
+        <p class="margin-top-20 margin-bottom-0 hidden" id="coll_description" data-descript="<c:out value="${currentCollection.description}"/>"></p>
         <p class="margin-bottom-0"><a href="#" class="hidden" title="<spring:message code="coll.readmore" />" id="readmore"><spring:message code="coll.readmore" /></a></p>
       </div>
     </div>
@@ -153,43 +153,44 @@ ${pageContext.response.locale}
                 </div>
             </div>
             <%-- /TOP PAGINATION ROW --%>
+            <div class="results-container">
             <%-- RESULT ROW --%>
-            <ul style="list-style: none;" class="row margin-0 padding-0">
-            <c:forEach items="${targetWebsites}" var="targetWebsite">
-                <!--RESULT ROW-->
-                <li class="row margin-0 padding-0 border-bottom-gray col-md-12 col-sm-12">
-                    <div class=" results-result">
-                        <h2 class="margin-0">
-                            <c:out value="${targetWebsite.name}"/>
-                        </h2><br/>
-                        <c:choose>
-                            <c:when test="${targetWebsite.access == 'RRO' && userIpFromBl}">
-              <span class="results-title-text results-lib-premises text-smaller black">
-                <spring:message code="search.results.library.premises" />
-              </span>
-                            </c:when>
-                            <c:when test="${targetWebsite.access == 'RRO' && !userIpFromBl}">
+                    <c:forEach items="${targetWebsites}" var="targetWebsite">
+                        <!--RESULT ROW-->
+                        <li class="row margin-0 padding-0 border-bottom-gray col-md-12 col-sm-12">
+                            <div class=" results-result">
+                                <h2 class="margin-0">
+                                    <c:out value="${targetWebsite.name}"/>
+                                </h2><br/>
+                                <c:choose>
+                                    <c:when test="${targetWebsite.access == 'RRO' && userIpFromBl}">
               <span class="results-title-text results-lib-premises text-smaller">
                 <spring:message code="search.results.library.premises" />
               </span>
-                            </c:when>
-                        </c:choose>
+                                    </c:when>
+                                    <c:when test="${targetWebsite.access == 'RRO' && !userIpFromBl}">
+              <span class="results-title-text results-lib-premises text-smaller">
+                <spring:message code="search.results.library.premises" />
+              </span>
+                                    </c:when>
+                                </c:choose>
 
-                        <c:out value="${targetWebsite.description}"/>
-                        <c:if test="${not empty targetWebsite.startDate}">
+                                <c:out value="${targetWebsite.description}"/>
+                                <c:if test="${not empty targetWebsite.startDate}">
                         <span class="results-title-text margin-top-10 clearfix"> <spring:message code="coll.archived.date"/>
             <c:out value="${targetWebsite.startDate}"/>
           </span>
-          </c:if>
-                        <span class="results-title-text clearfix padding-vert-10">
+                                </c:if>
+                                <span class="results-title-text clearfix padding-vert-10">
               <a href="<c:out value="${targetWebsite.archiveUrl}"/>" class="break-all"><c:out value="${targetWebsite.url}"/></a>
             </span>
-                    </div>
-                </li>
-                <!--/RESULT ROW-->
-                <%-- /RESULT ROW --%>
-            </c:forEach>
-            </ul>
+                            </div>
+                        </li>
+                        <!--/RESULT ROW-->
+                        <%-- /RESULT ROW --%>
+                    </c:forEach>
+                </ul>
+            </div>
             <%--BOTTOM PAGINATION ROW --%>
             <div class="row padding-0 margin-0">
                 <div class="col-md-12 pagination-cont ">
