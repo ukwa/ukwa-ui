@@ -92,7 +92,7 @@
       <div class="col-md-6 col-sm-12 form-content-col padding-top-0" aria-label="Input captcha" title="captcha message field" id="ukwa-captchca">
       <div class="g-recaptcha" data-sitekey="6Lcn5C4UAAAAAFzANA394u7Jqfk2QmvxyUjM8UiM" aria-hidden="true"></div>
       <div class="captcha-message" aria-labelledby="ukwa-captchca"><spring:message code="captcha.message" /></div>
-        <button type="submit" class="btn-primary margin-top-30 button_form_submit " aria-labelledby="ukwa-captchca" title="<spring:message code="contact.form.button.submit" />"><spring:message code="contact.form.button.submit" /></button>
+        <button type="submit" class="homepage-search-button margin-top-30 button_form_submit " aria-labelledby="ukwa-captchca" title="<spring:message code="contact.form.button.submit" />"><spring:message code="contact.form.button.submit" /></button>
       </div>
     </div>
   </form>

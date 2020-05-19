@@ -72,11 +72,8 @@ html, body {
 
 
   @include themify($themes) {
-
     color: themed('textColor');
     background-color: themed('backgroundColor');
-
-
   }
 
   //all page backgroung
@@ -169,9 +166,9 @@ html, body {
 }
 
 .header, .footer-content, .cookies-cont, .modal-content, .collection-heading, .collection-heading-bold, .list-group-item, .homepage-search-input,
-.nominate-result-row, .no-result-row, .ukwa-form-field,  .search-tips-row, .not-available-row, .error-500-row,
+.no-result-row, .ukwa-form-field,  .search-tips-row, .not-available-row, .error-500-row,
  .main-search-field-redesign, .searchpage_search_bg_settings, .search-no-results, .pagination-number-redesign, .sidebar-filter-header, .checkbox-sidebar, .radio-sidebar, .date-sidebar, .sidebar-clear-filter-button,
-.q-description,
+.q-description, .q-grid, .technical-code,
 .results-container,
 .breadcrumb, .results-count, .topics-themes-description {
   @include themify($themes) {
@@ -180,6 +177,12 @@ html, body {
   }
 }
 
+.nominate-result-row{
+  @include themify($themes) {
+    color: themed('nominate-result-row-color');
+    background-color: themed('nominate-result-row-bg');
+  }
+}
 
 .search-tips-href{
   @include themify($themes) {
@@ -856,11 +859,21 @@ a.no-decoration {
 
 .form-control {
   border-radius: 0 !important;
-  border: solid 1px #2e6dd9;
-  &.blue {
-    border: solid 1px #fff;
-    background-color: #2e6dd9;
-    color: #fff;
+
+  @include themify($themes) {
+    box-shadow: themed('home_page_btn_box-shadow');
+
+    border: themed('buttonBorder');
+    color: themed('buttonTextColor');
+    border-color: themed('buttonTextColor');
+    background-color: themed('buttonColor');
+    text-transform: themed('buttonTextTransform');
+
+    &:hover {
+      color: themed('buttonTextHoverColor');
+      border-color: themed('buttonTextHoverColor');
+      background-color: themed('buttonHoverColor');
+    }
   }
 }
 
@@ -1004,8 +1017,10 @@ input {
 
 .scroll-redesign {
   overflow-y: scroll;
-  color: #00A0B0;
-  background: #2e6dd9;
+  @include themify($themes) {
+    color: themed('scroll-redesign-color');
+    background-color: themed('scroll-redesign-bg');
+  }
 }
 
 .shadow-redesign {

@@ -104,21 +104,21 @@ ${req.requestURL}
         <div class="form-group">
           <label for="email" class="ukwa-form-field"><spring:message code="nominate.form.input.email" /></label>
           <input type="email" name="email" id="email" class="form-control" placeholder="<spring:message code="nominate.form.input.email.placeholder"/>" aria-describedby="emailHelp"/>
-          <small id="emailHelp" class="form-text text-muted"><spring:message code="nominate.form.email.notice" /></small>
+          <small id="emailHelp" class="form-text"><spring:message code="nominate.form.email.notice" /></small>
         </div>
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
         <div class="form-group">
           <label for="notes" class="ukwa-form-field"><spring:message code="nominate.form.input.notes" /></label>
           <textarea name="notes" id="notes" class="form-control height-145" placeholder="" aria-describedby="notesHelp"></textarea>
-          <small id="notesHelp" class="form-text text-muted"><spring:message code="nominate.form.input.notes.placeholder" /></small>
+          <small id="notesHelp" class="form-text"><spring:message code="nominate.form.input.notes.placeholder" /></small>
         </div>
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
         <div class=" margin-top-30 clearfix">
          <div class="g-recaptcha" data-sitekey="6Lcn5C4UAAAAAFzANA394u7Jqfk2QmvxyUjM8UiM" aria-hidden="true"></div>
       <div class="captcha-message"><spring:message code="captcha.message" /></div>
-        <button type="submit" class="btn-primary margin-top-30 button_form_submit" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button></div>
+        <button type="submit" class="homepage-search-button margin-top-30 button_form_submit" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button></div>
       </div>
     </div>
   </form>

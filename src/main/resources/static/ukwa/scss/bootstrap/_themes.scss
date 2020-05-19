@@ -66,8 +66,19 @@ $themes: (
                 //forms
                 ukwa-form-button-text-color:#fff,
 
+                //nominate
+                nominate-result-row-color:#fff,
+                nominate-result-row-bg:#222,
+
+                //scroll
+                scroll-redesign-color:#00A0B0,
+                scroll-redesign-bg:#2e6dd9,
+
         ),
         dark: (
+                defaultcolor: #1352be,
+
+
                 ukwa-pagetab-title-text-color: #ccc,
                 ukwa-form-button-bg: #eee,
                 ukwa-form-button-color: #111,
@@ -122,5 +133,13 @@ $themes: (
 
                 //forms
                 ukwa-form-button-text-color:#fff,
+
+                //nominate
+                nominate-result-row-color:#fff,
+                nominate-result-row-bg:#1352be,
+
+                //scroll
+                scroll-redesign-color:#fff,
+                scroll-redesign-bg:#333,
         ),
 );

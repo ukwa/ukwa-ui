@@ -229,18 +229,16 @@
                 </p>
                 <figure>
                 <pre>
-                    <code>&lt;div style=...&gt;&lt;a href="http://www.webarchive.org.uk/"&gt;Click here for the UK Web Archive&lt;/a&gt;&lt;/div&gt;</code>
+                    <code class="technical-code">&lt;div style=...&gt;&lt;a href="http://www.webarchive.org.uk/"&gt;Click here for the UK Web Archive&lt;/a&gt;&lt;/div&gt;</code>
                 </pre>
                 </figure>
                 <p>To use a link that has the UK Web Archive logo, then copy and paste this code:
                 </p>
-                <p align="left">
                     <figure>
                 <pre>
-                    <code>&lt;div style=...&gt;&lt;a href="http://www.webarchive.org.uk/"&gt;&lt;img alt="UK Web Archive" src="https://www.webarchive.org.uk/en/ukwa/img/ukwa-logo-60px.jpg"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/div&gt;</code>
+                    <code class="technical-code">&lt;div style=...&gt;&lt;a href="http://www.webarchive.org.uk/"&gt;&lt;img alt="UK Web Archive" src="https://www.webarchive.org.uk/en/ukwa/img/ukwa-logo-60px.jpg"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/div&gt;</code>
                 </pre>
                     </figure>
-                </p>
 
             </div>
         </div>

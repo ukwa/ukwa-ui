@@ -94,7 +94,7 @@
             </div>
 
             <div class="padding-bottom-60 center">
-                <a href="collection" class="btn btn-primary btn-lg" title="<spring:message code="home.button.viewmore.title"/>"><spring:message code="home.button.viewmore"/></a>
+                <a href="collection" class="homepage-search-button btn-lg" title="<spring:message code="home.button.viewmore.title"/>"><spring:message code="home.button.viewmore"/></a>
             </div>
         </section>
 
