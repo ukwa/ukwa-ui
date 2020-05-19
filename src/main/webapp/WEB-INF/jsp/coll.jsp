@@ -224,9 +224,9 @@ ${pageContext.response.locale}
                 <c:when test="${currentCollection.websitesNum == 0 && empty subCollections}">
                     <div class="row margin-0 padding-0 border-bottom-gray">
                         <div class="col-md-12 col-sm-12 results-result">
-                            <h2 class="margin-0 padding-top-20 gray">
+                            <div class="main-heading-2-bold-redesign margin-0 padding-top-20 ">
                                 <spring:message code="coll.noresults" />
-                            </h2>
+                            </div>
                         </div>
                     </div>
                 </c:when>
@@ -235,9 +235,9 @@ ${pageContext.response.locale}
                     <%-- CASE OF MANUAL PAGINATION ATTEMPT  --%>
                     <div class="row margin-0 padding-0 border-bottom-gray">
                         <div class="col-md-12 col-sm-12 results-result">
-                            <h2 class="margin-0 padding-top-20 gray">
+                            <div class="main-heading-2-bold-redesign margin-0 padding-top-20 ">
                                 <spring:message code="coll.nopagingresults" />
-                            </h2>
+                            </div>
                         </div>
                     </div>
                     <%-- /CASE OF MANUAL PAGINATION ATTEMPT  --%>

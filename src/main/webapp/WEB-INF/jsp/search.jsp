@@ -85,7 +85,7 @@
                                                             ${originalDomains.contains(domains.get(i) )? 'checked' : ''}/>
                                                         <label class="main-search-check-label no-italics box2" style="overflow: hidden" for="domain_filter_modal_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
                                                             <c:out value="${domains.get(i)}"/>
-                                                            <span class="label-counts black no-italics" >(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
+                                                            <span class="label-counts no-italics" >(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
                                                     </div>
                                                 </c:if>
                                             </c:forEach>
@@ -110,7 +110,7 @@
                                                             ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
                                                         <label class="main-search-check-label no-italics box2" style="overflow: hidden" for="content_type_filter_modal_<c:out value="${i}"/>">
                                                             <c:out value="${contentTypes.get(i)}"/>
-                                                            <span class="label-counts black no-italics" >(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
+                                                            <span class="label-counts no-italics" >(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
                                                     </div>
 
                                                 </c:if>
@@ -138,7 +138,7 @@
                                                             ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
                                                         <label class="main-search-check-label no-italics box2" style="overflow: hidden" for="public_suffix_filter_modal_<c:out value="${i}"/>">
                                                             <c:out value="${publicSuffixes.get(i)}"/>
-                                                            <span class="label-counts black no-italics">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
+                                                            <span class="label-counts no-italics">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
                                                     </div>
 
                                                 </c:if>
@@ -166,7 +166,7 @@
                                                         <label class="main-search-check-label no-italics box2" style="overflow: hidden" for="collection_filter_modal_<c:out value="${i}"/>"
                                                                title="<c:out value="${collections.get(i)}"/> (<c:out value="${collections.get(i + 1)}"/>)">
                                                             <c:out value="${collections.get(i)}"/>
-                                                            <span class="label-counts black no-italics">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
+                                                            <span class="label-counts no-italics">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
                                                     </div>
                                                 </c:if>
 
@@ -338,7 +338,7 @@
                                         ${originalAccessView.contains('va') || empty originalAccessView ? 'checked' : ''}/>
                                         <label class="main-search-check-label block-two-text-lines" for="view_filter_1" title="<spring:message code="search.side.view.1" />">
                                             <spring:message code="search.side.view.1" />
-                                            <span class="label-counts black">(<span class="results-count"><c:out value="${vaCount}"/></span>)</span>
+                                            <span class="label-counts">(<span class="results-count"><c:out value="${vaCount}"/></span>)</span>
                                         </label>
                                     </div>
                                 </div>
@@ -348,7 +348,7 @@
                                     <div class="form-check-cont padding-0" title="<spring:message code="search.side.view.2" />" tabindex="0">
                                         <input type="radio" class="radio-sidebar access_filter" name="view_filter" id="view_filter_2" value="vool"
                                         ${originalAccessView.contains('vool') ? 'checked' : ''}/>
-                                        <label class="main-search-check-label block-two-text-lines" for="view_filter_2" title="<spring:message code="search.side.view.2" />"> <spring:message code="search.side.view.2" /> <span class="label-counts black">(<span class="results-count"><c:out value="${voolCount}"/></span>)</span></label>
+                                        <label class="main-search-check-label block-two-text-lines" for="view_filter_2" title="<spring:message code="search.side.view.2" />"> <spring:message code="search.side.view.2" /> <span class="label-counts">(<span class="results-count"><c:out value="${voolCount}"/></span>)</span></label>
                                     </div>
                                 </div>
                             </div>
@@ -372,7 +372,7 @@
                                                             ${originalDomains.contains(domains.get(i) )? 'checked' : ''}/>
                                                         <label class="main-search-check-label block-two-text-lines" for="domain_filter_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
                                                             <c:out value="${domains.get(i)}"/>
-                                                            <span class="label-counts black">(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
+                                                            <span class="label-counts">(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
                                                     </div>
                                                 </div>
                                             </c:if>
@@ -400,7 +400,7 @@
                                                             ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
                                                         <label class="main-search-check-label block-two-text-lines" for="content_type_<c:out value="${i}"/>">
                                                             <c:out value="${contentTypes.get(i)}"/>
-                                                            <span class="label-counts black" >(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
+                                                            <span class="label-counts" >(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
                                                     </div>
                                                 </div>
                                             </c:if>
@@ -429,7 +429,7 @@
                                                             ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
                                                         <label class="main-search-check-label block-two-text-lines" for="public_suffix_<c:out value="${i}"/>">
                                                             <c:out value="${publicSuffixes.get(i)}"/>
-                                                            <span class="label-counts black">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
+                                                            <span class="label-counts">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
                                                     </div>
                                                 </div>
                                             </c:if>
@@ -500,7 +500,7 @@
                                                         <label class="main-search-check-label block-two-text-lines" for="collection_<c:out value="${i}"/>"
                                                                title="<c:out value="${collections.get(i)}"/> (<c:out value="${collections.get(i + 1)}"/>)">
                                                             <c:out value="${collections.get(i)}"/>
-                                                            <span class="label-counts black">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
+                                                            <span class="label-counts">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
                                                     </div>
                                                 </div>
                                             </c:if>
@@ -619,12 +619,12 @@
                                 <!--RESULT ROW-->
                                 <div class="row margin-0 padding-0 border-bottom-gray">
                                     <div class="col-md-12 results-result">
-                                        <h2 class="margin-0">
+                                        <div class="main-heading-2-bold-redesign margin-0">
                                             <c:out value="${searchResult.title}"/>
-                                        </h2><br/>
+                                        </div><br/>
                                         <c:choose>
                                             <c:when test="${searchResult.access == 'RRO' && userIpFromBl}">
-              <span class="results-title-text results-lib-premises text-smaller black">
+              <span class="results-title-text results-lib-premises text-smaller">
                 <spring:message code="search.results.library.premises" />
               </span>
                                             </c:when>
@@ -655,9 +655,9 @@
                                 <c:when test="${totalPages == 0}">
                                     <div class="row margin-0 padding-0 border-bottom-gray">
                                         <div class="col-md-12 results-result">
-                                            <h2 class="margin-0 padding-top-20 search-no-results">
+                                            <div class="main-heading-2-bold-redesign margin-0 padding-top-20 search-no-results">
                                                 <spring:message code="search.noresults" />
-                                            </h2>
+                                            </div>
                                         </div>
                                     </div>
                                 </c:when>
