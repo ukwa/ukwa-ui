@@ -538,7 +538,7 @@
 
             <div class="col-lg-9 col-md-8 col-sm-8 padding-0 padding-left-20">
                 <div class="results-header">
-                    <div class="row bg-gray2">
+                    <div class="row">
                         <%@include file="searchpage_searchForm.jsp" %>
                     </div>
                     <div class="row">

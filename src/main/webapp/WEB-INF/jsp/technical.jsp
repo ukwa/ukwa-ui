@@ -43,7 +43,7 @@
 
         <div class="default-padding text-content">
 
-            <p class="main-subheading-2-redesign black padding-bottom-40">Click on the question to see the answer</p>
+            <p class="main-subheading-2-redesign padding-bottom-40">Click on the question to see the answer</p>
 
 
             <div class="padding-bottom-10">

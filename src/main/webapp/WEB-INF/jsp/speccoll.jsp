@@ -57,8 +57,8 @@ ${pageContext.response.locale}
                             <figure><img class="img-responsive border-gray coll-img" alt="<c:out value="${collection.imageAltMessage}"/>"
                                          src="img/collections/collection_<c:out value="${collection.id}"/>.png"/>
                             </figure>
-                            <h2 class="left light-blue padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold"><c:out value="${collection.name}"/></h2>
-                            <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail"><c:out value="${collection.description}"/></div>
+                            <div class="main-heading-2-bold-redesign left padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold"><c:out value="${collection.name}"/></div>
+                            <div class="left padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail"><c:out value="${collection.description}"/></div>
                         </a>
                     </li>
                 </c:forEach>

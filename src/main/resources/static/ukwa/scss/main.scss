@@ -173,7 +173,7 @@ html, body {
  .main-search-field-redesign, .searchpage_search_bg_settings, .search-no-results, .pagination-number-redesign, .sidebar-filter-header, .checkbox-sidebar, .radio-sidebar, .date-sidebar, .sidebar-clear-filter-button,
 .q-description,
 .results-container,
-.breadcrumb {
+.breadcrumb, .results-count, .topics-themes-description {
   @include themify($themes) {
     color: themed('textColor');
     background-color: themed('backgroundColor');
