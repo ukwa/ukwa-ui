@@ -43,10 +43,10 @@
       </article>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
-      <figure><img class="img-responsive" src="img/47007971.JPG" alt=""/> </figure>
+      <figure><img class="img-responsive" src="img/47007971.JPG" alt="Server cluster for big data storage"/></figure>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
-      <figure><img class="img-responsive" src="img/47008070.jpg" alt=""/> </figure>
+      <figure><img class="img-responsive" src="img/47008070.jpg" alt="Reading room at The British Library"/> </figure>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
       <article>
@@ -66,7 +66,7 @@
       </article>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
-      <figure><img class="img-responsive" src="img/about-logos.png" alt=""/> </figure>
+      <figure><img class="img-responsive" src="img/about-logos.png" alt="Partners of The British Library"/> </figure>
     </div>
   </div>
 </section>
