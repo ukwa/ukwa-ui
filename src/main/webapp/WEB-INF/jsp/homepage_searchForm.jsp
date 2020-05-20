@@ -7,11 +7,11 @@
     </div>
 
     <div class="col-lg-8 col-md-8 col-sm-12 mb-3">
-      <input type="text" name="text" class="form-control form-control-lg" placeholder="">
+      <input type="text" name="text" class="form-control form-control-lg" placeholder="" required>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-12">
       <button type="submit" class="btn btn-light mb-2 pl-4 pr-4 btn-lg homepage-search-button" title="<spring:message code="search.main.button.title" />">Search <i class="fa fa-search ml-2"></i></button>
-    </div>            
+    </div>
 
     <div class="col-md-12 offset-md-2 white dialog-link">
                     <spring:message code="search.main.input.title" />&nbsp;
