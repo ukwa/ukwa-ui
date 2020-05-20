@@ -35,11 +35,6 @@
 
     <%@include file="searchtips_modal.jsp" %>
 
-
-    <div class="alert alert-warning center bold" role="alert">
-        Please note that the UK Web Archive service will be unavailable on Thursday, February 27th, for maintenance.
-    </div>
-
     <div id="content" class="padding-top-20 padding-bottom-10 px-md-5 px-sm-3 px-xs-3 px-2">
         <section id="home-pre-header">
 
