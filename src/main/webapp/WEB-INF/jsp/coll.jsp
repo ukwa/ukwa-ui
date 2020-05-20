@@ -115,11 +115,10 @@ ${pageContext.response.locale}
         <div class="col-sm-12 padding-0">
             <c:choose>
               <c:when test="${currentCollection.websitesNum == 1}">
-                <span class="results-count">1</span> <spring:message code="coll.results.num.single" />
+                  <span class="results-count">1&nbsp;<span class="results-count"><spring:message code="coll.results.num.single" /></span></span>
               </c:when>
               <c:when test="${currentCollection.websitesNum > 1}">
-                <span class="results-count">
-                  <c:out value="${currentCollection.websitesNum}"/></span> <spring:message code="coll.results.num.plural" />
+                  <span class="results-count"><c:out value="${currentCollection.websitesNum}"/>&nbsp;<span class="results-count"><spring:message code="coll.results.num.plural" /></span></span>
               </c:when>
             </c:choose>
         </div>

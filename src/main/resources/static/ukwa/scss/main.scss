@@ -2586,7 +2586,9 @@ footer {
 }
 
 .results-lib-premises {
-  color: red;
+  @include themify($themes) {
+  color: themed('results-lib-premises-textColor');
+}
 }
 
 .results-border {

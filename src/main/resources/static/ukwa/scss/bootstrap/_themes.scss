@@ -43,6 +43,8 @@ $themes: (
                 search-results-main-heading-text-color:#000,
                 search-results-main-bg:#fff,
 
+                //search within collection
+                results-lib-premises-textColor:red,
 
 
 //menu
@@ -73,6 +75,8 @@ $themes: (
                 //scroll
                 scroll-redesign-color:#00A0B0,
                 scroll-redesign-bg:#2e6dd9,
+
+
 
         ),
         dark: (
@@ -129,6 +133,9 @@ $themes: (
                 buttonTextHoverColor: #ddd,
                 buttonColor: #333,
                 buttonBorder: 1px solid #aaa,
+
+                //search within collection
+                results-lib-premises-textColor:#fff,
 
 
                 //forms

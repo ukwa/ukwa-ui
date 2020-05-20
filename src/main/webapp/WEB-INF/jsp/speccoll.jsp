@@ -54,7 +54,7 @@ ${pageContext.response.locale}
                 <c:forEach items="${collections}" var="collection">
                     <li class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
                         <a href="collection/<c:out value="${collection.id}"/>" class="collection-link">
-                            <figure><img class="img-responsive border-gray coll-img" alt="<c:out value="${collection.imageAltMessage}"/>"
+                            <figure><img class="img-responsive border-gray coll-img" alt="<c:out value="${empty collection.imageAltMessage?collection.name:collection.imageAltMessage}"/>"
                                          src="img/collections/collection_<c:out value="${collection.id}"/>.png"/>
                             </figure>
                             <div class="main-heading-2-bold-redesign left padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold"><c:out value="${collection.name}"/></div>
