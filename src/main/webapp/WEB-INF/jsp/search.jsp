@@ -568,18 +568,22 @@
                                     <div class="search-results-top-filters-2">
                                         <label for="sorting" class="padding-right-20" title="<spring:message code="search.results.sortby" />"><spring:message code="search.results.sortby" /></label>
                                         <select class="search-results-display-sort" name="sorting" id="sorting" tabindex="0">
-                                            <option value="relevant" ${originalSortValue == 'relevant' ? 'selected' : ''}><spring:message code="search.results.sort.relevant" /></option>
-                                            <option value="otn" ${originalSortValue == 'otn' ? 'selected' : ''} ><spring:message code="search.results.sort.oldest" /></option>
-                                            <option value="nto" ${originalSortValue == 'nto' ? 'selected' : ''}><spring:message code="search.results.sort.newest" /></option>
+                                            <optgroup label="<spring:message code="search.results.sortby" />">
+                                                <option value="relevant" ${originalSortValue == 'relevant' ? 'selected' : ''}><spring:message code="search.results.sort.relevant" /></option>
+                                                <option value="otn" ${originalSortValue == 'otn' ? 'selected' : ''} ><spring:message code="search.results.sort.oldest" /></option>
+                                                <option value="nto" ${originalSortValue == 'nto' ? 'selected' : ''}><spring:message code="search.results.sort.newest" /></option>
+                                            </optgroup>
                                         </select>
                                     </div>
 
                                     <div class="search-results-top-filters-2 right">
                                         <label for="count" class="padding-right-20" title="<spring:message code="search.results.items" />"><spring:message code="search.results.items" /></label>
                                         <select class="search-results-display-count" name="count" id="count" tabindex="0">
-                                            <option value="50" ${rowsPerPageLimit == 50 ? 'selected' : ''}>50</option>
-                                            <option value="100" ${rowsPerPageLimit == 100 ? 'selected' : ''}>100</option>
-                                            <option value="200" ${rowsPerPageLimit == 200 ? 'selected' : ''}>200</option>
+                                            <optgroup label="<spring:message code="search.results.items" />">
+                                                <option value="50" ${rowsPerPageLimit == 50 ? 'selected' : ''}>50</option>
+                                                <option value="100" ${rowsPerPageLimit == 100 ? 'selected' : ''}>100</option>
+                                                <option value="200" ${rowsPerPageLimit == 200 ? 'selected' : ''}>200</option>
+                                            </optgroup>
                                         </select>
                                     </div>
 
