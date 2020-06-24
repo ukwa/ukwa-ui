@@ -1,6 +1,6 @@
 <div class="container-fluid">
 <hr/>
-<div class="row margin-0 padding-30">
+<div role="navigation" aria-label="Navigation footer" class="row margin-0 padding-30">
     <div class="col-md-4">
     <ul class="list-group list-group-flush">
         <li class="list-group-item">
@@ -106,12 +106,12 @@
     </ul>
 </div>
 
-<div class="cookies-cont">
-    <div class="row">
-        <div class="col-md-8 col-sm-12"><spring:message code="footer.cookies.text" /></div>
-        <div class="col-md-4 col-sm-12 padding-top-mobile-10"><button class="button float-sm-right" id="btn_cookies" title="<spring:message code="footer.cookies.button.title" />"><spring:message code="footer.cookies.button" /></button></div>
+    <div class="cookies-cont">
+        <div class="row">
+            <div class="col-md-8 col-sm-12"><spring:message code="footer.cookies.text" /></div>
+            <div class="col-md-4 col-sm-12 padding-top-mobile-10"><button class="button float-sm-right" id="btn_cookies" title="<spring:message code="footer.cookies.button.title" />"><spring:message code="footer.cookies.button" /></button></div>
+        </div>
     </div>
-</div>
 
 </div>
 
@@ -124,7 +124,7 @@
 
 <div class="row">
     <div class="col-12">
-    <div class="container-footer-logos-group">
+    <div role="navigation" aria-label="Navigation BL partners" class="container-footer-logos-group">
         <div class="footer-logo-BW"><a href="http://www.bodleian.ox.ac.uk/" target="_blank"><img src="img/bodleian_logo_BW.jpg" alt="<spring:message code="footer.logo.bl" />" /></a></div>
         <div class="footer-logo-BW"><a href="https://www.llgc.org.uk/" target="_blank"><img src="img/llgc_logo_BW.png" alt="<spring:message code="footer.logo.llgc" />" /></a></div>
         <div class="footer-logo-BW"><a href="https://www.nls.uk/" target="_blank"><img src="img/NLS_logo_2_BW.jpg" alt="<spring:message code="footer.logo.nls" />" /></a></div>
