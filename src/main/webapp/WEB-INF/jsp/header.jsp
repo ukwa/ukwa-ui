@@ -76,7 +76,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" id="universalaccess_href" class="col-md-1 col-sm-1" aria-hidden="true">
+                    <a href="javascript:void(0)" id="universalaccess_href" class="col-md-1 col-sm-1" aria-label="High Contrast Mode Switch" title="High Contrast Mode Switch">
                         <i class="fas fa-universal-access fa fa-2x highcontastUAIconOff"></i>
                     </a>
                 </li>
