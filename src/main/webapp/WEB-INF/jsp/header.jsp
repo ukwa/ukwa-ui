@@ -1,7 +1,6 @@
 <a class="sr-only sr-only-focusable" href="#content" tabindex="1">Skip to main content</a>
 <!-- Modal -->
-<div class="modal fade" id="pleaseWaitDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
+<div class="modal fade" id="pleaseWaitDialog" tabindex="-1" role="progressbar">
     <div class="modal-dialog" style="padding-top:15%" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,7 +9,7 @@
             </div>
             <div class="modal-body center pleasewait-modal-body-config">
                 <div class="center-block align-items-center">
-                    <img src="img/icons/gif4.gif">
+                    <img alt="Progress Bar" src="img/icons/gif4.gif">
                 </div>
             </div>
         </div>
@@ -33,7 +32,7 @@
  </c:otherwise>
 </c:choose>
 
-<header class="header">
+<header>
     <nav class="navbar navbar-expand-md">
         <a class="navbar-brand" href="index" tabindex="-1">
             <img class="logo-svg" src="img/ukwa-2018-onwhite-close.svg" alt="UK Web Archive">
@@ -42,7 +41,7 @@
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+        <div role="navigation" aria-label="Navigation header" class="collapse navbar-collapse justify-content-between" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item ${textUriWithoutLang == '/ukwa/index' ? 'active' : ''}">
                         <a class="nav-link" href="index"><spring:message code="main.menu.home"/></a>
