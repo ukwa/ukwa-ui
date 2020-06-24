@@ -28,7 +28,7 @@
 
 <%@include file="nav.jsp" %>
 <div class="container-fluid">
-    <header class="header-content">
+    <header>
         <%@include file="header.jsp" %>
         <%@include file="homepage_searchForm.jsp" %>
     </header>
@@ -97,7 +97,6 @@
                 <a href="collection" class="homepage-search-button btn-lg" title="<spring:message code="home.button.viewmore.title"/>"><spring:message code="home.button.viewmore"/></a>
             </div>
         </section>
-
     </div>
 
 

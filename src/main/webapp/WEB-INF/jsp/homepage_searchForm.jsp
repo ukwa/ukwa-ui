@@ -7,7 +7,7 @@
     </div>
 
     <div class="col-lg-8 col-md-8 col-sm-12 mb-3">
-      <input type="text" name="text" class="form-control form-control-lg homepage-search-input" placeholder="" aria-label="Input search text" title="Search field">
+      <input type="text" name="text" class="form-control form-control-lg homepage-search-input" placeholder="" aria-label="Input search text" title="Search field" required>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-12">
       <button type="submit" class="btn btn-lg homepage-search-button" title="<spring:message code="search.main.button.title" />">Search <i class="fa fa-search ml-2"></i></button>
