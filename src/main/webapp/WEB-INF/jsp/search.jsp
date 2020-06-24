@@ -80,7 +80,7 @@
 
                                                 <c:if test="${(domains.get(i + 1) != 0 ) || (originalDomains.contains(domains.get(i))?true:false)}">
                                                     <div class="form-check-cont relative" style="width: 250px;padding: 10px;word-wrap:break-word;text-overflow: ellipsis" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox-modal-domains" name="domain_filter_modal" id="domain_filter_modal_<c:out value="${i}"/>"
+                                                        <input role="checkbox" type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox-modal-domains" name="domain_filter_modal" id="domain_filter_modal_<c:out value="${i}"/>"
                                                                value="${domains.get(i)}"
                                                             ${originalDomains.contains(domains.get(i) )? 'checked' : ''}/>
                                                         <label class="main-search-check-label no-italics box2" style="overflow: hidden" for="domain_filter_modal_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
@@ -105,7 +105,7 @@
                                                 <c:if test="${(contentTypes.get(i + 1) != 0) || (originalContentTypes.contains(contentTypes.get(i))?true:false)}">
 
                                                     <div class="form-check-cont relative" style="width: 250px;padding: 10px" title="<c:out value="${contentTypes.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox-modal-documenttypes" name="content_type_filter_modal" id="content_type_filter_modal_<c:out value="${i}"/>"
+                                                        <input role="checkbox" type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox-modal-documenttypes" name="content_type_filter_modal" id="content_type_filter_modal_<c:out value="${i}"/>"
                                                                value="${contentTypes.get(i)}"
                                                             ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
                                                         <label class="main-search-check-label no-italics box2" style="overflow: hidden" for="content_type_filter_modal_<c:out value="${i}"/>">
@@ -133,7 +133,7 @@
                                                 <c:if test="${(publicSuffixes.get(i + 1) != 0) || (originalPublicSuffixes.contains(publicSuffixes.get(i))?true:false)}">
 
                                                     <div class="form-check-cont relative" style="width: 250px;padding: 10px" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox-modal-suffixes" name="public_suffix_filter_modal" id="public_suffix_filter_modal_<c:out value="${i}"/>"
+                                                        <input role="checkbox" type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox-modal-suffixes" name="public_suffix_filter_modal" id="public_suffix_filter_modal_<c:out value="${i}"/>"
                                                                value="${publicSuffixes.get(i)}"
                                                             ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
                                                         <label class="main-search-check-label no-italics box2" style="overflow: hidden" for="public_suffix_filter_modal_<c:out value="${i}"/>">
@@ -160,7 +160,7 @@
                                             <c:forEach begin="0" end="${collections.size() - 1}" step="2" var="i">
                                                 <c:if test="${(collections.get(i + 1) != 0) || (originalCollections.contains(collections.get(i))?true:false)}">
                                                     <div class="form-check-cont relative" style="width: 250px;padding: 10px" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox-modal-collections" name="collection_filter_modal" id="collection_filter_modal_<c:out value="${i}"/>"
+                                                        <input role="checkbox" type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox-modal-collections" name="collection_filter_modal" id="collection_filter_modal_<c:out value="${i}"/>"
                                                                value="${collections.get(i)}"
                                                             ${originalCollections.contains(collections.get(i) )? 'checked' : ''}/>
                                                         <label class="main-search-check-label no-italics box2" style="overflow: hidden" for="collection_filter_modal_<c:out value="${i}"/>"
@@ -315,10 +315,10 @@
                             <%--   View facets   --%>
                             <%--   Accessing Content collapse filter   --%>
                             <div class="sidebar-filter-header no-collapse" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.view.title" />" tabindex="0" role="tab">
-                                <div class="sidebar-filter-header-title-redesign" id="t_access"><spring:message code="search.side.view.title"/></div>
+                                <div class="sidebar-filter-header-title-redesign"><spring:message code="search.side.view.title"/></div>
                                 <div class="infotooltip" title="<spring:message code="search.side.view.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.view.tip" />" tabindex="0"></div>
                             </div>
-                            <div class="sidebar-filter expanded no-collapse" aria-labelledby="t_access">
+                            <div class="sidebar-filter expanded no-collapse" role="group" aria-labelledby="Accessing_Content_head">
                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
 
                                     <c:if test="${accessTerms.size() > 1}">
@@ -334,7 +334,7 @@
                                     </c:if>
 
                                     <div class="form-check-cont padding-0" title="<spring:message code="search.side.view.1" />" tabindex="0">
-                                        <input tabindex="-1" type="radio" class="radio-sidebar access_filter" name="view_filter" id="view_filter_1" value="va"
+                                        <input role="radio" tabindex="-1" type="radio" class="radio-sidebar access_filter" name="view_filter" id="view_filter_1" value="va"
                                         ${originalAccessView.contains('va') || empty originalAccessView ? 'checked' : ''}/>
                                         <label class="main-search-check-label block-two-text-lines" for="view_filter_1" title="<spring:message code="search.side.view.1" />">
                                             <spring:message code="search.side.view.1" />
@@ -346,7 +346,7 @@
 
                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                                     <div class="form-check-cont padding-0" title="<spring:message code="search.side.view.2" />" tabindex="0">
-                                        <input type="radio" class="radio-sidebar access_filter" name="view_filter" id="view_filter_2" value="vool"
+                                        <input role="radio" type="radio" class="radio-sidebar access_filter" name="view_filter" id="view_filter_2" value="vool"
                                         ${originalAccessView.contains('vool') ? 'checked' : ''}/>
                                         <label class="main-search-check-label block-two-text-lines" for="view_filter_2" title="<spring:message code="search.side.view.2" />"> <spring:message code="search.side.view.2" /> <span class="label-counts">(<span class="results-count"><c:out value="${voolCount}"/></span>)</span></label>
                                     </div>
@@ -357,17 +357,17 @@
 
                                 <%--   Domains collapse filter   --%>
                                 <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.domain.title" />" tabindex="0" role="tab">
-                                    <div class="sidebar-filter-header-title-redesign" id="t_domain"><spring:message code="search.side.domain.title" /></div>
-                                    <div class="infotooltip" title="<spring:message code="search.side.domain.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.domain.tip" />" tabindex="0"></div>
+                                    <div class="sidebar-filter-header-title-redesign" id="t_domain" aria-describedby="tt_t_domain"><spring:message code="search.side.domain.title" /></div>
+                                    <div id="tt_t_domain" class="infotooltip" role="tooltip" aria-hidden="true" title="<spring:message code="search.side.domain.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.domain.tip" />" tabindex="0"></div>
                                 </div>
-                                <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_domain">
+                                <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_domain" aria-describedby="tt_t_domain">
                                     <c:if test="${domains.size() > 1}">
                                         <c:forEach begin="0" end="${domains.size() - 1}" step="2" var="i">
 
                                             <c:if test="${(domains.get(i + 1) != 0 && (i < 5)) || (originalDomains.contains(domains.get(i))?true:false)}">
                                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12 " >
                                                     <div class="form-check-cont" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox" name="domain_filter" id="domain_filter_<c:out value="${i}"/>"
+                                                        <input role="checkbox" type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox" name="domain_filter" id="domain_filter_<c:out value="${i}"/>"
                                                                value="${domains.get(i)}"
                                                             ${originalDomains.contains(domains.get(i) )? 'checked' : ''}/>
                                                         <label class="main-search-check-label block-two-text-lines" for="domain_filter_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
@@ -385,17 +385,17 @@
                                 <hr class="search-sidebar-hr"/>
                                 <%--   Document type collapse filter   --%>
                                 <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
-                                    <div class="sidebar-filter-header-title-redesign" id="t_doctype"><spring:message code="search.side.doctype.title" /></div>
-                                    <div class="infotooltip" title="<spring:message code="search.side.doctype.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
+                                    <div class="sidebar-filter-header-title-redesign" id="t_doctype" aria-describedby="tt_t_doctype"><spring:message code="search.side.doctype.title" /></div>
+                                    <div id="tt_t_doctype" class="infotooltip" role="tooltip" aria-hidden="true" title="<spring:message code="search.side.doctype.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
                                 </div>
-                                <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_doctype">
+                                <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_doctype" aria-describedby="tt_t_doctype">
                                     <c:if test="${contentTypes.size() > 1}">
                                         <c:forEach begin="0" end="${contentTypes.size() - 1}" step="2" var="i">
 
                                             <c:if test="${(contentTypes.get(i + 1) != 0 && (i < 5)) || (originalContentTypes.contains(contentTypes.get(i))?true:false)}">
                                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                                                     <div class="form-check-cont padding-0" title="<c:out value="${contentTypes.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox" name="content_type" id="content_type_<c:out value="${i}"/>"
+                                                        <input role="checkbox" type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox" name="content_type" id="content_type_<c:out value="${i}"/>"
                                                                value="${contentTypes.get(i)}"
                                                             ${originalContentTypes.contains(contentTypes.get(i))? 'checked' : ''}/>
                                                         <label class="main-search-check-label block-two-text-lines" for="content_type_<c:out value="${i}"/>">
@@ -414,17 +414,17 @@
 
                                 <%--   Public suffix collapse filter   --%>
                                 <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.suffix.title" />" tabindex="0" role="tab">
-                                    <div class="sidebar-filter-header-title-redesign" id="t_suffix"><spring:message code="search.side.suffix.title" /></div>
-                                    <div class="infotooltip" title="<spring:message code="search.side.suffix.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.suffix.tip" />" tabindex="0"></div>
+                                    <div class="sidebar-filter-header-title-redesign" id="t_suffix" aria-describedby="tt_t_suffix"><spring:message code="search.side.suffix.title" /></div>
+                                    <div id="tt_t_suffix" class="infotooltip" role="tooltip" aria-hidden="true" title="<spring:message code="search.side.suffix.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.suffix.tip" />" tabindex="0"></div>
                                 </div>
-                                <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_suffix">
+                                <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_suffix" aria-describedby="tt_t_suffix">
                                     <c:if test="${publicSuffixes.size() > 1}">
 
                                         <c:forEach begin="0" end="${publicSuffixes.size() - 1}" step="2" var="i">
                                             <c:if test="${(publicSuffixes.get(i + 1) != 0 && (i < 5)) || (originalPublicSuffixes.contains(publicSuffixes.get(i))?true:false)}">
                                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                                                     <div class="form-check-cont padding-0" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
+                                                        <input role="checkbox" type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
                                                                value="${publicSuffixes.get(i)}"
                                                             ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked' : ''}/>
                                                         <label class="main-search-check-label block-two-text-lines" for="public_suffix_<c:out value="${i}"/>">
@@ -442,59 +442,60 @@
                                 <hr class="search-sidebar-hr"/>
                                 <%--   Archived year collapse filter   --%>
                                 <div class="sidebar-filter-header border-top-white open archived-date" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.date.title" />" tabindex="0" id="dates_header" role="tab">
-                                    <div class="sidebar-filter-header-title-redesign" id="t_date"><spring:message code="search.side.date.title" /></div>
-                                    <div class="infotooltip" title="<spring:message code="search.side.date.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.date.tip" />" tabindex="0"></div>
+                                    <div class="sidebar-filter-header-title-redesign" id="t_date" aria-describedby="tt_t_date"><spring:message code="search.side.date.title" /></div>
+                                    <div id="tt_t_date" class="infotooltip" role="tooltip" aria-hidden="true" title="<spring:message code="search.side.date.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.date.tip" />" tabindex="0"></div>
                                 </div>
-                                <div class="sidebar-filter expanded no-collapse" id="dates_container" role="tabpanel" aria-hidden="true"
-                                     aria-labelledby="t_date" style="padding-left: 40px">
+                                <div class="sidebar-filter expanded no-collapse" id="dates_container" role="tabpanel" aria-hidden="true" aria-labelledby="t_date" aria-describedby="tt_t_date" style="padding-left: 40px">
                                     <div class="row padding-top-10">
                                         <div class="col-auto">
-                                            <label for="from_date" class="date-sidebar date-range-label"><spring:message
+                                            <label id="l_from_date" for="from_date" class="date-sidebar date-range-label"><spring:message
                                                     code="search.side.date.from"/></label>
                                         </div>
                                     </div>
                                     <div class="row padding-bottom-10">
                                         <div class="col-auto">
-                                            <input type="text" class="form-control form-white-placeholder filter-form-control" name="from_date"
+                                            <input role="textbox" type="text" class="form-control form-white-placeholder filter-form-control" name="from_date"
                                                    id="from_date" title="<spring:message code="search.side.date.from" />"
                                                    placeholder="YYYY-MM-DD"
-                                                   value="${originalFromDateText != null ? originalFromDateText : ''}"/>
+                                                   value="${originalFromDateText != null ? originalFromDateText : ''}"
+                                                   aria-labelledby="l_from_date"/>
                                         </div>
                                     </div>
                                     <div class="row padding-top-10">
                                         <div class="col-auto">
-                                            <label for="to_date" class="date-sidebar date-range-label"><spring:message
+                                            <label id="l_to_date" for="to_date" class="date-sidebar date-range-label"><spring:message
                                                     code="search.side.date.to"/></label>
                                         </div>
                                     </div>
                                     <div class="row padding-bottom-10 ">
                                         <div class="col-auto">
-                                            <input type="text" class="form-control form-white-placeholder filter-form-control" name="to_date" id="to_date"
+                                            <input role="textbox" type="text" class="form-control form-white-placeholder filter-form-control" name="to_date" id="to_date"
                                                    title="<spring:message code="search.side.date.to" />" placeholder="YYYY-MM-DD"
-                                                   value="${originalToDateText != null ? originalToDateText : ''}"/>
+                                                   value="${originalToDateText != null ? originalToDateText : ''}"
+                                                   aria-labelledby="l_to_date"/>
                                         </div>
                                     </div>
                                     <div class="row padding-top-20">
                                         <div class="col-sm-12">
-                                            <button type="submit" title="<spring:message code="search.side.date.submit" />" class="btn-primary width-auto-inline date-filter-button filter-form-control"><spring:message code="search.side.date.submit" /></button>
-                                            <button type="button" title="<spring:message code="search.side.date.reset" />" class="btn-primary width-auto-inline date-filter-button margin-top-10 filter-form-control" id="btn_reset_dates">X</button>
+                                            <button role="button" type="submit" title="<spring:message code="search.side.date.submit" />" class="btn-primary width-auto-inline date-filter-button filter-form-control"><spring:message code="search.side.date.submit" /></button>
+                                            <button role="button" type="button" title="<spring:message code="search.side.date.reset" />" class="btn-primary width-auto-inline date-filter-button margin-top-10 filter-form-control" id="btn_reset_dates">X</button>
                                         </div>
                                     </div>
                                 </div>
                                 <hr class="search-sidebar-hr"/>
                                 <%--   Collection collapse filter   --%>
                                 <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.coll.title" />" tabindex="0" role="tab">
-                                    <div class="sidebar-filter-header-title-redesign" id="t_coll"><spring:message code="search.side.coll.title" /></div>
-                                    <div class="infotooltip" title="<spring:message code="search.side.coll.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.coll.tip" />" tabindex="0"></div>
+                                    <div class="sidebar-filter-header-title-redesign" id="t_coll" aria-describedby="tt_t_coll"><spring:message code="search.side.coll.title" /></div>
+                                    <div id="tt_t_coll" class="infotooltip" role="tooltip" aria-hidden="true" title="<spring:message code="search.side.coll.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.coll.tip" />" tabindex="0"></div>
                                 </div>
-                                <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_coll">
+                                <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_coll" aria-describedby="tt_t_coll">
                                     <c:if test="${collections.size() > 1}">
 
                                         <c:forEach begin="0" end="${collections.size() - 1}" step="2" var="i">
                                             <c:if test="${(collections.get(i + 1) != 0 && (i < 5)) || (originalCollections.contains(collections.get(i))?true:false)}">
                                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                                                     <div class="form-check-cont padding-0" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
-                                                        <input type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox" name="collection" id="collection_<c:out value="${i}"/>"
+                                                        <input role="checkbox" type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox" name="collection" id="collection_<c:out value="${i}"/>"
                                                                value="${collections.get(i)}"
                                                             ${originalCollections.contains(collections.get(i) )? 'checked' : ''}/>
                                                         <label class="main-search-check-label block-two-text-lines" for="collection_<c:out value="${i}"/>"
@@ -513,20 +514,20 @@
 
                                 <hr class="search-sidebar-hr"/>
 
-                                    <input type="hidden" name="modal_filter_domains_vals" id="input_hidden_field_checked_modal_domains_array" />
-                                    <input type="hidden" name="modal_filter_suffix_vals" id="input_hidden_field_checked_modal_suffix_array" />
-                                    <input type="hidden" name="modal_filter_documenttypes_vals" id="input_hidden_field_checked_modal_documenttypes_array" />
-                                    <input type="hidden" name="modal_filter_collections_vals" id="input_hidden_field_checked_modal_collections_array" />
+                                    <input aria-hidden="true" type="hidden" name="modal_filter_domains_vals" id="input_hidden_field_checked_modal_domains_array" />
+                                    <input aria-hidden="true" type="hidden" name="modal_filter_suffix_vals" id="input_hidden_field_checked_modal_suffix_array" />
+                                    <input aria-hidden="true" type="hidden" name="modal_filter_documenttypes_vals" id="input_hidden_field_checked_modal_documenttypes_array" />
+                                    <input aria-hidden="true" type="hidden" name="modal_filter_collections_vals" id="input_hidden_field_checked_modal_collections_array" />
 
-                                    <input type="hidden" name="filter_source" id="input_hidden_field_filter_source" value="1" />
+                                    <input aria-hidden="true" type="hidden" name="filter_source" id="input_hidden_field_filter_source" value="1" />
 
-                                    <input type="hidden" name="filter_array_x" id="filter_array_x"  value="" />
-                                    <input type="hidden" name="filter_array_x_item" id="filter_array_x_item"  value="" />
+                                    <input aria-hidden="true" type="hidden" name="filter_array_x" id="filter_array_x"  value="" />
+                                    <input aria-hidden="true" type="hidden" name="filter_array_x_item" id="filter_array_x_item"  value="" />
 
-                                <input type="hidden" name="search_location" id="search_location" value="${originalSearchLocation}" />
-                                <input type="hidden" name="text" id="text_hidden" value="${originalSearchRequest}" />
-                                <input type="hidden" name="view_sort" id="view_sort" value="${empty originalSortValue ? 'relevant' : originalSortValue}" />
-                                <input type="hidden" name="view_count" id="view_count" value="${empty rowsPerPageLimit ? '50' : rowsPerPageLimit}" />
+                                    <input aria-hidden="true" type="hidden" name="search_location" id="search_location" value="${originalSearchLocation}" />
+                                    <input aria-hidden="true" type="hidden" name="text" id="text_hidden" value="${originalSearchRequest}" />
+                                    <input aria-hidden="true" type="hidden" name="view_sort" id="view_sort" value="${empty originalSortValue ? 'relevant' : originalSortValue}" />
+                                    <input aria-hidden="true" type="hidden" name="view_count" id="view_count" value="${empty rowsPerPageLimit ? '50' : rowsPerPageLimit}" />
                             </div>
 
                             <div class="border-top-white">&nbsp;</div>
@@ -790,7 +791,7 @@
         });
 
         $('#SearchFilterDialog').on('hidden.bs.modal', function (e) {
-            console.log("do some AJAX before loaing new tab (IF N were)");
+            console.log("do some AJAX before loading new tab (IF N were)");
 
             //showPleaseWait();
             //var value = $('#myPopupInput').val();
