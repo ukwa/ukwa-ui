@@ -143,7 +143,6 @@ html, body {
   max-width: 870px;
   padding: 10px;
   margin: 20px;
-  background-color: #fff;
   overflow-x: auto;
 }
 
@@ -170,7 +169,8 @@ html, body {
  .main-search-field-redesign, .searchpage_search_bg_settings, .search-no-results, .pagination-number-redesign, .sidebar-filter-header, .checkbox-sidebar, .radio-sidebar, .date-sidebar, .sidebar-clear-filter-button,
 .q-description, .q-grid, .technical-code,
 .results-container,
-.breadcrumb, .results-count, .topics-themes-description {
+.breadcrumb, .results-count, .topics-themes-description,
+.modal-content-tab-panel, .main-search-check-label {
   @include themify($themes) {
     color: themed('textColor');
     background-color: themed('backgroundColor');
