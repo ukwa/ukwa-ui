@@ -44,18 +44,18 @@
     <%@include file="searchtips_modal.jsp" %>
 
     <!-- Modal Search Filter CheckBox Dialog -->
-    <div class="modal fade vertically-modal filter-dialog" id="SearchFilterDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade vertically-modal filter-dialog" id="SearchFilterDialog" tabindex="-1" role="dialog" >
         <div class="modal-dialog  modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header d-block">
-                    <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <button role="button" type="button" class="close float-right" data-dismiss="modal" aria-label="Close">
+                        <span>&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" >
+                <div class="modal-body">
 
                         <div class="d-flex flex-row mt-2">
-                            <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" role="navigation">
+                            <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#domain" role="tab"><spring:message code="search.side.domain.title" /></a>
                                 </li>
