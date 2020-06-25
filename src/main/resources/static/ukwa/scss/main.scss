@@ -186,8 +186,8 @@ html, body {
 
 .search-tips-href{
   @include themify($themes) {
-    color: themed('search-results-main-heading-text-color');
-    background-color: themed('search-results-main-bg');
+    color: themed('search-tips-href-text-color') !important;
+    background-color: themed('search-tips-href-bg') !important;
   }
 }
 
@@ -663,9 +663,16 @@ p.searchFilter {
     border-radius: 10px;
     line-height: 20px;
 
+    @include themify($themes) {
+      color: themed('infotooltip-after-textColor');
+      background: themed('infotooltip-after-bg');
+      border-color: themed('infotooltip-after-border-color');
+      box-shadow: themed('infotooltip-after-shadow-color');
+    }
+
     text-decoration: none;
     font-size: 65%;
-    box-shadow: 1px 1px 7px #fff;
+
     float: left;
     margin-left: 10px;
     margin-right: 5px;
@@ -674,6 +681,15 @@ p.searchFilter {
   }
   &:hover:after {
 
+    @include themify($themes) {
+      color: themed('infotooltip-hover-after-textColor');
+      background: themed('infotooltip-hover-after-bg');
+      border-color: themed('infotooltip-hover-after-border-color');
+    }
+
+    color: #ee11ff;
+    background: white;
+    border-color: #0c49b0;
   }
 }
 

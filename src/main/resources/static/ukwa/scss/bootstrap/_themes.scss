@@ -29,7 +29,6 @@ $themes: (
 
                 //search - prev design color scheme
                 main-search-field-redesign-color:#636c72,
-                search-tips-href-color:#0c49b0,
                 main-search-field-redesign-shadow:1px 1px 7px #464747,
                 sidebar-filter-header-title-redesign-color:#0c49b0,
                 checkbox-sidebar-color:#0c49b0,
@@ -46,7 +45,17 @@ $themes: (
                 //search within collection
                 results-lib-premises-textColor:red,
 
+                search-tips-href-text-color:#222,
+                search-tips-href-bg:#fff,
+                //tooltip
+                infotooltip-after-textColor:#0c49b0,
+                infotooltip-after-bg:#fff,
+                infotooltip-after-border-color:#222,
+                infotooltip-after-shadow-color:1px 1px 7px #0c49b0,
 
+                infotooltip-hover-after-textColor:#fff,
+                infotooltip-hover-after-bg:#0c49b0,
+                infotooltip-hover-after-border-color:#222,
 //menu
                 nav-link-focus-color:#2e6dd9,
                 nav-hover-color:#0c49b0,
@@ -122,9 +131,21 @@ $themes: (
                 redesign-text-transform: none,
 
                 //search
-                search-results-main-heading-text-color:#ccc,
-                search-results-main-heading-bg-color:#fff,
+                search-results-main-heading-text-color:#ddd,
+                search-results-main-heading-bg-color:#222,
 
+                search-tips-href-text-color:#fff,
+                search-tips-href-bg:#222,
+
+                //tooltip
+                infotooltip-after-textColor:#fff,
+                infotooltip-after-bg:#222,
+                infotooltip-after-border-color:#ddd,
+                infotooltip-after-shadow-color:1px 1px 7px #fff,
+
+                infotooltip-hover-after-textColor:#222,
+                infotooltip-hover-after-bg:#eee,
+                infotooltip-hover-after-border-color:#ddd,
 
                 backgroundColor: #222,
                 textColor: #ddd,
