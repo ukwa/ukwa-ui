@@ -194,7 +194,7 @@ html, body {
 .search-results-main-heading{
   @include themify($themes) {
     color: themed('search-results-main-heading-text-color');
-    background-color: themed('search-results-main-bg');
+    background-color: themed('search-results-main-heading-bg-color');
   }
 }
 
