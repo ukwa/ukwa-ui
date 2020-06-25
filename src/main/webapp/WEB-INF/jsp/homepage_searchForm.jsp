@@ -18,7 +18,7 @@
         <a role="dialog" href="#" data-toggle="modal" data-target="#searchingUKWAModalCenter" class="no-decoration" title="<spring:message code="search.tips.tipsnotes" />"><i class="fas fa-info-circle"></i></a>
     </div>
             <input aria-hidden="true" type="hidden" name="search_location" id="search_location_full_text" value="full_text"/>
-            <input aria-hidden="true" ype="hidden" name="reset_filters" id="reset_filters" value="false"/>
+            <input aria-hidden="true" type="hidden" name="reset_filters" id="reset_filters" value="false"/>
        </div>
     </div>
 </form>
