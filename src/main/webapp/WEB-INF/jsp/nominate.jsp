@@ -71,8 +71,8 @@ ${req.requestURL}
  <c:otherwise>
 
 
-  <form action="info/nominate" method="post" enctype="multipart/form-data" name="nominate" id="nominate-form" class="needs-validation" novalidate>
-    <div class="row page-content padding-top-40">
+  <form role="form" action="info/nominate" method="post" enctype="multipart/form-data" name="nominate" id="nominate-form" class="needs-validation" novalidate>
+    <div class="row page-content padding-top-40" role="group">
       <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
         <h2 class="bold"><spring:message code="nominate.form.heading" /></h2>
         <spring:message code="nominate.form.notice" />
@@ -80,14 +80,14 @@ ${req.requestURL}
       <div class="col-md-6 col-sm-12 form-content-col">
         <div class="form-group">
           <label for="title" class="ukwa-form-field">* <spring:message code="nominate.form.input.title" /></label>
-          <input type="text" name="title" id="title" class="form-control" placeholder="<spring:message code="nominate.form.input.title.placeholder" />" required/>
+          <input role="textbox" type="text" name="title" id="title" class="form-control" placeholder="<spring:message code="nominate.form.input.title.placeholder" />" required/>
           <div class="invalid-feedback">
             <spring:message code="nominate.form.input.title.placeholder" />
           </div>
         </div>
         <div class="form-group">
           <label for="url" class="ukwa-form-field">* <spring:message code="nominate.form.input.url" /></label>
-          <input type="text" name="url" id="url" class="form-control" placeholder="<spring:message code="nominate.form.input.url.placeholder" />" required/>
+          <input role="textbox" type="text" name="url" id="url" class="form-control" placeholder="<spring:message code="nominate.form.input.url.placeholder" />" required/>
           <div class="invalid-feedback">
             <spring:message code="nominate.form.input.url.placeholder" />
           </div>
@@ -96,21 +96,21 @@ ${req.requestURL}
       <div class="col-md-6 col-sm-12 form-content-col">
 	        <div class="form-group">
           <label for="name" class="ukwa-form-field">* <spring:message code="nominate.form.input.name" /></label>
-          <input type="text" name="name" id="name" class="form-control" placeholder="<spring:message code="nominate.form.input.name.placeholder" />" required/>
+          <input role="textbox" type="text" name="name" id="name" class="form-control" placeholder="<spring:message code="nominate.form.input.name.placeholder" />" required/>
           <div class="invalid-feedback">
             <spring:message code="nominate.form.input.name.placeholder" />
           </div>
         </div>
         <div class="form-group">
           <label for="email" class="ukwa-form-field"><spring:message code="nominate.form.input.email" /></label>
-          <input type="email" name="email" id="email" class="form-control" placeholder="<spring:message code="nominate.form.input.email.placeholder"/>" aria-describedby="emailHelp"/>
+          <input role="textbox" type="email" name="email" id="email" class="form-control" placeholder="<spring:message code="nominate.form.input.email.placeholder"/>" aria-describedby="emailHelp"/>
           <small id="emailHelp" class="form-text"><spring:message code="nominate.form.email.notice" /></small>
         </div>
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
         <div class="form-group">
           <label for="notes" class="ukwa-form-field"><spring:message code="nominate.form.input.notes" /></label>
-          <textarea name="notes" id="notes" class="form-control height-145" placeholder="" aria-describedby="notesHelp"></textarea>
+          <textarea role="textbox" name="notes" id="notes" class="form-control height-145" placeholder="" aria-describedby="notesHelp"></textarea>
           <small id="notesHelp" class="form-text"><spring:message code="nominate.form.input.notes.placeholder" /></small>
         </div>
       </div>
@@ -118,7 +118,7 @@ ${req.requestURL}
         <div class=" margin-top-30 clearfix">
          <div class="g-recaptcha" data-sitekey="6Lcn5C4UAAAAAFzANA394u7Jqfk2QmvxyUjM8UiM" aria-hidden="true"></div>
       <div class="captcha-message"><spring:message code="captcha.message" /></div>
-        <button type="submit" class="homepage-search-button margin-top-30 button_form_submit" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button></div>
+        <button role="button" type="submit" class="homepage-search-button margin-top-30 button_form_submit" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button></div>
       </div>
     </div>
   </form>
