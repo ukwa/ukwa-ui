@@ -2,77 +2,77 @@
 <hr/>
 <div role="navigation" aria-label="Navigation footer" class="row margin-0 padding-30">
     <div class="col-md-4">
-    <ul class="list-group list-group-flush">
+    <ul class="list-group list-group-flush" role="menu">
         <li class="list-group-item">
-            <a href="index" title="<spring:message code="footer.home.title" />">
+            <a href="index" title="<spring:message code="footer.home.title" />" role="menuitem">
                 <spring:message code="footer.home" />
             </a>
         </li>
         <li class="list-group-item">
-            <a href="collection" title="<spring:message code="footer.collections.title" />">
+            <a href="collection" title="<spring:message code="footer.collections.title" />" role="menuitem">
                 <spring:message code="footer.collections" />
             </a>
         </li>
         <li class="list-group-item">
-            <a href="info/nominate" title="<spring:message code="footer.nominate.title" />">
+            <a href="info/nominate" title="<spring:message code="footer.nominate.title" />" role="menuitem">
                 <spring:message code="footer.nominate" />
             </a>
         </li>
         <li class="list-group-item">
-            <a href="info/about" title="<spring:message code="footer.about.title" />">
+            <a href="info/about" title="<spring:message code="footer.about.title" />" role="menuitem">
                 <spring:message code="footer.about" />
             </a>
         </li>
         <li class="list-group-item">
-            <a href="contact" title="<spring:message code="footer.contact.title" />">
+            <a href="contact" title="<spring:message code="footer.contact.title" />" role="menuitem">
                 <spring:message code="footer.contact" />
             </a>
         </li>
     </ul>
     </div>
     <div class="col-md-4">
-    <ul class="list-group list-group-flush">
+    <ul class="list-group list-group-flush" role="menu">
         <li class="list-group-item">
-            <a href="info/accessibility_statement" title="<spring:message code="accessibility.page.title" />">
+            <a href="info/accessibility_statement" title="<spring:message code="accessibility.page.title" />" role="menuitem">
                 <spring:message code="accessibility.header.title" />
             </a>
         </li>
         <li class="list-group-item">
-            <a href="info/notice_takedown" title="<spring:message code="footer.notice.title" />">
+            <a href="info/notice_takedown" title="<spring:message code="footer.notice.title" />" role="menuitem">
                 <spring:message code="footer.notice" />
             </a>
         </li>
         <li class="list-group-item">
-            <a href="info/terms_conditions" title="<spring:message code="footer.terms.title" />">
+            <a href="info/terms_conditions" title="<spring:message code="footer.terms.title" />" role="menuitem">
                 <spring:message code="footer.terms" />
             </a>
         </li>
         <li class="list-group-item">
-            <a href="http://www.bl.uk/aboutus/terms/privacy/index.html" title="<spring:message code="footer.privacy.title" />" target="_blank">
+            <a href="http://www.bl.uk/aboutus/terms/privacy/index.html" title="<spring:message code="footer.privacy.title" />" target="_blank" role="menuitem">
                 <spring:message code="footer.privacy" />
             </a>
         </li>
         <li class="list-group-item">
-            <a href="info/cookies" title="<spring:message code="footer.cookies.title" />">
+            <a href="info/cookies" title="<spring:message code="footer.cookies.title" />" role="menuitem">
                 <spring:message code="footer.cookies" />
             </a>
         </li>
     </ul>
     </div>
     <div class="col-md-4">
-    <ul class="list-group list-group-flush">
+    <ul class="list-group list-group-flush" role="menu">
         <li class="list-group-item">
-            <a href="http://britishlibrary.typepad.co.uk/webarchive/" target="_blank" title="<spring:message code="footer.blog.title" />">
+            <a href="http://britishlibrary.typepad.co.uk/webarchive/" target="_blank" title="<spring:message code="footer.blog.title" />" role="menuitem">
                 <spring:message code="footer.blog" />
             </a>
         </li>
         <li class="list-group-item">
-            <a href="info/faq" title="<spring:message code="footer.faq" />">
+            <a href="info/faq" title="<spring:message code="footer.faq" />" role="menuitem">
                 <spring:message code="footer.faq" />
             </a>
         </li>
         <li class="list-group-item">
-            <a href="info/technical" title="<spring:message code="technical.title" />">
+            <a href="info/technical" title="<spring:message code="technical.title" />" role="menuitem">
                 <spring:message code="technical.title" />
             </a>
         </li>
@@ -92,13 +92,13 @@
         <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
           && (fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
             <li class="list-group-item">
-                <a href="/en<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.english.title" />">
+                <a href="/en<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.english.title" />" role="menuitem">
                     <spring:message code="footer.english" /></a>
             </li>
         </c:if>
         <c:if test="${!fn:startsWith(textUri, '/cy/') && textUri != '/cy'}">
             <li class="list-group-item">
-                <a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.welsh.title" />">
+                <a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.welsh.title" />" role="menuitem">
                     <spring:message code="footer.welsh" /></a>
             </li>
         </c:if>
