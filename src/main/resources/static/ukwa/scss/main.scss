@@ -1399,8 +1399,7 @@ header li.nav-item.active a {
   @include themify($themes) {
     text-transform: themed('redesign-text-transform');
     text-decoration: themed('redesign-text-decoration');
-    color: themed('redesign-tex-color');
-    background-color: themed('backgroundColor');
+    color: themed('main-heading-2-bold-redesign-text-color');
   }
 }
 
@@ -1413,7 +1412,7 @@ header li.nav-item.active a {
   @include themify($themes) {
     text-transform: themed('redesign-text-transform');
     text-decoration: themed('redesign-text-decoration');
-    color: themed('main-heading-2-redesign-text-color');
+    color: themed('main-heading-2-redesign-text-color') !important;
 
   }
 }
