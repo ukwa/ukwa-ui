@@ -223,7 +223,7 @@
                         <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-3">
                                 <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.domain" />&nbsp;</p>
                                     <c:forEach items="${originalDomains}" var="domain">
-                                        <p class="searchFilter sidebar-clear-filter clearable x onX">
+                                        <p role="button" aria-label="clear filtering option <c:out value="${domain}"/>" class="searchFilter sidebar-clear-filter clearable x onX" tabindex="-1">
                                         &quot;<c:out value="${domain}"/>&quot;&nbsp;
                                         </p>
                                     </c:forEach>
@@ -236,7 +236,7 @@
                         <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-4">
                                 <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.doctype" />&nbsp;</p>
                                     <c:forEach items="${originalContentTypes}" var="doctype">
-                                        <p class="searchFilter sidebar-clear-filter clearable x onX">
+                                        <p role="button" aria-label="clear filtering option <c:out value="${doctype}"/>" class="searchFilter sidebar-clear-filter clearable x onX" tabindex="-1">
                                         &quot;<c:out value="${doctype}"/>&quot;&nbsp;
                                         </p>
                                     </c:forEach>
@@ -248,7 +248,7 @@
                         <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-5">
                                 <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.suffix" />&nbsp;</p>
                                     <c:forEach items="${originalPublicSuffixes}" var="suffix">
-                                        <p class="searchFilter sidebar-clear-filter clearable x onX">
+                                        <p role="button" aria-label="clear filtering option <c:out value="${suffix}"/>" class="searchFilter sidebar-clear-filter clearable x onX" tabindex="-1">
                                         &quot;<c:out value="${suffix}"/>&quot;
                                         </p>
                                     </c:forEach>
@@ -259,7 +259,7 @@
 
                         <c:if test="${fn:length(originalFromDateText) > 0 || fn:length(originalToDateText) > 0}">
                         <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-6">
-                                <p class="searchFilter sidebar-clear-filter clearable x onX"><spring:message code="search.filters.date" />&nbsp;
+                                <p role="button" aria-label="clear filtering option date from <c:out value="${originalFromDateText}"/> to <c:out value="${originalToDateText}"/>" class="searchFilter sidebar-clear-filter clearable x onX" tabindex="-1"><spring:message code="search.filters.date" />&nbsp;
 
                                     <c:choose>
                                         <c:when test="${fn:length(originalFromDateText) > 0}">
@@ -291,7 +291,7 @@
                         <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-7">
                                 <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.collection" />&nbsp;</p>
                                     <c:forEach items="${originalCollections}" var="collection">
-                                        <p class="searchFilter sidebar-clear-filter clearable x onX">
+                                        <p role="button" aria-label="clear filtering option <c:out value="${collection}"/>" class="searchFilter sidebar-clear-filter clearable x onX" tabindex="-1">
                                         &quot;<c:out value="${collection}"/>&quot;
                                         </p>
                                     </c:forEach>
@@ -301,7 +301,7 @@
 
                             <c:if test="${hasFilters == 'true'}">
                         <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-1">
-                                    <button type="button" id="btn_reset_filters" title="<spring:message code="search.main.clearallfilters" />" class="button-radius-5 searchResetRedesigned margin-top-10 margin-bottom-20 sidebar-clear-filter-button"><spring:message code="search.main.clearallfilters" /></button>
+                                    <button role="button" aria-label="reset all filters" tabindex="-1" type="button" id="btn_reset_filters" title="<spring:message code="search.main.clearallfilters" />" class="button-radius-5 searchResetRedesigned margin-top-10 margin-bottom-20 sidebar-clear-filter-button"><spring:message code="search.main.clearallfilters" /></button>
                         </div>
                             </c:if>
 
