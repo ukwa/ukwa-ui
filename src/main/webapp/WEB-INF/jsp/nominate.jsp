@@ -116,9 +116,9 @@ ${req.requestURL}
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
         <div class=" margin-top-30 clearfix">
-         <div class="g-recaptcha" data-sitekey="6Lcn5C4UAAAAAFzANA394u7Jqfk2QmvxyUjM8UiM" aria-hidden="true"></div>
-      <div class="captcha-message"><spring:message code="captcha.message" /></div>
-        <button role="button" type="submit" class="homepage-search-button margin-top-30 button_form_submit" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button></div>
+         <div class="g-recaptcha" data-sitekey="6Lcn5C4UAAAAAFzANA394u7Jqfk2QmvxyUjM8UiM" aria-hidden="true" aria-label="do not use" aria-readonly="true"></div>
+      <div class="captcha-message" aria-hidden="true" aria-label="do not use" aria-readonly="true"><spring:message code="captcha.message" /></div>
+        <button role="button" type="submit" aria-label="submit form Save a UK Website" class="homepage-search-button margin-top-30 button_form_submit" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button></div>
       </div>
     </div>
   </form>
