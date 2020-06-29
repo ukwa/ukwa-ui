@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="container-search-field-group" role="group">
-                    <input role="textbox" type="text" name="text" id="text" title="<spring:message code="search.main.input.title" />" aria-label="<spring:message code="search.main.input.title" />" placeholder="<spring:message code="search.main.input.title" />" class="main-search-field-redesign" value="${originalSearchRequest}" required tabindex="-1"/>
+                    <input role="textbox" type="text" name="text" id="text" title="<spring:message code="search.main.input.title" />" aria-label="<spring:message code="search.main.input.title" />" placeholder="<spring:message code="search.main.input.title" />" class="main-search-field-redesign" value="${originalSearchRequest}" required tabindex="-1" aria-required="true"/>
                     <button role="button" aria-labelledby="search-button-title" type="submit" title="<spring:message code="search.main.button.title" />" class="homepage-search-button" id="ss_button" tabindex="0">
                         <span id="search-button-title" class="d-none d-sm-block"><spring:message code="search.main.button.title" /></span>
                     </button>
