@@ -318,7 +318,7 @@
                                 <div class="sidebar-filter-header-title-redesign"><spring:message code="search.side.view.title"/></div>
                                 <div class="infotooltip" title="<spring:message code="search.side.view.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.view.tip" />" tabindex="0"></div>
                             </div>
-                            <div class="sidebar-filter expanded no-collapse" role="group" aria-labelledby="Accessing_Content_head">
+                            <div class="sidebar-filter expanded no-collapse" role="group" aria-label="Accessing Content Filter">
                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
 
                                     <c:if test="${accessTerms.size() > 1}">
