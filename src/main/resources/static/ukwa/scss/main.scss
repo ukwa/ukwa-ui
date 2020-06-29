@@ -170,7 +170,8 @@ html, body {
 .q-description, .q-grid, .technical-code,
 .results-container,
 .breadcrumb, .results-count, .topics-themes-description,
-.modal-content-tab-panel, .main-search-check-label {
+.modal-content-tab-panel, .main-search-check-label,
+.breadcrumb-item {
   @include themify($themes) {
     color: themed('textColor');
     background-color: themed('backgroundColor');
