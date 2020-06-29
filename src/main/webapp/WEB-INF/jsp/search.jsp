@@ -456,7 +456,7 @@
                                         <div class="col-auto">
                                             <input role="textbox" type="text" class="form-control form-white-placeholder filter-form-control" name="from_date"
                                                    id="from_date" title="<spring:message code="search.side.date.from" />"
-                                                   placeholder="YYYY-MM-DD"
+                                                   placeholder="YYYY-MM-DD" aria-placeholder="YYYY-MM-DD"
                                                    value="${originalFromDateText != null ? originalFromDateText : ''}"
                                                    aria-labelledby="l_from_date"/>
                                         </div>
@@ -470,7 +470,8 @@
                                     <div class="row padding-bottom-10 ">
                                         <div class="col-auto">
                                             <input role="textbox" type="text" class="form-control form-white-placeholder filter-form-control" name="to_date" id="to_date"
-                                                   title="<spring:message code="search.side.date.to" />" placeholder="YYYY-MM-DD"
+                                                   title="<spring:message code="search.side.date.to" />"
+                                                   placeholder="YYYY-MM-DD" aria-placeholder="YYYY-MM-DD"
                                                    value="${originalToDateText != null ? originalToDateText : ''}"
                                                    aria-labelledby="l_to_date"/>
                                         </div>
