@@ -1,11 +1,11 @@
 <div class="col-12 white left searchpage_search_bg_settings">
-    <form action="search" method="get" enctype="multipart/form-data" name="search_form" id="search_form">
+    <form role="form" action="search" method="get" enctype="multipart/form-data" name="search_form" id="search_form">
         <div class="row">
             <div class="col-12">
-                <div class="container-search-field-group">
-                    <input type="text" name="text" id="text" title="<spring:message code="search.main.input.title" />" aria-label="<spring:message code="search.main.input.title" />" placeholder="<spring:message code="search.main.input.title" />" class="main-search-field-redesign" value="${originalSearchRequest}" required/>
-                    <button type="submit" title="<spring:message code="search.main.button.title" />" class="homepage-search-button">
-                        <span class="d-none d-sm-block"><spring:message code="search.main.button.title" /></span>
+                <div class="container-search-field-group" role="group">
+                    <input role="textbox" type="text" name="text" id="text" title="<spring:message code="search.main.input.title" />" aria-label="<spring:message code="search.main.input.title" />" placeholder="<spring:message code="search.main.input.title" />" class="main-search-field-redesign" value="${originalSearchRequest}" required/>
+                    <button role="button" aria-labelledby="search-button-title" type="submit" title="<spring:message code="search.main.button.title" />" class="homepage-search-button">
+                        <span id="search-button-title" class="d-none d-sm-block"><spring:message code="search.main.button.title" /></span>
                     </button>
                 </div>
             </div>

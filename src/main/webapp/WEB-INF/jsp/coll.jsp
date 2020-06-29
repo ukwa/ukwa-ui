@@ -76,14 +76,14 @@ ${pageContext.response.locale}
 
          <div class="row margin-0 border-bottom-gray">
    <div class="col-md-6 col-sm-12 padding-bottom-20 padding-20">
-       <form action="search" method="get" enctype="multipart/form-data" name="search_coll_form" id="search_coll_form">
+       <form role="form" action="search" method="get" enctype="multipart/form-data" name="search_coll_form" id="search_coll_form">
            <div class="row padding-bottom-20">
                <div class="col-sm-12">
-                  <div class="coll-search-input">
-                  <input type="text" class="coll-search-field" name="text" id="text_collections" title="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" aria-label="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" placeholder="<spring:message code="coll.search.text1" /> within &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" required/>
+                  <div class="coll-search-input" role="group">
+                  <input role="textbox" type="text" class="coll-search-field" name="text" id="text_collections" title="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" aria-label="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" placeholder="<spring:message code="coll.search.text1" /> within &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" required/>
                   <input type="hidden" name="search_location" value="full_text"/>
                   <input type="hidden" name="collection" value="<c:out value="${currentCollection.name}"/>"/>
-                  <button type="submit" class="homepage-search-button" title="<spring:message code="coll.search.button" />"></button>
+                  <button role="button" aria-label="Search within <c:out value="${currentCollection.name}"/> Collection" type="submit" class="homepage-search-button" title="<spring:message code="coll.search.button" />"></button>
                   </div>
                 </div>
               </div>
