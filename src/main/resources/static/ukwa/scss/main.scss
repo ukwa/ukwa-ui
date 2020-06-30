@@ -1031,8 +1031,10 @@ input {
 }
 
 .shadow-redesign {
-  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.5);
+  @include themify($themes) {
+    box-shadow: themed('shadow-redesign-box-shadow');
+    -webkit-box-shadow: themed('shadow-redesign-box-shadow');
+  }
 }
 
 .main-search-container {
@@ -2075,8 +2077,10 @@ footer {
 
 .side-bar-right {
   position: relative;
-  -webkit-box-shadow: 15px 0px 12px -12px rgba(0, 0, 0, 0.5);
-  box-shadow: 15px 0px 12px -12px rgba(0, 0, 0, 0.5);
+  @include themify($themes) {
+    box-shadow: themed('side-bar-right-box-shadow');
+    -webkit-box-shadow: themed('side-bar-right-box-shadow');
+  }
 }
 
 .side-bar-bottom {
