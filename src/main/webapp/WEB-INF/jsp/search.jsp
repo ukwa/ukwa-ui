@@ -223,7 +223,7 @@
                         <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-3">
                                 <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.domain" />&nbsp;</p>
                                     <c:forEach items="${originalDomains}" var="domain">
-                                        <p role="button" aria-label="clear filtering option <c:out value="${domain}"/>" class="searchFilter sidebar-clear-filter clearable x onX" tabindex="-1">
+                                        <p role="button" aria-label="clear filtering option <c:out value="${domain}"/>" class="searchFilter sidebar-clear-filter clearable x onX" tabindex="0">
                                         &quot;<c:out value="${domain}"/>&quot;&nbsp;
                                         </p>
                                     </c:forEach>
@@ -236,7 +236,7 @@
                         <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-4">
                                 <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.doctype" />&nbsp;</p>
                                     <c:forEach items="${originalContentTypes}" var="doctype">
-                                        <p role="button" aria-label="clear filtering option <c:out value="${doctype}"/>" class="searchFilter sidebar-clear-filter clearable x onX" tabindex="-1">
+                                        <p role="button" aria-label="clear filtering option <c:out value="${doctype}"/>" class="searchFilter sidebar-clear-filter clearable x onX" tabindex="0">
                                         &quot;<c:out value="${doctype}"/>&quot;&nbsp;
                                         </p>
                                     </c:forEach>
@@ -248,7 +248,7 @@
                         <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-5">
                                 <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.suffix" />&nbsp;</p>
                                     <c:forEach items="${originalPublicSuffixes}" var="suffix">
-                                        <p role="button" aria-label="clear filtering option <c:out value="${suffix}"/>" class="searchFilter sidebar-clear-filter clearable x onX" tabindex="-1">
+                                        <p role="button" aria-label="clear filtering option <c:out value="${suffix}"/>" class="searchFilter sidebar-clear-filter clearable x onX" tabindex="0">
                                         &quot;<c:out value="${suffix}"/>&quot;
                                         </p>
                                     </c:forEach>
@@ -259,7 +259,7 @@
 
                         <c:if test="${fn:length(originalFromDateText) > 0 || fn:length(originalToDateText) > 0}">
                         <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-6">
-                                <p role="button" aria-label="clear filtering option date from <c:out value="${originalFromDateText}"/> to <c:out value="${originalToDateText}"/>" class="searchFilter sidebar-clear-filter clearable x onX" tabindex="-1"><spring:message code="search.filters.date" />&nbsp;
+                                <p role="button" aria-label="clear filtering option date from <c:out value="${originalFromDateText}"/> to <c:out value="${originalToDateText}"/>" class="searchFilter sidebar-clear-filter clearable x onX" tabindex="0"><spring:message code="search.filters.date" />&nbsp;
 
                                     <c:choose>
                                         <c:when test="${fn:length(originalFromDateText) > 0}">
@@ -291,7 +291,7 @@
                         <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-7">
                                 <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.collection" />&nbsp;</p>
                                     <c:forEach items="${originalCollections}" var="collection">
-                                        <p role="button" aria-label="clear filtering option <c:out value="${collection}"/>" class="searchFilter sidebar-clear-filter clearable x onX" tabindex="-1">
+                                        <p role="button" aria-label="clear filtering option <c:out value="${collection}"/>" class="searchFilter sidebar-clear-filter clearable x onX" tabindex="0">
                                         &quot;<c:out value="${collection}"/>&quot;
                                         </p>
                                     </c:forEach>
@@ -300,7 +300,7 @@
                             </c:if>
 
                             <c:if test="${hasFilters == 'true'}">
-                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-1">
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-1" tabindex="0">
                                     <button role="button" aria-label="reset all filters" tabindex="-1" type="button" id="btn_reset_filters" title="<spring:message code="search.main.clearallfilters" />" class="button-radius-5 searchResetRedesigned margin-top-10 margin-bottom-20 sidebar-clear-filter-button"><spring:message code="search.main.clearallfilters" /></button>
                         </div>
                             </c:if>
@@ -316,7 +316,7 @@
                             <%--   Accessing Content collapse filter   --%>
                             <div class="sidebar-filter-header no-collapse" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.view.title" />" tabindex="0" role="tab">
                                 <div class="sidebar-filter-header-title-redesign"><spring:message code="search.side.view.title"/></div>
-                                <div class="infotooltip" title="<spring:message code="search.side.view.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.view.tip" />" tabindex="0"></div>
+                                <div class="infotooltip" role="tooltip" title="<spring:message code="search.side.view.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.view.tip" />" tabindex="0"></div>
                             </div>
                             <div class="sidebar-filter expanded no-collapse" role="group" aria-label="Accessing Content Filter">
                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
@@ -751,7 +751,6 @@
 
     }
 
-
     $(document).on('p', '.clearable', function(){
         //$(this)[tog(this.value)]('x');
     }).on('mousemove', '.x', function( e ){
@@ -783,7 +782,6 @@
 
 
     $(document).ready(function(e) {
-
 
         $("#SearchFilterDialog").on('shown.bs.modal', function(e) {
             console.log("shown.bs.modal");
@@ -995,8 +993,10 @@
 
         //checks should filters be retained and submits
         $("#search_form").submit(function(e) {
+            console.log("search_form");
 
             showPleaseWait();
+
 
             if ($("#reset_filters").val() === "true") {
                 return true;
@@ -1005,6 +1005,8 @@
                 $("#filter_form").submit();
                 return false;
             }
+
+
         });
 
         //resets filters
@@ -1026,13 +1028,8 @@
         });
 
 
-
-
         showDateReset();
         checkboxSize(); //expand checkbox size to fit label content
-
-
-
 
     });
 
