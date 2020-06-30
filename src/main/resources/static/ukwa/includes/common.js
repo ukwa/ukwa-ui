@@ -44,6 +44,8 @@ $(document).ready(function(e) {
 			//    BODY
 			//------------------------------------------------
 			$('body').removeClass('theme-dark');
+			$('body').addClass('theme-light');
+
 		}else{
 
 			//3. UKWA-UI - HCM COOOKIE VALUE - ANY kind of NO
@@ -60,6 +62,7 @@ $(document).ready(function(e) {
 			//    PARTS AFFECTED BY HIGH CONTRAST:
 			//    BODY
 			//------------------------------------------------
+			$('body').removeClass('theme-light');
 			$("body").addClass("theme-dark");
 
 		}
