@@ -260,9 +260,9 @@ ${pageContext.response.locale}
   </div>
 </div>
     </div>
-
+    </div>
 </section>
-<div class="up-button" title="<spring:message code="top.of.page" />" aria-label="<spring:message code="top.of.page" />" tabindex="0"></div>
+<div class="up-button" role="button" title="<spring:message code="top.of.page" />" aria-label="<spring:message code="top.of.page" />" tabindex="0"></div>
 <footer class="footer-content">
   <%@include file="footer.jsp" %>
 </footer>
