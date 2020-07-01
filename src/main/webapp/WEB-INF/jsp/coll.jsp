@@ -79,17 +79,21 @@ ${pageContext.response.locale}
        <form role="form" action="search" method="get" enctype="multipart/form-data" name="search_coll_form" id="search_coll_form">
            <div class="row padding-bottom-20">
                <div class="col-sm-12">
-                  <div class="coll-search-input" role="group">
-                  <input role="textbox" type="text" class="homepage-search-input" name="text" id="text_collections" title="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" aria-label="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" placeholder="<spring:message code="coll.search.text1" /> within &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" required tabindex="0"/>
-                  <input aria-hidden="true" type="hidden" name="search_location" value="full_text"/>
-                  <input aria-hidden="true" type="hidden" name="collection" value="<c:out value="${currentCollection.name}"/>"/>
-
-                      <button role="button" type="submit" class="btn btn-lg homepage-search-button"
-                              aria-label="Search within <c:out value="${currentCollection.name}"/> Collection"
-                              title="<spring:message code="coll.search.button" />" tabindex="0">Search <i class="fa fa-search ml-2"></i>
-                      </button>
-
-                  </div>
+                   <div class="container-search-field-group" role="group">
+                       <input role="textbox" type="text" class="homepage-search-input" name="text" id="text_collections"
+                              title="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />"
+                              aria-label="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />"
+                              placeholder="<spring:message code="coll.search.text1" /> within &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />"
+                              required tabindex="0"/>
+                       <input aria-hidden="true" type="hidden" name="search_location" value="full_text"/>
+                       <input aria-hidden="true" type="hidden" name="collection"
+                              value="<c:out value="${currentCollection.name}"/>"/>
+                       <button role="button" type="submit" class="btn btn-lg homepage-search-button"
+                               aria-label="Search within <c:out value="${currentCollection.name}"/> Collection"
+                               title="<spring:message code="coll.search.button" />" tabindex="0">Search <i
+                               class="fa fa-search ml-2"></i>
+                       </button>
+                   </div>
                 </div>
               </div>
            <input aria-hidden="true" type="hidden" name="filter_source" id="input_hidden_field_filter_source" value="3" />
