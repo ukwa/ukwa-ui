@@ -4,9 +4,13 @@
             <div class="col-12">
                 <div class="container-search-field-group" role="group">
                     <input role="textbox" type="text" name="text" id="text" title="<spring:message code="search.main.input.title" />" aria-label="<spring:message code="search.main.input.title" />" placeholder="<spring:message code="search.main.input.title" />" class="main-search-field-redesign" value="${originalSearchRequest}" required tabindex="-1" aria-required="true"/>
-                    <button role="button" aria-labelledby="search-button-title" type="submit" title="<spring:message code="search.main.button.title" />" class="homepage-search-button" id="ss_button" tabindex="0">
-                        <span id="search-button-title" class="d-none d-sm-block"><spring:message code="search.main.button.title" /></span>
+
+                    <button role="button" type="submit" class="btn btn-lg homepage-search-button"
+                            tabindex="0"
+                            title="<spring:message code="search.main.button.title"/>">Search <i
+                            class="fa fa-search ml-2"></i>
                     </button>
+
                 </div>
             </div>
         </div>
@@ -15,8 +19,8 @@
                 <a href="#" data-toggle="modal" data-target="#searchingUKWAModalCenter" class="no-decoration search-tips-href" title="Get the most from searching the UKWA"><spring:message code="search.tips.tipsnotes" /></a>
             </div>
         </div>
-        <input type="hidden" name="search_location" id="search_location_full_text" value="full_text"/>
-        <input type="hidden" name="reset_filters" id="reset_filters" value="false"/>
+        <input aria-hidden="true" type="hidden" name="search_location" id="search_location_full_text" value="full_text"/>
+        <input aria-hidden="true" type="hidden" name="reset_filters" id="reset_filters" value="false"/>
     </form>
 </div>
 
