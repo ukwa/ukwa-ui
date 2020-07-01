@@ -69,7 +69,8 @@ $themes: (
 
 
                 backgroundColor: #fff,
-                textColor: #000,
+                textColor: #222,
+                invertedTextColor: #eee,
 
 
                 buttonTextColor: #2e6dd9,
@@ -157,7 +158,9 @@ $themes: (
                 infotooltip-hover-after-border-color:#ddd,
 
                 backgroundColor: #222,
-                textColor: #ddd,
+                textColor: #eee,
+                invertedTextColor: #222,
+
 
                 buttonTextColor: #ccc,
                 buttonTextTransform: uppercase,

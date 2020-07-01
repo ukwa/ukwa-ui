@@ -251,7 +251,10 @@ html, body {
       border-top-right-radius: 0;
       margin-right: -1px;
       &:hover {
-        background-color: #0275d8;
+        @include themify($themes) {
+          color: themed('textColor');
+          background-color: themed('invertedTextColor');
+        }
         border-color: #0275d8 #fff #0275d8 #0275d8;
       }
     }
