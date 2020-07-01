@@ -33,7 +33,7 @@ ${pageContext.response.locale}
     <div class="col-md-12 col-sm-12 padding-side-0 margin-top-minus-20 back-button"><a href="javascript:window.history.back();" title="<spring:message code="notavailable.back.button" />" class="no-decoration"><img class="h3-icon" src="img/icons/left-arrow-white.png" alt="<spring:message code="notavailable.back.button" />"/><span class="text-big bold"><spring:message code="notavailable.back.button" /></span></a>
     </div>
     <div class="col-md-6 ml-auto mr-auto col-md-offset-3 padding-side-10 margin-top-20">
-      <h2 class="uppercase">
+      <h2 class="main-heading-2-bold-redesign uppercase">
 
             <spring:message code="notavailable.heading" />
 

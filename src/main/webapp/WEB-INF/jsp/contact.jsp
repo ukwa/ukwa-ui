@@ -55,7 +55,7 @@
 
     <div class="row default-padding page-content margin-0 px-md-3 px-sm-2 px-2">
       <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
-        <h2 class="bold"><spring:message code="contact.form.heading" /></h2>
+        <h2 class="main-heading-2-bold-redesign"><spring:message code="contact.form.heading" /></h2>
         <spring:message code="contact.form.notice" />
       </div>
             <div class="col-md-6 col-sm-12 form-content-col">

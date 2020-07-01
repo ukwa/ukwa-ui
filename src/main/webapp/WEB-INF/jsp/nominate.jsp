@@ -74,7 +74,7 @@ ${req.requestURL}
   <form role="form" action="info/nominate" method="post" enctype="multipart/form-data" name="nominate" id="nominate-form" class="needs-validation" novalidate>
     <div class="row page-content padding-top-40" role="group">
       <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
-        <h2 class="bold"><spring:message code="nominate.form.heading" /></h2>
+        <h2 class="main-heading-2-bold-redesign"><spring:message code="nominate.form.heading" /></h2>
         <spring:message code="nominate.form.notice" />
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">

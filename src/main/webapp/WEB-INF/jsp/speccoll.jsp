@@ -70,7 +70,7 @@ ${pageContext.response.locale}
                 <c:forEach items="${collections}" var="collection">
                     <li class="col-sm-12 padding-bottom-20 padding-side-20 margin-bottom-20 padding-mobile-side-0">
                         <div class="border-bottom-gray padding-bottom-20">
-                            <a href="collection/<c:out value="${collection.id}"/>" class="collection-link"><h2 class="padding-bottom-0 collection-title"><c:out value="${collection.name}"/></h2></a><br/>
+                            <a href="collection/<c:out value="${collection.id}"/>" class="collection-link"><h2 class="main-heading-2-bold-redesign padding-bottom-0 collection-title"><c:out value="${collection.name}"/></h2></a><br/>
                             <span class="collection-description"><c:out value="${collection.fullDescription}"/></span>
                             <c:if test="${!empty collection.subCollections}">
                                 <!--Subcollections of current collection-->

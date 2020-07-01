@@ -167,7 +167,7 @@ ${pageContext.response.locale}
                         <!--RESULT ROW-->
                         <li class="row margin-0 padding-0 border-bottom-gray col-md-12 col-sm-12">
                             <div class=" results-result">
-                                <h2 class="margin-0">
+                                <h2 class="main-heading-2-bold-redesign margin-0">
                                     <c:out value="${targetWebsite.name}"/>
                                 </h2><br/>
                                 <c:choose>

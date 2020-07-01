@@ -4,7 +4,7 @@
     <div class="modal-dialog" style="padding-top:15%" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title mobile-dialog text-center"><spring:message code="header.modal.pleasewait.text"/>
+                <h2 class="main-heading-2-bold-redesign modal-title mobile-dialog text-center"><spring:message code="header.modal.pleasewait.text"/>
                 </h2>
             </div>
             <div class="modal-body center pleasewait-modal-body-config">

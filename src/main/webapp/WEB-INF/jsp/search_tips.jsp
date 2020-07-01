@@ -31,7 +31,7 @@ ${pageContext.response.locale}
 <section id="content">
   <div class="row search-tips-row">
     <div class="col-lg-8 mr-auto ml-auto col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12  padding-mobile-side-0">
-      <h2 class="uppercase"><spring:message code="search.tips.main.heading" /></h2>
+      <h2 class="main-heading-2-bold-redesign uppercase"><spring:message code="search.tips.main.heading" /></h2>
     </div>
   </div>
   <div class="row margin-0 padding-side-20 padding-top-80 padding-bottom-80">
