@@ -80,14 +80,14 @@ ${pageContext.response.locale}
            <div class="row padding-bottom-20">
                <div class="col-sm-12">
                   <div class="coll-search-input" role="group">
-                  <input role="textbox" type="text" class="coll-search-field" name="text" id="text_collections" title="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" aria-label="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" placeholder="<spring:message code="coll.search.text1" /> within &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" required/>
-                  <input type="hidden" name="search_location" value="full_text"/>
-                  <input type="hidden" name="collection" value="<c:out value="${currentCollection.name}"/>"/>
-                  <button role="button" aria-label="Search within <c:out value="${currentCollection.name}"/> Collection" type="submit" class="homepage-search-button" title="<spring:message code="coll.search.button" />"></button>
+                  <input role="textbox" type="text" class="homepage-search-input" name="text" id="text_collections" title="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" aria-label="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" placeholder="<spring:message code="coll.search.text1" /> within &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" required tabindex="0"/>
+                  <input aria-hidden="true" type="hidden" name="search_location" value="full_text"/>
+                  <input aria-hidden="true" type="hidden" name="collection" value="<c:out value="${currentCollection.name}"/>"/>
+                  <button role="button" aria-label="Search within <c:out value="${currentCollection.name}"/> Collection" type="submit" class="homepage-search-button" title="<spring:message code="coll.search.button" />" tabindex="0"></button>
                   </div>
                 </div>
               </div>
-           <input type="hidden" name="filter_source" id="input_hidden_field_filter_source" value="3" />
+           <input aria-hidden="true" type="hidden" name="filter_source" id="input_hidden_field_filter_source" value="3" />
        </form>
     </div>
     </div>
@@ -267,7 +267,7 @@ ${pageContext.response.locale}
   <%@include file="footer.jsp" %>
 </footer>
 </div>
-<input type="hidden" id="no-coll-description" name="no-coll-description" value="<spring:message code="coll.nodescript" />" />
+<input aria-hidden="true" type="hidden" id="no-coll-description" name="no-coll-description" value="<spring:message code="coll.nodescript" />" />
 <script>
 
 	function showDescript(descript, len) {

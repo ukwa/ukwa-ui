@@ -94,7 +94,7 @@ ${pageContext.response.locale}
   <%@include file="footer.jsp" %>
 </footer>
 </div>
-<input type="hidden" id="no-coll-description" name="no-coll-description" value="<spring:message code="coll.nodescript" />" />
+<input aria-hidden="true" type="hidden" id="no-coll-description" name="no-coll-description" value="<spring:message code="coll.nodescript" />" />
 <script>
 
 function toggleView(action, fcs) {
