@@ -83,7 +83,12 @@ ${pageContext.response.locale}
                   <input role="textbox" type="text" class="homepage-search-input" name="text" id="text_collections" title="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" aria-label="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" placeholder="<spring:message code="coll.search.text1" /> within &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" required tabindex="0"/>
                   <input aria-hidden="true" type="hidden" name="search_location" value="full_text"/>
                   <input aria-hidden="true" type="hidden" name="collection" value="<c:out value="${currentCollection.name}"/>"/>
-                  <button role="button" aria-label="Search within <c:out value="${currentCollection.name}"/> Collection" type="submit" class="homepage-search-button" title="<spring:message code="coll.search.button" />" tabindex="0"></button>
+
+                      <button role="button" type="submit" class="btn btn-lg homepage-search-button"
+                              aria-label="Search within <c:out value="${currentCollection.name}"/> Collection"
+                              title="<spring:message code="coll.search.button" />" tabindex="0">Search <i class="fa fa-search ml-2"></i>
+                      </button>
+
                   </div>
                 </div>
               </div>
