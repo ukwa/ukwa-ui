@@ -240,7 +240,7 @@ html, body {
     &:hover {
       @include themify($themes) {
         color: themed('textColor');
-        background-color: themed('backgroundColor');
+        background-color: themed('invertedTextColor');
       }
       border-color: transparent;
     }
