@@ -300,8 +300,8 @@
                             </c:if>
 
                             <c:if test="${hasFilters == 'true'}">
-                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-1" tabindex="0">
-                                    <button role="button" aria-label="reset all filters" tabindex="-1" type="button" id="btn_reset_filters" title="<spring:message code="search.main.clearallfilters" />" class="button-radius-5 searchResetRedesigned margin-top-10 margin-bottom-20 sidebar-clear-filter-button"><spring:message code="search.main.clearallfilters" /></button>
+                        <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-1" >
+                                    <button role="button" aria-label="reset all filters" tabindex="0" type="button" id="btn_reset_filters" title="<spring:message code="search.main.clearallfilters" />" class="button-radius-5 searchResetRedesigned margin-top-10 margin-bottom-20 sidebar-clear-filter-button"><spring:message code="search.main.clearallfilters" /></button>
                         </div>
                             </c:if>
 
@@ -755,7 +755,7 @@
         //$(this)[tog(this.value)]('x');
     }).on('mousemove', '.x', function( e ){
         $(this)[tog(this.offsetWidth-18 < e.clientX-this.getBoundingClientRect().left)]('onX');
-    }).on('touchstart click', '.onX', function( ev ){
+    }).on('touchstart click keypress', '.onX', function( ev ){
 
         ev.preventDefault();
 
