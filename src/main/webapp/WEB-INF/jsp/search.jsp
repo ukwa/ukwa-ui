@@ -756,24 +756,24 @@
     }).on('mousemove', '.x', function( e ){
         $(this)[tog(this.offsetWidth-18 < e.clientX-this.getBoundingClientRect().left)]('onX');
     }).on('touchstart click keypress', '.onX', function( ev ){
-
-        ev.preventDefault();
-
-        var filter_value_removal = $.trim($(this).text()).replace(/"/g, "");
-        if($(this).parent().hasClass('sidebar-clear-filter-order-3')) { //domains
-            $('input[name=filter_array_x]').val("domains");
-        }else if($(this).parent().hasClass('sidebar-clear-filter-order-4')) { //documenttypes
-            $('input[name=filter_array_x]').val("documenttype");
-        }else if ($(this).parent().hasClass('sidebar-clear-filter-order-5')) { //suffixes
-            $('input[name=filter_array_x]').val("suffix");
-        }else if ($(this).parent().hasClass('sidebar-clear-filter-order-7')) { //collections
-            $('input[name=filter_array_x]').val("collections");
-        }else if ($(this).parent().hasClass('sidebar-clear-filter-order-6')) { //date
-            showDateResetX();
+        if (ev.which === 1 || ev.which === 13 || ev.which === 32) { //mouse left || enter || space
+            ev.preventDefault();
+            var filter_value_removal = $.trim($(this).text()).replace(/"/g, "");
+            if ($(this).parent().hasClass('sidebar-clear-filter-order-3')) { //domains
+                $('input[name=filter_array_x]').val("domains");
+            } else if ($(this).parent().hasClass('sidebar-clear-filter-order-4')) { //documenttypes
+                $('input[name=filter_array_x]').val("documenttype");
+            } else if ($(this).parent().hasClass('sidebar-clear-filter-order-5')) { //suffixes
+                $('input[name=filter_array_x]').val("suffix");
+            } else if ($(this).parent().hasClass('sidebar-clear-filter-order-7')) { //collections
+                $('input[name=filter_array_x]').val("collections");
+            } else if ($(this).parent().hasClass('sidebar-clear-filter-order-6')) { //date
+                showDateResetX();
+            }
+            $('input[name=filter_array_x_item]').val(filter_value_removal);
+            // filter id submit form
+            $("#filter_form").submit();
         }
-        $('input[name=filter_array_x_item]').val(filter_value_removal);
-        // filter id submit form
-        $("#filter_form").submit();
     });
 
 
