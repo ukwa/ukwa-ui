@@ -78,9 +78,9 @@ ${pageContext.response.locale}
    <div class="col-md-6 col-sm-12 padding-bottom-20 padding-20">
        <form role="form" action="search" method="get" enctype="multipart/form-data" name="search_coll_form" id="search_coll_form">
            <div class="row padding-bottom-20">
-               <div class="col-sm-12">
-                   <div class="container-search-group-homePage" role="group">
-                       <input role="textbox" type="text" class="homepage-search-input" name="text" id="text_collections"
+               <div class="col-12 col-sm pr-sm-0">
+                   <div class="input-group">
+                       <input role="textbox" type="text" class="form-control form-control-lg homepage-search-input" name="text" id="text_collections"
                               title="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />"
                               aria-label="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />"
                               placeholder="<spring:message code="coll.search.text1" /> within &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />"
@@ -94,7 +94,7 @@ ${pageContext.response.locale}
                                class="fa fa-search ml-2"></i>
                        </button>
                    </div>
-                </div>
+               </div>
               </div>
            <input aria-hidden="true" type="hidden" name="filter_source" id="input_hidden_field_filter_source" value="3" />
        </form>
