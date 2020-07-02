@@ -42,9 +42,9 @@
     <div id="content" class="content padding-top-20 padding-bottom-10 px-md-5 px-sm-3 px-xs-3 px-2">
         <section id="home-pre-header">
 
-            <h2 class="main-heading-2-bold-redesign">
+            <h1 class="main-heading-2-bold-redesign">
                     <spring:message code="home.page.whatwedo" />
-            </h2>
+            </h1>
 
             <div class="row padding-top-20">
                 <div class="col-md-12">

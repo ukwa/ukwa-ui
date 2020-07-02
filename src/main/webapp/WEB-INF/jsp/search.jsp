@@ -314,10 +314,10 @@
                         <div class="sidebar-collapse" role="region">
                             <%--   View facets   --%>
                             <%--   Accessing Content collapse filter   --%>
-                            <div class="sidebar-filter-header no-collapse" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.view.title" />" tabindex="0" role="tab">
+                            <h2 class="sidebar-filter-header no-collapse" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.view.title" />" tabindex="0" role="tab">
                                 <div class="sidebar-filter-header-title-redesign"><spring:message code="search.side.view.title"/></div>
                                 <div class="infotooltip" role="tooltip" title="<spring:message code="search.side.view.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.view.tip" />" tabindex="0"></div>
-                            </div>
+                            </h2>
                             <div class="sidebar-filter expanded no-collapse" role="group" aria-label="Accessing Content Filter">
                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
 
@@ -356,10 +356,10 @@
                             <div role="tablist">
 
                                 <%--   Domains collapse filter   --%>
-                                <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.domain.title" />" tabindex="0" role="tab">
+                                <h2 class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.domain.title" />" tabindex="0" role="tab">
                                     <div class="sidebar-filter-header-title-redesign" id="t_domain" aria-describedby="tt_t_domain"><spring:message code="search.side.domain.title" /></div>
                                     <div id="tt_t_domain" class="infotooltip" role="tooltip" aria-hidden="true" title="<spring:message code="search.side.domain.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.domain.tip" />" tabindex="0"></div>
-                                </div>
+                                </h2>
                                 <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_domain" aria-describedby="tt_t_domain">
                                     <c:if test="${domains.size() > 1}">
                                         <c:forEach begin="0" end="${domains.size() - 1}" step="2" var="i">
@@ -384,10 +384,10 @@
 
                                 <hr class="search-sidebar-hr"/>
                                 <%--   Document type collapse filter   --%>
-                                <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
+                                <h2 class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
                                     <div class="sidebar-filter-header-title-redesign" id="t_doctype" aria-describedby="tt_t_doctype"><spring:message code="search.side.doctype.title" /></div>
                                     <div id="tt_t_doctype" class="infotooltip" role="tooltip" aria-hidden="true" title="<spring:message code="search.side.doctype.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
-                                </div>
+                                </h2>
                                 <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_doctype" aria-describedby="tt_t_doctype">
                                     <c:if test="${contentTypes.size() > 1}">
                                         <c:forEach begin="0" end="${contentTypes.size() - 1}" step="2" var="i">
@@ -413,10 +413,10 @@
                                     <hr class="search-sidebar-hr"/>
 
                                 <%--   Public suffix collapse filter   --%>
-                                <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.suffix.title" />" tabindex="0" role="tab">
+                                <h2 class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.suffix.title" />" tabindex="0" role="tab">
                                     <div class="sidebar-filter-header-title-redesign" id="t_suffix" aria-describedby="tt_t_suffix"><spring:message code="search.side.suffix.title" /></div>
                                     <div id="tt_t_suffix" class="infotooltip" role="tooltip" aria-hidden="true" title="<spring:message code="search.side.suffix.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.suffix.tip" />" tabindex="0"></div>
-                                </div>
+                                </h2>
                                 <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_suffix" aria-describedby="tt_t_suffix">
                                     <c:if test="${publicSuffixes.size() > 1}">
 
@@ -441,10 +441,10 @@
 
                                 <hr class="search-sidebar-hr"/>
                                 <%--   Archived year collapse filter   --%>
-                                <div class="sidebar-filter-header border-top-white open archived-date" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.date.title" />" tabindex="0" id="dates_header" role="tab">
+                                <h2 class="sidebar-filter-header border-top-white open archived-date" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.date.title" />" tabindex="0" id="dates_header" role="tab">
                                     <div class="sidebar-filter-header-title-redesign" id="t_date" aria-describedby="tt_t_date"><spring:message code="search.side.date.title" /></div>
                                     <div id="tt_t_date" class="infotooltip" role="tooltip" aria-hidden="true" title="<spring:message code="search.side.date.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.date.tip" />" tabindex="0"></div>
-                                </div>
+                                </h2>
                                 <div class="sidebar-filter expanded no-collapse" id="dates_container" role="tabpanel" aria-hidden="true" aria-labelledby="t_date" aria-describedby="tt_t_date" style="padding-left: 40px">
                                     <div class="row padding-top-10">
                                         <div class="col-auto">
@@ -485,10 +485,10 @@
                                 </div>
                                 <hr class="search-sidebar-hr"/>
                                 <%--   Collection collapse filter   --%>
-                                <div class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.coll.title" />" tabindex="0" role="tab">
+                                <h2 class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.coll.title" />" tabindex="0" role="tab">
                                     <div class="sidebar-filter-header-title-redesign" id="t_coll" aria-describedby="tt_t_coll"><spring:message code="search.side.coll.title" /></div>
                                     <div id="tt_t_coll" class="infotooltip" role="tooltip" aria-hidden="true" title="<spring:message code="search.side.coll.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.coll.tip" />" tabindex="0"></div>
-                                </div>
+                                </h2>
                                 <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_coll" aria-describedby="tt_t_coll">
                                     <c:if test="${collections.size() > 1}">
 
@@ -625,9 +625,9 @@
                                 <!--RESULT ROW-->
                                 <div class="row margin-0 padding-0 border-bottom-gray">
                                     <div class="col-md-12 results-result">
-                                        <div class="main-heading-2-bold-redesign margin-0">
+                                        <h1 class="main-heading-2-bold-redesign margin-0">
                                             <c:out value="${searchResult.title}"/>
-                                        </div><br/>
+                                        </h1><br/>
                                         <c:choose>
                                             <c:when test="${searchResult.access == 'RRO' && userIpFromBl}">
               <span class="results-title-text results-lib-premises text-smaller">
@@ -661,9 +661,9 @@
                                 <c:when test="${totalPages == 0}">
                                     <div class="row margin-0 padding-0 border-bottom-gray">
                                         <div class="col-md-12 results-result">
-                                            <div class="main-heading-2-bold-redesign margin-0 padding-top-20 search-no-results">
+                                            <h1 class="main-heading-2-bold-redesign margin-0 padding-top-20 search-no-results">
                                                 <spring:message code="search.noresults" />
-                                            </div>
+                                            </h1>
                                         </div>
                                     </div>
                                 </c:when>
