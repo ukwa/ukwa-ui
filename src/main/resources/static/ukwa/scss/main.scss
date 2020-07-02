@@ -157,13 +157,9 @@ html, body {
 
 .container-fluid {
   padding: 0;
-
-  @include themify($themes) {
-    color: themed('textColor');
-    background-color: themed('backgroundColor');
-  }
 }
 
+.container-fluid,
 .header, .footer-content, .cookies-cont, .modal-content, .collection-heading, .collection-heading-bold, .list-group-item, .homepage-search-input,
 .no-result-row, .ukwa-form-field,  .search-tips-row, .not-available-row, .error-500-row,
 .main-search-field-redesign, .searchpage_search_bg_settings, .search-no-results, .pagination-number-redesign, .sidebar-filter-header, .checkbox-sidebar, .radio-sidebar, .date-sidebar, .sidebar-clear-filter-button,
