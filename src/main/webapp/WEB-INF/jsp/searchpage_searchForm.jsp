@@ -3,14 +3,13 @@
         <div class="row">
             <div class="col-12">
                 <div class="container-search-field-group" role="group">
-                    <input role="textbox" type="text" name="text" id="text" title="<spring:message code="search.main.input.title" />" aria-label="<spring:message code="search.main.input.title" />" placeholder="<spring:message code="search.main.input.title" />" class="main-search-field-redesign" value="${originalSearchRequest}" required tabindex="-1" aria-required="true"/>
-
+                    <input role="textbox" type="text" name="text" id="text" title="<spring:message code="search.main.input.title" />" aria-label="<spring:message code="search.main.input.title" />" placeholder="<spring:message code="search.main.input.title" />" class="main-search-field-redesign" value="${originalSearchRequest}" required tabindex="0" aria-required="true"/>
                     <button role="button" type="submit" class="btn btn-lg homepage-search-button"
-                            tabindex="0"
+                            id="ss-button"
+                            tabindex="-1"
                             title="<spring:message code="search.main.button.title"/>">Search <i
                             class="fa fa-search ml-2"></i>
                     </button>
-
                 </div>
             </div>
         </div>
@@ -26,6 +25,6 @@
 
 <script>
     $(document).ready(function(e) {
-        $("#text").focus();
+        $("#ss-button").focus();
     });
 </script>
