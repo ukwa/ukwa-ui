@@ -166,12 +166,13 @@ html, body {
 
 .header, .footer-content, .cookies-cont, .modal-content, .collection-heading, .collection-heading-bold, .list-group-item, .homepage-search-input,
 .no-result-row, .ukwa-form-field,  .search-tips-row, .not-available-row, .error-500-row,
- .main-search-field-redesign, .searchpage_search_bg_settings, .search-no-results, .pagination-number-redesign, .sidebar-filter-header, .checkbox-sidebar, .radio-sidebar, .date-sidebar, .sidebar-clear-filter-button,
+.main-search-field-redesign, .searchpage_search_bg_settings, .search-no-results, .pagination-number-redesign, .sidebar-filter-header, .checkbox-sidebar, .radio-sidebar, .date-sidebar, .sidebar-clear-filter-button,
 .q-description, .q-grid, .technical-code,
 .results-container,
 .breadcrumb, .results-count, .topics-themes-description,
 .modal-content-tab-panel, .main-search-check-label,
-.breadcrumb-item {
+.breadcrumb-item,
+.label-for-accessibility-placeholder {
   @include themify($themes) {
     color: themed('textColor');
     background-color: themed('backgroundColor');
@@ -1097,9 +1098,6 @@ input {
   flex:1;
 
   @include themify($themes) {
-
-    color: themed('textColor');
-    background-color: themed('backgroundColor');
     box-shadow: themed('main-search-field-redesign-shadow');
   }
 }
