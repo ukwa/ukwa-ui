@@ -61,7 +61,7 @@
             </ul>
             <ul class="navbar-nav" role="menu">
                 <li class="nav-item dropdown" role="menu">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="2">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
                         <spring:message code="main.menu.language"/>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
