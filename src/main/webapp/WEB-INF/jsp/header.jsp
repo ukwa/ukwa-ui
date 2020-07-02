@@ -33,11 +33,11 @@
 </c:choose>
 
 <header>
-    <nav class="navbar navbar-expand-md" id="main-nav" aria-label="Main">
+    <nav role="navigation" class="navbar navbar-expand-md" id="main-nav" aria-label="Main">
         <a class="navbar-brand" href="index" tabindex="-1">
             <img class="logo-svg" src="img/ukwa-2018-onwhite-close.svg" alt="UK Web Archive">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+        <button role="button" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

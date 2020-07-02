@@ -75,7 +75,7 @@ ${pageContext.response.locale}
     </div>
 
          <div class="row margin-0 border-bottom-gray">
-   <div class="col-md-6 col-sm-12 padding-bottom-20 padding-20">
+   <div class="col-md-12 col-sm-12 padding-bottom-20 padding-20">
        <form role="form" action="search" method="get" enctype="multipart/form-data" name="search_coll_form" id="search_coll_form">
            <div class="row padding-bottom-20">
                <div class="col-12 col-sm pr-sm-0">
