@@ -378,7 +378,7 @@
                                             </c:if>
 
                                         </c:forEach>
-                                        <div class="openPlusSign" style="margin-left: 10px"><a href="#domain" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
+                                        <div class="openPlusSign" role="dialog" style="margin-left: 10px"><a href="#domain" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
                                     </c:if>
                                 </div>
 
@@ -406,7 +406,7 @@
                                             </c:if>
 
                                         </c:forEach>
-                                        <div class="openPlusSign" style="margin-left: 10px"><a href="#documenttype" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
+                                        <div class="openPlusSign" role="dialog" style="margin-left: 10px"><a href="#documenttype" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
                                     </c:if>
                                 </div>
 
@@ -434,7 +434,7 @@
                                                 </div>
                                             </c:if>
                                         </c:forEach>
-                                        <div class="openPlusSign" style="margin-left: 10px"><a href="#suffix" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
+                                        <div class="openPlusSign" role="dialog" style="margin-left: 10px"><a href="#suffix" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
                                     </c:if>
 
                                 </div>
@@ -508,7 +508,7 @@
                                             </c:if>
 
                                         </c:forEach>
-                                        <div class="openPlusSign" style="margin-left: 10px"><a href="#topicsandthemes" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
+                                        <div class="openPlusSign" role="dialog" style="margin-left: 10px"><a href="#topicsandthemes" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
                                     </c:if>
 
                                 </div>
