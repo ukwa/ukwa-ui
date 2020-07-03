@@ -360,7 +360,7 @@
                                     <div class="sidebar-filter-header-title-redesign" id="t_domain" aria-describedby="tt_t_domain"><spring:message code="search.side.domain.title" /></div>
                                     <div id="tt_t_domain" class="infotooltip" role="tooltip" aria-hidden="false" aria-label="<spring:message code="search.side.domain.tip" />" title="<spring:message code="search.side.domain.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.domain.tip" />" tabindex="0"></div>
                                 </h2>
-                                <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_domain" aria-describedby="tt_t_domain">
+                                <div class="sidebar-filter expanded no-collapse" role="group" aria-hidden="true" aria-labelledby="t_domain" aria-describedby="tt_t_domain">
                                     <c:if test="${domains.size() > 1}">
                                         <c:forEach begin="0" end="${domains.size() - 1}" step="2" var="i">
 
@@ -388,7 +388,7 @@
                                     <div class="sidebar-filter-header-title-redesign" id="t_doctype" aria-describedby="tt_t_doctype"><spring:message code="search.side.doctype.title" /></div>
                                     <div id="tt_t_doctype" class="infotooltip" role="tooltip" aria-hidden="false" aria-label="<spring:message code="search.side.doctype.tip" />" title="<spring:message code="search.side.doctype.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
                                 </h2>
-                                <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_doctype" aria-describedby="tt_t_doctype">
+                                <div class="sidebar-filter expanded no-collapse" role="group" aria-hidden="true" aria-labelledby="t_doctype" aria-describedby="tt_t_doctype">
                                     <c:if test="${contentTypes.size() > 1}">
                                         <c:forEach begin="0" end="${contentTypes.size() - 1}" step="2" var="i">
 
@@ -417,7 +417,7 @@
                                     <div class="sidebar-filter-header-title-redesign" id="t_suffix" aria-describedby="tt_t_suffix"><spring:message code="search.side.suffix.title" /></div>
                                     <div id="tt_t_suffix" class="infotooltip" role="tooltip" aria-hidden="false" aria-label="<spring:message code="search.side.suffix.tip" />" title="<spring:message code="search.side.suffix.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.suffix.tip" />" tabindex="0"></div>
                                 </h2>
-                                <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_suffix" aria-describedby="tt_t_suffix">
+                                <div class="sidebar-filter expanded no-collapse" role="group" aria-hidden="true" aria-labelledby="t_suffix" aria-describedby="tt_t_suffix">
                                     <c:if test="${publicSuffixes.size() > 1}">
 
                                         <c:forEach begin="0" end="${publicSuffixes.size() - 1}" step="2" var="i">
@@ -445,7 +445,7 @@
                                     <div class="sidebar-filter-header-title-redesign" id="t_date" aria-describedby="tt_t_date"><spring:message code="search.side.date.title" /></div>
                                     <div id="tt_t_date" class="infotooltip" role="tooltip" aria-hidden="false" aria-label="<spring:message code="search.side.date.tip" />" title="<spring:message code="search.side.date.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.date.tip" />" tabindex="0"></div>
                                 </h2>
-                                <div class="sidebar-filter expanded no-collapse" id="dates_container" role="tabpanel" aria-hidden="true" aria-labelledby="t_date" aria-describedby="tt_t_date" style="padding-left: 40px">
+                                <div class="sidebar-filter expanded no-collapse" id="dates_container" role="group" aria-hidden="true" aria-labelledby="t_date" aria-describedby="tt_t_date" style="padding-left: 40px">
                                     <div class="row padding-top-10">
                                         <div class="col-auto">
                                             <label id="l_from_date" for="from_date" class="date-sidebar date-range-label"><spring:message
@@ -489,7 +489,7 @@
                                     <div class="sidebar-filter-header-title-redesign" id="t_coll" aria-describedby="tt_t_coll"><spring:message code="search.side.coll.title" /></div>
                                     <div id="tt_t_coll" class="infotooltip" role="tooltip" aria-hidden="false" aria-label="<spring:message code="search.side.coll.tip" />" title="<spring:message code="search.side.coll.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.coll.tip" />" tabindex="0"></div>
                                 </h2>
-                                <div class="sidebar-filter expanded no-collapse" role="tabpanel" aria-hidden="true" aria-labelledby="t_coll" aria-describedby="tt_t_coll">
+                                <div class="sidebar-filter expanded no-collapse" role="group" aria-hidden="true" aria-labelledby="t_coll" aria-describedby="tt_t_coll">
                                     <c:if test="${collections.size() > 1}">
 
                                         <c:forEach begin="0" end="${collections.size() - 1}" step="2" var="i">

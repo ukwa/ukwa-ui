@@ -70,7 +70,7 @@ $(document).ready(function(e) {
 	//-------------------------------
 
 	//remove tabindex from radio/check boxes
-	$(this).find("input[type=radio], input[type=checkbox]").attr("tabindex", "-1");
+	$(this).find("input[type=radio], input[type=checkbox]").attr("tabindex", "0");
 
 	//radio and check button keyboard
     $(".form-check-cont").each(function(index, element) {

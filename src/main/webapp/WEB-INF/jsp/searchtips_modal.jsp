@@ -8,34 +8,34 @@
                 </button>
             </div>
             <div class="modal-body" style="padding: 0">
-                <h2 class="main-heading-dialog-redesign" id="exampleModalLongTitle" style="padding-left: 40px;padding-bottom: 40px"><spring:message code="search.tips.tipsnotes" /></h2>
-                <div class="padding-left-20">
+                <h2 class="main-heading-dialog-redesign" id="tips-notes-title-id" style="padding-left: 40px;padding-bottom: 40px"><spring:message code="search.tips.tipsnotes" /></h2>
+                <div class="padding-left-20" role="group" aria-labelledby="tips-notes-title-id">
               		<ol class="list-group list-group-flush">
-                            <li class="list-group-item padding-top-10 padding-bottom-10">
+                            <li class="list-group-item padding-top-10 padding-bottom-10" role="option" tabindex="0" aria-label="<spring:message code="search.tip.1.text" />" >
                                 <span class="circle">1</span>&nbsp;
                                 <spring:message code="search.tip.1.text" />
                             </li>
-                            <li class="list-group-item padding-top-10 padding-bottom-10">
+                            <li class="list-group-item padding-top-10 padding-bottom-10" role="option" tabindex="0" aria-label="<spring:message code="search.tip.2.text" />">
                                 <span class="circle">2</span>&nbsp;
                                 <spring:message code="search.tip.2.text" />
                             </li>
-                            <li class="list-group-item padding-top-10 padding-bottom-10">
+                            <li class="list-group-item padding-top-10 padding-bottom-10" role="option" tabindex="0" aria-label="<spring:message code="search.tip.3.text" />">
                                 <span class="circle">3</span>&nbsp;
                                 <spring:message code="search.tip.3.text" />
                             </li>
-                            <li class="list-group-item padding-top-10 padding-bottom-10">
+                            <li class="list-group-item padding-top-10 padding-bottom-10" role="option" tabindex="0" aria-label="<spring:message code="search.tip.4.text" />">
                                 <span class="circle">4</span>&nbsp;
                                 <spring:message code="search.tip.4.text" />
                             </li>
-                            <li class="list-group-item padding-top-10 padding-bottom-10">
+                            <li class="list-group-item padding-top-10 padding-bottom-10" role="option" tabindex="0" aria-label="<spring:message code="search.tip.5.text" />">
                                 <span class="circle">5</span>&nbsp;
                                 <spring:message code="search.tip.5.text" />
                             </li>
-                            <li class="list-group-item padding-top-10 padding-bottom-10">
+                            <li class="list-group-item padding-top-10 padding-bottom-10" role="option" tabindex="0" aria-label="<spring:message code="search.tip.6.text" />">
                                 <span class="circle">6</span>&nbsp;
                                 <spring:message code="search.tip.6.text" />
                             </li>
-                            <li class="list-group-item padding-top-10 padding-bottom-10">
+                            <li class="list-group-item padding-top-10 padding-bottom-10" role="option" tabindex="0" aria-label="<spring:message code="search.tip.7.text" />">
                                 <span class="circle">7</span>&nbsp;
                                 <spring:message code="search.tip.7.text" />
                             </li>
