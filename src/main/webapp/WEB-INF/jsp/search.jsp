@@ -44,7 +44,7 @@
     <%@include file="searchtips_modal.jsp" %>
 
     <!-- Modal Search Filter CheckBox Dialog -->
-    <div class="modal fade vertically-modal filter-dialog" id="SearchFilterDialog" tabindex="-1" role="dialog" >
+    <div class="modal fade vertically-modal filter-dialog" id="SearchFilterDialog" tabindex="-1" role="dialog">
         <div class="modal-dialog  modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header d-block">
@@ -57,22 +57,22 @@
                         <div class="d-flex flex-row mt-2">
                             <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#domain" role="tab"><spring:message code="search.side.domain.title" /></a>
+                                    <a class="nav-link" data-toggle="tab" href="#domain" role="tab" id="id-domain-tab" aria-controls="domain" tabindex="0"><spring:message code="search.side.domain.title" /></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#documenttype" role="tab"><spring:message code="search.side.doctype.title" /></a>
+                                    <a class="nav-link" data-toggle="tab" href="#documenttype" role="tab" id="id-documenttype-tab" aria-controls="documenttype" tabindex="0"><spring:message code="search.side.doctype.title" /></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#suffix" role="tab"><spring:message code="search.side.suffix.title" /></a>
+                                    <a class="nav-link" data-toggle="tab" href="#suffix" role="tab" id="id-suffix-tab" aria-controls="suffix" tabindex="0"><spring:message code="search.side.suffix.title" /></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#topicsandthemes" role="tab"><spring:message code="search.side.coll.title" /></a>
+                                    <a class="nav-link" data-toggle="tab" href="#topicsandthemes" role="tab" id="id-topicsandthemes-tab" aria-controls="topicsandthemes" tabindex="0"><spring:message code="search.side.coll.title" /></a>
                                 </li>
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content ">
                                 <!-- Domain -->
-                                <div class="tab-pane" id="domain" role="tabpanel">
+                                <div class="tab-pane" id="domain" role="tabpanel" aria-labelledby="id-domain-tab" tabindex="0">
                                     <div class="container-inline-flex column wrap modal-content-tab-panel" style="width: 540px">
 
                                         <c:if test="${domains.size() > 1}">
@@ -95,7 +95,7 @@
                                 </div>
 
                                 <!-- Document Type -->
-                                <div class="tab-pane" id="documenttype" role="tabpanel">
+                                <div class="tab-pane" id="documenttype" role="tabpanel" aria-labelledby="id-documenttype-tab" tabindex="0">
 
                                     <div class="container-inline-flex column wrap modal-content-tab-panel" style="width: 540px">
 
@@ -123,7 +123,7 @@
                                 </div>
 
                                 <!-- Suffix -->
-                                <div class="tab-pane" id="suffix" role="tabpanel">
+                                <div class="tab-pane" id="suffix" role="tabpanel" aria-labelledby="id-suffix-tab" tabindex="0">
 
                                     <div class="container-inline-flex column wrap modal-content-tab-panel" style="width: 540px">
 
@@ -152,7 +152,7 @@
 
 
                                 <!-- Topics and Themes -->
-                                <div class="tab-pane" id="topicsandthemes" role="tabpanel">
+                                <div class="tab-pane" id="topicsandthemes" role="tabpanel" aria-labelledby="id-topicsandthemes-tab" tabindex="0">
                                     <div class="container-inline-flex column wrap modal-content-tab-panel" style="width: 540px">
 
                                         <c:if test="${collections.size() > 1}">
