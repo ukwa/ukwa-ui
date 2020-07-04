@@ -1,4 +1,4 @@
-<a class="sr-only sr-only-focusable" href="#content" tabindex="-1">Skip to main content</a>
+<a class="sr-only sr-only-focusable" href="#content" tabindex="-1" aria-hidden="true">Skip to main content</a>
 <!-- Modal -->
 <div class="modal fade" id="pleaseWaitDialog" tabindex="-1" role="progressbar">
     <div class="modal-dialog" style="padding-top:15%" role="document">
