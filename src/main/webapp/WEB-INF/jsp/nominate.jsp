@@ -80,14 +80,14 @@ ${req.requestURL}
       <div class="col-md-6 col-sm-12 form-content-col">
         <div class="form-group">
           <label for="title" class="ukwa-form-field">* <spring:message code="nominate.form.input.title" /></label>
-          <input role="textbox" type="text" name="title" id="title" class="form-control" placeholder="<spring:message code="nominate.form.input.title.placeholder" />" required/>
+          <input role="textbox" type="text" tabindex="0" name="title" id="title" class="form-control" placeholder="<spring:message code="nominate.form.input.title.placeholder" />" required/>
           <div class="invalid-feedback">
             <spring:message code="nominate.form.input.title.placeholder" />
           </div>
         </div>
         <div class="form-group">
           <label for="url" class="ukwa-form-field">* <spring:message code="nominate.form.input.url" /></label>
-          <input role="textbox" type="text" name="url" id="url" class="form-control" placeholder="<spring:message code="nominate.form.input.url.placeholder" />" required/>
+          <input role="textbox" type="text" tabindex="0" name="url" id="url" class="form-control" placeholder="<spring:message code="nominate.form.input.url.placeholder" />" required/>
           <div class="invalid-feedback">
             <spring:message code="nominate.form.input.url.placeholder" />
           </div>
@@ -96,29 +96,36 @@ ${req.requestURL}
       <div class="col-md-6 col-sm-12 form-content-col">
 	        <div class="form-group">
           <label for="name" class="ukwa-form-field">* <spring:message code="nominate.form.input.name" /></label>
-          <input role="textbox" type="text" name="name" id="name" class="form-control" placeholder="<spring:message code="nominate.form.input.name.placeholder" />" required/>
+          <input role="textbox" type="text" tabindex="0" name="name" id="name" class="form-control" placeholder="<spring:message code="nominate.form.input.name.placeholder" />" required/>
           <div class="invalid-feedback">
             <spring:message code="nominate.form.input.name.placeholder" />
           </div>
         </div>
         <div class="form-group">
           <label for="email" class="ukwa-form-field"><spring:message code="nominate.form.input.email" /></label>
-          <input role="textbox" type="email" name="email" id="email" class="form-control" placeholder="<spring:message code="nominate.form.input.email.placeholder"/>" aria-describedby="emailHelp"/>
+          <input role="textbox" type="email" tabindex="0" name="email" id="email" class="form-control" placeholder="<spring:message code="nominate.form.input.email.placeholder"/>" aria-describedby="emailHelp"/>
           <small id="emailHelp" class="form-text"><spring:message code="nominate.form.email.notice" /></small>
         </div>
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
         <div class="form-group">
           <label for="notes" class="ukwa-form-field"><spring:message code="nominate.form.input.notes" /></label>
-          <textarea role="textbox" name="notes" id="notes" class="form-control height-145" placeholder="" aria-describedby="notesHelp"></textarea>
+          <textarea role="textbox" tabindex="0" name="notes" id="notes" class="form-control height-145" placeholder="" aria-describedby="notesHelp"></textarea>
           <small id="notesHelp" class="form-text"><spring:message code="nominate.form.input.notes.placeholder" /></small>
         </div>
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
-        <div class=" margin-top-30 clearfix">
-         <div class="g-recaptcha" data-sitekey="6Lcn5C4UAAAAAFzANA394u7Jqfk2QmvxyUjM8UiM" aria-hidden="true" aria-label="do not use" aria-readonly="true"></div>
-      <div class="captcha-message" aria-hidden="true" aria-label="do not use" aria-readonly="true"><spring:message code="captcha.message" /></div>
-        <button role="button" type="submit" aria-label="submit form Save a UK Website" class="homepage-search-button margin-top-30 button_form_submit" title="<spring:message code="nominate.form.button.submit" />"><spring:message code="nominate.form.button.submit" /></button></div>
+          <div class=" margin-top-30 clearfix">
+              <div class="g-recaptcha" data-sitekey="6Lcn5C4UAAAAAFzANA394u7Jqfk2QmvxyUjM8UiM" aria-hidden="true"
+                   aria-label="do not use" aria-readonly="true"></div>
+              <div class="captcha-message" aria-hidden="true" aria-label="do not use" aria-readonly="true">
+                  <spring:message code="captcha.message"/></div>
+              <button role="button" type="submit" aria-label="submit form Save a UK Website"
+                      tabindex="0"
+                      class="homepage-search-button margin-top-30 button_form_submit"
+                      title="<spring:message code="nominate.form.button.submit" />"><spring:message
+                      code="nominate.form.button.submit"/></button>
+          </div>
       </div>
     </div>
   </form>

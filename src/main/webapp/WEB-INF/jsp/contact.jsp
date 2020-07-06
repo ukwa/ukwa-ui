@@ -65,14 +65,14 @@
       <div class="col-md-6 col-sm-12">
         <div class="form-group">
           <label for="name" class="ukwa-form-field">* <spring:message code="contact.form.input.name" /></label>
-          <input type="text" name="name" id="name" class="form-control" placeholder="<spring:message code="contact.form.input.name.placeholder" />" required/>
+          <input role="textbox" tabindex="0" type="text" name="name" id="name" class="form-control" placeholder="<spring:message code="contact.form.input.name.placeholder" />" required/>
           <div class="invalid-feedback">
             <spring:message code="contact.form.input.name.placeholder" />
           </div>
         </div>
          <div class="form-group">
           <label for="email" class="ukwa-form-field">* <spring:message code="contact.form.input.email" /></label>
-          <input type="email" name="email" id="email" class="form-control" placeholder="<spring:message code="contact.form.input.email.placeholder" />" required/>
+          <input role="textbox" tabindex="0" type="email" name="email" id="email" class="form-control" placeholder="<spring:message code="contact.form.input.email.placeholder" />" required/>
           <div class="invalid-feedback">
             <spring:message code="contact.form.input.email.placeholder" />
           </div>
@@ -81,7 +81,7 @@
                   <div class="col-md-6 col-sm-12 form-content-col">
         <div class="form-group">
           <label for="comments" class="ukwa-form-field">* <spring:message code="contact.form.input.comments" /></label>
-          <textarea name="comments" id="comments" class="form-control height-145" aria-label="Input text for comment" title="Comments field" placeholder="<spring:message code="contact.form.input.comments.placeholder" />" required></textarea>
+          <textarea role="textbox" tabindex="0" name="comments" id="comments" class="form-control height-145" aria-label="Input text for comment" title="Comments field" placeholder="<spring:message code="contact.form.input.comments.placeholder" />" required></textarea>
           <div class="invalid-feedback">
             <spring:message code="contact.form.input.comments.placeholder" />
           </div>
@@ -95,7 +95,8 @@
                  aria-label="do not use" aria-readonly="true"></div>
             <div class="captcha-message" aria-labelledby="ukwa-captchca" aria-hidden="true" aria-label="do not use"
                  aria-readonly="true"><spring:message code="captcha.message"/></div>
-            <button role="button" type="submit" class="homepage-search-button margin-top-30 button_form_submit "
+            <button role="button" type="submit" class="homepage-search-button margin-top-30 button_form_submit"
+                    tabindex="0"
                     aria-label="submit contact form"
                     title="<spring:message code="contact.form.button.submit" />"><spring:message
                     code="contact.form.button.submit"/></button>
