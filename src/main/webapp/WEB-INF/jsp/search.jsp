@@ -782,21 +782,6 @@
 
     $(document).ready(function(e) {
 
-        $('#SearchFilterDialog ul li a').on('keypress', function(e) {
-            var link = $(this).attr('href');
-            // Check "open in new window/tab" key modifiers
-            window.location = link;
-        });
-
-        $('.openPlusSign-link').on('keypress', function( ev ){
-            var link = $(this).attr('href');
-            if (ev.which === 1 || ev.which === 13 || ev.which === 32) { //mouse left || enter || space
-                {
-                    window.location = link;
-                }
-            }
-        });
-
         $("#SearchFilterDialog").on('shown.bs.modal', function(e) {
             console.log("shown.bs.modal");
             var tab = e.relatedTarget.hash;
