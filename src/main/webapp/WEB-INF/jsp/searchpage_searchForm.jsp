@@ -1,6 +1,6 @@
 <div class="col-12 white left searchpage_search_bg_settings">
     <form role="form" action="search" method="get" enctype="multipart/form-data" name="search_form" id="search_form">
-        <div class="row">
+        <div class="row w-100">
             <div class="col-12">
                 <div class="container-search-field-group" role="group">
                     <input role="textbox" type="text" name="text" id="text"

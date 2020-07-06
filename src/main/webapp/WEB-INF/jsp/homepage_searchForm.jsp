@@ -1,6 +1,6 @@
 <form action="search" method="get" enctype="multipart/form-data" name="search_form" id="search_form">
     <div class="container-fluid d-flex ukwa-hero-banner mb-3 pt-2 px-md-5 px-sm-3 px-xs-3 px-2">
-        <div class="row justify-content-center align-self-center" role="group">
+        <div class="row justify-content-center align-self-center w-100" role="group">
             <div class="col-lg-12 col-md-12 offset-md-2 offset-sm-1">
                 <h1 class="main-heading-2-redesign padding-bottom-20"><spring:message
                         code="search.main.webarchivename"/></h1>
