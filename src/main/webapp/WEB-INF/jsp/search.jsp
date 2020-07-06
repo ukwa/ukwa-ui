@@ -378,7 +378,7 @@
                                             </c:if>
 
                                         </c:forEach>
-                                        <div class="openPlusSign" role="dialog" style="margin-left: 10px"><a href="#domain" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
+                                        <div class="openPlusSign" role="dialog" style="margin-left: 10px"><a href="#domain" class="openPlusSign-link" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
                                     </c:if>
                                 </div>
 
@@ -406,7 +406,7 @@
                                             </c:if>
 
                                         </c:forEach>
-                                        <div class="openPlusSign" role="dialog" style="margin-left: 10px"><a href="#documenttype" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
+                                        <div class="openPlusSign" role="dialog" style="margin-left: 10px"><a href="#documenttype" class="openPlusSign-link" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
                                     </c:if>
                                 </div>
 
@@ -434,7 +434,7 @@
                                                 </div>
                                             </c:if>
                                         </c:forEach>
-                                        <div class="openPlusSign" role="dialog" style="margin-left: 10px"><a href="#suffix" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
+                                        <div class="openPlusSign" role="dialog" style="margin-left: 10px"><a href="#suffix" class="openPlusSign-link" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
                                     </c:if>
 
                                 </div>
@@ -508,7 +508,7 @@
                                             </c:if>
 
                                         </c:forEach>
-                                        <div class="openPlusSign" role="dialog" style="margin-left: 10px"><a href="#topicsandthemes" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
+                                        <div class="openPlusSign" role="dialog" style="margin-left: 10px"><a href="#topicsandthemes" class="openPlusSign-link" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
                                     </c:if>
 
                                 </div>
@@ -781,6 +781,21 @@
 
 
     $(document).ready(function(e) {
+
+        $('#SearchFilterDialog ul li a').on('keypress', function(e) {
+            var link = $(this).attr('href');
+            // Check "open in new window/tab" key modifiers
+            window.location = link;
+        });
+
+        $('.openPlusSign-link').on('keypress', function( ev ){
+            var link = $(this).attr('href');
+            if (ev.which === 1 || ev.which === 13 || ev.which === 32) { //mouse left || enter || space
+                {
+                    window.location = link;
+                }
+            }
+        });
 
         $("#SearchFilterDialog").on('shown.bs.modal', function(e) {
             console.log("shown.bs.modal");

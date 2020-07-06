@@ -23,7 +23,7 @@
         </div>
         <div class="row">
             <div class="col-12 left dialog-link">
-                <a href="#" data-toggle="modal" data-target="#searchingUKWAModalCenter"
+                <a role="dialog" href="#" data-toggle="modal" data-target="#searchingUKWAModalCenter"
                    class="no-decoration search-tips-href" title="Get the most from searching the UKWA"><spring:message
                         code="search.tips.tipsnotes"/></a>
             </div>
