@@ -544,12 +544,11 @@
                         <%@include file="searchpage_searchForm.jsp" %>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12 results_settings" >
-                            <span class="search-results-main-heading bold"><spring:message code="search.main.results.text" /></span><span class="search-results-main-heading"><c:out value="${totalSearchResultsSizeFormatted}"/></span>
-                            <span class="search-results-main-heading ">&nbsp;<spring:message code="search.results.num"/>&nbsp;</span><span class="search-results-main-heading">&quot;<c:out value="${originalSearchRequest}" escapeXml="false"/>&quot;</span></div>
+                        <div class="col-sm-12 results_settings">
+                            <span class="search-results-main-heading bold"><spring:message code="search.main.results.text" /></span><span class="search-results-main-heading">&nbsp;<c:out value="${totalSearchResultsSizeFormatted}"/></span>
+                            <span class="search-results-main-heading">&nbsp;<spring:message code="search.results.num"/>&nbsp;</span><span class="search-results-main-heading">&quot;<c:out value="${originalSearchRequest}" escapeXml="false"/>&quot;</span>
+                        </div>
                     </div>
-
-
 
                 </div>
                 <c:choose>
