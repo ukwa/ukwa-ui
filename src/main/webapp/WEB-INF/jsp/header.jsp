@@ -44,19 +44,19 @@
         <div role="navigation" class="collapse navbar-collapse justify-content-between" id="navbarNav">
             <ul class="navbar-nav" role="menu">
                 <li class="nav-item ${textUriWithoutLang == '/ukwa/index' ? 'active' : ''}" role="menuitem">
-                        <a class="nav-link" href="index"><spring:message code="main.menu.home"/></a>
+                        <a class="nav-link" href="index" tabindex="0"><spring:message code="main.menu.home"/></a>
                 </li>
                 <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/collection') ? 'active' : ''}" role="menuitem">
-                        <a class="nav-link" href="collection"><spring:message code="main.menu.collections"/></a>
+                        <a class="nav-link" href="collection" tabindex="0"><spring:message code="main.menu.collections"/></a>
                 </li>
                 <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/info/nominate') ? 'active' : ''}" role="menuitem">
-                        <a class="nav-link" href="info/nominate"><spring:message code="main.menu.nominate"/></a>
+                        <a class="nav-link" href="info/nominate" tabindex="0"><spring:message code="main.menu.nominate"/></a>
                 </li>
                 <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/about') ? 'active' : ''}" role="menuitem">
-                        <a class="nav-link" href="about"><spring:message code="main.menu.about"/></a>
+                        <a class="nav-link" href="about" tabindex="0"><spring:message code="main.menu.about"/></a>
                 </li>
                 <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/contact') ? 'active' : ''}" role="menuitem">
-                        <a class="nav-link" href="contact"><spring:message code="main.menu.contact"/></a>
+                        <a class="nav-link" href="contact" tabindex="0"><spring:message code="main.menu.contact"/></a>
                 </li>
             </ul>
             <ul class="navbar-nav" role="menu">
@@ -66,17 +66,17 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="/en<c:out value="${textUriWithoutLang}?${params}"/>"
-                               title="<spring:message code="main.menu.english.title" />" lang="en" role="menuitem">
+                               title="<spring:message code="main.menu.english.title" />" lang="en" role="menuitem" tabindex="0">
                                 <spring:message code="main.menu.english"/>
                             </a>
                             <a class="dropdown-item" href="/cy<c:out value="${textUriWithoutLang}?${params}"/>"
-                               title="<spring:message code="main.menu.welsh.title" />" lang="cy" role="menuitem">
+                               title="<spring:message code="main.menu.welsh.title" />" lang="cy" role="menuitem" tabindex="0">
                                 <spring:message code="main.menu.welsh"/>
                             </a>
                     </div>
                 </li>
                 <li role="menuitem">
-                    <a href="javascript:void(0)" id="universalaccess_href" class="col-md-1 col-sm-1" aria-label="High Contrast Mode Switch" title="High Contrast Mode Switch">
+                    <a href="javascript:void(0)" id="universalaccess_href" class="col-md-1 col-sm-1" aria-label="High Contrast Mode Switch" title="High Contrast Mode Switch" tabindex="0">
                         <i class="fas fa-universal-access fa fa-2x highcontastUAIconOff"></i>
                     </a>
                 </li>
