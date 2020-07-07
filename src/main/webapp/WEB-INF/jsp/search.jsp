@@ -218,7 +218,6 @@
                         </div>
                             </c:if>
 
-
                             <c:if test="${fn:length(originalDomains) > 0}">
                         <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-3">
                                 <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.domain" />&nbsp;</p>
@@ -230,7 +229,6 @@
                                 <c:set var = "hasFilters" value = "true"/>
                         </div>
                             </c:if>
-
 
                             <c:if test="${fn:length(originalContentTypes) > 0}">
                         <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-4">
@@ -255,7 +253,6 @@
                                 <c:set var = "hasFilters" value = "true"/>
                         </div>
                             </c:if>
-
 
                         <c:if test="${fn:length(originalFromDateText) > 0 || fn:length(originalToDateText) > 0}">
                         <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-6">
@@ -305,7 +302,6 @@
                         </div>
                             </c:if>
 
-
                     </div>
                     <hr class="search-sidebar-hr"/>
                     <div class="height-0"><spring:message code="search.filter.notice" /></div>
@@ -342,7 +338,6 @@
                                         </label>
                                     </div>
                                 </div>
-
 
                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
                                     <div class="form-check-cont padding-0" title="<spring:message code="search.side.view.2" />" tabindex="0">
@@ -775,17 +770,38 @@
         }
     });
 
-
     // Removal of Filter Criteria
     function tog(v){return v?'addClass':'removeClass';}
 
 
     $(document).ready(function(e) {
 
-        $("#SearchFilterDialog").on('shown.bs.modal', function(e) {
+
+        $('#SearchFilterDialog ul li a').on('keypress', function(e) {
+
+            var link = $(this).attr('href');
+            console.log('SearchFilterDialog ' + link);
+            // Check "open in new window/tab" key modifiers
+            //window.location = link;
+            e.preventDefault();
+
             console.log("shown.bs.modal");
             var tab = e.relatedTarget.hash;
             $('.nav-tabs a[href="'+tab+'"]').tab('show');
+        });
+
+
+
+        $("#SearchFilterDialog").on('shown.bs.modal', function(ev) {
+        }).on('touchstart click keypress', '.openPlusSign-link', function( ev ) {
+
+            if (ev.which === 1 || ev.which === 13 || ev.which === 32) { //mouse left || enter || space
+                ev.preventDefault();
+
+                console.log("shown.bs.modal - touchstart click keypress, openPlusSign-link");
+                var tab = ev.relatedTarget.hash;
+                $('.nav-tabs a[href="'+tab+'"]').tab('show');
+            }
         });
 
         $('#SearchFilterDialog').on('hidden.bs.modal', function (e) {
