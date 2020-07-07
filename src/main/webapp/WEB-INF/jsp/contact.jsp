@@ -33,7 +33,7 @@
 
 <c:choose>
  <c:when test="${sent}">
- 
+
 <div class="row default-padding page-content margin-0 px-md-3 px-sm-2 px-2">
  <div class="col-sm-12">
   <div class="alert alert-success" role="alert">
@@ -41,7 +41,7 @@
   </div>
  </div>
 </div>
- 
+
  </c:when>
  <c:otherwise>
 
@@ -55,7 +55,7 @@
 
     <div class="row default-padding page-content margin-0 px-md-3 px-sm-2 px-2">
       <div class="col-md-6 col-sm-12 form-content-col padding-bottom-20">
-        <h2 class="light-blue bold"><spring:message code="contact.form.heading" /></h2>
+        <h2 class="main-heading-2-bold-redesign"><spring:message code="contact.form.heading" /></h2>
         <spring:message code="contact.form.notice" />
       </div>
             <div class="col-md-6 col-sm-12 form-content-col">
@@ -64,44 +64,51 @@
 
       <div class="col-md-6 col-sm-12">
         <div class="form-group">
-          <label for="name">* <spring:message code="contact.form.input.name" /></label>
-          <input type="text" name="name" id="name" class="form-control" placeholder="<spring:message code="contact.form.input.name.placeholder" />" required/>
+          <label for="name" class="ukwa-form-field">* <spring:message code="contact.form.input.name" /></label>
+          <input role="textbox" tabindex="0" type="text" name="name" id="name" class="form-control" placeholder="<spring:message code="contact.form.input.name.placeholder" />" required/>
           <div class="invalid-feedback">
             <spring:message code="contact.form.input.name.placeholder" />
-          </div>          
+          </div>
         </div>
          <div class="form-group">
-          <label for="email">* <spring:message code="contact.form.input.email" /></label>
-          <input type="email" name="email" id="email" class="form-control" placeholder="<spring:message code="contact.form.input.email.placeholder" />" required/>
+          <label for="email" class="ukwa-form-field">* <spring:message code="contact.form.input.email" /></label>
+          <input role="textbox" tabindex="0" type="email" name="email" id="email" class="form-control" placeholder="<spring:message code="contact.form.input.email.placeholder" />" required/>
           <div class="invalid-feedback">
             <spring:message code="contact.form.input.email.placeholder" />
-          </div>          
+          </div>
         </div>
       </div>
                   <div class="col-md-6 col-sm-12 form-content-col">
         <div class="form-group">
-          <label for="comments">* <spring:message code="contact.form.input.comments" /></label>
-          <textarea name="comments" id="comments" class="form-control height-145" placeholder="<spring:message code="contact.form.input.comments.placeholder" />" required></textarea>
+          <label for="comments" class="ukwa-form-field">* <spring:message code="contact.form.input.comments" /></label>
+          <textarea role="textbox" tabindex="0" name="comments" id="comments" class="form-control height-145" aria-label="Input text for comment" title="Comments field" placeholder="<spring:message code="contact.form.input.comments.placeholder" />" required></textarea>
           <div class="invalid-feedback">
             <spring:message code="contact.form.input.comments.placeholder" />
-          </div>          
+          </div>
         </div>
       </div>
 
-      
-      <div class="col-md-6 col-sm-12 form-content-col padding-top-0">
-      <div class="g-recaptcha" data-sitekey="6Lcn5C4UAAAAAFzANA394u7Jqfk2QmvxyUjM8UiM"></div>
-      <div class="captcha-message"><spring:message code="captcha.message" /></div>
-        <button type="submit" class="button button-blue margin-top-30 button_form_submit" title="<spring:message code="contact.form.button.submit" />"><spring:message code="contact.form.button.submit" /></button>
-      </div>
+
+        <div class="col-md-6 col-sm-12 form-content-col padding-top-0" aria-label="Input captcha"
+             title="captcha message field" id="ukwa-captchca">
+            <div class="g-recaptcha" data-sitekey="6Lcn5C4UAAAAAFzANA394u7Jqfk2QmvxyUjM8UiM" aria-hidden="true"
+                 aria-label="do not use" aria-readonly="true"></div>
+            <div class="captcha-message" aria-labelledby="ukwa-captchca" aria-hidden="true" aria-label="do not use"
+                 aria-readonly="true"><spring:message code="captcha.message"/></div>
+            <button role="button" type="submit" class="homepage-search-button margin-top-30 button_form_submit"
+                    tabindex="0"
+                    aria-label="submit contact form"
+                    title="<spring:message code="contact.form.button.submit" />"><spring:message
+                    code="contact.form.button.submit"/></button>
+        </div>
     </div>
   </form>
-  
+
  </c:otherwise>
 </c:choose>
-  
+
 </section>
-<footer>
+<footer class="footer-content">
   <%@include file="footer.jsp" %>
 </footer>
 </div>
@@ -111,7 +118,7 @@ $(document).ready(function(e) {
     var $menuItems = $('.header-menu-item');
     $menuItems.removeClass('active');
     $("#headermenu_contact").addClass('active');
-   	
+
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.getElementsByClassName('needs-validation');
     // Loop over them and prevent submission
@@ -129,14 +136,14 @@ $(document).ready(function(e) {
     	var response = grecaptcha.getResponse();
 		if (response.length == 0) {
 			$(".captcha-message").show();
-			var result=false;	
+			var result=false;
 		} else {
 			$(".captcha-message").hide();
 			var result=true;
 		}
 		return result;
 	});
-    
+
 });
 
 </script>

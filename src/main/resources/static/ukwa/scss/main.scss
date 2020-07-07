@@ -1,5 +1,40 @@
+// Import Bootstrap config first
+@import './../scss/bootstrap/config';
+@import './../scss/bootstrap/themes';
 @import url("https://use.fontawesome.com/releases/v5.7.2/css/all.css");
 
+@mixin themify($themes: $themes) {
+  @each $theme, $map in $themes {
+
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+
+      @content;
+      $theme-map: null !global;
+    }
+
+  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}
+
+
+
+$mynewcolor:#ccc;
+
+.btn-primary {
+  @include button-variant($mynewcolor, darken($mynewcolor, 7.5%), darken($mynewcolor, 10%), lighten($mynewcolor,5%), lighten($mynewcolor, 10%), darken($mynewcolor,30%));
+}
+
+.btn-outline-primary {
+  @include button-outline-variant($mynewcolor, #222222, lighten($mynewcolor,5%), $mynewcolor);
+}
 
 @font-face {
   font-family: 'Open Sans';
@@ -34,6 +69,17 @@ html, body {
   /*
   overflow: auto;
   */
+
+
+  @include themify($themes) {
+    color: themed('textColor');
+    background-color: themed('backgroundColor');
+  }
+
+  //all page backgroung
+  //background-color:red;
+  //color:greenyellow;
+
 }
 
 .modal-title{
@@ -46,7 +92,7 @@ html, body {
 .modal-header.d-block {
   border: none !important;
 }
-  
+
 .modal-dialog {
   &.tips-dialog, &.filter-dialog {
     position: relative;
@@ -97,7 +143,6 @@ html, body {
   max-width: 870px;
   padding: 10px;
   margin: 20px;
-  background-color: #fff;
   overflow-x: auto;
 }
 
@@ -109,11 +154,69 @@ html, body {
   white-space: nowrap;
 }
 
-.sidebar-filter-checkbox, .sidebar-filter-input-checkbox-modal-domains, .sidebar-filter-input-checkbox-modal-suffixes, .sidebar-filter-input-checkbox-modal-documenttypes, .sidebar-filter-input-checkbox-modal-collections {}
 
 .container-fluid {
   padding: 0;
 }
+
+.container-fluid,
+.header, .footer-content, .cookies-cont, .modal-content, .collection-heading, .collection-heading-bold, .list-group-item, .homepage-search-input,
+.no-result-row, .ukwa-form-field,  .search-tips-row, .not-available-row, .error-500-row,
+.main-search-field-redesign, .searchpage_search_bg_settings, .search-no-results, .pagination-number-redesign, .sidebar-filter-header, .checkbox-sidebar, .radio-sidebar, .date-sidebar, .sidebar-clear-filter-button,
+.q-description, .q-grid, .technical-code,
+.results-container,
+.breadcrumb, .results-count, .topics-themes-description,
+.modal-content-tab-panel, .main-search-check-label,
+.breadcrumb-item,
+.label-for-accessibility-placeholder {
+  @include themify($themes) {
+    color: themed('textColor');
+    background-color: themed('backgroundColor');
+  }
+}
+
+.nominate-result-row{
+  @include themify($themes) {
+    color: themed('nominate-result-row-color');
+    background-color: themed('nominate-result-row-bg');
+  }
+}
+
+.search-tips-href{
+  @include themify($themes) {
+    color: themed('search-tips-href-text-color') !important;
+    background-color: themed('search-tips-href-bg') !important;
+  }
+}
+
+.search-results-main-heading{
+  @include themify($themes) {
+    color: themed('search-results-main-heading-text-color');
+    background-color: themed('search-results-main-heading-bg-color');
+  }
+}
+
+.ukwa-form-button{
+  @include themify($themes) {
+    color: themed('ukwa-form-button-text-color');
+    background-color: themed('ukwa-form-button-bg');
+  }
+}
+
+.ukwa-form-field-info{
+  @include themify($themes) {
+    color: themed('ukwa-form-field-info-textColor');
+    background-color: themed('backgroundColor');
+  }
+}
+
+
+.ukwa-form-button {
+    @include themify($themes) {
+      color: themed('ukwa-form-button-color');
+      background-color: themed('ukwa-form-button-bg');
+    }
+  }
 
 .nav-tabs--vertical {
   border-bottom: none;
@@ -132,7 +235,10 @@ html, body {
     transition: border-color 125ms ease-in;
     white-space: nowrap;
     &:hover {
-      background-color: #f7f7f7;
+      @include themify($themes) {
+        color: themed('textColor');
+        background-color: themed('invertedTextColor');
+      }
       border-color: transparent;
     }
     &.active {
@@ -142,7 +248,10 @@ html, body {
       border-top-right-radius: 0;
       margin-right: -1px;
       &:hover {
-        background-color: #fff;
+        @include themify($themes) {
+          color: themed('textColor');
+          background-color: themed('invertedTextColor');
+        }
         border-color: #0275d8 #fff #0275d8 #0275d8;
       }
     }
@@ -182,14 +291,19 @@ input, button, textarea, select {
 
 p.searchFilter {
   font-family: "Open Sans Regular",sans-serif,Arial;
-  border: 1px solid darkgray !important;
   display: inline-block;
   margin-top: 2px;
   margin-bottom: 2px;
   padding: 5px;
-  color: darkgray;
   padding-right: 20px;
+
+  @include themify($themes) {
+    color: themed('searchFilterTextColor');
+    border: themed('searchFilterBorder');
+    background-color: themed('backgroundColor');
+  }
 }
+
 
 .center {
   text-align: center;
@@ -290,7 +404,7 @@ p.searchFilter {
   margin-right: -1rem;
   padding-right: 2rem;
   &:before {
-    content: '...';
+    content: '';
     position: absolute;
     right: 0;
     bottom: 0;
@@ -302,7 +416,6 @@ p.searchFilter {
     width: 1rem;
     height: 1rem;
     margin-top: .2rem;
-    background: #fff;
   }
 }
 
@@ -517,17 +630,13 @@ p.searchFilter {
     border-radius: 2ex;
     margin-right: 4px;
     padding: 1px;
-    color: #0c49b0;
-    background: white;
-    border: 1px solid #0c49b0;
+    border: 1px solid #dd00ff;
     vertical-align: super;
     text-decoration: none;
     top: 0.8em;
     font-size: 80%;
   }
   &:hover:after {
-    color: white;
-    background: #0c49b0;
     text-decoration: none;
   }
 }
@@ -556,11 +665,17 @@ p.searchFilter {
     width: 20px;
     border-radius: 10px;
     line-height: 20px;
-    color: white;
-    background: #0c49b0;
+
+    @include themify($themes) {
+      color: themed('infotooltip-after-textColor');
+      background: themed('infotooltip-after-bg');
+      border-color: themed('infotooltip-after-border-color');
+      box-shadow: themed('infotooltip-after-shadow-color');
+    }
+
     text-decoration: none;
     font-size: 65%;
-    box-shadow: 1px 1px 7px #464747;
+
     float: left;
     margin-left: 10px;
     margin-right: 5px;
@@ -568,7 +683,14 @@ p.searchFilter {
     margin-bottom: 10px;
   }
   &:hover:after {
-    color: #0c49b0;
+
+    @include themify($themes) {
+      color: themed('infotooltip-hover-after-textColor');
+      background: themed('infotooltip-hover-after-bg');
+      border-color: themed('infotooltip-hover-after-border-color');
+    }
+
+    color: #ee11ff;
     background: white;
     border-color: #0c49b0;
   }
@@ -588,11 +710,9 @@ p.searchFilter {
     width: 20px;
     border-radius: 10px;
     line-height: 20px;
-    color: white;
-    background: #0c49b0;
     text-decoration: none;
     font-size: 85%;
-    box-shadow: 1px 1px 7px #464747;
+    box-shadow: 1px 1px 7px #22ff66;
     float: left;
     margin-left: 10px;
     margin-right: 15px;
@@ -600,9 +720,7 @@ p.searchFilter {
     margin-bottom: 10px;
   }
   &:hover:after {
-    color: #0c49b0;
-    background: white;
-    border-color: #0c49b0;
+
   }
 }
 
@@ -646,11 +764,20 @@ p.searchFilter {
 }
 
 a, .navbar-light .navbar-nav .nav-link {
-  &, &:link, &:visited, &:active, &:focus {
-    color: #2e6dd9;
-  }
-  &:hover {
-    color: #0c49b0;
+
+
+  @include themify($themes) {
+
+    color: themed('textColor');
+    background-color: themed('backgroundColor');
+
+    &, &:link, &:visited, &:active, &:focus {
+      color: themed('nav-link-focus-color');
+    }
+    &:hover {
+      color: themed('nav-hover-color');
+    }
+
   }
 }
 
@@ -686,10 +813,14 @@ a.no-decoration {
   cursor: pointer;
   position: relative;
   &.searchResetRedesigned {
-    background: white;
-    color: cornflowerblue;
-    border: solid 1px cornflowerblue !important;
+    @include themify($themes) {
+      color: themed('button-radius-5-color');
+      border: themed('button-radius-5-border');
+      background-color: themed('backgroundColor');
+    }
   }
+
+
 }
 
 .button-radius-30 {
@@ -735,11 +866,21 @@ a.no-decoration {
 
 .form-control {
   border-radius: 0 !important;
-  border: solid 1px #2e6dd9;
-  &.blue {
-    border: solid 1px #fff;
-    background-color: #2e6dd9;
-    color: #fff;
+
+  @include themify($themes) {
+    box-shadow: themed('home_page_btn_box-shadow');
+
+    border: themed('buttonBorder');
+    color: themed('buttonTextColor');
+    border-color: themed('buttonTextColor');
+    background-color: themed('buttonColor');
+    text-transform: themed('buttonTextTransform');
+
+    &:hover {
+      color: themed('buttonTextHoverColor');
+      border-color: themed('buttonTextHoverColor');
+      background-color: themed('buttonHoverColor');
+    }
   }
 }
 
@@ -883,13 +1024,17 @@ input {
 
 .scroll-redesign {
   overflow-y: scroll;
-  color: #00A0B0;
-  background: #2e6dd9;
+  @include themify($themes) {
+    color: themed('scroll-redesign-color');
+    background-color: themed('scroll-redesign-bg');
+  }
 }
 
 .shadow-redesign {
-  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.5);
+  @include themify($themes) {
+    box-shadow: themed('shadow-redesign-box-shadow');
+    -webkit-box-shadow: themed('shadow-redesign-box-shadow');
+  }
 }
 
 .main-search-container {
@@ -905,17 +1050,22 @@ input {
 }
 
 .ukwa-hero-banner {
-  color: #ffffff;
   min-height: 15rem;
   width: 100%;
+
   background-repeat: no-repeat;
   background-image: url("../img/icons/UKWA-hero-composite-final.png");
   background-size: cover;
+
+  @include themify($themes) {
+    color: themed('buttonTextColor');
+  }
+
 }
 
 .main-search-input-new {
   height: 0;
-  width: 100%;
+  width: 10%;
   background-repeat: no-repeat;
   background-image: url("../img/icons/UKWA-hero-composite-final.png");
   background-size: cover;
@@ -938,16 +1088,32 @@ input {
   width: 100%;
   padding: 10px 10px 10px 10px;
   border: none;
-  color: #636c72;
   display: inline;
   float: left;
   position: relative;
-  box-shadow: 1px 1px 7px #464747;
   flex:1;
+
+  @include themify($themes) {
+    box-shadow: themed('main-search-field-redesign-shadow');
+  }
 }
 .homepage-search-button{
-  color: #2e6ddf;
-  box-shadow: 1px 1px 7px #464747;
+
+  @include themify($themes) {
+    box-shadow: themed('home_page_btn_box-shadow');
+
+    border: themed('buttonBorder');
+    color: themed('buttonTextColor');
+    border-color: themed('buttonTextColor');
+    background-color: themed('buttonColor');
+    text-transform: themed('buttonTextTransform');
+
+    &:hover {
+      color: themed('buttonTextHoverColor');
+      border-color: themed('buttonTextHoverColor');
+      background-color: themed('buttonHoverColor');
+    }
+  }
 }
 .homepage-search-button-aw-icon{
   vertical-align: middle;
@@ -1150,11 +1316,20 @@ h3 {
 .main-menu-item {
   padding: 35px 20px 35px 80px;
   font-size: 1em;
-  background-color: #2e6dd9;
   cursor: pointer;
   border-top: solid 1px #fff;
   width: 100%;
-  color: #fff;
+
+  @include themify($themes) {
+  color: themed('textColor');
+  background-color: themed('backgroundColor');
+}
+}
+
+.main-menu-item:hover {
+  @include themify($themes) {
+    background-color: themed('backgroundColor');
+  }
 }
 
 .main-menu-cont a {
@@ -1170,24 +1345,18 @@ h3 {
   display: inline-block;
 }
 
-.main-menu-item:hover {
-  background-color: #0c49b0;
-}
+
 
 header li.nav-item.active a {
   text-decoration: underline;
+
+
 }
 
-.header-bar {
-  padding: 20px 20px 20px 20px;
-  background-color: #fafafa;
-  margin: 0;
-}
 
 .main-heading-cont {
   font-family: "Open Sans Bold",sans-serif,Arial;
   font-weight: bold;
-  color: #0c49b0;
   text-transform: uppercase;
   padding: 0;
 }
@@ -1228,22 +1397,58 @@ header li.nav-item.active a {
 .main-heading-2-bold-redesign {
   font-family: "Open Sans Bold",sans-serif,Arial;
   font-size: 32px;
-  text-decoration: none !important;
-  text-transform: none;
-  color: #0c49b0;
+
+  @include themify($themes) {
+    text-transform: themed('redesign-text-transform');
+    text-decoration: themed('redesign-text-decoration');
+    color: themed('main-heading-2-bold-redesign-text-color');
+  }
 }
 
 .main-heading-2-redesign {
   font-family: "Open Sans",sans-serif,Arial;
-  font-size: 2em;
+
+  font-size: 1.9rem;
   margin-bottom: 0;
-  text-decoration: none !important;
-  text-transform: none;
-  color: #0c49b0;
-  > a:link {
-    text-decoration: none !important;
+
+  @include themify($themes) {
+    text-transform: themed('redesign-text-transform');
+    text-decoration: themed('redesign-text-decoration');
+    color: themed('main-heading-2-redesign-text-color') !important;
+
   }
 }
+
+.main-heading-dialog-redesign {
+  font-family: "Open Sans",sans-serif,Arial;
+
+  font-size: 1.9rem;
+  margin-bottom: 0;
+
+  @include themify($themes) {
+    text-transform: themed('redesign-text-transform');
+    text-decoration: themed('redesign-text-decoration');
+    color: themed('main-heading-dialog-redesign-text-color');
+
+
+  }
+
+}
+
+.ukwa-pagetab-title {
+  font-family: "Open Sans Bold",sans-serif,Arial;
+  font-size: 2.5em;
+  margin-bottom: 0;
+
+  @include themify($themes) {
+    text-transform: themed('redesign-text-transform');
+    text-decoration: themed('redesign-text-decoration');
+    color: themed('ukwa-pagetab-title-text-color');
+
+  }
+
+}
+
 
 .main-heading > a {
   &:visited, &:active .main-heading > a:hover {
@@ -1263,9 +1468,7 @@ header li.nav-item.active a {
   font-size: 18px;
   line-height: 1.5em;
   margin-bottom: 0;
-  text-decoration: none !important;
-  text-transform: none;
-  color: black;
+
   blueColor {
     color: #0c49b0;
     text-decoration: none;
@@ -1273,6 +1476,14 @@ header li.nav-item.active a {
     border-bottom: 1px dashed;
     overflow: hidden;
   }
+
+  @include themify($themes) {
+    text-transform: themed('redesign-text-transform');
+    text-decoration: themed('redesign-text-decoration');
+    color: themed('redesign-tex-color');
+    background-color: themed('backgroundColor');
+  }
+
 }
 
 .main-subheading-bold-2-redesign {
@@ -1287,7 +1498,7 @@ header li.nav-item.active a {
 
 .header-blue {
   padding: 60px 20px 40px 20px;
-  background-color: #2e6dd9;
+  background-color: #0e6dd9;
   margin: 0;
 }
 
@@ -1297,10 +1508,6 @@ header li.nav-item.active a {
   margin: 0;
 }
 
-.header-bar-2 {
-  padding: 20px 80px 20px 80px;
-  margin: 0;
-}
 
 .header-2-subtitle {
   padding-left: 20px;
@@ -1384,7 +1591,6 @@ header li.nav-item.active a {
       bottom: 0;
       left: 0;
       width: 100%;
-      border-bottom: 5px solid #0c49b0;
     }
   }
   &.active > a {
@@ -1392,7 +1598,6 @@ header li.nav-item.active a {
     bottom: 0;
     left: 0;
     width: 100%;
-    border-bottom: 5px solid #0c49b0;
   }
 }
 
@@ -1582,7 +1787,6 @@ footer {
         bottom: 0;
         left: 0;
         width: 100%;
-        border-bottom: 5px solid #0c49b0;
       }
     }
     &.active > a {
@@ -1590,7 +1794,6 @@ footer {
       bottom: 0;
       left: 0;
       width: 100%;
-      border-bottom: 5px solid #0c49b0;
     }
   }
 
@@ -1608,7 +1811,6 @@ footer {
         bottom: 0;
         left: 0;
         width: 100%;
-        border-bottom: 5px solid #0c49b0;
       }
     }
     &.active > a {
@@ -1616,7 +1818,6 @@ footer {
       bottom: 0;
       left: 0;
       width: 100%;
-      border-bottom: 5px solid #0c49b0;
     }
   }
 
@@ -1700,7 +1901,6 @@ footer {
 
 .sidebar-white-blue {
   background-color: #fff;
-  color: #0c49b0;
 }
 
 .sidebar-collapse {
@@ -1722,10 +1922,8 @@ footer {
   cursor: pointer;
   border-top: solid 1px #fff;
   &:hover {
-    background-color: #0c49b0;
   }
   &.active {
-    border-left: solid 5px #fff;
     padding-left: 15px;
   }
 }
@@ -1768,7 +1966,6 @@ footer {
 
 .sidebar-back-item {
   &:hover {
-    background-color: #0c49b0;
   }
   padding: 30px 20px 30px 90px;
   font-family: "Open Sans Bold",sans-serif;
@@ -1828,7 +2025,10 @@ footer {
   float: left;
   max-width: 100%;
   text-overflow: ellipsis;
-  color: #0c49b0;
+
+  @include themify($themes) {
+    color: themed('sidebar-filter-header-title-redesign-color');
+  }
 }
 
 .topics-themes-hr {
@@ -1874,8 +2074,10 @@ footer {
 
 .side-bar-right {
   position: relative;
-  -webkit-box-shadow: 15px 0px 12px -12px rgba(0, 0, 0, 0.5);
-  box-shadow: 15px 0px 12px -12px rgba(0, 0, 0, 0.5);
+  @include themify($themes) {
+    box-shadow: themed('side-bar-right-box-shadow');
+    -webkit-box-shadow: themed('side-bar-right-box-shadow');
+  }
 }
 
 .side-bar-bottom {
@@ -2261,7 +2463,6 @@ footer {
 }
 
 .home-menu-item:hover {
-  background-color: #0c49b0;
 }
 
 .home-search-container {
@@ -2376,12 +2577,13 @@ footer {
 }
 
 .results-result {
-  background-color: #fff;
   padding: 20px 20px 20px 20px;
 }
 
 .results-lib-premises {
-  color: red;
+  @include themify($themes) {
+  color: themed('results-lib-premises-textColor');
+}
 }
 
 .results-border {
@@ -2435,7 +2637,13 @@ footer {
   display: block;
   position: relative;
   text-decoration: none !important;
+  padding-top: 5px;
+
+  @include themify($themes) {
+    color: themed('dialog-link-textColor');
+  }
 }
+
 .collection-heading {
   font-family: "Open Sans",sans-serif,Arial;
   font-size: 18px;
@@ -2614,22 +2822,9 @@ footer {
   padding-right:15%
 }
 
-.searchpage_search_bg_settings{
-
-}
-
-.footer-legal-deposit{
-}
-.date-filter-button{
-}
-.nominate-button {
-}
 .results_settings{
   padding-left:30px;
   padding-top: 50px;
-}
-.button_form_submit{
-
 }
 
 .container-sort-group{
@@ -2716,12 +2911,18 @@ footer {
 
 .topline{
   width: 100%;
-  color: darkblue;
   height: 2px;
-  background-color:royalblue;
   margin-bottom:1px !important;
   margin-top:1px !important;
+
+  @include themify($themes) {
+    color: themed('textColor');
+    background-color: themed('backgroundColor');
+  }
+
 }
+
+
 .bottomline{
   width: 100%;
   color: darkblue;
@@ -2738,16 +2939,7 @@ footer {
   background: #e0e0e0 !important;
 }
 
-.homepage-search-button-clear{
-  display: none;
-  color: #636c72;
-  background: transparent;
-  margin-left: -2.15rem;
-  z-index: 3;
-  border: 0;
-  box-shadow: none;
-  text-shadow: none;
-}
+
 
 
   /*--------------------------------------------------------------
@@ -2823,9 +3015,11 @@ footer {
       - homepage-searchForm
   */
   /* 32px */
-  .main-heading-2-redesign {
+/*
+.main-heading-2-redesign {
     font-size: 1.9rem;
   }
+  */
 
   /*
       Font style used in JSPs: ???? check!!!
@@ -2881,15 +3075,7 @@ footer {
     padding: .5rem !important;
     margin-right: 2rem;
   }
-  .homepage-search-button{
-    /* should be auto by flex container
-    width: 1rem !important;
-    */
-    /* 18px */
-    font-size:1.07rem;
-    height: 2.5rem !important;
-    width: 10rem !important;
-  }
+
   .homepage-search-button-aw-icon{
     font-size:1.8rem;
   }
@@ -2923,10 +3109,12 @@ footer {
   }
 
 
+/* 18px */
+  /*
   .main-subheading-bold-2-redesign, .main-subheading-2-redesign, .img-square-caption {
-    /* 18px */
     font-size:1.07rem;
   }
+  */
   /* 18px bold */
   .collection-heading-bold{
     font-size:1.07rem;
@@ -3101,7 +3289,6 @@ footer {
   .q-description{
     font-size:1.07rem;
   }
-
 
 
 /*# sourceMappingURL=main.css.map */

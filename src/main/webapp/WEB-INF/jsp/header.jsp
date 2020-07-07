@@ -1,16 +1,15 @@
-<a class="sr-only sr-only-focusable" href="#content" tabindex="1">Skip to main content</a>
+<a class="sr-only sr-only-focusable" href="${requestScope['javax.servlet.forward.request_uri']}#content" tabindex="0" aria-hidden="false" aria-label="Skip to main content">Skip to main content</a>
 <!-- Modal -->
-<div class="modal fade" id="pleaseWaitDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
+<div class="modal fade" id="pleaseWaitDialog" tabindex="-1" role="progressbar">
     <div class="modal-dialog" style="padding-top:15%" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title mobile-dialog text-center"><spring:message code="header.modal.pleasewait.text"/>
+                <h2 class="main-heading-2-bold-redesign modal-title mobile-dialog text-center"><spring:message code="header.modal.pleasewait.text"/>
                 </h2>
             </div>
             <div class="modal-body center pleasewait-modal-body-config">
                 <div class="center-block align-items-center">
-                    <img src="img/icons/gif4.gif">
+                    <img alt="Progress Bar" src="img/icons/gif4.gif">
                 </div>
             </div>
         </div>
@@ -33,48 +32,53 @@
  </c:otherwise>
 </c:choose>
 
-<header class="header">
-    <nav class="navbar navbar-expand-md navbar-light bg-white">
+<header>
+    <nav role="navigation" class="navbar navbar-expand-md" id="main-nav" aria-label="Main">
         <a class="navbar-brand" href="index" tabindex="-1">
             <img class="logo-svg" src="img/ukwa-2018-onwhite-close.svg" alt="UK Web Archive">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+        <button role="button" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item ${textUriWithoutLang == '/ukwa/index' ? 'active' : ''}">
-                        <a class="nav-link" href="index"><spring:message code="main.menu.home"/></a>
+        <div role="navigation" class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav" role="menu">
+                <li class="nav-item ${textUriWithoutLang == '/ukwa/index' ? 'active' : ''}" role="menuitem">
+                        <a class="nav-link" href="index" tabindex="0"><spring:message code="main.menu.home"/></a>
                 </li>
-                <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/collection') ? 'active' : ''}">
-                        <a class="nav-link" href="collection"><spring:message code="main.menu.collections"/></a>
+                <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/collection') ? 'active' : ''}" role="menuitem">
+                        <a class="nav-link" href="collection" tabindex="0"><spring:message code="main.menu.collections"/></a>
                 </li>
-                <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/info/nominate') ? 'active' : ''}">
-                        <a class="nav-link" href="info/nominate"><spring:message code="main.menu.nominate"/></a>
+                <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/info/nominate') ? 'active' : ''}" role="menuitem">
+                        <a class="nav-link" href="info/nominate" tabindex="0"><spring:message code="main.menu.nominate"/></a>
                 </li>
-                <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/about') ? 'active' : ''}">
-                        <a class="nav-link" href="about"><spring:message code="main.menu.about"/></a>
+                <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/about') ? 'active' : ''}" role="menuitem">
+                        <a class="nav-link" href="about" tabindex="0"><spring:message code="main.menu.about"/></a>
                 </li>
-                <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/contact') ? 'active' : ''}">
-                        <a class="nav-link" href="contact"><spring:message code="main.menu.contact"/></a>
+                <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/contact') ? 'active' : ''}" role="menuitem">
+                        <a class="nav-link" href="contact" tabindex="0"><spring:message code="main.menu.contact"/></a>
                 </li>
             </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="2">
+            <ul class="navbar-nav" role="menu">
+                <li class="nav-item dropdown" role="menu">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
                         <spring:message code="main.menu.language"/>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="/en<c:out value="${textUriWithoutLang}?${params}"/>"
-                               title="<spring:message code="main.menu.english.title" />" lang="en">
+                               title="<spring:message code="main.menu.english.title" />" lang="en" role="menuitem" tabindex="0">
                                 <spring:message code="main.menu.english"/>
                             </a>
                             <a class="dropdown-item" href="/cy<c:out value="${textUriWithoutLang}?${params}"/>"
-                               title="<spring:message code="main.menu.welsh.title" />" lang="cy">
+                               title="<spring:message code="main.menu.welsh.title" />" lang="cy" role="menuitem" tabindex="0">
                                 <spring:message code="main.menu.welsh"/>
                             </a>
                     </div>
+                </li>
+                <li role="menuitem">
+                    <a href="javascript:void(0)" id="universalaccess_href" class="col-md-1 col-sm-1" aria-label="High Contrast Mode Switch" title="High Contrast Mode Switch" tabindex="0">
+                        <i class="fas fa-universal-access fa fa-2x highcontastUAIconOff"></i>
+                    </a>
                 </li>
             </ul>
         </div>

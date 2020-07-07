@@ -37,13 +37,13 @@
 
 <c:set var="title" value="Technical Information"/>
 <%@include file="title.jsp" %>
-    
+
     <section id="content">
       <div class="row default-padding page-content margin-0 px-md-3 px-sm-2 px-2">
 
         <div class="default-padding text-content">
 
-            <p class="main-subheading-2-redesign black padding-bottom-40">Click on the question to see the answer</p>
+            <p class="main-subheading-2-redesign padding-bottom-40">Click on the question to see the answer</p>
 
 
             <div class="padding-bottom-10">
@@ -229,18 +229,16 @@
                 </p>
                 <figure>
                 <pre>
-                    <code>&lt;div style=...&gt;&lt;a href="http://www.webarchive.org.uk/"&gt;Click here for the UK Web Archive&lt;/a&gt;&lt;/div&gt;</code>
+                    <code class="technical-code">&lt;div style=...&gt;&lt;a href="http://www.webarchive.org.uk/"&gt;Click here for the UK Web Archive&lt;/a&gt;&lt;/div&gt;</code>
                 </pre>
                 </figure>
                 <p>To use a link that has the UK Web Archive logo, then copy and paste this code:
                 </p>
-                <p align="left">
                     <figure>
                 <pre>
-                    <code>&lt;div style=...&gt;&lt;a href="http://www.webarchive.org.uk/"&gt;&lt;img alt="UK Web Archive" src="https://www.webarchive.org.uk/en/ukwa/img/ukwa-logo-60px.jpg"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/div&gt;</code>
+                    <code class="technical-code">&lt;div style=...&gt;&lt;a href="http://www.webarchive.org.uk/"&gt;&lt;img alt="UK Web Archive" src="https://www.webarchive.org.uk/en/ukwa/img/ukwa-logo-60px.jpg"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/div&gt;</code>
                 </pre>
                     </figure>
-                </p>
 
             </div>
         </div>
@@ -267,7 +265,8 @@
 
         </div>
         </div>
-    </section>    <footer>
+    </section>
+    <footer class="footer-content">
         <%@include file="footer.jsp" %>
     </footer>
 </div>

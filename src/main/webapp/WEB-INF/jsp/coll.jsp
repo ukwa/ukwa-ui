@@ -45,7 +45,7 @@ ${pageContext.response.locale}
 <div class="row margin-0 px-md-3 px-sm-0">
 
   <div class="col-sm-12" id="coll_header">
-  
+
         <div class="row results-header margin-0 border-bottom-gray px-md-3 px-sm-0">
 
 <nav aria-label="breadcrumb">
@@ -66,28 +66,37 @@ ${pageContext.response.locale}
     </c:forEach>
   </ol>
 </nav>
-        
+
     <div class="row margin-0 padding-side-5">
-      <div class="col-md-12 col-sm-12 pl-0 pr-0 padding-top-20 padding-bottom-20 light-blue">
-        <p class="black margin-top-20 margin-bottom-0 hidden" id="coll_description" data-descript="<c:out value="${currentCollection.description}"/>"></p>
+      <div class="col-md-12 col-sm-12 pl-0 pr-0 padding-top-20 padding-bottom-20">
+        <p class="margin-top-20 margin-bottom-0 hidden topics-themes-description" id="coll_description" data-descript="<c:out value="${currentCollection.description}"/>"></p>
         <p class="margin-bottom-0"><a href="#" class="hidden" title="<spring:message code="coll.readmore" />" id="readmore"><spring:message code="coll.readmore" /></a></p>
       </div>
     </div>
 
          <div class="row margin-0 border-bottom-gray">
-   <div class="col-md-6 col-sm-12 padding-bottom-20 padding-20 light-blue">
-       <form action="search" method="get" enctype="multipart/form-data" name="search_coll_form" id="search_coll_form">
+   <div class="col-md-12 col-sm-12 padding-bottom-20 padding-20">
+       <form role="form" action="search" method="get" enctype="multipart/form-data" name="search_coll_form" id="search_coll_form">
            <div class="row padding-bottom-20">
-               <div class="col-sm-12">
-                  <div class="coll-search-input">
-                  <input type="text" class="coll-search-field" name="text" id="text_collections" title="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" aria-label="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" placeholder="<spring:message code="coll.search.text1" /> within &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />" required/>
-                  <input type="hidden" name="search_location" value="full_text"/>
-                  <input type="hidden" name="collection" value="<c:out value="${currentCollection.name}"/>"/>
-                  <button type="submit" class="coll-search-button" title="<spring:message code="coll.search.button" />"></button>
-                  </div>
-                </div>
+               <div class="col-12 col-sm pr-sm-0">
+                   <div class="input-group">
+                       <input role="textbox" type="text" class="form-control form-control-lg homepage-search-input" name="text" id="text_collections"
+                              title="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />"
+                              aria-label="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />"
+                              placeholder="<spring:message code="coll.search.text1" /> within &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />"
+                              required tabindex="0"/>
+                       <input aria-hidden="true" type="hidden" name="search_location" value="full_text"/>
+                       <input aria-hidden="true" type="hidden" name="collection"
+                              value="<c:out value="${currentCollection.name}"/>"/>
+                       <button role="button" type="submit" class="btn btn-lg homepage-search-button"
+                               aria-label="Search within <c:out value="${currentCollection.name}"/> Collection"
+                               title="<spring:message code="coll.search.button" />" tabindex="0">Search <i
+                               class="fa fa-search ml-2"></i>
+                       </button>
+                   </div>
+               </div>
               </div>
-           <input type="hidden" name="filter_source" id="input_hidden_field_filter_source" value="3" />
+           <input aria-hidden="true" type="hidden" name="filter_source" id="input_hidden_field_filter_source" value="3" />
        </form>
     </div>
     </div>
@@ -98,7 +107,7 @@ ${pageContext.response.locale}
         <%--LOOP of Sub collections--%>
         <c:forEach items="${subCollections}" var="subCollection">
           <li class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-20 padding-bottom-20" style="list-style: none;"> <a href="collection/<c:out value="${subCollection.id}"/>" class="collection-link">
-            <div class="center light-blue padding-bottom-10 collection-heading">
+            <div class="center padding-bottom-10 collection-heading">
               <c:out value="${subCollection.name}"/>
             </div>
               <div class="sub-coll-descript shadow collection-description">
@@ -115,11 +124,10 @@ ${pageContext.response.locale}
         <div class="col-sm-12 padding-0">
             <c:choose>
               <c:when test="${currentCollection.websitesNum == 1}">
-                <span class="results-count">1</span> <spring:message code="coll.results.num.single" />
+                  <span class="results-count">1&nbsp;<span class="results-count"><spring:message code="coll.results.num.single" /></span></span>
               </c:when>
               <c:when test="${currentCollection.websitesNum > 1}">
-                <span class="results-count">
-                  <c:out value="${currentCollection.websitesNum}"/></span> <spring:message code="coll.results.num.plural" />
+                  <span class="results-count"><c:out value="${currentCollection.websitesNum}"/>&nbsp;<span class="results-count"><spring:message code="coll.results.num.plural" /></span></span>
               </c:when>
             </c:choose>
         </div>
@@ -153,43 +161,44 @@ ${pageContext.response.locale}
                 </div>
             </div>
             <%-- /TOP PAGINATION ROW --%>
+            <div class="results-container">
             <%-- RESULT ROW --%>
-            <ul style="list-style: none;" class="row margin-0 padding-0">
-            <c:forEach items="${targetWebsites}" var="targetWebsite">
-                <!--RESULT ROW-->
-                <li class="row margin-0 padding-0 border-bottom-gray col-md-12 col-sm-12">
-                    <div class=" results-result">
-                        <h2 class="margin-0">
-                            <c:out value="${targetWebsite.name}"/>
-                        </h2><br/>
-                        <c:choose>
-                            <c:when test="${targetWebsite.access == 'RRO' && userIpFromBl}">
-              <span class="results-title-text results-lib-premises text-smaller black">
-                <spring:message code="search.results.library.premises" />
-              </span>
-                            </c:when>
-                            <c:when test="${targetWebsite.access == 'RRO' && !userIpFromBl}">
+                    <c:forEach items="${targetWebsites}" var="targetWebsite">
+                        <!--RESULT ROW-->
+                        <li class="row margin-0 padding-0 border-bottom-gray col-md-12 col-sm-12">
+                            <div class=" results-result">
+                                <h2 class="main-heading-2-bold-redesign margin-0">
+                                    <c:out value="${targetWebsite.name}"/>
+                                </h2><br/>
+                                <c:choose>
+                                    <c:when test="${targetWebsite.access == 'RRO' && userIpFromBl}">
               <span class="results-title-text results-lib-premises text-smaller">
                 <spring:message code="search.results.library.premises" />
               </span>
-                            </c:when>
-                        </c:choose>
+                                    </c:when>
+                                    <c:when test="${targetWebsite.access == 'RRO' && !userIpFromBl}">
+              <span class="results-title-text results-lib-premises text-smaller">
+                <spring:message code="search.results.library.premises" />
+              </span>
+                                    </c:when>
+                                </c:choose>
 
-                        <c:out value="${targetWebsite.description}"/>
-                        <c:if test="${not empty targetWebsite.startDate}">
+                                <c:out value="${targetWebsite.description}"/>
+                                <c:if test="${not empty targetWebsite.startDate}">
                         <span class="results-title-text margin-top-10 clearfix"> <spring:message code="coll.archived.date"/>
             <c:out value="${targetWebsite.startDate}"/>
           </span>
-          </c:if>
-                        <span class="results-title-text clearfix padding-vert-10">
+                                </c:if>
+                                <span class="results-title-text clearfix padding-vert-10">
               <a href="<c:out value="${targetWebsite.archiveUrl}"/>" class="break-all"><c:out value="${targetWebsite.url}"/></a>
             </span>
-                    </div>
-                </li>
-                <!--/RESULT ROW-->
-                <%-- /RESULT ROW --%>
-            </c:forEach>
-            </ul>
+                            </div>
+                        </li>
+                        <!--/RESULT ROW-->
+                        <%-- /RESULT ROW --%>
+                    </c:forEach>
+                </ul>
+            </div>
             <%--BOTTOM PAGINATION ROW --%>
             <div class="row padding-0 margin-0">
                 <div class="col-md-12 pagination-cont ">
@@ -223,9 +232,9 @@ ${pageContext.response.locale}
                 <c:when test="${currentCollection.websitesNum == 0 && empty subCollections}">
                     <div class="row margin-0 padding-0 border-bottom-gray">
                         <div class="col-md-12 col-sm-12 results-result">
-                            <h2 class="margin-0 padding-top-20 gray">
+                            <div class="main-heading-2-bold-redesign margin-0 padding-top-20 ">
                                 <spring:message code="coll.noresults" />
-                            </h2>
+                            </div>
                         </div>
                     </div>
                 </c:when>
@@ -234,9 +243,9 @@ ${pageContext.response.locale}
                     <%-- CASE OF MANUAL PAGINATION ATTEMPT  --%>
                     <div class="row margin-0 padding-0 border-bottom-gray">
                         <div class="col-md-12 col-sm-12 results-result">
-                            <h2 class="margin-0 padding-top-20 gray">
+                            <div class="main-heading-2-bold-redesign margin-0 padding-top-20 ">
                                 <spring:message code="coll.nopagingresults" />
-                            </h2>
+                            </div>
                         </div>
                     </div>
                     <%-- /CASE OF MANUAL PAGINATION ATTEMPT  --%>
@@ -260,56 +269,56 @@ ${pageContext.response.locale}
   </div>
 </div>
     </div>
-
+    </div>
 </section>
-<div class="up-button" title="<spring:message code="top.of.page" />" aria-label="<spring:message code="top.of.page" />" tabindex="0"></div>
-<footer>
+<div class="up-button" role="button" title="<spring:message code="top.of.page" />" aria-label="<spring:message code="top.of.page" />" tabindex="0"></div>
+<footer class="footer-content">
   <%@include file="footer.jsp" %>
 </footer>
 </div>
-<input type="hidden" id="no-coll-description" name="no-coll-description" value="<spring:message code="coll.nodescript" />" />
+<input aria-hidden="true" type="hidden" id="no-coll-description" name="no-coll-description" value="<spring:message code="coll.nodescript" />" />
 <script>
 
 	function showDescript(descript, len) {
-	
+
 		if (descript.length>len) {
 			$("#coll_description").text(descript.substr(0,len)+"...");
 			$("#readmore").show();
 		} else {
 			$("#coll_description").text(descript);
 		}
-		
-		return true;	
-		
+
+		return true;
+
 	}
-	
+
 	$(document).ready(function(e) {
-		
+
 		var descript=$("#coll_description").attr("data-descript");
 		var len=360;
 		var short=true;
 		var readmore = '<spring:message code="coll.descript.readmore" />';
 		var readless = '<spring:message code="coll.descript.readless" />';
-		
+
 		showDescript(descript, len);
-		
+
 		$("#coll_description").show();
-		
+
 		$("#readmore").click(function(e) {
 			e.preventDefault();
 			if (short) {
 				$(this).attr("title", readless).text(readless);
 				$("#coll_description").text(descript);
 				short=false;
-				
+
 			} else {
 				$(this).attr("title", readmore).text(readmore);
 				showDescript(descript, len);
 				short=true;
 			}
 		});
-			
-		
+
+
 	});
 	</script>
 </body>

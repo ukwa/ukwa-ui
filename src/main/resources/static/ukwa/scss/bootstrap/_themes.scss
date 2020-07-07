@@ -1,0 +1,186 @@
+
+//.light-blue {
+//  color: #2e6dd9;
+//}
+
+$themes: (
+        light: (
+                defaultcolor: #2e6dd9,
+                ukwa-pagetab-title-text-color:#fff,
+
+                shadow-redesign-box-shadow:1px 1px 15px rgba(15, 15, 15, 0.5),
+                side-bar-right-box-shadow: 12px 0px 12px -12px rgba(15, 15, 15, 0.5),
+
+
+                //dialogs
+                main-heading-dialog-redesign-text-color:#111,
+
+                //ukwa-form-button: light-blue, --- aka #2e6dd9
+                ukwa-form-button-bg: #2e6dd9,
+                ukwa-form-button-color: #2e6dd9,
+
+
+                //homepage
+                home_page_btn_color: #2e6ddf,
+                home_page_btn_box-shadow: 1px 1px 7px #464747,
+                dialog-link-textColor: #fff,
+
+                redesign-text-decoration: none !important,
+                redesign-text-color: #fff,
+                redesign-text-transform: none,
+                main-heading-2-redesign-text-color: #fff,
+                main-heading-2-bold-redesign-text-color: #0c49b0,
+
+
+                //search - prev design color scheme
+                main-search-field-redesign-color: #636c72,
+                main-search-field-redesign-shadow: 1px 1px 7px #464747,
+                sidebar-filter-header-title-redesign-color:#0c49b0,
+                checkbox-sidebar-color:#0c49b0,
+                radio-sidebar-color:#0c49b0,
+                date-sidebar-color:#0c49b0,
+                searchFilterTextColor: darkgray,
+                searchFilterBorder:1px solid darkgray !important,
+                button-radius-5-color:cornflowerblue,
+                button-radius-5-border:solid 1px cornflowerblue !important,
+
+                search-results-main-heading-text-color:#000,
+                search-results-main-bg:#fff,
+
+                //search within collection
+                results-lib-premises-textColor:red,
+
+                search-tips-href-text-color:#222,
+                search-tips-href-bg:#fff,
+                //tooltip
+                infotooltip-after-textColor:#0c49b0,
+                infotooltip-after-bg:#fff,
+                infotooltip-after-border-color:#222,
+                infotooltip-after-shadow-color:1px 1px 7px #0c49b0,
+
+                infotooltip-hover-after-textColor:#fff,
+                infotooltip-hover-after-bg:#0c49b0,
+                infotooltip-hover-after-border-color:#222,
+//menu
+                nav-link-focus-color:#2e6dd9,
+                nav-hover-color:#0c49b0,
+
+
+
+
+                backgroundColor: #fff,
+                textColor: #222,
+                invertedTextColor: #eee,
+
+
+                buttonTextColor: #2e6dd9,
+                buttonTextTransform: none,
+                buttonTextHoverColor: #222,
+                buttonColor: #fff,
+                buttonBorder: 2px solid #fff,
+
+
+                //forms
+                ukwa-form-button-text-color:#fff,
+
+                //nominate
+                nominate-result-row-color:#fff,
+                nominate-result-row-bg:#222,
+
+                //scroll
+                scroll-redesign-color:#00A0B0,
+                scroll-redesign-bg:#2e6dd9,
+
+
+
+        ),
+        dark: (
+                defaultcolor: #1352be,
+
+                shadow-redesign-box-shadow:1px 1px 15px rgba(105, 105, 105, 0.5),
+                side-bar-right-box-shadow: 12px 0px 12px -12px rgba(255, 255, 255, 0.5),
+
+                ukwa-pagetab-title-text-color: #ccc,
+                ukwa-form-button-bg: #eee,
+                ukwa-form-button-color: #111,
+
+
+                //dialogs
+                main-heading-dialog-redesign-text-color:#eee,
+
+                //search - prev design color scheme
+                main-search-field-redesign-color:#eee,
+                search-tips-href-color:#fff,
+                main-search-field-redesign-shadow:1px 1px 7px #eee,
+                sidebar-filter-header-title-redesign-color:#fff,
+                searchFilterTextColor: #eee,
+                searchFilterBorder:1px solid #eee !important,
+                button-radius-5-color:#eee,
+                button-radius-5-border:solid 1px #eee !important,
+
+                high-contrast-ratio-color: #fcfdff,
+                ukwa-form-field-info-textColor: high-contrast-ratio-color,
+
+
+                //menu
+                nav-link-focus-color:#ccc,
+                nav-hover-color:#fff,
+
+                //homepage
+                home_page_btn_color: #000,
+                home_page_btn_box-shadow: 1px 1px 7px #fff,
+                main-heading-2-redesign-text-color:#fff,
+                main-heading-2-bold-redesign-text-color: #fff,
+
+
+                dialog-link-textColor: #eee,
+
+
+                redesign-text-decoration: none !important,
+                redesign-text-color: #eee,
+                redesign-text-transform: none,
+
+                //search
+                search-results-main-heading-text-color:#ddd,
+                search-results-main-heading-bg-color:#222,
+
+                search-tips-href-text-color:#fff,
+                search-tips-href-bg:#222,
+
+                //tooltip
+                infotooltip-after-textColor:#fff,
+                infotooltip-after-bg:#222,
+                infotooltip-after-border-color:#ddd,
+                infotooltip-after-shadow-color:1px 1px 7px #fff,
+
+                infotooltip-hover-after-textColor:#222,
+                infotooltip-hover-after-bg:#eee,
+                infotooltip-hover-after-border-color:#ddd,
+
+                backgroundColor: #222,
+                textColor: #eee,
+                invertedTextColor: #222,
+
+
+                buttonTextColor: #ccc,
+                buttonTextTransform: uppercase,
+                buttonTextHoverColor: #ddd,
+                buttonColor: #333,
+                buttonBorder: 1px solid #aaa,
+
+                //search within collection
+                results-lib-premises-textColor:#fff,
+
+
+                //forms
+                ukwa-form-button-text-color:#fff,
+
+                //nominate
+                nominate-result-row-color:#fff,
+                nominate-result-row-bg:#1352be,
+
+                //scroll
+                scroll-redesign-color:#fff,
+                scroll-redesign-bg:#333,
+        ),
+);

@@ -138,7 +138,7 @@ public class SearchController {
         int rowsPerPage = isNumeric(viewCount) ? (Integer.valueOf(viewCount) > ROWS_PER_PAGE_MAX ? ROWS_PER_PAGE_MAX : Integer.valueOf(viewCount)) : ROWS_PER_PAGE_DEFAULT;
         int targetPageNumber = isNumeric(pageNum) ? Integer.valueOf(pageNum) : 1;
         int startFromRow = (targetPageNumber - 1) * rowsPerPage;
-        long totalSearchResultsSize = -1;
+        long totalSearchResultsSize = 0;
         boolean userIpFromBl = waybackIpResolver.isUserIpFromBl(request);
 
         SearchByEnum searchBy = SearchByEnum.fromString(searchLocation);
@@ -215,11 +215,10 @@ public class SearchController {
         mav.addObject("originalAccessView", originalAccessView);
         mav.addObject("originalSortValue", originalSortValue);
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
-
-        long totalPageNumber = totalSearchResultsSize > -1 ? (totalSearchResultsSize > 0 ?
+        long totalPageNumber = totalSearchResultsSize > 0 ?
                 (totalSearchResultsSize <= solrSearchResultsLimit?
                 (int) (Math.ceil(totalSearchResultsSize / (double) rowsPerPage)) : (int) (Math.ceil(solrSearchResultsLimit / (double) rowsPerPage)))
-                : 0):null;
+                : 0;
         mav.addObject("targetPageNumber", totalPageNumber < targetPageNumber ? totalPageNumber : targetPageNumber);
         mav.addObject("totalPages", totalPageNumber);
         mav.addObject("rowsPerPageLimit", rowsPerPage);

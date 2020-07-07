@@ -35,7 +35,7 @@
   <div class="row default-padding page-content margin-0 px-md-3 px-sm-2 px-xs-0">
     <div class="col-md-6 col-sm-12 page-content-col">
       <article>
-        <h2 class="light-blue bold">
+        <h2 class="main-heading-2-bold-redesign">
           <spring:message code="about.page.title2" />
         </h2>
         <spring:message code="about.page.p2" />
@@ -43,14 +43,14 @@
       </article>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
-      <figure><img class="img-responsive" src="img/47007971.JPG" alt=""/> </figure>
+      <figure><img class="img-responsive" src="img/47007971.JPG" alt="Server cluster for big data storage"/></figure>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
-      <figure><img class="img-responsive" src="img/47008070.jpg" alt=""/> </figure>
+      <figure><img class="img-responsive" src="img/47008070.jpg" alt="Reading room at The British Library"/> </figure>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
       <article>
-        <h2 class="light-blue bold">
+        <h2 class="main-heading-2-bold-redesign">
           <spring:message code="about.page.title1" />
         </h2>
         <spring:message code="about.page.p1" />
@@ -59,19 +59,19 @@
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
       <article>
-        <h2 class="light-blue bold">
+        <h2 class="main-heading-2-bold-redesign">
           <spring:message code="about.page.title3" />
         </h2>
           <spring:message code="about.page.p3" />
       </article>
     </div>
     <div class="col-md-6 col-sm-12 page-content-col">
-      <figure><img class="img-responsive" src="img/about-logos.png" alt=""/> </figure>
+      <figure><img class="img-responsive" src="img/about-logos.png" alt="Partners of The British Library"/> </figure>
     </div>
   </div>
 </section>
 
-<footer>
+<footer class="footer-content">
   <%@include file="footer.jsp" %>
 </footer>
 </div>

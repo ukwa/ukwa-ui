@@ -32,7 +32,7 @@ ${pageContext.response.locale}
 
 <spring:message code='coll.main.heading' var="title"/>
 <%@include file="title.jsp" %>
-        
+
     <div style="padding-left: 40px; padding-right: 40px">
         <div class="row margin-0 padding-side-20 padding-top-40">
             <div class="col-lg-6 col-md-8 offset-md-1 col-md-offset-1 col-sm-12 header-2-subtitle padding-side-10"><spring:message code="coll.subtitle" /></div>
@@ -54,11 +54,11 @@ ${pageContext.response.locale}
                 <c:forEach items="${collections}" var="collection">
                     <li class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
                         <a href="collection/<c:out value="${collection.id}"/>" class="collection-link">
-                            <figure><img class="img-responsive border-gray coll-img" alt="<c:out value="${collection.imageAltMessage}"/>"
+                            <figure><img class="img-responsive border-gray coll-img" alt="<c:out value="${empty collection.imageAltMessage?collection.name:collection.imageAltMessage}"/>"
                                          src="img/collections/collection_<c:out value="${collection.id}"/>.png"/>
                             </figure>
-                            <h2 class="left light-blue padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold"><c:out value="${collection.name}"/></h2>
-                            <div class="left black padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail"><c:out value="${collection.description}"/></div>
+                            <div class="main-heading-2-bold-redesign left padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold"><c:out value="${collection.name}"/></div>
+                            <div class="left padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail"><c:out value="${collection.description}"/></div>
                         </a>
                     </li>
                 </c:forEach>
@@ -70,7 +70,7 @@ ${pageContext.response.locale}
                 <c:forEach items="${collections}" var="collection">
                     <li class="col-sm-12 padding-bottom-20 padding-side-20 margin-bottom-20 padding-mobile-side-0">
                         <div class="border-bottom-gray padding-bottom-20">
-                            <a href="collection/<c:out value="${collection.id}"/>" class="collection-link"><h2 class="padding-bottom-0 collection-title"><c:out value="${collection.name}"/></h2></a><br/>
+                            <a href="collection/<c:out value="${collection.id}"/>" class="collection-link"><h2 class="main-heading-2-bold-redesign padding-bottom-0 collection-title"><c:out value="${collection.name}"/></h2></a><br/>
                             <span class="collection-description"><c:out value="${collection.fullDescription}"/></span>
                             <c:if test="${!empty collection.subCollections}">
                                 <!--Subcollections of current collection-->
@@ -90,11 +90,11 @@ ${pageContext.response.locale}
     </div>
 
 
-<footer>
+<footer class="footer-content">
   <%@include file="footer.jsp" %>
 </footer>
 </div>
-<input type="hidden" id="no-coll-description" name="no-coll-description" value="<spring:message code="coll.nodescript" />" />
+<input aria-hidden="true" type="hidden" id="no-coll-description" name="no-coll-description" value="<spring:message code="coll.nodescript" />" />
 <script>
 
 function toggleView(action, fcs) {

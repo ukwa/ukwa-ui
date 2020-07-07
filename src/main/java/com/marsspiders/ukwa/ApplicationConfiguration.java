@@ -28,4 +28,5 @@ public class ApplicationConfiguration extends SpringBootServletInitializer {
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
+
 }

@@ -41,7 +41,7 @@ ${pageContext.response.locale}
         </div>
     </div>
 </section>
-<footer>
+<footer class="footer-content">
   <%@include file="footer.jsp" %>
 </footer>
 </div>
