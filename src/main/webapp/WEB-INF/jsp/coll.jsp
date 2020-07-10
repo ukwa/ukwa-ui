@@ -166,7 +166,8 @@ ${pageContext.response.locale}
                         </c:if>
                     </c:forEach>
                             <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit}">
-                                <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>"
+                                <a style="text-decoration: none"
+                                   href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>"
                                    title="<spring:message code="pagination.next" />"
                                    aria-label="<spring:message code="pagination.next" />"><spring:message
                                         code="search.results.next"/>
