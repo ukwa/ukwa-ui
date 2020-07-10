@@ -121,16 +121,17 @@ ${pageContext.response.locale}
 
 <c:if test="${currentCollection.websitesNum != 0}"> <%--START if no results does not show results rows and pagination at all--%>
       <div class="row border-bottom-gray margin-0 padding-20">
-        <div class="col-sm-12 padding-0">
-            <c:choose>
-              <c:when test="${currentCollection.websitesNum == 1}">
-                  <span class="results-count">1&nbsp;<span class="results-count"><spring:message code="coll.results.num.single" /></span></span>
-              </c:when>
-              <c:when test="${currentCollection.websitesNum > 1}">
-                  <span class="results-count"><c:out value="${currentCollection.websitesNum}"/>&nbsp;<span class="results-count"><spring:message code="coll.results.num.plural" /></span></span>
-              </c:when>
-            </c:choose>
-        </div>
+          <div class="col-sm-12 padding-0 pagination-number-redesign">
+              <c:choose>
+                  <c:when test="${currentCollection.websitesNum == 1}">
+                      <span>1&nbsp;</span> <spring:message code="coll.results.num.single"/>
+                  </c:when>
+                  <c:when test="${currentCollection.websitesNum > 1}">
+                      <span>
+                          <c:out value="${currentCollection.websitesNum}"/>&nbsp;</span><spring:message code="coll.results.num.plural"/>
+                  </c:when>
+              </c:choose>
+          </div>
       </div>
 
     <c:choose>
