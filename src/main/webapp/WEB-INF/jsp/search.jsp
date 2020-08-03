@@ -830,6 +830,13 @@
             maxDate : 'now'
         });
 
+        $(".infotooltip").on(
+            'keydown', function(event) {
+                if (event.key == "Escape") {
+                    $(this).tooltip("hide");
+                }
+        });
+
         //filters toggle and count
         $(".sidebar-filter-header:not(.no-collapse)").each(function(index, element) {
 
