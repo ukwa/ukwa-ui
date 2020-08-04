@@ -763,7 +763,7 @@ p.searchFilter {
   border: none !important;
 }
 
-a, .navbar-light .navbar-nav .nav-link {
+a, .navbar-light, .navbar-nav, .nav-link, .navbar-toggler-icon-2 {
 
 
   @include themify($themes) {

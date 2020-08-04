@@ -33,13 +33,15 @@
 </c:choose>
 
 <header>
-    <nav role="navigation" class="navbar navbar-expand-md" id="main-nav" aria-label="Main">
+    <nav role="navigation" class="navbar navbar-light navbar-expand-md" id="main-nav" aria-label="Main">
         <a class="navbar-brand" href="index" tabindex="-1">
             <img class="logo-svg" src="img/ukwa-2018-onwhite-close.svg" alt="UK Web Archive">
         </a>
         <button role="button" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
             aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon">
+                <i class="navbar-toggler-icon-2 fas fa-bars" style="font-size:28px;"></i>
+            </span>
         </button>
         <div role="navigation" class="collapse navbar-collapse justify-content-between" id="navbarNav">
             <ul class="navbar-nav" role="menu">
