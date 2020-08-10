@@ -17,8 +17,8 @@
             <div class="col-md-12 offset-md-2 dialog-link">
                 <label for="hs-input-field" id="tipsDialog"><spring:message code="search.main.input.title"/>&nbsp</label>
                 <a role="dialog" aria-labelledby="tipsDialog" href="#" data-toggle="modal" data-target="#searchingUKWAModalCenter"
-                   class="no-decoration" title="<spring:message code="search.tips.tipsnotes" />"><i
-                        class="fas fa-info-circle"></i></a>
+                   class="no-decoration bg-transparent" title="<spring:message code="search.tips.tipsnotes" />"><i
+                        class="fas fa-info-circle white"></i></a>
             </div>
             <input aria-hidden="true" type="hidden" name="search_location" id="search_location_full_text"
                    value="full_text"/>
