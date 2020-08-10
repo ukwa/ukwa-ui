@@ -90,8 +90,8 @@ ${pageContext.response.locale}
                               value="<c:out value="${currentCollection.name}"/>"/>
                        <button role="button" type="submit" class="btn btn-lg homepage-search-button"
                                aria-label="Search within <c:out value="${currentCollection.name}"/> Collection"
-                               title="<spring:message code="coll.search.button" />" tabindex="0">Search <i
-                               class="fa fa-search ml-2"></i>
+                               title="<spring:message code="coll.search.button" />" tabindex="0"><span class="d-none d-md-block align-middle"><spring:message code="search.main.button.title" /></span>
+                           <i class="fa fa-search ml-2" aria-hidden="true"></i>
                        </button>
                    </div>
                </div>

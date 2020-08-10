@@ -168,7 +168,7 @@ html, body {
 .breadcrumb, .results-count, .topics-themes-description,
 .modal-content-tab-panel, .main-search-check-label,
 .breadcrumb-item,
-.label-for-accessibility-placeholder {
+.label-for-accessibility-placeholder{
   @include themify($themes) {
     color: themed('textColor');
     background-color: themed('backgroundColor');
@@ -1086,18 +1086,37 @@ input {
 .main-search-field-redesign {
   font-family: "Open Sans Bold",sans-serif !important;
   width: 100%;
-  padding: 10px 10px 10px 10px;
   border: none;
-  display: inline;
-  float: left;
-  position: relative;
-  flex:1;
+
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+  justify-content: flex-start;
+
+  flex-grow:1;
 
   @include themify($themes) {
     box-shadow: themed('main-search-field-redesign-shadow');
   }
 }
+
+.homepage-search-input{
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+  justify-content: flex-start;
+
+  flex-grow:1;
+}
+
 .homepage-search-button{
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+  justify-content: flex-end;
+  @include media-breakpoint-up(md) {
+    margin: 0 20vw 0 0;
+  }
 
   @include themify($themes) {
     box-shadow: themed('home_page_btn_box-shadow');
@@ -1115,24 +1134,35 @@ input {
     }
   }
 }
+
 .homepage-search-button-aw-icon{
   vertical-align: middle;
   color: #2e6ddf;
 }
 
-.main-search-button-blue {
-  border: none;
-  border-radius: 5px;
-  background-color: #2e6dd9;
-  background-position: right center;
-  background-repeat: no-repeat;
-  background-image: url(../img/icons/Magnifying_glass_256x256.png);
-  cursor: pointer;
-  display: block;
-  float: left;
-  position: relative;
-  box-shadow: 1px 1px 7px #464747;
-}
+.main-search-button {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+    justify-content: flex-end;
+
+
+    @include themify($themes) {
+      box-shadow: themed('home_page_btn_box-shadow');
+
+      border: themed('buttonBorder');
+      color: themed('buttonTextColor');
+      border-color: themed('buttonTextColor');
+      background-color: themed('buttonColor');
+      text-transform: themed('buttonTextTransform');
+
+      &:hover {
+        color: themed('buttonTextHoverColor');
+        border-color: themed('buttonTextHoverColor');
+        background-color: themed('buttonHoverColor');
+      }
+    }
+  }
 
 .btn-main-search:active,
 .btn-main-search.active {
@@ -3099,13 +3129,6 @@ footer {
     font-size:1.07rem;
     padding: 1rem !important;
     margin-right: 2rem;
-  }
-  /* 18px */
-  .main-search-button-blue{
-    font-size:1.07rem;
-    height: 3rem;
-    width: 10rem;
-    background-size: 2rem;
   }
 
 
