@@ -95,7 +95,7 @@
                  aria-label="do not use" aria-readonly="true"></div>
             <div class="captcha-message" aria-labelledby="ukwa-captchca" aria-hidden="true" aria-label="do not use"
                  aria-readonly="true"><spring:message code="captcha.message"/></div>
-            <button role="button" type="submit" class="homepage-search-button margin-top-30 button_form_submit"
+            <button role="button" type="submit" class="ukwa-button margin-top-30 button_form_submit"
                     tabindex="0"
                     aria-label="submit contact form"
                     title="<spring:message code="contact.form.button.submit" />"><spring:message

@@ -1164,6 +1164,24 @@ input {
     }
   }
 
+.ukwa-button {
+  @include themify($themes) {
+    box-shadow: themed('home_page_btn_box-shadow');
+
+    border: themed('buttonBorder');
+    color: themed('buttonTextColor');
+    border-color: themed('buttonTextColor');
+    background-color: themed('buttonColor');
+    text-transform: themed('buttonTextTransform');
+
+    &:hover {
+      color: themed('buttonTextHoverColor');
+      border-color: themed('buttonTextHoverColor');
+      background-color: themed('buttonHoverColor');
+    }
+  }
+}
+
 .btn-main-search:active,
 .btn-main-search.active {
   color: #2e6dd9 !important;

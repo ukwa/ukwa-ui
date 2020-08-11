@@ -122,7 +122,7 @@ ${req.requestURL}
                   <spring:message code="captcha.message"/></div>
               <button role="button" type="submit" aria-label="submit form Save a UK Website"
                       tabindex="0"
-                      class="homepage-search-button margin-top-30 button_form_submit"
+                      class="ukwa-button margin-top-30 button_form_submit"
                       title="<spring:message code="nominate.form.button.submit" />"><spring:message
                       code="nominate.form.button.submit"/></button>
           </div>
