@@ -93,8 +93,8 @@
                 </a></div>
             </div>
 
-            <div class="padding-bottom-60 center">
-                <a href="collection" class="homepage-search-button btn-lg no-decoration" title="<spring:message code="home.button.viewmore.title"/>"><spring:message code="home.button.viewmore"/></a>
+            <div class="padding-bottom-60 center ">
+                <a href="collection" class="ukwa-button btn-lg no-decoration" title="<spring:message code="home.button.viewmore.title"/>"><spring:message code="home.button.viewmore"/></a>
             </div>
         </section>
     </div>

@@ -77,10 +77,9 @@ ${pageContext.response.locale}
          <div class="row margin-0 border-bottom-gray">
    <div class="col-md-12 col-sm-12 padding-bottom-20 padding-20">
        <form role="form" action="search" method="get" enctype="multipart/form-data" name="search_coll_form" id="search_coll_form">
-           <div class="row padding-bottom-20">
-               <div class="col-12 col-sm pr-sm-0">
-                   <div class="input-group">
-                       <input role="textbox" type="text" class="form-control form-control-lg homepage-search-input" name="text" id="text_collections"
+           <div class="row padding-bottom-20 w-100">
+                   <div class="col-12 col-sm pr-sm-0 form-inline inline-block-items flex-nowrap">
+                       <input role="textbox" type="text" class="form-control form-control-lg homepage-search-input mr-lg-5 mr-md-5" name="text" id="text_collections"
                               title="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />"
                               aria-label="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />"
                               placeholder="<spring:message code="coll.search.text1" /> within &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />"
@@ -88,13 +87,13 @@ ${pageContext.response.locale}
                        <input aria-hidden="true" type="hidden" name="search_location" value="full_text"/>
                        <input aria-hidden="true" type="hidden" name="collection"
                               value="<c:out value="${currentCollection.name}"/>"/>
-                       <button role="button" type="submit" class="btn btn-lg homepage-search-button"
+                       <button role="button" type="submit" class="btn btn-lg homepage-search-button h-100 align-items-center"
                                aria-label="Search within <c:out value="${currentCollection.name}"/> Collection"
-                               title="<spring:message code="coll.search.button" />" tabindex="0">Search <i
-                               class="fa fa-search ml-2"></i>
+                               title="<spring:message code="coll.search.button" />" tabindex="0">
+                           <span class="d-none d-md-block align-middle"><spring:message code="search.main.button.title" /></span>
+                           <i class="fa fa-search ml-2" aria-hidden="true"></i>
                        </button>
                    </div>
-               </div>
               </div>
            <input aria-hidden="true" type="hidden" name="filter_source" id="input_hidden_field_filter_source" value="3" />
        </form>
@@ -229,7 +228,15 @@ ${pageContext.response.locale}
                         <%--set page value as a placeholder as it is going to be changed for each link--%>
                         <c:param name="page" value="PAGE_NUM_PLACEHOLDER" />
                     </c:url>
-                    <c:if test="${targetPageNumber > 1}"><a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>"><div class="pagination-number-redesign arrow left-arrow" title="<spring:message code="pagination.previous" />" aria-label="<spring:message code="pagination.previous" />"></div><spring:message code="search.results.previous" /></a></c:if>
+                            <c:if test="${targetPageNumber > 1}">
+                                <a style="text-decoration: none"
+                                   href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber - 1))}"/>"
+                                   title="<spring:message code="pagination.previous" />"
+                                   aria-label="<spring:message code="pagination.previous" />">
+                                    <div class="pagination-number-redesign">
+                                        <i class="fa fa-chevron-left fa-lg" aria-hidden="true"></i></div>
+                                    <spring:message code="search.results.previous"/></a>
+                            </c:if>
                     <c:forEach begin="${targetPageNumber > 4 ? targetPageNumber : 1}" end="${targetPageNumber + 4}" var="i">
                         <c:if test="${i <= totalPages}">
                             <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', i)}"/>" title="${i == targetPageNumber ? currentPage : goToPage} <c:out value="${i}"/>" aria-label="${i == targetPageNumber ? currentPage : goToPage } <c:out value="${i}"/>"><div class="pagination-number-redesign ${i == targetPageNumber ? "active" : "inactive hide-mobile"}">
@@ -237,8 +244,16 @@ ${pageContext.response.locale}
                             </div></a>
                         </c:if>
                     </c:forEach>
-
-                    <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit}"> <a href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>" title="<spring:message code="pagination.next" />" aria-label="<spring:message code="pagination.next" />"><spring:message code="search.results.next" /><div class="pagination-number-redesign arrow right-arrow"></div></a> </c:if>
+                            <c:if test="${targetPageNumber < totalSearchResultsSize/rowsPerPageLimit}">
+                                <a style="text-decoration: none"
+                                   href="collection/<c:out value="${currentCollection.id}"/><c:out value="${fn:replace(nextUrl, 'PAGE_NUM_PLACEHOLDER', (targetPageNumber + 1))}"/>"
+                                   title="<spring:message code="pagination.next" />"
+                                   aria-label="<spring:message code="pagination.next" />"><spring:message
+                                        code="search.results.next"/>
+                                    <div class="pagination-number-redesign">
+                                        <i class="fa fa-chevron-right fa-lg" aria-hidden="true"></i></div>
+                                </a>
+                            </c:if>
                 </div>
             </div>
             <%--/BOTTOM PAGINATION ROW --%>

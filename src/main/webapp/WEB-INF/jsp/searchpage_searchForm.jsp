@@ -1,21 +1,18 @@
 <div class="col-12 white left searchpage_search_bg_settings">
     <form role="form" action="search" method="get" enctype="multipart/form-data" name="search_form" id="search_form">
         <div class="row w-100">
-            <div class="col-12">
-                <div class="container-search-field-group" role="group">
+            <div class="col-12 form-inline inline-block-items flex-nowrap">
                     <input role="textbox" type="text" name="text" id="text"
                            title="<spring:message code="search.main.input.title" />"
                            aria-label="<spring:message code="search.main.input.title" />"
                            placeholder="<spring:message code="search.main.input.title" />"
                            class="main-search-field-redesign" value="${originalSearchRequest}" required tabindex="0"
                            aria-required="true"/>
-                    <button role="button" type="submit" class="btn btn-lg homepage-search-button"
-                            id="ss-button"
-                            tabindex="-1"
-                            title="<spring:message code="search.main.button.title"/>">Search <i
-                            class="fa fa-search ml-2"></i>
-                    </button>
-                </div>
+                <button role="button" type="submit" class="btn btn-lg main-search-button h-100 w-auto align-items-center"
+                        title="<spring:message code="search.main.button.title" />">
+                    <span class="d-none d-md-block align-middle"><spring:message code="search.main.button.title" /></span>
+                    <i class="fa fa-search ml-2" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
         <div class="row">

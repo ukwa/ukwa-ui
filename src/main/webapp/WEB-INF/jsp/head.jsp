@@ -3,7 +3,9 @@
 <link rel="icon" href="img/icons/favicon.png" type="image/png"/>
 <link rel='shortcut icon' href='img/icons/ukwa-2018-onwhite-close-96x96.ico' type='image/x-icon' />
 
+
 <!--[if (gt IE 9)|!(IE)]><!-->
+<script src="includes/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="includes/bootstrap/css/bootstrap.min.css">
 <!--<![endif]-->
 <!--[if lt IE 10]>
@@ -22,9 +24,7 @@
     <script src="includes/jquery-3.5.1.min.js"></script>
     <script src="includes/bootstrap3/js/bootstrap.min.js"></script>
 <!--<![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!-->
-<script src="includes/jquery-3.5.1.min.js"></script>
-<!--<![endif]-->
+
 <script src="includes/jquery.cookie.min.js"></script>
 <script src="includes/jqueryui/jquery-ui.min.js"></script>
 <script src="includes/jquery-preload/jquery.preload.min.js"></script>
