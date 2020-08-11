@@ -473,8 +473,8 @@
                                     </div>
                                     <div class="row padding-top-20">
                                         <div class="col-sm-12">
-                                            <button role="button" type="submit" title="<spring:message code="search.side.date.submit" />" class="btn-primary width-auto-inline date-filter-button filter-form-control"><spring:message code="search.side.date.submit" /></button>
-                                            <button role="button" type="button" title="<spring:message code="search.side.date.reset" />" class="btn-primary width-auto-inline date-filter-button margin-top-10 filter-form-control" id="btn_reset_dates">X</button>
+                                            <button role="button" type="submit" title="<spring:message code="search.side.date.submit" />" class="btn-primary width-auto-inline filter-form-control ukwa-button"><spring:message code="search.side.date.submit" /></button>
+                                            <button role="button" type="button" title="<spring:message code="search.side.date.reset" />" class="btn-primary width-auto-inline margin-top-10 filter-form-control ukwa-button" id="btn_reset_dates">X</button>
                                         </div>
                                     </div>
                                 </div>
