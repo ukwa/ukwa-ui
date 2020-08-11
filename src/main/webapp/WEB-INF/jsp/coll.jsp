@@ -78,9 +78,8 @@ ${pageContext.response.locale}
    <div class="col-md-12 col-sm-12 padding-bottom-20 padding-20">
        <form role="form" action="search" method="get" enctype="multipart/form-data" name="search_coll_form" id="search_coll_form">
            <div class="row padding-bottom-20 w-100">
-               <div class="col-12 col-sm pr-sm-0">
-                   <div class="input-group">
-                       <input role="textbox" type="text" class="form-control form-control-lg homepage-search-input" name="text" id="text_collections"
+                   <div class="col-12 col-sm pr-sm-0 form-inline inline-block-items flex-nowrap">
+                       <input role="textbox" type="text" class="form-control form-control-lg homepage-search-input mr-lg-5 mr-md-5" name="text" id="text_collections"
                               title="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />"
                               aria-label="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />"
                               placeholder="<spring:message code="coll.search.text1" /> within &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />"
@@ -88,13 +87,13 @@ ${pageContext.response.locale}
                        <input aria-hidden="true" type="hidden" name="search_location" value="full_text"/>
                        <input aria-hidden="true" type="hidden" name="collection"
                               value="<c:out value="${currentCollection.name}"/>"/>
-                       <button role="button" type="submit" class="btn btn-lg homepage-search-button h-100 w-auto align-items-center"
+                       <button role="button" type="submit" class="btn btn-lg homepage-search-button h-100 align-items-center"
                                aria-label="Search within <c:out value="${currentCollection.name}"/> Collection"
-                               title="<spring:message code="coll.search.button" />" tabindex="0"><span class="d-none d-md-block align-middle"><spring:message code="search.main.button.title" /></span>
+                               title="<spring:message code="coll.search.button" />" tabindex="0">
+                           <span class="d-none d-md-block align-middle"><spring:message code="search.main.button.title" /></span>
                            <i class="fa fa-search ml-2" aria-hidden="true"></i>
                        </button>
                    </div>
-               </div>
               </div>
            <input aria-hidden="true" type="hidden" name="filter_source" id="input_hidden_field_filter_source" value="3" />
        </form>
