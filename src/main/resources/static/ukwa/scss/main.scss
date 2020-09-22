@@ -288,6 +288,13 @@ input, button, textarea, select {
   outline-style: solid !important;
 }
 
+p {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+}
 
 p.searchFilter {
   font-family: "Open Sans Regular",sans-serif,Arial;
@@ -304,6 +311,43 @@ p.searchFilter {
   }
 }
 
+.anotherpolicy {
+  font-family: "Open Sans Bold",sans-serif;
+  font-size: 1.8rem;
+  line-height: 2rem;
+  display: inline-block;
+
+  span {
+    font-family: "Open Sans",sans-serif;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1rem !important;
+
+    &::before {
+      content: "\A";
+      white-space: pre;
+    }
+    &::after {
+      white-space: pre-wrap;
+      content: "\A";
+    }
+
+  }
+}
+
+h2.policy {
+  span {
+    font-family: "Open Sans",sans-serif;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1rem;
+    &::before {
+      content: "\A";
+      display: inline-block;
+      white-space: pre;
+    }
+  }
+}
 
 .center {
   text-align: center;
