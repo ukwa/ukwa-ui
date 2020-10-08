@@ -288,14 +288,6 @@ input, button, textarea, select {
   outline-style: solid !important;
 }
 
-p {
-  display: block;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  margin-left: 0;
-  margin-right: 0;
-}
-
 p.searchFilter {
   font-family: "Open Sans Regular",sans-serif,Arial;
   display: inline-block;
@@ -1189,7 +1181,6 @@ input {
     flex-direction: row;
     align-self: flex-end;
     justify-content: flex-end;
-
 
     @include themify($themes) {
       box-shadow: themed('home_page_btn_box-shadow');
