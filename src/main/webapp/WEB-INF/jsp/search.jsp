@@ -287,11 +287,11 @@
                             <c:if test="${fn:length(originalCollections) > 0}">
                         <div class="col-md-12 col-sm-12 sidebar-clear-filter-container sidebar-clear-filter-order-7">
                                 <p class="searchFilter sidebar-clear-filter clearable"><spring:message code="search.filters.collection" />&nbsp;</p>
-                                    <c:forEach items="${originalCollections}" var="collection">
+                                    <c:forTokens items="${originalCollections}" var="collection" varStatus="loop" delims="[]">
                                         <p role="button" aria-label="clear filtering option <c:out value="${collection}"/>" class="searchFilter sidebar-clear-filter clearable x onX" tabindex="0">
                                         &quot;<c:out value="${collection}"/>&quot;
                                         </p>
-                                    </c:forEach>
+                                    </c:forTokens>
                                 <c:set var = "hasFilters" value = "true"/>
                         </div>
                             </c:if>
