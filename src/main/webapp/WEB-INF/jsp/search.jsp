@@ -632,40 +632,45 @@
                         </div>
 
                         <div class="results-container">
-                            <c:forEach items="${searchResults}" var="searchResult">
-                                <!--RESULT ROW-->
-                                <div class="row margin-0 padding-0 border-bottom-gray">
-                                    <div class="col-md-12 results-result">
-                                        <h1 class="main-heading-2-bold-redesign margin-0">
-                                            <c:out value="${searchResult.title}"/>
-                                        </h1><br/>
-                                        <c:choose>
-                                            <c:when test="${searchResult.access == 'RRO' && userIpFromBl}">
-              <span class="results-title-text results-lib-premises text-smaller">
-                <spring:message code="search.results.library.premises" />
-              </span>
-                                            </c:when>
-                                            <c:when test="${searchResult.access == 'RRO' && !userIpFromBl}">
-              <span class="results-title-text results-lib-premises text-smaller">
-                <spring:message code="search.results.library.premises" />
-              </span>
-                                            </c:when>
-                                        </c:choose>
 
-                                        <span class="results-title-text clearfix padding-vert-10"> <a title="<c:out value="${searchResult.displayUrl}"/>" class="break-all" href="<c:out value="${searchResult.url}"/>" target="_blank">           <span class="results-for-highlight"><c:out value="${searchResult.displayUrl}"/></span>
+                            <c:choose>
+                                <c:when test="${totalPages > 0}">
+
+                                    <c:forEach items="${searchResults}" var="searchResult">
+                                        <!--RESULT ROW-->
+                                        <div class="row margin-0 padding-0 border-bottom-gray">
+                                            <div class="col-md-12 results-result">
+                                                <h1 class="main-heading-2-bold-redesign margin-0">
+                                                    <c:out value="${searchResult.title}"/>
+                                                </h1><br/>
+                                                <c:choose>
+                                                    <c:when test="${searchResult.access == 'RRO' && userIpFromBl}">
+              <span class="results-title-text results-lib-premises text-smaller">
+                <spring:message code="search.results.library.premises" />
+              </span>
+                                                    </c:when>
+                                                    <c:when test="${searchResult.access == 'RRO' && !userIpFromBl}">
+              <span class="results-title-text results-lib-premises text-smaller">
+                <spring:message code="search.results.library.premises" />
+              </span>
+                                                    </c:when>
+                                                </c:choose>
+
+                                                <span class="results-title-text clearfix padding-vert-10"> <a title="<c:out value="${searchResult.displayUrl}"/>" class="break-all" href="<c:out value="${searchResult.url}"/>" target="_blank">           <span class="results-for-highlight"><c:out value="${searchResult.displayUrl}"/></span>
           </a> </span> <span class="results-title-text clearfix break-all">
            <span class="results-for-highlight"><c:out value="${searchResult.text}"/></span>
           </span>
-                                        <span class="results-title-text results-title-date padding-0 padding-top-20 bold"><spring:message code="search.results.archived.date"/></span>
-                                        <span class="results-title-text results-title-date padding-0 padding-top-20"><c:out value="${searchResult.date}"/></span>
+                                                <span class="results-title-text results-title-date padding-0 padding-top-20 bold"><spring:message code="search.results.archived.date"/></span>
+                                                <span class="results-title-text results-title-date padding-0 padding-top-20"><c:out value="${searchResult.date}"/></span>
 
-                                        </span>
-                                    </div>
-                                </div>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <!--/RESULT ROW-->
+                                    </c:forEach>
 
-                                <!--/RESULT ROW-->
-                            </c:forEach>
-
+                                </c:when>
+                            </c:choose>
 
                             <!--NO RESULTS-->
                             <c:choose>
