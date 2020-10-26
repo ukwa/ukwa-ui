@@ -288,7 +288,6 @@ input, button, textarea, select {
   outline-style: solid !important;
 }
 
-
 p.searchFilter {
   font-family: "Open Sans Regular",sans-serif,Arial;
   display: inline-block;
@@ -304,6 +303,43 @@ p.searchFilter {
   }
 }
 
+.anotherpolicy {
+  font-family: "Open Sans Bold",sans-serif;
+  font-size: 1.8rem;
+  line-height: 2rem;
+  display: inline-block;
+
+  span {
+    font-family: "Open Sans",sans-serif;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1rem !important;
+
+    &::before {
+      content: "\A";
+      white-space: pre;
+    }
+    &::after {
+      white-space: pre-wrap;
+      content: "\A";
+    }
+
+  }
+}
+
+h2.policy {
+  span {
+    font-family: "Open Sans",sans-serif;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1rem;
+    &::before {
+      content: "\A";
+      display: inline-block;
+      white-space: pre;
+    }
+  }
+}
 
 .center {
   text-align: center;
@@ -1145,7 +1181,6 @@ input {
     flex-direction: row;
     align-self: flex-end;
     justify-content: flex-end;
-
 
     @include themify($themes) {
       box-shadow: themed('home_page_btn_box-shadow');

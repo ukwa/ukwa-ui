@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static com.marsspiders.ukwa.solr.CollectionDocumentType.TYPE_COLLECTION;
@@ -161,8 +162,12 @@ public class SolrSearchService {
         String[] facets = { FIELD_PUBLIC_SUFFIX, FIELD_TYPE, FIELD_DOMAIN,
                 FIELD_COLLECTION, FIELD_ACCESS_TERMS };
 
-        //QueryParser.escape(searchText); // removes     //+ - && || ! ( ) { } [ ] ^ " ~ * ? : \ /
-        return sendRequest(queryString.replaceAll("[&|*()?:!,~{}^/]+", " "), sort, filters, FIELD_CONTENT, ContentInfo.class, start, rows, facets);
+        //Remove:
+        // - URL prefixes
+        // - symbols:    + - & | ! ( ) { } [ ] ^ " ~ * ? : \ /
+        Pattern p = Pattern.compile("(http[s]?://www\\.|http[s]?://|www\\.|[&|*()?:!,~{}^/]+)");
+
+        return sendRequest(p.matcher(queryString).replaceAll(""), sort, filters, FIELD_CONTENT, ContentInfo.class, start, rows, facets);
     }
 
     private <T extends BodyDocsType> SolrSearchResult<T> sendRequest(String queryString,
