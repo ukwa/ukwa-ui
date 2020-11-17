@@ -130,7 +130,7 @@
         <div class="footer-logo-BW"><a href="https://www.nls.uk/" target="_blank"><img src="img/NLS_logo_2_BW.jpg" alt="Opens in a new window <spring:message code="footer.logo.nls" />" /></a></div>
         <div class="footer-logo-BW"><a href="https://www.bl.uk/" target="_blank"><img src="img/bl_logo_BW.png" alt="Opens in a new window <spring:message code="footer.logo.blib" />" /></a></div>
         <div class="footer-logo-BW"><a href="http://www.lib.cam.ac.uk/" target="_blank"><img src="img/cambrige_logo600_BW.png" alt="Opens in a new window <spring:message code="footer.logo.cul" />" /></a></div>
-        <div class="footer-logo-BW"><a href="https://www.tcd.ie/" target="_blank"><img src="img/trinity_logo_BW.jpg" alt="Opens in a new window <spring:message code="footer.logo.tcd" />" /></a></div>
+        <div class="footer-logo-BW"><a href="https://www.tcd.ie/" target="_blank"><img src="img/trinity-logo-3.png" alt="Opens in a new window <spring:message code="footer.logo.tcd" />" /></a></div>
     </div>
     </div>
 </div>
