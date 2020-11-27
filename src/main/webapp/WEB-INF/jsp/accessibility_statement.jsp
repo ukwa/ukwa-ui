@@ -30,30 +30,17 @@
 <spring:message code='accessibility.page.title' var="title"/>
 <%@include file="title.jsp" %>
 
-
 <section id="content">
   <div class="row default-padding page-content margin-0 px-md-3 px-sm-2 px-2">
     <div class="col-md-12 col-sm-12 page-content-col">
       <article>
         <c:choose>
           <c:when test="${locale == 'en'}">
-
-            <a href="/en<c:out value="${textUriWithoutLang}?${params}"/>#translation_gd" class="float-right pl-5"><spring:message code="main.menu.scottish" /></a>
-            <a href="/cy<c:out value="${textUriWithoutLang}?${params}"/>" class="float-right"><spring:message code="main.menu.welsh" /></a>
-
-
             <%@include file="accessibility_statement_body_en.jsp" %>
-
             <hr/>
-		    <h2 id="translation_gd">Aithris Ruigsinneachd Tasglann-l&igrave;n na RA</h2>
-            <%@include file="accessibility_statement_body_gd.jsp" %>
-
           </c:when>
           <c:when test="${locale == 'cy'}">
             <%@include file="accessibility_statement_body_cy.jsp" %>
-          </c:when>
-          <c:when test="${locale == 'gd'}">
-            <%@include file="accessibility_statement_body_gd.jsp" %>
           </c:when>
           <c:otherwise>
           </c:otherwise>
