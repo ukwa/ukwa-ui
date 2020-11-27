@@ -32,13 +32,11 @@
     </div>
     <div class="col-md-4">
     <ul class="list-group list-group-flush" role="menu">
-        <!-- Temporary remove link. Reason: Update Accessibility Statement for website is needed
         <li class="list-group-item">
             <a href="info/accessibility_statement" title="<spring:message code="accessibility.page.title" />" role="menuitem">
                 <spring:message code="accessibility.header.title" />
             </a>
         </li>
-        -->
         <li class="list-group-item">
             <a href="info/notice_takedown" title="<spring:message code="footer.notice.title" />" role="menuitem">
                 <spring:message code="footer.notice" />
