@@ -30,7 +30,7 @@
 <p>We&rsquo;re always looking to improve the accessibility of this website. If you find any problems that aren&rsquo;t listed on this page or think we&rsquo;re not meeting accessibility requirements, contact the Head of Corporate Information Management by email at <a href="mailto:FOI-Enquiries@bl.uk"><span class="underline">FOI-Enquiries@bl.uk</span></a>, or in writing at Corporate Information Unit, British Library, 96 Euston Road, London, NW1 2DB.</p>
 
 <h2 id="enforcement-procedure">Enforcement procedure</h2>
-<p>The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the &lsquo;accessibility regulations&rsquo;). If you&rsquo;re not happy with how we respond to your complaint, contact the <a href="https://www.equalityadvisoryservice.com/%5d">Equality Advisory and Support Service (EASS)</a>.</p>
+<p>The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the &lsquo;accessibility regulations&rsquo;). If you&rsquo;re not happy with how we respond to your complaint, contact the <a href="https://www.equalityadvisoryservice.com">Equality Advisory and Support Service (EASS)</a>.</p>
 
 <h2 id="contacting-us-by-phone-or-visiting-us-in-person">Contacting us by phone or visiting us in person</h2>
 <p>We provide a text relay service for people who are D/deaf, hearing impaired or have a speech impediment: Textphone 01937 546 434.</p>
