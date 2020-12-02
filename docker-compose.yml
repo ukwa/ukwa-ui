@@ -20,6 +20,6 @@ services:
       - "8983:8983"
 
   solr-collections:
-    image: ukwa/webarchive-collections-solr
+    image: ukwa/ukwa-ui-collections-solr
     ports:
       - "8984:8983"
