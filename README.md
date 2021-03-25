@@ -8,6 +8,15 @@ A new user interface for the UK Web Archive
 
 * Install a git client of your choice.
 * Clone this repository.
+
+You can then run the code using the `run-against-docker.sh`. This helper script uses Docker Compose to start up two Solr services and then runs the UI using Maven.
+
+There are scripts to populate the Solr services with example data, but the example data is not stored in this repository and is currently available on upon request.
+
+### Running from IntelliJ
+
+Alternatively, you can run code from IntelliJ, and configure it to use the same Solr services. Note that the username and password are not needed to run against local services.
+
 * Install [IntelliJ IDEA](https://www.jetbrains.com/idea/).
 * Open the code in IntelliJ IDEA.
 * Go to Run -> Edit Configurations.
