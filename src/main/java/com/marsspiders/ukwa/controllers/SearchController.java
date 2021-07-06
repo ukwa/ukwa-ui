@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.MalformedURLException;
@@ -203,7 +204,7 @@ public class SearchController {
         mav.addObject("publicSuffixes", publicSuffixesPairs);
         mav.addObject("domains", domainsPairs);
         mav.addObject("collections", collectionPairs);
-        mav.addObject("originalSearchRequest", text == null ? "" : text.replaceAll("\"", "&quot;"));
+        mav.addObject("originalSearchRequest", text == null ? "" : HtmlUtils.htmlEscape(text));
         mav.addObject("originalSearchLocation", searchLocation);
         mav.addObject("originalContentTypes", originalContentTypes);
         mav.addObject("originalPublicSuffixes", originalPublicSuffixes);
