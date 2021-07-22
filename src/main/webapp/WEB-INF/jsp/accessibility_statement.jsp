@@ -42,6 +42,9 @@
           <c:when test="${locale == 'cy'}">
             <%@include file="accessibility_statement_body_cy.jsp" %>
           </c:when>
+          <c:when test="${locale == 'gd'}">
+            <%@include file="accessibility_statement_body_en.jsp" %>
+          </c:when>
           <c:otherwise>
           </c:otherwise>
         </c:choose>
