@@ -37,13 +37,26 @@
 <p>Hearing induction loops are fitted at all Library Information and Enquiry Desks, or if you contact us before your visit we may be able to arrange a British Sign Language (BSL) interpreter.</p>
 <p>Further information about Accessibility at the British Library can be found on our <a href="https://www.bl.uk/visit/accessibility">Visit Us website</a>.</p>
 
-<h2 id="compliance-status">Compliance Status</h2>
-<p>This website is not compliant with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018. </p>
+<h2 id="how-accessible-this-website-is">How accessible this website is</h2>
+<p>We know some parts of this Site are not fully accessible:</p>
+<ul>
+    <li>The archived website content delivered by this website is outside the control of the British Library. Users may experience difficulties accessing this content.</li>
+</ul>
 
-<p>Content not within the scope of the accessibility regulations</p>
-<p>The archival content delivered by the UK Web Archive is exempt from the Regulations under Reg 3(2)(h). This content might fail any of the WCAG 2.1 AA Success Criteria.</p>
+
+<h2 id="compliance-status">Compliance Status</h2>
+<p>This website is fully compliant with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018. Exemptions claimed are listed below. Content not within the scope of the accessibility regulations.</p>
+
+<h2 id="non-accessible-content">Non-accessible content</h2>
+<p>The content listed below is non-accessible for the following reasons:</p>
+<p><b>The content listed below is non-accessible for the following reasons:</b></p>
+<ul>
+    <li>The archival content delivered by the UK Web Archive is exempt from the Regulations under Reg 3(2)(h). This content might fail any of the WCAG 2.1 AA Success Criteria.</li>
+</ul>
 
 <h2 id="how-we-tested-this-website">How we tested this website</h2>
-<p>A representative sample of the site was reviewed by <a href="https://www.abilitynet.org.uk/">AbilityNet</a> in September 2020, using a suite of modern accessibility tools including Screen Readers (Desktop JAWS 2018 / IE11), the web accessibility toolbar, colour contrast analysers, and website validation tools. AbilityNet conducted a review of the website again in May 2020 and made a number of recommendations in order that the website would be compliant with WCAG 2.1 AA guidelines. These recommendations were implemented during 2019 and 2020. This website was last tested on 30 June 2020.</p>
-<p>Preparation of this Accessibility Statement</p>
-<p>This statement was last updated on 15 September 2020.</p>
+<p>A representative sample of the site was reviewed by <a href="https://www.abilitynet.org.uk/">AbilityNet</a> in September 2020, using a suite of modern accessibility tools including Screen Readers (Desktop JAWS 2018 / IE11), the web accessibility toolbar, colour contrast analysers, and website validation tools.</p>
+
+<h2 id="preparation-of-this-accessibility-statement">Preparation of this Accessibility Statement</h2>
+<p>This statement was last updated July 2021.</p>
+
