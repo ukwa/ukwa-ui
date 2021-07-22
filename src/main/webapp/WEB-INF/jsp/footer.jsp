@@ -86,11 +86,11 @@
 
         <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
         <c:set var="textUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
-        <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy'
-                                        ? '/'
-                                        : fn:replace(fn:replace(textUri, '/en/', '/'), '/cy/', '/')}"/>
+        <c:set var="textUriWithoutLang" value="${textUri == '/en' || textUri == '/cy' || textUri == '/gd'
+                                         ? '/'
+                                         : fn:replace(fn:replace(fn:replace(textUri, '/en/', '/'), '/gd/', '/'), '/cy/', '/')}"/>
         <c:if test="${!fn:startsWith(textUri, '/en/') && textUri != '/en'
-          && (fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
+           && (fn:contains(textUri, '/gd/') || textUri =='/gd' || fn:contains(textUri, '/cy/')  || textUri =='/cy')}">
             <li class="list-group-item">
                 <a href="/en<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.english.title" />" role="menuitem">
                     <spring:message code="footer.english" /></a>
@@ -102,7 +102,12 @@
                     <spring:message code="footer.welsh" /></a>
             </li>
         </c:if>
-
+        <c:if test="${!fn:startsWith(textUri, '/gd/') && textUri != '/gd'}">
+            <li class="list-group-item">
+                <a href="/gd<c:out value="${textUriWithoutLang}?${params}"/>" title="<spring:message code="footer.scottish.title" />" role="menuitem">
+                    <spring:message code="footer.scottish" /></a>
+            </li>
+        </c:if>
     </ul>
 </div>
 
@@ -126,7 +131,7 @@
     <div class="col-12">
     <div role="navigation" aria-label="Navigation BL partners" class="container-footer-logos-group">
         <div class="footer-logo-BW"><a href="http://www.bodleian.ox.ac.uk/" target="_blank"><img src="img/bodleian_logo_BW.jpg" alt="Opens in a new window <spring:message code="footer.logo.bl" />" /></a></div>
-        <div class="footer-logo-BW"><a href="https://www.llgc.org.uk/" target="_blank"><img src="img/llgc_logo_BW.png" alt="Opens in a new window <spring:message code="footer.logo.llgc" />" /></a></div>
+        <div class="footer-logo-BW"><a href="https://www.library.wales/" target="_blank"><img src="img/llgc_logo_BW.png" alt="Opens in a new window <spring:message code="footer.logo.llgc" />" /></a></div>
         <div class="footer-logo-BW"><a href="https://www.nls.uk/" target="_blank"><img src="img/NLS_logo_2_BW.jpg" alt="Opens in a new window <spring:message code="footer.logo.nls" />" /></a></div>
         <div class="footer-logo-BW"><a href="https://www.bl.uk/" target="_blank"><img src="img/bl_logo_BW.png" alt="Opens in a new window <spring:message code="footer.logo.blib" />" /></a></div>
         <div class="footer-logo-BW"><a href="http://www.lib.cam.ac.uk/" target="_blank"><img src="img/cambrige_logo600_BW.png" alt="Opens in a new window <spring:message code="footer.logo.cul" />" /></a></div>

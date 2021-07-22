@@ -75,6 +75,10 @@
                                title="<spring:message code="main.menu.welsh.title" />" lang="cy" role="menuitem" tabindex="0">
                                 <spring:message code="main.menu.welsh"/>
                             </a>
+                            <a class="dropdown-item" href="/gd<c:out value="${textUriWithoutLang}?${params}"/>"
+                               title="<spring:message code="main.menu.scottish.title" />" lang="gd" role="menuitem" tabindex="0">
+                                <spring:message code="main.menu.scottish"/>
+                            </a>
                     </div>
                 </li>
                 <li role="menuitem">
