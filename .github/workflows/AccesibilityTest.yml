@@ -26,9 +26,6 @@ jobs:
       - name: Install pa11y-ci dependencies.
         run: npm install
 
-      - name: Start up jekyll server.
-        run: npm run start-detached
-
       - name: Run pa11y-ci.
         run: npm run pa11y-ci:sitemap 2>&1 | tee pa11y_output.txt
 
