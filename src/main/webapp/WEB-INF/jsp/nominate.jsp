@@ -158,6 +158,7 @@ $(document).ready(function(e) {
         form.classList.add('was-validated');
       }, false);
     });
+	
 
 	$("#nominate-form").submit(function(e) {
     	var response = grecaptcha.getResponse();
