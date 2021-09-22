@@ -174,13 +174,13 @@
         });
 
         $(".categories-cards").on('click', function(event){
-            $(".categories-cards").fadeToggle();
-            $(".category-items").fadeToggle();
+            $(".categories-cards").toggle();
+            $(".category-items").toggle();
         });
 
         $(".category-items").on('click', function(event){
-            $(".categories-cards").fadeToggle();
-            $(".category-items").fadeToggle();
+            $(".categories-cards").toggle();
+            $(".category-items").toggle();
         });
     });
 
