@@ -51,6 +51,15 @@
                 <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/collection') ? 'active' : ''}" role="menuitem">
                         <a class="nav-link" href="collection" tabindex="0"><spring:message code="main.menu.collections"/></a>
                 </li>
+                <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/category') ? 'active' : ''}" role="menuitem">
+                    <a class="nav-link" href="category" tabindex="0">Categories v1</a>
+                </li>
+                <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/categoriesV2') ? 'active' : ''}" role="menuitem">
+                    <a class="nav-link" href="categoriesV2" tabindex="0">Cat v2</a>
+                </li>
+                <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/categoriesV3') ? 'active' : ''}" role="menuitem">
+                    <a class="nav-link" href="categoriesV3" tabindex="0">Cat v3</a>
+                </li>
                 <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/info/nominate') ? 'active' : ''}" role="menuitem">
                         <a class="nav-link" href="info/nominate" tabindex="0"><spring:message code="main.menu.nominate"/></a>
                 </li>

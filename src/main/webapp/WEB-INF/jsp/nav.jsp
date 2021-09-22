@@ -11,6 +11,18 @@
     <div class="main-menu-item border-none">
       <spring:message code="main.menu.collections" />
     </div>
+    </a> <a href="category" title="Categories v1" />" tabindex="-1">
+    <div class="main-menu-item border-none">
+      Categories v1
+    </div>
+    </a> <a href="categoriesV2" title="Categories v2" />" tabindex="-1">
+    <div class="main-menu-item border-none">
+      Categories v2
+    </div>
+    </a><a href="categoriesV3" title="Categories v3" />" tabindex="-1">
+    <div class="main-menu-item border-none">
+      Categories v3
+    </div>
     </a> <a href="nominate" title="<spring:message code="main.menu.nominate.title" />" tabindex="-1">
     <div class="main-menu-item border-none">
       <spring:message code="main.menu.nominate" />
