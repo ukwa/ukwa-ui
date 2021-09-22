@@ -11,11 +11,6 @@
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="50">
 
 
-
-
-
-
-
 <div class="container">
     <div class="card-deck">
         <div class="card mb-4">
@@ -115,7 +110,9 @@
 
 
 
-
+<a href="index" class="collection-link">
+    Home
+</a>
 
 
 

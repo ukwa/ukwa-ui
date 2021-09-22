@@ -124,7 +124,7 @@
                             <c:forEach items="${itemsOfCategories}" var="itemOfCategories">
 
                                 <li class="padding-bottom-10">
-                                    <a href="collection/<c:out value="${itemOfCategories}"/>" class="collection-link" >
+                                    <a href="collection/1090" class="collection-link" >
                                         <c:out value="${itemOfCategories}"/>
                                     </a>
                                 </li>
@@ -147,7 +147,7 @@
                             <c:forEach items="${itemsOfCategories}" var="itemOfCategories">
 
                                 <li class="padding-bottom-10">
-                                    <a href="collection/<c:out value="${itemOfCategories}"/>" class="collection-link" >
+                                    <a href="collection/1090" class="collection-link" >
                                         <c:out value="${itemOfCategories}"/>
                                     </a>
                                 </li>
@@ -171,7 +171,9 @@
                     <div class="card-body">
                         <c:forEach items="${itemsOfCategories}" var="itemOfCategories">
                             <div>
-                                <c:out value="${itemOfCategories}"/>
+                                <a href="collection/1090" class="collection-link" >
+                                    <c:out value="${itemOfCategories}"/>
+                                </a>
                             </div>
                         </c:forEach>
                     </div>
