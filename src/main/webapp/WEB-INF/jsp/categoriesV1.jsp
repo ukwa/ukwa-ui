@@ -102,13 +102,84 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row justify-content-end">
+                <!--Grid row-->
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end">
+
+                        <li class="page-item"><a class="page-link" href="#">A</a></li>
+                        <li class="page-item"><a class="page-link" href="#">B</a></li>
+
+                        <li class="page-item"><a class="page-link" href="#">C</a></li>
+                        <li class="page-item"><a class="page-link" href="#">D</a></li>
+                        <li class="page-item"><a class="page-link" href="#">E</a></li>
+                        <li class="page-item"><a class="page-link" href="#">F</a></li>
+                        <li class="page-item"><a class="page-link" href="#">G</a></li>
+                        <li class="page-item"><a class="page-link" href="#">H</a></li>
+                        <li class="page-item"><a class="page-link" href="#">I</a></li>
+                        <li class="page-item"><a class="page-link" href="#">J</a></li>
+                        <li class="page-item"><a class="page-link" href="#">K</a></li>
+
+                        <li class="page-item"><a class="page-link" href="#">L</a></li>
+                        <li class="page-item"><a class="page-link" href="#">M</a></li>
+                        <li class="page-item"><a class="page-link" href="#">N</a></li>
+                        <li class="page-item"><a class="page-link" href="#">O</a></li>
+                        <li class="page-item"><a class="page-link" href="#">P</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Q</a></li>
+                        <li class="page-item"><a class="page-link" href="#">R</a></li>
+                        <li class="page-item"><a class="page-link" href="#">S</a></li>
+                        <li class="page-item"><a class="page-link" href="#">T</a></li>
+                        <li class="page-item"><a class="page-link" href="#">U</a></li>
+                        <li class="page-item"><a class="page-link" href="#">V</a></li>
+                        <li class="page-item"><a class="page-link" href="#">W</a></li>
+                        <li class="page-item"><a class="page-link" href="#">X</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Y</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Z</a></li>
+
+                    </ul>
+                </nav>
+            </div>
+            <div class="row justify-content-end">
+
+                <!--Grid column-->
+                <div class="col-md-6 mb-4">
+
+                    <div class="table-responsive shadow p-3 mb-5 bg-light rounded">
+                        <table id="grid" class="table table-hover sortable">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th data-type="string">Sort by:</th>
+                                <th data-type="string"></i>Name:<i class="fas fa-sort text-right"/></th>
+                                <th data-type="number"></i>Sub collections size<i class="fas fa-sort text-right"/>:</th>
+                            </tr>
+
+                            </thead>
+                        </table>
+                    </div>
+
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-md-6 mb-4 align-baseline">
+
+                    <!-- Search form -->
+                    <form class="form-inline">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                        <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search">
+                    </form>
+
+                </div>
+                <!--Grid column-->
+            </div>
         </div>
 
 
 
 
 
-        <div class="accordion padding-top-80" id="accordionExample">
+
+        <div class="accordion" id="accordionExample">
             <div class="card">
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
