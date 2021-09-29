@@ -11,11 +11,19 @@
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="50">
 
 
+<div class="row py-4 px-4">
+    <div class="col">
+        <a href="index" class="btn btn-dark" role="button">Home</a>
+        <a href="collection" class="btn btn-dark" role="button">List all topics and themes</a>
+
+    </div>
+
+</div>
 
 
 
 
-<div class="row margin-0 padding-side-20 padding-top-40">
+<div class="row margin-0 padding-side-20">
     <div class="col-lg-6 col-md-8 offset-md-1 col-md-offset-1 col-sm-12 header-2-subtitle padding-side-10"><spring:message code="coll.subtitle" /></div>
 
     <div class="col-lg-2 offset-lg-3 col-lg-offset-3 col-md-2 offset-md-1 col-md-offset-1 col-sm-12 right padding-top-mobile-20">
@@ -41,17 +49,6 @@
     <div class="container text-center">
 
         <div class="row justify-content-start">
-
-            <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto" >
-                <img src="img/categories/image9.png" alt="" />
-                    <div class="ver_mas text-center">
-                        <span  class="lnr lnr-eye"></span>
-                    </div>
-                    <article class="text-left">
-                        <h2>Arts and Culture</h2>
-                        <h4>Description...</h4>
-                    </article>
-            </div>
 
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto">
             <div class="ver_mas text-center">
@@ -208,7 +205,7 @@
         <div class="col-4">
             <div class="list-group" id="list-tab" role="tablist">
 
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto list-group-item list-group-item-action category-item-card-frame" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">
 
                     <article class="text-left">
                         <h2>Politics and Government</h2>
@@ -279,18 +276,12 @@
     $(document).ready(function(e) {
 
 
-        $("#btn-hide-categories").click(function() {
-
-            $(".categories-cards").toggle();
-            $(".category-items").toggle();
-        });
-
         $(".categories-cards").on('click', function(event){
             $(".categories-cards").toggle();
             $(".category-items").toggle();
         });
 
-        $(".category-items").on('click', function(event){
+        $(".category-item-card-frame").on('click', function(event){
             $(".categories-cards").toggle();
             $(".category-items").toggle();
         });

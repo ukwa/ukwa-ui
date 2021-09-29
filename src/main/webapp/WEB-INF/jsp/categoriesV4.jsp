@@ -2,11 +2,19 @@
 <html lang="en">
 <head>
     <%@include file="head4.jsp" %>
-    <title>Categories V4</title>
+    <title>UKWA Categories V4</title>
 </head>
 <body>
-<h1>Categories - other components available to use</h1>
+<h1 class="py-4 px-4">UKWA: Categories for Collections - other components available to use</h1>
 
+<div class="row py-4 px-4">
+    <div class="col">
+        <a href="index" class="btn btn-dark" role="button">Home</a>
+        <a href="collection" class="btn btn-dark" role="button">List all topics and themes</a>
+
+    </div>
+
+</div>
 
 <div class="container">
 
@@ -106,18 +114,26 @@
     <div class="row align-items-start">
         <div class="col">
             <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch p-3">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#">Collections and Sub-Collections</a>
                 <nav class="nav nav-pills flex-column">
-                    <a class="nav-link" href="#item-1">History</a>
+                    <a class="nav-link" href="#item-1">British Stand-up Comedy Archive</a>
                     <nav class="nav nav-pills flex-column">
-                        <a class="nav-link ms-3 my-1" href="#item-1-1">Arts and Culture</a>
-                        <a class="nav-link ms-3 my-1" href="#item-1-2">Places</a>
+                        <a class="nav-link ms-3 my-1" href="#item-1-1">Agents and Production companies</a>
+                        <a class="nav-link ms-3 my-1" href="#item-1-2">Comedians</a>
+                        <a class="nav-link ms-3 my-1" href="#item-1-3">History of stand-up comedy</a>
+                        <a class="nav-link ms-3 my-1" href="#item-1-4">Linda Smith Collection</a>
+                        <a class="nav-link ms-3 my-1" href="#item-1-5">Mark Thomas Collection</a>
+                        <a class="nav-link ms-3 my-1" href="#item-1-6">Researching stand-up comedy</a>
+                        <a class="nav-link ms-3 my-1" href="#item-1-7">Richard Herring</a>
+                        <a class="nav-link ms-3 my-1" href="#item-1-8">Stand-up news, listings and reviews</a>
+                        <a class="nav-link ms-3 my-1" href="#item-1-9">Venues and Festivals</a>
+
                     </nav>
-                    <a class="nav-link" href="#item-2">Item 2</a>
-                    <a class="nav-link" href="#item-3">Item 3</a>
+                    <a class="nav-link" href="#item-2">Cambridge Science</a>
+                    <a class="nav-link" href="#item-3">EU Referendum</a>
                     <nav class="nav nav-pills flex-column">
-                        <a class="nav-link ms-3 my-1" href="#item-3-1">Item 3-1</a>
-                        <a class="nav-link ms-3 my-1" href="#item-3-2">Item 3-2</a>
+                        <a class="nav-link ms-3 my-1" href="#item-3-1">Business & Trade Unions</a>
+                        <a class="nav-link ms-3 my-1" href="#item-3-2">Opinion Polls</a>
                     </nav>
                 </nav>
             </nav>
@@ -125,20 +141,20 @@
         </div>
         <div class="col">
         <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0">
-                <h4 id="item-1">Item 1</h4>
+                <h4 id="item-1">British Stand-up Comedy Archive</h4>
+                <p>This is some placeholder content for the British Stand-up Comedy Archive page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+                <h5 id="item-1-1">Agents and Production companies</h5>
                 <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
-                <h5 id="item-1-1">Item 1-1</h5>
+                <h5 id="item-1-2">Comedians</h5>
+                <p>This is some placeholder content for the Comedians page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+                <h4 id="item-2">Cambridge Science</h4>
+                <p>This is some placeholder content for the Cambridge Science page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+                <h4 id="item-3">EU Referendum</h4>
                 <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
-                <h5 id="item-1-2">Item 1-2</h5>
-                <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
-                <h4 id="item-2">Item 2</h4>
-                <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
-                <h4 id="item-3">Item 3</h4>
-                <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
-                <h5 id="item-3-1">Item 3-1</h5>
-                <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
-                <h5 id="item-3-2">Item 3-2</h5>
-                <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+                <h5 id="item-3-1">Business & Trade Unions</h5>
+                <p>This is some placeholder content for the Business & Trade Unions page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+                <h5 id="item-3-2">Opinion Polls</h5>
+                <p>This is some placeholder content for the Opinion Polls page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
             </div>
         </div>
     </div>
@@ -160,45 +176,35 @@
 
 
 
-
-
     <div class="row align-items-start py-4">
         <div class="col-3 ">
             <ol class="list-group list-group-numbered">
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
+                        <div class="fw-bold">British Stand-up Comedy Archive</div>
+                        Description..
+                    </div>
+                    <span class="badge bg-primary rounded-pill">9</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Cambridge Science</div>
+                        Last updated: 2 days ago
                     </div>
                     <span class="badge bg-primary rounded-pill">14</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
-                    </div>
-                    <span class="badge bg-primary rounded-pill">14</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Subheading</div>
-                        Cras justo odio
+                        <div class="fw-bold">EU Referendum</div>
+                        Last updated: 29 days ago
                     </div>
                     <span class="badge bg-primary rounded-pill">14</span>
                 </li>
             </ol>
         </div>
     </div>
-    <div class="row align-items-start">
-        <div class="col">
 
-        </div>
-    </div>
-    <div class="row align-items-start">
-        <div class="col">
 
-        </div>
-    </div>
 
 </div>
 
