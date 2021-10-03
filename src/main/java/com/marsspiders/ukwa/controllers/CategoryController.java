@@ -1,19 +1,13 @@
 package com.marsspiders.ukwa.controllers;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.marsspiders.ukwa.controllers.data.CollectionDTO;
-import com.marsspiders.ukwa.solr.SolrCategoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -26,7 +20,6 @@ import java.util.*;
 import static com.marsspiders.ukwa.controllers.HomeController.PROJECT_NAME;
 import static com.marsspiders.ukwa.util.UrlUtil.getLocale;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 @RequestMapping(value = PROJECT_NAME + "/category")
