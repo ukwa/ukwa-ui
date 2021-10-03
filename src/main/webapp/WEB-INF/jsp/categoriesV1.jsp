@@ -12,6 +12,7 @@
     <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
 </c:if>
 <jsp:useBean id="itemsOfCategories" scope="request" type="java.util.List<java.lang.String>"/>
+<jsp:useBean id="categoriesList" scope="request" type="java.util.List<java.lang.String>"/>
 
 <html lang="${locale}">
 <head>
@@ -174,89 +175,39 @@
             </div>
         </div>
 
-
-
-
-
-
         <div class="accordion" id="accordionExample">
-            <div class="card">
-                <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Category: Science Technology and Medicine
-                        </button>
-                    </h2>
-                </div>
 
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <ul>
-                            <c:forEach items="${itemsOfCategories}" var="itemOfCategories">
+            <c:forEach items="${categoriesList}" var="categoriesList" varStatus="theCount">
 
-                                <li class="padding-bottom-10">
-                                    <a href="collection/1090" class="collection-link" >
-                                        <c:out value="${itemOfCategories}"/>
-                                    </a>
-                                </li>
 
-                            </c:forEach>
-                        </ul>                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header" id="headingTwo">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Category: Politics and Government
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <ul>
-                            <c:forEach items="${itemsOfCategories}" var="itemOfCategories">
+                    <div class="card">
+                    <div class="card-header">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse${theCount.count}" aria-expanded="false" aria-controls="collapse${theCount.count}">
+                                <c:out value="${categoriesList}"/>
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapse${theCount.count}" class="collapse" aria-labelledby="heading${theCount.count}" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <ul>
+                                <c:forEach items="${itemsOfCategories}" var="itemOfCategories">
 
-                                <li class="padding-bottom-10">
-                                    <a href="collection/1090" class="collection-link" >
-                                        <c:out value="${itemOfCategories}"/>
-                                    </a>
-                                </li>
+                                    <li class="padding-bottom-10">
+                                        <a href="collection/1090" class="collection-link" >
+                                            <c:out value="${itemOfCategories}"/>
+                                        </a>
+                                    </li>
 
-                            </c:forEach>
-                        </ul>
-
+                                </c:forEach>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="card">
-                <div class="card-header" id="headingThree">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Category: History
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <c:forEach items="${itemsOfCategories}" var="itemOfCategories">
-                            <div>
-                                <a href="collection/1090" class="collection-link" >
-                                    <c:out value="${itemOfCategories}"/>
-                                </a>
-                            </div>
-                        </c:forEach>
-                    </div>
-                </div>
-            </div>
+            </c:forEach>
+
         </div>
-
-
-
-
-
-
 
     </section>
 
