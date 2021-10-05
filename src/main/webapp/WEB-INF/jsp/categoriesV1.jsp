@@ -11,8 +11,9 @@
 <c:if test="${setProtocolToHttps}">
     <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
 </c:if>
-<jsp:useBean id="itemsOfCategories" scope="request" type="java.util.List<java.lang.String>"/>
 <jsp:useBean id="categoriesList" scope="request" type="java.util.List<java.lang.String>"/>
+<jsp:useBean id="rowsOfItemsOfCategories" scope="request" type="java.util.List<java.util.List<java.lang.String>>"/>
+
 
 <html lang="${locale}">
 <head>
@@ -191,7 +192,7 @@
                     <div id="collapse${theCount.count}" class="collapse" aria-labelledby="heading${theCount.count}" data-parent="#accordionExample">
                         <div class="card-body">
                             <ul>
-                                <c:forEach items="${itemsOfCategories}" var="itemOfCategories">
+                                <c:forEach items="${rowsOfItemsOfCategories.get(theCount.count-1)}" var="itemOfCategories">
 
                                     <li class="padding-bottom-10">
                                         <a href="collection/1090" class="collection-link" >
