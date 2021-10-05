@@ -42,19 +42,15 @@ public class CategoryController {
         HashMap<String, String> map = null;
 
         ObjectMapper objectMapper = new ObjectMapper();
-
         String resourceName = "solr_CollectionAreas.json"; // ACT "act_allCollectionAreas.json";
-
         Path resourceDirectory = Paths.get("src","test", "data");
         String absolutePath = resourceDirectory.toFile().getAbsolutePath();
-
         InputStream input = null;
         try {
              input = new FileInputStream(absolutePath+"/"+resourceName);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
         Category[] categories = null;
         try {
             categories = objectMapper.readValue(input, Category[].class);
@@ -64,7 +60,7 @@ public class CategoryController {
         List<String> categoriesList = new ArrayList<>();
         for (Category category : categories)
         {
-            map = new HashMap<String, String>();
+            map = new HashMap<>();
             categoriesList.add(category.getTitle());
             if (category.getCollections_ids() != null && category.getCollections_ids().size() > 0)
             {
@@ -77,11 +73,9 @@ public class CategoryController {
                 listOfMapsOfItemsOfCategories.add (map);
             }
         }
-
         ModelAndView mav = new ModelAndView("categoriesV1");
         mav.addObject("categoriesList", categoriesList);
         mav.addObject("listOfMapsOfItemsOfCategories", listOfMapsOfItemsOfCategories);
-
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
 
         return mav;
