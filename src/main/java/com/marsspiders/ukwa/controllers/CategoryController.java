@@ -38,9 +38,8 @@ public class CategoryController {
     public ModelAndView rootCategoriesPage(HttpServletRequest request) {
         Locale locale = getLocale(request);
 
-        List<List<String>> rowsOfItemsOfCategories = new ArrayList<>();
-
-        List<String> itemsOfCategories = null;// = new ArrayList<>();
+        List<HashMap<String, String>> listOfMapsOfItemsOfCategories = new ArrayList<>();
+        HashMap<String, String> map = null;
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -63,29 +62,25 @@ public class CategoryController {
             e.printStackTrace();
         }
         List<String> categoriesList = new ArrayList<>();
-
         for (Category category : categories)
         {
-            itemsOfCategories = new ArrayList<>();
-
+            map = new HashMap<String, String>();
             categoriesList.add(category.getTitle());
-            //System.out.println("--- category.getKey() = : "+ category.getKey() +", category.getTitle() = : " + category.getTitle() + ", count: " + category.getCollections_ids().size() );
-
             if (category.getCollections_ids() != null && category.getCollections_ids().size() > 0)
             {
                 for (int i=0; i<category.getCollections_ids().size(); i++)
-                    itemsOfCategories.add(searchService
+                    map.put(searchService
                             .fetchCollectionById(category.getCollections_ids().get(i))
                             .getResponseBody().getDocuments()
-                            .get(0).getName());
+                            .get(0).getName(), category.getCollections_ids().get(i));
 
-                rowsOfItemsOfCategories.add(itemsOfCategories);
+                listOfMapsOfItemsOfCategories.add (map);
             }
         }
 
         ModelAndView mav = new ModelAndView("categoriesV1");
         mav.addObject("categoriesList", categoriesList);
-        mav.addObject("rowsOfItemsOfCategories", rowsOfItemsOfCategories);
+        mav.addObject("listOfMapsOfItemsOfCategories", listOfMapsOfItemsOfCategories);
 
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
 
