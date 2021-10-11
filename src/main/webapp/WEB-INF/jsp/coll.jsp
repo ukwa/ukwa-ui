@@ -18,6 +18,8 @@ ${pageContext.response.locale}
 <jsp:useBean id="subCollections" scope="request" type="java.util.List<com.marsspiders.ukwa.controllers.data.CollectionDTO>"/>
 <jsp:useBean id="currentCollection" scope="request" type="com.marsspiders.ukwa.controllers.data.CollectionDTO"/>
 <jsp:useBean id="breadcrumbPath" scope="request" type="java.util.Map<java.lang.String, java.lang.String>"/>
+<jsp:useBean id="checkCount" scope="request" type="java.lang.Long"/>
+
 <spring:message code="pagination.goto" var="goToPage"/>
 <spring:message code="pagination.current" var="currentPage"/>
 <spring:message code='coll.title' var="sectionTitle"/>
@@ -74,6 +76,8 @@ ${pageContext.response.locale}
       </div>
     </div>
 
+<c:choose>
+    <c:when test="${checkCount > 0}">
          <div class="row margin-0 border-bottom-gray">
    <div class="col-md-12 col-sm-12 padding-bottom-20 padding-20">
        <form role="form" action="search" method="get" enctype="multipart/form-data" name="search_coll_form" id="search_coll_form">
@@ -99,6 +103,8 @@ ${pageContext.response.locale}
        </form>
     </div>
     </div>
+    </c:when>
+</c:choose>
 
     <c:if test="${!empty subCollections}">
       <%--Do something if subCollections not empty--%>
