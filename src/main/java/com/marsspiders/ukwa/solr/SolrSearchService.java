@@ -143,27 +143,29 @@ public class SolrSearchService {
                                                        List<String> rangeDates,
                                                        List<String> collections,
                                                        boolean preProcessQueryString) {
+
         log.debug("Searching content for '" + queryString + "' by " + searchLocation);
-        SortClause sort = sortBy == null ? null : (sortBy.getWebRequestOrderValue()=="relevant" ? new SortClause("score", sortBy.getSolrOrderValue()) : new SortClause(FIELD_CRAWL_DATE, sortBy.getSolrOrderValue()));
-        String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
-        String accessToQuery = generateAccessToQuery(accessTo);
-        String contentTypeQuery = generateMultipleConditionsQuery(contentTypes, FIELD_TYPE);
-        String collectionsQuery = generateMultipleConditionsQuery(collections, FIELD_COLLECTION);
-        String publicSuffixesQuery = generateMultipleConditionsQuery(publicSuffixes, FIELD_PUBLIC_SUFFIX);
-        String domainsQuery = generateMultipleConditionsQuery(originalDomains, FIELD_DOMAIN);
-
-        List<String> filters = new ArrayList<>();
-        filters.add(dateQuery);
-        filters.add(accessToQuery);
-        filters.add(contentTypeQuery);
-        filters.add(publicSuffixesQuery);
-        filters.add(domainsQuery);
-        filters.add(collectionsQuery);
-
-        String[] facets = { FIELD_PUBLIC_SUFFIX, FIELD_TYPE, FIELD_DOMAIN,
-                FIELD_COLLECTION, FIELD_ACCESS_TERMS };
-
         if (preProcessQueryString){
+            SortClause sort = sortBy == null ? null : (sortBy.getWebRequestOrderValue()=="relevant" ? new SortClause("score", sortBy.getSolrOrderValue()) : new SortClause(FIELD_CRAWL_DATE, sortBy.getSolrOrderValue()));
+            String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
+            String accessToQuery = generateAccessToQuery(accessTo);
+            String contentTypeQuery = generateMultipleConditionsQuery(contentTypes, FIELD_TYPE);
+            String collectionsQuery = generateMultipleConditionsQuery(collections, FIELD_COLLECTION);
+            String publicSuffixesQuery = generateMultipleConditionsQuery(publicSuffixes, FIELD_PUBLIC_SUFFIX);
+            String domainsQuery = generateMultipleConditionsQuery(originalDomains, FIELD_DOMAIN);
+
+            List<String> filters = new ArrayList<>();
+            filters.add(dateQuery);
+            filters.add(accessToQuery);
+            filters.add(contentTypeQuery);
+            filters.add(publicSuffixesQuery);
+            filters.add(domainsQuery);
+            filters.add(collectionsQuery);
+
+            String[] facets = { FIELD_PUBLIC_SUFFIX, FIELD_TYPE, FIELD_DOMAIN,
+                    FIELD_COLLECTION, FIELD_ACCESS_TERMS };
+
+
             //Remove:
             // - URL prefixes
             // - symbols:    + - & | ! ( ) { } [ ] ^ " ~ * ? : \ /
@@ -189,7 +191,6 @@ public class SolrSearchService {
         //query.setParam("fl", "useDocValuesAsStored:true");
         return communicator.sendRequest(bodyDocsType, query);
     }
-
 
     private <T extends BodyDocsType> SolrSearchResult<T> sendRequest(String queryString,
                                                                      SortClause sortClause,
@@ -253,7 +254,6 @@ public class SolrSearchService {
                 }
             }
         }
-
         return communicator.sendRequest(bodyDocsType, query);
     }
 }

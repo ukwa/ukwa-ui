@@ -113,13 +113,11 @@ public class CollectionController {
         List<TargetWebsiteDTO> targetWebsites = generateTargetWebsitesDTOs(targetWebsitesDocuments, rootPathWithLang, userIpFromBl);
         List<CollectionDTO> subCollections = generateSubCollectionDTOs(collectionId, locale);
         CollectionDTO currentCollection = generatePlainCollectionDTO(collectionId, locale, targetWebsitesSearchResult);
-        //searchAnyFullTextIndex(colls)
-        //String[] colls = {"19th Century English Literature", "Aging", "19th Century English Literature"};
-        //log.info("----- collection name  : " + currentCollection.getName());
-        //log.info("----- collection count : " + searchAnyFullTextIndex(currentCollection.getName()) );
+
+        if (currentCollection == null)
+            return new ModelAndView("errorCollNotFound");
 
         Map<String, String> breadcrumbPath = buildCollectionBreadcrumbPath(currentCollection);
-
         ModelAndView mav = new ModelAndView("coll");
         mav.addObject("checkCount", searchAnyFullTextIndex(currentCollection.getName()));
         mav.addObject("userIpFromBl", userIpFromBl);
@@ -135,7 +133,6 @@ public class CollectionController {
         if (targetPageNumber > totalPages)
             targetPageNumber = totalPages;
         mav.addObject("targetPageNumber", targetPageNumber);
-
         return mav;
     }
 
@@ -149,16 +146,13 @@ public class CollectionController {
                     .fetchCollectionById(parentCollectionId)
                     .getResponseBody().getDocuments()
                     .get(0);
-
             //Create a new map to get reversed map in result
             Map<String, String> oldPath = new LinkedHashMap<>(path);
             path.clear();
             path.put(parentCollection.getId(), parentCollection.getName());
             path.putAll(oldPath);
-
             parentCollectionId = parentCollection.getParentId();
         }
-
         return path;
     }
 
@@ -188,17 +182,13 @@ public class CollectionController {
                 .stream()
                 .forEach(subCollection -> {
                     String parentId = subCollection.getParentId();
-
                     CollectionDTO parentCollectionDto = rootCollections.get(parentId);
                     if (parentCollectionDto.getSubCollections() == null) {
                         parentCollectionDto.setSubCollections(new ArrayList<>());
                     }
-
                     CollectionDTO subCollectionDTO = toCollectionDTO(subCollection, true, locale);
                     parentCollectionDto.getSubCollections().add(subCollectionDTO);
-
                 });
-
         ArrayList<CollectionDTO> sortedCollectionDTOs = new ArrayList<>(rootCollections.values());
         Collections.sort(sortedCollectionDTOs, (c1, c2) -> c1.getName().compareTo(c2.getName()));
 
@@ -208,15 +198,17 @@ public class CollectionController {
     private CollectionDTO generatePlainCollectionDTO(String collectionId,
                                                      Locale locale,
                                                      SolrSearchResult<CollectionInfo> targetWebsitesSearchResult) {
-        CollectionInfo currentCollectionInformation = searchService
-                .fetchCollectionById(collectionId)
-                .getResponseBody().getDocuments()
-                .get(0);
-
-        CollectionDTO collectionDTO = toCollectionDTO(currentCollectionInformation, false, locale);
-        collectionDTO.setWebsitesNum(targetWebsitesSearchResult.getResponseBody().getNumFound());
-
-        return collectionDTO;
+        SolrSearchResult <CollectionInfo> solrSearchResult = searchService
+                .fetchCollectionById(collectionId);
+        if (solrSearchResult.getResponseBody().getDocuments().size() > 0) {
+            CollectionDTO collectionDTO = toCollectionDTO(solrSearchResult
+                    .getResponseBody().getDocuments()
+                    .get(0), false, locale);
+            collectionDTO.setWebsitesNum(targetWebsitesSearchResult.getResponseBody().getNumFound());
+            return collectionDTO;
+        }
+        else
+            return null;
     }
 
     private List<TargetWebsiteDTO> generateTargetWebsitesDTOs(List<CollectionInfo> websites,
@@ -291,6 +283,11 @@ public class CollectionController {
     }
 
 
+    /**
+     * Check if specific Collection has Any-Full-Text-Index (possibly will be updated later)
+     * @param collectionName
+     * @return
+     */
     public Long searchAnyFullTextIndex(String collectionName) {
         List<String> originalCollections = new ArrayList<>();
         originalCollections.add(collectionName);
