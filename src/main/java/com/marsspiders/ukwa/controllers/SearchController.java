@@ -174,7 +174,7 @@ public class SearchController {
             int startRowToSend = startFromRow <= solrSearchResultsLimit ? startFromRow : 1;
             SolrSearchResult<ContentInfo> archivedSites = searchService.searchContent(searchBy, text, rowsPerPage,
                     sortBy, accessTo, startRowToSend, originalContentTypes, originalPublicSuffixes, originalDomains,
-                    fromDate, toDate, originalRangeDates, originalCollections);
+                    fromDate, toDate, originalRangeDates, originalCollections, true);
 
 
             searchResultDTOs.addAll(toSearchResults(archivedSites, request, searchBy, userIpFromBl));
@@ -338,5 +338,6 @@ public class SearchController {
 
         return domain;
     }
+
 
 }

@@ -141,33 +141,55 @@ public class SolrSearchService {
                                                        Date fromDatePicked,
                                                        Date toDatePicked,
                                                        List<String> rangeDates,
-                                                       List<String> collections) {
+                                                       List<String> collections,
+                                                       boolean preProcessQueryString) {
+
         log.debug("Searching content for '" + queryString + "' by " + searchLocation);
-        SortClause sort = sortBy == null ? null : (sortBy.getWebRequestOrderValue()=="relevant" ? new SortClause("score", sortBy.getSolrOrderValue()) : new SortClause(FIELD_CRAWL_DATE, sortBy.getSolrOrderValue()));
-        String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
-        String accessToQuery = generateAccessToQuery(accessTo);
-        String contentTypeQuery = generateMultipleConditionsQuery(contentTypes, FIELD_TYPE);
-        String collectionsQuery = generateMultipleConditionsQuery(collections, FIELD_COLLECTION);
-        String publicSuffixesQuery = generateMultipleConditionsQuery(publicSuffixes, FIELD_PUBLIC_SUFFIX);
-        String domainsQuery = generateMultipleConditionsQuery(originalDomains, FIELD_DOMAIN);
+        if (preProcessQueryString){
+            SortClause sort = sortBy == null ? null : (sortBy.getWebRequestOrderValue()=="relevant" ? new SortClause("score", sortBy.getSolrOrderValue()) : new SortClause(FIELD_CRAWL_DATE, sortBy.getSolrOrderValue()));
+            String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
+            String accessToQuery = generateAccessToQuery(accessTo);
+            String contentTypeQuery = generateMultipleConditionsQuery(contentTypes, FIELD_TYPE);
+            String collectionsQuery = generateMultipleConditionsQuery(collections, FIELD_COLLECTION);
+            String publicSuffixesQuery = generateMultipleConditionsQuery(publicSuffixes, FIELD_PUBLIC_SUFFIX);
+            String domainsQuery = generateMultipleConditionsQuery(originalDomains, FIELD_DOMAIN);
 
-        List<String> filters = new ArrayList<>();
-        filters.add(dateQuery);
-        filters.add(accessToQuery);
-        filters.add(contentTypeQuery);
-        filters.add(publicSuffixesQuery);
-        filters.add(domainsQuery);
-        filters.add(collectionsQuery);
+            List<String> filters = new ArrayList<>();
+            filters.add(dateQuery);
+            filters.add(accessToQuery);
+            filters.add(contentTypeQuery);
+            filters.add(publicSuffixesQuery);
+            filters.add(domainsQuery);
+            filters.add(collectionsQuery);
 
-        String[] facets = { FIELD_PUBLIC_SUFFIX, FIELD_TYPE, FIELD_DOMAIN,
-                FIELD_COLLECTION, FIELD_ACCESS_TERMS };
+            String[] facets = { FIELD_PUBLIC_SUFFIX, FIELD_TYPE, FIELD_DOMAIN,
+                    FIELD_COLLECTION, FIELD_ACCESS_TERMS };
 
-        //Remove:
-        // - URL prefixes
-        // - symbols:    + - & | ! ( ) { } [ ] ^ " ~ * ? : \ /
-        Pattern p = Pattern.compile("(http[s]?://www\\.|http[s]?://|www\\.|[&|*()?:!,~{}^/]+)");
 
-        return sendRequest(p.matcher(queryString).replaceAll(""), sort, filters, FIELD_CONTENT, ContentInfo.class, start, rows, facets);
+            //Remove:
+            // - URL prefixes
+            // - symbols:    + - & | ! ( ) { } [ ] ^ " ~ * ? : \ /
+            Pattern p = Pattern.compile("(http[s]?://www\\.|http[s]?://|www\\.|[&|*()?:!,~{}^/]+)");
+            return sendRequest(p.matcher(queryString).replaceAll(""), sort, filters, FIELD_CONTENT, ContentInfo.class, start, rows, facets);
+        }
+        else
+            //return sendRequestEmpty(queryString, sort, filters, FIELD_CONTENT, ContentInfo.class, start, rows, facets);
+            return sendRequestCheckCollection(ContentInfo.class, queryString);
+    }
+
+    /**
+     * Check if there is anything in full-text-index for specific collection
+     * @param bodyDocsType
+     * @param collectionName
+     * @param <T>
+     * @return
+     */
+    private <T extends BodyDocsType> SolrSearchResult<T> sendRequestCheckCollection(Class<T> bodyDocsType, String collectionName) {
+        SolrQuery query = new SolrQuery();
+        query.setQuery("*:*"); //main query
+        query.setParam("fq", "collection: " + "\"" + collectionName + "\""); //vs "collections" ?
+        //query.setParam("fl", "useDocValuesAsStored:true");
+        return communicator.sendRequest(bodyDocsType, query);
     }
 
     private <T extends BodyDocsType> SolrSearchResult<T> sendRequest(String queryString,
@@ -232,7 +254,6 @@ public class SolrSearchService {
                 }
             }
         }
-
         return communicator.sendRequest(bodyDocsType, query);
     }
 }
