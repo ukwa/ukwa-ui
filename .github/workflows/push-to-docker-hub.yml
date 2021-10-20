@@ -5,7 +5,8 @@ on:
     tags:
       - '*'
     branches:
-      - feature-search-coll
+      - master
+      - dev
 jobs:
   push_to_docker_hub:
     name: Push Docker image to Docker Hub
