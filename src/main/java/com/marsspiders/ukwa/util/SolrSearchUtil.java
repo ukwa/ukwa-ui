@@ -23,20 +23,30 @@ public class SolrSearchUtil {
     public static String generateDateQuery(Date fromDatePicked, Date toDatePicked, List<String> rangeDates) {
         String fromDateText = fromDatePicked != null ? sdf.format(fromDatePicked) : "*";
         String toDateText = toDatePicked != null ? sdf.format(toDatePicked) : "*";
+
+        System.out.println("......generateDateQuery - before fromDatePicked != null" );
         if(fromDatePicked != null || toDatePicked != null){
+            System.out.println("......generateDateQuery - return : " + SolrSearchService.FIELD_CRAWL_DATE + ":[" + fromDateText + " TO " + toDateText + "]" );
             return SolrSearchService.FIELD_CRAWL_DATE + ":[" + fromDateText + " TO " + toDateText + "]";
         }
 
+        System.out.println("......generateDateQuery - before dateQuery" );
+
         String dateQuery = "";
-        for (String originalRangeDate : rangeDates) {
-            dateQuery += dateQuery.length() > 0 ? OR_JOINER : EXCLUDE_MARKER_SECOND_LAYER_TAG;
+        if (rangeDates != null)
+            for (String originalRangeDate : rangeDates) {
+                System.out.println("......generateDateQuery - originalRangeDate = " + originalRangeDate );
 
-            int yearWhenArchived = Integer.parseInt(originalRangeDate);
-            String fromDate = yearWhenArchived + DATE_PART_AFTER_YEAR;
-            String toDate = (yearWhenArchived + 1) + DATE_PART_AFTER_YEAR;
+                dateQuery += dateQuery.length() > 0 ? OR_JOINER : EXCLUDE_MARKER_SECOND_LAYER_TAG;
 
-            dateQuery += SolrSearchService.FIELD_CRAWL_DATE + ":[" + fromDate + " TO " + toDate + "]";
-        }
+                int yearWhenArchived = Integer.parseInt(originalRangeDate);
+                String fromDate = yearWhenArchived + DATE_PART_AFTER_YEAR;
+                String toDate = (yearWhenArchived + 1) + DATE_PART_AFTER_YEAR;
+
+                dateQuery += SolrSearchService.FIELD_CRAWL_DATE + ":[" + fromDate + " TO " + toDate + "]";
+            }
+        System.out.println("......generateDateQuery - dateQuery = " + dateQuery );
+
 
         return dateQuery;
     }
@@ -63,10 +73,13 @@ public class SolrSearchUtil {
     public static String generateMultipleConditionsQuery(List<String> conditions, String fieldName) {
         String multipleConditionQueryWithExclude = "";
 
-        if(conditions.size() > 0){
+        if(conditions != null && conditions.size() > 0){
             String multipleConditionsQuery = toMultipleConditionsQuery(conditions, fieldName);
             multipleConditionQueryWithExclude = multipleConditionsQuery;
         }
+
+
+        System.out.println("-----rrr222---- generateMultipleConditionsQuery = " + multipleConditionQueryWithExclude);
 
         return multipleConditionQueryWithExclude;
     }

@@ -15,7 +15,7 @@
     <div class="main-menu-item border-none">
       Categories v1
     </div>
-    </a> <a href="categoriesV2" title="Categories v2" />" tabindex="-1">
+    </a> <a href="category/v2" title="Categories v2" />" tabindex="-1">
     <div class="main-menu-item border-none">
       Categories v2
     </div>

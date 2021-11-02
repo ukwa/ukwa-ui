@@ -45,32 +45,30 @@
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="img/categories/image9.png" alt="Arts and Culture" style="width:60%;">
+                                <img src="img/categories/2942.png" alt="Arts and Culture" style="width:60%;">
                             </div>
 
                             <div class="carousel-item">
-                                <img src="img/categories/image55.png" alt="History" style="width:60%;">
+                                <img src="img/categories/2940.png" alt="History" style="width:60%;">
                             </div>
 
                             <div class="carousel-item">
-                                <img src="img/categories/image4.png" alt="Politics and Government" style="width:60%;">
+                                <img src="img/categories/2941.png" alt="Politics and Government" style="width:60%;">
                             </div>
 
                             <div class="carousel-item">
-                                <img src="img/categories/image22.png" alt="Places" style="width:60%;">
-                            </div>
-
-
-
-                            <div class="carousel-item">
-                                <img src="img/categories/image7.png" alt="Science Technology and Medicine" style="width:60%;">
+                                <img src="img/categories/2943.png" alt="Places" style="width:60%;">
                             </div>
 
                             <div class="carousel-item">
-                                <img src="img/categories/image1.png" alt="Society and Community" style="width:60%;">
+                                <img src="img/categories/2938.png" alt="Science Technology and Medicine" style="width:60%;">
+                            </div>
+
+                            <div class="carousel-item">
+                                <img src="img/categories/2944.png" alt="Society and Community" style="width:60%;">
                             </div>
                             <div class="carousel-item">
-                                <img src="img/categories/image10.png" alt="Sport and Recreation" style="width:60%;">
+                                <img src="img/categories/2939.png" alt="Sport and Recreation" style="width:60%;">
                             </div>
                         </div>
 

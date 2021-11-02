@@ -1,4 +1,18 @@
 <!DOCTYPE html>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="locale">${pageContext.response.locale}</c:set>
+<c:set var="req" value="${pageContext.request}" />
+<c:set var="uri" value="${req.requestURI}" />
+<c:set var="url">${req.requestURL}</c:set>
+<c:if test="${setProtocolToHttps}">
+    <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
+</c:if>
+<jsp:useBean id="categoriesHashMap" scope="request" type="java.util.HashMap<java.lang.Integer, java.lang.String>"/>
+<jsp:useBean id="listOfMapsOfItemsOfCategories" scope="request" type="java.util.List<java.util.HashMap<java.lang.String, java.lang.String>>"/>
+
 
 <html>
 <head>
@@ -43,83 +57,50 @@
 
 </div>
 
+
+
 <div class="container-fluid  text-center categories-cards">
     <h1 class="text-center">Browse Categories</h1>
 
-    <div class="container text-center">
+    <div class="py-5">
+        <div class="container">
 
-        <div class="row justify-content-start">
+        <div class="row justify-content-start hidden-md-up">
+                <div class="col-md-4">
+                    <c:forEach var="category" items="${categoriesHashMap}">
 
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto">
-            <div class="ver_mas text-center">
-                <span  class="lnr lnr-eye"></span>
-            </div>
-            <article class="text-left">
-                <h2>Arts and Culture</h2>
-                <h4>Description...</h4>
-            </article>
-            <img src="img/categories/image9.png" alt="">
+                        <div class="card mb-2 col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto top-category-card">
+                            <div class="card-block">
+                                <div class="ver_mas text-center">
+                                    <span  class="lnr lnr-eye"></span>
+                                </div>
+                                <img class="card-img-top img-fluid" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.value}"/>">
+                                <article class="text-left">
+                                    <h2><c:out value="${category.value}"/></h2>
+                                    <h4>Description...</h4>
+                                </article>
+                            </div>
+                        </div>
+
+                    </c:forEach>
+                </div>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto">
-            <div class="ver_mas text-center">
-                <span id="click3" class="lnr lnr-eye"></span>
-            </div>
-            <article class="text-left">
-                <h2>HISTORY</h2>
-                <h4>Description..</h4>
-            </article>
-            <img src="img/categories/image55.png" alt="">
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto">
-            <div class="ver_mas text-center">
-                <span class="lnr lnr-eye"></span>
-            </div>
-            <article class="text-left">
-                <h2>Politics and Government</h2>
-                <h4>Description ...</h4>
-            </article>
-            <img src="img/categories/image4.png" alt="">
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto">
-            <div class="ver_mas text-center">
-                <span class="lnr lnr-eye"></span>
-            </div>
-            <article class="text-left">
-                <h2>Places</h2>
-                <h4>Description ...</h4>
-            </article>
-            <img src="img/categories/image22.png" alt="">
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto">
-            <div class="ver_mas text-center">
-                <span class="lnr lnr-eye"></span>
-            </div>
-            <article class="text-left">
-                <h2>Science Technology and Medicine</h2>
-                <h4>Description ...</h4>
-            </article>
-            <img src="img/categories/image7.png" alt="">
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto">
-            <div class="ver_mas text-center">
-                <span class="lnr lnr-eye"></span>
-            </div>
-            <article class="text-left">
-                <h2>Society and Community</h2>
-                <h4>Description ...</h4>
-            </article>
-            <img src="img/categories/image1.png" alt="">
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto">
-            <div class="ver_mas text-center">
-                <span class="lnr lnr-eye"></span>
-            </div>
-            <article class="text-left">
-                <h2>Sport and Recreation</h2>
-                <h4>Description ...</h4>
-            </article>
-            <img src="img/categories/image10.png" alt="">
-        </div>
+
+            <c:forEach var="category" items="${categoriesHashMap}">
+
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto top-category-card" id="${category.key}">
+                    <div class="ver_mas text-center">
+                        <span  class="lnr lnr-eye"></span>
+                    </div>
+                    <article class="text-left">
+                        <h2><c:out value="${category.value}"/></h2>
+                        <h4>Description...</h4>
+                    </article>
+                    <img src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.value}"/>">
+                </div>
+
+            </c:forEach>
+
         </div>
     </div>
 </div>
@@ -174,7 +155,7 @@
         <div class="col-md-6 mb-4">
 
             <div class="table-responsive shadow p-3 mb-5 bg-light rounded">
-                <table id="grid" class="table table-hover sortable">
+                <table id="grid2" class="table table-hover sortable">
                     <thead class="thead-dark">
                     <tr>
                         <th data-type="string">Sort by:</th>
@@ -208,10 +189,10 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto list-group-item list-group-item-action category-item-card-frame" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">
 
                     <article class="text-left">
-                        <h2>Politics and Government</h2>
-                        <h4>Category: Politics and Government</h4>
+                        <h2 id="current_top_coll_h2">Politics and Government</h2>
+                        <h4 id="current_top_coll_h4">Category: Politics and Government</h4>
                     </article>
-                    <img src="img/categories/image4.png" alt="">
+                    <img id="current_top_coll_image" src="img/categories/2941.png" alt="">
                 </div>
 
 
@@ -219,39 +200,21 @@
         </div>
         <div class="col-8">
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-                    <a href="collection/2429" class="collection-link">
-                        British Countryside
-                    </a>
+                <c:forEach var="category" items="${categoriesHashMap}" varStatus="theCount">
 
-                    <a href="collection/2429" class="collection-link">
-                        British Countryside
-                    </a>
-                    <a href="collection/369" class="collection-link">
-                        Climate Change Debates
-                    </a>
+                    <div class="tab-pane fade show top-collection-list" id="top-collection-list-${category.key}" role="tabpanel" aria-labelledby="list-home-list">
 
-                    <a href="collection/1090" class="collection-link">
-                        British Overseas Territories
-                    </a>
-                    <a href="collection/329" class="collection-link">
-                        British Stand-up Comedy Archive (9 subcollections)
-                    </a>
-                    <a href="collection/2131" class="collection-link">
-                        Caribbean Communities in the UK
-                    </a>
-                    <a href="collection/100" class="collection-link">
-                        Ebola Outbreak, West Africa 2014
-                    </a>
-                    <a href="collection/4" class="collection-link">
-                        European Parliament Elections 2014
-                    </a>
-                    <a href="collection/370" class="collection-link">
-                        Forth Bridge 125th Anniversary
-                    </a>
+                        <c:forEach var="entry" items="${listOfMapsOfItemsOfCategories.get(theCount.count-1)}">
+                            <li class="padding-bottom-10">
+                                <a href="collection/<c:out value="${entry.value}"/>" class="collection-link" >
+                                    <c:out value="${entry.key}"/>
+                                </a>
+                            </li>
+                        </c:forEach>
 
+                    </div>
 
-                </div>
+                </c:forEach>
 
             </div>
         </div>
@@ -261,6 +224,67 @@
 
 
 
+<div class="container p-4">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="float-left">Bootstrap 4 Blog List / Grid Layout</h2>
+            <div class="btn-group float-right">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label id="list" class="btn btn-outline-dark active">
+                        <input type="radio" name="layout" id="layout1" checked> List
+                    </label>
+                    <label id="grid" class="btn btn-outline-dark">
+                        <input type="radio" name="layout" id="layout2"> Grid
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="posts" class="row mt-4">
+        <div class="item col-12 mb-3">
+            <div class="card rounded shadow border-0">
+                <a href="#">
+                    <img class="w-100 d-none" style="height: 300px; object-fit: cover; border-top-right-radius: 5px; border-top-left-radius: 5px;" src="https://images.unsplash.com/photo-1572376313139-2d2c6ff7de20?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=648&q=80" alt="" />
+                </a>
+                <div class="card-body p-3">
+                    <a href="#" class="text-dark"><h4>Blog post title</h4></a>
+                    <p class="text-muted small">By Author Title on January 28, 2020</p>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                    <a class="btn btn-dark" href="#">Read more</a>
+                </div>
+            </div>
+        </div>
+        <div class="item col-12 mb-3">
+            <div class="card rounded shadow border-0">
+                <a href="#">
+                    <img class="w-100 d-none" style="height: 300px; object-fit: cover; border-top-right-radius: 5px; border-top-left-radius: 5px;" src="https://images.unsplash.com/photo-1572376313139-2d2c6ff7de20?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=648&q=80" alt="" />
+                </a>
+                <div class="card-body p-3">
+                    <a href="#" class="text-dark"><h4>Blog post title</h4></a>
+                    <p class="text-muted small">By Author Title on January 28, 2020</p>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                    <a class="btn btn-dark" href="#">Read more</a>
+                </div>
+            </div>
+        </div>
+        <div class="item col-12 mb-3">
+            <div class="card rounded shadow border-0">
+                <a href="#">
+                    <img class="w-100 d-none" style="height: 300px; object-fit: cover; border-top-right-radius: 5px; border-top-left-radius: 5px;" src="https://images.unsplash.com/photo-1572376313139-2d2c6ff7de20?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=648&q=80" alt="" />
+                </a>
+                <div class="card-body p-3">
+                    <a href="#" class="text-dark"><h4>Blog post title</h4></a>
+                    <p class="text-muted small">By Author Title on January 28, 2020</p>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                    <a class="btn btn-dark" href="#">Read more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -275,17 +299,58 @@
 <script>
     $(document).ready(function(e) {
 
+        var previous_id = null;
 
-        $(".categories-cards").on('click', function(event){
+        $(".top-category-card").on('click', function(event){
+
+            console.log('previous_id = ', previous_id);
+
+            var current_id = $(this).attr('id');
+            console.log('current_id = ', current_id);
+
+            $('#current_top_coll_image').attr('src','img/categories/'+current_id+'.png');
+
+            $("#current_top_coll_h2").html('test 1');
+            $("#current_top_coll_h4").html('test 2');
+//            $("#current_top_coll_h2").html(<c:out value="${categoriesHashMap.get(identifier).value}"/>);
+//            $("#current_top_coll_h4").html(<c:out value="${categoriesHashMap.get(identifier).value}"/>);
+
+            $('#top-collection-list-'+previous_id).removeClass("active");
+            $('#top-collection-list-'+current_id).addClass("active");
+
+            //$("#top-collection-list-"+event.target.id).removeClass("active");
+            //$("#top-collection-list-2941").addClass("active");
             $(".categories-cards").toggle();
             $(".category-items").toggle();
+
+            previous_id = current_id;
+
         });
 
         $(".category-item-card-frame").on('click', function(event){
             $(".categories-cards").toggle();
             $(".category-items").toggle();
         });
+
+
+        $('#list').click(function(event){
+            event.preventDefault();
+            $('#posts .item').addClass('col-12');
+            $('#posts img').addClass('d-none');
+            $('#grid').removeClass('active');
+            $('#list').addClass('active');
+        });
+
+        $('#grid').click(function(event){
+            event.preventDefault();
+            $('#posts .item').removeClass('col-12');
+            $('#posts .item').addClass('col-4');
+            $('#posts img').removeClass('d-none');
+            $('#list').removeClass('active');
+            $('#grid').addClass('active');
+        });
     });
+
 
 
 </script>

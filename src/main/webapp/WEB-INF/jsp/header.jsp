@@ -54,8 +54,8 @@
                 <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/category') ? 'active' : ''}" role="menuitem">
                     <a class="nav-link" href="category" tabindex="0">Categories: v1</a>
                 </li>
-                <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/categoriesV2') ? 'active' : ''}" role="menuitem">
-                    <a class="nav-link" href="categoriesV2" tabindex="0">v2</a>
+                <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/category/v2') ? 'active' : ''}" role="menuitem">
+                    <a class="nav-link" href="category/v2" tabindex="0">v2</a>
                 </li>
                 <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/categoriesV3') ? 'active' : ''}" role="menuitem">
                     <a class="nav-link" href="categoriesV3" tabindex="0">v3</a>

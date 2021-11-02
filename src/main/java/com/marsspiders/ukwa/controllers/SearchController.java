@@ -34,6 +34,7 @@ import static com.marsspiders.ukwa.controllers.CollectionController.ROWS_PER_PAG
 import static com.marsspiders.ukwa.controllers.CollectionController.ROWS_PER_PAGE_MAX;
 import static com.marsspiders.ukwa.controllers.HomeController.PROJECT_NAME;
 import static com.marsspiders.ukwa.solr.AccessToEnum.VIEWABLE_ANYWHERE;
+import static com.marsspiders.ukwa.solr.AccessToEnum.VIEWABLE_ONLY_ON_LIBRARY;
 import static com.marsspiders.ukwa.solr.SearchByEnum.FULL_TEXT;
 import static com.marsspiders.ukwa.util.UrlUtil.getRootPathWithLang;
 import static java.util.Arrays.asList;
@@ -89,6 +90,9 @@ public class SearchController {
                                    HttpServletRequest request) throws MalformedURLException, URISyntaxException, ParseException {
         String remove_from_filter = request.getParameter("filter_array_x");
         String remove_from_filter_item = request.getParameter("filter_array_x_item");
+
+        String[] colls = {"19th Century English Literature"};
+        log.info("----- bleeed : " + searchAnyFullTextIndex(colls) );
 
         List<SearchResultDTO> searchResultDTOs = new ArrayList<>();
         List<String> accessTermsPairs = new LinkedList<>();
@@ -174,7 +178,7 @@ public class SearchController {
             int startRowToSend = startFromRow <= solrSearchResultsLimit ? startFromRow : 1;
             SolrSearchResult<ContentInfo> archivedSites = searchService.searchContent(searchBy, text, rowsPerPage,
                     sortBy, accessTo, startRowToSend, originalContentTypes, originalPublicSuffixes, originalDomains,
-                    fromDate, toDate, originalRangeDates, originalCollections);
+                    fromDate, toDate, originalRangeDates, originalCollections, true);
 
 
             searchResultDTOs.addAll(toSearchResults(archivedSites, request, searchBy, userIpFromBl));
@@ -232,8 +236,78 @@ public class SearchController {
             mav.addObject("searchResults", new ArrayList<>());
         }
 
+
+
         return mav;
     }
+
+    //@RequestMapping(value = "/check", method = GET)
+    public Long searchAnyFullTextIndex(String[] collections) {
+/*
+* q=test&
+* defType=edismax&
+* start=0&
+* rows=50&
+* sort=score+desc&
+* qf=text&
+* pf=text&
+* fq=&
+* fq={!tag%3DfilterFirstLayer}(access_terms:"OA")&
+*
+* fq=(type:"Web+Page")&
+* fq=&fq=&fq=&
+*
+* hl=true&hl.fl=content&
+*
+* facet=true&
+* facet.threads=8&
+* facet.field=public_suffix&
+* facet.field=type&
+* facet.field=domain&
+* facet.field=collection&
+* facet.field={!ex%3DfilterSecondLayer,filterFirstLayer}access_terms
+
+ *
+*
+* */
+
+        log.info("---RRR---");
+
+        List<String> originalCollections;
+
+        originalCollections = collections != null ? asList(collections) : emptyList();
+
+            //searchResultDTOs.addAll(toSearchResults(archivedSites, request, searchBy, userIpFromBl));
+            //totalSearchResultsSize = archivedSites.getResponseBody().getNumFound();
+
+
+
+
+        SolrSearchResult<ContentInfo> archivedSites = searchService.searchContent(
+                FULL_TEXT,
+                "", //-id:["" TO *]
+                0,
+                SortByEnum.NEWEST_TO_OLDEST,
+                VIEWABLE_ONLY_ON_LIBRARY,
+                0,
+                null,
+                null,
+                null,
+                null, null,
+                null,
+                originalCollections,
+                false);
+
+        log.info("---RRR--- getNumFound = " + archivedSites.getResponseBody().getNumFound());
+
+
+        //searchResultDTOs.addAll(toSearchResults(archivedSites, request, searchBy, userIpFromBl));
+        return 1L;//archivedSites.getResponseBody().getNumFound();
+
+
+
+    }
+
 
     @GetMapping("/goToViewPage")
     public ModelAndView passParametersWithModelAndView() {

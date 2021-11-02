@@ -6,15 +6,24 @@ import com.marsspiders.ukwa.solr.data.ContentInfo;
 import com.marsspiders.ukwa.solr.data.SolrSearchResult;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrQuery.SortClause;
+import org.apache.solr.client.solrj.SolrServerException;
+import org.apache.solr.client.solrj.impl.HttpSolrClient;
+import org.apache.solr.client.solrj.impl.NoOpResponseParser;
+import org.apache.solr.client.solrj.request.QueryRequest;
+import org.apache.solr.client.solrj.response.*;
+import org.apache.solr.common.SolrDocument;
+import org.apache.solr.common.SolrDocumentList;
+import org.apache.solr.common.params.GroupParams;
+import org.apache.solr.common.util.NamedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+//import org.springframework.data.solr.core.query.result.GroupResult;
+
+import java.io.IOException;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -62,6 +71,32 @@ public class SolrSearchService {
 
     @Autowired
     SolrCommunicator communicator;
+
+
+    //------------------ categories start -----------------
+
+    private SolrSearchResult<CollectionInfo> fetchAllCollectionsCategories() {
+        log.info("Fetching all collections - categories");
+
+        String queryString = "type:" + TYPE_COLLECTION.getSolrDocumentType();
+        int rowsLimit = ROOT_COLLECTIONS_ROWS_LIMIT;
+
+        return sendRequest(queryString, null, null, null, CollectionInfo.class, 0, rowsLimit);
+    }
+
+    public SolrSearchResult<CollectionInfo> fetchRootCollectionsCategories() {
+        log.info("Fetching root collections - Categories");
+
+        //------- add query  CATEGORIES !!!!!
+
+        //String noParentQuery = "-parentId:[* TO *]";
+        //SortClause sortClause = new SortClause(FIELD_NAME, asc);
+        //int rowsLimit = ROOT_COLLECTIONS_ROWS_LIMIT;
+
+        return sendCategoryRequest("", CollectionInfo.class);
+    }
+
+    //------------------ categories end -----------------
 
     private SolrSearchResult<CollectionInfo> fetchAllCollections() {
         log.info("Fetching all collections");
@@ -141,15 +176,27 @@ public class SolrSearchService {
                                                        Date fromDatePicked,
                                                        Date toDatePicked,
                                                        List<String> rangeDates,
-                                                       List<String> collections) {
+                                                       List<String> collections,
+                                                       boolean preProcessQueryString) {
         log.debug("Searching content for '" + queryString + "' by " + searchLocation);
+
         SortClause sort = sortBy == null ? null : (sortBy.getWebRequestOrderValue()=="relevant" ? new SortClause("score", sortBy.getSolrOrderValue()) : new SortClause(FIELD_CRAWL_DATE, sortBy.getSolrOrderValue()));
+        log.debug("Searching content after  sort sortBy" );
+
+        log.debug("Searching content fromDatePicked = " + fromDatePicked + ", toDatePicked = " + toDatePicked + ", rangeDates = " + rangeDates );
         String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
+        log.debug("Searching content after  generateDateQuery" );
+
         String accessToQuery = generateAccessToQuery(accessTo);
+        log.debug("Searching content after  generateAccessToQuery" );
+
         String contentTypeQuery = generateMultipleConditionsQuery(contentTypes, FIELD_TYPE);
         String collectionsQuery = generateMultipleConditionsQuery(collections, FIELD_COLLECTION);
         String publicSuffixesQuery = generateMultipleConditionsQuery(publicSuffixes, FIELD_PUBLIC_SUFFIX);
         String domainsQuery = generateMultipleConditionsQuery(originalDomains, FIELD_DOMAIN);
+
+        log.debug("Searching content after  domainsQuery" );
+
 
         List<String> filters = new ArrayList<>();
         filters.add(dateQuery);
@@ -162,13 +209,32 @@ public class SolrSearchService {
         String[] facets = { FIELD_PUBLIC_SUFFIX, FIELD_TYPE, FIELD_DOMAIN,
                 FIELD_COLLECTION, FIELD_ACCESS_TERMS };
 
-        //Remove:
-        // - URL prefixes
-        // - symbols:    + - & | ! ( ) { } [ ] ^ " ~ * ? : \ /
-        Pattern p = Pattern.compile("(http[s]?://www\\.|http[s]?://|www\\.|[&|*()?:!,~{}^/]+)");
 
-        return sendRequest(p.matcher(queryString).replaceAll(""), sort, filters, FIELD_CONTENT, ContentInfo.class, start, rows, facets);
+        if (preProcessQueryString){
+            //Remove:
+            // - URL prefixes
+            // - symbols:    + - & | ! ( ) { } [ ] ^ " ~ * ? : \ /
+            Pattern p = Pattern.compile("(http[s]?://www\\.|http[s]?://|www\\.|[&|*()?:!,~{}^/]+)");
+            return sendRequest(p.matcher(queryString).replaceAll(""), sort, filters, FIELD_CONTENT, ContentInfo.class, start, rows, facets);
+        }
+        else
+            //return sendRequestEmpty(queryString, sort, filters, FIELD_CONTENT, ContentInfo.class, start, rows, facets);
+            return sendRequestCheckCollection(ContentInfo.class, "");
     }
+
+    /**
+     * Check if there is anything in full-text-index for specific collection
+     * @param bodyDocsType
+     * @param <T>
+     * @return
+     */
+    private <T extends BodyDocsType> SolrSearchResult<T> sendRequestCheckCollection(Class<T> bodyDocsType, String collectionName) {
+        SolrQuery query = new SolrQuery();
+        query.setQuery("*:*"); //main query
+        query.setParam("q", "collection: " + collectionName);
+        return communicator.sendRequest(bodyDocsType, query);
+    }
+
 
     private <T extends BodyDocsType> SolrSearchResult<T> sendRequest(String queryString,
                                                                      SortClause sortClause,
@@ -235,4 +301,171 @@ public class SolrSearchService {
 
         return communicator.sendRequest(bodyDocsType, query);
     }
+
+
+
+    public <T extends BodyDocsType> SolrSearchResult<T> sendCategoryRequest(String queryString,
+                                                                     Class<T> bodyDocsType
+                                                                     ) {
+
+        SolrQuery query = new SolrQuery();
+        query.setFacet(true);
+        query.addFacetPivotField(new String[]{"collectionAreaId,parentId,id"});
+        //SolrSearchResult
+        // http://localhost:38983/solr/collections/select?
+        // fl=collectionAreaId,id,parentId
+        // &fq=collectionAreaId:[*%20TO%20*]-collectionAreaId:(2945)
+        // &indent=on&facet=true
+        // &facet.limit=-1
+        // &facet.pivot.mincount=1
+        // &facet.pivot=collectionAreaId,parentId,id
+        // &q=*:*&wt=json
+
+
+        query.set("facet.limit", "-1");
+//        query.set("group", true);
+        //query.set("fq", "collectionAreaId:[*%20TO%20*]-collectionAreaId:(2945)");
+        query.set("indent", "on");
+
+        query.setParam("q", "*:*");
+        //query.set("rows", "1000");
+        query.set("wt", "json");
+
+        log.info("------- pries sendRequest categories query = " + query.toString());
+
+
+        return communicator.sendRequest(bodyDocsType, query);
+    }
+
+
+    public static void queryFacet(HttpSolrClient solrClient, String collecionName) throws Exception{
+        SolrQuery query = new SolrQuery();
+        query.setQuery("*");
+        // Do not query data, only query facet results
+        query.setFacet(true);
+        // facet field
+        query.addFacetField("price");
+        // Total facet results
+        query.setFacetLimit(8);
+        // Start query
+        QueryResponse queryResponse = solrClient.query(collecionName, query);
+        List<FacetField> facetFields = queryResponse.getFacetFields();
+        for (FacetField facetField : facetFields) {
+            String facetName=facetField.getName();
+            List<FacetField.Count> values = facetField.getValues();
+            for (FacetField.Count count : values) {
+                String name = count.getName();
+                long num=count.getCount();
+                System.out.println("facetName: "+facetName+"; name: "+name+"; num: "+num);
+            }
+        }
+    }
+
+    public void groupQueryCategories(HttpSolrClient solrClient,String collecionName) throws Exception{
+        // Set query criteria
+
+        /*
+        * http://localhost:8984/solr/collections/select?
+        * group.field=collectionAreaId&
+        * group.limit=10000&
+        * group=true&
+        * indent=on&
+        * q=type:%22collection%22%20AND%20collectionAreaId:[*%20TO%20*]&
+        * rows=10000&
+        * wt=json
+        * */
+
+        SolrQuery query = new SolrQuery();
+        query.set("wt", "json");
+        //query.setQuery("fromId:1234");
+        query.set("group",true);
+        query.set("group.field", "collectionAreaId");
+        try {
+
+            QueryResponse gRes = solrClient.query(collecionName, query);
+            GroupResponse grpR = gRes.getGroupResponse();
+            List<GroupCommand> groupCommands = gRes.getGroupResponse().getValues();
+
+            log.info("------ categories, groupCommands List size :  " + groupCommands.size());
+            //List<GroupResult> grs = new ArrayList<>();
+            /*
+            for(GroupCommand gc : groupCommands){
+                List<Group> groups = gc.getValues();
+                for(Group group : groups){
+                    GroupResult gr = new GroupResult();
+
+                    gr.setGroupText(group.getGroupValue());
+                    gr.setCount(group.getResult().getNumFound());
+                    grs.add(gr);
+                }
+            }
+            */
+
+
+        } catch (SolrServerException | IOException e) {
+            e.printStackTrace();
+            //return Collections.EMPTY_LIST;
+        }
+
+        /*
+        QueryRequest req = new QueryRequest(query);
+        req.setResponseParser(new NoOpResponseParser("json"));
+        //req.setBasicAuthCredentials(username, password);
+        req.setPath("/solr/collections/select");//solrRequestHandler);
+        NamedList<Object> response = solrClient.request(req);
+        //---------------------------
+        */
+
+        /*
+        SolrQuery query = new SolrQuery();
+        //q=type:%22collection%22%20AND%20collectionAreaId:[*%20TO%20*]&rows=10000&wt=json
+        //query.setQuery("q=type:%22collection%22%20AND%20collectionAreaId:[*%20TO%20*]&rows=10000&wt=json");
+        query.setQuery("");
+        // Return column
+        query.setFields("groupValue");
+        // Open group query of group
+        query.setParam(GroupParams.GROUP, true);
+        // Set grouped fields
+        query.setParam(GroupParams.GROUP_FIELD, "collectionAreaId");
+        // Set the number of returned rows
+        query.setRows(50);
+        log.info("------ query " + query.toString());
+        QueryRequest req = new QueryRequest(query);
+        req.setResponseParser(new NoOpResponseParser("json"));
+        //req.setBasicAuthCredentials(username, password);
+        req.setPath("/solr/collections/select");//solrRequestHandler);
+
+        //QueryResponse qr = solrClient.query(collecionName,query);
+
+        NamedList<Object> response = solrClient.request(req);
+        String solrSearchResultString = (String)response.get("response");
+
+        log.info("------ solrSearchResultString " + solrSearchResultString);
+
+        */
+
+        /*
+        GroupResponse groupResponse = qr.getGroupResponse();
+        // list of grouped field types
+        List<GroupCommand> values = groupResponse.getValues();
+        /*
+        for (GroupCommand groupCommand : values) {
+            String groupName = groupCommand.getName();
+            // How many values are included under each category field
+            List<Group> groupValue = groupCommand.getValues();
+            for (Group group : groupValue) {
+                // search result
+                SolrDocumentList result = group.getResult();
+                for (SolrDocument solrDocument : result) {
+                    Object id = solrDocument.getFieldValue("groupValue");
+                    //Object name = solrDocument.getFieldValue("name");
+                    System.out.println("groupName: "+groupName+"; groupValue: "+ id+";" );// name: "+name);
+                }
+            }
+        }
+        */
+
+    }
+
+
 }

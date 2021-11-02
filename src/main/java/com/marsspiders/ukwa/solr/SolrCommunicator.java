@@ -2,14 +2,19 @@ package com.marsspiders.ukwa.solr;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.marsspiders.ukwa.solr.data.BodyDocsType;
-import com.marsspiders.ukwa.solr.data.CollectionInfo;
-import com.marsspiders.ukwa.solr.data.ContentInfo;
-import com.marsspiders.ukwa.solr.data.SolrSearchResult;
+import com.marsspiders.ukwa.solr.data.*;
 import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.impl.NoOpResponseParser;
 import org.apache.solr.client.solrj.request.QueryRequest;
+import org.apache.solr.client.solrj.response.Group;
+import org.apache.solr.client.solrj.response.GroupCommand;
+import org.apache.solr.client.solrj.response.GroupResponse;
+import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.common.SolrDocument;
+import org.apache.solr.common.SolrDocumentList;
+import org.apache.solr.common.params.SolrParams;
 import org.apache.solr.common.util.NamedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +27,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+
 
 @Service
 public class SolrCommunicator {
@@ -55,6 +65,243 @@ public class SolrCommunicator {
     @Value("${solr.show.stub.data.when.service.not.available}")
     private boolean showStubData;
 
+
+    public String returnTextGroupCategories() {
+
+        SolrQuery query = new SolrQuery();
+
+        query.set("group.field", "collectionAreaId");
+        query.set("group.limit", "-1");
+        query.set("group", true);
+        query.set("indent", "on");
+
+
+        query.setParam("q", "type: \"collection\" AND collectionAreaId:[* TO *]");
+        query.set("rows", "1000");
+
+        //query.set("wt", "json");
+
+        String solrServerUrl = solrCollectionPath;
+        String solrRequestHandler = solrCollectionRequestHandler;
+
+        //http://localhost:8984/solr/collections/select
+        HttpSolrClient solrClient = new HttpSolrClient.Builder(solrServerUrl).build();
+        solrClient.setConnectionTimeout(connectionTimeout);
+        solrClient.setSoTimeout(readTimeout);
+
+
+        /*
+        QueryResponse gRes = null;
+        try {
+            gRes = solrClient.query( query);
+        } catch (SolrServerException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        /*
+        GroupResponse grpR = gRes.getGroupResponse();
+        List<GroupCommand> groupCommands = gRes.getGroupResponse().getValues();
+        log.info("------ categories, groupCommands List size :  " + groupCommands.size());
+
+        List<Group> grs = new ArrayList<>();
+
+            for(GroupCommand gc : groupCommands){
+                List<Group> groups = gc.getValues();
+                for(Group group : groups){
+                    log.info("........ group data : " + group.getResult().getNumFound());
+                    //Group gr = new Group();
+
+                    //gr..setGroupText(group.getGroupValue());
+                    //gr.setCount(group.getResult().getNumFound());
+                    //grs.add(gr);
+                }
+            }
+
+            */
+
+        QueryRequest req = new QueryRequest(query);
+        req.setResponseParser(new NoOpResponseParser("json"));
+        req.setPath(solrRequestHandler);
+
+        //------ ?
+        NamedList<Object> response_nl = null;
+
+
+
+        //QueryResponse response = null;// = solr.query(query);
+        //SolrDocumentList results = response.getResults();
+        //-------
+        QueryResponse response = null;
+        try {
+            //response = solrClient.query(query);
+            response_nl = solrClient.request(req);
+            //response=new QueryResponse(response_nl, solrClient);
+            //response = solrClient.query(query);
+            log.info("--------- response solrClient = OK");
+
+        } catch (SolrServerException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        String categoriesGroupSearchResultString = (String)response_nl.get("response");
+
+        SolrDocumentList solrDocumentList;
+        solrDocumentList = (SolrDocumentList) response_nl.get("response");
+        //printResults(solrDocumentList);
+
+        String primaryKey = "groupValue";
+        String highlightField = "";
+        List<SolrDocument> docs = new ArrayList<SolrDocument>();
+        //SolrDocumentList sdl = response.getResults();
+        System.out.println("-----solrDocumentList.size()----: " + solrDocumentList.size());
+
+        for (SolrDocument doc : solrDocumentList) {
+            String pkey = (String) doc.getFieldValue(primaryKey);
+            System.out.println("-----b----: " + pkey);
+            if (response.getHighlighting() != null && highlightField != null) {
+                List<String> hls = response.getHighlighting().get(pkey).get(highlightField);
+                if (hls != null) {
+                    doc.addField("highlight", hls.get(0));
+                }
+            }
+            //doc.removeFields("anno_val");
+            //doc.removeFields("anno_key");
+            //docs.add(doc);
+        }
+
+        //QueryResponse queryResponse = solrClient.query(params);
+        //solrDocumentList = queryResponse.getResults();
+
+        /*
+        QueryResponse queryResponse = null;
+
+        try {
+            queryResponse = req.process(solrClient);
+        } catch (SolrServerException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        */
+
+
+        /*
+        //QueryResponse response2 = solrClient.query(query);
+        GroupResponse groups = queryResponse.getGroupResponse();
+        for (Group group : groups.getValues().get(0).getValues()) {
+            //StrainBean strain = new StrainBean();
+            String colonyId = group.getGroupValue();
+            System.out.println("------- zzz ------- : " + colonyId);
+//            if (colonyId != null && !colonyId.equalsIgnoreCase("null")) {
+//                strain.setColonyId(colonyId);
+//                SolrDocument doc = group.getResult().get(0);
+//                strain.setAllele((String) doc.get(ObservationDTO.ALLELE_SYMBOL));
+//                strain.setGeneSymbol((String) doc.get(ObservationDTO.GENE_SYMBOL));
+//                strain.setMgiAccession((String) doc.get(ObservationDTO.GENE_ACCESSION_ID));
+//                strains.add(strain);
+//            }
+        }
+
+        */
+        /*
+        //Create parser and get the root object
+        JsonParser parser = new JsonParser();
+        JsonObject rootObj = parser.parse(json).getAsJsonObject();
+
+//Get the solr_date array
+        JsonArray solrDateArray = rootObj
+                .getAsJsonObject("facet_counts")
+                .getAsJsonObject("facet_fields")
+                .getAsJsonArray("solr_date");
+        */
+        /*
+        SolrDocumentList results = response.getResults();
+        log.info("--------- results size = " + results.size());
+        //iterate the results
+        for (int i = 0; i < results.size(); ++i) {
+            System.out.println(results.get(i));
+        }
+        */
+
+
+
+
+        /*
+        SolrDocumentList docList = response.getResults();
+        //assertEquals(docList.getNumFound(), 1);
+
+        for (SolrDocument doc : docList) {
+            //assertEquals((String) doc.getFieldValue("id"), "123456");
+            //assertEquals((Double) doc.getFieldValue("price"), (Double) 599.99);
+        }
+        */
+        //------
+
+        /*
+
+        NamedList<Object> response = null;
+        //List<Group> response = null;
+
+        try {
+
+            response = solrClient.request(req);
+        } catch (SolrServerException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //String categoriesGroupSearchResultString = (String)response.get("response");
+
+        */
+
+        /*
+
+        GroupResponse grpR = response.getGroupResponse();
+        List<GroupCommand> groupCommands = gRes.getGroupResponse().getValues();
+        log.info("------ categories, groupCommands List size :  " + groupCommands.size());
+
+
+        NamedList categoriesGroupSearchResultString = (NamedList)response;//.get("groups");
+        */
+        //String categoriesGroupSearchResultString = (String)response.get("response");
+
+        //Map<String, SolrJSONFacet> jsonFacetMap = new HashMap<>();
+        /*
+        if (categoriesGroupSearchResultString != null) {
+            log.info("------------ categoriesGroupSearchResultString != NULL " );
+*/
+            /*
+            Iterator<String> facetIterator = categoriesGroupSearchResultString.iterator();
+            while (facetIterator.hasNext()) {
+                String entry = facetIterator.next();
+                //if (NamedList.class.isAssignableFrom(entry.getValue().getClass())) {
+                    log.info("------------  entry.getKey() = " + entry.toString());
+                    //jsonFacetMap.put(entry.getKey(), resolveJSONFacet((NamedList) entry.getValue()));
+                }
+            */
+            /*
+        }
+        else{
+            log.info("------------ categoriesGroupSearchResultString = NULL " );
+
+        }
+        */
+
+
+        //Need to deserialize json according to generic type passed
+        //ObjectMapper mapper = new ObjectMapper();
+        //JavaType javaType = mapper.getTypeFactory().constructParametricType(SolrSearchResult.class, bodyDocsType);
+
+
+        return categoriesGroupSearchResultString;
+    }
+
     <T extends BodyDocsType> SolrSearchResult<T> sendRequest(Class<T> bodyDocsType, SolrQuery query) {
         try {
 
@@ -75,12 +322,17 @@ public class SolrCommunicator {
             req.setBasicAuthCredentials(username, password);
             req.setPath(solrRequestHandler);
 
+            log.info("......query : " + query);
+            log.info("......solrServerUrl : " + solrServerUrl);
             HttpSolrClient solrClient = new HttpSolrClient.Builder(solrServerUrl).build();
             solrClient.setConnectionTimeout(connectionTimeout);
             solrClient.setSoTimeout(readTimeout);
 
+            log.info("......req : " + req);
+
             NamedList<Object> response = solrClient.request(req);
             String solrSearchResultString = (String)response.get("response");
+
 
             //Need to deserialize json according to generic type passed
             ObjectMapper mapper = new ObjectMapper();
