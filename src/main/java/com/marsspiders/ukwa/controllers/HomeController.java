@@ -34,7 +34,7 @@ public class HomeController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "ukwa/info/{pageName:about|nominate|faq|contact|terms_conditions|privacy|notice_takedown|search_tips|cookies|technical|accessibility_statement|categoriesV3|categoriesV4}", method = GET)
+    @RequestMapping(value = "ukwa/info/{pageName:about|nominate|faq|contact|terms_conditions|privacy|notice_takedown|search_tips|cookies|technical|accessibility_statement}", method = GET)
     public ModelAndView staticInfoPageMapping(@PathVariable("pageName") String pageName) {
         ModelAndView modelAndView = new ModelAndView(pageName);
         modelAndView.addObject("setProtocolToHttps", setProtocolToHttps);

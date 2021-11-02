@@ -17,22 +17,20 @@
 <html>
 <head>
     <title>
-        Categories V2
+        Categories
     </title>
-    <%@include file="head2.jsp" %>
+    <%@include file="head.jsp" %>
 </head>
 
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="50">
+<%@include file="nav.jsp" %>
+<div class="container-fluid">
+    <header>
+        <%@include file="header.jsp" %>
+    </header>
 
-
-<div class="row py-4 px-4">
-    <div class="col">
-        <a href="index" class="btn btn-dark" role="button">Home</a>
-        <a href="collection" class="btn btn-dark" role="button">List all topics and themes</a>
-
-    </div>
-
-</div>
+    <spring:message code='main.menu.categories' var="title"/>
+    <%@include file="title.jsp" %>
 
 
 
@@ -46,30 +44,25 @@
     </div>
 </div>
 
-<div class="container">
+
     <!--Grid row-->
     <div class="row">
-
-
 
     </div>
 
 
-</div>
 
 
 
-<div class="container-fluid  text-center categories-cards">
+<div class="text-center categories-cards">
     <h1 class="text-center">Browse Categories</h1>
 
-    <div class="py-5">
         <div class="container">
-
-        <div class="row justify-content-start hidden-md-up">
-                <div class="col-md-4">
+            <div class="row hidden-md-up justify-content-start">
                     <c:forEach var="category" items="${categoriesHashMap}">
+                        <div class="col-md-4">
 
-                        <div class="card mb-2 col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto top-category-card">
+                        <div id="${category.key}" class="card mb-2 col-lg-4 col-md-4 col-sm-6 container_foto top-category-card">
                             <div class="card-block">
                                 <div class="ver_mas text-center">
                                     <span  class="lnr lnr-eye"></span>
@@ -81,36 +74,18 @@
                                 </article>
                             </div>
                         </div>
+                        </div>
 
                     </c:forEach>
-                </div>
         </div>
 
-            <c:forEach var="category" items="${categoriesHashMap}">
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto top-category-card" id="${category.key}">
-                    <div class="ver_mas text-center">
-                        <span  class="lnr lnr-eye"></span>
-                    </div>
-                    <article class="text-left">
-                        <h2><c:out value="${category.value}"/></h2>
-                        <h4>Description...</h4>
-                    </article>
-                    <img src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.value}"/>">
-                </div>
-
-            </c:forEach>
 
         </div>
-    </div>
 </div>
 
 
 <div class="container category-items" style="display:none;">
     <h2 class="text-center">Browse Category </h2>
-
-
-
 
     <div class="row justify-content-end">
         <!--Grid row-->
@@ -227,7 +202,6 @@
 <div class="container p-4">
     <div class="row">
         <div class="col-12">
-            <h2 class="float-left">Bootstrap 4 Blog List / Grid Layout</h2>
             <div class="btn-group float-right">
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label id="list" class="btn btn-outline-dark active">
@@ -288,10 +262,7 @@
 
 
 
-<a href="index" class="collection-link">
-    Home
-</a>
-
+</div>
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
