@@ -6,6 +6,8 @@ on:
       - '*'
     branches:
       - master
+      - new_feature_categories
+      - dev
 
 jobs:
   push_to_docker_hub:
