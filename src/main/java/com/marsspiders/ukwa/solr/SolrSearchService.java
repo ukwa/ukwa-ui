@@ -18,6 +18,7 @@ import org.apache.solr.common.util.NamedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 //import org.springframework.data.solr.core.query.result.GroupResult;
@@ -360,112 +361,5 @@ public class SolrSearchService {
             }
         }
     }
-
-    public void groupQueryCategories(HttpSolrClient solrClient,String collecionName) throws Exception{
-        // Set query criteria
-
-        /*
-        * http://localhost:8984/solr/collections/select?
-        * group.field=collectionAreaId&
-        * group.limit=10000&
-        * group=true&
-        * indent=on&
-        * q=type:%22collection%22%20AND%20collectionAreaId:[*%20TO%20*]&
-        * rows=10000&
-        * wt=json
-        * */
-
-        SolrQuery query = new SolrQuery();
-        query.set("wt", "json");
-        //query.setQuery("fromId:1234");
-        query.set("group",true);
-        query.set("group.field", "collectionAreaId");
-        try {
-
-            QueryResponse gRes = solrClient.query(collecionName, query);
-            GroupResponse grpR = gRes.getGroupResponse();
-            List<GroupCommand> groupCommands = gRes.getGroupResponse().getValues();
-
-            log.info("------ categories, groupCommands List size :  " + groupCommands.size());
-            //List<GroupResult> grs = new ArrayList<>();
-            /*
-            for(GroupCommand gc : groupCommands){
-                List<Group> groups = gc.getValues();
-                for(Group group : groups){
-                    GroupResult gr = new GroupResult();
-
-                    gr.setGroupText(group.getGroupValue());
-                    gr.setCount(group.getResult().getNumFound());
-                    grs.add(gr);
-                }
-            }
-            */
-
-
-        } catch (SolrServerException | IOException e) {
-            e.printStackTrace();
-            //return Collections.EMPTY_LIST;
-        }
-
-        /*
-        QueryRequest req = new QueryRequest(query);
-        req.setResponseParser(new NoOpResponseParser("json"));
-        //req.setBasicAuthCredentials(username, password);
-        req.setPath("/solr/collections/select");//solrRequestHandler);
-        NamedList<Object> response = solrClient.request(req);
-        //---------------------------
-        */
-
-        /*
-        SolrQuery query = new SolrQuery();
-        //q=type:%22collection%22%20AND%20collectionAreaId:[*%20TO%20*]&rows=10000&wt=json
-        //query.setQuery("q=type:%22collection%22%20AND%20collectionAreaId:[*%20TO%20*]&rows=10000&wt=json");
-        query.setQuery("");
-        // Return column
-        query.setFields("groupValue");
-        // Open group query of group
-        query.setParam(GroupParams.GROUP, true);
-        // Set grouped fields
-        query.setParam(GroupParams.GROUP_FIELD, "collectionAreaId");
-        // Set the number of returned rows
-        query.setRows(50);
-        log.info("------ query " + query.toString());
-        QueryRequest req = new QueryRequest(query);
-        req.setResponseParser(new NoOpResponseParser("json"));
-        //req.setBasicAuthCredentials(username, password);
-        req.setPath("/solr/collections/select");//solrRequestHandler);
-
-        //QueryResponse qr = solrClient.query(collecionName,query);
-
-        NamedList<Object> response = solrClient.request(req);
-        String solrSearchResultString = (String)response.get("response");
-
-        log.info("------ solrSearchResultString " + solrSearchResultString);
-
-        */
-
-        /*
-        GroupResponse groupResponse = qr.getGroupResponse();
-        // list of grouped field types
-        List<GroupCommand> values = groupResponse.getValues();
-        /*
-        for (GroupCommand groupCommand : values) {
-            String groupName = groupCommand.getName();
-            // How many values are included under each category field
-            List<Group> groupValue = groupCommand.getValues();
-            for (Group group : groupValue) {
-                // search result
-                SolrDocumentList result = group.getResult();
-                for (SolrDocument solrDocument : result) {
-                    Object id = solrDocument.getFieldValue("groupValue");
-                    //Object name = solrDocument.getFieldValue("name");
-                    System.out.println("groupName: "+groupName+"; groupValue: "+ id+";" );// name: "+name);
-                }
-            }
-        }
-        */
-
-    }
-
 
 }
