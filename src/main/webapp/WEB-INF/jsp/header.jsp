@@ -52,7 +52,7 @@
                         <a class="nav-link" href="collection" tabindex="0"><spring:message code="main.menu.collections"/></a>
                 </li>
                 <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/category') ? 'active' : ''}" role="menuitem">
-                    <a class="nav-link" href="category" tabindex="0">Categories</a>
+                    <a class="nav-link" href="category" tabindex="0"><spring:message code="main.menu.categories"/></a>
                 </li>
                 <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/info/nominate') ? 'active' : ''}" role="menuitem">
                         <a class="nav-link" href="info/nominate" tabindex="0"><spring:message code="main.menu.nominate"/></a>
