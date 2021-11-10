@@ -70,7 +70,7 @@
                                 <img class="card-img-top img-fluid" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.value}"/>">
                                 <article class="text-left">
                                     <h2><c:out value="${category.value}"/></h2>
-                                    <h4>Description...</h4>
+                                    <h4>Description...<spring:message code="category.title.${category.key}" /> </h4>
                                 </article>
                             </div>
                         </div>
@@ -281,8 +281,41 @@
 
             $('#current_top_coll_image').attr('src','img/categories/'+current_id+'.png');
 
-            $("#current_top_coll_h2").html('test 1');
-            $("#current_top_coll_h4").html('test 2');
+            //var cat_id = $(this).data("pid");
+
+            var text_h2 = 'Title';
+
+            switch(current_id) {
+                case '2940':
+                    text_h2 = "History";
+                    break;
+                case '2941':
+                    text_h2 = "Politics & Government";
+                    break;
+                case '2942':
+                    text_h2 = "Arts & Culture";
+                    break;
+                case '2943':
+                    text_h2 = "Places";
+                    break;
+                case '2944':
+                    text_h2 = "Society & Communities";
+                    break;
+                case '2945':
+                    text_h2 = "Currently Working On";
+                    break;
+                case '2938':
+                    text_h2 = "Science, Technology & Medicine";
+                    break;
+                case '2939':
+                    text_h2 = "Sport & Recreation";
+                    break;
+                default:
+                    text_h2 = ''
+            }
+
+            $("#current_top_coll_h2").html(text_h2);
+            $("#current_top_coll_h4").html('Description');
 //            $("#current_top_coll_h2").html(<c:out value="${categoriesHashMap.get(identifier).value}"/>);
 //            $("#current_top_coll_h4").html(<c:out value="${categoriesHashMap.get(identifier).value}"/>);
 
