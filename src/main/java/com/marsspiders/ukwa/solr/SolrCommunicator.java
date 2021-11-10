@@ -41,8 +41,9 @@ public class SolrCommunicator {
     @Value("${solr.collection.search.request.handler}")
     private String solrCollectionRequestHandler;
 
-    @Value("${solr.collection.search.request.query.handler}")
-    private String solrCollectionQueryRequestHandler;
+    //TODO: Query Handler
+//    @Value("${solr.collection.search.request.query.handler}")
+//    private String solrCollectionQueryRequestHandler;
 
     @Value("${solr.full.text.search.path}")
     private String solrFullTextPath;
