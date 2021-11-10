@@ -14,14 +14,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -352,17 +350,9 @@ public class CategoryController {
 
         //---------------
 
-
-
+        //TODO: remove after dynamic version will be implemented
         String resourceName = "solr_CollectionAreas.json"; // ACT "act_allCollectionAreas.json";
-        Path resourceDirectory = Paths.get("src","test", "data");
-        String absolutePath = resourceDirectory.toFile().getAbsolutePath();
-        InputStream input = null;
-        try {
-            input = new FileInputStream(absolutePath+"/"+resourceName);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        InputStream input = this.getClass().getClassLoader().getResourceAsStream(resourceName);
 
         categories = null;
         try {
