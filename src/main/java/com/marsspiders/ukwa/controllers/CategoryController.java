@@ -31,7 +31,7 @@ import static org.apache.commons.lang3.StringUtils.abbreviate;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller
-@RequestMapping(value = HomeController.PROJECT_NAME + "/category")
+@RequestMapping(value = PROJECT_NAME + "/category")
 public class CategoryController {
     private static final Logger log = LoggerFactory.getLogger(CategoryController.class);
 
