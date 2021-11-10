@@ -1,8 +1,7 @@
 <nav>
   <div class="main-menu-block"></div>
   <div class="main-menu">
-    <div class="main-menu-close" title="<spring:message code="main.menu.close.title" />
-    " tabindex="-1"></div>
+    <div class="main-menu-close" title="<spring:message code="main.menu.close.title" />" tabindex="-1"></div>
   <div class="main-menu-cont"> <a href="index" title="<spring:message code="main.menu.home.title" />" tabindex="-1">
     <div class="main-menu-item border-none">
       <spring:message code="main.menu.home" text="Home" />
