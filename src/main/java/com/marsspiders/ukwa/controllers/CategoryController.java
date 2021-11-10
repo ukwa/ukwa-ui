@@ -50,59 +50,55 @@ public class CategoryController {
     private MessageSource messageSource;
 
 
-    @RequestMapping(value = "/v2", method = GET)
-    public ModelAndView rootCategoriesPage(HttpServletRequest request) {
-
-        Locale locale = getLocale(request);
-
-        //-------------
-        generateRootCollectionCategoriesDTOs(locale);
-        //-------------
-
-
-        List<HashMap<String, String>> listOfMapsOfItemsOfCategories = new ArrayList<>();
-        HashMap<String, String> map = null;
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        //---read from file
-        String resourceName = "solr_CollectionAreas.json"; // ACT "act_allCollectionAreas.json";
-        Path resourceDirectory = Paths.get("src","test", "data");
-        String absolutePath = resourceDirectory.toFile().getAbsolutePath();
-        InputStream input = null;
-        try {
-             input = new FileInputStream(absolutePath+"/"+resourceName);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        Category[] categories = null;
-        try {
-            categories = objectMapper.readValue(input, Category[].class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        List<String> categoriesList = new ArrayList<>();
-        for (Category category : categories)
-        {
-            map = new HashMap<>();
-            categoriesList.add(category.getTitle());
-            if (category.getCollections_ids() != null && category.getCollections_ids().size() > 0)
-            {
-                for (int i=0; i<category.getCollections_ids().size(); i++)
-                    map.put(searchService
-                            .fetchCollectionById(category.getCollections_ids().get(i))
-                            .getResponseBody().getDocuments()
-                            .get(0).getName(), category.getCollections_ids().get(i));
-
-                listOfMapsOfItemsOfCategories.add (map);
-            }
-        }
-        ModelAndView mav = new ModelAndView("categoriesV1");
-        mav.addObject("categoriesList", categoriesList);
-        mav.addObject("listOfMapsOfItemsOfCategories", listOfMapsOfItemsOfCategories);
-        mav.addObject("setProtocolToHttps", setProtocolToHttps);
-
-        return mav;
-    }
+//    @RequestMapping(value = "/v2", method = GET)
+//    public ModelAndView rootCategoriesPage(HttpServletRequest request) {
+//
+//        Locale locale = getLocale(request);
+//
+//        //-------------
+//        generateRootCollectionCategoriesDTOs(locale);
+//        //-------------
+//
+//
+//        List<HashMap<String, String>> listOfMapsOfItemsOfCategories = new ArrayList<>();
+//        HashMap<String, String> map = null;
+//
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        //---read from file
+//        //TODO: remove after dynamic version will be implemented
+//        String resourceName = "solr_CollectionAreas.json"; // ACT "act_allCollectionAreas.json";
+//        InputStream input = this.getClass().getClassLoader().getResourceAsStream(resourceName);
+//
+//
+//        Category[] categories = null;
+//        try {
+//            categories = objectMapper.readValue(input, Category[].class);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        List<String> categoriesList = new ArrayList<>();
+//        for (Category category : categories)
+//        {
+//            map = new HashMap<>();
+//            categoriesList.add(category.getTitle());
+//            if (category.getCollections_ids() != null && category.getCollections_ids().size() > 0)
+//            {
+//                for (int i=0; i<category.getCollections_ids().size(); i++)
+//                    map.put(searchService
+//                            .fetchCollectionById(category.getCollections_ids().get(i))
+//                            .getResponseBody().getDocuments()
+//                            .get(0).getName(), category.getCollections_ids().get(i));
+//
+//                listOfMapsOfItemsOfCategories.add (map);
+//            }
+//        }
+//        ModelAndView mav = new ModelAndView("categoriesV1");
+//        mav.addObject("categoriesList", categoriesList);
+//        mav.addObject("listOfMapsOfItemsOfCategories", listOfMapsOfItemsOfCategories);
+//        mav.addObject("setProtocolToHttps", setProtocolToHttps);
+//
+//        return mav;
+//    }
 
 
     @RequestMapping(value = "", method = GET)
