@@ -16,8 +16,9 @@
 
 <html>
 <head>
+    <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
     <title>
-        Categories
+        <spring:message code="categories.header.title" />
     </title>
     <%@include file="head.jsp" %>
 </head>
@@ -164,8 +165,8 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto list-group-item list-group-item-action category-item-card-frame" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">
 
                     <article class="text-left">
-                        <h2 id="current_top_coll_h2">Politics and Government</h2>
-                        <h4 id="current_top_coll_h4">Category: Politics and Government</h4>
+                        <h2 id="current_top_coll_h2">Category Title</h2>
+                        <h4 id="current_top_coll_h4">Category: Description</h4>
                     </article>
                     <img id="current_top_coll_image" src="img/categories/2941.png" alt="">
                 </div>
@@ -259,13 +260,12 @@
         </div>
     </div>
 </div>
-
-
-
 </div>
+
+
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 
 <script>
     $(document).ready(function(e) {
@@ -285,6 +285,7 @@
 
             var text_h2 = 'Title';
 
+            //TODO: make dynamic
             switch(current_id) {
                 case '2940':
                     text_h2 = "History";
@@ -311,10 +312,21 @@
                     text_h2 = "Sport & Recreation";
                     break;
                 default:
-                    text_h2 = ''
+                    text_h2 = 'Category'
             }
 
             $("#current_top_coll_h2").html(text_h2);
+
+<%--            <c:if test="${ current_id  == '2938'}">--%>
+<%--            $("#current_top_coll_h2").html(<spring:message code='category.title.2938' var="title"/>);--%>
+<%--            </c:if>--%>
+<%--            <c:if test="${ current_id  == '2939'}">--%>
+<%--            $("#current_top_coll_h2").html('Sport & Recreation');--%>
+<%--            </c:if>--%>
+
+
+
+
             $("#current_top_coll_h4").html('Description');
 //            $("#current_top_coll_h2").html(<c:out value="${categoriesHashMap.get(identifier).value}"/>);
 //            $("#current_top_coll_h4").html(<c:out value="${categoriesHashMap.get(identifier).value}"/>);
