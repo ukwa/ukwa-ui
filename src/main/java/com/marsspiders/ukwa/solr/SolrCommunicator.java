@@ -177,7 +177,7 @@ public class SolrCommunicator {
 
         SolrQuery query = new SolrQuery();
         query.setFacet(true);
-        query.addFacetPivotField(new String[]{"collectionAreaId,id,description"});
+        query.addFacetPivotField(new String[]{"collectionAreaId,id,description,name"});
         query.addFilterQuery("collectionAreaId:[* TO *]-collectionAreaId:(2945)"); //exception for collection : working
         query.set("q", "*");
         query.set("facet.limit", "-1");
