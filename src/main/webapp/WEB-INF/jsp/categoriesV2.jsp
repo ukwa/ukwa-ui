@@ -122,19 +122,19 @@
         <div class="col-md-4 right">
             <p class="main-heading-2-bold-redesign category-collection-search-title text-bigger">Topics & Themes Availability</p>
         </div>
-        <div class="col-md-6 category-collection-search-input-container border border-dark rounded">
+        <div class="col-md-4 category-collection-search-input-container border bg-gray2 gray rounded d-inline-flex align-items-center">
             <span class="fas fa-search"></span>
-            <input type="text" name="" value="" class="border-0 category-collection-search-input form-control" placeholder="Search a Theme..." />
+            <input type="text" name="" value="" class="border-0 category-collection-search-input form-control bg-gray2" placeholder="Search for a Topic or Theme..." />
         </div>
     </div>
     </div>
 
 
-    <div class="row">
+    <div class="row padding-top-10">
         <div class="col-4">
             <div class="list-group" id="list-tab" role="tablist">
 
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto category-item-card-frame" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto category-item-card-frame" id="list-category-list" data-toggle="list" href="#list-category-list" role="tab" aria-controls="profile">
 
                     <article class="text-left">
                         <h2 id="current_top_coll_h2">Category Title</h2>
@@ -157,7 +157,7 @@
                         <li class="list-group-item"><div>Collection 4</div></li>
                     </ul>
                 </div>
-                <a class="align-self-end btn btn-lg btn-block btn-primary" href="#">Go Back</a>
+                <a class="align-self-end btn btn-lg btn-block btn-primary category-item-card-frame-button">Go Back</a>
                 <button type="button" class="btn btn-primary">
                     Collections <span class="badge badge-light">9</span>
                     <span class="sr-only">unread messages</span>
@@ -174,13 +174,15 @@
                     <c:forEach var="category" items="${topcategory}" varStatus="theCount2">
                         <div class="tab-pane fade show top-collection-list" id="top-collection-list-${category.key}" role="tabpanel" aria-labelledby="list-home-list">
 
+                            <ul class="list-group">
                             <c:forEach var="collection" items="${category.value}">
-                            <li class="padding-bottom-10 category-collection-search-result-ul">
+                            <li class="padding-bottom-10 category-collection-search-result-ul list-group-item border-0">
                                 <a href="collection/<c:out value="${collection.key}"/>" class="collection-link " >
                                     <c:out value="${collection.value.name}"/>
                                 </a>
                             </li>
                             </c:forEach>
+                            </ul>
 
                         </div>
                     </c:forEach>
@@ -334,7 +336,7 @@
 
         });
 
-        $(".category-item-card-frame").on('click', function(event){
+        $(".category-item-card-frame, .category-item-card-frame-button").on('click', function(event){
             $(".categories-cards").toggle();
             $(".category-items").toggle();
         });
