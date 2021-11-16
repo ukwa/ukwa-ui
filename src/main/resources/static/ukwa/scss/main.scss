@@ -2544,14 +2544,39 @@ footer {
   cursor: pointer;
 }
 
-.badge {
-  height: 100px;
-  width: 100px;
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-  border-radius: 50%;
-  background: black;
+.category-collection-search-result-ul .category-collection-in {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+
+}
+.category-collection-search-result-ul .category-collection-out {
+  opacity:0;
+  animation-name: fadeOut;
+  animation-duration: 1s;
+  height:0;
+  overflow:hidden;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    height:auto;
+    overflow:hidden;
+  }
+
+  to {
+    opacity: 0;
+
+  }
 }
 
 .block-redesign {
@@ -2655,10 +2680,6 @@ footer {
   color: white;
 }
 
-/* Style the active link (or home/logo) */
-.active {
-  color: #333;
-}
 
 .mobile-menu-icon-settings{
   color:#2e6dd9;

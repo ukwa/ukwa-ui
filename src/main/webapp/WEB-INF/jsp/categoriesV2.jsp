@@ -63,25 +63,25 @@
             <div class="row hidden-md-up justify-content-start">
                     <c:forEach var="topLevelCategoriesList" items="${listOfMapsOfItemsOfCategories3}" varStatus="count">
                         <c:forEach var="category" items="${topLevelCategoriesList.entrySet()}" >
-                        <div class="col-md-4">
+                            <div class="col-md-4">
 
-                        <div id="${category.key}" class="card mb-2 col-lg-4 col-md-4 col-sm-6 container_foto top-category-card">
-                            <div class="card-block">
-                                <div class="ver_mas text-center">
-                                    <span  class="lnr lnr-eye"></span>
+                                <div id="${category.key}" class="card mb-2 col-lg-4 col-md-4 col-sm-6 container_foto top-category-card">
+                                    <div class="card-block">
+                                        <div class="ver_mas text-center">
+                                            <span  class="lnr lnr-eye"></span>
+                                        </div>
+                                        <img class="card-img-top img-fluid" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.key}"/>">
+                                        <article class="text-left">
+                                            <h2><spring:message code="category.title.${category.key}" /></h2>
+                                            <h4>Description...<spring:message code="category.title.${category.key}" /> </h4>
+                                        </article>
+                                    </div>
                                 </div>
-                                <img class="card-img-top img-fluid" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.key}"/>">
-                                <article class="text-left">
-                                    <h2><spring:message code="category.title.${category.key}" /></h2>
-                                    <h4>Description...<spring:message code="category.title.${category.key}" /> </h4>
-                                </article>
                             </div>
-                        </div>
-                        </div>
-
-                    </c:forEach>
+                        </c:forEach>
                     </c:forEach>
         </div>
+
 
 
         </div>
@@ -89,83 +89,52 @@
 
 
 <div class="container category-items" style="display:none;">
-    <h2 class="text-center">Browse Category </h2>
+    <div class="blue border-dark" role="group" aria-label="...">
 
-    <div class="row justify-content-end">
-        <!--Grid row-->
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-end">
-
-                <li class="page-item"><a class="page-link" href="#">A</a></li>
-                <li class="page-item"><a class="page-link" href="#">B</a></li>
-
-                <li class="page-item"><a class="page-link" href="#">C</a></li>
-                <li class="page-item"><a class="page-link" href="#">D</a></li>
-                <li class="page-item"><a class="page-link" href="#">E</a></li>
-                <li class="page-item"><a class="page-link" href="#">F</a></li>
-                <li class="page-item"><a class="page-link" href="#">G</a></li>
-                <li class="page-item"><a class="page-link" href="#">H</a></li>
-                <li class="page-item"><a class="page-link" href="#">I</a></li>
-                <li class="page-item"><a class="page-link" href="#">J</a></li>
-                <li class="page-item"><a class="page-link" href="#">K</a></li>
-
-                <li class="page-item"><a class="page-link" href="#">L</a></li>
-                <li class="page-item"><a class="page-link" href="#">M</a></li>
-                <li class="page-item"><a class="page-link" href="#">N</a></li>
-                <li class="page-item"><a class="page-link" href="#">O</a></li>
-                <li class="page-item"><a class="page-link" href="#">P</a></li>
-                <li class="page-item"><a class="page-link" href="#">Q</a></li>
-                <li class="page-item"><a class="page-link" href="#">R</a></li>
-                <li class="page-item"><a class="page-link" href="#">S</a></li>
-                <li class="page-item"><a class="page-link" href="#">T</a></li>
-                <li class="page-item"><a class="page-link" href="#">U</a></li>
-                <li class="page-item"><a class="page-link" href="#">V</a></li>
-                <li class="page-item"><a class="page-link" href="#">W</a></li>
-                <li class="page-item"><a class="page-link" href="#">X</a></li>
-                <li class="page-item"><a class="page-link" href="#">Y</a></li>
-                <li class="page-item"><a class="page-link" href="#">Z</a></li>
-
-            </ul>
-        </nav>
-    </div>
-    <div class="row justify-content-end">
-
-        <!--Grid column-->
-        <div class="col-md-6 mb-4">
-
-            <div class="table-responsive shadow p-3 mb-5 bg-light rounded">
-                <table id="grid2" class="table table-hover sortable">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th data-type="string">Sort by:</th>
-                        <th data-type="string"></i>Name:<i class="fas fa-sort text-right"/></th>
-                        <th data-type="number"></i>Sub collections size<i class="fas fa-sort text-right"/>:</th>
-                    </tr>
-
-                    </thead>
-                </table>
-            </div>
-
+    <div class="row">
+        <div class="col-md-4 right">
+            <p class="category-collection-search-title text-bigger">Alphabetical Search</p>
         </div>
-        <!--Grid column-->
-        <!--Grid column-->
-        <div class="col-md-6 mb-4 align-baseline">
+        <div class="col-md-8 ">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-start">
 
-            <!-- Search form -->
-            <form class="form-inline">
-                <i class="fas fa-search" aria-hidden="true"></i>
-                <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search">
-            </form>
+                    <li class="page-item"><a class="page-link" href="#">B</a></li>
+                    <li class="page-item"><a class="page-link" href="#">C</a></li>
+                    <li class="page-item"><a class="page-link" href="#">D</a></li>
+                    <li class="page-item"><a class="page-link" href="#">E</a></li>
+                    <li class="page-item"><a class="page-link" href="#">O</a></li>
+                    <li class="page-item"><a class="page-link" href="#">P</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Q</a></li>
+                    <li class="page-item"><a class="page-link" href="#">R</a></li>
+                    <li class="page-item"><a class="page-link" href="#">S</a></li>
+                    <li class="page-item"><a class="page-link" href="#">T</a></li>
+                    <li class="page-item"><a class="page-link" href="#">U</a></li>
+                    <li class="page-item"><a class="page-link" href="#">V</a></li>
+                    <li class="page-item"><a class="page-link" href="#">W</a></li>
 
+
+                </ul>
+            </nav>
         </div>
-        <!--Grid column-->
     </div>
+    <div class="row">
+        <div class="col-md-4 right">
+            <p class="main-heading-2-bold-redesign category-collection-search-title text-bigger">Topics & Themes Availability</p>
+        </div>
+        <div class="col-md-6 category-collection-search-input-container border border-dark rounded">
+            <span class="fas fa-search"></span>
+            <input type="text" name="" value="" class="border-0 category-collection-search-input form-control" placeholder="Search a Theme..." />
+        </div>
+    </div>
+    </div>
+
 
     <div class="row">
         <div class="col-4">
             <div class="list-group" id="list-tab" role="tablist">
 
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto list-group-item list-group-item-action category-item-card-frame" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto category-item-card-frame" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">
 
                     <article class="text-left">
                         <h2 id="current_top_coll_h2">Category Title</h2>
@@ -173,6 +142,26 @@
                     </article>
                     <img id="current_top_coll_image" src="img/categories/2941.png" alt="">
                 </div>
+                <p id="current_top_coll_p" class="text-muted small">Last updated 3 days ago</p>
+                <h1 class="card-title pricing-card-title">$5 <small class="text-muted">/ mo</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>20 users included</li>
+                    <li>10 GB of storage</li>
+                </ul>
+                <div class="container p-4">
+                    <h3>Category details</h3>
+                    <ul class="list-group" id="CategoryList2">
+                        <li class="list-group-item"><div>Collection 1</div></li>
+                        <li class="list-group-item"><div>Collection 2</div></li>
+                        <li class="list-group-item"><div>Collection 3</div></li>
+                        <li class="list-group-item"><div>Collection 4</div></li>
+                    </ul>
+                </div>
+                <a class="align-self-end btn btn-lg btn-block btn-primary" href="#">Go Back</a>
+                <button type="button" class="btn btn-primary">
+                    Collections <span class="badge badge-light">9</span>
+                    <span class="sr-only">unread messages</span>
+                </button>
 
 
             </div>
@@ -181,15 +170,13 @@
             <div class="tab-content" id="nav-tabContent">
 
 
-
-
                 <c:forEach var="topcategory" items="${listOfMapsOfItemsOfCategories3}" varStatus="theCount">
                     <c:forEach var="category" items="${topcategory}" varStatus="theCount2">
                         <div class="tab-pane fade show top-collection-list" id="top-collection-list-${category.key}" role="tabpanel" aria-labelledby="list-home-list">
 
                             <c:forEach var="collection" items="${category.value}">
-                            <li class="padding-bottom-10">
-                                <a href="collection/<c:out value="${collection.key}"/>" class="collection-link" >
+                            <li class="padding-bottom-10 category-collection-search-result-ul">
+                                <a href="collection/<c:out value="${collection.key}"/>" class="collection-link " >
                                     <c:out value="${collection.value.name}"/>
                                 </a>
                             </li>
@@ -204,6 +191,7 @@
     </div>
 
 </div>
+
 
 
 
@@ -222,50 +210,39 @@
             </div>
         </div>
     </div>
-    <div id="posts" class="row mt-4">
-        <div class="item col-12 mb-3">
-            <div class="card rounded shadow border-0">
-                <a href="#">
-                    <img class="w-100 d-none" style="height: 300px; object-fit: cover; border-top-right-radius: 5px; border-top-left-radius: 5px;" src="https://images.unsplash.com/photo-1572376313139-2d2c6ff7de20?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=648&q=80" alt="" />
-                </a>
-                <div class="card-body p-3">
-                    <a href="#" class="text-dark"><h4>Blog post title</h4></a>
-                    <p class="text-muted small">By Author Title on January 28, 2020</p>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                    <a class="btn btn-dark" href="#">Read more</a>
-                </div>
+
+
+
+    <c:forEach var="topcategory" items="${listOfMapsOfItemsOfCategories3}" varStatus="theCount">
+        <c:forEach var="category" items="${topcategory}" varStatus="theCount2">
+            <div id="posts" class="row mt-4">
+
+                <c:forEach var="collection" items="${category.value}">
+
+                    <div class="item col-12 mb-3">
+                        <div class="card rounded shadow border-0">
+                            <a href="#">
+                                <img class="w-100 d-none" style="height: 300px; object-fit: cover; border-top-right-radius: 5px; border-top-left-radius: 5px;" src="https://images.unsplash.com/photo-1572376313139-2d2c6ff7de20?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=648&q=80" alt="" />
+                            </a>
+                            <div class="card-body p-3">
+                                <a href="#" class="text-dark"><h4><c:out value="${collection.value.name}"/></h4></a>
+                                <p class="text-muted small">Last updated 3 days ago</p>
+                                <p><c:out value="${collection.value.description}"/></p>
+                                <a href="collection/<c:out value="${collection.key}"/>" class="btn btn-dark" >
+                                    Read more
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </c:forEach>
+
             </div>
-        </div>
-        <div class="item col-12 mb-3">
-            <div class="card rounded shadow border-0">
-                <a href="#">
-                    <img class="w-100 d-none" style="height: 300px; object-fit: cover; border-top-right-radius: 5px; border-top-left-radius: 5px;" src="https://images.unsplash.com/photo-1572376313139-2d2c6ff7de20?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=648&q=80" alt="" />
-                </a>
-                <div class="card-body p-3">
-                    <a href="#" class="text-dark"><h4>Blog post title</h4></a>
-                    <p class="text-muted small">By Author Title on January 28, 2020</p>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                    <a class="btn btn-dark" href="#">Read more</a>
-                </div>
-            </div>
-        </div>
-        <div class="item col-12 mb-3">
-            <div class="card rounded shadow border-0">
-                <a href="#">
-                    <img class="w-100 d-none" style="height: 300px; object-fit: cover; border-top-right-radius: 5px; border-top-left-radius: 5px;" src="https://images.unsplash.com/photo-1572376313139-2d2c6ff7de20?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=648&q=80" alt="" />
-                </a>
-                <div class="card-body p-3">
-                    <a href="#" class="text-dark"><h4>Blog post title</h4></a>
-                    <p class="text-muted small">By Author Title on January 28, 2020</p>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                    <a class="btn btn-dark" href="#">Read more</a>
-                </div>
-            </div>
-        </div>
-    </div>
+        </c:forEach>
+    </c:forEach>
+
+
+
 </div>
 </div>
 
@@ -276,6 +253,10 @@
 
 <script>
     $(document).ready(function(e) {
+
+        $("#CategoryList2 li:even").addClass("disabled").hide()
+        $("#CategoryList2 li > div").addClass("d-flex justify-content-between align-items-center")
+        $("#CategoryList2 li > div").append("<span class='badge badge-primary'>12</span>")
 
         var previous_id = null;
 
@@ -324,6 +305,9 @@
 
             $("#current_top_coll_h2").html(text_h2);
 
+            $("#current_top_coll_p").html("Category has 12 Collections");
+
+
 <%--            <c:if test="${ current_id  == '2938'}">--%>
 <%--            $("#current_top_coll_h2").html(<spring:message code='category.title.2938' var="title"/>);--%>
 <%--            </c:if>--%>
@@ -371,6 +355,22 @@
             $('#posts img').removeClass('d-none');
             $('#list').removeClass('active');
             $('#grid').addClass('active');
+        });
+
+        $('input[type="text"]').keyup(function(){
+            var searchText = $(this).val().toUpperCase();
+            $('.category-collection-search-result-ul > a').each(function(){
+
+                var currentLiText = $(this).text().toUpperCase(),
+                    showCurrentLi = currentLiText.indexOf(searchText) !== -1;
+                //$(this).toggle( showCurrentLi);
+                if(showCurrentLi){
+                    $(this).addClass('category-collection-in').removeClass('category-collection-out');
+                }else{
+                    $(this).addClass('category-collection-out').removeClass('category-collection-in');
+                }
+
+            });
         });
     });
 
