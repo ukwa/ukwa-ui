@@ -104,148 +104,68 @@ public class CategoryController {
     @RequestMapping(value = "", method = GET)
     public ModelAndView rootCategoriesPagev2(HttpServletRequest request) {
         Locale locale = getLocale(request);
-        HashMap<Integer, String> categoriesHashMap = new HashMap<>();
-
-        List<HashMap<String, String>> listOfMapsOfItemsOfCategories = new ArrayList<>();
-
-        HashMap<String, String> map = null;
-
 
         NamedList<List<PivotField>> pivotEntryList = null;
-
-        HashMap<Integer, String> categoriesHashMap2 = new HashMap<>();
-        List <String> topLevelCategories = new ArrayList<>();
-
-        HashMap<String, Object> test = new HashMap<>();
         HashMap<String, CollectionDTO> mapCollectionDTO = null;// new HashMap<>();
-        List<CollectionDTO> listCollectionDTOs = new ArrayList<>();
-
-        List<HashMap<String, List<CollectionDTO>>> listOfMapsOfItemsOfCategories2 = new ArrayList<>();
-
         List<HashMap<String, HashMap<String, CollectionDTO>>> listOfMapsOfItemsOfCategories3 = new ArrayList<>();
+        HashMap<String, HashMap<String, CollectionDTO>> map3 = null;
 
         try {
-            log.info("------ pivots categories, BEFORE  ");
             pivotEntryList = categoryService.pivotQueryCategories();
-            log.info("------ pivots categories, AFTER  ");
-
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        Category[] categories = null;
-
-        //TODO: stream
-        /*
-        try {
-            categories = objectMapper.readValue(pivotEntryList, Category[].class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
-
-
-        CollectionDTO collectionDTO;
-        //---------------
+        //collection areas
         for (Map.Entry<String, List<PivotField>> pivotEntry : pivotEntryList) {
-            //--------- 7 collection areas
-            //pivotEntryList
-            System.out.println("-------- TOP PIVOT : FOR START ");
-            System.out.println("Key: " + pivotEntry.getKey());
-            //System.out.println("Value DESCRIPTION : " + pivotEntry.getValue().toString());
-
-
             Iterator iterator;  //Iterator<PivotField>
-            Iterator iterator2;  //Iterator<PivotField>
-            int nr = 0;
             int indx_deep = 0;
-
-
-            System.out.println("Value --- DESCRIPTION 2 size : " + pivotEntry.getValue().size()); // 7 !
-            //System.out.println("Value DESCRIPTION --- TOP PIVOT iteration END  : " );
-
 
             for (int y=0; y < pivotEntry.getValue().size();y++)
             {
-
-                System.out.println("-------- SUB PIVOT : FOR START ");
-                System.out.println("-------- PIVOT fieldValue = " + pivotEntry.getValue().get(y).getValue());
-
                 if (pivotEntry.getValue().get(y).getPivot() != null){
-                    System.out.println("---------- PIVOT subField getCount = " + pivotEntry.getValue().get(y).getCount());
-
-                    //map = new HashMap<>();
-                    //categoriesHashMap.put();//category.getKey(),category.getTitle());
-                    //TODO: Top Level ID + names
-                    //categoriesHashMap2.put(Integer.parseInt(pivotField.getValue()), "");
-                    //List <String>
-                    topLevelCategories.add(pivotEntry.getValue().get(y).getValue().toString());
-
-
                     mapCollectionDTO = new HashMap<>();
-
 
                     indx_deep = 0;
                     iterator = pivotEntry.getValue().get(y).getPivot().stream().iterator();
                     while (iterator.hasNext()) {
 
-                        mapCollectionDTO.put(
-                                pivotEntry.getValue().get(y).getPivot().get(indx_deep).getValue().toString(),
-                                new CollectionDTO(
+                        if (pivotEntry.getValue().get(y).getPivot().get(indx_deep).getPivot()!=null){
+                            mapCollectionDTO.put(
+                                    //add only collectionArea ID, title cannot be extracted from SOLR query
+                                    pivotEntry.getValue().get(y).getPivot().get(indx_deep).getValue().toString(),
+                                    new CollectionDTO(
 
-                                        pivotEntry.getValue().get(y).getPivot().get(indx_deep).getValue().toString(),
-                                        //TODO: ensure data from ACT is correct - no collections without names etc.
-                                        pivotEntry.getValue().get(y).getPivot().get(indx_deep).getPivot()==null ?
-                                                "Collection has no name":
-                                                pivotEntry.getValue().
-                                                        get(y).getPivot().
-                                                        get(indx_deep).getPivot().
-                                                        get(0).getPivot().
-                                                        get(0).getValue().toString(),
-                                        iterator.next().toString().substring(11),
-                                        "full description...",
-                                        "alt Image"));
-
-
-                        indx_deep++;
+                                            pivotEntry.getValue().get(y).getPivot().get(indx_deep).getValue().toString(),
+                                            pivotEntry.getValue().
+                                                            get(y).getPivot().
+                                                            get(indx_deep).getPivot().
+                                                            get(0).getPivot().
+                                                            get(0).getValue().toString(),
+                                            iterator.next().toString().substring(11),
+                                            "full description...",
+                                            "alt Image"));
+                            indx_deep++;
+                        }
+                        else
+                            iterator.next();
 
                     }
                     //add all collections that belong to category
                     // && TODO: sub-collections? - Need to concentrate on lists from ACT in JSON
-
-
-                }
-                else{
-                    System.out.println("-------- PIVOT subField = NULL ");
                 }
 
                 //List<HashMap<String, HashMap<String, CollectionDTO>>>
-                HashMap<String, HashMap<String, CollectionDTO>> map3 = new HashMap<>();
+                map3 = new HashMap<>();
                 map3.put(pivotEntry.getValue().get(y).getValue().toString(), mapCollectionDTO);
 
+                //Final add map of
                 listOfMapsOfItemsOfCategories3.add(map3);
             }
 
-            System.out.println("Value DESCRIPTION --- TOP PIVOT iteration END  : " );
-
-
-//
         }
 
-        //---------------
-        System.out.println("-------- topMap List 3 size: " + listOfMapsOfItemsOfCategories3.size());
-
-        //----------- test
-        listOfMapsOfItemsOfCategories3.forEach(topMap ->{
-            topMap.entrySet().forEach(subMap ->{
-                System.out.println("-------- submap getValue size : " + subMap.getValue().size() +", "+" getKey : " + subMap.getKey());
-                subMap.getValue().entrySet().forEach(subSubMap -> {
-                    System.out.println("-------- subSubMap getValue ID  : " + subSubMap.getValue().getId() +", Description : " + subSubMap.getValue().getDescription()+", Name : " + subSubMap.getValue().getName());
-                });
-            });
-        });
-
+        /*
         //------------------------
 
         //TODO: remove after dynamic version will be implemented
@@ -264,10 +184,12 @@ public class CategoryController {
         for (Category category : categories)
         {
             map = new HashMap<>();
-            categoriesHashMap.put(category.getKey(),category.getTitle());
+            //categoriesHashMap.put(category.getKey(),category.getTitle());
 
+            // ------ List<String> collections_ids
             if (category.getCollections_ids() != null && category.getCollections_ids().size() > 0)
             {
+                // create map of Collections
                 for (int i=0; i<category.getCollections_ids().size(); i++)
                     map.put(searchService
                             .fetchCollectionById(category.getCollections_ids().get(i))
@@ -277,9 +199,9 @@ public class CategoryController {
                 listOfMapsOfItemsOfCategories.add (map);
             }
         }
+        */
         ModelAndView mav = new ModelAndView("categoriesV2");
-        mav.addObject("categoriesHashMap", categoriesHashMap);
-        mav.addObject("listOfMapsOfItemsOfCategories", listOfMapsOfItemsOfCategories);
+        mav.addObject("listOfMapsOfItemsOfCategories3", listOfMapsOfItemsOfCategories3);
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
 
         return mav;

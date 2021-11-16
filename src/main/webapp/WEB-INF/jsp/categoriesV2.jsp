@@ -10,8 +10,9 @@
 <c:if test="${setProtocolToHttps}">
     <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
 </c:if>
-<jsp:useBean id="categoriesHashMap" scope="request" type="java.util.HashMap<java.lang.Integer, java.lang.String>"/>
-<jsp:useBean id="listOfMapsOfItemsOfCategories" scope="request" type="java.util.List<java.util.HashMap<java.lang.String, java.lang.String>>"/>
+<jsp:useBean id="listOfMapsOfItemsOfCategories3" scope="request" type="java.util.List<java.util.HashMap<java.lang.String, java.util.HashMap<java.lang.String, com.marsspiders.ukwa.controllers.data.CollectionDTO>>>"/>
+
+
 
 
 <html>
@@ -60,7 +61,8 @@
 
         <div class="container">
             <div class="row hidden-md-up justify-content-start">
-                    <c:forEach var="category" items="${categoriesHashMap}">
+                    <c:forEach var="topLevelCategoriesList" items="${listOfMapsOfItemsOfCategories3}" varStatus="count">
+                        <c:forEach var="category" items="${topLevelCategoriesList.entrySet()}" >
                         <div class="col-md-4">
 
                         <div id="${category.key}" class="card mb-2 col-lg-4 col-md-4 col-sm-6 container_foto top-category-card">
@@ -68,15 +70,16 @@
                                 <div class="ver_mas text-center">
                                     <span  class="lnr lnr-eye"></span>
                                 </div>
-                                <img class="card-img-top img-fluid" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.value}"/>">
+                                <img class="card-img-top img-fluid" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.key}"/>">
                                 <article class="text-left">
-                                    <h2><c:out value="${category.value}"/></h2>
+                                    <h2><spring:message code="category.title.${category.key}" /></h2>
                                     <h4>Description...<spring:message code="category.title.${category.key}" /> </h4>
                                 </article>
                             </div>
                         </div>
                         </div>
 
+                    </c:forEach>
                     </c:forEach>
         </div>
 
@@ -176,20 +179,24 @@
         </div>
         <div class="col-8">
             <div class="tab-content" id="nav-tabContent">
-                <c:forEach var="category" items="${categoriesHashMap}" varStatus="theCount">
 
-                    <div class="tab-pane fade show top-collection-list" id="top-collection-list-${category.key}" role="tabpanel" aria-labelledby="list-home-list">
 
-                        <c:forEach var="entry" items="${listOfMapsOfItemsOfCategories.get(theCount.count-1)}">
+
+
+                <c:forEach var="topcategory" items="${listOfMapsOfItemsOfCategories3}" varStatus="theCount">
+                    <c:forEach var="category" items="${topcategory}" varStatus="theCount2">
+                        <div class="tab-pane fade show top-collection-list" id="top-collection-list-${category.key}" role="tabpanel" aria-labelledby="list-home-list">
+
+                            <c:forEach var="collection" items="${category.value}">
                             <li class="padding-bottom-10">
-                                <a href="collection/<c:out value="${entry.value}"/>" class="collection-link" >
-                                    <c:out value="${entry.key}"/>
+                                <a href="collection/<c:out value="${collection.key}"/>" class="collection-link" >
+                                    <c:out value="${collection.value.name}"/>
                                 </a>
                             </li>
-                        </c:forEach>
+                            </c:forEach>
 
-                    </div>
-
+                        </div>
+                    </c:forEach>
                 </c:forEach>
 
             </div>
