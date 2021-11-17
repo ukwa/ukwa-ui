@@ -66,7 +66,7 @@
                                         <img class="card-img-top img-fluid" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.key}"/>">
                                         <article class="text-left">
                                             <h2><spring:message code="category.title.${category.key}" /></h2>
-                                            <h4>Description...<spring:message code="category.title.${category.key}" /> </h4>
+                                            <h4>Current status: available</h4>
                                         </article>
                                     </div>
                                 </div>
@@ -139,12 +139,14 @@
                 <h1 id="cat-coll-count" class="card-title pricing-card-title">0 coll<small class="text-muted">/ cat</small></h1>
                 <ul class="list-unstyled mt-3 mb-4">
                     <li>238 sites included</li>
+                    <li>138 sites - open</li>
+                    <li>100 sites - reading rooms</li>
                     <li>45 active connections</li>
                 </ul>
                 <div class="container">
                     <h3>Category stats</h3>
                     <ul class="list-group" id="CategoryList2">
-                        <li class="list-group-item d-inline-flex justify-content-between align-items-center"><div>Other Collections: </div><span class='align-items-end badge badge-primary'>2</span></li>
+                        <li class="list-group-item d-inline-flex justify-content-between align-items-center"><div>Common Collections: </div><span class='align-items-end badge badge-primary'>2</span></li>
                         <li class="list-group-item d-inline-flex justify-content-between align-items-center"><div>Shared Collections: </div><span class='align-items-end badge badge-primary'>3</span></li>
                     </ul>
                 </div>
@@ -170,7 +172,7 @@
                                         <c:out value="${collection.value.name}"/>
                                     </a>
                                 </div>
-                                <div class="category-collection-search-result-ul align-items-end">&nbsp;<span class='badge badge-primary'><c:out value="${random.nextInt(100)}"/></span></div>
+                                <div class="category-collection-search-result-ul align-items-end">&nbsp;<span class='badge badge-primary'><c:out value="${random.nextInt(100)}"/></span>&nbsp;<span class='badge badge-secondary'><c:out value="${random.nextInt(100)}"/></span></div>
                                 <div class="category-collection-search-result-ul align-items-end">&nbsp;<i class="fa fa-info-circle category-search-popover" aria-hidden="true" data-toggle="popover" title="Popover title" data-content="<c:out value="${collection.value.description}"/>"></i></div>
                             </li>
                             </c:forEach>
