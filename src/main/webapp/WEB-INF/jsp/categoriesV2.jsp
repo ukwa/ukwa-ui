@@ -285,11 +285,11 @@
                     break;
                 case '2941':
                     text_h2 = "Politics & Government";
-                    arrayIndex = 7;
+                    arrayIndex = 4;
                     break;
                 case '2942':
                     text_h2 = "Arts & Culture";
-                    arrayIndex = 4;
+                    arrayIndex = 5; //22
                     break;
                 case '2943':
                     text_h2 = "Places";
@@ -298,7 +298,7 @@
                     break;
                 case '2944':
                     text_h2 = "Society & Communities";
-                    arrayIndex = 7;
+                    arrayIndex = 7; //ok 31!
 
                     break;
                 case '2945':
