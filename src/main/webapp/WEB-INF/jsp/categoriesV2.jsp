@@ -16,7 +16,6 @@
 
 <jsp:useBean id="collCountList" class="java.util.ArrayList"/>
 <c:set var="noUse" value="${collCountList.add('YourThing')}"/>
-<c:out value="${collCountList}"/>
 
 <html>
 <head>
@@ -282,24 +281,24 @@
             switch(current_id) {
                 case '2940':
                     text_h2 = "History";
-                    arrayIndex = 3;
+                    arrayIndex = 3; //ok
                     break;
                 case '2941':
                     text_h2 = "Politics & Government";
-                    arrayIndex = 2;
+                    arrayIndex = 7;
                     break;
                 case '2942':
                     text_h2 = "Arts & Culture";
-                    arrayIndex = 1;
+                    arrayIndex = 4;
                     break;
                 case '2943':
                     text_h2 = "Places";
-                    arrayIndex = 6;
+                    arrayIndex = 6; //ok
 
                     break;
                 case '2944':
                     text_h2 = "Society & Communities";
-                    arrayIndex = 5;
+                    arrayIndex = 7;
 
                     break;
                 case '2945':
@@ -309,12 +308,12 @@
                     break;
                 case '2938':
                     text_h2 = "Science, Technology & Medicine";
-                    arrayIndex = 7;
+                    arrayIndex = 1; //ok
 
                     break;
                 case '2939':
                     text_h2 = "Sport & Recreation";
-                    arrayIndex = 2;
+                    arrayIndex = 2; //ok
 
                     break;
                 default:
