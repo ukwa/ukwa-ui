@@ -114,7 +114,6 @@
                     <li class="alphabetic-page-item"><a class="page-link" >V</a></li>
                     <li class="alphabetic-page-item"><a class="page-link" >W</a></li>
 
-
                 </ul>
             </nav>
         </div>
@@ -198,7 +197,7 @@
 
 
 
-<%-- List - Gri d--%>
+<%-- List - Grid--%>
 <div class="container p-4 category-item-grid" style="display:none;">
     <div class="row">
         <div class="col-12">
@@ -242,8 +241,6 @@
             </div>
         </c:forEach>
     </c:forEach>
-
-
 
 </div>
 </div>
@@ -344,6 +341,7 @@
         $(".category-item-card-frame, .category-item-card-frame-button, .page-link").on('click', function(event){
             $(".categories-cards").toggle();
             $(".category-items").toggle();
+            $(".category-item-grid").toggle();
         });
 
         $('#list').click(function(event){
