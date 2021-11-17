@@ -143,29 +143,26 @@
                     <img id="current_top_coll_image" src="img/categories/2941.png" alt="">
                 </div>
                 <p id="current_top_coll_p" class="text-muted small">Last updated 3 days ago</p>
-                <h1 class="card-title pricing-card-title">$5 <small class="text-muted">/ mo</small></h1>
+                <h1 class="card-title pricing-card-title">12 coll<small class="text-muted">/ cat</small></h1>
                 <ul class="list-unstyled mt-3 mb-4">
-                    <li>20 users included</li>
-                    <li>10 GB of storage</li>
+                    <li>238 sites included</li>
+                    <li>45 active connections</li>
                 </ul>
                 <div class="container">
-                    <h3>Category details</h3>
+                    <h3>Category stats</h3>
                     <ul class="list-group" id="CategoryList2">
-                        <li class="list-group-item"><div>Collection 1</div></li>
-                        <li class="list-group-item"><div>Collection 2</div></li>
-                        <li class="list-group-item"><div>Collection 3</div></li>
-                        <li class="list-group-item"><div>Collection 4</div></li>
+                        <li class="list-group-item"><div>Common Collections</div></li>
+                        <li class="list-group-item"><div>Shared Collection</div></li>
                     </ul>
                 </div>
                 <a class="align-self-end btn btn-lg btn-block btn-primary category-item-card-frame-button">Go Back</a>
 
-
-
             </div>
         </div>
-        <div class="col-8">
-            <div class="tab-content" id="nav-tabContent">
 
+        <%--   START: list of collection for spacific category     --%>
+        <div class="col-6">
+            <div class="tab-content" id="nav-tabContent">
 
                 <c:forEach var="topcategory" items="${listOfMapsOfItemsOfCategories3}" varStatus="theCount">
                     <c:forEach var="category" items="${topcategory}" varStatus="theCount2">
@@ -173,13 +170,14 @@
 
                             <ul class="list-group">
                             <c:forEach var="collection" items="${category.value}">
-                            <li class="padding-bottom-10  list-group-item border-0 d-inline-flex">
+                            <li class="padding-bottom-10  list-group-item border-0 d-inline-flex justify-content-between align-items-center">
                                 <div class="category-collection-search-result-ul">
                                     <a href="collection/<c:out value="${collection.key}"/>" class="collection-link ">
                                         <c:out value="${collection.value.name}"/>
                                     </a>
                                 </div>
-                                <div class="category-collection-search-result-ul">&nbsp;<i class="fa fa-info-circle category-search-popover" aria-hidden="true" data-toggle="popover" title="Popover title" data-content="<c:out value="${collection.value.description}"/>"></i></div>
+                                <div><span class='badge badge-primary'>12</span></div>
+                                <div class="category-collection-search-result-ul align-items-end">&nbsp;<i class="fa fa-info-circle category-search-popover" aria-hidden="true" data-toggle="popover" title="Popover title" data-content="<c:out value="${collection.value.description}"/>"></i></div>
                             </li>
                             </c:forEach>
                             </ul>
@@ -190,6 +188,8 @@
 
             </div>
         </div>
+        <%--   END: list of collection for spacific category     --%>
+
     </div>
 
 </div>
@@ -197,6 +197,7 @@
 
 
 
+<%-- List - Gri d--%>
 <div class="container p-4 category-item-grid" style="display:none;">
     <div class="row">
         <div class="col-12">
@@ -212,9 +213,7 @@
             </div>
         </div>
     </div>
-
-
-
+    <%-- List - Gri d--%>
     <c:forEach var="topcategory" items="${listOfMapsOfItemsOfCategories3}" varStatus="theCount">
         <c:forEach var="category" items="${topcategory}" varStatus="theCount2">
             <div id="top-collection-grid-list-${category.key}" class="row mt-4">
@@ -261,10 +260,13 @@
                 container: 'body'
             })
 
+        <c:set var="categoryListSize" value="${listOfMapsOfItemsOfCategories3.get(2).entrySet().stream().count()}" />
+
 
         $("#CategoryList2 li:even").addClass("disabled").hide()
         $("#CategoryList2 li > div").addClass("d-flex justify-content-between align-items-center")
-        $("#CategoryList2 li > div").append("<span class='badge badge-primary'>12</span>")
+        $("#CategoryList2 li > div").append("<span class='badge badge-primary'>${categoryListSize}</span>")
+
 
         var previous_id = null;
 
@@ -310,7 +312,7 @@
             }
 
             $("#current_top_coll_h2").html(text_h2);
-            $("#current_top_coll_p").html("Category has 12 Collections");
+            $("#current_top_coll_p").html("Last updated 3 days ago");
 
 <%--            <c:if test="${ current_id  == '2938'}">--%>
 <%--            $("#current_top_coll_h2").html(<spring:message code='category.title.2938' var="title"/>);--%>
