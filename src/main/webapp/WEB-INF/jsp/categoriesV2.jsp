@@ -12,6 +12,7 @@
 </c:if>
 <jsp:useBean id="listOfMapsOfItemsOfCategories3" scope="request" type="java.util.List<java.util.HashMap<java.lang.String, java.util.HashMap<java.lang.String, com.marsspiders.ukwa.controllers.data.CollectionDTO>>>"/>
 
+<jsp:useBean id="random" class="java.util.Random" scope="application" />
 
 
 
@@ -99,19 +100,19 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-start">
 
-                    <li class="page-item"><a class="page-link" href="#">B</a></li>
-                    <li class="page-item"><a class="page-link" href="#">C</a></li>
-                    <li class="page-item"><a class="page-link" href="#">D</a></li>
-                    <li class="page-item"><a class="page-link" href="#">E</a></li>
-                    <li class="page-item"><a class="page-link" href="#">O</a></li>
-                    <li class="page-item"><a class="page-link" href="#">P</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Q</a></li>
-                    <li class="page-item"><a class="page-link" href="#">R</a></li>
-                    <li class="page-item"><a class="page-link" href="#">S</a></li>
-                    <li class="page-item"><a class="page-link" href="#">T</a></li>
-                    <li class="page-item"><a class="page-link" href="#">U</a></li>
-                    <li class="page-item"><a class="page-link" href="#">V</a></li>
-                    <li class="page-item"><a class="page-link" href="#">W</a></li>
+                    <li class="alphabetic-page-item"><a class="page-link" >B</a></li>
+                    <li class="alphabetic-page-item"><a class="page-link" >C</a></li>
+                    <li class="alphabetic-page-item"><a class="page-link" >D</a></li>
+                    <li class="alphabetic-page-item"><a class="page-link" >E</a></li>
+                    <li class="alphabetic-page-item"><a class="page-link" >O</a></li>
+                    <li class="alphabetic-page-item"><a class="page-link" >P</a></li>
+                    <li class="alphabetic-page-item"><a class="page-link" >Q</a></li>
+                    <li class="alphabetic-page-item"><a class="page-link" >R</a></li>
+                    <li class="alphabetic-page-item"><a class="page-link" >S</a></li>
+                    <li class="alphabetic-page-item"><a class="page-link" >T</a></li>
+                    <li class="alphabetic-page-item"><a class="page-link" >U</a></li>
+                    <li class="alphabetic-page-item"><a class="page-link" >V</a></li>
+                    <li class="alphabetic-page-item"><a class="page-link" >W</a></li>
 
 
                 </ul>
@@ -176,7 +177,7 @@
                                         <c:out value="${collection.value.name}"/>
                                     </a>
                                 </div>
-                                <div><span class='badge badge-primary'>12</span></div>
+                                <div class="category-collection-search-result-ul align-items-end">&nbsp;<span class='badge badge-primary'><c:out value="${random.nextInt(100)}"/></span></div>
                                 <div class="category-collection-search-result-ul align-items-end">&nbsp;<i class="fa fa-info-circle category-search-popover" aria-hidden="true" data-toggle="popover" title="Popover title" data-content="<c:out value="${collection.value.description}"/>"></i></div>
                             </li>
                             </c:forEach>
@@ -340,7 +341,7 @@
             previous_id = current_id;
         });
 
-        $(".category-item-card-frame, .category-item-card-frame-button").on('click', function(event){
+        $(".category-item-card-frame, .category-item-card-frame-button, .page-link").on('click', function(event){
             $(".categories-cards").toggle();
             $(".category-items").toggle();
         });
@@ -364,7 +365,7 @@
 
         $('input[type="text"]').keyup(function(){
             var searchText = $(this).val().toUpperCase();
-            $('.category-collection-search-result-ul > a, .category-collection-search-result-ul > i').each(function(){
+            $('.category-collection-search-result-ul > a, .category-collection-search-result-ul > i, .category-collection-search-result-ul > span').each(function(){
                 var currentLiText = $(this).text().toUpperCase(),
                     showCurrentLi = currentLiText.indexOf(searchText) !== -1;
                 if(showCurrentLi){
