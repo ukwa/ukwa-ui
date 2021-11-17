@@ -14,7 +14,9 @@
 
 <jsp:useBean id="random" class="java.util.Random" scope="application" />
 
-
+<jsp:useBean id="collCountList" class="java.util.ArrayList"/>
+<c:set var="noUse" value="${collCountList.add('YourThing')}"/>
+<c:out value="${collCountList}"/>
 
 <html>
 <head>
@@ -47,16 +49,7 @@
     </div>
 </div>
 
-
-    <!--Grid row-->
-    <div class="row">
-
-    </div>
-
-
-
-
-
+    <%-- category top level cards --%>
 <div class="text-center categories-cards">
     <h1 class="text-center">Browse Categories</h1>
 
@@ -87,8 +80,9 @@
 
         </div>
 </div>
+    <%-- category top level cards --%>
 
-
+<%-- category items --%>
 <div class="container category-items" style="display:none;">
     <div class="blue border-dark" role="group" aria-label="...">
 
@@ -97,7 +91,7 @@
             <p class="category-collection-search-title text-bigger">Alphabetical Search</p>
         </div>
         <div class="col-md-8 ">
-            <nav aria-label="Page navigation example">
+            <nav aria-label="Search within category navigation">
                 <ul class="pagination justify-content-start">
 
                     <li class="alphabetic-page-item"><a class="page-link" >B</a></li>
@@ -143,7 +137,7 @@
                     <img id="current_top_coll_image" src="img/categories/2941.png" alt="">
                 </div>
                 <p id="current_top_coll_p" class="text-muted small">Last updated 3 days ago</p>
-                <h1 class="card-title pricing-card-title">12 coll<small class="text-muted">/ cat</small></h1>
+                <h1 id="cat-coll-count" class="card-title pricing-card-title">0 coll<small class="text-muted">/ cat</small></h1>
                 <ul class="list-unstyled mt-3 mb-4">
                     <li>238 sites included</li>
                     <li>45 active connections</li>
@@ -151,8 +145,8 @@
                 <div class="container">
                     <h3>Category stats</h3>
                     <ul class="list-group" id="CategoryList2">
-                        <li class="list-group-item"><div>Common Collections</div></li>
-                        <li class="list-group-item"><div>Shared Collection</div></li>
+                        <li class="list-group-item d-inline-flex justify-content-between align-items-center"><div>Other Collections: </div><span class='align-items-end badge badge-primary'>2</span></li>
+                        <li class="list-group-item d-inline-flex justify-content-between align-items-center"><div>Shared Collections: </div><span class='align-items-end badge badge-primary'>3</span></li>
                     </ul>
                 </div>
                 <a class="align-self-end btn btn-lg btn-block btn-primary category-item-card-frame-button">Go Back</a>
@@ -166,6 +160,7 @@
 
                 <c:forEach var="topcategory" items="${listOfMapsOfItemsOfCategories3}" varStatus="theCount">
                     <c:forEach var="category" items="${topcategory}" varStatus="theCount2">
+                        <c:set var="noUse" value="${collCountList.add(category.value.entrySet().size())}"/>
                         <div class="tab-pane fade show top-collection-list" id="top-collection-list-${category.key}" role="tabpanel" aria-labelledby="list-home-list">
 
                             <ul class="list-group">
@@ -193,6 +188,7 @@
     </div>
 
 </div>
+    <%-- category items --%>
 
 
 
@@ -213,7 +209,6 @@
             </div>
         </div>
     </div>
-    <%-- List - Gri d--%>
     <c:forEach var="topcategory" items="${listOfMapsOfItemsOfCategories3}" varStatus="theCount">
         <c:forEach var="category" items="${topcategory}" varStatus="theCount2">
             <div id="top-collection-grid-list-${category.key}" class="row mt-4">
@@ -243,7 +238,9 @@
     </c:forEach>
 
 </div>
+
 </div>
+<%--container-fluid--%>
 
 
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
@@ -258,15 +255,17 @@
                 container: 'body'
             })
 
-        <c:set var="categoryListSize" value="${listOfMapsOfItemsOfCategories3.get(2).entrySet().stream().count()}" />
+        //<c:set var="categoryListSize" value="${collCountList.get(2)}" />
+        var array = new Array();
+        <c:forEach items="${collCountList}" var="item">
+        array.push("${item}");
+        </c:forEach>
 
 
-        $("#CategoryList2 li:even").addClass("disabled").hide()
-        $("#CategoryList2 li > div").addClass("d-flex justify-content-between align-items-center")
-        $("#CategoryList2 li > div").append("<span class='badge badge-primary'>${categoryListSize}</span>")
 
 
         var previous_id = null;
+        var arrayIndex = 0;
 
         $(".top-category-card").on('click', function(event){
 
@@ -283,42 +282,62 @@
             switch(current_id) {
                 case '2940':
                     text_h2 = "History";
+                    arrayIndex = 3;
                     break;
                 case '2941':
                     text_h2 = "Politics & Government";
+                    arrayIndex = 2;
                     break;
                 case '2942':
                     text_h2 = "Arts & Culture";
+                    arrayIndex = 1;
                     break;
                 case '2943':
                     text_h2 = "Places";
+                    arrayIndex = 6;
+
                     break;
                 case '2944':
                     text_h2 = "Society & Communities";
+                    arrayIndex = 5;
+
                     break;
                 case '2945':
                     text_h2 = "Currently Working On";
+                    arrayIndex = 0;
+
                     break;
                 case '2938':
                     text_h2 = "Science, Technology & Medicine";
+                    arrayIndex = 7;
+
                     break;
                 case '2939':
                     text_h2 = "Sport & Recreation";
+                    arrayIndex = 2;
+
                     break;
                 default:
                     text_h2 = 'Category'
+                    arrayIndex = 0;
+
             }
 
             $("#current_top_coll_h2").html(text_h2);
             $("#current_top_coll_p").html("Last updated 3 days ago");
 
-<%--            <c:if test="${ current_id  == '2938'}">--%>
+            var commonColl = 3;
+
+
+            <%--            <c:if test="${ current_id  == '2938'}">--%>
 <%--            $("#current_top_coll_h2").html(<spring:message code='category.title.2938' var="title"/>);--%>
 <%--            </c:if>--%>
 <%--            <c:if test="${ current_id  == '2939'}">--%>
 <%--            $("#current_top_coll_h2").html('Sport & Recreation');--%>
 <%--            </c:if>--%>
 
+
+            $("#cat-coll-count").html(array[arrayIndex] + ' coll<small class="text-muted">/ cat</small>');
 
             $("#current_top_coll_h4").html('Description');
 //            $("#current_top_coll_h2").html(<c:out value="${categoriesHashMap.get(identifier).value}"/>);
@@ -327,8 +346,8 @@
             $('#top-collection-list-'+previous_id).removeClass("active");
             $('#top-collection-list-'+current_id).addClass("active");
 
-            $('#top-collection-grid-list-'+previous_id).removeClass("active");
-            $('#top-collection-grid-list-'+current_id).addClass("active");
+            // $('#top-collection-grid-list-'+previous_id).removeClass("active");
+            // $('#top-collection-grid-list-'+current_id).addClass("active");
 
 
             $(".categories-cards").toggle();
