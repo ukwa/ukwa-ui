@@ -148,7 +148,7 @@
                     <li>20 users included</li>
                     <li>10 GB of storage</li>
                 </ul>
-                <div class="container p-4">
+                <div class="container">
                     <h3>Category details</h3>
                     <ul class="list-group" id="CategoryList2">
                         <li class="list-group-item"><div>Collection 1</div></li>
@@ -158,10 +158,7 @@
                     </ul>
                 </div>
                 <a class="align-self-end btn btn-lg btn-block btn-primary category-item-card-frame-button">Go Back</a>
-                <button type="button" class="btn btn-primary">
-                    Collections <span class="badge badge-light">9</span>
-                    <span class="sr-only">unread messages</span>
-                </button>
+
 
 
             </div>
@@ -176,10 +173,13 @@
 
                             <ul class="list-group">
                             <c:forEach var="collection" items="${category.value}">
-                            <li class="padding-bottom-10 category-collection-search-result-ul list-group-item border-0">
-                                <a href="collection/<c:out value="${collection.key}"/>" class="collection-link " >
-                                    <c:out value="${collection.value.name}"/>
-                                </a>
+                            <li class="padding-bottom-10  list-group-item border-0 d-inline-flex">
+                                <div class="category-collection-search-result-ul">
+                                    <a href="collection/<c:out value="${collection.key}"/>" class="collection-link ">
+                                        <c:out value="${collection.value.name}"/>
+                                    </a>
+                                </div>
+                                <div class="category-collection-search-result-ul">&nbsp;<i class="fa fa-info-circle category-search-popover" aria-hidden="true" data-toggle="popover" title="Popover title" data-content="<c:out value="${collection.value.description}"/>"></i></div>
                             </li>
                             </c:forEach>
                             </ul>
@@ -197,7 +197,7 @@
 
 
 
-<div class="container p-4">
+<div class="container p-4 category-item-grid" style="display:none;">
     <div class="row">
         <div class="col-12">
             <div class="btn-group float-right">
@@ -217,7 +217,7 @@
 
     <c:forEach var="topcategory" items="${listOfMapsOfItemsOfCategories3}" varStatus="theCount">
         <c:forEach var="category" items="${topcategory}" varStatus="theCount2">
-            <div id="posts" class="row mt-4">
+            <div id="top-collection-grid-list-${category.key}" class="row mt-4">
 
                 <c:forEach var="collection" items="${category.value}">
 
@@ -256,6 +256,12 @@
 <script>
     $(document).ready(function(e) {
 
+
+            $('.category-search-popover').popover({
+                container: 'body'
+            })
+
+
         $("#CategoryList2 li:even").addClass("disabled").hide()
         $("#CategoryList2 li > div").addClass("d-flex justify-content-between align-items-center")
         $("#CategoryList2 li > div").append("<span class='badge badge-primary'>12</span>")
@@ -270,8 +276,6 @@
             console.log('current_id = ', current_id);
 
             $('#current_top_coll_image').attr('src','img/categories/'+current_id+'.png');
-
-            //var cat_id = $(this).data("pid");
 
             var text_h2 = 'Title';
 
@@ -306,9 +310,7 @@
             }
 
             $("#current_top_coll_h2").html(text_h2);
-
             $("#current_top_coll_p").html("Category has 12 Collections");
-
 
 <%--            <c:if test="${ current_id  == '2938'}">--%>
 <%--            $("#current_top_coll_h2").html(<spring:message code='category.title.2938' var="title"/>);--%>
@@ -318,8 +320,6 @@
 <%--            </c:if>--%>
 
 
-
-
             $("#current_top_coll_h4").html('Description');
 //            $("#current_top_coll_h2").html(<c:out value="${categoriesHashMap.get(identifier).value}"/>);
 //            $("#current_top_coll_h4").html(<c:out value="${categoriesHashMap.get(identifier).value}"/>);
@@ -327,20 +327,21 @@
             $('#top-collection-list-'+previous_id).removeClass("active");
             $('#top-collection-list-'+current_id).addClass("active");
 
-            //$("#top-collection-list-"+event.target.id).removeClass("active");
-            //$("#top-collection-list-2941").addClass("active");
+            $('#top-collection-grid-list-'+previous_id).removeClass("active");
+            $('#top-collection-grid-list-'+current_id).addClass("active");
+
+
             $(".categories-cards").toggle();
             $(".category-items").toggle();
+            $(".category-item-grid").toggle();
 
             previous_id = current_id;
-
         });
 
         $(".category-item-card-frame, .category-item-card-frame-button").on('click', function(event){
             $(".categories-cards").toggle();
             $(".category-items").toggle();
         });
-
 
         $('#list').click(function(event){
             event.preventDefault();
@@ -361,26 +362,19 @@
 
         $('input[type="text"]').keyup(function(){
             var searchText = $(this).val().toUpperCase();
-            $('.category-collection-search-result-ul > a').each(function(){
-
+            $('.category-collection-search-result-ul > a, .category-collection-search-result-ul > i').each(function(){
                 var currentLiText = $(this).text().toUpperCase(),
                     showCurrentLi = currentLiText.indexOf(searchText) !== -1;
-                //$(this).toggle( showCurrentLi);
                 if(showCurrentLi){
                     $(this).addClass('category-collection-in').removeClass('category-collection-out');
                 }else{
                     $(this).addClass('category-collection-out').removeClass('category-collection-in');
                 }
-
             });
         });
     });
 
-
-
 </script>
 
 </body>
-
-
 </html>
