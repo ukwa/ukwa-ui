@@ -166,14 +166,16 @@
 
                             <ul class="list-group">
                             <c:forEach var="collection" items="${category.value}">
-                            <li class="padding-bottom-10  list-group-item border-0 d-inline-flex justify-content-between align-items-center">
-                                <div class="category-collection-search-result-ul">
+                            <li class="padding-bottom-10  list-group-item border-0 ">
+                                <div class="row border-bottom">
+                                <div class="col-8 category-collection-search-result-ul">
                                     <a href="collection/<c:out value="${collection.key}"/>" class="collection-link ">
                                         <c:out value="${collection.value.name}"/>
                                     </a>
                                 </div>
-                                <div class="category-collection-search-result-ul align-items-end">&nbsp;<span class='badge badge-primary'><c:out value="${random.nextInt(100)}"/></span>&nbsp;<span class='badge badge-secondary'><c:out value="${random.nextInt(100)}"/></span></div>
-                                <div class="category-collection-search-result-ul align-items-end">&nbsp;<i class="fa fa-info-circle category-search-popover" aria-hidden="true" data-toggle="popover" title="Popover title" data-content="<c:out value="${collection.value.description}"/>"></i></div>
+                                <div class="col-3 category-collection-search-result-ul"><span class='badge badge-primary'><c:out value="${random.nextInt(1000)}"/></span>&nbsp;<span class='badge badge-secondary'><c:out value="${random.nextInt(1000)}"/></span></div>
+                                <div class="col-1 category-collection-search-result-ul"><i class="fa fa-info-circle category-search-popover" aria-hidden="true" data-toggle="popover" title="Collection Description" data-content="<c:out value="${collection.value.description}"/>"></i></div>
+                                </div>
                             </li>
                             </c:forEach>
                             </ul>
