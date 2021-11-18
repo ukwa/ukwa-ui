@@ -81,110 +81,165 @@
 </div>
     <%-- category top level cards --%>
 
-<%-- category items --%>
+
+
+<%-- category items - collections --%>
 <div class="container category-items" style="display:none;">
     <div class="blue border-dark" role="group" aria-label="...">
 
-    <div class="row">
-        <div class="col-md-4 right">
-            <p class="category-collection-search-title text-bigger">Alphabetical Search</p>
-        </div>
-        <div class="col-md-8 ">
-            <nav aria-label="Search within category navigation">
-                <ul class="pagination justify-content-start">
+        <div class="row bg-dark py-3">
+            <div class="col-4">
+                <div class="list-group" id="list-tab" role="tablist">
 
-                    <li class="alphabetic-page-item"><a class="page-link" >B</a></li>
-                    <li class="alphabetic-page-item"><a class="page-link" >C</a></li>
-                    <li class="alphabetic-page-item"><a class="page-link" >D</a></li>
-                    <li class="alphabetic-page-item"><a class="page-link" >E</a></li>
-                    <li class="alphabetic-page-item"><a class="page-link" >O</a></li>
-                    <li class="alphabetic-page-item"><a class="page-link" >P</a></li>
-                    <li class="alphabetic-page-item"><a class="page-link" >Q</a></li>
-                    <li class="alphabetic-page-item"><a class="page-link" >R</a></li>
-                    <li class="alphabetic-page-item"><a class="page-link" >S</a></li>
-                    <li class="alphabetic-page-item"><a class="page-link" >T</a></li>
-                    <li class="alphabetic-page-item"><a class="page-link" >U</a></li>
-                    <li class="alphabetic-page-item"><a class="page-link" >V</a></li>
-                    <li class="alphabetic-page-item"><a class="page-link" >W</a></li>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto category-item-card-frame" id="list-category-list" data-toggle="list" href="#list-category-list" role="tab" aria-controls="profile">
 
-                </ul>
-            </nav>
+                        <article class="text-left">
+                            <h2 id="current_top_coll_h2">Category Title</h2>
+                            <h4 id="current_top_coll_h4">Category: Description</h4>
+                        </article>
+                        <img id="current_top_coll_image" src="img/categories/2941.png" alt="">
+
+
+                    </div>
+                    <%--        search field --%>
+                    <div class="category-search-search-field py-3 px-4 mx-1 bg-dark">
+                        <div class="row py-3">
+                            <div class="col">
+                                <div class="text-big bold white center">Search Topics</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col d-inline-flex align-items-center">
+                                <span class="fas fa-search white"></span>
+                                <input type="text" name="" value="" class=" category-collection-search-input form-control rounded-0 rounded-pill text-big" placeholder="Search for a Topic or Theme..." />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col py-3">
+                                <p id="current_top_coll_p" class="text-muted small">Last updated 3 days ago</p>
+                                <h1 id="cat-coll-count" class="card-title pricing-card-title white">0 coll<small class="text-muted">/ cat</small></h1>
+                                <ul class="list-unstyled mt-3 mb-4 white">
+                                    <li>238 sites included</li>
+                                    <li>138 sites - open</li>
+                                    <li>100 sites - reading rooms</li>
+                                    <li>45 active connections</li>
+                                </ul>
+                                <div class="container white">
+                                    <h3>Category stats</h3>
+                                    <ul class="list-group bg-dark" id="CategoryList2">
+                                        <li class="list-group-item d-inline-flex justify-content-between align-items-center white bg-dark"><div>Common Collections: </div><span class='align-items-end badge badge-primary'>2</span></li>
+                                        <li class="list-group-item d-inline-flex justify-content-between align-items-center white bg-dark"><div>Shared Collections: </div><span class='align-items-end badge badge-primary'>3</span></li>
+                                    </ul>
+                                </div>
+                                <a class="align-self-end btn btn-lg btn-block btn-secondary category-item-card-frame-button rounded-pill white">Back to Categories</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="col-8">
+                <%-- search by alphabet && MINI menu--%>
+                <div class="category-search-searchbar p-2 my-1 bg-dark">
+                    <div class="row py-2 px-3">
+                        <div class="col">
+                            <div class="text-bigger white">Discover Topics by category</div>
+                        </div>
+                    </div>
+                    <div class="row py-2 px-3">
+                        <div class="col">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-secondary rounded-pill">Science</button>
+                                <button type="button" class="btn btn-secondary rounded-pill">Sport</button>
+                                <button type="button" class="btn btn-secondary rounded-pill">History</button>
+                                <button type="button" class="btn btn-secondary rounded-pill">Politics</button>
+                                <button type="button" class="btn btn-secondary rounded-pill">Arts</button>
+                                <button type="button" class="btn btn-secondary rounded-pill">Places</button>
+                                <button type="button" class="btn btn-secondary rounded-pill">Society</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row py-3 px-3">
+                        <div class="col">
+                            <div class="text-bigger white">Discover Topics alphabetically</div>
+                        </div>
+                    </div>
+                    <div class="row px-3">
+                        <div class="col">
+                            <nav aria-label="Search within category navigation">
+                                <ul class="pagination justify-content-start">
+                                    <li class="alphabetic-page-item"><a class="page-link" >B</a></li>
+                                    <li class="alphabetic-page-item"><a class="page-link" >C</a></li>
+                                    <li class="alphabetic-page-item"><a class="page-link" >D</a></li>
+                                    <li class="alphabetic-page-item"><a class="page-link" >E</a></li>
+                                    <li class="alphabetic-page-item"><a class="page-link" >O</a></li>
+                                    <li class="alphabetic-page-item"><a class="page-link" >P</a></li>
+                                    <li class="alphabetic-page-item"><a class="page-link" >Q</a></li>
+                                    <li class="alphabetic-page-item"><a class="page-link" >R</a></li>
+                                    <li class="alphabetic-page-item"><a class="page-link" >S</a></li>
+                                    <li class="alphabetic-page-item"><a class="page-link" >T</a></li>
+                                    <li class="alphabetic-page-item"><a class="page-link" >U</a></li>
+                                    <li class="alphabetic-page-item"><a class="page-link" >V</a></li>
+                                    <li class="alphabetic-page-item"><a class="page-link" >W</a></li>
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="tab-content" id="nav-tabContent">
+
+                        <c:forEach var="topcategory" items="${listOfMapsOfItemsOfCategories3}" varStatus="theCount">
+                            <c:forEach var="category" items="${topcategory}" varStatus="theCount2">
+                                <c:set var="noUse" value="${collCountList.add(category.value.entrySet().size())}"/>
+                                <div class="tab-pane fade show top-collection-list" id="top-collection-list-${category.key}" role="tabpanel" aria-labelledby="list-home-list">
+
+                                    <ul class="list-group">
+                                        <c:forEach var="collection" items="${category.value}">
+                                            <li class="padding-bottom-10  list-group-item border-0 ">
+                                                <div class="row border-bottom">
+                                                    <div class="col-8 category-collection-search-result-ul">
+                                                        <a href="collection/<c:out value="${collection.key}"/>" class="collection-link ">
+                                                            <c:out value="${collection.value.name}"/>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-3 category-collection-search-result-ul"><span class='badge badge-primary'><c:out value="${random.nextInt(1000)}"/></span>&nbsp;<span class='badge badge-secondary'><c:out value="${random.nextInt(1000)}"/></span></div>
+                                                    <div class="col-1 category-collection-search-result-ul"><i class="fa fa-info-circle category-search-popover" aria-hidden="true" data-toggle="popover" title="Collection Description" data-content="<c:out value="${collection.value.description}"/>"></i></div>
+                                                </div>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
+
+                                </div>
+                            </c:forEach>
+                        </c:forEach>
+
+                    </div>
+
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 right">
-            <p class="main-heading-2-bold-redesign category-collection-search-title text-bigger">Topics & Themes Availability</p>
-        </div>
-        <div class="col-md-4 category-collection-search-input-container border bg-gray2 gray rounded d-inline-flex align-items-center">
-            <span class="fas fa-search"></span>
-            <input type="text" name="" value="" class="border-0 category-collection-search-input form-control bg-gray2" placeholder="Search for a Topic or Theme..." />
-        </div>
-    </div>
+
+
+
+
     </div>
 
+
+<%-- search within category --%>
 
     <div class="row padding-top-10">
         <div class="col-4">
-            <div class="list-group" id="list-tab" role="tablist">
 
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto category-item-card-frame" id="list-category-list" data-toggle="list" href="#list-category-list" role="tab" aria-controls="profile">
-
-                    <article class="text-left">
-                        <h2 id="current_top_coll_h2">Category Title</h2>
-                        <h4 id="current_top_coll_h4">Category: Description</h4>
-                    </article>
-                    <img id="current_top_coll_image" src="img/categories/2941.png" alt="">
-                </div>
-                <p id="current_top_coll_p" class="text-muted small">Last updated 3 days ago</p>
-                <h1 id="cat-coll-count" class="card-title pricing-card-title">0 coll<small class="text-muted">/ cat</small></h1>
-                <ul class="list-unstyled mt-3 mb-4">
-                    <li>238 sites included</li>
-                    <li>138 sites - open</li>
-                    <li>100 sites - reading rooms</li>
-                    <li>45 active connections</li>
-                </ul>
-                <div class="container">
-                    <h3>Category stats</h3>
-                    <ul class="list-group" id="CategoryList2">
-                        <li class="list-group-item d-inline-flex justify-content-between align-items-center"><div>Common Collections: </div><span class='align-items-end badge badge-primary'>2</span></li>
-                        <li class="list-group-item d-inline-flex justify-content-between align-items-center"><div>Shared Collections: </div><span class='align-items-end badge badge-primary'>3</span></li>
-                    </ul>
-                </div>
-                <a class="align-self-end btn btn-lg btn-block btn-primary category-item-card-frame-button">Go Back</a>
-
-            </div>
         </div>
 
         <%--   START: list of collection for spacific category     --%>
         <div class="col-6">
-            <div class="tab-content" id="nav-tabContent">
-
-                <c:forEach var="topcategory" items="${listOfMapsOfItemsOfCategories3}" varStatus="theCount">
-                    <c:forEach var="category" items="${topcategory}" varStatus="theCount2">
-                        <c:set var="noUse" value="${collCountList.add(category.value.entrySet().size())}"/>
-                        <div class="tab-pane fade show top-collection-list" id="top-collection-list-${category.key}" role="tabpanel" aria-labelledby="list-home-list">
-
-                            <ul class="list-group">
-                            <c:forEach var="collection" items="${category.value}">
-                            <li class="padding-bottom-10  list-group-item border-0 ">
-                                <div class="row border-bottom">
-                                <div class="col-8 category-collection-search-result-ul">
-                                    <a href="collection/<c:out value="${collection.key}"/>" class="collection-link ">
-                                        <c:out value="${collection.value.name}"/>
-                                    </a>
-                                </div>
-                                <div class="col-3 category-collection-search-result-ul"><span class='badge badge-primary'><c:out value="${random.nextInt(1000)}"/></span>&nbsp;<span class='badge badge-secondary'><c:out value="${random.nextInt(1000)}"/></span></div>
-                                <div class="col-1 category-collection-search-result-ul"><i class="fa fa-info-circle category-search-popover" aria-hidden="true" data-toggle="popover" title="Collection Description" data-content="<c:out value="${collection.value.description}"/>"></i></div>
-                                </div>
-                            </li>
-                            </c:forEach>
-                            </ul>
-
-                        </div>
-                    </c:forEach>
-                </c:forEach>
-
-            </div>
         </div>
         <%--   END: list of collection for spacific category     --%>
 
