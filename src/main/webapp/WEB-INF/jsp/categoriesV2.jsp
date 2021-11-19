@@ -102,7 +102,7 @@
 
                     </div>
                     <%--        search field --%>
-                    <div class="category-search-search-field py-3 px-4 mx-1 bg-dark">
+                    <div class="category-search-search-field py-3 px-1 mx-1 bg-dark">
                         <div class="row py-3">
                             <div class="col">
                                 <div class="text-big bold white center">Search Topics</div>
@@ -115,7 +115,7 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row align-content-center">
                             <div class="col py-3">
                                 <p id="current_top_coll_p" class="text-muted small">Last updated 3 days ago</p>
                                 <h1 id="cat-coll-count" class="card-title pricing-card-title white">0 coll<small class="text-muted">/ cat</small></h1>
