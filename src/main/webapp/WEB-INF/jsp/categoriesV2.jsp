@@ -110,8 +110,8 @@
                         </div>
                         <div class="row">
                             <div class="col d-inline-flex align-items-center">
-                                <span class="fas fa-search white"></span>
-                                <input type="text" name="" value="" class=" category-collection-search-input form-control rounded-0 rounded-pill text-big" placeholder="Search for a Topic or Theme..." />
+                                <span class="fas fa-search fa-2x white"></span>
+                                <input type="text" name="" value="" class=" category-collection-search-input form-control rounded border border-light mb-2 rounded-pill text-big" placeholder="Search for a Topic" />
                             </div>
                         </div>
 
@@ -127,7 +127,7 @@
                                 </ul>
                                 <div class="container white">
                                     <h3>Category stats</h3>
-                                    <ul class="list-group bg-dark" id="CategoryList2">
+                                    <ul class="list-group bg-dark rounded border border-light mb-2" id="CategoryList2">
                                         <li class="list-group-item d-inline-flex justify-content-between align-items-center white bg-dark"><div>Common Collections: </div><span class='align-items-end badge badge-primary'>2</span></li>
                                         <li class="list-group-item d-inline-flex justify-content-between align-items-center white bg-dark"><div>Shared Collections: </div><span class='align-items-end badge badge-primary'>3</span></li>
                                     </ul>
@@ -251,52 +251,6 @@
 
 
 
-<%-- List - Grid--%>
-<div class="container p-4 category-item-grid" style="display:none;">
-    <div class="row">
-        <div class="col-12">
-            <div class="btn-group float-right">
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label id="list" class="btn btn-outline-dark active">
-                        <input type="radio" name="layout" id="layout1" checked> List
-                    </label>
-                    <label id="grid" class="btn btn-outline-dark">
-                        <input type="radio" name="layout" id="layout2"> Grid
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div>
-    <c:forEach var="topcategory" items="${listOfMapsOfItemsOfCategories3}" varStatus="theCount">
-        <c:forEach var="category" items="${topcategory}" varStatus="theCount2">
-            <div id="top-collection-grid-list-${category.key}" class="row mt-4">
-
-                <c:forEach var="collection" items="${category.value}">
-
-                    <div class="item col-12 mb-3">
-                        <div class="card rounded shadow border-0">
-                            <a href="#">
-                                <img class="w-100 d-none" style="height: 300px; object-fit: cover; border-top-right-radius: 5px; border-top-left-radius: 5px;" src="https://images.unsplash.com/photo-1572376313139-2d2c6ff7de20?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=648&q=80" alt="" />
-                            </a>
-                            <div class="card-body p-3">
-                                <a href="#" class="text-dark"><h4><c:out value="${collection.value.name}"/></h4></a>
-                                <p class="text-muted small">Last updated 3 days ago</p>
-                                <p><c:out value="${collection.value.description}"/></p>
-                                <a href="collection/<c:out value="${collection.key}"/>" class="btn btn-dark" >
-                                    Read more
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </c:forEach>
-
-            </div>
-        </c:forEach>
-    </c:forEach>
-
-</div>
-
 </div>
 <%--container-fluid--%>
 
@@ -410,7 +364,6 @@
 
             $(".categories-cards").toggle();
             $(".category-items").toggle();
-            $(".category-item-grid").toggle();
 
             previous_id = current_id;
         });
@@ -418,25 +371,8 @@
         $(".category-item-card-frame, .category-item-card-frame-button, .page-link").on('click', function(event){
             $(".categories-cards").toggle();
             $(".category-items").toggle();
-            $(".category-item-grid").toggle();
         });
 
-        $('#list').click(function(event){
-            event.preventDefault();
-            $('#posts .item').addClass('col-12');
-            $('#posts img').addClass('d-none');
-            $('#grid').removeClass('active');
-            $('#list').addClass('active');
-        });
-
-        $('#grid').click(function(event){
-            event.preventDefault();
-            $('#posts .item').removeClass('col-12');
-            $('#posts .item').addClass('col-4');
-            $('#posts img').removeClass('d-none');
-            $('#list').removeClass('active');
-            $('#grid').addClass('active');
-        });
 
         $('input[type="text"]').keyup(function(){
             var searchText = $(this).val().toUpperCase();
