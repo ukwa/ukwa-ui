@@ -200,17 +200,17 @@
                                 <c:set var="noUse" value="${collCountList.add(category.value.entrySet().size())}"/>
                                 <div class="tab-pane fade show top-collection-list" id="top-collection-list-${category.key}" role="tabpanel" aria-labelledby="list-home-list">
 
-                                    <ul class="list-group">
+                                    <ul class="list-group bg-dark">
                                         <c:forEach var="collection" items="${category.value}">
-                                            <li class="padding-bottom-10  list-group-item border-0 ">
+                                            <li class="padding-bottom-10  list-group-item border-0 bg-gray">
                                                 <div class="row border-bottom">
                                                     <div class="col-8 category-collection-search-result-ul">
-                                                        <a href="collection/<c:out value="${collection.key}"/>" class="collection-link ">
+                                                        <a href="collection/<c:out value="${collection.key}"/>" class="collection-link">
                                                             <c:out value="${collection.value.name}"/>
                                                         </a>
                                                     </div>
                                                     <div class="col-3 category-collection-search-result-ul"><span class='badge badge-primary'><c:out value="${random.nextInt(1000)}"/></span>&nbsp;<span class='badge badge-secondary'><c:out value="${random.nextInt(1000)}"/></span></div>
-                                                    <div class="col-1 category-collection-search-result-ul"><i class="fa fa-info-circle category-search-popover" aria-hidden="true" data-toggle="popover" title="Collection Description" data-content="<c:out value="${collection.value.description}"/>"></i></div>
+                                                    <div class="col-1 category-collection-search-result-ul"><i class="fa fa-info-circle fa-2x text-primary category-search-popover" aria-hidden="true" data-toggle="popover" title="Collection Description" data-content="<c:out value="${collection.value.description}"/>"></i></div>
                                                 </div>
                                             </li>
                                         </c:forEach>
