@@ -110,8 +110,8 @@
                         </div>
                         <div class="row">
                             <div class="col d-inline-flex align-items-center">
-                                <span class="fas fa-search fa-2x white"></span>
-                                <input type="text" name="" value="" class=" category-collection-search-input form-control rounded border border-light mb-2 rounded-pill text-big" placeholder="Search for a Topic" />
+                                <span class="fas fa-search fa-2x red"></span>
+                                <input type="text" name="" value="" class=" category-collection-search-input mb-2 text-big bg-dark gray" placeholder="Search for a Topic" style="border-radius: 1rem; margin-left: 0.5rem;  padding-left: 1rem;border-color: red; -webkit-box-shadow: inset 0 5px 5px rgba(0, 0, 0, .075), 0 0 6px darkred; box-shadow: inset 0 5px 1px rgba(0, 0, 0, .075), 0 0 16px darkred;"/>
                             </div>
                         </div>
 
