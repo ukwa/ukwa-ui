@@ -11,13 +11,14 @@
     <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
 </c:if>
 <jsp:useBean id="listOfMapsOfItemsOfCategories3" scope="request" type="java.util.List<java.util.HashMap<java.lang.String, java.util.HashMap<java.lang.String, com.marsspiders.ukwa.controllers.data.CollectionDTO>>>"/>
+<jsp:useBean id="alphabetSet" scope="request"  type="java.util.HashSet<java.lang.Character>"/>
+<jsp:useBean id="listOfAlphabetical" scope="request"  type="java.util.List<java.util.HashSet<java.lang.Character>>"/>
 
 <jsp:useBean id="random" class="java.util.Random" scope="application" />
-
 <jsp:useBean id="collCountList" class="java.util.ArrayList"/>
-<c:set var="noUse" value="${collCountList.add('YourThing')}"/>
 
-<html>
+
+<html lang="${locale}">
 <head>
     <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
     <title>
@@ -26,7 +27,7 @@
     <%@include file="head.jsp" %>
 </head>
 
-<body data-spy="scroll" data-target="#myScrollspy" data-offset="50">
+<body>
 <%@include file="nav.jsp" %>
 <div class="container-fluid">
     <header>
@@ -47,6 +48,7 @@
         <img title="coll.list" alt="coll.list" class="collections-display" id="btn_list" src="img/icons/icn_list.png" tabindex="0"/>
     </div>
 </div>
+
 
     <%-- category top level cards --%>
 <div class="text-center categories-cards">
@@ -111,7 +113,7 @@
                         <div class="row">
                             <div class="col d-inline-flex align-items-center">
                                 <span class="fas fa-search fa-2x red"></span>
-                                <input type="text" name="" value="" class=" category-collection-search-input mb-2 text-big bg-dark gray" placeholder="Search for a Topic" style="border-radius: 1rem; margin-left: 0.5rem;  padding-left: 1rem;border-color: red; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 5px darkred; box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 2px red;"/>
+                                <input id="cat-search-input" type="text" name="" value="" class=" category-collection-search-input mb-2 text-big bg-dark gray" placeholder="Search for a Topic" style="margin-left: 0.5rem;  padding-left: 1rem;border-color: red; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 5px darkred; box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 2px red;  border-radius: 20px; -moz-border-radius: 20px; -webkit-border-radius: 20px; overflow: hidden; -webkit-backface-visibility: hidden; -webkit-transform: translate3d(0, 0, 0);"/>
                             </div>
                         </div>
 
@@ -173,19 +175,11 @@
                         <div class="col">
                             <nav aria-label="Search within category navigation">
                                 <ul class="pagination justify-content-start">
-                                    <li class="alphabetic-page-item"><a class="page-link" >B</a></li>
-                                    <li class="alphabetic-page-item"><a class="page-link" >C</a></li>
-                                    <li class="alphabetic-page-item"><a class="page-link" >D</a></li>
-                                    <li class="alphabetic-page-item"><a class="page-link" >E</a></li>
-                                    <li class="alphabetic-page-item"><a class="page-link" >O</a></li>
-                                    <li class="alphabetic-page-item"><a class="page-link" >P</a></li>
-                                    <li class="alphabetic-page-item"><a class="page-link" >Q</a></li>
-                                    <li class="alphabetic-page-item"><a class="page-link" >R</a></li>
-                                    <li class="alphabetic-page-item"><a class="page-link" >S</a></li>
-                                    <li class="alphabetic-page-item"><a class="page-link" >T</a></li>
-                                    <li class="alphabetic-page-item"><a class="page-link" >U</a></li>
-                                    <li class="alphabetic-page-item"><a class="page-link" >V</a></li>
-                                    <li class="alphabetic-page-item"><a class="page-link" >W</a></li>
+
+                                    <c:forEach var="alphabetItem" items="${alphabetSet}" varStatus="theCountAlphab">
+                                        <li class="alphabetic-page-item"><a class="page-link">
+                                            <c:out value="${alphabetItem.charValue()}"/></a></li>
+                                    </c:forEach>
 
                                 </ul>
                             </nav>
@@ -200,7 +194,7 @@
                                 <c:set var="noUse" value="${collCountList.add(category.value.entrySet().size())}"/>
                                 <div class="tab-pane fade show top-collection-list" id="top-collection-list-${category.key}" role="tabpanel" aria-labelledby="list-home-list">
 
-                                    <ul class="list-group bg-dark">
+                                    <ul id="cat-search-items" class="list-group bg-dark">
                                         <c:forEach var="collection" items="${category.value}">
                                             <li class="padding-bottom-10  list-group-item border-0 bg-gray">
                                                 <div class="row border-bottom">
@@ -250,9 +244,13 @@
 
 
 
-
+    <footer class="footer-content">
+        <%@include file="footer.jsp" %>
+    </footer>
 </div>
 <%--container-fluid--%>
+
+
 
 
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
@@ -261,7 +259,17 @@
 
 <script>
     $(document).ready(function(e) {
+        var $menuItems = $('.header-menu-item');
+        $menuItems.removeClass('active');
+        $("#headermenu_categories").addClass('active');
 
+
+        $("#cat-search-input").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#cat-search-items li").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
 
             $('.category-search-popover').popover({
                 container: 'body'
@@ -374,18 +382,7 @@
         });
 
 
-        $('input[type="text"]').keyup(function(){
-            var searchText = $(this).val().toUpperCase();
-            $('.category-collection-search-result-ul > a, .category-collection-search-result-ul > i, .category-collection-search-result-ul > span').each(function(){
-                var currentLiText = $(this).text().toUpperCase(),
-                    showCurrentLi = currentLiText.indexOf(searchText) !== -1;
-                if(showCurrentLi){
-                    $(this).addClass('category-collection-in').removeClass('category-collection-out');
-                }else{
-                    $(this).addClass('category-collection-out').removeClass('category-collection-in');
-                }
-            });
-        });
+
     });
 
 </script>

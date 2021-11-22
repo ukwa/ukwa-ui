@@ -14,6 +14,11 @@
             </a>
         </li>
         <li class="list-group-item">
+            <a href="category" title="<spring:message code="footer.categories.title" />" role="menuitem">
+                <spring:message code="footer.categories" />
+            </a>
+        </li>
+        <li class="list-group-item">
             <a href="info/nominate" title="<spring:message code="footer.nominate.title" />" role="menuitem">
                 <spring:message code="footer.nominate" />
             </a>

@@ -108,7 +108,13 @@ public class CategoryController {
         NamedList<List<PivotField>> pivotEntryList = null;
         HashMap<String, CollectionDTO> mapCollectionDTO = null;// new HashMap<>();
         List<HashMap<String, HashMap<String, CollectionDTO>>> listOfMapsOfItemsOfCategories3 = new ArrayList<>();
+        //Set<Character>
         HashMap<String, HashMap<String, CollectionDTO>> map3 = null;
+
+        //TODO: Sorted Map && Tree ??
+        Set<Character> charSet = null;
+
+        List<Set<Character>> listOfAlphabetical = new ArrayList<>();
 
         try {
             pivotEntryList = categoryService.pivotQueryCategories();
@@ -127,10 +133,31 @@ public class CategoryController {
                     mapCollectionDTO = new HashMap<>();
 
                     indx_deep = 0;
+                    charSet = new HashSet<>();
+
                     iterator = pivotEntry.getValue().get(y).getPivot().stream().iterator();
                     while (iterator.hasNext()) {
 
                         if (pivotEntry.getValue().get(y).getPivot().get(indx_deep).getPivot()!=null){
+
+                            //SET of Category Collection first characters'
+                            charSet.add(pivotEntry.getValue().
+                                    get(y).getPivot().
+                                    get(indx_deep).getPivot().
+                                    get(0).getPivot().
+                                    get(0).getValue().toString().charAt(0));
+
+//                            log.info("--------------- charAt[0] = " + String.valueOf(pivotEntry.getValue().
+//                                    get(y).getPivot().
+//                                    get(indx_deep).getPivot().
+//                                    get(0).getPivot().
+//                                    get(0).getValue().toString().charAt(0)));
+//                            log.info("--------------- Collection: = " + (pivotEntry.getValue().
+//                                    get(y).getPivot().
+//                                    get(indx_deep).getPivot().
+//                                    get(0).getPivot().
+//                                    get(0).getValue().toString()));
+
                             mapCollectionDTO.put(
                                     //add only collectionArea ID, title cannot be extracted from SOLR query
                                     pivotEntry.getValue().get(y).getPivot().get(indx_deep).getValue().toString(),
@@ -161,6 +188,7 @@ public class CategoryController {
 
                 //Final add map of
                 listOfMapsOfItemsOfCategories3.add(map3);
+                listOfAlphabetical.add(charSet);
             }
 
         }
@@ -200,8 +228,11 @@ public class CategoryController {
             }
         }
         */
+
         ModelAndView mav = new ModelAndView("categoriesV2");
         mav.addObject("listOfMapsOfItemsOfCategories3", listOfMapsOfItemsOfCategories3);
+        mav.addObject("alphabetSet", charSet);
+        mav.addObject("listOfAlphabetical", listOfAlphabetical);
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
 
         return mav;

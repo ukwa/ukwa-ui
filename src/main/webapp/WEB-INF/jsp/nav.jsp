@@ -10,7 +10,7 @@
     <div class="main-menu-item border-none">
       <spring:message code="main.menu.collections" />
     </div>
-    </a> <a href="category" title="<spring:message code="main.menu.categories" />" tabindex="-1">
+    </a> <a href="category" title="<spring:message code="main.menu.categories.title" />" tabindex="-1">
     <div class="main-menu-item border-none">
       <spring:message code="main.menu.categories"/>
     </div>
