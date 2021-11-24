@@ -300,6 +300,14 @@
 
             //TODO: make dynamic
             switch(current_id) {
+                case '2938':
+                    text_h2 = "Science, Technology & Medicine";
+                    arrayIndex = 1; //ok
+                    break;
+                case '2939':
+                    text_h2 = "Sport & Recreation";
+                    arrayIndex = 2; //ok
+                    break;
                 case '2940':
                     text_h2 = "History";
                     arrayIndex = 3; //ok
@@ -320,22 +328,10 @@
                 case '2944':
                     text_h2 = "Society & Communities";
                     arrayIndex = 7; //ok 31!
-
                     break;
                 case '2945':
                     text_h2 = "Currently Working On";
                     arrayIndex = 0;
-
-                    break;
-                case '2938':
-                    text_h2 = "Science, Technology & Medicine";
-                    arrayIndex = 1; //ok
-
-                    break;
-                case '2939':
-                    text_h2 = "Sport & Recreation";
-                    arrayIndex = 2; //ok
-
                     break;
                 default:
                     text_h2 = 'Category'
@@ -357,7 +353,7 @@
 <%--            </c:if>--%>
 
 
-            $("#cat-coll-count").html(array[arrayIndex] + ' coll<small class="text-muted">/ cat</small>');
+            $("#cat-coll-count").html(array[arrayIndex-1] + ' coll<small class="text-muted">/ cat</small>');
 
             $("#current_top_coll_h4").html('Description');
 //            $("#current_top_coll_h2").html(<c:out value="${categoriesHashMap.get(identifier).value}"/>);
