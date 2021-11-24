@@ -155,12 +155,12 @@
                     <div class="row py-2 px-3">
                         <div class="col">
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-secondary rounded-pill">Science</button>
-                                <button type="button" class="btn btn-secondary rounded-pill">Sport</button>
-                                <button type="button" class="btn btn-secondary rounded-pill">History</button>
-                                <button type="button" class="btn btn-secondary rounded-pill">Politics</button>
-                                <button type="button" class="btn btn-secondary rounded-pill">Arts</button>
-                                <button type="button" class="btn btn-secondary rounded-pill">Places</button>
+                                <button type="button" class="btn btn-secondary rounded-pill mr-1">Science</button>
+                                <button type="button" class="btn btn-secondary rounded-pill mr-1">Sport</button>
+                                <button type="button" class="btn btn-secondary rounded-pill mr-1">History</button>
+                                <button type="button" class="btn btn-secondary rounded-pill mr-1">Politics</button>
+                                <button type="button" class="btn btn-secondary rounded-pill mr-1">Arts</button>
+                                <button type="button" class="btn btn-secondary rounded-pill mr-1">Places</button>
                                 <button type="button" class="btn btn-secondary rounded-pill">Society</button>
                             </div>
                         </div>
