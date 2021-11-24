@@ -125,7 +125,6 @@
                                     <li>238 sites included</li>
                                     <li>138 sites - open</li>
                                     <li>100 sites - reading rooms</li>
-                                    <li>45 active connections</li>
                                 </ul>
                                 <div class="container white">
                                     <h3>Category stats</h3>
@@ -302,36 +301,36 @@
             switch(current_id) {
                 case '2938':
                     text_h2 = "Science, Technology & Medicine";
-                    arrayIndex = 1; //ok
+                    arrayIndex = 0; //ok
                     break;
                 case '2939':
                     text_h2 = "Sport & Recreation";
-                    arrayIndex = 2; //ok
+                    arrayIndex = 1; //ok
                     break;
                 case '2940':
                     text_h2 = "History";
-                    arrayIndex = 3; //ok
+                    arrayIndex = 2; //ok
                     break;
                 case '2941':
                     text_h2 = "Politics & Government";
-                    arrayIndex = 4;
+                    arrayIndex = 3;
                     break;
                 case '2942':
                     text_h2 = "Arts & Culture";
-                    arrayIndex = 5; //22
+                    arrayIndex = 4; //22
                     break;
                 case '2943':
                     text_h2 = "Places";
-                    arrayIndex = 6; //ok
+                    arrayIndex = 5; //ok
 
                     break;
                 case '2944':
                     text_h2 = "Society & Communities";
-                    arrayIndex = 7; //ok 31!
+                    arrayIndex = 6; //ok 31!
                     break;
                 case '2945':
                     text_h2 = "Currently Working On";
-                    arrayIndex = 0;
+                    arrayIndex = 7;
                     break;
                 default:
                     text_h2 = 'Category'
@@ -353,7 +352,7 @@
 <%--            </c:if>--%>
 
 
-            $("#cat-coll-count").html(array[arrayIndex-1] + ' coll<small class="text-muted">/ cat</small>');
+            $("#cat-coll-count").html(array[arrayIndex] + ' coll<small class="text-muted">/ cat</small>');
 
             $("#current_top_coll_h4").html('Description');
 //            $("#current_top_coll_h2").html(<c:out value="${categoriesHashMap.get(identifier).value}"/>);
