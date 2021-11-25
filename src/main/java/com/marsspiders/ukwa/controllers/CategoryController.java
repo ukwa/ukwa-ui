@@ -23,6 +23,8 @@ import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static com.marsspiders.ukwa.controllers.HomeController.PROJECT_NAME;
@@ -111,6 +113,8 @@ public class CategoryController {
         //Set<Character>
         HashMap<String, HashMap<String, CollectionDTO>> map3 = null;
 
+        Pattern p = Pattern.compile("(\\[([^]]+)\\])");//("(\\[([^]]+)(.+?)\\])");//("\\[(.*?)\\]");
+        Matcher m;
         //TODO: Sorted Map && Tree ??
         Set<Character> charSet = null;
 
@@ -158,6 +162,20 @@ public class CategoryController {
 //                                    get(0).getPivot().
 //                                    get(0).getValue().toString()));
 
+                            m = p.matcher(iterator.next().toString());
+                            String currDescr = "";
+                            while (m.find())
+                                //log.info("matcher : index = " + k++ +", group = " + m.group());
+                                //log.info("matcher : index = " + k++ +", group = " + m.group(1));
+                                if (m.group(1).length()>currDescr.length())
+                                    currDescr = m.group(1);
+
+//                                log.info("matcher : index = " + k++ +", group = " + m.group(2));
+//                                log.info("matcher : index = " + k++ +", group = " + m.group(3));
+
+
+
+
                             mapCollectionDTO.put(
                                     //add only collectionArea ID, title cannot be extracted from SOLR query
                                     pivotEntry.getValue().get(y).getPivot().get(indx_deep).getValue().toString(),
@@ -169,7 +187,8 @@ public class CategoryController {
                                                             get(indx_deep).getPivot().
                                                             get(0).getPivot().
                                                             get(0).getValue().toString(),
-                                            iterator.next().toString().substring(11),
+                                            //m.find()?m.group(2):"no description",
+                                            currDescr.substring(13),
                                             "full description...",
                                             "alt Image"));
                             indx_deep++;

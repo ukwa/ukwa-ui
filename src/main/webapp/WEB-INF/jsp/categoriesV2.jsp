@@ -127,7 +127,7 @@
                                     <li>100 sites - reading rooms</li>
                                 </ul>
                                 <div class="container white">
-                                    <h3>Category stats</h3>
+                                    <h3><i class="far fa-chart-bar mr-2"></i><i class="fas fa-chart-pie mr-2"></i></i>Category stats</h3>
                                     <ul class="list-group bg-dark rounded border border-light mb-2" id="CategoryList2">
                                         <li class="list-group-item d-inline-flex justify-content-between align-items-center white bg-dark"><div>Common Collections: </div><span class='align-items-end badge badge-primary'>2</span></li>
                                         <li class="list-group-item d-inline-flex justify-content-between align-items-center white bg-dark"><div>Shared Collections: </div><span class='align-items-end badge badge-primary'>3</span></li>
@@ -196,20 +196,36 @@
                                     <ul id="cat-search-items" class="list-group bg-dark">
                                         <c:forEach var="collection" items="${category.value}">
                                             <li class="padding-bottom-10  list-group-item border-0 bg-gray">
+
+
                                                 <div class="row border-bottom">
-                                                    <div class="col-8 category-collection-search-result-ul">
-                                                        <a href="collection/<c:out value="${collection.key}"/>" class="collection-link">
-                                                            <c:out value="${collection.value.name}"/>
-                                                        </a>
+                                                    <div class="media">
+                                                        <svg class="mr-3 bd-placeholder-img" width="64" height="64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 64x64" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#6c757d"/><text x="10%" y="50%" fill="#dee2e6" dy=".3em">64x64</text></svg>
+
+                                                        <div class="media-body">
+                                                            <div class="row">
+                                                                <div class="col-9 category-collection-search-result-ul">
+
+                                                                    <a href="collection/<c:out value="${collection.key}"/>" class="collection-link">
+                                                                        <h5 class="mt-0"><c:out value="${collection.value.name}"/></h5>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-3 category-collection-search-result-ul right"><span class='badge badge-primary'><c:out value="${random.nextInt(1000)}"/></span>&nbsp;<span class='badge badge-secondary'><c:out value="${random.nextInt(1000)}"/></span></div>
+
+                                                            </div>
+
+                                                            <p class="text-muted small"><c:out value="${collection.value.description}"/></p>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-3 category-collection-search-result-ul"><span class='badge badge-primary'><c:out value="${random.nextInt(1000)}"/></span>&nbsp;<span class='badge badge-secondary'><c:out value="${random.nextInt(1000)}"/></span></div>
-                                                    <div class="col-1 category-collection-search-result-ul"><i class="fa fa-info-circle fa-2x text-primary category-search-popover" aria-hidden="true" data-toggle="popover" title="Collection Description" data-content="<c:out value="${collection.value.description}"/>"></i></div>
                                                 </div>
                                             </li>
                                         </c:forEach>
                                     </ul>
 
                                 </div>
+
+
+
                             </c:forEach>
                         </c:forEach>
 
