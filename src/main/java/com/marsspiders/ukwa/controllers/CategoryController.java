@@ -188,7 +188,7 @@ public class CategoryController {
                                                             get(0).getPivot().
                                                             get(0).getValue().toString(),
                                             //m.find()?m.group(2):"no description",
-                                            currDescr.substring(13),
+                                            currDescr.substring(13).replaceAll("\\[(.*?)\\]", ""),
                                             "full description...",
                                             "alt Image"));
                             indx_deep++;

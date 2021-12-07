@@ -107,7 +107,7 @@
                     <div class="category-search-search-field py-3 px-1 mx-1 bg-dark">
                         <div class="row py-3">
                             <div class="col">
-                                <div class="text-big bold white center">Search Topics</div>
+                                <div class="text-big bold white center">Filter Topics</div>
                             </div>
                         </div>
                         <div class="row">
@@ -119,18 +119,13 @@
 
                         <div class="row align-content-center">
                             <div class="col py-3">
-                                <p id="current_top_coll_p" class="text-muted small">Last updated 3 days ago</p>
-                                <h1 id="cat-coll-count" class="card-title pricing-card-title white">0 coll<small class="text-muted">/ cat</small></h1>
-                                <ul class="list-unstyled mt-3 mb-4 white">
-                                    <li>238 sites included</li>
-                                    <li>138 sites - open</li>
-                                    <li>100 sites - reading rooms</li>
-                                </ul>
+                                <p id="current_top_coll_p" class="text-muted small ml-3">Last updated 3 days ago</p>
+                                <h1 id="cat-coll-count" class="pricing-card-title white ml-3">0 coll<small class="text-muted">/ cat</small></h1>
+
                                 <div class="container white">
-                                    <h3><i class="far fa-chart-bar mr-2"></i><i class="fas fa-chart-pie mr-2"></i></i>Category stats</h3>
+                                    <h3><i class="fas fa-chart-pie mr-2"></i></i>Category stats</h3>
                                     <ul class="list-group bg-dark rounded border border-light mb-2" id="CategoryList2">
                                         <li class="list-group-item d-inline-flex justify-content-between align-items-center white bg-dark"><div>Common Collections: </div><span class='align-items-end badge badge-primary'>2</span></li>
-                                        <li class="list-group-item d-inline-flex justify-content-between align-items-center white bg-dark"><div>Shared Collections: </div><span class='align-items-end badge badge-primary'>3</span></li>
                                     </ul>
                                 </div>
                                 <a class="align-self-end btn btn-lg btn-block btn-secondary category-item-card-frame-button rounded-pill white">Back to Categories</a>
@@ -200,21 +195,20 @@
 
                                                 <div class="row border-bottom">
                                                     <div class="media">
-                                                        <svg class="mr-3 bd-placeholder-img" width="64" height="64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 64x64" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#6c757d"/><text x="10%" y="50%" fill="#dee2e6" dy=".3em">64x64</text></svg>
+                                                        <svg class="mr-3 bd-placeholder-img" width="160" height="120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 320x240" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#6c757d"/><text x="20%" y="50%" fill="#dee2e6" dy=".3em">160x120</text></svg>
 
                                                         <div class="media-body">
                                                             <div class="row">
-                                                                <div class="col-9 category-collection-search-result-ul">
+                                                                <div class="col-12 category-collection-search-result-ul">
 
                                                                     <a href="collection/<c:out value="${collection.key}"/>" class="collection-link">
                                                                         <h5 class="mt-0"><c:out value="${collection.value.name}"/></h5>
                                                                     </a>
                                                                 </div>
-                                                                <div class="col-3 category-collection-search-result-ul right"><span class='badge badge-primary'><c:out value="${random.nextInt(1000)}"/></span>&nbsp;<span class='badge badge-secondary'><c:out value="${random.nextInt(1000)}"/></span></div>
 
                                                             </div>
 
-                                                            <p class="text-muted small"><c:out value="${collection.value.description}"/></p>
+                                                            <p class="text-justify text-muted small overflow-auto" style="height: 6.2em;"><c:out value="${collection.value.description}"/></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -368,7 +362,7 @@
 <%--            </c:if>--%>
 
 
-            $("#cat-coll-count").html(array[arrayIndex] + ' coll<small class="text-muted">/ cat</small>');
+            $("#cat-coll-count").html(array[arrayIndex] + ' collections<small class="text-muted">/ category</small>');
 
             $("#current_top_coll_h4").html('Description');
 //            $("#current_top_coll_h2").html(<c:out value="${categoriesHashMap.get(identifier).value}"/>);
