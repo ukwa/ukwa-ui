@@ -119,13 +119,20 @@
 
                         <div class="row align-content-center">
                             <div class="col py-3">
-                                <p id="current_top_coll_p" class="text-muted small ml-3">Last updated 3 days ago</p>
-                                <h1 id="cat-coll-count" class="pricing-card-title white ml-3">0 coll<small class="text-muted">/ cat</small></h1>
+                                <p id="current_top_coll_p" class="text-muted small align-items-end">Last updated 3 days ago</p>
 
-                                <div class="container white">
-                                    <h3><i class="fas fa-chart-pie mr-2"></i></i>Category stats</h3>
-                                    <ul class="list-group bg-dark rounded border border-light mb-2" id="CategoryList2">
+                                <div class="container white py-5">
+                                    <h2><i class="fas fa-chart-pie mr-2"></i></i>Category stats</h2>
+                                    <h3 id="cat-coll-count" class="ml-3">0 coll<small class="text-muted">/ cat</small></h3>
+
+                                    <ul class="list-group bg-dark rounded border border-light mb-2 py-3" id="CategoryList2">
                                         <li class="list-group-item d-inline-flex justify-content-between align-items-center white bg-dark"><div>Common Collections: </div><span class='align-items-end badge badge-primary'>2</span></li>
+                                        <div class="badge badge-primary ml-3 my-2" style="width: 6rem;">
+                                            Brexit
+                                        </div>
+                                        <div class="badge badge-primary ml-3" style="width: 6rem;">
+                                            Global UK
+                                        </div>
                                     </ul>
                                 </div>
                                 <a class="align-self-end btn btn-lg btn-block btn-secondary category-item-card-frame-button rounded-pill white">Back to Categories</a>
