@@ -203,7 +203,13 @@ public class CategoryController {
 
                 //List<HashMap<String, HashMap<String, CollectionDTO>>>
                 map3 = new HashMap<>();
-                map3.put(pivotEntry.getValue().get(y).getValue().toString(), mapCollectionDTO);
+                map3.put(pivotEntry.getValue().get(y).getValue().toString(),
+                        mapCollectionDTO
+                                .entrySet()
+                                .stream()
+                                .sorted(Comparator.comparing(collDTO -> collDTO.getValue().getName()))
+                                .collect(Collectors
+                        .toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> a, LinkedHashMap::new)));
 
                 //Final add map of
                 listOfMapsOfItemsOfCategories3.add(map3);
