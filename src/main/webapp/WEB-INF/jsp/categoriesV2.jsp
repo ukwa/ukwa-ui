@@ -52,6 +52,8 @@
 
     <%-- category top level cards --%>
 <div class="text-center categories-cards">
+
+
     <h1 class="text-center">Browse Categories</h1>
 
         <div class="container">
@@ -105,18 +107,6 @@
                     </div>
                     <%--        search field --%>
                     <div class="category-search-search-field py-3 px-1 mx-1 bg-dark">
-                        <div class="row py-3">
-                            <div class="col">
-                                <div class="text-big bold white center">Filter Topics</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col d-inline-flex align-items-center">
-                                <span class="fas fa-search fa-2x red"></span>
-                                <input id="cat-search-input" type="text" name="" value="" class=" category-collection-search-input mb-2 text-big bg-dark gray" placeholder="Search for a Topic" style="margin-left: 0.5rem;  padding-left: 1rem;border-color: red; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 5px darkred; box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 2px red;  border-radius: 20px; -moz-border-radius: 20px; -webkit-border-radius: 20px; overflow: hidden; -webkit-backface-visibility: hidden; -webkit-transform: translate3d(0, 0, 0);"/>
-                            </div>
-                        </div>
-
                         <div class="row align-content-center">
                             <div class="col py-3">
                                 <p id="current_top_coll_p" class="text-muted small align-items-end">Last updated 3 days ago</p>
@@ -184,6 +174,12 @@
 
                                 </ul>
                             </nav>
+                        </div>
+                    </div>
+                    <div class="row px-3">
+                        <div class="col d-inline-flex align-items-center">
+                            <span class="fas fa-search fa-2x red"></span>
+                            <input id="cat-search-input" type="text" name="" value="" class=" category-collection-search-input mb-2 text-big bg-dark gray" placeholder="Filter a Topic" style="margin-left: 0.5rem;  padding-left: 1rem;border-color: red; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 5px darkred; box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 2px red;  border-radius: 20px; -moz-border-radius: 20px; -webkit-border-radius: 20px; overflow: hidden; -webkit-backface-visibility: hidden; -webkit-transform: translate3d(0, 0, 0);"/>
                         </div>
                     </div>
                 </div>
