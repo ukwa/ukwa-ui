@@ -91,9 +91,6 @@ public class SearchController {
         String remove_from_filter = request.getParameter("filter_array_x");
         String remove_from_filter_item = request.getParameter("filter_array_x_item");
 
-        String[] colls = {"19th Century English Literature"};
-        log.info("----- bleeed : " + searchAnyFullTextIndex(colls) );
-
         List<SearchResultDTO> searchResultDTOs = new ArrayList<>();
         List<String> accessTermsPairs = new LinkedList<>();
         List<String> contentTypesPairs = new LinkedList<>();
@@ -180,7 +177,6 @@ public class SearchController {
                     sortBy, accessTo, startRowToSend, originalContentTypes, originalPublicSuffixes, originalDomains,
                     fromDate, toDate, originalRangeDates, originalCollections, true);
 
-
             searchResultDTOs.addAll(toSearchResults(archivedSites, request, searchBy, userIpFromBl));
             totalSearchResultsSize = archivedSites.getResponseBody().getNumFound();
 
@@ -235,79 +231,8 @@ public class SearchController {
             mav.addObject("deepPaging", true);
             mav.addObject("searchResults", new ArrayList<>());
         }
-
-
-
         return mav;
     }
-
-    //@RequestMapping(value = "/check", method = GET)
-    public Long searchAnyFullTextIndex(String[] collections) {
-/*
-* q=test&
-* defType=edismax&
-* start=0&
-* rows=50&
-* sort=score+desc&
-* qf=text&
-* pf=text&
-* fq=&
-* fq={!tag%3DfilterFirstLayer}(access_terms:"OA")&
-*
-* fq=(type:"Web+Page")&
-* fq=&fq=&fq=&
-*
-* hl=true&hl.fl=content&
-*
-* facet=true&
-* facet.threads=8&
-* facet.field=public_suffix&
-* facet.field=type&
-* facet.field=domain&
-* facet.field=collection&
-* facet.field={!ex%3DfilterSecondLayer,filterFirstLayer}access_terms
-
- *
-*
-* */
-
-        log.info("---RRR---");
-
-        List<String> originalCollections;
-
-        originalCollections = collections != null ? asList(collections) : emptyList();
-
-            //searchResultDTOs.addAll(toSearchResults(archivedSites, request, searchBy, userIpFromBl));
-            //totalSearchResultsSize = archivedSites.getResponseBody().getNumFound();
-
-
-
-
-        SolrSearchResult<ContentInfo> archivedSites = searchService.searchContent(
-                FULL_TEXT,
-                "", //-id:["" TO *]
-                0,
-                SortByEnum.NEWEST_TO_OLDEST,
-                VIEWABLE_ONLY_ON_LIBRARY,
-                0,
-                null,
-                null,
-                null,
-                null, null,
-                null,
-                originalCollections,
-                false);
-
-        log.info("---RRR--- getNumFound = " + archivedSites.getResponseBody().getNumFound());
-
-
-        //searchResultDTOs.addAll(toSearchResults(archivedSites, request, searchBy, userIpFromBl));
-        return 1L;//archivedSites.getResponseBody().getNumFound();
-
-
-
-    }
-
 
     @GetMapping("/goToViewPage")
     public ModelAndView passParametersWithModelAndView() {
@@ -315,7 +240,6 @@ public class SearchController {
         modelAndView.addObject("message", "test AJAX for");
         return modelAndView;
     }
-
 
     private static boolean isValidUrl(String text) {
         return text.matches(URL_PATTERN);
@@ -369,7 +293,6 @@ public class SearchController {
         searchResult.setDisplayDomain(archivedSiteInfo.getDomain());
         searchResult.setDomain(originalDomain);
         searchResult.setAccess(readRoomOnlyAccess(archivedSiteInfo) ? "RRO" : "OA");
-
         return searchResult;
     }
 
@@ -379,7 +302,6 @@ public class SearchController {
             String shortContent = highlightingContent.getContent().get(0);
             escapedContent = shortContent != null ? shortContent.replaceAll("<[^>]*>", "") : "";
         }
-
         return escapedContent;
     }
 
@@ -409,7 +331,6 @@ public class SearchController {
         } catch (MalformedURLException | URISyntaxException e) {
             log.error("Failed to calculate original domain url", e);
         }
-
         return domain;
     }
 
