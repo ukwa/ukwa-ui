@@ -1155,40 +1155,26 @@ dt {
   clear: both;
 }
 
-input {
-  &[type=checkbox], &[type=radio] {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 25px;
-    height: 20px;
-    margin: 0;
-    padding: 0;
-    opacity: 0;
-    z-index: 100;
-  }
-  &[type=checkbox] + label, &[type=radio] + label {
-    display: inline-block;
-    position: absolute;
-    top: 5px;
-    left: 20px;
-    width: calc(100% - 20px);
-    padding-left: 30px;
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    background-image: url("../img/icons/check-back.png");
-    line-height: 1.3rem;
-    height: auto;
-    word-break: break-all;
-  }
-  &[type=checkbox].white + label, &[type=radio].white + label {
-    background-image: url("../img/icons/check-back-white.png");
-  }
-  &[type=checkbox]:checked + label, &[type=radio]:checked + label {
-    background-position: 0 -641px;
-  }
+.w-25 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 25% !important;
+  flex: 0 0 25% !important;
+  max-width: 25%;
 }
+
+.w-50 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 50% !important;
+  flex: 0 0 50% !important;
+  max-width: 50%;
+}
+
+.card.active > .card-header{
+  background-color: red;
+  border-bottom-style: solid;
+  border-bottom-color: #5cb85c;
+}
+
 
 .label-counts {
   word-break: keep-all;
@@ -1426,15 +1412,7 @@ input {
   margin-top: 3px;
 }
 
-.main-search-check-label {
-  display: block;
-  font-size: 1rem;
-  width: 100%;
-  padding-right: 1rem;
-  &.blue {
-    color: #0c49b0;
-  }
-}
+
 
 .form-search-input {
   width: 100%;
@@ -2269,7 +2247,6 @@ footer {
 
 .sidebar-filter-header {
   display: block;
-  padding: 15px 20px 15px 20px;
   font-family: "Open Sans",sans-serif;
   font-size: 1.4em;
   background-position: bottom 15px right 18px;

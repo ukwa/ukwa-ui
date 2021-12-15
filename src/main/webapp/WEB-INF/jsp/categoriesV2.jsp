@@ -49,10 +49,88 @@
     </div>
 </div>
 
+    <div class="row mb-4 white left bg-secondary">
+            <div class="col-12 w-100 form-inline inline-block-items flex-nowrap">
+                <input role="textbox" type="text" name="text" id="text"
+                       title="<spring:message code="search.main.input.title" />"
+                       aria-label="<spring:message code="search.main.input.title" />"
+                       placeholder="Filter categories"
+                       class="main-search-field-redesign" value="${originalSearchRequest}" required tabindex="0"
+                       aria-required="true"/>
+                <button role="button" type="submit" class="btn btn-lg main-search-button h-100 w-auto align-items-center"
+                        title="<spring:message code="search.main.button.title" />">
+                    <span class="d-none d-md-block align-middle">Filter</span>
+                    <i class="fa fa-filter ml-2" aria-hidden="true"></i>
+                </button>
+            </div>
+    </div>
+
+    <div class="row row-cols-md-2">
+
+        <%-- All Collections - 1 only --%>
+
+
+        <c:forEach var="topLevelCategoriesList" items="${listOfMapsOfItemsOfCategories3}" varStatus="count">
+            <c:forEach var="category" items="${topLevelCategoriesList.entrySet()}">
+
+                <div class="col mb-4">
+                    <div id="id_${category.key}" class="card mb-3 collection_list_8" style="min-width: 17rem;">
+                        <img class="card-img-top" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.key}"/>" style="filter: grayscale(80%);">
+
+                        <div class="card-title"><spring:message code="category.title.${category.key}" />
+                            <div class="card-header" id="headingThree">
+                                <h5 class="mb-0">
+                                    Collection title
+                                </h5>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </c:forEach>
+        </c:forEach>
+
+    </div>
+
+
+    <hr class="my-5">
+
+    <div class="d-flex flex-wrap collections-items-2prow">
+
+            <c:forEach var="category" items="${listOfMapsOfItemsOfCategories3.get(0)}" varStatus="theCount2">
+                <c:set var="noUse" value="${collCountList.add(category.value.entrySet().size())}"/>
+
+                        <c:forEach var="collection" items="${category.value}">
+
+                            <div class="media w-50 p-4">
+                                <svg class="mr-3 bd-placeholder-img" width="160" height="120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 320x240" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#6c757d"/><text x="20%" y="50%" fill="#dee2e6" dy=".3em">160x120</text></svg>
+
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-12 category-collection-search-result-ul">
+
+                                            <a href="collection/<c:out value="${collection.key}"/>" class="collection-link">
+                                                <h5 class="mt-0"><c:out value="${collection.value.name}"/></h5>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                    <p class="text-justify text-muted small overflow-auto" style="height: 6.2em;"><c:out value="${collection.value.description}"/></p>
+                                </div>
+                            </div>
+
+
+                        </c:forEach>
+
+            </c:forEach>
+
+
+    </div>
 
     <%-- category top level cards --%>
 <div class="text-center categories-cards">
-
 
     <h1 class="text-center">Browse Categories</h1>
 
@@ -180,7 +258,26 @@
                         <div class="col d-inline-flex align-items-center">
                             <span class="fas fa-search fa-2x red"></span>
                             <input id="cat-search-input" type="text" name="" value="" class=" category-collection-search-input mb-2 text-big bg-dark gray" placeholder="Filter a Topic" style="margin-left: 0.5rem;  padding-left: 1rem;border-color: red; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 5px darkred; box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 2px red;  border-radius: 20px; -moz-border-radius: 20px; -webkit-border-radius: 20px; overflow: hidden; -webkit-backface-visibility: hidden; -webkit-transform: translate3d(0, 0, 0);"/>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input bg-danger" id="customSwitch1" checked>
+                                <label class="custom-control-label gray" for="customSwitch1">All Collections</label>
+                                <p>
+                                    <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
+                                </p>
+                            </div>
                         </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                                <div class="card card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -261,8 +358,6 @@
     </footer>
 </div>
 <%--container-fluid--%>
-
-
 
 
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
@@ -388,6 +483,18 @@
             $(".categories-cards").toggle();
             $(".category-items").toggle();
         });
+
+
+
+            $('.collection_list_8').on('click', function () {
+                $(this).parent().addClass('active');
+
+
+            });
+
+            $('.collection_list_8').on('click', function () {
+                $(this).parent().removeClass('active');
+            });
 
 
 

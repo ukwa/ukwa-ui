@@ -79,11 +79,11 @@
                                             <c:forEach begin="0" end="${domains.size() - 1}" step="2" var="i">
 
                                                 <c:if test="${(domains.get(i + 1) != 0 ) || (originalDomains.contains(domains.get(i))?true:false)}">
-                                                    <div class="form-check-cont relative" style="width: 250px;padding: 10px;word-wrap:break-word;text-overflow: ellipsis" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
-                                                        <input role="checkbox" type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox-modal-domains" name="domain_filter_modal" id="domain_filter_modal_<c:out value="${i}"/>"
+                                                    <div class="form-check-cont custom-control custom-checkbox relative" style="width: 250px;padding: 10px;word-wrap:break-word;text-overflow: ellipsis" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
+                                                        <input role="checkbox" type="checkbox" class="custom-control-input checkbox-sidebar sidebar-filter-input-checkbox-modal-domains" name="domain_filter_modal" id="domain_filter_modal_<c:out value="${i}"/>"
                                                                value="${domains.get(i)}"
                                                             ${originalDomains.contains(domains.get(i) )? 'checked aria-checked=\"true\"':' aria-checked=\"false\"'}/>
-                                                        <label class="main-search-check-label no-italics box2" style="overflow: hidden" for="domain_filter_modal_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
+                                                        <label class="custom-control-label main-search-check-label no-italics" style="overflow: hidden" for="domain_filter_modal_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
                                                             <c:out value="${domains.get(i)}"/>
                                                             <span class="label-counts no-italics" >(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
                                                     </div>
@@ -104,11 +104,11 @@
 
                                                 <c:if test="${(contentTypes.get(i + 1) != 0) || (originalContentTypes.contains(contentTypes.get(i))?true:false)}">
 
-                                                    <div class="form-check-cont relative" style="width: 250px;padding: 10px" title="<c:out value="${contentTypes.get(i)}"/>" tabindex="0">
-                                                        <input role="checkbox" type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox-modal-documenttypes" name="content_type_filter_modal" id="content_type_filter_modal_<c:out value="${i}"/>"
+                                                    <div class="form-check-cont custom-control custom-checkbox relative" style="width: 250px;padding: 10px" title="<c:out value="${contentTypes.get(i)}"/>" tabindex="0">
+                                                        <input role="checkbox" type="checkbox" class="custom-control-input checkbox-sidebar sidebar-filter-input-checkbox-modal-documenttypes" name="content_type_filter_modal" id="content_type_filter_modal_<c:out value="${i}"/>"
                                                                value="${contentTypes.get(i)}"
                                                             ${originalContentTypes.contains(contentTypes.get(i))? 'checked aria-checked=\"true\"':' aria-checked=\"false\"'}/>
-                                                        <label class="main-search-check-label no-italics box2" style="overflow: hidden" for="content_type_filter_modal_<c:out value="${i}"/>">
+                                                        <label class="custom-control-label main-search-check-label no-italics" style="overflow: hidden" for="content_type_filter_modal_<c:out value="${i}"/>">
                                                             <c:out value="${contentTypes.get(i)}"/>
                                                             <span class="label-counts no-italics" >(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
                                                     </div>
@@ -132,11 +132,11 @@
                                             <c:forEach begin="0" end="${publicSuffixes.size() - 1}" step="2" var="i">
                                                 <c:if test="${(publicSuffixes.get(i + 1) != 0) || (originalPublicSuffixes.contains(publicSuffixes.get(i))?true:false)}">
 
-                                                    <div class="form-check-cont relative" style="width: 250px;padding: 10px" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
-                                                        <input role="checkbox" type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox-modal-suffixes" name="public_suffix_filter_modal" id="public_suffix_filter_modal_<c:out value="${i}"/>"
+                                                    <div class="form-check-cont custom-control custom-checkbox" style="width: 250px;padding: 10px" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
+                                                        <input role="checkbox" type="checkbox" class=" sidebar-filter-input-checkbox-modal-suffixes" name="public_suffix_filter_modal" id="public_suffix_filter_modal_<c:out value="${i}"/>"
                                                                value="${publicSuffixes.get(i)}"
                                                             ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked aria-checked=\"true\"':' aria-checked=\"false\"'}/>
-                                                        <label class="main-search-check-label no-italics box2" style="overflow: hidden" for="public_suffix_filter_modal_<c:out value="${i}"/>">
+                                                        <label class="custom-control-label main-search-check-label no-italics" style="overflow: hidden" for="public_suffix_filter_modal_<c:out value="${i}"/>">
                                                             <c:out value="${publicSuffixes.get(i)}"/>
                                                             <span class="label-counts no-italics">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
                                                     </div>
@@ -159,11 +159,11 @@
 
                                             <c:forEach begin="0" end="${collections.size() - 1}" step="2" var="i">
                                                 <c:if test="${(collections.get(i + 1) != 0) || (originalCollections.contains(collections.get(i))?true:false)}">
-                                                    <div class="form-check-cont relative" style="width: 250px;padding: 10px" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
+                                                    <div class="form-check-cont custom-control custom-checkbox relative" style="width: 250px;padding: 10px" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
                                                         <input role="checkbox" type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox-modal-collections" name="collection_filter_modal" id="collection_filter_modal_<c:out value="${i}"/>"
                                                                value="${collections.get(i)}"
                                                             ${originalCollections.contains(collections.get(i) )? 'checked aria-checked=\"true\"':' aria-checked=\"false\"'}/>
-                                                        <label class="main-search-check-label no-italics box2" style="overflow: hidden" for="collection_filter_modal_<c:out value="${i}"/>"
+                                                        <label class="custom-control-label main-search-check-label no-italics" style="overflow: hidden" for="collection_filter_modal_<c:out value="${i}"/>"
                                                                title="<c:out value="${collections.get(i)}"/> (<c:out value="${collections.get(i + 1)}"/>)">
                                                             <c:out value="${collections.get(i)}"/>
                                                             <span class="label-counts no-italics">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
@@ -329,10 +329,10 @@
                                         </c:forEach>
                                     </c:if>
 
-                                    <div class="form-check-cont padding-0" title="<spring:message code="search.side.view.1" />" tabindex="0">
-                                        <input role="radio" tabindex="-1" type="radio" class="radio-sidebar access_filter" name="view_filter" id="view_filter_1" value="va"
+                                    <div class="form-check-cont custom-control custom-radio" title="<spring:message code="search.side.view.1" />" tabindex="0">
+                                        <input role="radio" tabindex="-1" type="radio" class="custom-control-input radio-sidebar access_filter" name="view_filter" id="view_filter_1" value="va"
                                         ${originalAccessView.contains('va') || empty originalAccessView ? 'checked aria-checked=\"true\"':' aria-checked=\"false\"'}/>
-                                        <label class="main-search-check-label block-two-text-lines" for="view_filter_1" title="<spring:message code="search.side.view.1" />">
+                                        <label class="main-search-check-label custom-control-label" for="view_filter_1" title="<spring:message code="search.side.view.1" />">
                                             <spring:message code="search.side.view.1" />
                                             <span class="label-counts">(<span class="results-count"><c:out value="${vaCount}"/></span>)</span>
                                         </label>
@@ -340,10 +340,10 @@
                                 </div>
 
                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
-                                    <div class="form-check-cont padding-0" title="<spring:message code="search.side.view.2" />" tabindex="0">
-                                        <input role="radio" type="radio" class="radio-sidebar access_filter" name="view_filter" id="view_filter_2" value="vool"
+                                    <div class="form-check-cont custom-control custom-radio" title="<spring:message code="search.side.view.2" />" tabindex="0">
+                                        <input role="radio" type="radio" class="custom-control-input radio-sidebar access_filter" name="view_filter" id="view_filter_2" value="vool"
                                         ${originalAccessView.contains('vool') ? 'checked aria-checked=\"true\"':' aria-checked=\"false\"'}/>
-                                        <label class="main-search-check-label block-two-text-lines" for="view_filter_2" title="<spring:message code="search.side.view.2" />"> <spring:message code="search.side.view.2" /> <span class="label-counts">(<span class="results-count"><c:out value="${voolCount}"/></span>)</span></label>
+                                        <label class="main-search-check-label custom-control-label " for="view_filter_2" title="<spring:message code="search.side.view.2" />"> <spring:message code="search.side.view.2" /> <span class="label-counts">(<span class="results-count"><c:out value="${voolCount}"/></span>)</span></label>
                                     </div>
                                 </div>
                             </div>
@@ -361,25 +361,28 @@
 
                                             <c:if test="${(domains.get(i + 1) != 0 && (i < 5)) || (originalDomains.contains(domains.get(i))?true:false)}">
                                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12 " >
-                                                    <div class="form-check-cont" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
-                                                        <input role="checkbox" type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox" name="domain_filter" id="domain_filter_<c:out value="${i}"/>"
+                                                    <div class="form-check-cont custom-control custom-checkbox" title="<c:out value="${domains.get(i)}"/>" tabindex="0">
+
+                                                        <input role="checkbox" type="checkbox" class="custom-control-input checkbox-sidebar sidebar-filter-input-checkbox" name="domain_filter" id="domain_filter_<c:out value="${i}"/>"
                                                                value="${domains.get(i)}"
                                                             ${originalDomains.contains(domains.get(i) )? 'checked aria-checked=\"true\"':' aria-checked=\"false\"'}/>
-                                                        <label class="main-search-check-label block-two-text-lines" for="domain_filter_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
+                                                        <label class="main-search-check-label custom-control-label" for="domain_filter_<c:out value="${i}"/>" title="<c:out value="${domains.get(i)}"/> (<c:out value="${domains.get(i + 1)}"/>)">
                                                             <c:out value="${domains.get(i)}"/>
-                                                            <span class="label-counts">(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span></label>
+                                                            <span class="label-counts">(<span class="results-count"><c:out value="${domains.get(i + 1)}"/></span>)</span>
+                                                        </label>
+
                                                     </div>
                                                 </div>
                                             </c:if>
 
                                         </c:forEach>
-                                        <div class="openPlusSign" role="dialog" style="margin-left: 10px"><a href="#domain" class="openPlusSign-link" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
+                                        <div class="openPlusSign px-1" role="dialog"><a href="#domain" class="openPlusSign-link" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
                                     </c:if>
                                 </div>
 
                                 <hr class="search-sidebar-hr"/>
                                 <%--   Document type collapse filter   --%>
-                                <h2 class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
+                                <h2 class="sidebar-filter-header border-top-white open px-3" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.doctype.title" />" tabindex="0" role="tab">
                                     <div class="sidebar-filter-header-title-redesign" id="t_doctype" aria-describedby="tt_t_doctype"><spring:message code="search.side.doctype.title" /></div>
                                     <div id="tt_t_doctype" class="infotooltip" role="tooltip" aria-hidden="false" aria-label="<spring:message code="search.side.doctype.tip" />" title="<spring:message code="search.side.doctype.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.doctype.tip" />" tabindex="0"></div>
                                 </h2>
@@ -389,11 +392,11 @@
 
                                             <c:if test="${(contentTypes.get(i + 1) != 0 && (i < 5)) || (originalContentTypes.contains(contentTypes.get(i))?true:false)}">
                                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
-                                                    <div class="form-check-cont padding-0" title="<c:out value="${contentTypes.get(i)}"/>" tabindex="0">
-                                                        <input role="checkbox" type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox" name="content_type" id="content_type_<c:out value="${i}"/>"
+                                                    <div class="form-check-cont custom-control custom-checkbox" title="<c:out value="${contentTypes.get(i)}"/>" tabindex="0">
+                                                        <input role="checkbox" type="checkbox" class="custom-control-input checkbox-sidebar sidebar-filter-input-checkbox" name="content_type" id="content_type_<c:out value="${i}"/>"
                                                                value="${contentTypes.get(i)}"
                                                             ${originalContentTypes.contains(contentTypes.get(i))? 'checked aria-checked=\"true\"':' aria-checked=\"false\"'}/>
-                                                        <label class="main-search-check-label block-two-text-lines" for="content_type_<c:out value="${i}"/>">
+                                                        <label class="main-search-check-label custom-control-label " for="content_type_<c:out value="${i}"/>">
                                                             <c:out value="${contentTypes.get(i)}"/>
                                                             <span class="label-counts" >(<span class="results-count"><c:out value="${contentTypes.get(i + 1)}"/></span>)</span></label>
                                                     </div>
@@ -401,14 +404,14 @@
                                             </c:if>
 
                                         </c:forEach>
-                                        <div class="openPlusSign" role="dialog" style="margin-left: 10px"><a href="#documenttype" class="openPlusSign-link" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
+                                        <div class="openPlusSign px-1" role="dialog"><a href="#documenttype" class="openPlusSign-link" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
                                     </c:if>
                                 </div>
 
                                     <hr class="search-sidebar-hr"/>
 
                                 <%--   Public suffix collapse filter   --%>
-                                <h2 class="sidebar-filter-header border-top-white open" aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.suffix.title" />" tabindex="0" role="tab">
+                                <h2 class="sidebar-filter-header border-top-white open " aria-selected="false" aria-expanded="false" title="<spring:message code="search.side.suffix.title" />" tabindex="0" role="tab">
                                     <div class="sidebar-filter-header-title-redesign" id="t_suffix" aria-describedby="tt_t_suffix"><spring:message code="search.side.suffix.title" /></div>
                                     <div id="tt_t_suffix" class="infotooltip" role="tooltip" aria-hidden="false" aria-label="<spring:message code="search.side.suffix.tip" />" title="<spring:message code="search.side.suffix.tip.title" />" data-toggle="tooltip" data-selector="true" data-title="<spring:message code="search.side.suffix.tip" />" tabindex="0"></div>
                                 </h2>
@@ -418,18 +421,18 @@
                                         <c:forEach begin="0" end="${publicSuffixes.size() - 1}" step="2" var="i">
                                             <c:if test="${(publicSuffixes.get(i + 1) != 0 && (i < 5)) || (originalPublicSuffixes.contains(publicSuffixes.get(i))?true:false)}">
                                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
-                                                    <div class="form-check-cont padding-0" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
-                                                        <input role="checkbox" type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
+                                                    <div class="form-check-cont custom-control custom-checkbox" title="<c:out value="${publicSuffixes.get(i)}"/>" tabindex="0">
+                                                        <input role="checkbox" type="checkbox" class="custom-control-input checkbox-sidebar sidebar-filter-input-checkbox" name="public_suffix" id="public_suffix_<c:out value="${i}"/>"
                                                                value="${publicSuffixes.get(i)}"
                                                             ${originalPublicSuffixes.contains(publicSuffixes.get(i) )? 'checked aria-checked=\"true\"':' aria-checked=\"false\"'}/>
-                                                        <label class="main-search-check-label block-two-text-lines" for="public_suffix_<c:out value="${i}"/>">
+                                                        <label class="main-search-check-label custom-control-label " for="public_suffix_<c:out value="${i}"/>">
                                                             <c:out value="${publicSuffixes.get(i)}"/>
                                                             <span class="label-counts">(<span class="results-count"><c:out value="${publicSuffixes.get(i + 1)}"/></span>)</span></label>
                                                     </div>
                                                 </div>
                                             </c:if>
                                         </c:forEach>
-                                        <div class="openPlusSign" role="dialog" style="margin-left: 10px"><a href="#suffix" class="openPlusSign-link" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
+                                        <div class="openPlusSign px-1" role="dialog"><a href="#suffix" class="openPlusSign-link" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
                                     </c:if>
 
                                 </div>
@@ -490,11 +493,11 @@
                                         <c:forEach begin="0" end="${collections.size() - 1}" step="2" var="i">
                                             <c:if test="${(collections.get(i + 1) != 0 && (i < 5)) || (originalCollections.contains(collections.get(i))?true:false)}">
                                                 <div class="sidebar-filter-checkbox col-md-12 col-sm-12">
-                                                    <div class="form-check-cont padding-0" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
-                                                        <input role="checkbox" type="checkbox" class="checkbox-sidebar sidebar-filter-input-checkbox" name="collection" id="collection_<c:out value="${i}"/>"
+                                                    <div class="form-check-cont custom-control custom-checkbox" title="<c:out value="${collections.get(i)}"/>" tabindex="0">
+                                                        <input role="checkbox" type="checkbox" class="custom-control-input checkbox-sidebar sidebar-filter-input-checkbox" name="collection" id="collection_<c:out value="${i}"/>"
                                                                value="${collections.get(i)}"
                                                             ${originalCollections.contains(collections.get(i) )? 'checked aria-checked=\"true\"':' aria-checked=\"false\"'}/>
-                                                        <label class="main-search-check-label block-two-text-lines" for="collection_<c:out value="${i}"/>"
+                                                        <label class="main-search-check-label custom-control-label" for="collection_<c:out value="${i}"/>"
                                                                title="<c:out value="${collections.get(i)}"/> (<c:out value="${collections.get(i + 1)}"/>)">
                                                             <c:out value="${collections.get(i)}"/>
                                                             <span class="label-counts">(<span class="results-count"><c:out value="${collections.get(i + 1)}"/></span>)</span></label>
@@ -503,7 +506,7 @@
                                             </c:if>
 
                                         </c:forEach>
-                                        <div class="openPlusSign" role="dialog" style="margin-left: 10px"><a href="#topicsandthemes" class="openPlusSign-link" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
+                                        <div class="openPlusSign px-1" role="dialog"><a href="#topicsandthemes" class="openPlusSign-link" role="link" data-toggle="modal" data-target="#SearchFilterDialog" style="text-decoration:none"><spring:message code="search.main.filter.showmore" /></a></div>
                                     </c:if>
 
                                 </div>

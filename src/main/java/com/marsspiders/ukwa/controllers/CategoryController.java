@@ -126,6 +126,83 @@ public class CategoryController {
             e.printStackTrace();
         }
 
+        mapCollectionDTO = new HashMap<>();
+        //all collections
+        for (Map.Entry<String, List<PivotField>> pivotEntry : pivotEntryList) {
+            Iterator iterator;  //Iterator<PivotField>
+            int indx_deep = 0;
+
+            for (int y=0; y < pivotEntry.getValue().size();y++) {
+                if (pivotEntry.getValue().get(y).getPivot() != null) {
+
+                    indx_deep = 0;
+                    charSet = new HashSet<>();
+
+                    iterator = pivotEntry.getValue().get(y).getPivot().stream().iterator();
+                    while (iterator.hasNext()) {
+
+                        if (pivotEntry.getValue().get(y).getPivot().get(indx_deep).getPivot() != null) {
+
+                            //SET of Category Collection first characters'
+                            charSet.add(pivotEntry.getValue().
+                                    get(y).getPivot().
+                                    get(indx_deep).getPivot().
+                                    get(0).getPivot().
+                                    get(0).getValue().toString().charAt(0));
+
+                            m = p.matcher(iterator.next().toString());
+                            String currDescr = "";
+                            while (m.find())
+                                //log.info("matcher : index = " + k++ +", group = " + m.group());
+                                //log.info("matcher : index = " + k++ +", group = " + m.group(1));
+                                if (m.group(1).length() > currDescr.length())
+                                    currDescr = m.group(1);
+
+//                                log.info("matcher : index = " + k++ +", group = " + m.group(2));
+//                                log.info("matcher : index = " + k++ +", group = " + m.group(3));
+
+
+                            mapCollectionDTO.put(
+                                    //add only collectionArea ID, title cannot be extracted from SOLR query
+                                    pivotEntry.getValue().get(y).getPivot().get(indx_deep).getValue().toString(),
+                                    new CollectionDTO(
+
+                                            pivotEntry.getValue().get(y).getPivot().get(indx_deep).getValue().toString(),
+                                            pivotEntry.getValue().
+                                                    get(y).getPivot().
+                                                    get(indx_deep).getPivot().
+                                                    get(0).getPivot().
+                                                    get(0).getValue().toString(),
+                                            //m.find()?m.group(2):"no description",
+                                            currDescr.substring(13).replaceAll("\\[(.*?)\\]", ""),
+                                            "full description...",
+                                            "alt Image"));
+                            indx_deep++;
+                        } else
+                            iterator.next();
+                    }
+                    //add all collections that belong to category
+                    // && TODO: sub-collections? - Need to concentrate on lists from ACT in JSON
+                }
+            }
+
+            //List<HashMap<String, HashMap<String, CollectionDTO>>>
+
+            //Final add map of
+
+        }
+
+        map3 = new HashMap<>();
+        map3.put("2222",
+                mapCollectionDTO.entrySet().stream()
+                        .sorted(Comparator.comparing(collDTO -> collDTO.getValue().getName()))
+                        .collect(Collectors.toMap(
+                                Map.Entry::getKey, Map.Entry::getValue, (a, b) -> a, LinkedHashMap::new)));
+
+        listOfMapsOfItemsOfCategories3.add(map3);
+
+
+
         //collection areas
         for (Map.Entry<String, List<PivotField>> pivotEntry : pivotEntryList) {
             Iterator iterator;  //Iterator<PivotField>
@@ -150,17 +227,6 @@ public class CategoryController {
                                     get(indx_deep).getPivot().
                                     get(0).getPivot().
                                     get(0).getValue().toString().charAt(0));
-
-//                            log.info("--------------- charAt[0] = " + String.valueOf(pivotEntry.getValue().
-//                                    get(y).getPivot().
-//                                    get(indx_deep).getPivot().
-//                                    get(0).getPivot().
-//                                    get(0).getValue().toString().charAt(0)));
-//                            log.info("--------------- Collection: = " + (pivotEntry.getValue().
-//                                    get(y).getPivot().
-//                                    get(indx_deep).getPivot().
-//                                    get(0).getPivot().
-//                                    get(0).getValue().toString()));
 
                             m = p.matcher(iterator.next().toString());
                             String currDescr = "";
@@ -208,8 +274,8 @@ public class CategoryController {
                                 .entrySet()
                                 .stream()
                                 .sorted(Comparator.comparing(collDTO -> collDTO.getValue().getName()))
-                                .collect(Collectors
-                        .toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> a, LinkedHashMap::new)));
+                                .collect(Collectors.toMap(
+                                        Map.Entry::getKey, Map.Entry::getValue, (a, b) -> a, LinkedHashMap::new)));
 
                 //Final add map of
                 listOfMapsOfItemsOfCategories3.add(map3);
@@ -278,9 +344,7 @@ public class CategoryController {
     public void process(@RequestBody String payload) throws Exception {
 
         //        List<CollectionDTO> collections = generateRootCollectionCategoriesDTOs(locale);
-
         log.info("-------------- Category process ");
-
         System.out.println(payload);
     }
 
