@@ -7,6 +7,7 @@ on:
     branches:
       - master
       - new_feature_categories
+      - new_feature_categories_anj
       - dev
 
 jobs:
