@@ -74,16 +74,16 @@
             <c:forEach var="category" items="${topLevelCategoriesList.entrySet()}">
 
                 <div class="col mb-4">
-                    <div id="id_${category.key}" class="card mb-3 collection_list_8" style="min-width: 17rem;">
+                    <div id="id_${category.key}" class="card mb-3 collection_list_8 top-category-card-2" style="min-width: 17rem;">
                         <img class="card-img-top" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.key}"/>" style="filter: grayscale(80%);">
 
-                        <div class="card-title"><spring:message code="category.title.${category.key}" />
-                            <div class="card-header" id="headingThree">
-                                <h5 class="mb-0">
-                                    Collection title
-                                </h5>
+                        <div class="card-body">
+                            <div class="card-title"><spring:message code="category.title.${category.key}" />
+
                             </div>
+<%--                            <a href="#" class="stretched-link"></a>--%>
                         </div>
+
 
                     </div>
                 </div>
@@ -96,267 +96,92 @@
 
     <hr class="my-5">
 
-    <div class="d-flex flex-wrap collections-items-2prow">
+<%--    <div class="d-flex flex-wrap collections-items-2prow">--%>
 
-            <c:forEach var="category" items="${listOfMapsOfItemsOfCategories3.get(0)}" varStatus="theCount2">
+<%--            <c:forEach var="category" items="${listOfMapsOfItemsOfCategories3.get(0)}" varStatus="theCount2">--%>
+<%--                <c:set var="noUse" value="${collCountList.add(category.value.entrySet().size())}"/>--%>
+<%--                        <c:forEach var="collection" items="${category.value}">--%>
+
+<%--                            <div class="media w-50 p-4">--%>
+<%--                                <svg class="mr-3 bd-placeholder-img" width="160" height="120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 320x240" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#6c757d"/><text x="20%" y="50%" fill="#dee2e6" dy=".3em">160x120</text></svg>--%>
+
+<%--                                <div class="media-body">--%>
+<%--                                    <div class="row">--%>
+<%--                                        <div class="col-12 category-collection-search-result-ul">--%>
+
+<%--                                            <a href="collection/<c:out value="${collection.key}"/>" class="collection-link">--%>
+<%--                                                <h5 class="mt-0"><c:out value="${collection.value.name}"/></h5>--%>
+<%--                                            </a>--%>
+<%--                                        </div>--%>
+
+<%--                                    </div>--%>
+
+<%--                                    <p class="text-justify text-muted small overflow-auto" style="height: 6.2em;"><c:out value="${collection.value.description}"/></p>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+
+<%--                        </c:forEach>--%>
+<%--            </c:forEach>--%>
+
+
+<%--    </div>--%>
+
+    <div class="tab-content " id="nav-tabContent">
+
+        <c:forEach var="topcategory" items="${listOfMapsOfItemsOfCategories3}" varStatus="theCount">
+            <c:forEach var="category" items="${topcategory}" varStatus="theCount2">
                 <c:set var="noUse" value="${collCountList.add(category.value.entrySet().size())}"/>
+                <div class="tab-pane fade show top-collection-list " id="top-collection-list-2-id_${category.key}" role="tabpanel" aria-labelledby="list-home-list">
+
+                    <ul id="cat-search-items-2" class="list-group">
+                        <div class="d-flex flex-wrap collections-items-2prow">
 
                         <c:forEach var="collection" items="${category.value}">
 
-                            <div class="media w-50 p-4">
-                                <svg class="mr-3 bd-placeholder-img" width="160" height="120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 320x240" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#6c757d"/><text x="20%" y="50%" fill="#dee2e6" dy=".3em">160x120</text></svg>
+                            <li class="padding-bottom-10  list-group-item border-0 bg-gray w-50 ">
 
-                                <div class="media-body">
-                                    <div class="row">
-                                        <div class="col-12 category-collection-search-result-ul">
 
-                                            <a href="collection/<c:out value="${collection.key}"/>" class="collection-link">
-                                                <h5 class="mt-0"><c:out value="${collection.value.name}"/></h5>
-                                            </a>
+                                    <div class="media p-4">
+                                        <svg class="mr-3 bd-placeholder-img" width="160" height="120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 320x240" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#6c757d"/><text x="20%" y="50%" fill="#dee2e6" dy=".3em">160x120</text></svg>
+
+                                        <div class="media-body">
+                                            <div class="row">
+                                                <div class="col-12 category-collection-search-result-ul">
+
+                                                    <a href="collection/<c:out value="${collection.key}"/>" class="collection-link">
+                                                        <h5 class="mt-0"><c:out value="${collection.value.name}"/></h5>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+
+                                            <p class="text-justify text-muted small overflow-auto" style="height: 6.2em;"><c:out value="${collection.value.description}"/></p>
                                         </div>
-
                                     </div>
-
-                                    <p class="text-justify text-muted small overflow-auto" style="height: 6.2em;"><c:out value="${collection.value.description}"/></p>
-                                </div>
-                            </div>
-
+                            </li>
 
                         </c:forEach>
+                        </div>
+
+                    </ul>
+
+                </div>
+
+
 
             </c:forEach>
-
+        </c:forEach>
 
     </div>
 
-    <%-- category top level cards --%>
-<div class="text-center categories-cards">
 
-    <h1 class="text-center">Browse Categories</h1>
-
-        <div class="container">
-            <div class="row hidden-md-up justify-content-start">
-                    <c:forEach var="topLevelCategoriesList" items="${listOfMapsOfItemsOfCategories3}" varStatus="count">
-                        <c:forEach var="category" items="${topLevelCategoriesList.entrySet()}" >
-                            <div class="col-md-4">
-
-                                <div id="${category.key}" class="card mb-2 col-lg-4 col-md-4 col-sm-6 container_foto top-category-card">
-                                    <div class="card-block">
-                                        <div class="ver_mas text-center">
-                                            <span  class="lnr lnr-eye"></span>
-                                        </div>
-                                        <img class="card-img-top img-fluid" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.key}"/>">
-                                        <article class="text-left">
-                                            <h2><spring:message code="category.title.${category.key}" /></h2>
-                                            <h4>Current status: available</h4>
-                                        </article>
-                                    </div>
-                                </div>
-                            </div>
-                        </c:forEach>
-                    </c:forEach>
-        </div>
-
-
-
-        </div>
-</div>
+<%-- category top level cards --%>
     <%-- category top level cards --%>
 
 
 
 <%-- category items - collections --%>
 <div class="container category-items" style="display:none;">
-    <div class="blue border-dark" role="group" aria-label="...">
-
-        <div class="row bg-dark py-3">
-            <div class="col-4">
-                <div class="list-group" id="list-tab" role="tablist">
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto category-item-card-frame" id="list-category-list" data-toggle="list" href="#list-category-list" role="tab" aria-controls="profile">
-
-                        <article class="text-left">
-                            <h2 id="current_top_coll_h2">Category Title</h2>
-                            <h4 id="current_top_coll_h4">Category: Description</h4>
-                        </article>
-                        <img id="current_top_coll_image" src="img/categories/2941.png" alt="">
-
-
-                    </div>
-                    <%--        search field --%>
-                    <div class="category-search-search-field py-3 px-1 mx-1 bg-dark">
-                        <div class="row align-content-center">
-                            <div class="col py-3">
-                                <p id="current_top_coll_p" class="text-muted small align-items-end">Last updated 3 days ago</p>
-
-                                <div class="container white py-5">
-                                    <h2><i class="fas fa-chart-pie mr-2"></i></i>Category stats</h2>
-                                    <h3 id="cat-coll-count" class="ml-3">0 coll<small class="text-muted">/ cat</small></h3>
-
-                                    <ul class="list-group bg-dark rounded border border-light mb-2 py-3" id="CategoryList2">
-                                        <li class="list-group-item d-inline-flex justify-content-between align-items-center white bg-dark"><div>Common Collections: </div><span class='align-items-end badge badge-primary'>2</span></li>
-                                        <div class="badge badge-primary ml-3 my-2" style="width: 6rem;">
-                                            Brexit
-                                        </div>
-                                        <div class="badge badge-primary ml-3" style="width: 6rem;">
-                                            Global UK
-                                        </div>
-                                    </ul>
-                                </div>
-                                <a class="align-self-end btn btn-lg btn-block btn-secondary category-item-card-frame-button rounded-pill white">Back to Categories</a>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-            <div class="col-8">
-                <%-- search by alphabet && MINI menu--%>
-                <div class="category-search-searchbar p-2 my-1 bg-dark">
-                    <div class="row py-2 px-3">
-                        <div class="col">
-                            <div class="text-bigger white">Discover Topics by category</div>
-                        </div>
-                    </div>
-                    <div class="row py-2 px-3">
-                        <div class="col">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-secondary rounded-pill mr-1">Science</button>
-                                <button type="button" class="btn btn-secondary rounded-pill mr-1">Sport</button>
-                                <button type="button" class="btn btn-secondary rounded-pill mr-1">History</button>
-                                <button type="button" class="btn btn-secondary rounded-pill mr-1">Politics</button>
-                                <button type="button" class="btn btn-secondary rounded-pill mr-1">Arts</button>
-                                <button type="button" class="btn btn-secondary rounded-pill mr-1">Places</button>
-                                <button type="button" class="btn btn-secondary rounded-pill">Society</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row py-3 px-3">
-                        <div class="col">
-                            <div class="text-bigger white">Discover Topics alphabetically</div>
-                        </div>
-                    </div>
-                    <div class="row px-3">
-                        <div class="col">
-                            <nav aria-label="Search within category navigation">
-                                <ul class="pagination justify-content-start">
-
-                                    <c:forEach var="alphabetItem" items="${alphabetSet}" varStatus="theCountAlphab">
-                                        <li class="alphabetic-page-item"><a class="page-link">
-                                            <c:out value="${alphabetItem.charValue()}"/></a></li>
-                                    </c:forEach>
-
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                    <div class="row px-3">
-                        <div class="col d-inline-flex align-items-center">
-                            <span class="fas fa-search fa-2x red"></span>
-                            <input id="cat-search-input" type="text" name="" value="" class=" category-collection-search-input mb-2 text-big bg-dark gray" placeholder="Filter a Topic" style="margin-left: 0.5rem;  padding-left: 1rem;border-color: red; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 5px darkred; box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 2px red;  border-radius: 20px; -moz-border-radius: 20px; -webkit-border-radius: 20px; overflow: hidden; -webkit-backface-visibility: hidden; -webkit-transform: translate3d(0, 0, 0);"/>
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input bg-danger" id="customSwitch1" checked>
-                                <label class="custom-control-label gray" for="customSwitch1">All Collections</label>
-                                <p>
-                                    <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
-                                </p>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="collapse multi-collapse" id="multiCollapseExample1">
-                                <div class="card card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                    <div class="tab-content" id="nav-tabContent">
-
-                        <c:forEach var="topcategory" items="${listOfMapsOfItemsOfCategories3}" varStatus="theCount">
-                            <c:forEach var="category" items="${topcategory}" varStatus="theCount2">
-                                <c:set var="noUse" value="${collCountList.add(category.value.entrySet().size())}"/>
-                                <div class="tab-pane fade show top-collection-list" id="top-collection-list-${category.key}" role="tabpanel" aria-labelledby="list-home-list">
-
-                                    <ul id="cat-search-items" class="list-group bg-dark">
-                                        <c:forEach var="collection" items="${category.value}">
-                                            <li class="padding-bottom-10  list-group-item border-0 bg-gray">
-
-
-                                                <div class="row border-bottom">
-                                                    <div class="media">
-                                                        <svg class="mr-3 bd-placeholder-img" width="160" height="120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 320x240" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#6c757d"/><text x="20%" y="50%" fill="#dee2e6" dy=".3em">160x120</text></svg>
-
-                                                        <div class="media-body">
-                                                            <div class="row">
-                                                                <div class="col-12 category-collection-search-result-ul">
-
-                                                                    <a href="collection/<c:out value="${collection.key}"/>" class="collection-link">
-                                                                        <h5 class="mt-0"><c:out value="${collection.value.name}"/></h5>
-                                                                    </a>
-                                                                </div>
-
-                                                            </div>
-
-                                                            <p class="text-justify text-muted small overflow-auto" style="height: 6.2em;"><c:out value="${collection.value.description}"/></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </c:forEach>
-                                    </ul>
-
-                                </div>
-
-
-
-                            </c:forEach>
-                        </c:forEach>
-
-                    </div>
-
-            </div>
-        </div>
-
-
-
-
-    </div>
-
-
-<%-- search within category --%>
-
-    <div class="row padding-top-10">
-        <div class="col-4">
-
-        </div>
-
-        <%--   START: list of collection for spacific category     --%>
-        <div class="col-6">
-        </div>
-        <%--   END: list of collection for spacific category     --%>
-
-    </div>
-
-</div>
-    <%-- category items --%>
-
-
-
-    <footer class="footer-content">
-        <%@include file="footer.jsp" %>
-    </footer>
-</div>
 <%--container-fluid--%>
 
 
@@ -392,7 +217,23 @@
 
 
         var previous_id = null;
+
+        var previous_2_id = null;
+
         var arrayIndex = 0;
+
+        $(".top-category-card-2").on('click', function(event) {
+
+            console.log('previous_2_id = ', previous_2_id);
+
+            var current_2_id = $(this).attr('id');
+            console.log('current_2_id = ', current_2_id);
+
+            $('#top-collection-list-2-'+previous_2_id).removeClass("active");
+            $('#top-collection-list-2-'+current_2_id).addClass("active");
+
+            previous_2_id = current_2_id;
+        });
 
         $(".top-category-card").on('click', function(event){
 
@@ -484,17 +325,17 @@
             $(".category-items").toggle();
         });
 
-
-
-            $('.collection_list_8').on('click', function () {
-                $(this).parent().addClass('active');
-
-
-            });
-
-            $('.collection_list_8').on('click', function () {
-                $(this).parent().removeClass('active');
-            });
+            //
+            //
+            // $('.collection_list_8').on('click', function () {
+            //     $(this).parent().addClass('active');
+            //
+            //
+            // });
+            //
+            // $('.collection_list_8').on('click', function () {
+            //     $(this).parent().removeClass('active');
+            // });
 
 
 
