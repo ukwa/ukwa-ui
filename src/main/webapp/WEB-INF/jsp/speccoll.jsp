@@ -1,29 +1,37 @@
 <!DOCTYPE html>
-
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="req" value="${pageContext.request}" />
 <c:set var="uri" value="${req.requestURI}" />
-<c:set var="url">
-${req.requestURL}
-</c:set>
-<c:set var="locale">
-${pageContext.response.locale}
-</c:set>
+<c:set var="url">${req.requestURL}</c:set>
+<c:set var="locale">${pageContext.response.locale}</c:set>
 <c:if test="${setProtocolToHttps}">
   <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
 </c:if>
-<jsp:useBean id="collections" scope="request" type="java.util.List<com.marsspiders.ukwa.controllers.data.CollectionDTO>"/>
+<jsp:useBean id="listOfMapsOfItemsOfCategories3" scope="request" type="java.util.List<java.util.HashMap<java.lang.String, java.util.HashMap<java.lang.String, com.marsspiders.ukwa.controllers.data.CollectionDTO>>>"/>
+<jsp:useBean id="alphabetSet" scope="request"  type="java.util.HashSet<java.lang.Character>"/>
+<jsp:useBean id="listOfAlphabetical" scope="request"  type="java.util.List<java.util.HashSet<java.lang.Character>>"/>
+
+<jsp:useBean id="random" class="java.util.Random" scope="application" />
+<jsp:useBean id="collCountList" class="java.util.ArrayList"/>
+
 <html lang="${locale}">
 <head>
 <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/${locale}/ukwa/" />
-<title><spring:message code="coll.title" /></title>
+
+<title>
+    <spring:message code="coll.title" />
+</title>
 <%@include file="head.jsp" %>
 </head>
 
+
 <body>
+
+<c:set var = "category" value = "true"/>
+
 <%@include file="nav.jsp" %>
 <div class="container-fluid">
   <header>
@@ -33,131 +41,171 @@ ${pageContext.response.locale}
 <spring:message code='coll.main.heading' var="title"/>
 <%@include file="title.jsp" %>
 
-    <div style="padding-left: 40px; padding-right: 40px">
-        <div class="row margin-0 padding-side-20 padding-top-40">
-            <div class="col-lg-6 col-md-8 offset-md-1 col-md-offset-1 col-sm-12 header-2-subtitle padding-side-10"><spring:message code="coll.subtitle" /></div>
 
-            <div class="col-lg-2 offset-lg-3 col-lg-offset-3 col-md-2 offset-md-1 col-md-offset-1 col-sm-12 right padding-top-mobile-20">
-                <img title="<spring:message code="coll.thumbs" />" alt="<spring:message code="coll.thumbs" />" class="collections-display" id="btn_thumbs" src="img/icons/icn_grid.png" tabindex="0"/>
-                <img title="<spring:message code="coll.list" />" alt="<spring:message code="coll.list" />" class="collections-display" id="btn_list" src="img/icons/icn_list.png" tabindex="0"/>
-            </div>
+    <%-- description --%>
+    <div class="row margin-0 padding-side-20">
+        <div class="col-lg-6 col-md-8 offset-md-1 col-md-offset-1 col-sm-12 header-2-subtitle padding-side-10"><spring:message code="coll.subtitle" /></div>
 
+        <div class="col-lg-2 offset-lg-3 col-lg-offset-3 col-md-2 offset-md-1 col-md-offset-1 col-sm-12 right padding-top-mobile-20">
+            <img title="coll.thumbs" alt="coll.thumbs" class="collections-display" id="btn_thumbs" src="img/icons/icn_grid.png" tabindex="0"/>
+            <img title="coll.list" alt="coll.list" class="collections-display" id="btn_list" src="img/icons/icn_list.png" tabindex="0"/>
         </div>
-
-
-
-        <section id="content">
-
-
-            <!--THUMBNAIL DISPLAY-->
-            <ul class="row margin-0 padding-side-5 padding-mobile-side-20 padding-top-0 collections" id="collections_thumbs" style="list-style: none;">
-                <c:forEach items="${collections}" var="collection">
-                    <li class="col-lg-3 col-md-6 col-sm-12 image-grid-col padding-bottom-20 padding-top-30">
-                        <a href="collection/<c:out value="${collection.id}"/>" class="collection-link">
-                            <figure><img class="img-responsive border-gray coll-img" alt="<c:out value="${empty collection.imageAltMessage?collection.name:collection.imageAltMessage}"/>"
-                                         src="img/collections/collection_<c:out value="${collection.id}"/>.png"/>
-                            </figure>
-                            <div class="main-heading-2-bold-redesign left padding-bottom-10 padding-left-20 padding-right-20 collection-heading-bold"><c:out value="${collection.name}"/></div>
-                            <div class="left padding-bottom-10 padding-left-20 padding-right-20 collection-heading thumbnail"><c:out value="${collection.description}"/></div>
-                        </a>
-                    </li>
-                </c:forEach>
-            </ul>
-
-            <!--LIST DISPLAY-->
-
-            <ul class="row margin-0 padding-top-30 padding-mobile-side-20 collections" id="collections_list" style="list-style: none;">
-                <c:forEach items="${collections}" var="collection">
-                    <li class="col-sm-12 padding-bottom-20 padding-side-20 margin-bottom-20 padding-mobile-side-0">
-                        <div class="border-bottom-gray padding-bottom-20">
-                            <a href="collection/<c:out value="${collection.id}"/>" class="collection-link"><h2 class="main-heading-2-bold-redesign padding-bottom-0 collection-title"><c:out value="${collection.name}"/></h2></a><br/>
-                            <span class="collection-description"><c:out value="${collection.fullDescription}"/></span>
-                            <c:if test="${!empty collection.subCollections}">
-                                <!--Subcollections of current collection-->
-                                <div class="collections-subcollections">
-                                    <c:forEach items="${collection.subCollections}" var="subCollection">
-                                        <a href="collection/<c:out value="${subCollection.id}"/>"><c:out value="${subCollection.name}"/></a><br>
-                                    </c:forEach>
-                                </div>
-                                <div class="collections-view-subcollections"><a href="#" class="collections-subcollections-link"><spring:message code="coll.subcollections.show" /></a></div>
-                            </c:if>
-                        </div>
-                    </li>
-                </c:forEach>
-            </ul>
-
-        </section>
     </div>
+
+    <%-- filter collections --%>
+    <div class="row mb-4 white left bg-secondary">
+        <div class="col-12 w-100 form-inline inline-block-items flex-nowrap">
+            <input role="textbox" type="text" name="text" id="cat-search-input"
+                   title="<spring:message code="search.main.input.title" />"
+                   aria-label="<spring:message code="search.main.input.title" />"
+                   placeholder="Filter categories"
+                   class="main-search-field-redesign" value="${originalSearchRequest}" required tabindex="0"
+                   aria-required="true"/>
+            <button role="button" type="submit" class="btn btn-lg main-search-button h-100 w-auto align-items-center"
+                    title="<spring:message code="search.main.button.title" />">
+                <span class="d-none d-md-block align-middle">Filter</span>
+                <i class="fa fa-filter ml-2" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <%-- category top level cards --%>
+    <div class="row row-cols-md-2 categories_top_cards_bg">
+
+        <%-- All Collections --%>
+
+        <c:forEach var="topLevelCategoriesList" items="${listOfMapsOfItemsOfCategories3}" varStatus="count">
+            <c:forEach var="category" items="${topLevelCategoriesList.entrySet()}">
+
+                <div class="col btn-outline-danger">
+                    <div id="id_${category.key}" class="card mb-3 top-category-card-v2" style="min-width: 17rem;">
+                        <img class="card-img-top" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.key}"/>" style="filter: grayscale(80%);">
+
+                        <div class="card-img-overlay">
+                            <div class="card-title"><spring:message code="category.title.${category.key}" />
+
+                            </div>
+                                <%--                            <a href="#" class="stretched-link"></a>--%>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </c:forEach>
+        </c:forEach>
+
+    </div>
+
+
+    <hr class="my-1">
+
+    <%-- category collections list  --%>
+    <div class="tab-content " id="nav-tabContent">
+
+        <c:forEach var="topcategory" items="${listOfMapsOfItemsOfCategories3}" varStatus="theCount">
+            <c:forEach var="category" items="${topcategory}" varStatus="theCount2">
+                <c:set var="noUse" value="${collCountList.add(category.value.entrySet().size())}"/>
+                <div class="tab-pane fade show top-collection-list " id="top-collection-list-2-id_${category.key}" role="tabpanel" aria-labelledby="list-home-list">
+
+                    <ul id="cat-search-items-2" class="list-group">
+                        <div class="d-flex flex-wrap collections-items-2prow" id="tabContent">
+
+                            <c:forEach var="collection" items="${category.value}">
+
+                                <li class="list-group-item border-0 w-50">
+
+                                    <div class="media p-4">
+                                        <svg class="mr-3 bd-placeholder-img" width="160" height="120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 320x240" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#6c757d"/><text x="20%" y="50%" fill="#dee2e6" dy=".3em">160x120</text></svg>
+
+                                        <div class="media-body">
+                                            <div class="row">
+                                                <div class="col-12 category-collection-search-result-ul">
+                                                    <a href="collection/<c:out value="${collection.key}"/>" class="collection-link">
+                                                        <h5 class="mt-0"><c:out value="${collection.value.name}"/></h5>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+
+                                            <p class="text-justify text-muted small overflow-auto" style="height: 6.2em;"><c:out value="${collection.value.description}"/></p>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </c:forEach>
+                        </div>
+
+                    </ul>
+
+                </div>
+
+
+
+            </c:forEach>
+        </c:forEach>
+
+    </div>
+
 
 
 <footer class="footer-content">
   <%@include file="footer.jsp" %>
 </footer>
 </div>
-<input aria-hidden="true" type="hidden" id="no-coll-description" name="no-coll-description" value="<spring:message code="coll.nodescript" />" />
+
 <script>
 
-function toggleView(action, fcs) {
 
-	if (action === "list") {
-        $("#collections_thumbs").hide();
-		$("#collections_list").show();
-		$("#btn_list").hide();
-		$("#btn_thumbs").show();
-		if (fcs) $("#btn_thumbs").focus();
-		$.cookie("collections_display", "list", { expires: 365, path: '/' });
-	} else {
-        $("#collections_list").hide();
-		$("#collections_thumbs").show();
-		$("#btn_thumbs").hide();
-		$("#btn_list").show();
-		if (fcs) $("#btn_list").focus();
-		$.cookie("collections_display", "thumbnails", { expires: 365, path: '/' });
-	}
-
-	return true;
-}
 
 $(document).ready(function(e) {
+
+// categories--------------
     var $menuItems = $('.header-menu-item');
     $menuItems.removeClass('active');
-    $("#headermenu_collection").addClass('active');
+    $("#headermenu_categories").addClass('active');
 
-	if (typeof $.cookie('collections_display') === 'undefined' || $.cookie('collections_display')!=="list") {
-		toggleView("thumbs", false);
-	} else {
-		toggleView("list", false);
-	}
 
-	$("#btn_thumbs").on("click keypress", function(e) {
-		if (e.which == 1 || e.which == 13) {
-			e.preventDefault();
-			toggleView("thumbs", true);
-		}
-    });
-
-	$("#btn_list").on("click keypress", function(e) {
-		if (e.which == 1 || e.which == 13) {
-			e.preventDefault();
-			toggleView("list", true);
-		}
-    });
-
-	//view subcollections
-	var text_show = '<spring:message code="coll.subcollections.show" />';
-	var text_hide = '<spring:message code="coll.subcollections.hide" />';
-	$(".collections-subcollections-link").each(function(index, element) {
-        $(this).click(function(e) {
-			e.preventDefault();
-            if ($(this).parent().prev(".collections-subcollections").css("display")=="none") {
-				$(this).parent().prev(".collections-subcollections").show(200);
-				$(this).text(text_hide);
-			} else {
-				$(this).parent().prev(".collections-subcollections").hide(200);
-				$(this).text(text_show);
-			}
+    $("#cat-search-input").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#cat-search-items-2 li").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
+
+    $('.category-search-popover').popover({
+        container: 'body'
+    })
+
+    //<c:set var="categoryListSize" value="${collCountList.get(2)}" />
+    var array = new Array();
+    <c:forEach items="${collCountList}" var="item">
+    array.push("${item}");
+    </c:forEach>
+
+    var previous_2_id = null;
+
+
+    $(".top-category-card-v2").on('click', function(event) {
+
+        console.log('previous_2_id = ', previous_2_id);
+
+        var current_2_id = $(this).attr('id');
+        console.log('current_2_id = ', current_2_id);
+
+        $('#top-collection-list-2-'+previous_2_id).removeClass("active");
+        $('#top-collection-list-2-'+current_2_id).addClass("active");
+
+        $('#top-collection-list-2-'+previous_2_id).removeClass("bg-");
+        $('#top-collection-list-2-'+current_2_id).addClass("active");
+
+        $(".top-category-card-v2").addClass("w-25 p-3");
+
+        previous_2_id = current_2_id;
+    });
+
+
+
 
 });
 

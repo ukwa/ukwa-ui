@@ -320,7 +320,7 @@ public class CategoryController {
         }
         */
 
-        ModelAndView mav = new ModelAndView("categoriesV2");
+        ModelAndView mav = new ModelAndView("speccoll");
         mav.addObject("listOfMapsOfItemsOfCategories3", listOfMapsOfItemsOfCategories3);
         mav.addObject("alphabetSet", charSet);
         mav.addObject("listOfAlphabetical", listOfAlphabetical);

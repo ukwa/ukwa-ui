@@ -168,7 +168,8 @@ html, body {
 .breadcrumb, .results-count, .topics-themes-description,
 .modal-content-tab-panel, .main-search-check-label,
 .breadcrumb-item,
-.label-for-accessibility-placeholder{
+.label-for-accessibility-placeholder,
+.categories_top_cards_bg{
   @include themify($themes) {
     color: themed('textColor');
     background-color: themed('backgroundColor');
@@ -1174,7 +1175,6 @@ dt {
   border-bottom-style: solid;
   border-bottom-color: #5cb85c;
 }
-
 
 .label-counts {
   word-break: keep-all;
