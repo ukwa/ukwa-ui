@@ -80,7 +80,7 @@ ${pageContext.response.locale}
                         <form role="form" action="search" method="get" enctype="multipart/form-data" name="search_coll_form" id="search_coll_form">
                             <div class="row padding-bottom-20 w-100">
                                 <div class="col-12 col-sm pr-sm-0 form-inline inline-block-items flex-nowrap">
-                                    <input role="textbox" type="text" class="form-control form-control-lg homepage-search-input mr-lg-5 mr-md-5" name="text" id="text_collections"
+                                    <input role="textbox" type="search" class="form-control form-control-lg homepage-search-input mr-lg-5 mr-md-5" name="text" id="text_collections"
                                            title="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />"
                                            aria-label="<spring:message code="coll.search.text1" /> &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />"
                                            placeholder="<spring:message code="coll.search.text1" /> within &quot;<c:out value="${currentCollection.name}"/>&quot; <spring:message code="coll.search.text2" />"

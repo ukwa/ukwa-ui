@@ -2,7 +2,7 @@
     <form role="form" action="search" method="get" enctype="multipart/form-data" name="search_form" id="search_form">
         <div class="row w-100">
             <div class="col-12 form-inline inline-block-items flex-nowrap">
-                    <input role="textbox" type="text" name="text" id="text"
+                    <input role="textbox" type="search" name="text" id="text"
                            title="<spring:message code="search.main.input.title" />"
                            aria-label="<spring:message code="search.main.input.title" />"
                            placeholder="<spring:message code="search.main.input.title" />"
