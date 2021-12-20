@@ -329,24 +329,7 @@ public class CategoryController {
         return mav;
     }
 
-
-
-    @RequestMapping(value = "/{categoryId}", method = GET)
-    public ModelAndView getCategoryById(@PathVariable("categoryId") String collectionId) {
-        ModelAndView modelAndView = new ModelAndView("categoriesV1");
-        return modelAndView;
-    }
-
-    @RequestMapping(
-            value = "/process",
-            method = RequestMethod.POST,
-            consumes = "text/plain")
-    public void process(@RequestBody String payload) throws Exception {
-
-        //        List<CollectionDTO> collections = generateRootCollectionCategoriesDTOs(locale);
-        log.info("-------------- Category process ");
-        System.out.println(payload);
-    }
+    
 
 
     //------- cat
