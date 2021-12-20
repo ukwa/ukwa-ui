@@ -73,10 +73,9 @@
                     <div id="id_${category.key}" class="card mb-3 top-category-card-v2">
                         <img class="card-img-top center" id="id_image_id_${category.key}" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.key}"/>">
 
-                        <div class="card-img-overlay">
-                            <div class="card-title"><spring:message code="category.title.${category.key}" />
+                        <div class="card-img-overlay d-flex align-items-end">
+                            <h4 class="card-title"><spring:message code="category.title.${category.key}" /></h4>
 
-                            </div>
                                 <%--                            <a href="#" class="stretched-link"></a>--%>
                         </div>
 
