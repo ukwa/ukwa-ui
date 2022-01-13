@@ -74,7 +74,7 @@
                         <img class="card-img-top center" id="id_image_id_${category.key}" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.key}"/>" style="filter: grayscale(50%);">
 
                         <div class="card-img-overlay d-flex align-items-end">
-                            <h4 class="card-title" style="color: white!important; text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;"><spring:message code="category.title.${category.key}" /></h4>
+                            <h4 class="card-title" style="color: white!important; text-shadow: 1px 1px 2px black, 3px 3px 25px black, 2px 2px 15px black;"><spring:message code="category.title.${category.key}" /></h4>
 
 <%--                                                            <a href="#" class="stretched-link" target="_blank"></a>--%>
                         </div>
