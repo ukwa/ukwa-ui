@@ -169,7 +169,7 @@ html, body {
 .modal-content-tab-panel, .main-search-check-label,
 .breadcrumb-item,
 .label-for-accessibility-placeholder,
-.categories_top_cards_bg{
+{
   @include themify($themes) {
     color: themed('textColor');
     background-color: themed('backgroundColor');
@@ -697,15 +697,12 @@ h2.policy {
 }
 
 .container_foto {
-  background-color: rgba(57, 62, 93, 0.7);
-  padding: 0;
+  //background-color: rgba(57, 62, 93, 0.7);
+  background-color: rgba(34, 34, 34, 0.7);
   overflow: hidden;
-  max-width: 350px;
-  margin: 5px;
 }
 
 .container_foto article {
-  padding: 5%;
   position: absolute;
   bottom: 0;
   z-index: 1;
@@ -730,7 +727,6 @@ h2.policy {
 }
 
 .container_foto img {
-  width: 100%;
   top: 0;
   left: 0;
   opacity: 0.4;
@@ -741,35 +737,9 @@ h2.policy {
   transition: all 4s ease;
 }
 
-.ver_mas {
-  background-color: #2e6dd9;
-  position: absolute;
-  width: 100%;
-  height: 70px;
-  bottom: 0;
-  z-index: 1;
-  opacity: 0;
-  transform: translate(0px, 70px);
-  -webkit-transform: translate(0px, 70px);
-  -moz-transform: translate(0px, 70px);
-  -o-transform: translate(0px, 70px);
-  -ms-transform: translate(0px, 70px);
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  -ms-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+.top-category-card{
+  cursor: pointer;
 }
-
-.ver_mas span {
-  font-size: 40px;
-  color: #fff;
-  position: relative;
-  margin: 0 auto;
-  width: 100%;
-  top: 13px;
-}
-
 
 /*hovers*/
 

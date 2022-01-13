@@ -45,14 +45,14 @@
 
     <%-- filter button for collections --%>
     <div class="row mb-4 center">
-        <div class="col-sm-11 col-md-12 col-lg-offset-2  col-lg-11 ml-lg-5 p-lg-3 pl-sm-3 form-inline inline-block-items flex-nowrap">
+        <div class="col-sm-11 col-md-12 col-lg-offset-2 col-lg-11 ml-lg-3 ml-md-3 ml-sm-3  form-inline inline-block-items flex-nowrap">
             <input role="textbox" type="search" name="text" id="cat-search-input"
                    title="<spring:message code="search.main.input.title" />"
                    aria-label="<spring:message code="search.main.input.title" />"
                    placeholder="Filter categories"
                    class="main-search-field-redesign" value="${originalSearchRequest}" required tabindex="0"
                    aria-required="true"/>
-            <button role="button" type="submit" class=" btn btn-lg main-search-button h-100 w-auto align-items-center"
+            <button role="button" type="submit" class="btn btn-lg main-search-button h-100 w-auto align-items-center mr-md-4"
                     title="<spring:message code="search.main.button.title" />">
                 <span class="d-none d-md-block align-middle">Filter</span>
                 <i class="fa fa-filter ml-2" aria-hidden="true"></i>
@@ -69,18 +69,28 @@
         <c:forEach var="topLevelCategoriesList" items="${listOfMapsOfItemsOfCategories3}" varStatus="count">
             <c:forEach var="category" items="${topLevelCategoriesList.entrySet()}">
 
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div id="id_${category.key}" class="card mb-3 top-category-card-v2">
-                        <img class="card-img-top center" id="id_image_id_${category.key}" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.key}"/>" style="filter: grayscale(70%);">
+                <div class="col-lg-3 col-md-6 col-sm-12 pointer top-category-card">
+                    <div id="id_${category.key}" class="card mb-3 ml-3 mr-3 top-category-card-v2">
+                        <img class="card-img-top center" id="id_image_id_${category.key}" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.key}"/>" style="filter: grayscale(50%);">
 
                         <div class="card-img-overlay d-flex align-items-end">
-                            <h4 class="card-title"><spring:message code="category.title.${category.key}" /></h4>
+                            <h4 class="card-title" style="color: white!important; text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px #0c49b0;"><spring:message code="category.title.${category.key}" /></h4>
 
-                                <%--                            <a href="#" class="stretched-link"></a>--%>
+<%--                                                            <a href="#" class="stretched-link" target="_blank"></a>--%>
                         </div>
 
                     </div>
                 </div>
+
+<%--                <div id="id_${category.key}" class="card col-lg-3 col-md-6 col-sm-12 container_foto top-category-card p-1">--%>
+<%--                    <div class="card-block">--%>
+<%--                        <img id="id_image_id_${category.key}" class="card-img-top img-fluid" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.key}"/>">--%>
+<%--                        <article class="text-left pl-4">--%>
+<%--                            <h2><spring:message code="category.title.${category.key}" /></h2>--%>
+<%--                            <h4>Collection</h4>--%>
+<%--                        </article>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
             </c:forEach>
         </c:forEach>
@@ -99,16 +109,16 @@
                 <div class="tab-pane fade show top-collection-list " id="top-collection-list-2-id_${category.key}" role="tabpanel" aria-labelledby="list-home-list">
 
                     <ul id="cat-search-items-2" class="list-group">
-                        <div class="row collections-items-2prow ml-lg-4" id="tabContent">
+                        <div class="row collections-items-2prow ml-0 mr-1" id="tabContent">
 
                             <c:forEach var="collection" items="${category.value}">
 
                                 <li class="list-group-item col-lg-6 col-md-6 col-sm-12">
 
                                     <div class="media ">
-                                        <svg class="mr-3 bd-placeholder-img" width="160" height="120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 320x240" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#6c757d"/><text x="20%" y="50%" fill="#dee2e6" dy=".3em">160x120</text></svg>
+                                        <svg class="bd-placeholder-img" width="160" height="120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 320x240" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#6c757d"/><text x="20%" y="50%" fill="#dee2e6" dy=".3em">160x120</text></svg>
 
-                                        <div class="media-body">
+                                        <div class="ml-1 media-body">
                                             <div class="row">
                                                 <div class="col-12 category-collection-search-result-ul">
                                                     <a href="collection/<c:out value="${collection.key}"/>" class="collection-link">
@@ -187,7 +197,6 @@ $(document).ready(function(e) {
 
     var previous_2_id = null;
 
-
     $(".top-category-card-v2").on('click', function(event) {
 
         console.log('previous_2_id = ', previous_2_id);
@@ -200,20 +209,55 @@ $(document).ready(function(e) {
 
 
 
-        $(".top-category-card-v2").addClass("ml-lg-5 w-75");
+        $(".top-category-card-v2").addClass("w-75");
+
+        //$(".top-category-card").addClass("w-25");
+
+
 
 
         // $('#'+previous_2_id).removeClass('btn-outline-danger p-1 bg-danger');
         // $('#'+current_2_id).addClass('btn-outline-danger p-1 bg-danger');
 
-        $('#id_image_'+previous_2_id).removeClass('border border-primary p-1 bg-primary');//.css({"filter":blur(35px)});//filter: grayscale(100%);
-        $('#id_image_'+current_2_id).addClass('border border-primary p-1 bg-primary');
+        $('#id_image_'+previous_2_id).removeClass('border border-danger p-2 ');//.css({"filter":blur(35px)});//filter: grayscale(100%);
+        $('#id_image_'+current_2_id).addClass('border border-danger p-2 ');
 
 
         console.log('id image current = ', 'id_image_'+current_2_id);
 
         previous_2_id = current_2_id;
     });
+
+    // $(".top-category-card").on('click', function(event) {
+    //
+    //     console.log('previous_2_id = ', previous_2_id);
+    //
+    //     var current_2_id = $(this).attr('id');
+    //     console.log('current_2_id = ', current_2_id);
+    //
+    //     $('#top-collection-list-2-'+previous_2_id).removeClass("active");
+    //     $('#top-collection-list-2-'+current_2_id).addClass("active");
+    //
+    //
+    //
+    //     // $(".top-category-card-v2").addClass("ml-lg-5 w-75");
+    //
+    //     $(".top-category-card").addClass("w-25");
+    //
+    //
+    //
+    //
+    //     // $('#'+previous_2_id).removeClass('btn-outline-danger p-1 bg-danger');
+    //     // $('#'+current_2_id).addClass('btn-outline-danger p-1 bg-danger');
+    //
+    //     $('#id_image_'+previous_2_id).removeClass('border border-danger p-2 bg-danger');//.css({"filter":blur(35px)});//filter: grayscale(100%);
+    //     $('#id_image_'+current_2_id).addClass('border border-danger p-2 bg-danger');
+    //
+    //
+    //     console.log('id image current = ', 'id_image_'+current_2_id);
+    //
+    //     previous_2_id = current_2_id;
+    // });
 
 
 
