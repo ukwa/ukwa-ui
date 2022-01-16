@@ -738,7 +738,6 @@ h2.policy {
 }
 
 .top-category-card{
-  cursor: pointer;
 }
 
 /*hovers*/
@@ -753,11 +752,11 @@ h2.policy {
 }
 
 .container_foto:hover article {
-  transform: translate(2px, -69px);
-  -webkit-transform: translate(2px, -69px);
-  -moz-transform: translate(2px, -69px);
-  -o-transform: translate(2px, -69px);
-  -ms-transform: translate(2px, -69px);
+  transform: translate(2px, -29px);
+  -webkit-transform: translate(2px, -29px);
+  -moz-transform: translate(2px, -29px);
+  -o-transform: translate(2px, -29px);
+  -ms-transform: translate(2px, -29px);
 }
 
 .container_foto:hover .ver_mas {
@@ -767,15 +766,6 @@ h2.policy {
   -o-transform: translate(0px, 0px);
   -ms-transform: translate(0px, 0px);
   opacity: 1;
-}
-
-.jumbotron{
-  background-color: #000000 !important;
-  color: #ffffff;
-  data-spy: affix;
-  max-height: 200px;
-  border-bottom: 20px groove #333333;
-  margin-bottom: 0px;
 }
 
 .carousel .item .img-responsive{

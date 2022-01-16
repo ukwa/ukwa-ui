@@ -71,11 +71,10 @@
 
                 <div class="col-lg-3 col-md-6 col-sm-12 pointer top-category-card">
                     <div id="id_${category.key}" class="card mb-3 ml-3 mr-3 top-category-card-v2">
-                        <img class="card-img-top center" id="id_image_id_${category.key}" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.key}"/>" style="filter: grayscale(50%);">
+                        <img class="card-img-top center" id="id_image_id_${category.key}" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.key}"/>">
 
-                        <div class="card-img-overlay d-flex align-items-end">
-                            <h4 class="card-title" style="color: white!important; text-shadow: 1px 1px 2px black, 3px 3px 25px black, 2px 2px 15px black;"><spring:message code="category.title.${category.key}" /></h4>
-
+                        <div class="card-img-overlay d-flex align-items-end bottom-left">
+                            <h6 class="card-title text-uppercase bold" style="color: white!important; text-shadow: 1px 1px 2px black, 3px 3px 25px black, 2px 2px 15px black;"><spring:message code="category.title.${category.key}" /></h6>
 <%--                                                            <a href="#" class="stretched-link" target="_blank"></a>--%>
                         </div>
 
