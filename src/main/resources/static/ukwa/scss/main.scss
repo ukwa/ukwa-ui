@@ -740,6 +740,41 @@ h2.policy {
 .top-category-card{
 }
 
+.card-footer:last-child {
+  border-radius: 0!important;
+}
+
+.card-footer {
+  padding: 0!important;
+  background-color: unset!important;
+  border-top: unset!important;
+}
+
+.card-img-overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.card:hover{
+  box-shadow: 6px 6px 4px #9d9d9d;
+  transform: scale(1.1);
+}
+
+.card_hover{
+  -webkit-box-shadow: -1px 1px 5px 9px rgba(157, 157, 157,0.75);
+  -moz-box-shadow: -1px 1px 5px 9px rgba(157, 157, 157,0.75);
+  box-shadow: -1px 1px 5px 9px rgba(157, 157, 157,0.75);
+  transform: scale(1.1);
+}
+
+.border-3 {
+  border-width:3px !important;
+}
+.border-2 {
+  border-width:2px !important;
+}
 /*hovers*/
 
 .container_foto:hover {

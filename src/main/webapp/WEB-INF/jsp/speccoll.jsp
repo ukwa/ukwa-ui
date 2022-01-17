@@ -70,11 +70,14 @@
             <c:forEach var="category" items="${topLevelCategoriesList.entrySet()}">
 
                 <div class="col-lg-3 col-md-6 col-sm-12 pointer top-category-card">
-                    <div id="id_${category.key}" class="card mb-3 ml-3 mr-3 top-category-card-v2">
+                    <div id="id_${category.key}" class="card mb-4 ml-3 mr-3 top-category-card-v2">
                         <img class="card-img-top center" id="id_image_id_${category.key}" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.key}"/>">
 
-                        <div class="card-img-overlay d-flex align-items-end bottom-left">
-                            <h6 class="card-title text-uppercase bold" style="color: white!important; text-shadow: 1px 1px 2px black, 3px 3px 25px black, 2px 2px 15px black;"><spring:message code="category.title.${category.key}" /></h6>
+                        <div class="card-img-overlay">
+                            <div class="card-footer">
+                                <div class="text-uppercase bold" style="color: white!important; text-shadow: 1px 1px 2px black, 3px 3px 25px black, 2px 2px 15px black;position:absolute;bottom:2px;left:5px;"><spring:message code="category.title.${category.key}" /></div>
+                            </div>
+
 <%--                                                            <a href="#" class="stretched-link" target="_blank"></a>--%>
                         </div>
 
@@ -210,16 +213,8 @@ $(document).ready(function(e) {
 
         $(".top-category-card-v2").addClass("w-75");
 
-        //$(".top-category-card").addClass("w-25");
-
-
-
-
-        // $('#'+previous_2_id).removeClass('btn-outline-danger p-1 bg-danger');
-        // $('#'+current_2_id).addClass('btn-outline-danger p-1 bg-danger');
-
-        $('#id_image_'+previous_2_id).removeClass('border border-danger p-2 ');//.css({"filter":blur(35px)});//filter: grayscale(100%);
-        $('#id_image_'+current_2_id).addClass('border border-danger p-2 ');
+        $('#id_image_'+previous_2_id).removeClass('border border-danger border-3 card_hover');//.css({"filter":blur(35px)});//filter: grayscale(100%);
+        $('#id_image_'+current_2_id).addClass('border border-danger border-3 card_hover');
 
 
         console.log('id image current = ', 'id_image_'+current_2_id);
@@ -227,36 +222,6 @@ $(document).ready(function(e) {
         previous_2_id = current_2_id;
     });
 
-    // $(".top-category-card").on('click', function(event) {
-    //
-    //     console.log('previous_2_id = ', previous_2_id);
-    //
-    //     var current_2_id = $(this).attr('id');
-    //     console.log('current_2_id = ', current_2_id);
-    //
-    //     $('#top-collection-list-2-'+previous_2_id).removeClass("active");
-    //     $('#top-collection-list-2-'+current_2_id).addClass("active");
-    //
-    //
-    //
-    //     // $(".top-category-card-v2").addClass("ml-lg-5 w-75");
-    //
-    //     $(".top-category-card").addClass("w-25");
-    //
-    //
-    //
-    //
-    //     // $('#'+previous_2_id).removeClass('btn-outline-danger p-1 bg-danger');
-    //     // $('#'+current_2_id).addClass('btn-outline-danger p-1 bg-danger');
-    //
-    //     $('#id_image_'+previous_2_id).removeClass('border border-danger p-2 bg-danger');//.css({"filter":blur(35px)});//filter: grayscale(100%);
-    //     $('#id_image_'+current_2_id).addClass('border border-danger p-2 bg-danger');
-    //
-    //
-    //     console.log('id image current = ', 'id_image_'+current_2_id);
-    //
-    //     previous_2_id = current_2_id;
-    // });
 
 
 
