@@ -165,7 +165,9 @@
 
 $(document).ready(function(e) {
 
+
 // categories--------------
+
     var $menuItems = $('.header-menu-item');
     $menuItems.removeClass('active');
     $("#headermenu_categories").addClass('active');
@@ -197,10 +199,28 @@ $(document).ready(function(e) {
     array.push("${item}");
     </c:forEach>
 
+    var current_2_id = 'id_2222';
+    var onclick_category = false;
     var previous_2_id = null;
+
+    if (current_2_id !== null && current_2_id !== undefined && onclick_category !== true){
+        $('#top-collection-list-2-'+previous_2_id).removeClass("active");
+        $('#top-collection-list-2-'+current_2_id).addClass("active");
+
+        $(".top-category-card-v2").addClass("w-75");
+
+        $('#id_image_'+previous_2_id).removeClass('border border-danger border-3 card_hover');//.css({"filter":blur(35px)});//filter: grayscale(100%);
+        $('#id_image_'+current_2_id).addClass('border border-danger border-3 card_hover');
+
+
+        console.log('new - test current ID = ', 'id_image_'+current_2_id);
+
+        previous_2_id = current_2_id;
+    }
 
     $(".top-category-card-v2").on('click', function(event) {
 
+        onclick_category = true;
         console.log('previous_2_id = ', previous_2_id);
 
         var current_2_id = $(this).attr('id');
