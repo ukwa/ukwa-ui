@@ -42,6 +42,7 @@
 <%@include file="title.jsp" %>
 
 
+    <c:set var="categoryPlaceHolderVar" value="Filter within All Categories" />
 
     <%-- filter button for collections --%>
     <div class="row mb-4 center">
@@ -49,7 +50,7 @@
             <input role="textbox" type="search" name="text" id="cat-search-input"
                    title="<spring:message code="search.main.input.title" />"
                    aria-label="<spring:message code="search.main.input.title" />"
-                   placeholder="Filter categories"
+                   placeholder="${categoryPlaceHolderVar}"
                    class="main-search-field-redesign" value="${originalSearchRequest}" required tabindex="0"
                    aria-required="true"/>
             <button role="button" type="submit" class="btn btn-lg main-search-button h-100 w-auto align-items-center mr-md-4"
@@ -76,6 +77,9 @@
                         <div class="card-img-overlay">
                             <div class="card-footer">
                                 <div class="text-uppercase bold" style="color: white!important; text-shadow: 1px 1px 2px black, 3px 3px 25px black, 2px 2px 15px black;position:absolute;bottom:2px;left:5px;"><spring:message code="category.title.${category.key}" /></div>
+                                <c:set var="categoryPlaceHolderVar">
+                                    <spring:message code="category.title.${category.key}" />
+                                </c:set>
                             </div>
 
 <%--                                                            <a href="#" class="stretched-link" target="_blank"></a>--%>
@@ -163,15 +167,14 @@
 
 
 
-$(document).ready(function(e) {
-
+    $(document).ready(function(e) {
 
 // categories--------------
+    let catlist = ["All Categories","History","Politics & Government","Arts & Culture","Places", "Society & Communities", "Science, Technology & Medicine", "Sport & Recreation"];
 
-    var $menuItems = $('.header-menu-item');
+    let $menuItems = $('.header-menu-item');
     $menuItems.removeClass('active');
     $("#headermenu_categories").addClass('active');
-
 
     $("#cat-search-input").on("keyup", function() {
         var value = $(this).val().toLowerCase();
@@ -212,8 +215,7 @@ $(document).ready(function(e) {
         $('#id_image_'+previous_2_id).removeClass('border border-danger border-3 card_hover');//.css({"filter":blur(35px)});//filter: grayscale(100%);
         $('#id_image_'+current_2_id).addClass('border border-danger border-3 card_hover');
 
-
-        console.log('new - test current ID = ', 'id_image_'+current_2_id);
+        // console.log('new - test current ID = ', 'id_image_'+current_2_id);
 
         previous_2_id = current_2_id;
     }
@@ -229,22 +231,27 @@ $(document).ready(function(e) {
         $('#top-collection-list-2-'+previous_2_id).removeClass("active");
         $('#top-collection-list-2-'+current_2_id).addClass("active");
 
-
+        let listIndex=0;
+        switch (current_2_id) {
+            case 'id_2222': listIndex=0; break;
+            case 'id_2940': listIndex=1; break;
+            case 'id_2941': listIndex=2; break;
+            case 'id_2942': listIndex=3; break;
+            case 'id_2943': listIndex=4; break;
+            case 'id_2944': listIndex=5; break;
+            case 'id_2938': listIndex=6; break;
+            case 'id_2939': listIndex=7; break;
+        }
+        $('#cat-search-input').attr("placeholder", "Filter within " + catlist[listIndex] + (current_2_id=="id_2222"?"":" category"));
 
         $(".top-category-card-v2").addClass("w-75");
 
         $('#id_image_'+previous_2_id).removeClass('border border-danger border-3 card_hover');//.css({"filter":blur(35px)});//filter: grayscale(100%);
         $('#id_image_'+current_2_id).addClass('border border-danger border-3 card_hover');
 
-
-        console.log('id image current = ', 'id_image_'+current_2_id);
-
+        // console.log('id image current = ', 'id_image_'+current_2_id);
         previous_2_id = current_2_id;
     });
-
-
-
-
 
 });
 
