@@ -45,7 +45,7 @@
     <c:set var="categoryPlaceHolderVar" value="Filter within All Categories" />
 
     <%-- filter button for collections --%>
-    <div class="row mb-4 center">
+    <div class="row mb-1 center">
         <div class="col-sm-11 col-md-12 col-lg-offset-2 col-lg-11 ml-lg-3 ml-md-3 ml-sm-3  form-inline inline-block-items flex-nowrap">
             <input role="textbox" type="search" name="text" id="cat-search-input"
                    title="<spring:message code="search.main.input.title" />"
@@ -60,6 +60,11 @@
             </button>
         </div>
 
+    </div>
+
+    <%-- search results --%>
+    <div class="row">
+        <div class="p-lg-5 col-lg-12 col-md-12 col-sm-12 header-2-subtitle-redesign align-content-center text-wrap" id="cat-filter-results"></div>
     </div>
 
     <%-- category top level cards --%>
@@ -103,13 +108,9 @@
 
     </div>
 
+    <hr class="my-2"/>
 
-    <%-- search results --%>
-    <div class="row">
-        <div class="p-lg-5 col-lg-12 col-md-12 col-sm-12 header-2-subtitle-redesign align-content-center text-wrap" id="cat-filter-results">Results found:</div>
-    </div>
-
-    <%-- category collections list  --%>
+<%-- category collections list  --%>
     <div class="tab-content " id="nav-tabContent">
 
         <c:forEach var="topcategory" items="${listOfMapsOfItemsOfCategories3}" varStatus="theCount">
@@ -156,7 +157,6 @@
 
     </div>
 
-
     <%-- description --%>
     <div class="row my-3">
         <div class="p-lg-5 col-lg-12 col-md-12 col-sm-12 header-2-subtitle align-content-center text-wrap"><spring:message code="coll.subtitle" /></div>
@@ -180,13 +180,12 @@
     $menuItems.removeClass('active');
     $("#headermenu_categories").addClass('active');
 
-
     $("#cat-search-input").on("keyup", function() {
         let value = $(this).val().toLowerCase();
         $("#cat-search-items-2 li").filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
             if ($('ul#cat-search-items-2 li:visible').length > 0)
-                $('#cat-filter-results').text("Results found : ");
+                $('#cat-filter-results').text("");
             else
                 $('#cat-filter-results').text("No search results found");
         });
