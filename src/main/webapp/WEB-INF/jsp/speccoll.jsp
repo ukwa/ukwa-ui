@@ -108,15 +108,13 @@
 
     </div>
 
-    <hr class="my-2"/>
-
 <%-- category collections list  --%>
     <div class="tab-content " id="nav-tabContent">
 
         <c:forEach var="topcategory" items="${listOfMapsOfItemsOfCategories3}" varStatus="theCount">
             <c:forEach var="category" items="${topcategory}" varStatus="theCount2">
                 <c:set var="noUse" value="${collCountList.add(category.value.entrySet().size())}"/>
-                <div class="tab-pane fade show top-collection-list " id="top-collection-list-2-id_${category.key}" role="tabpanel" aria-labelledby="list-home-list">
+                <div class="tab-pane fade show top-collection-list mt-5" id="top-collection-list-2-id_${category.key}" role="tabpanel" aria-labelledby="list-home-list">
 
                     <ul id="cat-search-items-2" class="list-group">
                         <div class="row collections-items-2prow ml-0 mr-1" id="tabContent">
