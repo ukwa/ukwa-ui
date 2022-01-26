@@ -187,7 +187,7 @@
             if ($('ul#cat-search-items-2 li:visible').length > 0)
                 $('#cat-filter-results').text("");
             else
-                $('#cat-filter-results').text("No search results found");
+                $('#cat-filter-results').text("No results");
         });
     });
 
