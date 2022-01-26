@@ -228,6 +228,9 @@
 
     $(".top-category-card-v2").on('click', function(event) {
 
+        $('#cat-filter-results').text("");
+        $('#cat-search-input').val("");
+
         onclick_category = true;
         console.log('previous_2_id = ', previous_2_id);
 
