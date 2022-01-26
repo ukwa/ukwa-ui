@@ -133,11 +133,15 @@
                                                         <h5><c:out value="${collection.value.name}"/></h5>
                                                     </a>
                                                 </div>
-
                                             </div>
 
-                                            <p class="text-justify text-muted small overflow-auto" style="height: 6.2em;"><c:out value="${collection.value.description}"/></p>
+                                            <div id="colmodule">
+                                                <p id="collapseCollection-<c:out value="${collection.key}"/>" class="collapse text-justify text-muted small col-descr m-0" aria-expanded="false"><c:out value="${collection.value.description}"/></p>
+                                                <a role="button" class="collapsed" data-toggle="collapse" href="#collapseCollection-<c:out value="${collection.key}"/>" aria-expanded="false" aria-controls="collapseCollection-<c:out value="${collection.key}"/>"></a>
+                                            </div>
+
                                         </div>
+
                                     </div>
                                 </li>
 

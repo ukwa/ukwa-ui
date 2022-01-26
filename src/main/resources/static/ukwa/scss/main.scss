@@ -655,6 +655,31 @@ h2.policy {
 .default-padding {
 }
 
+
+/* read more - read less*/
+#module {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+#colmodule .col-descr.collapse:not(.show) {
+  display: block;
+  height: 3.5rem;
+  overflow: hidden;
+}
+
+#colmodule .col-descr.collapsing {
+  height: 3.5rem;
+}
+
+#colmodule a.collapsed::after {
+  content: '+ Show More';
+}
+
+#colmodule a:not(.collapsed)::after {
+  content: '- Show Less';
+}
+
 /* Make the image fully responsive */
 .carousel-inner img {
   width: 100%;
