@@ -104,7 +104,10 @@
     </div>
 
 
-    <hr class="my-1">
+    <%-- search results --%>
+    <div class="row">
+        <div class="p-lg-5 col-lg-12 col-md-12 col-sm-12 header-2-subtitle-redesign align-content-center text-wrap" id="cat-filter-results">Results found:</div>
+    </div>
 
     <%-- category collections list  --%>
     <div class="tab-content " id="nav-tabContent">
@@ -153,6 +156,7 @@
 
     </div>
 
+
     <%-- description --%>
     <div class="row my-3">
         <div class="p-lg-5 col-lg-12 col-md-12 col-sm-12 header-2-subtitle align-content-center text-wrap"><spring:message code="coll.subtitle" /></div>
@@ -176,17 +180,22 @@
     $menuItems.removeClass('active');
     $("#headermenu_categories").addClass('active');
 
+
     $("#cat-search-input").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
+        let value = $(this).val().toLowerCase();
         $("#cat-search-items-2 li").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            if ($('ul#cat-search-items-2 li:visible').length > 0)
+                $('#cat-filter-results').text("Results found : ");
+            else
+                $('#cat-filter-results').text("No search results found");
         });
     });
 
     $('input[type=search]').on('search', function () {
         // search logic here
         // this function will be executed on click of X (clear button)
-        var value = $(this).val().toLowerCase();
+        let value = $(this).val().toLowerCase();
         $("#cat-search-items-2 li").filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
@@ -225,7 +234,7 @@
         onclick_category = true;
         console.log('previous_2_id = ', previous_2_id);
 
-        var current_2_id = $(this).attr('id');
+        let current_2_id = $(this).attr('id');
         console.log('current_2_id = ', current_2_id);
 
         $('#top-collection-list-2-'+previous_2_id).removeClass("active");
