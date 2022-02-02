@@ -52,11 +52,6 @@
                    placeholder="${categoryPlaceHolderVar}"
                    class="main-search-field-redesign" value="${originalSearchRequest}" required tabindex="0"
                    aria-required="true"/>
-            <button role="button" type="submit" class="btn btn-lg main-search-button h-100 w-auto align-items-center mr-md-4"
-                    title="<spring:message code="search.main.button.title" />">
-                <span class="d-none d-md-block align-middle">Filter</span>
-                <i class="fa fa-filter ml-2" aria-hidden="true"></i>
-            </button>
         </div>
 
     </div>
@@ -185,7 +180,7 @@
     $("#headermenu_categories").addClass('active');
 
     $("#cat-search-input").on("keyup", function() {
-        console.log('cat-search-input TRIGGER keyup');
+        // console.log('cat-search-input TRIGGER keyup');
         let value = $(this).val().toLowerCase();
 
         if(jQuery.trim(value).length > 0){
@@ -206,29 +201,14 @@
                 $('#cat-filter-results').text("No results");
         });}
         else{
-            console.log("value NOT >0 ", value);
+            // console.log("value NOT >0 ", value);
             $("ul#cat-search-items-2 li").filter(function() {
                 items_length = $('ul#cat-search-items-2 li:visible').length;
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-                
+                $('#cat-filter-results').text("");
             });
         }
-
-
-        console.log("value = ", value);
-        console.log("items_length from cat-search-input = ", items_length);
         items_length = $('ul#cat-search-items-2 li:visible').length;
-        console.log("items_length from cat-search-input = ", items_length);
-
-    });
-
-    $('input[type=search]').on('search', function () {
-        // search logic here
-        // this function will be executed on click of X (clear button)
-        let value = $(this).val().toLowerCase();
-        $("ul#cat-search-items-2 li").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-        });
     });
 
     $('.category-search-popover').popover({
@@ -255,18 +235,15 @@
         $('#id_image_'+current_2_id).addClass('border border-danger fast-transition-2');
 
         // console.log('new - test current ID = ', 'id_image_'+current_2_id);
-
         previous_2_id = current_2_id;
     }
 
     $(".top-category-card-v2").on('click', function(event) {
 
-        console.log("items_length FROM top-category-card-v2 = ", items_length);
+        // console.log("items_length FROM top-category-card-v2 = ", items_length);
 
         $('#cat-filter-results').text("");
         $('#cat-search-input').val("");
-
-
 
         onclick_category = true;
         console.log('previous_2_id = ', previous_2_id);
@@ -290,7 +267,7 @@
         }
 
         $('#cat-search-input').trigger("keyup");
-        $('#cat-search-input').attr("placeholder", "Filter within " + catlist[listIndex] + (current_2_id=="id_2222"?"":" category") + ', where ' + items_length + ' collections available');
+        $('#cat-search-input').attr("placeholder", "Filter within " + catlist[listIndex] + (current_2_id=="id_2222"?"":" category") + ' (' + items_length + ' collections available)');
 
         $(".top-category-card-v2").addClass("w-75");
 
