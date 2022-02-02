@@ -41,7 +41,6 @@
 <spring:message code='coll.main.heading' var="title"/>
 <%@include file="title.jsp" %>
 
-
     <c:set var="categoryPlaceHolderVar" value="Filter within All Categories" />
 
     <%-- filter button for collections --%>
@@ -68,15 +67,15 @@
     </div>
 
     <%-- category top level cards --%>
-    <div class="row">
+    <div class="row" tabindex="-1">
 
         <%-- All Collections --%>
 
         <c:forEach var="topLevelCategoriesList" items="${listOfMapsOfItemsOfCategories3}" varStatus="count">
             <c:forEach var="category" items="${topLevelCategoriesList.entrySet()}">
 
-                <div class="col-lg-3 col-md-6 col-sm-12 pointer top-category-card">
-                    <div id="id_${category.key}" class="card mb-4 ml-3 mr-3 top-category-card-v2">
+                <div class="col-lg-3 col-md-6 col-sm-12 pointer top-category-card" tabindex="-1" aria-label="Main List of Categories">
+                    <div id="id_${category.key}" class="card mb-4 ml-3 mr-3 top-category-card-v2 fast-transition align-items-center" tabindex="0">
                         <img class="card-img-top center" id="id_image_id_${category.key}" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.key}"/>">
 
                         <div class="card-img-overlay">
@@ -109,7 +108,7 @@
     </div>
 
 <%-- category collections list  --%>
-    <div class="tab-content " id="nav-tabContent">
+    <div class="tab-content" id="nav-tabContent">
 
         <c:forEach var="topcategory" items="${listOfMapsOfItemsOfCategories3}" varStatus="theCount">
             <c:forEach var="category" items="${topcategory}" varStatus="theCount2">
@@ -179,26 +178,56 @@
     let catlist = ["All Categories","History","Politics & Government","Arts & Culture","Places", "Society & Communities", "Science, Technology & Medicine", "Sport & Recreation"];
 
     let $menuItems = $('.header-menu-item');
+    //let items_length = 0;
+    let items_length = $('ul#cat-search-items-2 li:visible').length;
+
     $menuItems.removeClass('active');
     $("#headermenu_categories").addClass('active');
 
     $("#cat-search-input").on("keyup", function() {
+        console.log('cat-search-input TRIGGER keyup');
         let value = $(this).val().toLowerCase();
-        $("#cat-search-items-2 li").filter(function() {
+
+        if(jQuery.trim(value).length > 0){
+            console.log("value >0 ", value);
+
+            $("ul#cat-search-items-2 li").filter(function() {
+            items_length = $('ul#cat-search-items-2 li:visible').length;
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-            if ($('ul#cat-search-items-2 li:visible').length > 0)
-                $('#cat-filter-results').text("");
+
+             // let currentLiText = $(this).text();
+             // console.log('currentLiText = ', currentLiText);
+
+             // $(this).html(currentLiText.replace(value, "<span class='bold bg-primary white'>" + value + "</span>"))
+
+            if (items_length > 0)
+                $('#cat-filter-results').text("Results found: "+items_length);
             else
                 $('#cat-filter-results').text("No results");
-        });
+        });}
+        else{
+            console.log("value NOT >0 ", value);
+            $("ul#cat-search-items-2 li").filter(function() {
+                items_length = $('ul#cat-search-items-2 li:visible').length;
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                
+            });
+        }
+
+
+        console.log("value = ", value);
+        console.log("items_length from cat-search-input = ", items_length);
+        items_length = $('ul#cat-search-items-2 li:visible').length;
+        console.log("items_length from cat-search-input = ", items_length);
+
     });
 
     $('input[type=search]').on('search', function () {
         // search logic here
         // this function will be executed on click of X (clear button)
         let value = $(this).val().toLowerCase();
-        $("#cat-search-items-2 li").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        $("ul#cat-search-items-2 li").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
         });
     });
 
@@ -222,8 +251,8 @@
 
         $(".top-category-card-v2").addClass("w-75");
 
-        $('#id_image_'+previous_2_id).removeClass('border border-danger border-3 card_hover');//.css({"filter":blur(35px)});//filter: grayscale(100%);
-        $('#id_image_'+current_2_id).addClass('border border-danger border-3 card_hover');
+        $('#id_image_'+previous_2_id).removeClass('border border-danger fast-transition-2');//.css({"filter":blur(35px)});//filter: grayscale(100%);
+        $('#id_image_'+current_2_id).addClass('border border-danger fast-transition-2');
 
         // console.log('new - test current ID = ', 'id_image_'+current_2_id);
 
@@ -232,8 +261,12 @@
 
     $(".top-category-card-v2").on('click', function(event) {
 
+        console.log("items_length FROM top-category-card-v2 = ", items_length);
+
         $('#cat-filter-results').text("");
         $('#cat-search-input').val("");
+
+
 
         onclick_category = true;
         console.log('previous_2_id = ', previous_2_id);
@@ -255,16 +288,29 @@
             case 'id_2938': listIndex=6; break;
             case 'id_2939': listIndex=7; break;
         }
-        $('#cat-search-input').attr("placeholder", "Filter within " + catlist[listIndex] + (current_2_id=="id_2222"?"":" category"));
+
+        $('#cat-search-input').trigger("keyup");
+        $('#cat-search-input').attr("placeholder", "Filter within " + catlist[listIndex] + (current_2_id=="id_2222"?"":" category") + ', where ' + items_length + ' collections available');
 
         $(".top-category-card-v2").addClass("w-75");
 
-        $('#id_image_'+previous_2_id).removeClass('border border-danger border-3 card_hover');//.css({"filter":blur(35px)});//filter: grayscale(100%);
-        $('#id_image_'+current_2_id).addClass('border border-danger border-3 card_hover');
+        $('#id_image_'+previous_2_id).removeClass('border border-danger fast-transition-2');//.css({"filter":blur(35px)});//filter: grayscale(100%);
+        $('#id_image_'+current_2_id).addClass('border border-danger fast-transition-2');
+
 
         // console.log('id image current = ', 'id_image_'+current_2_id);
         previous_2_id = current_2_id;
+
+
     });
+
+        $('.top-category-card-v2').keydown( function(e) {
+            let key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+            if(key == 13) {
+                e.preventDefault();
+                $(this).click();
+            }
+        });
 
 });
 
