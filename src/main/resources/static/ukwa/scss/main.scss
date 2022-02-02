@@ -212,13 +212,6 @@ html, body {
 }
 
 
-.ukwa-form-button {
-    @include themify($themes) {
-      color: themed('ukwa-form-button-color');
-      background-color: themed('ukwa-form-button-bg');
-    }
-  }
-
 .nav-tabs--vertical {
   border-bottom: none;
   border-right: 1px solid #ddd;
@@ -680,37 +673,6 @@ h2.policy {
   content: '- Show Less';
 }
 
-/* Make the image fully responsive */
-.carousel-inner img {
-  width: 100%;
-  height: 100%;
-}
-
-#ukwa-categories-carousel .carousel-indicators {
-  position: static;
-  margin-top:20px;
-}
-
-#ukwa-categories-carousel .carousel-indicators > li {
-  width:200px;
-}
-
-#ukwa-categories-carousel .carousel-indicators li img {
-  display: block;
-  opacity: 0.5;
-}
-
-#ukwa-categories-carousel .carousel-indicators li.active img {
-  opacity: 1;
-}
-
-#ukwa-categories-carousel .carousel-indicators li:hover img {
-  opacity: 0.75;
-}
-
-.fa-chevron-left, .fa-chevron-right  {
-  color:black;
-}
 
 .contenedor {
   height: 100%;
@@ -782,16 +744,95 @@ h2.policy {
   height: 100%;
 }
 
-.card:hover{
-  box-shadow: 6px 6px 4px #9d9d9d;
-  transform: scale(1.1);
+//.card:hover{
+//  box-shadow: 6px 6px 4px #9d9d9d;
+//  transform: scale(1.1);
+//}
+//
+//.card_hover{
+//  -webkit-box-shadow: -1px 1px 5px 9px rgba(157, 157, 157,0.75);
+//  -moz-box-shadow: -1px 1px 5px 9px rgba(157, 157, 157,0.75);
+//  box-shadow: -1px 1px 5px 9px rgba(157, 157, 157,0.75);
+//  transform: scale(1.1);
+//}
+
+.effect5
+{
+  position: relative;
+}
+.effect5:before, .effect5:after
+{
+  z-index: -1;
+  position: absolute;
+  content: ' ';
+  bottom: 25px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  -webkit-box-shadow: 0 35px 20px #777;
+  -moz-box-shadow: 0 35px 20px #777;
+  box-shadow: 0 35px 20px #777;
+  -webkit-transform: rotate(-8deg);
+  -moz-transform: rotate(-8deg);
+  -o-transform: rotate(-8deg);
+  -ms-transform: rotate(-8deg);
+  transform: rotate(-8deg);
+}
+.effect5:after
+{
+  -webkit-transform: rotate(8deg);
+  -moz-transform: rotate(8deg);
+  -o-transform: rotate(8deg);
+  -ms-transform: rotate(8deg);
+  transform: rotate(8deg);
+  right: 10px;
+  left: auto;
 }
 
-.card_hover{
-  -webkit-box-shadow: -1px 1px 5px 9px rgba(157, 157, 157,0.75);
-  -moz-box-shadow: -1px 1px 5px 9px rgba(157, 157, 157,0.75);
-  box-shadow: -1px 1px 5px 9px rgba(157, 157, 157,0.75);
-  transform: scale(1.1);
+/* The faster shadow transition - aka animation */
+.fast-transition {
+  position: relative; /* For positioning the pseudo-element */
+}
+
+.fast-transition-2{
+  @include themify($themes) {
+    box-shadow: themed('top_category_box-shadow') !important;
+  }
+}
+
+/* Style the active class (and buttons on mouse-over) */
+//.active, .fast-transition:hover {
+//  @include themify($themes) {
+//    box-shadow: themed('top_category_box-shadow') !important;
+//  }
+//}
+
+
+.fast-transition::before {
+  /* Position the pseudo-element. */
+  content: ' ';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  /* Create the box shadow at expanded size. */
+  //transform: scale(1.1);
+  @include themify($themes) {
+    box-shadow: themed('top_category_box-shadow');
+  }
+
+  /* Hidden by default. */
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+.fast-transition:hover::before {
+  /* Show the pseudo-element on hover. */
+  opacity: 1;
 }
 
 .border-3 {
@@ -1412,6 +1453,20 @@ dt {
       color: themed('buttonTextHoverColor');
       border-color: themed('buttonTextHoverColor');
       background-color: themed('buttonHoverColor');
+    }
+  }
+}
+
+.top-category-card-v2{
+
+  @include themify($themes) {
+    border-color: themed('buttonTextColor');
+    color: themed('buttonTextColor');
+    border-color: themed('buttonTextColor');
+    background-color: themed('buttonColor');
+
+    &:hover, &:focus {
+      border-color: themed('buttonTextHoverColor');
     }
   }
 }
