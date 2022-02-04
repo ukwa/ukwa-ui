@@ -118,7 +118,7 @@
                                 <li class="list-group-item col-lg-6 col-md-6 col-sm-12">
 
                                     <div class="media ">
-                                        <svg class="bd-placeholder-img" width="160" height="120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 320x240" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#6c757d"/><text x="20%" y="50%" fill="#dee2e6" dy=".3em">160x120</text></svg>
+                                        <img style="width:160px;height:auto;" alt="<c:out value="${collection.value.name}"/>" src="img/collections/collection_<c:out value="${collection.key}"/>.png"/>
 
                                         <div class="ml-1 media-body">
                                             <div class="row">
@@ -174,7 +174,16 @@
 
     let $menuItems = $('.header-menu-item');
     //let items_length = 0;
-    let items_length = $('ul#cat-search-items-2 li:visible').length;
+    let items_length = $('ul#cat-search-items-2 li').length;
+
+
+        let current_2_id = 'id_2222';
+        let listIndex=0; // for 'id_2222' - All Collections
+        $('#cat-search-input').attr("placeholder", "Filter within " + catlist[listIndex] + (current_2_id=="id_2222"?"":" category") + ' (' + items_length + ' collections available)');
+
+        var onclick_category = false;
+        var previous_2_id = null;
+
 
     $menuItems.removeClass('active');
     $("#headermenu_categories").addClass('active');
@@ -221,9 +230,7 @@
     array.push("${item}");
     </c:forEach>
 
-    var current_2_id = 'id_2222';
-    var onclick_category = false;
-    var previous_2_id = null;
+
 
     if (current_2_id !== null && current_2_id !== undefined && onclick_category !== true){
         $('#top-collection-list-2-'+previous_2_id).removeClass("active");
@@ -254,7 +261,7 @@
         $('#top-collection-list-2-'+previous_2_id).removeClass("active");
         $('#top-collection-list-2-'+current_2_id).addClass("active");
 
-        let listIndex=0;
+
         switch (current_2_id) {
             case 'id_2222': listIndex=0; break;
             case 'id_2940': listIndex=1; break;
