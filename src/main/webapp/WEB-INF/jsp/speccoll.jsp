@@ -69,11 +69,11 @@
         <c:forEach var="topLevelCategoriesList" items="${listOfMapsOfItemsOfCategories3}" varStatus="count">
             <c:forEach var="category" items="${topLevelCategoriesList.entrySet()}">
 
-                <div class="col-lg-3 col-md-6 col-sm-12 pointer top-category-card" tabindex="-1" aria-label="Main List of Categories">
+                <div class="col-lg-3 col-md-6 col-sm-12 top-category-card" tabindex="-1" aria-label="Main List of Categories">
                     <div id="id_${category.key}" class="card mb-4 ml-3 mr-3 top-category-card-v2 fast-transition align-items-center" tabindex="0">
                         <img class="card-img-top center" id="id_image_id_${category.key}" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.key}"/>">
 
-                        <div class="card-img-overlay">
+                        <div class="card-img-overlay cursor-pointer" >
                             <div class="card-footer">
                                 <div class="text-uppercase bold" style="color: white!important; text-shadow: 1px 1px 2px black, 3px 3px 25px black, 2px 2px 15px black;position:absolute;bottom:2px;left:5px;"><spring:message code="category.title.${category.key}" /></div>
                                 <c:set var="categoryPlaceHolderVar">
@@ -117,9 +117,10 @@
 
                                 <li class="list-group-item col-lg-6 col-md-6 col-sm-12">
 
-                                    <div class="media ">
-                                        <img style="width:160px;height:auto;" alt="<c:out value="${collection.value.name}"/>" src="img/collections/collection_<c:out value="${collection.key}"/>.png"/>
-
+                                    <div class="media">
+                                        <a href="collection/<c:out value="${collection.key}"/>" class="collection-link">
+                                            <img style="width:160px;height:auto;" alt="<c:out value="${collection.value.name}"/>" src="img/collections/collection_<c:out value="${collection.key}"/>.png"/>
+                                        </a>
                                         <div class="ml-1 media-body">
                                             <div class="row">
                                                 <div class="col-12 category-collection-search-result-ul">
@@ -176,6 +177,9 @@
     //let items_length = 0;
     let items_length = $('ul#cat-search-items-2 li').length;
 
+    console.log('initial items_length = ', items_length)
+
+
 
         let current_2_id = 'id_2222';
         let listIndex=0; // for 'id_2222' - All Collections
@@ -184,6 +188,8 @@
         var onclick_category = false;
         var previous_2_id = null;
 
+        $('#top-collection-list-2-'+current_2_id).addClass("active");
+        $('#id_image_'+current_2_id).addClass('border border-danger fast-transition-2');
 
     $menuItems.removeClass('active');
     $("#headermenu_categories").addClass('active');
