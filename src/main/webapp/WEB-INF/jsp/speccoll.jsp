@@ -174,16 +174,13 @@
     let catlist = ["All Categories","History","Politics & Government","Arts & Culture","Places", "Society & Communities", "Science, Technology & Medicine", "Sport & Recreation"];
 
     let $menuItems = $('.header-menu-item');
-    //let items_length = 0;
-    let items_length = $('ul#cat-search-items-2 li').length;
-
-    console.log('initial items_length = ', items_length)
-
-
 
         let current_2_id = 'id_2222';
         let listIndex=0; // for 'id_2222' - All Collections
+        let items_length = $("#top-collection-list-2-id_2222").find("li").length;
+
         $('#cat-search-input').attr("placeholder", "Filter within " + catlist[listIndex] + (current_2_id=="id_2222"?"":" category") + ' (' + items_length + ' collections available)');
+
 
         var onclick_category = false;
         var previous_2_id = null;
