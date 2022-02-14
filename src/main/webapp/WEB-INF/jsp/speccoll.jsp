@@ -121,7 +121,7 @@
                                         <a href="collection/<c:out value="${collection.key}"/>" class="collection-link">
                                             <img style="width:160px;height:auto;" alt="<c:out value="${collection.value.name}"/>" src="img/collections/collection_<c:out value="${collection.key}"/>.png"/>
                                         </a>
-                                        <div class="ml-1 media-body">
+                                        <div class="ml-3 media-body">
                                             <div class="row">
                                                 <div class="col-12 category-collection-search-result-ul">
                                                     <a href="collection/<c:out value="${collection.key}"/>" class="collection-link">
@@ -131,7 +131,7 @@
                                             </div>
 
                                             <div id="colmodule">
-                                                <p id="collapseCollection-<c:out value="${collection.key}"/>" class="collapse text-justify text-muted small col-descr m-0" aria-expanded="false"><c:out value="${collection.value.description}"/></p>
+                                                <p id="collapseCollection-<c:out value="${collection.key}"/>" class="collapse text-justify text-muted small col-descr" aria-expanded="false"><c:out value="${collection.value.description}"/></p>
                                                 <a role="button" class="collapsed" data-toggle="collapse" href="#collapseCollection-<c:out value="${collection.key}"/>" aria-expanded="false" aria-controls="collapseCollection-<c:out value="${collection.key}"/>"></a>
                                             </div>
 
