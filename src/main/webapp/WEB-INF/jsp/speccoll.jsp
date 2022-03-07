@@ -130,7 +130,7 @@
                                                 </div>
                                             </div>
 
-                                            <div id="colmodule">
+                                            <div id="colmodule" class="collection-descr">
                                                 <p id="collapseCollection-<c:out value="${collection.key}"/>" class="collapse text-justify text-muted small col-descr" aria-expanded="false"><c:out value="${collection.value.description}"/></p>
                                                 <a role="button" class="collapsed" data-toggle="collapse" href="#collapseCollection-<c:out value="${collection.key}"/>" aria-expanded="false" aria-controls="collapseCollection-<c:out value="${collection.key}"/>"></a>
                                             </div>
@@ -179,8 +179,9 @@
         let listIndex=0; // for 'id_2222' - All Collections
         let items_length = $("#top-collection-list-2-id_2222").find("li").length;
 
-        $('#cat-search-input').attr("placeholder", "Filter within " + catlist[listIndex] + (current_2_id=="id_2222"?"":" category") + ' (' + items_length + ' collections available)');
+        //console.log('--- Initial ---- current_2_id = ', current_2_id);
 
+        $('#cat-search-input').attr("placeholder", "Filter within " + catlist[listIndex] + (current_2_id=="id_2222"?"":" category") + ' (' + items_length + ' collections available)');
 
         var onclick_category = false;
         var previous_2_id = null;
@@ -191,37 +192,57 @@
     $menuItems.removeClass('active');
     $("#headermenu_categories").addClass('active');
 
-    $("#cat-search-input").on("keyup", function() {
-        // console.log('cat-search-input TRIGGER keyup');
-        let value = $(this).val().toLowerCase();
+        $("#cat-search-input").on("input", function() {
 
-        if(jQuery.trim(value).length > 0){
-            console.log("value >0 ", value);
+            // console.log("KEYDOWN searchValue");
+            // console.log("KEYDOWN top category CURRENT  ID: ", current_2_id);
+            // console.log("KEYDOWN top category PREVIOUS ID: ", previous_2_id);
 
-            $("ul#cat-search-items-2 li").filter(function() {
-            items_length = $('ul#cat-search-items-2 li:visible').length;
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            setTimeout(function(){
+                let searchValue = $("#cat-search-input").val();
 
-             // let currentLiText = $(this).text();
-             // console.log('currentLiText = ', currentLiText);
+                if( jQuery.trim(searchValue).length > 0 ){ //searchValue == $('#cat-search-input').val() && searchValue !== "") {
+                    // logic to fetch data based on searchValue
 
-             // $(this).html(currentLiText.replace(value, "<span class='bold bg-primary white'>" + value + "</span>"))
+                    $('#top-collection-list-2-' + previous_2_id + ' ul#cat-search-items-2 li').filter(function() {
+                        items_length = $(this).length;
+                        //console.log("--- items_length 1 = ", items_length, ' when previous_2_id = ', previous_2_id);
+                        return $(this).text().toLowerCase().indexOf(searchValue.toLowerCase()) !== -1;
+                    }).show();
 
-            if (items_length > 0)
-                $('#cat-filter-results').text("Results found: "+items_length);
-            else
-                $('#cat-filter-results').text("No results");
-        });}
-        else{
-            // console.log("value NOT >0 ", value);
-            $("ul#cat-search-items-2 li").filter(function() {
-                items_length = $('ul#cat-search-items-2 li:visible').length;
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-                $('#cat-filter-results').text("");
-            });
-        }
-        items_length = $('ul#cat-search-items-2 li:visible').length;
-    });
+                    items_length = $('#top-collection-list-2-' + previous_2_id + ' ul#cat-search-items-2 li:visible').length;
+
+                    $('#top-collection-list-2-' + previous_2_id + ' ul#cat-search-items-2 li').filter(function() {
+                        return $(this).text().toLowerCase().indexOf(searchValue.toLowerCase()) === -1;
+                    }).hide();
+
+                    items_length = $('#top-collection-list-2-' + previous_2_id + ' ul#cat-search-items-2 li:visible div.media-body .col-descr').length;
+                    $('#top-collection-list-2-' + previous_2_id + ' ul#cat-search-items-2 li:visible div.media-body .col-descr').each(function () {
+                        let currentLiText = $(this).text();
+                        $(this).html(currentLiText.replace(new RegExp(searchValue, "ig"), "<mark>"+searchValue+"</mark>"))
+                    });
+                }
+                else{
+                    // logic to load all the data
+                    //console.log("KEYDOWN - else - searchValue is NOT > 0 or NULL, searchValue = ", searchValue);
+                    $('#top-collection-list-2-' + previous_2_id + ' ul#cat-search-items-2 li').filter(function() {
+                        items_length = $('#top-collection-list-2-' + previous_2_id + ' ul#cat-search-items-2 li:visible').length;
+                        $(this).toggle($(this).text().toLowerCase().indexOf(searchValue.toLowerCase()) > -1);
+                        $('#cat-filter-results').text("");
+                    });//filter
+                    $('#top-collection-list-2-'+previous_2_id).find('mark').contents().unwrap();
+                }
+                //console.log("AFTER ALL - KEYDOWN ELSE items_length = ", items_length);
+                if ($("#cat-search-input").val().length === 0)
+                    $('#cat-filter-results').text("");
+                else if (items_length > 0)
+                    $('#cat-filter-results').text("Results found: "+items_length);
+                else
+                    $('#cat-filter-results').text("No results");
+
+            },800); // setTimeout
+
+        }); //input
 
     $('.category-search-popover').popover({
         container: 'body'
@@ -232,7 +253,6 @@
     <c:forEach items="${collCountList}" var="item">
     array.push("${item}");
     </c:forEach>
-
 
 
     if (current_2_id !== null && current_2_id !== undefined && onclick_category !== true){
@@ -249,21 +269,17 @@
     }
 
     $(".top-category-card-v2").on('click', function(event) {
+        //console.log("on CLICK items_length FROM top-category-card-v2 = ", items_length);
 
-        // console.log("items_length FROM top-category-card-v2 = ", items_length);
-
-        $('#cat-filter-results').text("");
-        $('#cat-search-input').val("");
-
+        //$('#top-collection-list-2-'+previous_2_id).find('mark').remove();
+        $('#top-collection-list-2-'+previous_2_id).find('mark').contents().unwrap();
+        
         onclick_category = true;
-        console.log('previous_2_id = ', previous_2_id);
-
+        //console.log('previous_2_id = ', previous_2_id);
         let current_2_id = $(this).attr('id');
         console.log('current_2_id = ', current_2_id);
-
         $('#top-collection-list-2-'+previous_2_id).removeClass("active");
         $('#top-collection-list-2-'+current_2_id).addClass("active");
-
 
         switch (current_2_id) {
             case 'id_2222': listIndex=0; break;
@@ -276,7 +292,20 @@
             case 'id_2939': listIndex=7; break;
         }
 
-        $('#cat-search-input').trigger("keyup");
+        //----- Data initialization
+        //$('#top-collection-list-2-'+current_2_id).find('mark').remove();
+        $('#cat-filter-results').text("");
+        $('#cat-search-input').val("");
+
+        $("ul#cat-search-items-2 li").filter(function() {
+            items_length = $('ul#cat-search-items-2 li:visible').length;
+            $(this).toggle($(this).text().indexOf("") > -1);
+        });
+        items_length = $('ul#cat-search-items-2 li:visible').length;
+        //console.log("top-category-card-v2 - ON CLICK RE-START items_length : ", items_length);
+        //----
+
+        //$('#cat-search-input').trigger("keyup");
         $('#cat-search-input').attr("placeholder", "Filter within " + catlist[listIndex] + (current_2_id=="id_2222"?"":" category") + ' (' + items_length + ' collections available)');
 
         $(".top-category-card-v2").addClass("w-75");
@@ -284,20 +313,9 @@
         $('#id_image_'+previous_2_id).removeClass('border border-danger fast-transition-2');//.css({"filter":blur(35px)});//filter: grayscale(100%);
         $('#id_image_'+current_2_id).addClass('border border-danger fast-transition-2');
 
-
         // console.log('id image current = ', 'id_image_'+current_2_id);
         previous_2_id = current_2_id;
-
-
     });
-
-        $('.top-category-card-v2').keydown( function(e) {
-            let key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
-            if(key == 13) {
-                e.preventDefault();
-                $(this).click();
-            }
-        });
 
 });
 
