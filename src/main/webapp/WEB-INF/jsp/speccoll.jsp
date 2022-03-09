@@ -58,7 +58,7 @@
 
     <%-- search results --%>
     <div class="row">
-        <div class="p-lg-5 col-lg-12 col-md-12 col-sm-12 header-2-subtitle-redesign align-content-center text-wrap" id="cat-filter-results"></div>
+        <div class="p-lg-5 col-lg-12 col-md-12 col-sm-12 header-2-subtitle-redesign align-content-end text-wrap" id="cat-filter-results"></div>
     </div>
 
     <%-- category top level cards --%>
@@ -236,9 +236,9 @@
                 if ($("#cat-search-input").val().length === 0)
                     $('#cat-filter-results').text("");
                 else if (items_length > 0)
-                    $('#cat-filter-results').text("Results found: "+items_length);
+                    $('#cat-filter-results').html("<div>Results found: "+items_length + "<p class='text-muted small'>(searching on 'title' and 'description' only)</p></div>");
                 else
-                    $('#cat-filter-results').text("No results");
+                    $('#cat-filter-results').html("<div>No results"+ "<p class='text-muted small'>(searching on 'title' and 'description' only)</p></div>");
 
             },800); // setTimeout
 
@@ -273,7 +273,7 @@
 
         //$('#top-collection-list-2-'+previous_2_id).find('mark').remove();
         $('#top-collection-list-2-'+previous_2_id).find('mark').contents().unwrap();
-        
+
         onclick_category = true;
         //console.log('previous_2_id = ', previous_2_id);
         let current_2_id = $(this).attr('id');
