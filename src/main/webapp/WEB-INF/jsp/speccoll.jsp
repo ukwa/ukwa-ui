@@ -53,12 +53,14 @@
                    class="main-search-field-redesign" value="${originalSearchRequest}" required tabindex="0"
                    aria-required="true"/>
         </div>
+        <div>            <p class='pl-lg-5 text-muted small'>(searching on 'title' and 'description' only)</p>
+        </div>
 
     </div>
 
     <%-- search results --%>
     <div class="row">
-        <div class="p-lg-5 col-lg-12 col-md-12 col-sm-12 header-2-subtitle-redesign align-content-end text-wrap" id="cat-filter-results"></div>
+        <div class="pl-lg-5 pt-lg-3 pb-lg-4 col-lg-12 col-md-12 col-sm-12 header-2-subtitle-redesign align-content-end text-wrap" id="cat-filter-results"></div>
     </div>
 
     <%-- category top level cards --%>
@@ -236,9 +238,9 @@
                 if ($("#cat-search-input").val().length === 0)
                     $('#cat-filter-results').text("");
                 else if (items_length > 0)
-                    $('#cat-filter-results').html("<div>Results found: "+items_length + "<p class='text-muted small'>(searching on 'title' and 'description' only)</p></div>");
+                    $('#cat-filter-results').text("Results found: "+items_length );
                 else
-                    $('#cat-filter-results').html("<div>No results"+ "<p class='text-muted small'>(searching on 'title' and 'description' only)</p></div>");
+                    $('#cat-filter-results').text("No results");
 
             },800); // setTimeout
 
