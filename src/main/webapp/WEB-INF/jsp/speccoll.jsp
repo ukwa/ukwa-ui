@@ -53,14 +53,15 @@
                    class="main-search-field-redesign" value="${originalSearchRequest}" required tabindex="0"
                    aria-required="true"/>
         </div>
-        <div>            <p class='pl-lg-5 text-muted small'>(searching on 'title' and 'description' only)</p>
+        <div>
+            <label for="cat-search-input" id="catInfo" class="pl-lg-5 py-1 text-muted ">(Searches on collection 'title' and 'description' only)&nbsp</label>
         </div>
 
     </div>
 
     <%-- search results --%>
     <div class="row">
-        <div class="pl-lg-5 pt-lg-3 pb-lg-4 col-lg-12 col-md-12 col-sm-12 header-2-subtitle-redesign align-content-end text-wrap" id="cat-filter-results"></div>
+        <div class="pl-lg-5 pt-lg-3 pb-lg-5 col-lg-12 col-md-12 col-sm-12 header-2-subtitle-redesign align-content-end text-wrap" id="cat-filter-results"></div>
     </div>
 
     <%-- category top level cards --%>
