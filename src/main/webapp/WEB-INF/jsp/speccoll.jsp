@@ -43,18 +43,25 @@
 
     <c:set var="categoryPlaceHolderVar" value="Filter within All Categories" />
 
+    <div>
+        <div id="someDOMReference" class="row mb-1 center">
+
+        </div>
+    </div>
+
+
     <%-- filter button for collections --%>
     <div class="row mb-1 center">
         <div class="col-sm-11 col-md-12 col-lg-offset-2 col-lg-11 ml-lg-3 ml-md-3 ml-sm-3  form-inline inline-block-items flex-nowrap">
             <input role="textbox" type="search" name="text" id="cat-search-input"
-                   title="<spring:message code="search.main.input.title" />"
-                   aria-label="<spring:message code="search.main.input.title" />"
+                   title="<spring:message code="categories.filter.input.title" />"
+                   aria-label="<spring:message code="categories.filter.input.title" />"
                    placeholder="${categoryPlaceHolderVar}"
                    class="main-search-field-redesign" value="${originalSearchRequest}" required tabindex="0"
                    aria-required="true"/>
         </div>
         <div>
-            <label for="cat-search-input" id="catInfo" class="pl-lg-5 py-1 text-muted ">(Searches on collection 'title' and 'description' only)&nbsp</label>
+            <label for="cat-search-input" id="catInfo" class="pl-lg-5 py-1 text-muted "><spring:message code="categories.filter.input.title" />&nbsp</label>
         </div>
 
     </div>
@@ -90,15 +97,6 @@
                     </div>
                 </div>
 
-<%--                <div id="id_${category.key}" class="card col-lg-3 col-md-6 col-sm-12 container_foto top-category-card p-1">--%>
-<%--                    <div class="card-block">--%>
-<%--                        <img id="id_image_id_${category.key}" class="card-img-top img-fluid" src="img/categories/<c:out value="${category.key}"/>.png" alt="<c:out value="${category.key}"/>">--%>
-<%--                        <article class="text-left pl-4">--%>
-<%--                            <h2><spring:message code="category.title.${category.key}" /></h2>--%>
-<%--                            <h4>Collection</h4>--%>
-<%--                        </article>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
 
             </c:forEach>
         </c:forEach>
@@ -173,10 +171,9 @@
 
     $(document).ready(function(e) {
 
-// categories--------------
-    let catlist = ["All Categories","History","Politics & Government","Arts & Culture","Places", "Society & Communities", "Science, Technology & Medicine", "Sport & Recreation"];
-
-    let $menuItems = $('.header-menu-item');
+        // categories--------------
+        let catlist = ["All Categories","History","Politics & Government","Arts & Culture","Places", "Society & Communities", "Science, Technology & Medicine", "Sport & Recreation"];
+        let $menuItems = $('.header-menu-item');
 
         let current_2_id = 'id_2222';
         let listIndex=0; // for 'id_2222' - All Collections
