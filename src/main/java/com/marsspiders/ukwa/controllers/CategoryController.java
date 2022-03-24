@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -329,29 +330,14 @@ public class CategoryController {
         return mav;
     }
 
-    
-
-
     //------- cat
     private List<CollectionDTO> generateRootCollectionCategoriesDTOs(Locale locale) {
 
         SolrSearchResult<CollectionInfo> test = searchService
                 .fetchRootCollectionsCategories();
 
-
-
-        //log.info("--------- z" + test.toString());
-
         log.info("--------- getFacetCounts : " + test.getFacetCounts());
         log.info("--------- size : " + test.getResponseBody().getDocuments().size());
-
-        //QueryResponse result = solr.query(query);
-//        NamedList<List<PivotField>> facetPivot = result.getFacetPivot();
-//        List<String> parsedPivotResult = parsePivotResult(facetPivot);
-//        parsedPivotResult.forEach((s) -> {
-//            System.out.println(s);
-//        });
-
 
         Map<String, CollectionDTO> rootCollections = searchService
                 .fetchRootCollectionsCategories()
@@ -365,31 +351,6 @@ public class CategoryController {
         for (Map.Entry<String, CollectionDTO> entry : rootCollections.entrySet()) {
             System.out.println(entry.getKey() + "/" + entry.getValue().getName());
         }
-        //Set<String> parentCollectionIds = rootCollections.keySet();
-
-
-        /*
-        searchService
-                .fetchChildCollections(parentCollectionIds, TYPE_COLLECTION, 1000, 0)
-                .getResponseBody().getDocuments()
-                .stream()
-                .forEach(subCollection -> {
-                    String parentId = subCollection.getParentId();
-
-                    CollectionDTO parentCollectionDto = rootCollections.get(parentId);
-                    if (parentCollectionDto.getSubCollections() == null) {
-                        parentCollectionDto.setSubCollections(new ArrayList<>());
-                    }
-
-                    CollectionDTO subCollectionDTO = toCollectionDTO(subCollection, true, locale);
-                    parentCollectionDto.getSubCollections().add(subCollectionDTO);
-
-                });
-
-        */
-
-        //ArrayList<CollectionDTO> sortedCollectionDTOs = new ArrayList<>(rootCollections.values());
-        //Collections.sort(sortedCollectionDTOs, (c1, c2) -> c1.getName().compareTo(c2.getName()));
 
         return null;//sortedCollectionDTOs;
     }
@@ -464,116 +425,79 @@ public class CategoryController {
             outputItems.add(outputBuilder.append(" (").append(field.getCount()).append(")").toString());
         }
     }
-//    @RequestMapping(value = "/test", method = GET)
-//    public String getCategoryList(){//@PathVariable("categoryId") String collectionId) {
-//        //ModelAndView modelAndView = new ModelAndView("categoriesV1");
-//        //return modelAndView;
-//        log.info("-------------- get Category List");
-//        return categoryService.fetchCategories();
-//    }
 
-//    //arbitrary Json in Spring-Boot, you can simply use Jackson's JsonNode
-//    @PostMapping(value="/process3")
-//    public void process3(@RequestBody com.fasterxml.jackson.databind.JsonNode payload) {
-//        log.info("-------------- Category process 3 ");
-//
-//
-//
-//        Iterator<Map.Entry<String, JsonNode>> fields = payload.fields();
-//        while(fields.hasNext()) {
-//            Map.Entry<String, JsonNode> field = fields.next();
-//            String   fieldName  = field.getKey();
-//            JsonNode fieldValue = field.getValue();
-//
-//            System.out.println(fieldName + " = " + fieldValue.asText());
-//        }
-//
-//        /*
-//        System.out.println(" Lambda version ");
-//
-//        Iterator<JsonNode> iterator = payload.withArray("datasets").elements();
-//        while (iterator.hasNext())
-//            System.out.print(iterator.next().toString() + " ");
-//        */
-//        /*
-//        String jsonStr = "{\"Technologies\" : [\"Java\", \"Scala\", \"Python\"]}";
-//
-//        ObjectMapper mapper = new ObjectMapper();
-//        ArrayNode arrayNode = null;
-//        try {
-//            arrayNode = (ArrayNode) mapper.readTree(jsonStr).get("Technologies");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        if(arrayNode.isArray()) {
-//            for(JsonNode jsonNode : arrayNode) {
-//                System.out.println(jsonNode);
-//            }
-//        }
-//        */
-//
-//        System.out.println("SOLR data: " + categoryService.fetchCategories());
-//
-//        // create object mapper class
-//        ObjectMapper mapper = new ObjectMapper();
-//        // convert json string to JsonNode
-//        JsonNode jsonNode = null;
-//        try {
-//            jsonNode = mapper.readTree(categoryService.fetchCategories().getBytes());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        // check whether the node arraytype or not
-//        if (jsonNode.get("docs") != null && jsonNode.get("docs").isArray()) {
-//            // convert to array node
-//            ArrayNode arrayNode = (ArrayNode) jsonNode.get("docs");
-//
-//            // iterate over this arraynode
-//            for (JsonNode node : arrayNode) {
-//                // print the text value
-//                System.out.println(node.textValue());
-//            }
-//        }
-//        else
-//        {
-//            System.out.println("------ nothing docs!-------");
-//
-//        }
-//
-//
-//        if (jsonNode.get("groups") != null && jsonNode.get("groups").isArray()) {
-//            // convert to array node
-//            ArrayNode arrayNode = (ArrayNode) jsonNode.get("groups");
-//
-//            // iterate over this arraynode
-//            for (JsonNode node : arrayNode) {
-//                // print the text value
-//                System.out.println(node.textValue());
-//            }
-//        }
-//        else
-//        {
-//            System.out.println("------ nothing group!-------");
-//
-//        }
-//
-//        if (jsonNode.get("grouped") != null && jsonNode.get("grouped").isArray()) {
-//            // convert to array node
-//            ArrayNode arrayNode = (ArrayNode) jsonNode.get("grouped");
-//
-//            // iterate over this arraynode
-//            for (JsonNode node : arrayNode) {
-//                // print the text value
-//                System.out.println(node.textValue());
-//            }
-//        }
-//        else
-//        {
-//            System.out.println("------ nothing!-------");
-//
-//        }
-//    }
+    @RequestMapping(value="/gettranscategoryname/{lang}/{categoryId}", method=RequestMethod.GET)
+    @ResponseBody
+    public String getLocaleMessageCategoryName(
+            @PathVariable String lang, @PathVariable String categoryId) {
+        //String imageAltMessage = messageSource.getMessage(COLLECTION_ALT_MESSAGE_ID + id, null, defaultImageAltMessage, locale);
+        log.info("Returning category name for lang = {}", lang, ", category id = {}", categoryId);
+        return messageSource.getMessage("category.title."+categoryId, null, (new Locale(lang)) );
+    }
+
+    @RequestMapping(value="/gettransplaceholderfull/{lang}/{categoryId}/{count}", method=RequestMethod.GET)
+    @ResponseBody
+    public String getLocaleMessageCategoryPlaceHolderFull(
+            @PathVariable String lang, @PathVariable String categoryId, @PathVariable String count) {
+        //String imageAltMessage = messageSource.getMessage(COLLECTION_ALT_MESSAGE_ID + id, null, defaultImageAltMessage, locale);
+
+        String placeholder_template = messageSource.getMessage("categories.filter.input.placeholder", null, (new Locale(lang)) );
+        String template_cat_part = messageSource.getMessage("category.title."+categoryId, null, (new Locale(lang)) );
+        placeholder_template = placeholder_template.replaceAll( "__cat__" , template_cat_part );
+        placeholder_template = placeholder_template.replaceAll( "__val__" , count );
+
+        log.info("Returning category name for lang = {}", lang, ", category id = {}", categoryId);
+        return placeholder_template;
+    }
+
+    @RequestMapping(value="/gettransplaceholder/{lang}", method=RequestMethod.GET)
+    @ResponseBody
+    public String getLocaleMessageCatPlaceholder(
+            @PathVariable String lang) {
+        log.info("Returning placeholder for lang = {}", lang);
+        return messageSource.getMessage("categories.filter.input.placeholder", null, (new Locale(lang)) );
+    }
+
+    @RequestMapping(value="/getcattransshowmore/{lang}", method=RequestMethod.GET)
+    @ResponseBody
+    public String getLocaleMessageShowMore(
+            @PathVariable String lang) {
+        log.info("Returning showmore for lang = {}", lang);
+        return messageSource.getMessage("categories.filter.results.showmore", null, (new Locale(lang)) );
+    }
+
+    @RequestMapping(value="/getcattransshowless/{lang}", method=RequestMethod.GET)
+    @ResponseBody
+    public String getLocaleMessageShowLess(
+            @PathVariable String lang) {
+        log.info("Returning showless for lang = {}", lang);
+        return messageSource.getMessage("categories.filter.results.showless", null, (new Locale(lang)) );
+    }
+
+    @RequestMapping(value="/gettransresultsfound/{lang}", method=RequestMethod.GET)
+    @ResponseBody
+    public String getLocaleMessageResultsFound(
+            @PathVariable String lang) {
+        log.info("Returning resultsfound for lang = {}", lang);
+        return messageSource.getMessage("categories.filter.results.resultsfound", null, (new Locale(lang)) );
+    }
+
+    @RequestMapping(value="/gettransnoresults/{lang}", method=RequestMethod.GET)
+    @ResponseBody
+    public String getLocaleMessageNoResults(
+            @PathVariable String lang) {
+        log.info("Returning noresults for lang = {}", lang);
+        return messageSource.getMessage("categories.filter.results.noresults", null, (new Locale(lang)) );
+    }
+
+    @RequestMapping(value="/gettransfilterscope/{lang}", method=RequestMethod.GET)
+    @ResponseBody
+    public String getLocaleMessageFilterScope(
+            @PathVariable String lang) {
+        log.info("Returning filter scope for lang = {}", lang);
+        return messageSource.getMessage("categories.filter.input.title", null, (new Locale(lang)) );
+    }
+
 }
 
 @JsonIgnoreProperties(ignoreUnknown = true)

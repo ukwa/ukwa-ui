@@ -666,17 +666,11 @@ h2.policy {
 }
 
 #colmodule a.collapsed::after {
-  content: '+ Show More';
+  content: attr(data-content) ;
 }
 
 #colmodule a:not(.collapsed)::after {
-  content: '- Show Less';
-}
-
-
-.contenedor {
-  height: 100%;
-  padding: 5% 0;
+  content: attr(data-content) ;
 }
 
 .category_h1 {

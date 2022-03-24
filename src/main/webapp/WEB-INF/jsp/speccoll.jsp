@@ -131,9 +131,9 @@
                                                 </div>
                                             </div>
 
-                                            <div id="colmodule" class="collection-descr">
-                                                <p id="collapseCollection-<c:out value="${collection.key}"/>" class="collapse text-justify text-muted small col-descr" aria-expanded="false"><c:out value="${collection.value.description}"/></p>
-                                                <a role="button" class="collapsed" data-toggle="collapse" href="#collapseCollection-<c:out value="${collection.key}"/>" aria-expanded="false" aria-controls="collapseCollection-<c:out value="${collection.key}"/>"></a>
+                                            <div id="colmodule" class="collection-descr" >
+                                                <p id="collapseCollection-<c:out value="${collection.key}"/>" class="collapse text-justify text-muted small col-descr" data-content="crappy 4" aria-expanded="false"><c:out value="${collection.value.description}"/></p>
+                                                <a role="button" data-content="<spring:message code="categories.filter.results.showmore" />" class="collapsed showmoreless" data-toggle="collapse" href="#collapseCollection-<c:out value="${collection.key}"/>" aria-expanded="false" aria-controls="collapseCollection-<c:out value="${collection.key}"/>"></a>
                                             </div>
 
                                         </div>
@@ -173,15 +173,27 @@
 
         // categories--------------
         let catlist = ["All Categories","History","Politics & Government","Arts & Culture","Places", "Society & Communities", "Science, Technology & Medicine", "Sport & Recreation"];
+        let catlist2 = ["category.title.2222","History","Politics & Government","Arts & Culture","Places", "Society & Communities", "Science, Technology & Medicine", "Sport & Recreation"];
+
         let $menuItems = $('.header-menu-item');
 
         let current_2_id = 'id_2222';
         let listIndex=0; // for 'id_2222' - All Collections
         let items_length = $("#top-collection-list-2-id_2222").find("li").length;
 
+        let items_in_current = items_length;
+
         //console.log('--- Initial ---- current_2_id = ', current_2_id);
 
-        $('#cat-search-input').attr("placeholder", "Filter within " + catlist[listIndex] + (current_2_id=="id_2222"?"":" category") + ' (' + items_length + ' collections available)');
+        $.ajax({
+            type: 'get',
+            url: '/${locale}/ukwa/category/gettransplaceholderfull/${locale}/'+current_2_id.substring(3)+'/'+items_length,
+            success: function(data) {
+
+                //data.replace('__val__', items_length);
+                $('#cat-search-input').attr("placeholder", data );
+            }
+        });
 
         var onclick_category = false;
         var previous_2_id = null;
@@ -193,10 +205,6 @@
     $("#headermenu_categories").addClass('active');
 
         $("#cat-search-input").on("input", function() {
-
-            // console.log("KEYDOWN searchValue");
-            // console.log("KEYDOWN top category CURRENT  ID: ", current_2_id);
-            // console.log("KEYDOWN top category PREVIOUS ID: ", previous_2_id);
 
             setTimeout(function(){
                 let searchValue = $("#cat-search-input").val();
@@ -221,6 +229,15 @@
                         let currentLiText = $(this).text();
                         $(this).html(currentLiText.replace(new RegExp(searchValue, "ig"), "<mark>"+searchValue+"</mark>"))
                     });
+
+                    $.ajax({
+                        type: 'get',
+                        url: '/${locale}/ukwa/category/gettransplaceholderfull/${locale}/'+previous_2_id.substring(3)+'/'+items_in_current,
+                        success: function(data) {
+                            $('#catInfo').text(data);
+                        }
+                    });
+
                 }
                 else{
                     // logic to load all the data
@@ -231,14 +248,34 @@
                         $('#cat-filter-results').text("");
                     });//filter
                     $('#top-collection-list-2-'+previous_2_id).find('mark').contents().unwrap();
+
+                    $.ajax({
+                        type: 'get',
+                        url: '/${locale}/ukwa/category/gettransfilterscope/${locale}',
+                        success: function(data) {
+                            $('#catInfo').text(data);
+                        }
+                    });
+
                 }
-                //console.log("AFTER ALL - KEYDOWN ELSE items_length = ", items_length);
                 if ($("#cat-search-input").val().length === 0)
                     $('#cat-filter-results').text("");
                 else if (items_length > 0)
-                    $('#cat-filter-results').text("Results found: "+items_length );
+                    $.ajax({
+                        type: 'get',
+                        url: '/${locale}/ukwa/category/gettransresultsfound/${locale}',
+                        success: function(data) {
+                            $('#cat-filter-results').text(data + ': ' +items_length );
+                        }
+                    });
                 else
-                    $('#cat-filter-results').text("No results");
+                    $.ajax({
+                        type: 'get',
+                        url: '/${locale}/ukwa/category/gettransnoresults/${locale}',
+                        success: function(data) {
+                            $('#cat-filter-results').text(data);
+                        }
+                    });
 
             },800); // setTimeout
 
@@ -268,11 +305,19 @@
         previous_2_id = current_2_id;
     }
 
+
     $(".top-category-card-v2").on('click', function(event) {
-        //console.log("on CLICK items_length FROM top-category-card-v2 = ", items_length);
 
         //$('#top-collection-list-2-'+previous_2_id).find('mark').remove();
         $('#top-collection-list-2-'+previous_2_id).find('mark').contents().unwrap();
+
+        $.ajax({
+            type: 'get',
+            url: '/${locale}/ukwa/category/gettransfilterscope/${locale}',
+            success: function(data) {
+                $('#catInfo').text(data);
+            }
+        });
 
         onclick_category = true;
         //console.log('previous_2_id = ', previous_2_id);
@@ -302,11 +347,15 @@
             $(this).toggle($(this).text().indexOf("") > -1);
         });
         items_length = $('ul#cat-search-items-2 li:visible').length;
-        //console.log("top-category-card-v2 - ON CLICK RE-START items_length : ", items_length);
-        //----
+        items_in_current = items_length;
 
-        //$('#cat-search-input').trigger("keyup");
-        $('#cat-search-input').attr("placeholder", "Filter within " + catlist[listIndex] + (current_2_id=="id_2222"?"":" category") + ' (' + items_length + ' collections available)');
+        $.ajax({
+            type: 'get',
+            url: '/${locale}/ukwa/category/gettransplaceholderfull/${locale}/'+current_2_id.substring(3)+'/'+items_length,
+            success: function(data) {
+                $('#cat-search-input').attr("placeholder", data );
+            }
+        });
 
         $(".top-category-card-v2").addClass("w-75");
 
@@ -317,7 +366,32 @@
         previous_2_id = current_2_id;
     });
 
-});
+        $('.col-descr').on('hidden.bs.collapse', function () {
+            //console.log("hidden.bs.collapse");
+            let element = $(this).next();
+            $.ajax({
+                type: 'get',
+                url: '/${locale}/ukwa/category/getcattransshowmore/${locale}',
+                success: function(data) {
+                    //console.log('show more, data = ', data);
+                    element.attr("data-content", data);
+                }
+            });
+        });
+
+        $('.col-descr').on('show.bs.collapse', function () {
+            //console.log("show.bs.collapse");
+            let element = $(this).next();
+            $.ajax({
+                type: 'get',
+                url: '/${locale}/ukwa/category/getcattransshowless/${locale}',
+                success: function(data) {
+                    //console.log('show less, data = ', data);
+                    element.attr("data-content", data);
+                }
+            });
+        });
+    });
 
 </script>
 </body>
