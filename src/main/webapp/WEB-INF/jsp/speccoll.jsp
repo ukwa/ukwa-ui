@@ -56,12 +56,12 @@
             <input role="textbox" type="search" name="text" id="cat-search-input"
                    title="<spring:message code="categories.filter.input.title" />"
                    aria-label="<spring:message code="categories.filter.input.title" />"
-                   placeholder="${categoryPlaceHolderVar}"
+                   placeholder="<spring:message code="categories.filter.input.title" />"
                    class="main-search-field-redesign" value="${originalSearchRequest}" required tabindex="0"
                    aria-required="true"/>
         </div>
         <div>
-            <label for="cat-search-input" id="catInfo" class="pl-lg-5 py-1 text-muted "><spring:message code="categories.filter.input.title" />&nbsp</label>
+            <label for="cat-search-input" id="catInfo" class="pl-lg-5 py-1 text-muted ">&nbsp</label>
         </div>
 
     </div>
@@ -180,18 +180,15 @@
         let current_2_id = 'id_2222';
         let listIndex=0; // for 'id_2222' - All Collections
         let items_length = $("#top-collection-list-2-id_2222").find("li").length;
-
         let items_in_current = items_length;
-
-        //console.log('--- Initial ---- current_2_id = ', current_2_id);
 
         $.ajax({
             type: 'get',
             url: '/${locale}/ukwa/category/gettransplaceholderfull/${locale}/'+current_2_id.substring(3)+'/'+items_length,
             success: function(data) {
-
                 //data.replace('__val__', items_length);
-                $('#cat-search-input').attr("placeholder", data );
+                //$('#cat-search-input').attr("placeholder", data );
+                $('#catInfo').text(data);
             }
         });
 
@@ -237,7 +234,6 @@
                             $('#catInfo').text(data);
                         }
                     });
-
                 }
                 else{
                     // logic to load all the data
@@ -251,12 +247,11 @@
 
                     $.ajax({
                         type: 'get',
-                        url: '/${locale}/ukwa/category/gettransfilterscope/${locale}',
+                        url: '/${locale}/ukwa/category/gettransplaceholderfull/${locale}/'+previous_2_id.substring(3)+'/'+items_in_current,
                         success: function(data) {
                             $('#catInfo').text(data);
                         }
                     });
-
                 }
                 if ($("#cat-search-input").val().length === 0)
                     $('#cat-filter-results').text("");
@@ -353,7 +348,8 @@
             type: 'get',
             url: '/${locale}/ukwa/category/gettransplaceholderfull/${locale}/'+current_2_id.substring(3)+'/'+items_length,
             success: function(data) {
-                $('#cat-search-input').attr("placeholder", data );
+                //$('#cat-search-input').attr("placeholder", data );
+                $('#catInfo').text(data);
             }
         });
 
