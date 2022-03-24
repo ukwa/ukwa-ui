@@ -61,14 +61,14 @@
                    aria-required="true"/>
         </div>
         <div>
-            <label for="cat-search-input" id="catInfo" class="pl-lg-5 py-1 text-muted ">&nbsp</label>
+            <label for="cat-search-input" id="catInfo" class="pl-lg-5 pl-sm-5 pl-md-5 pt-lg-3 col-lg-12 col-md-12 col-sm-12 header-2-subtitle-redesign align-content-start text-wrap">&nbsp</label>
         </div>
 
     </div>
 
     <%-- search results --%>
     <div class="row">
-        <div class="pl-lg-5 pt-lg-3 pb-lg-5 col-lg-12 col-md-12 col-sm-12 header-2-subtitle-redesign align-content-end text-wrap" id="cat-filter-results"></div>
+        <div class="pl-lg-5 pl-sm-5 pl-md-5 pt-lg-3 pb-lg-5 col-lg-12 col-md-12 col-sm-12 header-2-subtitle-redesign align-content-start text-wrap" id="cat-filter-results"></div>
     </div>
 
     <%-- category top level cards --%>
@@ -171,10 +171,6 @@
 
     $(document).ready(function(e) {
 
-        // categories--------------
-        let catlist = ["All Categories","History","Politics & Government","Arts & Culture","Places", "Society & Communities", "Science, Technology & Medicine", "Sport & Recreation"];
-        let catlist2 = ["category.title.2222","History","Politics & Government","Arts & Culture","Places", "Society & Communities", "Science, Technology & Medicine", "Sport & Recreation"];
-
         let $menuItems = $('.header-menu-item');
 
         let current_2_id = 'id_2222';
@@ -186,8 +182,6 @@
             type: 'get',
             url: '/${locale}/ukwa/category/gettransplaceholderfull/${locale}/'+current_2_id.substring(3)+'/'+items_length,
             success: function(data) {
-                //data.replace('__val__', items_length);
-                //$('#cat-search-input').attr("placeholder", data );
                 $('#catInfo').text(data);
             }
         });
