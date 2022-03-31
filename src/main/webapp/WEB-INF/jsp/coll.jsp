@@ -50,7 +50,7 @@ ${pageContext.response.locale}
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><spring:message code="coll.breadcrumb.text1" />&nbsp;<a href="collection" title="<spring:message code="coll.breadcrumb.text2" />"><spring:message code="coll.breadcrumb.text2" /></a></li>
+    <li class="breadcrumb-item"><spring:message code="coll.breadcrumb.text1" />&nbsp;<a href="category" title="<spring:message code="coll.breadcrumb.text2" />"><spring:message code="coll.breadcrumb.text2" /></a></li>
     <c:forEach var="pathItem" items="${breadcrumbPath}">
       <c:set var="pathCount" value="${pathCount + 1}"/>
       <c:choose>
