@@ -6,10 +6,7 @@ on:
       - '*'
     branches:
       - master
-      - new_feature_categories
-      - new_feature_categories_anj
       - dev
-
 jobs:
   push_to_docker_hub:
     name: Push Docker image to Docker Hub
