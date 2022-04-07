@@ -6,15 +6,22 @@ import com.marsspiders.ukwa.solr.data.ContentInfo;
 import com.marsspiders.ukwa.solr.data.SolrSearchResult;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrQuery.SortClause;
+import org.apache.solr.client.solrj.SolrServerException;
+import org.apache.solr.client.solrj.impl.HttpSolrClient;
+import org.apache.solr.client.solrj.impl.NoOpResponseParser;
+import org.apache.solr.client.solrj.request.QueryRequest;
+import org.apache.solr.client.solrj.response.*;
+import org.apache.solr.common.SolrDocument;
+import org.apache.solr.common.SolrDocumentList;
+import org.apache.solr.common.params.GroupParams;
+import org.apache.solr.common.util.NamedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -62,6 +69,17 @@ public class SolrSearchService {
 
     @Autowired
     SolrCommunicator communicator;
+
+    public SolrSearchResult<CollectionInfo> fetchRootCollectionsCategories() {
+        log.info("Fetching root collections - Categories");
+
+        //------- add query  CATEGORIES !!!!!
+        //String noParentQuery = "-parentId:[* TO *]";
+        //SortClause sortClause = new SortClause(FIELD_NAME, asc);
+        //int rowsLimit = ROOT_COLLECTIONS_ROWS_LIMIT;
+
+        return sendCategoryRequest("", CollectionInfo.class);
+    }
 
     private SolrSearchResult<CollectionInfo> fetchAllCollections() {
         log.info("Fetching all collections");
@@ -143,29 +161,34 @@ public class SolrSearchService {
                                                        List<String> rangeDates,
                                                        List<String> collections,
                                                        boolean preProcessQueryString) {
-
         log.debug("Searching content for '" + queryString + "' by " + searchLocation);
+
+        SortClause sort = sortBy == null ? null : (sortBy.getWebRequestOrderValue()=="relevant" ? new SortClause("score", sortBy.getSolrOrderValue()) : new SortClause(FIELD_CRAWL_DATE, sortBy.getSolrOrderValue()));
+        log.debug("Searching content after  sort sortBy" );
+
+        log.debug("Searching content fromDatePicked = " + fromDatePicked + ", toDatePicked = " + toDatePicked + ", rangeDates = " + rangeDates );
+        String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
+
+        String accessToQuery = generateAccessToQuery(accessTo);
+
+        String contentTypeQuery = generateMultipleConditionsQuery(contentTypes, FIELD_TYPE);
+        String collectionsQuery = generateMultipleConditionsQuery(collections, FIELD_COLLECTION);
+        String publicSuffixesQuery = generateMultipleConditionsQuery(publicSuffixes, FIELD_PUBLIC_SUFFIX);
+        String domainsQuery = generateMultipleConditionsQuery(originalDomains, FIELD_DOMAIN);
+
+        List<String> filters = new ArrayList<>();
+        filters.add(dateQuery);
+        filters.add(accessToQuery);
+        filters.add(contentTypeQuery);
+        filters.add(publicSuffixesQuery);
+        filters.add(domainsQuery);
+        filters.add(collectionsQuery);
+
+        String[] facets = { FIELD_PUBLIC_SUFFIX, FIELD_TYPE, FIELD_DOMAIN,
+                FIELD_COLLECTION, FIELD_ACCESS_TERMS };
+
+
         if (preProcessQueryString){
-            SortClause sort = sortBy == null ? null : (sortBy.getWebRequestOrderValue()=="relevant" ? new SortClause("score", sortBy.getSolrOrderValue()) : new SortClause(FIELD_CRAWL_DATE, sortBy.getSolrOrderValue()));
-            String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
-            String accessToQuery = generateAccessToQuery(accessTo);
-            String contentTypeQuery = generateMultipleConditionsQuery(contentTypes, FIELD_TYPE);
-            String collectionsQuery = generateMultipleConditionsQuery(collections, FIELD_COLLECTION);
-            String publicSuffixesQuery = generateMultipleConditionsQuery(publicSuffixes, FIELD_PUBLIC_SUFFIX);
-            String domainsQuery = generateMultipleConditionsQuery(originalDomains, FIELD_DOMAIN);
-
-            List<String> filters = new ArrayList<>();
-            filters.add(dateQuery);
-            filters.add(accessToQuery);
-            filters.add(contentTypeQuery);
-            filters.add(publicSuffixesQuery);
-            filters.add(domainsQuery);
-            filters.add(collectionsQuery);
-
-            String[] facets = { FIELD_PUBLIC_SUFFIX, FIELD_TYPE, FIELD_DOMAIN,
-                    FIELD_COLLECTION, FIELD_ACCESS_TERMS };
-
-
             //Remove:
             // - URL prefixes
             // - symbols:    + - & | ! ( ) { } [ ] ^ " ~ * ? : \ /
@@ -174,23 +197,22 @@ public class SolrSearchService {
         }
         else
             //return sendRequestEmpty(queryString, sort, filters, FIELD_CONTENT, ContentInfo.class, start, rows, facets);
-            return sendRequestCheckCollection(ContentInfo.class, queryString);
+            return sendRequestCheckCollection(ContentInfo.class, "");
     }
 
     /**
      * Check if there is anything in full-text-index for specific collection
      * @param bodyDocsType
-     * @param collectionName
      * @param <T>
      * @return
      */
     private <T extends BodyDocsType> SolrSearchResult<T> sendRequestCheckCollection(Class<T> bodyDocsType, String collectionName) {
         SolrQuery query = new SolrQuery();
         query.setQuery("*:*"); //main query
-        query.setParam("fq", "collection: " + "\"" + collectionName + "\""); //vs "collections" ?
-        //query.setParam("fl", "useDocValuesAsStored:true");
+        query.setParam("q", "collection: " + collectionName);
         return communicator.sendRequest(bodyDocsType, query);
     }
+
 
     private <T extends BodyDocsType> SolrSearchResult<T> sendRequest(String queryString,
                                                                      SortClause sortClause,
@@ -254,6 +276,64 @@ public class SolrSearchService {
                 }
             }
         }
+
         return communicator.sendRequest(bodyDocsType, query);
     }
+
+
+
+    public <T extends BodyDocsType> SolrSearchResult<T> sendCategoryRequest(String queryString,
+                                                                     Class<T> bodyDocsType
+                                                                     ) {
+
+        SolrQuery query = new SolrQuery();
+        query.setFacet(true);
+        query.addFacetPivotField(new String[]{"collectionAreaId,parentId,id"});
+        //SolrSearchResult
+        // http://localhost:38983/solr/collections/select?
+        // fl=collectionAreaId,id,parentId
+        // &fq=collectionAreaId:[*%20TO%20*]-collectionAreaId:(2945)
+        // &indent=on&facet=true
+        // &facet.limit=-1
+        // &facet.pivot.mincount=1
+        // &facet.pivot=collectionAreaId,parentId,id
+        // &q=*:*&wt=json
+
+
+        query.set("facet.limit", "-1");
+//        query.set("group", true);
+        //query.set("fq", "collectionAreaId:[*%20TO%20*]-collectionAreaId:(2945)");
+        query.set("indent", "on");
+
+        query.setParam("q", "*:*");
+        //query.set("rows", "1000");
+        query.set("wt", "json");
+
+        return communicator.sendRequest(bodyDocsType, query);
+    }
+
+
+    public static void queryFacet(HttpSolrClient solrClient, String collecionName) throws Exception{
+        SolrQuery query = new SolrQuery();
+        query.setQuery("*");
+        // Do not query data, only query facet results
+        query.setFacet(true);
+        // facet field
+        query.addFacetField("price");
+        // Total facet results
+        query.setFacetLimit(8);
+        // Start query
+        QueryResponse queryResponse = solrClient.query(collecionName, query);
+        List<FacetField> facetFields = queryResponse.getFacetFields();
+        for (FacetField facetField : facetFields) {
+            String facetName=facetField.getName();
+            List<FacetField.Count> values = facetField.getValues();
+            for (FacetField.Count count : values) {
+                String name = count.getName();
+                long num=count.getCount();
+                System.out.println("facetName: "+facetName+"; name: "+name+"; num: "+num);
+            }
+        }
+    }
+
 }

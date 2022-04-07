@@ -21,6 +21,10 @@ public class SolrSearchResult <T extends BodyDocsType>{
     @JsonProperty("highlighting")
     private Map<String, HighlightingContent> highlighting;
 
+    @JsonProperty("grouped")
+    private Map<String, HighlightingContent> groups;
+
+
     public FacetCounts getFacetCounts() {
         return facetCounts;
     }

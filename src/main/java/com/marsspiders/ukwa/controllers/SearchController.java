@@ -34,6 +34,7 @@ import static com.marsspiders.ukwa.controllers.CollectionController.ROWS_PER_PAG
 import static com.marsspiders.ukwa.controllers.CollectionController.ROWS_PER_PAGE_MAX;
 import static com.marsspiders.ukwa.controllers.HomeController.PROJECT_NAME;
 import static com.marsspiders.ukwa.solr.AccessToEnum.VIEWABLE_ANYWHERE;
+import static com.marsspiders.ukwa.solr.AccessToEnum.VIEWABLE_ONLY_ON_LIBRARY;
 import static com.marsspiders.ukwa.solr.SearchByEnum.FULL_TEXT;
 import static com.marsspiders.ukwa.util.UrlUtil.getRootPathWithLang;
 import static java.util.Arrays.asList;
@@ -176,7 +177,6 @@ public class SearchController {
                     sortBy, accessTo, startRowToSend, originalContentTypes, originalPublicSuffixes, originalDomains,
                     fromDate, toDate, originalRangeDates, originalCollections, true);
 
-
             searchResultDTOs.addAll(toSearchResults(archivedSites, request, searchBy, userIpFromBl));
             totalSearchResultsSize = archivedSites.getResponseBody().getNumFound();
 
@@ -231,7 +231,6 @@ public class SearchController {
             mav.addObject("deepPaging", true);
             mav.addObject("searchResults", new ArrayList<>());
         }
-
         return mav;
     }
 
@@ -241,7 +240,6 @@ public class SearchController {
         modelAndView.addObject("message", "test AJAX for");
         return modelAndView;
     }
-
 
     private static boolean isValidUrl(String text) {
         return text.matches(URL_PATTERN);
@@ -295,7 +293,6 @@ public class SearchController {
         searchResult.setDisplayDomain(archivedSiteInfo.getDomain());
         searchResult.setDomain(originalDomain);
         searchResult.setAccess(readRoomOnlyAccess(archivedSiteInfo) ? "RRO" : "OA");
-
         return searchResult;
     }
 
@@ -305,7 +302,6 @@ public class SearchController {
             String shortContent = highlightingContent.getContent().get(0);
             escapedContent = shortContent != null ? shortContent.replaceAll("<[^>]*>", "") : "";
         }
-
         return escapedContent;
     }
 
@@ -335,9 +331,7 @@ public class SearchController {
         } catch (MalformedURLException | URISyntaxException e) {
             log.error("Failed to calculate original domain url", e);
         }
-
         return domain;
     }
-
 
 }
