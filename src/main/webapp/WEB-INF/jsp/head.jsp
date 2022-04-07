@@ -9,20 +9,21 @@
 <link rel="stylesheet" href="includes/bootstrap/css/bootstrap.min.css">
 <!--<![endif]-->
 <!--[if lt IE 10]>
-	<link rel="stylesheet" href="includes/bootstrap3/css/bootstrap.min.css">
+<link rel="stylesheet" href="includes/bootstrap3/css/bootstrap.min.css">
 <!--<![endif]-->
 <link rel="stylesheet" href="includes/jqueryui/jquery-ui.min.css">
 <link rel="stylesheet" href="includes/jquery-lightbox/dist/simpleLightbox.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 
 <!--[if lt IE 10]>
-	<script src="includes/html5shiv/html5shiv.js"></script>
-	<script src="includes/respondjs/respond.min.js"></script>
-    <script src="includes/jquery-3.5.1.min.js"></script>
-    <script src="includes/bootstrap3/js/bootstrap.min.js"></script>
+<script src="includes/html5shiv/html5shiv.js"></script>
+<script src="includes/respondjs/respond.min.js"></script>
+<script src="includes/jquery-3.5.1.min.js"></script>
+<script src="includes/bootstrap3/js/bootstrap.min.js"></script>
 <!--<![endif]-->
 
 <script src="includes/jquery.cookie.min.js"></script>

@@ -7,7 +7,7 @@
                         code="search.main.webarchivename"/></h1>
             </div>
             <div class="col-12 offset-lg-2 offset-md-2 form-inline inline-block-items flex-nowrap">
-                <input role="textbox" type="text" name="text" class="form-control form-control-lg homepage-search-input mr-lg-5 mr-md-5"
+                <input role="textbox" type="search" name="text" class="form-control form-control-lg homepage-search-input mr-lg-5 mr-md-5"
                        placeholder="" aria-label="Input search text" title="Search field" required aria-required="true" id="hs-input-field" />
                 <button role="button" type="submit" class="btn btn-lg homepage-search-button h-100 w-auto align-items-center"
                         title="<spring:message code="search.main.button.title" />">

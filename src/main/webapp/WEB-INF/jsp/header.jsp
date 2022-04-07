@@ -48,8 +48,8 @@
                 <li class="nav-item ${textUriWithoutLang == '/ukwa/index' ? 'active' : ''}" role="menuitem">
                         <a class="nav-link" href="index" tabindex="0"><spring:message code="main.menu.home"/></a>
                 </li>
-                <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/collection') ? 'active' : ''}" role="menuitem">
-                        <a class="nav-link" href="collection" tabindex="0"><spring:message code="main.menu.collections"/></a>
+                <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/category') ? 'active' : ''}" role="menuitem">
+                        <a class="nav-link" href="category" tabindex="0"><spring:message code="main.menu.collections"/></a>
                 </li>
                 <li class="nav-item ${textUriWithoutLang.startsWith('/ukwa/info/nominate') ? 'active' : ''}" role="menuitem">
                         <a class="nav-link" href="info/nominate" tabindex="0"><spring:message code="main.menu.nominate"/></a>
