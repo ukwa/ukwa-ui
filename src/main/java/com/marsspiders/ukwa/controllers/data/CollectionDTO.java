@@ -31,6 +31,19 @@ public class CollectionDTO {
         this.imageAltMessage = imageAltMessage;
     }
 
+    public CollectionDTO(String id, String name, String description, String fullDescription,
+                         String imageAltMessage) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.fullDescription = fullDescription;
+        this.imageAltMessage = imageAltMessage;
+
+        this.parentId = null;
+        this.websitesOpenAccessNum = this.websitesNum = websitesNum = this.subCollectionsNum = 0;
+    }
+
+
     public String getId() {
         return id;
     }

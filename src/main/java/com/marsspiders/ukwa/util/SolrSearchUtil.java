@@ -23,21 +23,20 @@ public class SolrSearchUtil {
     public static String generateDateQuery(Date fromDatePicked, Date toDatePicked, List<String> rangeDates) {
         String fromDateText = fromDatePicked != null ? sdf.format(fromDatePicked) : "*";
         String toDateText = toDatePicked != null ? sdf.format(toDatePicked) : "*";
-        if(fromDatePicked != null || toDatePicked != null){
+
+        if(fromDatePicked != null || toDatePicked != null)
             return SolrSearchService.FIELD_CRAWL_DATE + ":[" + fromDateText + " TO " + toDateText + "]";
-        }
+
         String dateQuery = "";
         if (rangeDates != null)
             for (String originalRangeDate : rangeDates) {
                 dateQuery += dateQuery.length() > 0 ? OR_JOINER : EXCLUDE_MARKER_SECOND_LAYER_TAG;
-
                 int yearWhenArchived = Integer.parseInt(originalRangeDate);
                 String fromDate = yearWhenArchived + DATE_PART_AFTER_YEAR;
                 String toDate = (yearWhenArchived + 1) + DATE_PART_AFTER_YEAR;
 
                 dateQuery += SolrSearchService.FIELD_CRAWL_DATE + ":[" + fromDate + " TO " + toDate + "]";
             }
-
         return dateQuery;
     }
 
@@ -45,19 +44,24 @@ public class SolrSearchUtil {
         if(accessTo == null){
             accessTo = VIEWABLE_ANYWHERE;
         }
+
         String[] accessToFilters = accessTo.getSolrRequestAccessRestriction().split(",");
+
         // If we're not filtering by one value, given there's only two possible
         // values, do no filtering at all:
         if (accessToFilters.length > 1) {
             return "";
         }
+
         String multipleConditionQuery = toMultipleConditionsQuery(
                 Arrays.asList(accessToFilters), FIELD_ACCESS_TERMS);
+
         return EXCLUDE_MARKER_FIRST_LAYER_TAG + multipleConditionQuery;
     }
 
     public static String generateMultipleConditionsQuery(List<String> conditions, String fieldName) {
         String multipleConditionQueryWithExclude = "";
+
         if(conditions != null && conditions.size() > 0){
             String multipleConditionsQuery = toMultipleConditionsQuery(conditions, fieldName);
             multipleConditionQueryWithExclude = multipleConditionsQuery;
@@ -83,9 +87,11 @@ public class SolrSearchUtil {
             }
             sb.append(fieldName).append(":").append("\"").append(valueToInclude).append("\"");
         }
+
         if(sb.length() != 0){
             sb.append(")");
         }
+
         return sb.toString();
     }
 
@@ -100,10 +106,12 @@ public class SolrSearchUtil {
             }
             sb.append(fieldName).append(":").append(valueToInclude);
         }
+
         if(sb.length() != 0){
             sb.append(")");
             sb.insert(0, AND_JOINER);
         }
+
         return sb.toString();
     }
 }

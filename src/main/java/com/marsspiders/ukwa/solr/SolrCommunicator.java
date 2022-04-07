@@ -2,14 +2,16 @@ package com.marsspiders.ukwa.solr;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.marsspiders.ukwa.solr.data.BodyDocsType;
-import com.marsspiders.ukwa.solr.data.CollectionInfo;
-import com.marsspiders.ukwa.solr.data.ContentInfo;
-import com.marsspiders.ukwa.solr.data.SolrSearchResult;
+import com.marsspiders.ukwa.solr.data.*;
 import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.impl.NoOpResponseParser;
 import org.apache.solr.client.solrj.request.QueryRequest;
+import org.apache.solr.client.solrj.response.*;
+import org.apache.solr.common.SolrDocument;
+import org.apache.solr.common.SolrDocumentList;
+import org.apache.solr.common.params.SolrParams;
 import org.apache.solr.common.util.NamedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +24,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+
 
 @Service
 public class SolrCommunicator {
@@ -33,6 +40,10 @@ public class SolrCommunicator {
 
     @Value("${solr.collection.search.request.handler}")
     private String solrCollectionRequestHandler;
+
+    //TODO: Query Handler
+//    @Value("${solr.collection.search.request.query.handler}")
+//    private String solrCollectionQueryRequestHandler;
 
     @Value("${solr.full.text.search.path}")
     private String solrFullTextPath;
@@ -55,6 +66,7 @@ public class SolrCommunicator {
     @Value("${solr.show.stub.data.when.service.not.available}")
     private boolean showStubData;
 
+
     <T extends BodyDocsType> SolrSearchResult<T> sendRequest(Class<T> bodyDocsType, SolrQuery query) {
         try {
 
@@ -75,12 +87,17 @@ public class SolrCommunicator {
             req.setBasicAuthCredentials(username, password);
             req.setPath(solrRequestHandler);
 
+            log.info("......query : " + query);
+            log.info("......solrServerUrl : " + solrServerUrl);
             HttpSolrClient solrClient = new HttpSolrClient.Builder(solrServerUrl).build();
             solrClient.setConnectionTimeout(connectionTimeout);
             solrClient.setSoTimeout(readTimeout);
 
+            log.info("......req : " + req);
+
             NamedList<Object> response = solrClient.request(req);
             String solrSearchResultString = (String)response.get("response");
+
 
             //Need to deserialize json according to generic type passed
             ObjectMapper mapper = new ObjectMapper();
@@ -130,5 +147,55 @@ public class SolrCommunicator {
             log.error("Failed to map stub response to java class", e);
             return null;
         }
+    }
+
+    /**
+     * Pivot Categories Request (due to multivalued field in SOLR)
+     * @return
+     * @throws Exception
+     */
+    public NamedList<List<PivotField>> pivotCategoriesRequest() throws Exception{
+
+        // Set query criteria
+        /*
+         * http://localhost:38983/solr/collections/select?
+         *
+         * fl=collectionAreaId&
+         * fq=collectionAreaId:[*%20TO%20*]-collectionAreaId:(2945)&
+         * indent=on&
+         *
+         * facet=true&
+         * facet.limit=-1&
+         * facet.pivot.mincount=1&
+         * facet.pivot=collectionAreaId,id&
+         *
+         * q=*:*&
+         * wt=json
+         *
+         * */
+        log.info("------ pivots categories  " );
+
+        SolrQuery query = new SolrQuery();
+        query.setFacet(true);
+        query.addFacetPivotField(new String[]{"collectionAreaId,id,description,name"});
+        query.addFilterQuery("collectionAreaId:[* TO *]-collectionAreaId:(2945)"); //exception for collection : working
+        query.set("q", "*");
+        query.set("facet.limit", "-1");
+        query.set("facet.pivot.mincount", "1");
+        query.set("wt", "json");
+        query.set("fl",new String[]{"name,description"});
+
+        HttpSolrClient solrClient = new HttpSolrClient.Builder(solrCollectionPath + "/solr/collections").build();
+        solrClient.setConnectionTimeout(connectionTimeout);
+        NamedList<List<PivotField>> pivotEntryList = null;
+        try {
+            QueryResponse result = solrClient.query(query);
+            pivotEntryList = result.getFacetPivot();
+            if (pivotEntryList == null)
+                return null;
+        } catch (SolrServerException | IOException e) {
+            e.printStackTrace();
+        }
+        return pivotEntryList;
     }
 }
