@@ -1,7 +1,9 @@
 package com.marsspiders.ukwa.controllers;
 
+import static com.marsspiders.ukwa.solr.AccessToEnum.VIEWABLE_ONLY_ON_LIBRARY;
 import static com.marsspiders.ukwa.solr.CollectionDocumentType.TYPE_COLLECTION;
 import static com.marsspiders.ukwa.solr.CollectionDocumentType.TYPE_TARGET;
+import static com.marsspiders.ukwa.solr.SearchByEnum.FULL_TEXT;
 import static com.marsspiders.ukwa.util.UrlUtil.getLocale;
 import static com.marsspiders.ukwa.util.UrlUtil.getRootPathWithLang;
 import static java.util.Collections.singletonList;
@@ -22,6 +24,8 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.marsspiders.ukwa.solr.SortByEnum;
+import com.marsspiders.ukwa.solr.data.ContentInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,9 +113,13 @@ public class CollectionController {
         List<TargetWebsiteDTO> targetWebsites = generateTargetWebsitesDTOs(targetWebsitesDocuments, rootPathWithLang, userIpFromBl);
         List<CollectionDTO> subCollections = generateSubCollectionDTOs(collectionId, locale);
         CollectionDTO currentCollection = generatePlainCollectionDTO(collectionId, locale, targetWebsitesSearchResult);
-        Map<String, String> breadcrumbPath = buildCollectionBreadcrumbPath(currentCollection);
 
+        if (currentCollection == null)
+            return new ModelAndView("errorCollNotFound");
+
+        Map<String, String> breadcrumbPath = buildCollectionBreadcrumbPath(currentCollection);
         ModelAndView mav = new ModelAndView("coll");
+        mav.addObject("checkCount", searchAnyFullTextIndex(currentCollection.getName()));
         mav.addObject("userIpFromBl", userIpFromBl);
         mav.addObject("breadcrumbPath", breadcrumbPath);
         mav.addObject("targetWebsites", targetWebsites);
@@ -125,7 +133,6 @@ public class CollectionController {
         if (targetPageNumber > totalPages)
             targetPageNumber = totalPages;
         mav.addObject("targetPageNumber", targetPageNumber);
-
         return mav;
     }
 
@@ -139,16 +146,13 @@ public class CollectionController {
                     .fetchCollectionById(parentCollectionId)
                     .getResponseBody().getDocuments()
                     .get(0);
-
             //Create a new map to get reversed map in result
             Map<String, String> oldPath = new LinkedHashMap<>(path);
             path.clear();
             path.put(parentCollection.getId(), parentCollection.getName());
             path.putAll(oldPath);
-
             parentCollectionId = parentCollection.getParentId();
         }
-
         return path;
     }
 
@@ -178,17 +182,13 @@ public class CollectionController {
                 .stream()
                 .forEach(subCollection -> {
                     String parentId = subCollection.getParentId();
-
                     CollectionDTO parentCollectionDto = rootCollections.get(parentId);
                     if (parentCollectionDto.getSubCollections() == null) {
                         parentCollectionDto.setSubCollections(new ArrayList<>());
                     }
-
                     CollectionDTO subCollectionDTO = toCollectionDTO(subCollection, true, locale);
                     parentCollectionDto.getSubCollections().add(subCollectionDTO);
-
                 });
-
         ArrayList<CollectionDTO> sortedCollectionDTOs = new ArrayList<>(rootCollections.values());
         Collections.sort(sortedCollectionDTOs, (c1, c2) -> c1.getName().compareTo(c2.getName()));
 
@@ -198,15 +198,17 @@ public class CollectionController {
     private CollectionDTO generatePlainCollectionDTO(String collectionId,
                                                      Locale locale,
                                                      SolrSearchResult<CollectionInfo> targetWebsitesSearchResult) {
-        CollectionInfo currentCollectionInformation = searchService
-                .fetchCollectionById(collectionId)
-                .getResponseBody().getDocuments()
-                .get(0);
-
-        CollectionDTO collectionDTO = toCollectionDTO(currentCollectionInformation, false, locale);
-        collectionDTO.setWebsitesNum(targetWebsitesSearchResult.getResponseBody().getNumFound());
-
-        return collectionDTO;
+        SolrSearchResult <CollectionInfo> solrSearchResult = searchService
+                .fetchCollectionById(collectionId);
+        if (solrSearchResult.getResponseBody().getDocuments().size() > 0) {
+            CollectionDTO collectionDTO = toCollectionDTO(solrSearchResult
+                    .getResponseBody().getDocuments()
+                    .get(0), false, locale);
+            collectionDTO.setWebsitesNum(targetWebsitesSearchResult.getResponseBody().getNumFound());
+            return collectionDTO;
+        }
+        else
+            return null;
     }
 
     private List<TargetWebsiteDTO> generateTargetWebsitesDTOs(List<CollectionInfo> websites,
@@ -278,6 +280,34 @@ public class CollectionController {
 
     private static boolean readRoomOnlyAccess(CollectionInfo websiteInfo) {
         return websiteInfo.getLicenses() == null || websiteInfo.getLicenses().size() == 0;
+    }
+
+
+    /**
+     * Check if specific Collection has Any-Full-Text-Index (possibly will be updated later)
+     * @param collectionName
+     * @return
+     */
+    public Long searchAnyFullTextIndex(String collectionName) {
+        List<String> originalCollections = new ArrayList<>();
+        originalCollections.add(collectionName);
+        //originalCollections = collections != null ? asList(collections) : emptyList();
+        SolrSearchResult<ContentInfo> archivedSites = searchService.searchContent(
+                FULL_TEXT,
+                collectionName!=null?originalCollections.get(0):"",
+                0,
+                SortByEnum.NEWEST_TO_OLDEST,
+                VIEWABLE_ONLY_ON_LIBRARY,
+                0,
+                null,
+                null,
+                null,
+                null, null,
+                null,
+                originalCollections,
+                false);
+
+        return archivedSites.getResponseBody().getNumFound();
     }
 
 }

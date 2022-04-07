@@ -20,9 +20,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-//import org.springframework.data.solr.core.query.result.GroupResult;
-
 import java.io.IOException;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -73,31 +70,16 @@ public class SolrSearchService {
     @Autowired
     SolrCommunicator communicator;
 
-
-    //------------------ categories start -----------------
-
-    private SolrSearchResult<CollectionInfo> fetchAllCollectionsCategories() {
-        log.info("Fetching all collections - categories");
-
-        String queryString = "type:" + TYPE_COLLECTION.getSolrDocumentType();
-        int rowsLimit = ROOT_COLLECTIONS_ROWS_LIMIT;
-
-        return sendRequest(queryString, null, null, null, CollectionInfo.class, 0, rowsLimit);
-    }
-
     public SolrSearchResult<CollectionInfo> fetchRootCollectionsCategories() {
         log.info("Fetching root collections - Categories");
 
         //------- add query  CATEGORIES !!!!!
-
         //String noParentQuery = "-parentId:[* TO *]";
         //SortClause sortClause = new SortClause(FIELD_NAME, asc);
         //int rowsLimit = ROOT_COLLECTIONS_ROWS_LIMIT;
 
         return sendCategoryRequest("", CollectionInfo.class);
     }
-
-    //------------------ categories end -----------------
 
     private SolrSearchResult<CollectionInfo> fetchAllCollections() {
         log.info("Fetching all collections");
@@ -186,18 +168,13 @@ public class SolrSearchService {
 
         log.debug("Searching content fromDatePicked = " + fromDatePicked + ", toDatePicked = " + toDatePicked + ", rangeDates = " + rangeDates );
         String dateQuery = generateDateQuery(fromDatePicked, toDatePicked, rangeDates);
-        log.debug("Searching content after  generateDateQuery" );
 
         String accessToQuery = generateAccessToQuery(accessTo);
-        log.debug("Searching content after  generateAccessToQuery" );
 
         String contentTypeQuery = generateMultipleConditionsQuery(contentTypes, FIELD_TYPE);
         String collectionsQuery = generateMultipleConditionsQuery(collections, FIELD_COLLECTION);
         String publicSuffixesQuery = generateMultipleConditionsQuery(publicSuffixes, FIELD_PUBLIC_SUFFIX);
         String domainsQuery = generateMultipleConditionsQuery(originalDomains, FIELD_DOMAIN);
-
-        log.debug("Searching content after  domainsQuery" );
-
 
         List<String> filters = new ArrayList<>();
         filters.add(dateQuery);
@@ -331,9 +308,6 @@ public class SolrSearchService {
         query.setParam("q", "*:*");
         //query.set("rows", "1000");
         query.set("wt", "json");
-
-        log.info("------- pries sendRequest categories query = " + query.toString());
-
 
         return communicator.sendRequest(bodyDocsType, query);
     }

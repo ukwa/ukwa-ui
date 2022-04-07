@@ -24,30 +24,19 @@ public class SolrSearchUtil {
         String fromDateText = fromDatePicked != null ? sdf.format(fromDatePicked) : "*";
         String toDateText = toDatePicked != null ? sdf.format(toDatePicked) : "*";
 
-        System.out.println("......generateDateQuery - before fromDatePicked != null" );
-        if(fromDatePicked != null || toDatePicked != null){
-            System.out.println("......generateDateQuery - return : " + SolrSearchService.FIELD_CRAWL_DATE + ":[" + fromDateText + " TO " + toDateText + "]" );
+        if(fromDatePicked != null || toDatePicked != null)
             return SolrSearchService.FIELD_CRAWL_DATE + ":[" + fromDateText + " TO " + toDateText + "]";
-        }
-
-        System.out.println("......generateDateQuery - before dateQuery" );
 
         String dateQuery = "";
         if (rangeDates != null)
             for (String originalRangeDate : rangeDates) {
-                System.out.println("......generateDateQuery - originalRangeDate = " + originalRangeDate );
-
                 dateQuery += dateQuery.length() > 0 ? OR_JOINER : EXCLUDE_MARKER_SECOND_LAYER_TAG;
-
                 int yearWhenArchived = Integer.parseInt(originalRangeDate);
                 String fromDate = yearWhenArchived + DATE_PART_AFTER_YEAR;
                 String toDate = (yearWhenArchived + 1) + DATE_PART_AFTER_YEAR;
 
                 dateQuery += SolrSearchService.FIELD_CRAWL_DATE + ":[" + fromDate + " TO " + toDate + "]";
             }
-        System.out.println("......generateDateQuery - dateQuery = " + dateQuery );
-
-
         return dateQuery;
     }
 
@@ -77,10 +66,6 @@ public class SolrSearchUtil {
             String multipleConditionsQuery = toMultipleConditionsQuery(conditions, fieldName);
             multipleConditionQueryWithExclude = multipleConditionsQuery;
         }
-
-
-        System.out.println("-----rrr222---- generateMultipleConditionsQuery = " + multipleConditionQueryWithExclude);
-
         return multipleConditionQueryWithExclude;
     }
 
