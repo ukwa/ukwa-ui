@@ -15,10 +15,6 @@
         </div>
     </div>
 </div>
-<!-- Top Line -->
-<div>
-    <hr class="topline"/>
-</div>
 <div class="relative shadow-redesign" style="z-index: 1001">
 
 <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
