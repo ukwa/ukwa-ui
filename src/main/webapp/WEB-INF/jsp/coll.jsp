@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -69,8 +70,8 @@ ${pageContext.response.locale}
 
     <div class="row margin-0 padding-side-5">
       <div class="col-md-12 col-sm-12 pl-0 pr-0 padding-top-20 padding-bottom-20">
-        <p class="margin-top-20 margin-bottom-0 hidden topics-themes-description" id="coll_description" data-descript="<c:out value="${currentCollection.description}"/>"></p>
-        <p class="margin-bottom-0"><a href="#" class="hidden" title="<spring:message code="coll.readmore" />" id="readmore"><spring:message code="coll.readmore" /></a></p>
+        <p class="margin-top-20 margin-bottom-0 hidden topics-themes-description" id="coll_description2-1" data-descript="<c:out value="${currentCollection.description}"/>"></p>
+        <p class="margin-bottom-0"><a href="#" class="hidden" title="<spring:message code="coll.readmore" />" id="readmore2-1"><spring:message code="coll.readmore" /></a></p>
       </div>
     </div>
 <c:choose>
@@ -203,7 +204,9 @@ ${pageContext.response.locale}
                                     </c:when>
                                 </c:choose>
 
-                                <c:out value="${targetWebsite.description}"/>
+                                    <p class="margin-top-20 margin-bottom-0 hidden topics-themes-description" id="coll_description2-<c:out value="${targetWebsite.id}"/>" data-descript="<c:out value="${targetWebsite.description}"/>"></p>
+                                    <p class="margin-bottom-0"><a href="#" class="hidden" title="<spring:message code="coll.readmore" />" id="readmore2-<c:out value="${targetWebsite.id}"/>"><spring:message code="coll.readmore" /></a></p>
+
                                 <c:if test="${not empty targetWebsite.startDate}">
                         <span class="results-title-text margin-top-10 clearfix"> <spring:message code="coll.archived.date"/>
             <c:out value="${targetWebsite.startDate}"/>
@@ -291,7 +294,7 @@ ${pageContext.response.locale}
                                 <%--preserve all current parameters in URL and change only page parameter--%>
                                     <c:if test="${targetPageNumber > totalSearchResultsSize/rowsPerPageLimit}">
                                         <a href="collection/<c:out value="${currentCollection.id}"/>?page=<c:out value="${(totalPages)}"/>" title="<spring:message code="pagination.next" />"  aria-label="<spring:message code="pagination.next" />"><div class="pagination-number-redesign arrow left-arrow"></div>
-                                            Return to nearest result list</a>
+                                            Return to the nearest result list</a>
                                     </c:if>
                         </div>
                     </div>
@@ -315,46 +318,63 @@ ${pageContext.response.locale}
 <input aria-hidden="true" type="hidden" id="no-coll-description" name="no-coll-description" value="<spring:message code="coll.nodescript" />" />
 <script>
 
-	function showDescript(descript, len) {
-
-		if (descript.length>len) {
-			$("#coll_description").text(descript.substr(0,len)+"...");
-			$("#readmore").show();
-		} else {
-			$("#coll_description").text(descript);
-		}
-
-		return true;
-
-	}
-
 	$(document).ready(function(e) {
-
-		var descript=$("#coll_description").attr("data-descript");
-		var len=360;
-		var short=true;
+        var len=260;
+        var len2=1060;
 		var readmore = '<spring:message code="coll.descript.readmore" />';
 		var readless = '<spring:message code="coll.descript.readless" />';
 
-		showDescript(descript, len);
+        $('[id^=readmore2]').each(function () {
+            $(this).show();
+        });
 
-		$("#coll_description").show();
+        $('[id^=coll_description2]').each(function () {
+            $(this).text($(this).attr("data-descript").substring(0,len)+"...");
+            $(this).show();
+        });
 
-		$("#readmore").click(function(e) {
-			e.preventDefault();
-			if (short) {
-				$(this).attr("title", readless).text(readless);
-				$("#coll_description").text(descript);
-				short=false;
+        $('[id^=readmore2]').click(function(e) {
+            e.preventDefault();
+            var descr_id = $(this).attr('id').substring(10,35);
+            var descript = $("[id='coll_description2-" + descr_id + "\']").attr("data-descript");
+            var moreless = $(this).attr("title");
 
-			} else {
-				$(this).attr("title", readmore).text(readmore);
-				showDescript(descript, len);
-				short=true;
-			}
-		});
+            if (moreless==="Read more" || moreless==="Darllenwch ragor" || moreless==="Leugh an còrr") {
+                $(this).attr("title", readless).text(readless);
+                var shorter = descript.length>0?descript.substring(0, len2):"No description";
+                $("[id='coll_description2-" + descr_id + "\']").text(shorter);
+            } else {
+                $(this).attr("title", readmore).text(readmore);
+                var longer = descript.length>0?descript.substring(0, len)+"...":"No description";
+                $("[id='coll_description2-" + descr_id + "\']").text(longer);
+            }
+        });
 
+        $('.col-descr').on('hidden.bs.collapse', function () {
+            //console.log("hidden.bs.collapse");
+            let element = $(this).next();
+            $.ajax({
+                type: 'get',
+                url: '/${locale}/ukwa/category/getcattransshowmore/${locale}',
+                success: function(data) {
+                    //console.log('show more, data = ', data);
+                    element.attr("data-content", data);
+                }
+            });
+        });
 
+        $('.col-descr').on('show.bs.collapse', function () {
+            //console.log("show.bs.collapse");
+            let element = $(this).next();
+            $.ajax({
+                type: 'get',
+                url: '/${locale}/ukwa/category/getcattransshowless/${locale}',
+                success: function(data) {
+                    //console.log('show less, data = ', data);
+                    element.attr("data-content", data);
+                }
+            });
+        });
 	});
 	</script>
 </body>
