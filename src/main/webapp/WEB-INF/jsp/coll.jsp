@@ -329,7 +329,8 @@ ${pageContext.response.locale}
         });
 
         $('[id^=coll_description2]').each(function () {
-            $(this).text($(this).attr("data-descript").substring(0,len)+"...");
+            var tmp_descr = $(this).attr("data-descript");
+            $(this).text(tmp_descr.length>len?(tmp_descr.substring(0,len)+"..."):tmp_descr);
             $(this).show();
         });
 
@@ -345,7 +346,7 @@ ${pageContext.response.locale}
                 $("[id='coll_description2-" + descr_id + "\']").text(shorter);
             } else {
                 $(this).attr("title", readmore).text(readmore);
-                var longer = descript.length>0?descript.substring(0, len)+"...":"No description";
+                var longer = descript.length>0?(descript.length>len?descript.substring(0, len)+"...":descript):"No description";
                 $("[id='coll_description2-" + descr_id + "\']").text(longer);
             }
         });
