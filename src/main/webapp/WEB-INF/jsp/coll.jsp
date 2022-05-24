@@ -332,6 +332,11 @@ ${pageContext.response.locale}
             var tmp_descr = $(this).attr("data-descript");
             $(this).text(tmp_descr.length>len?(tmp_descr.substring(0,len)+"..."):tmp_descr);
             $(this).show();
+            if (tmp_descr.length<len)
+                //console.log("tmp_descr.length = " + tmp_descr.length);
+                $(this).next().hide();
+            else
+                $(this).next().show();
         });
 
         $('[id^=readmore2]').click(function(e) {
