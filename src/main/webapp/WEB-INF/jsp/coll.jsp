@@ -343,9 +343,9 @@ ${pageContext.response.locale}
             e.preventDefault();
             var descr_id = $(this).attr('id').substring(10,35);
             var descript = $("[id='coll_description2-" + descr_id + "\']").attr("data-descript");
-            var moreless = $(this).attr("title");
+            var readmoreless = $(this).attr("title");
 
-            if (moreless==="Read more" || moreless==="Darllenwch ragor" || moreless==="Leugh an còrr") {
+            if (readmoreless===readmore) {
                 $(this).attr("title", readless).text(readless);
                 var shorter = descript.length>0?descript.substring(0, len2):"No description";
                 $("[id='coll_description2-" + descr_id + "\']").text(shorter);
