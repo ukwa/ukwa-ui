@@ -231,7 +231,7 @@ public class CollectionController {
         String description = websiteInfo.getDescription() != null
                 ? websiteInfo.getDescription().replaceAll("<[^>]*>", "")
                 : null;
-        String shortDescription = abbreviate(description, 60);
+        String shortDescription = description;//abbreviate(description, 60);
         String accessFlag = readRoomOnlyAccess ? "RRO" : "OA";
         String wayBackUrl;
         if (!userIpFromBl && readRoomOnlyAccess) {

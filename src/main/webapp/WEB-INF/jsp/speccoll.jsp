@@ -132,7 +132,7 @@
                                             </div>
 
                                             <div id="colmodule" class="collection-descr" >
-                                                <p id="collapseCollection-<c:out value="${collection.key}"/>" class="collapse text-justify text-muted small col-descr" data-content="crappy 4" aria-expanded="false"><c:out value="${collection.value.description}"/></p>
+                                                <p id="collapseCollection-<c:out value="${collection.key}"/>" class="collapse text-justify text-muted small col-descr" data-content="tmp_data" aria-expanded="false"><c:out value="${collection.value.description}"/></p>
                                                 <a role="button" data-content="<spring:message code="categories.filter.results.showmore" />" class="collapsed showmoreless" data-toggle="collapse" href="#collapseCollection-<c:out value="${collection.key}"/>" aria-expanded="false" aria-controls="collapseCollection-<c:out value="${collection.key}"/>"></a>
                                             </div>
 
@@ -166,13 +166,8 @@
 </div>
 
 <script>
-
-
-
     $(document).ready(function(e) {
-
         let $menuItems = $('.header-menu-item');
-
         let current_2_id = 'id_2222';
         let listIndex=0; // for 'id_2222' - All Collections
         let items_length = $("#top-collection-list-2-id_2222").find("li").length;
