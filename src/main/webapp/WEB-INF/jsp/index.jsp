@@ -29,7 +29,7 @@
 <%@include file="nav.jsp" %>
 <div class="container-fluid">
     <header>
-        <%@include file="surveypanel.jsp" %>
+<%--        <%@include file="surveypanel.jsp" %>--%>
         <%@include file="header.jsp" %>
         <%@include file="homepage_searchForm.jsp" %>
     </header>
