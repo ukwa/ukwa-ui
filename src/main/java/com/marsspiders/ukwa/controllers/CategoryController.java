@@ -76,12 +76,15 @@ public class CategoryController {
             e.printStackTrace();
         }
 
+        int coll_counter_in_cat, coll_counter_not_added_in_cat = 0;
+
         mapCollectionDTO = new HashMap<>();
         //all collections
         for (Map.Entry<String, List<PivotField>> pivotEntry : pivotEntryList) {
             Iterator iterator;  //Iterator<PivotField>
             int indx_deep = 0;
 
+            log.info("-- total categories count: " + pivotEntry.getValue().size());
             for (int y=0; y < pivotEntry.getValue().size();y++) {
                 if (pivotEntry.getValue().get(y).getPivot() != null) {
 
@@ -89,8 +92,13 @@ public class CategoryController {
                     charSet = new HashSet<>();
 
                     iterator = pivotEntry.getValue().get(y).getPivot().stream().iterator();
-                    while (iterator.hasNext()) {
+                    log.info("-- coll in cat count: " + pivotEntry.getValue().get(y).getPivot().stream().count());
 
+                    while (iterator.hasNext()) {
+                        //coll_counter_in_cat
+                        coll_counter_not_added_in_cat++;
+
+                        //-----------------------------------------------------------------------
                         if (pivotEntry.getValue().get(y).getPivot().get(indx_deep).getPivot() != null) {
 
                             //SET of Category Collection first characters'
@@ -107,10 +115,12 @@ public class CategoryController {
                                 //log.info("matcher : index = " + k++ +", group = " + m.group(1));
                                 if (m.group(1).length() > currDescr.length())
                                     currDescr = m.group(1);
+                            //----------------------------------------------------------------------------
 
 //                                log.info("matcher : index = " + k++ +", group = " + m.group(2));
 //                                log.info("matcher : index = " + k++ +", group = " + m.group(3));
 
+                            log.info("-- add coll to cat count: " + indx_deep + ", collid = " + pivotEntry.getValue().get(y).getPivot().get(indx_deep).getValue().toString());
 
                             mapCollectionDTO.put(
                                     //add only collectionArea ID, title cannot be extracted from SOLR query
@@ -127,13 +137,19 @@ public class CategoryController {
                                             currDescr.substring(13).replaceAll("\\[(.*?)\\]", ""),
                                             "full description...",
                                             "alt Image"));
-                            indx_deep++;
-                        } else
+                            //indx_deep++;
+                        } else {
+                            log.info("--- NOT added into Category : " + pivotEntry.getValue().
+                                    get(y).getPivot().
+                                    get(indx_deep));
                             iterator.next();
+                        }
+                        indx_deep++;
                     }
                     //add all collections that belong to category
                     // && TODO: sub-collections? - Need to concentrate on lists from ACT in JSON
                 }
+                //log.info("--- mapCollectionDTO : " + mapCollectionDTO.size());
             }
 
             //List<HashMap<String, HashMap<String, CollectionDTO>>>
@@ -143,15 +159,13 @@ public class CategoryController {
         }
 
         map3 = new HashMap<>();
-        map3.put("2222",
+        map3.put("2222", // code 2222 - for all collections category
                 mapCollectionDTO.entrySet().stream()
                         .sorted(Comparator.comparing(collDTO -> collDTO.getValue().getName()))
                         .collect(Collectors.toMap(
                                 Map.Entry::getKey, Map.Entry::getValue, (a, b) -> a, LinkedHashMap::new)));
 
         listOfMapsOfItemsOfCategories3.add(map3);
-
-
 
         //collection areas
         for (Map.Entry<String, List<PivotField>> pivotEntry : pivotEntryList) {
@@ -189,9 +203,6 @@ public class CategoryController {
 //                                log.info("matcher : index = " + k++ +", group = " + m.group(2));
 //                                log.info("matcher : index = " + k++ +", group = " + m.group(3));
 
-
-
-
                             mapCollectionDTO.put(
                                     //add only collectionArea ID, title cannot be extracted from SOLR query
                                     pivotEntry.getValue().get(y).getPivot().get(indx_deep).getValue().toString(),
@@ -207,15 +218,19 @@ public class CategoryController {
                                             currDescr.substring(13).replaceAll("\\[(.*?)\\]", ""),
                                             "full description...",
                                             "alt Image"));
-                            indx_deep++;
                         }
                         else
                             iterator.next();
+
+                        indx_deep++;
 
                     }
                     //add all collections that belong to category
                     // && TODO: sub-collections? - Need to concentrate on lists from ACT in JSON
                 }
+
+
+                log.info(pivotEntry.getValue().get(y).getValue().toString() + " size: " + mapCollectionDTO.size());
 
                 //List<HashMap<String, HashMap<String, CollectionDTO>>>
                 map3 = new HashMap<>();
