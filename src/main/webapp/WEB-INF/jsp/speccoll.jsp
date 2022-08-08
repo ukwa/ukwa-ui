@@ -120,7 +120,7 @@
 
                                     <div class="media">
                                         <a href="collection/<c:out value="${collection.key}"/>" class="collection-link">
-                                            <img style="width:160px;height:auto;" alt="<c:out value="${collection.value.name}"/>" src="img/collections/collection_<c:out value="${collection.key}"/>.png"/>
+                                            <img class="catCollPicture" style="width:160px;height:auto;" alt="<c:out value="${collection.value.name}"/>" src="img/collections/collection_<c:out value="${collection.key}"/>.png"/>
                                         </a>
                                         <div class="ml-3 media-body">
                                             <div class="row">
@@ -265,9 +265,13 @@
 
         }); //input
 
-    $('.category-search-popover').popover({
-        container: 'body'
-    })
+        $('.category-search-popover').popover({
+            container: 'body'
+        })
+
+        $('.catCollPicture').onerror = function () {
+            this.src = 'img/collections/collection_default.png'; // Error image
+        };
 
     //<c:set var="categoryListSize" value="${collCountList.get(2)}" />
     var array = new Array();
