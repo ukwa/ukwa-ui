@@ -269,9 +269,9 @@
             container: 'body'
         })
 
-        $('.catCollPicture').onerror = function () {
-            this.src = 'img/collections/collection_default.png'; // Error image
-        };
+      $(".catCollPicture").on("error", function(){
+        $(this).attr('src', 'img/collections/collection_default.png');
+      });
 
     //<c:set var="categoryListSize" value="${collCountList.get(2)}" />
     var array = new Array();
