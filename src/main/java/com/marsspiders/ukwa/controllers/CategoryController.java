@@ -1,7 +1,6 @@
 package com.marsspiders.ukwa.controllers;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.marsspiders.ukwa.controllers.data.CollectionDTO;
 import com.marsspiders.ukwa.solr.SolrCategoryService;
 import com.marsspiders.ukwa.solr.SolrSearchService;
@@ -14,21 +13,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
-import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
-import static com.marsspiders.ukwa.controllers.HomeController.PROJECT_NAME;
 import static com.marsspiders.ukwa.util.UrlUtil.getLocale;
 import static org.apache.commons.lang3.StringUtils.abbreviate;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -251,7 +243,7 @@ public class CategoryController {
 
         ModelAndView mav = new ModelAndView("speccoll");
         mav.addObject("listOfMapsOfItemsOfCategories3", listOfMapsOfItemsOfCategories3);
-        mav.addObject("alphabetSet", charSet);
+        //mav.addObject("alphabetSet", charSet);
         mav.addObject("listOfAlphabetical", listOfAlphabetical);
         mav.addObject("setProtocolToHttps", setProtocolToHttps);
 
@@ -366,13 +358,10 @@ public class CategoryController {
     @ResponseBody
     public String getLocaleMessageCategoryPlaceHolderFull(
             @PathVariable String lang, @PathVariable String categoryId, @PathVariable String count) {
-        //String imageAltMessage = messageSource.getMessage(COLLECTION_ALT_MESSAGE_ID + id, null, defaultImageAltMessage, locale);
-
         String placeholder_template = messageSource.getMessage("categories.filter.input.placeholder", null, (new Locale(lang)) );
         String template_cat_part = messageSource.getMessage("category.title."+categoryId, null, (new Locale(lang)) );
         placeholder_template = placeholder_template.replaceAll( "__cat__" , template_cat_part );
         placeholder_template = placeholder_template.replaceAll( "__val__" , count );
-
         log.info("Returning category name for lang = {}", lang, ", category id = {}", categoryId);
         return placeholder_template;
     }
