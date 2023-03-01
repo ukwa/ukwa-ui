@@ -11,11 +11,13 @@
   <c:set var="url" value="${fn:replace(url, 'http:', 'https:')}"/>
 </c:if>
 <jsp:useBean id="listOfMapsOfItemsOfCategories3" scope="request" type="java.util.List<java.util.HashMap<java.lang.String, java.util.HashMap<java.lang.String, com.marsspiders.ukwa.controllers.data.CollectionDTO>>>"/>
-<jsp:useBean id="alphabetSet" scope="request"  type="java.util.HashSet<java.lang.Character>"/>
+<%--<jsp:useBean id="alphabetSet" scope="request"  type="java.util.HashSet<java.lang.Character>"/>--%>
 <jsp:useBean id="listOfAlphabetical" scope="request"  type="java.util.List<java.util.HashSet<java.lang.Character>>"/>
 
 <jsp:useBean id="random" class="java.util.Random" scope="application" />
 <jsp:useBean id="collCountList" class="java.util.ArrayList"/>
+
+
 
 <html lang="${locale}">
 <head>
@@ -177,7 +179,7 @@
             type: 'get',
             url: '/${locale}/ukwa/category/gettransplaceholderfull/${locale}/'+current_2_id.substring(3)+'/'+items_length,
             success: function(data) {
-                $('#catInfo').text(data);
+                $('#catInfo').html(data);
             }
         });
 
@@ -220,7 +222,7 @@
                         type: 'get',
                         url: '/${locale}/ukwa/category/gettransplaceholderfull/${locale}/'+previous_2_id.substring(3)+'/'+items_in_current,
                         success: function(data) {
-                            $('#catInfo').text(data);
+                            $('#catInfo').html(data);
                         }
                     });
                 }
@@ -238,7 +240,7 @@
                         type: 'get',
                         url: '/${locale}/ukwa/category/gettransplaceholderfull/${locale}/'+previous_2_id.substring(3)+'/'+items_in_current,
                         success: function(data) {
-                            $('#catInfo').text(data);
+                            $('#catInfo').html(data);
                         }
                     });
                 }
@@ -257,7 +259,7 @@
                         type: 'get',
                         url: '/${locale}/ukwa/category/gettransnoresults/${locale}',
                         success: function(data) {
-                            $('#cat-filter-results').text(data);
+                            $('#cat-filter-results').html(data);
                         }
                     });
 
@@ -303,7 +305,7 @@
             type: 'get',
             url: '/${locale}/ukwa/category/gettransfilterscope/${locale}',
             success: function(data) {
-                $('#catInfo').text(data);
+                $('#catInfo').html(data);
             }
         });
 
@@ -341,8 +343,7 @@
             type: 'get',
             url: '/${locale}/ukwa/category/gettransplaceholderfull/${locale}/'+current_2_id.substring(3)+'/'+items_length,
             success: function(data) {
-                //$('#cat-search-input').attr("placeholder", data );
-                $('#catInfo').text(data);
+                $('#catInfo').html(data);
             }
         });
 
@@ -350,7 +351,6 @@
 
         $('#id_image_'+previous_2_id).removeClass('border border-danger fast-transition-2');//.css({"filter":blur(35px)});//filter: grayscale(100%);
         $('#id_image_'+current_2_id).addClass('border border-danger fast-transition-2');
-
         // console.log('id image current = ', 'id_image_'+current_2_id);
         previous_2_id = current_2_id;
     });
@@ -362,7 +362,6 @@
                 type: 'get',
                 url: '/${locale}/ukwa/category/getcattransshowmore/${locale}',
                 success: function(data) {
-                    //console.log('show more, data = ', data);
                     element.attr("data-content", data);
                 }
             });
