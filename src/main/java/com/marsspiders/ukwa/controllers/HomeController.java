@@ -37,6 +37,7 @@ public class HomeController {
     public ModelAndView temporaryDefaultNamesPageMapping(@PathVariable("pageName") String pageName) {
         ModelAndView modelAndView = new ModelAndView(pageName);
         modelAndView.addObject("setProtocolToHttps", setProtocolToHttps);
+        modelAndView.addObject("gRecaptchaSiteKey", gRecaptchaSiteKey);
 
         return modelAndView;
     }
@@ -46,7 +47,6 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView(pageName);
         modelAndView.addObject("setProtocolToHttps", setProtocolToHttps);
         modelAndView.addObject("gRecaptchaSiteKey", gRecaptchaSiteKey);
-        log.info("Added gRecaptchaSiteKey: " + gRecaptchaSiteKey.substring(0, 5) + "...");
 
         return modelAndView;
     }
