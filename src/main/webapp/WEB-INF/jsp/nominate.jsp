@@ -116,7 +116,7 @@ ${req.requestURL}
       </div>
       <div class="col-md-6 col-sm-12 form-content-col">
           <div class=" margin-top-30 clearfix">
-              <div class="g-recaptcha" data-sitekey="${google.recaptcha.site.key}" aria-hidden="true"
+              <div class="g-recaptcha" data-sitekey="${gRecaptchaSiteKey}" aria-hidden="true"
                    aria-label="do not use" aria-readonly="true"></div>
               <div class="captcha-message" aria-hidden="true" aria-label="do not use" aria-readonly="true">
                   <spring:message code="captcha.message"/></div>

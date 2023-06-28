@@ -18,6 +18,9 @@ public class HomeController {
     @Value("${set.protocol.to.https}")
     private Boolean setProtocolToHttps;
 
+    @Value("${google.recaptcha.site.key}")
+    private String gRecaptchaSiteKey;
+
     @RequestMapping(value = {"", "/", "/{lang}/", PROJECT_NAME}, method = GET)
     public String homePageMapping(Map<String, Object> model, @PathVariable(value = "lang", required = false) String lang) {
         model.put("time", new Date());
@@ -38,6 +41,7 @@ public class HomeController {
     public ModelAndView staticInfoPageMapping(@PathVariable("pageName") String pageName) {
         ModelAndView modelAndView = new ModelAndView(pageName);
         modelAndView.addObject("setProtocolToHttps", setProtocolToHttps);
+        modelAndView.addObject("gRecaptchaSiteKey", gRecaptchaSiteKey);
 
         return modelAndView;
     }

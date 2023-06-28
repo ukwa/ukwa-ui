@@ -34,9 +34,7 @@ import static com.marsspiders.ukwa.controllers.HomeController.PROJECT_NAME;
 public class FeedbackController {
     private static final Log log = LogFactory.getLog(FeedbackController.class);
 
-    @Value("${google.recaptcha.site.key}")
-    private String gRecaptchaSiteKey;
-
+    // Note that site key is picked up in HomeController
     @Value("${google.recaptcha.secret.key}")
     private String gRecaptchaSecretKey;
 
