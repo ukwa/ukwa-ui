@@ -116,13 +116,13 @@ public class FeedbackController {
      * @return
      */
     private boolean checkCaptcha(String gRecaptchaResponse) {
-        log.info("Validating ReCAPTCHA..." + gRecaptchaResponse.substring(0, 10));
+        log.info("Validating ReCAPTCHA " + gRecaptchaResponse.substring(0, 10) + "...");
         boolean passed = this.isCaptchaValid(this.gRecaptchaSecretKey, gRecaptchaResponse);
         if( !passed ) {
-            log.info("ReCAPTCHA " + gRecaptchaResponse.substring(0, 10) + " failed!");
+            log.info("ReCAPTCHA " + gRecaptchaResponse.substring(0, 10) + "... failed!");
             throw new RuntimeException("ReCAPTCHA Validation Failed!");
         }
-        log.info("ReCAPTCHA " + gRecaptchaResponse.substring(0, 10) + " passed!");
+        log.info("ReCAPTCHA " + gRecaptchaResponse.substring(0, 10) + "... passed!");
         return passed;
     }
 
