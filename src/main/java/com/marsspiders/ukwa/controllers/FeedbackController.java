@@ -151,7 +151,7 @@ public class FeedbackController {
                 http = (HttpURLConnection) new URL(url).openConnection();
             }
             http.setDoOutput(true);
-            http.setConnectTimeout(10*1000);
+            http.setConnectTimeout(30*1000);
             http.setRequestMethod("POST");
             http.setRequestProperty("Content-Type",
                     "application/x-www-form-urlencoded; charset=UTF-8");
