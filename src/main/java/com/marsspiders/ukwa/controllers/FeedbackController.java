@@ -54,7 +54,6 @@ public class FeedbackController {
                                      @RequestParam(value = "email", required = false) String email,
                                      @RequestParam(value = "comments", required = false) String comments,
                                      @RequestParam(value = "g-recaptcha-response", required = true) String gRecaptchaResponse ) {
-        log.info("sendFeedback got gRecaptchaResponse="+gRecaptchaResponse);
 
         // Check Captcha worked:
         this.checkCaptcha(gRecaptchaResponse);
@@ -117,10 +116,13 @@ public class FeedbackController {
      * @return
      */
     private boolean checkCaptcha(String gRecaptchaResponse) {
+        log.info("Validating ReCAPTCHA..." + gRecaptchaResponse.substring(0, 10));
         boolean passed = this.isCaptchaValid(this.gRecaptchaSecretKey, gRecaptchaResponse);
         if( !passed ) {
+            log.info("ReCAPTCHA " + gRecaptchaResponse.substring(0, 10) + " failed!");
             throw new RuntimeException("ReCAPTCHA Validation Failed!");
         }
+        log.info("ReCAPTCHA " + gRecaptchaResponse.substring(0, 10) + " passed!");
         return passed;
     }
 
