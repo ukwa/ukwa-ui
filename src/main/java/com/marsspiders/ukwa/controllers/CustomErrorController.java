@@ -22,11 +22,10 @@ public class CustomErrorController implements ErrorController {
     private Boolean setProtocolToHttps;
 
     @RequestMapping(value = PATH_ERROR)
-    public ModelAndView defaultErrorHandler(HttpServletRequest req, HttpServletResponse res) throws Exception {
+    public ModelAndView defaultErrorHandler(HttpServletRequest req, HttpServletResponse res, Exception e) throws Exception {
 
-        log.error("Handling Error Response: " + res);
-        Exception e = (Exception) req.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
-        log.error("Underlying Exception: ", e);
+        log.error("Handling Error Response: " + res.getStatus());
+        log.error("Underlying Exception: "+e , e);
 
         String errorPageView;
         if(res.getStatus() == 404){
