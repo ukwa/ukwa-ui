@@ -54,6 +54,7 @@ public class FeedbackController {
                                      @RequestParam(value = "email", required = false) String email,
                                      @RequestParam(value = "comments", required = false) String comments,
                                      @RequestParam(value = "g-recaptcha-response", required = true) String gRecaptchaResponse ) {
+        log.info("sendFeedback got gRecaptchaResponse="+gRecaptchaResponse);
 
         // Check Captcha worked:
         this.checkCaptcha(gRecaptchaResponse);
