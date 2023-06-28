@@ -91,7 +91,7 @@
 
         <div class="col-md-6 col-sm-12 form-content-col padding-top-0" aria-label="Input captcha"
              title="captcha message field" id="ukwa-captchca">
-            <div class="g-recaptcha" data-sitekey="6Lcn5C4UAAAAAFzANA394u7Jqfk2QmvxyUjM8UiM" aria-hidden="true"
+            <div class="g-recaptcha" data-sitekey="${google.recaptcha.site.key}" aria-hidden="true"
                  aria-label="do not use" aria-readonly="true"></div>
             <div class="captcha-message" aria-labelledby="ukwa-captchca" aria-hidden="true" aria-label="do not use"
                  aria-readonly="true"><spring:message code="captcha.message"/></div>

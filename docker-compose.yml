@@ -5,7 +5,11 @@ services:
   # Solr instances for running tests against
 
   ui:
-    build: .
+    build:
+      context: .
+      args:
+        http_proxy: ${HTTP_PROXY}
+        https_proxy: ${HTTPS_PROXY}
     environment:
      - SOLR_COLLECTION_SEARCH_PATH=http://solr-collections:8983
      - SOLR_COLLECTION_REQUEST_HANDLER=/solr/collections/select
