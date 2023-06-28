@@ -19,12 +19,14 @@ import org.springframework.boot.json.JsonParserFactory;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
+import java.net.Proxy;
 import java.util.Map;
 
 import static com.marsspiders.ukwa.controllers.HomeController.PROJECT_NAME;
@@ -136,8 +138,18 @@ public class FeedbackController {
             String url = "https://www.google.com/recaptcha/api/siteverify",
                     params = "secret=" + secretKey + "&response=" + response;
 
-            HttpURLConnection http = (HttpURLConnection) new URL(url).openConnection();
+            String proxyHost = System.getenv().getOrDefault("CAPTCHA_PROXY_HOST", null);
+            String proxyPort = System.getenv().getOrDefault("CAPTCHA_PROXY_PORT", null);
+
+            HttpURLConnection http;
+            if( proxyHost != null ) {
+                Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, Integer.parseInt(proxyPort)));
+                http = (HttpURLConnection) new URL(url).openConnection(proxy);
+            } else {
+                http = (HttpURLConnection) new URL(url).openConnection();
+            }
             http.setDoOutput(true);
+            http.setConnectTimeout(10*1000);
             http.setRequestMethod("POST");
             http.setRequestProperty("Content-Type",
                     "application/x-www-form-urlencoded; charset=UTF-8");

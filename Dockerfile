@@ -26,5 +26,5 @@ ENV ARCHIVE_WEB_LOCATION="https://www.webarchive.org.uk/wayback/archive/" \
  BL_SMTP_USERNAME="mailuser" \
  BL_SMTP_PASSWORD="mailpassword"
 
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/ukwa-ui.war"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Djava.net.useSystemProxies=true","-jar","/ukwa-ui.war"]
 EXPOSE 8080
