@@ -1,6 +1,6 @@
 # UKWA UI
 
-A new user interface for the UK Web Archive
+User interface for the UK Web Archive
 
 ## How to Run the Code ##
 
